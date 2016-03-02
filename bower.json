@@ -13,10 +13,7 @@
     "src/Pagina.js",
     "src/VP.js"
   ],
-  "dependencies": {
-    "get-size": "~1.2.2",
-    "eventEmitter": "~4.2.11"
-  },
+  "dependencies": {},
   "devDependencies": {
     "qunit": "~1.16.0"
   },
