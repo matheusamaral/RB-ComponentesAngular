@@ -2,8 +2,16 @@
   "name": "RB-ComponentesAngular",
   "description": "Componentes para angular padrão Rubeus.",
   "main": [
-    "js/motion.js",
-    "sass/motion.scss"
+    "src/GCS.js",
+    "src/Config.js",
+    "src/GD.js",
+    "src/GEO.js",
+    "src/Imagem.js",
+    "src/Locale.js",
+    "src/MSG.js",
+    "src/Navegacao.js",
+    "src/Pagina.js",
+    "src/VP.js"
   ],
   "dependencies": {
     "get-size": "~1.2.2",
@@ -35,7 +43,8 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "nbproject"
   ],
   "private": true
 }
