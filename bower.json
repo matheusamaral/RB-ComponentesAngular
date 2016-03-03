@@ -11,6 +11,7 @@
     "src/MSG.js",
     "src/Navegacao.js",
     "src/Pagina.js",
+    "src/Loading.js",
     "src/VP.js"
   ],
   "dependencies": {
