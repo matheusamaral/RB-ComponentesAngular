@@ -92,12 +92,12 @@ angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.me
         popularDadosLocais(dados);
         popularGDados(dados);
         var direcionamento;        
-        if (VP.ehValido(DGlobal.acaoCliente)) {
+        /*if (VP.ehValido(DGlobal.acaoCliente)) {
             direcionamento = dados.acaoCliente.nomeURL;
         }
         
         if(String($location.path()) === '/'+direcionamento) $route.reload();        
-        //$location.url(direcionamento);
+        //$location.url(direcionamento);*/
         $location.path(direcionamento, false);
     };
     

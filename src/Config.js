@@ -32,19 +32,13 @@ angular.module('RB.config', [])
         return refDiretorio;
     };
     
-    function configurar(){
-        habilitarClickHref(); 
-    }; 
-    
     return {
-        habilitarClickHref: habilitarClickHref,
         getRefDominio: getRefDominio,
         setRefDominio: setRefDominio,
         setRefAmbiente: setRefAmbiente ,
         setRefAmbienteReq: setRefAmbienteReq,
         getRefAmbiente: getRefAmbiente,
-        getRefAmbienteReq: getRefAmbienteReq,
-        configurar: configurar
+        getRefAmbienteReq: getRefAmbienteReq        
     };
     
  }]);
