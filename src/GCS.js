@@ -49,7 +49,7 @@ angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.me
             dados.dados += '&idAba=' + DGlobal.acaoCliente.aba
                         + '&conteudoCliente='+$.param(conteudosJaNoCliente());
         
-        RBLoading.changeStatus(true);                                       
+        if(dados.exibeMSGCarregando) RBLoading.changeStatus(true);                                       
         
         var objEnviar = {
             method: dados.tipo, 
@@ -92,7 +92,7 @@ angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.me
         popularDadosLocais(dados);
         popularGDados(dados);
         var direcionamento;        
-        /*if (VP.ehValido(DGlobal.acaoCliente)) {
+        if (VP.ehValido(DGlobal.acaoCliente)) {
             direcionamento = dados.acaoCliente.nomeURL;
         }
         

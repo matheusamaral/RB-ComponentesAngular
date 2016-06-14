@@ -228,6 +228,44 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         return regexp.test(email);
     }
     
+    function organizaDataHora(data){
+        // obtem o dia, mes e ano
+        var dia = data.getDate();
+        var mes = data.getMonth() + 1;
+        var ano = data.getFullYear();
+
+        //obtem as horas, minutos e segundos
+        var horas = data.getHours();
+        var minutos = data.getMinutes();
+        var segundos = data.getSeconds();
+
+           //converte as horas, minutos e segundos para string
+        var str_horas = new String(horas);
+        var str_minutos = new String(minutos);
+        var str_segundos = new String(segundos);
+
+           //se tiver menos que 2 digitos, acrescenta o 0
+        if (str_horas.length < 2)
+            str_horas = 0 + str_horas;
+        if (str_minutos.length < 2)
+            str_minutos = 0 + str_minutos;
+        if (str_segundos.length < 2)
+            str_segundos = 0 + str_segundos;
+
+           //converte o dia e o mes para string
+        var str_dia = new String(dia);
+        var str_mes = new String(mes);
+
+           //se tiver menos que 2 digitos, acrescenta o 0
+        if (str_dia.length < 2) 
+            str_dia = 0 + str_dia;
+        if (str_mes.length < 2) 
+            str_mes = 0 + str_mes;
+
+        data = ano + '-' + str_mes + '-' + str_dia  + ' ' + str_horas + ':' + str_minutos + ':' + str_segundos;
+        return data;
+    }
+    
     function organizaDataString(campo){
         if(campo.indexOf('/') !== -1){
             var dataArray = campo.split('/');
