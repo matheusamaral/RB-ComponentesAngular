@@ -2,13 +2,19 @@
 
 angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toaster'])
 
-.factory('Pagina', ['VP', 'GCS', 'Config', 'toaster',
-    function(VP, GCS, Config, toaster) {
+.factory('Pagina', ['RBLoading','VP', 'GCS', 'Config', 'toaster','$timeout',
+    function(RBLoading,VP, GCS, Config, toaster,$timeout) {
    
     var timeNavegar = 0;
+    var appAtual = '';
     
     function getTimeNavegar(){
         return timeNavegar;
+    }
+    
+    function setApp(app){
+        appAtual = app;
+        return instancia;
     }
     
     function hrefDataAjax(href){
@@ -30,6 +36,7 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
             };
             
             dadosPadrao = VP.validarObj(dados,dadosPadrao);
+            RBLoading.changeStatus(true);
             
             if(parseInt(dados.href) !== 1 && parseInt(dados.href) !== 2){
                 timeNavegar = 1;
@@ -39,7 +46,7 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
                 
                 var dadosRequisicao = {
                     //url:Config.getRefAmbienteReq()+'?c=Navegacao&o=getDados&idPage='+dadosPadrao.idPage+'&opc='+dadosPadrao.opc+dadosPadrao.paramAdd,
-                    url:Config.getRefAmbienteReq()+'/Navegacao/Tela/'+dadosPadrao.idPage+'/'+dadosPadrao.opc+dadosPadrao.paramAdd,
+                    url:Config.getRefAmbienteReq()+'/Navegacao/Tela/'+dadosPadrao.idPage+'/'+dadosPadrao.opc+'/'+appAtual+dadosPadrao.paramAdd,
                     tipo:'post',
                     dados:dadosPadrao.dados,
                     acao: acaoNavegar, 
@@ -60,15 +67,24 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
     };
     
     function acaoErroNavegar(){
+        RBLoading.changeStatus(false);
         timeNavegar = 0;
         //MSG.abirMesagemAcao('Servidor não responde! Tente novamente.');
         toaster.error({title: "Servidor não responde!", body: 'Tente novamente.'});
     };
     
     function acaoNavegar(dados){
+        RBLoading.changeStatus(false);
         timeNavegar = 0;
-        if(dados.success){            
-            GCS.executarAcaoServidor(dados);            
+        if(dados.success){
+            console.log("cheguei acao servidor");
+            GCS.executarAcaoServidor(dados);  
+            
+            $timeout(function(){
+                $('html, body').animate({
+                           scrollTop:0
+                        }, 1000);
+            },1000);
         }
     };
     
@@ -83,13 +99,16 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
         return false;
     };
     
-    return {
+    var instancia = {
         hrefDataAjax:hrefDataAjax,
         navegar: navegar,
+        setApp: setApp,
         acaoNavegar:acaoNavegar,
         navegarHref:navegarHref,
         getTimeNavegar: getTimeNavegar,
         acaoErroNavegar: acaoErroNavegar
     };
+    
+    return instancia;
     
  }]);

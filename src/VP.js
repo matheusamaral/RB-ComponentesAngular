@@ -215,7 +215,10 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         if (!valor || valor === "") {
             valor = '0,00';
         } else {
-            valor = valor.replace(".", ",");
+            if(valor.indexOf('.')===-1){
+                valor=valor+',00';
+            }
+            else valor = valor.replace(".", ",");
         }
         return valor;
     }
@@ -223,6 +226,87 @@ angular.module('RB.validacoesPadroes', ['toaster'])
     function emailValido(email) {
         var regexp = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         return regexp.test(email);
+    }
+    
+    function organizaDataString(campo){
+        if(campo.indexOf('/') !== -1){
+            var dataArray = campo.split('/');
+            var dia = dataArray[0];
+            var mes = dataArray[1];
+            var ano = dataArray[2];
+            campo = ano+'-'+mes+'-'+dia;
+        }
+        return campo;
+    }
+    
+    function organizaDataVisao(campo){
+        if(campo.indexOf('-') !== -1){
+            var dataArray = campo.split('-');
+            var ano = dataArray[0];
+            var mes = dataArray[1];
+            var dia = dataArray[2];
+            campo = dia+'/'+mes+'/'+ano;
+        }
+        return campo;
+    }
+    
+    function retirarAcento(strToReplace) {
+        var str_acento= "áàãâäéèêëíìîïóòõôöúùûüçÁÀÃÂÄÉÈÊËÍÌÎÏÓÒÕÖÔÚÙÛÜÇ",
+        str_sem_acento = "aaaaaeeeeiiiiooooouuuucAAAAAEEEEIIIIOOOOOUUUUC",
+        nova="";
+        for (var i = 0; i < strToReplace.length; i++) {
+            if (str_acento.indexOf(strToReplace.charAt(i)) != -1) {
+                nova+=str_sem_acento.substr(str_acento.search(strToReplace.substr(i,1)),1);
+            } else
+                nova+=strToReplace.substr(i,1);            
+        }
+        return nova;
+    };
+    
+    function dataInt( a ) {
+        if (a == null || a == "") {
+            return 0;
+        }
+        if(a.indexOf('/') !== -1){
+            var brDatea = a.split('/');
+            return (brDatea[2] + brDatea[1] + brDatea[0]) * 1;
+        }
+        var brDatea = a.split('-');
+        return (brDatea[0] + brDatea[1] + brDatea[2]) * 1;
+    }
+    
+    function validaNomecomposto(item){
+        var nCaracteres = 0, nomes, stringN;
+        if(ehValido(item)){
+            nomes = item.split(" ");
+            if(nomes.length > 1){
+                if(nomes[nomes.length - 1]){
+                    stringN = nomes[nomes.length - 1].split("");
+                    nCaracteres = stringN.length;
+                    if(nCaracteres > 1){
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+    
+    function oganizaDataDatePicker(date){
+        var data = new Date(date);
+        var mes = (data.getMonth())+1;
+        if(mes < 10)
+            mes = '0'+mes;
+        var dia = data.getDate();
+        var ano = data.getFullYear();
+        
+        return dia+'/'+mes+'/'+ano;
     }
     
     return {
@@ -243,7 +327,13 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         floatToMoeda: floatToMoeda,
         emailValido: emailValido,
         removeReferencia: removeReferencia,
-        validaErro:validaErro
+        validaErro:validaErro,
+        organizaDataString:organizaDataString,
+        organizaDataVisao:organizaDataVisao,
+        retirarAcento:retirarAcento,
+        dataInt:dataInt,
+        validaNomecomposto:validaNomecomposto,
+        oganizaDataDatePicker:oganizaDataDatePicker
     };
     
  }]);
