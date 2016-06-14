@@ -371,7 +371,8 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         retirarAcento:retirarAcento,
         dataInt:dataInt,
         validaNomecomposto:validaNomecomposto,
-        oganizaDataDatePicker:oganizaDataDatePicker
+        oganizaDataDatePicker:oganizaDataDatePicker,
+        organizaDataHora:organizaDataHora
     };
     
  }]);
