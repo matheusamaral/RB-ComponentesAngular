@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="cadastro" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Usuario::nome" nome="nome"/> 
+        <campo regra="Obrigatorio" chave="Usuario::apelido" nome="apelido"/>
+        <campo regra="Obrigatorio;Telefone" chave="Usuario::telefone" nome="telefone"/>
+        <campo regra="Obrigatorio;Data" chave="Usuario::nascimento" nome="nascimento"/>
+        <campo regra="Obrigatorio" chave="Usuario::avataresId" nome="avatares"/>
+        <campo regra="Obrigatorio" chave="Usuario::generoId" nome="genero"/>
+        <campo regra="Opcional" chave="Arquivo" nome="arquivo" type="file"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="cadastro-usuario" tipo="tarefa">
+            <entidade nome="CadastroUsuario" metodo="cadastro"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

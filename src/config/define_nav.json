@@ -1,0 +1,18 @@
+{
+    "Quickpeek":{
+        "ARQ_UTILIZADO":[
+            "/lib/Quickpeek/*",
+            "/componentesJS/bower_components/RB-ComponentesAngular/src/*",
+            "/lib/Base/*",
+            "!/lib/Quickpeek/testesUnit/*",
+            "!/lib/Quickpeek/karma.conf.js"
+        ],
+        "ARQ_NAV":"ui/navegacao/navegacao.xml"
+    },
+    "root" : {
+        "CAMINHO_JS":"ui/js/js",
+        "CAMINHO_CSS":"ui/css/css",
+        "PST_CLIENTE":"ui/",   
+        "INDEX":"ui/index.html"  
+    }
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+        
+<classe nome="Perguntas" tabela="perguntas"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="respondida" atributo="respondida" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="local_id"  atributo="localId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Respostas" tabela="respostas"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
+</classe>
+        
+<classe nome="PerguntaUsuario" tabela="pergunta_usuario"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="visualizado" atributo="visualizado" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
+    <propriedades coluna="momento_visualizado" atributo="momentoVisualizado" /> 
+</classe>
+        
+<classe nome="Curtir" tabela="curtir"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="midia_id"  atributo="midiaId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Midia" tabela="midia"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="local_id"  atributo="localId" />  
+    <propriedades coluna="endereco" atributo="endereco" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Hashtag" tabela="hashtag"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="HashtagLocal" tabela="hashtag_local"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="local_id"  atributo="localId" />  
+    <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="HashtagCategoria" tabela="hashtag_categoria"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="categoria_hashtag_id"  atributo="categoriaHashtagId" />  
+    <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="CategoriaHashtag" tabela="categoria_hashtag"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <nparaum coluna="icone_hashtag_id"  atributo="iconeHashtagId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="IconeHashtag" tabela="icone_hashtag"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="endereco" atributo="endereco" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+</root>

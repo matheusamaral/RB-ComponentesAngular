@@ -1,0 +1,8 @@
+{
+    "Quickpeek":{
+        "diretorioProcesso":[
+            "src/entrada"
+        ],
+        "diretorioEventos":[ ]
+    }
+}

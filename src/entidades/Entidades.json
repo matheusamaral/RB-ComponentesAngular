@@ -1,0 +1,27 @@
+{
+    "Avatares": "\\Quickpeek\\Usuario\\Dominio\\Avatares",
+    "Bloqueado": "\\Quickpeek\\Usuario\\Dominio\\Bloqueado",
+    "Configuracoes": "\\Quickpeek\\Usuario\\Dominio\\Configuracoes",
+    "Genero": "\\Quickpeek\\Usuario\\Dominio\\Genero",
+    "Mensagens": "\\Quickpeek\\Usuario\\Dominio\\Mensagens",
+    "Seguir": "\\Quickpeek\\Usuario\\Dominio\\Seguir",
+    "StatusMensagem": "\\Quickpeek\\Usuario\\Dominio\\StatusMensagem",
+    "Usuario": "\\Quickpeek\\Usuario\\Dominio\\Usuario",
+    "Visibilidade": "\\Quickpeek\\Usuario\\Dominio\\Visibilidade",
+    
+    "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
+    "CheckIn": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
+    "IconeLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
+    "Local": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
+    
+    "CategoriaHashtag": "\\Quickpeek\\Acoes\\Dominio\\CategoriaHashtag",
+    "Curtir": "\\Quickpeek\\Acoes\\Dominio\\Curtir",
+    "Hashtag": "\\Quickpeek\\Acoes\\Dominio\\Hashtag",
+    "HashtagCategoria": "\\Quickpeek\\Acoes\\Dominio\\HashtagCategoria",
+    "HashtagLocal": "\\Quickpeek\\Acoes\\Dominio\\HashtagLocal",
+    "IconeHashtag": "\\Quickpeek\\Acoes\\Dominio\\IconeHashtag",
+    "Midia": "\\Quickpeek\\Acoes\\Dominio\\Midia",
+    "PerguntaUsuario": "\\Quickpeek\\Acoes\\Dominio\\PerguntaUsuario",
+    "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
+    "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas"
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+        
+<classe nome="Local" tabela="local"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="latitude" atributo="latitude" /> 
+    <propriedades coluna="longitude" atributo="longitude" /> 
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="categoria_local_id"  atributo="categoriaLocalId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="CategoriaLocal" tabela="categoria_local"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <nparaum coluna="icone_local_id"  atributo="iconeLocalId" />  
+</classe>
+        
+<classe nome="IconeLocal" tabela="icone_local"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="endereco" atributo="endereco" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="CheckIn" tabela="check_in"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="local_id"  atributo="localId" />  
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+</root>

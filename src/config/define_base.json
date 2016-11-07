@@ -1,0 +1,12 @@
+{
+    "root":{
+        "BASE_DADOS":{
+            "principal":{
+                "host":"localhost",
+                "user":"root" ,
+                "password":"jgtHr@0T",
+                "base":"quickpeek"
+            }
+        }
+    }
+}

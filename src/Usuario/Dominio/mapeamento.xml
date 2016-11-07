@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+        
+<classe nome="Usuario" tabela="usuario"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="nome" atributo="nome" /> 
+    <propriedades coluna="apelido" atributo="apelido" /> 
+    <propriedades coluna="endereco" atributo="endereco" /> 
+    <propriedades coluna="nascimento" atributo="nascimento" /> 
+    <propriedades coluna="telefone" atributo="telefone" /> 
+    <nparaum coluna="avatares_id"  atributo="avataresId" />  
+    <nparaum coluna="genero_id"  atributo="generoId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Avatares" tabela="avatares"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="endereco" atributo="endereco" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Genero" tabela="genero"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Bloqueado" tabela="bloqueado"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="anonimo" atributo="anonimo" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="usuario_bloqueado_id"  atributo="usuarioBloqueadoId" />  
+</classe>
+        
+<classe nome="Configuracoes" tabela="configuracoes"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="notificacao_presenca" atributo="notificacaoPresenca" /> 
+    <propriedades coluna="notificacao_publicacao" atributo="notificacaoPublicacao" /> 
+    <propriedades coluna="notificacao_seguidor" atributo="notificacaoSeguidor" /> 
+    <propriedades coluna="aprovacao_seguir" atributo="aprovacaoSeguir" /> 
+    <propriedades coluna="padrao_aprovacao" atributo="padraoAprovacao" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+</classe>
+        
+<classe nome="Visibilidade" tabela="visibilidade"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Seguir" tabela="seguir"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="confirmar_seguir" atributo="confirmarSeguir" /> 
+    <propriedades coluna="momento_confirmar_seguir" atributo="momentoConfirmarSeguir" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="usuario_seguir_id"  atributo="usuarioSeguirId" />  
+</classe>
+        
+<classe nome="StatusMensagem" tabela="status_mensagem"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Mensagens" tabela="mensagens"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="texto" atributo="texto" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="momento_visualizado" atributo="momentoVisualizado" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="usuario_mensagem_id"  atributo="usuarioMensagemId" />  
+    <nparaum coluna="status_mensagem_id"  atributo="statusMensagemId" />  
+</classe>
+</root>

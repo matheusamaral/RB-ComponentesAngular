@@ -1,0 +1,27 @@
+{
+    "Query": "\\Rubeus\\Query\\Query",
+    "Telefone": "\\Rubeus\\Servicos\\TipoDado\\Mascara\\Telefone",
+    "RegistrarObjetosTotvs": "\\Rubeus\\IntegracaoTotvs\\Envio\\ReceberObjeto",
+    "FilaProcesso": "\\Rubeus\\FilaProcesso\\Aplicacao\\Fila",
+    "ProcessoFila": "\\Rubeus\\FilaProcesso\\Aplicacao\\ProcessoFila",
+    "Cadastro": "\\Rubeus\\ManipulacaoEntidade\\Aplicacao\\Cadastro",
+    "Consulta": "\\Rubeus\\ManipulacaoEntidade\\Aplicacao\\Consultar",
+    "Mensagem": "\\Rubeus\\Processo\\Dominio\\Mensagem\\Mensagem",
+    "Repositorio": "\\Rubeus\\ManipulacaoEntidade\\Infra\\Repositorio\\Repositorio",
+    "ProcessoIntegracao": "\\Rubeus\\IntegracaoTotvs\\ProcessoIntegracao\\ProcessoIntegracao",
+    "Emcrypt": "\\Rubeus\\Servicos\\Emcrypt\\Emcrypt",
+    "Vetor": "\\Rubeus\\Servicos\\Vetor\\Vetor",
+    "RepositorioProcesso": "\\Rubeus\\Processo\\Dominio\\Processo\\RepositorioProcesso",
+    "ConsultarPadrao": "\\Rubeus\\ManipulacaoEntidade\\Aplicacao\\Consultar",
+    "DataHora": "\\Rubeus\\Servicos\\Data\\DataHora",
+    "Periodo": "\\Rubeus\\Servicos\\Data\\Periodo",
+    "Hora": "\\Rubeus\\Servicos\\Data\\Hora",
+    "Upload": "\\Rubeus\\Servicos\\Upload\\Upload",
+    "CPF": "\\Rubeus\\Servicos\\TipoDado\\Mascara\\CPF",
+    "EstruturarDadosConsulta": "\\Rubeus\\Query\\Estruturar",
+    "Caracter": "\\Rubeus\\Servicos\\String\\Caracter",
+    "ClienteTotvsWS": "\\Rubeus\\IntegracaoTotvs\\WebService\\ClienteTotvsWS",
+    "EnvioEmailArq": "\\Rubeus\\Servicos\\Email\\EnvioEmailArq",
+    
+    "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro"
+}

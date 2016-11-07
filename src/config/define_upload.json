@@ -1,0 +1,17 @@
+{ 
+    "root":{
+        "CONFIG_UPLOAD":{
+            "padrao":{
+                "diretorio": "file/imagemTemporaria/",
+                "origem":false
+            },
+            
+            "imagem":{
+                "diretorio": "file/imagem/",
+                "url": "/file/imagem/"
+            }
+        }
+    }
+}
+    
+

@@ -1,0 +1,23 @@
+{
+    "require": {
+        "rubeus/bd": "dev-master",
+        "rubeus/container": "dev-master",
+        "rubeus/core-process": "dev-master",
+        "rubeus/front-controller": "dev-master",
+        "rubeus/generate-project": "dev-master",
+        "rubeus/handling-entity": "dev-master",
+        "rubeus/integration-totvs": "dev-master",
+        "rubeus/navigation": "dev-master",
+        "rubeus/newsletter": "dev-master",
+        "rubeus/orm": "dev-master",
+        "rubeus/query": "dev-master",
+        "rubeus/services": "dev-master",
+        "rubeus/process": "dev-master",
+        "mobiledetect/mobiledetectlib": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Quickpeek\\": "src/"
+        }
+    }
+}

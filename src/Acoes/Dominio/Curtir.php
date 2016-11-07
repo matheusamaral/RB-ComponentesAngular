@@ -1,0 +1,61 @@
+<?php
+        
+namespace Quickpeek\Acoes\Dominio;
+use Rubeus\ORM\Persistente as Persistente;
+
+    class Curtir extends Persistente{
+        private $id = false;
+        private $usuarioId = false;
+        private $midiaId = false;
+        private $ativo = false;
+        private $momento = false; 
+                
+        public function getId() {
+            return $this->id;
+        }
+
+        public function setId($id) {
+            $this->id = $id;
+        } 
+            
+        public function getUsuarioId() {
+            if(!$this->usuarioId)
+                    $this->usuarioId = new \Quickpeek\Usuario\Dominio\Usuario(); 
+            return $this->usuarioId;
+        }
+
+        public function setUsuarioId($usuarioId) {
+            if($usuarioId instanceof \Quickpeek\Usuario\Dominio\Usuario)
+                $this->usuarioId = $usuarioId;
+            else $this->getUsuarioId()->setId($usuarioId);
+        } 
+            
+        public function getMidiaId() {
+            if(!$this->midiaId)
+                    $this->midiaId = new Midia(); 
+            return $this->midiaId;
+        }
+
+        public function setMidiaId($midiaId) {
+            if($midiaId instanceof Midia)
+                $this->midiaId = $midiaId;
+            else $this->getMidiaId()->setId($midiaId);
+        } 
+                
+        public function getAtivo() {
+            return $this->ativo;
+        }
+
+        public function setAtivo($ativo) {
+            $this->ativo = $ativo;
+        } 
+                
+        public function getMomento() {
+            return $this->momento;
+        }
+
+        public function setMomento($momento) {
+            $this->momento = $momento;
+        }
+        
+    }
