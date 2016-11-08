@@ -10,9 +10,9 @@
     "Visibilidade": "\\Quickpeek\\Usuario\\Dominio\\Visibilidade",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
-    "CheckIn": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
-    "IconeLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
-    "Local": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
+    "CheckIn": "\\Quickpeek\\Local\\Dominio\\CheckIn",
+    "IconeLocal": "\\Quickpeek\\Local\\Dominio\\IconeLocal",
+    "Local": "\\Quickpeek\\Local\\Dominio\\Local",
     
     "CategoriaHashtag": "\\Quickpeek\\Acoes\\Dominio\\CategoriaHashtag",
     "Curtir": "\\Quickpeek\\Acoes\\Dominio\\Curtir",

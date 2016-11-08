@@ -9,7 +9,7 @@
         <campo regra="Obrigatorio;Data" chave="Usuario::nascimento" nome="nascimento"/>
         <campo regra="Obrigatorio" chave="Usuario::avataresId" nome="avatares"/>
         <campo regra="Obrigatorio" chave="Usuario::generoId" nome="genero"/>
-        <campo regra="Opcional" chave="Arquivo" nome="arquivo" type="file"/>
+        <campo chave="Arquivo" nome="arquivo" type="file"/>
     </entrada>
     
     <atividades>

@@ -23,5 +23,16 @@
     "ClienteTotvsWS": "\\Rubeus\\IntegracaoTotvs\\WebService\\ClienteTotvsWS",
     "EnvioEmailArq": "\\Rubeus\\Servicos\\Email\\EnvioEmailArq",
     
-    "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro"
+    "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
+    
+    "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
+    
+    "CheckIn": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\CheckIn",
+    "Hashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Hashtag",
+    "Midia": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Midia",
+    "Seguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\Seguir",
+    "ConfirmarSeguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\ConfirmarSeguir",
+    "Curtir": "\\Quickpeek\\Acoes\\Aplicacao\\Curtir\\Curtir",
+    "Perguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\Perguntas",
+    "VisualizarPerguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\VisualizarPerguntas"
 }

@@ -40,6 +40,7 @@
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="local_id"  atributo="localId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+    <propriedades coluna="presente" atributo="presente" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

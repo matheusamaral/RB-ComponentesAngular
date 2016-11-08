@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="hashtag" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Hashtag::titulo" nome="titulo"/>
+        <campo regra="Opcional" chave="HashtagLocal::localId" nome="local"/>
+        <campo regra="Opcional" chave="HashtagCategoria::categoriaHashtagId" nome="categoria"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="hashtag" tipo="tarefa">
+            <entidade nome="Hashtag" metodo="hashtag"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

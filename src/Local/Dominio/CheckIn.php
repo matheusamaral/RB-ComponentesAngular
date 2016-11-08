@@ -8,6 +8,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $usuarioId = false;
         private $localId = false;
         private $visibilidadeId = false;
+        private $presente = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -53,6 +54,14 @@ use Rubeus\ORM\Persistente as Persistente;
             if($visibilidadeId instanceof \Quickpeek\Usuario\Dominio\Visibilidade)
                 $this->visibilidadeId = $visibilidadeId;
             else $this->getVisibilidadeId()->setId($visibilidadeId);
+        } 
+                
+        public function getPresente() {
+            return $this->presente;
+        }
+
+        public function setPresente($presente) {
+            $this->presente = $presente;
         } 
                 
         public function getAtivo() {

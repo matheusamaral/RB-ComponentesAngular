@@ -7,8 +7,13 @@
             },
             
             "imagem":{
-                "diretorio": "file/imagem/",
-                "url": "/file/imagem/"
+                "diretorio": "/file/imagem",
+                "url": "/file/imagem"
+            },
+            
+            "midia":{
+                "diretorio": "/file/midia",
+                "url": "/file/midia"
             }
         }
     }

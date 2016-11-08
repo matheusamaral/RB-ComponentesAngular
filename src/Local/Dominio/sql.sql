@@ -62,5 +62,6 @@ CREATE TABLE `check_in`(
          FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `presente` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

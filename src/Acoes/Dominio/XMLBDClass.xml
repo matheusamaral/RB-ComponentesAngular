@@ -34,6 +34,7 @@
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="midia_id" atributo="midiaId" classe="Midia" tabela="midia"/>
+        <propriedades coluna="hashtag_id" atributo="hashtagId" classe="Hashtag" tabela="hashtag"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>

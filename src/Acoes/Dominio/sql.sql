@@ -74,6 +74,12 @@ CREATE TABLE `curtir`(
          FOREIGN KEY (`midia_id`) REFERENCES `midia` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `hashtag_id` INT   ,
+    INDEX `curtir_fk_hashtag_id_idx`(`hashtag_id` ASC),
+    CONSTRAINT `curtir_fk_hashtag_id` 
+         FOREIGN KEY (`hashtag_id`) REFERENCES `hashtag` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         

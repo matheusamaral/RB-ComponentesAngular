@@ -42,6 +42,7 @@
     </id>  
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="midia_id"  atributo="midiaId" />  
+    <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

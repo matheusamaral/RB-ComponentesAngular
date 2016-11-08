@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="midia" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Midia::localId" nome="local"/>
+        <campo chave="Arquivo" nome="arquivo" type="file"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="midia" tipo="tarefa">
+            <entidade nome="Midia" metodo="midia"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

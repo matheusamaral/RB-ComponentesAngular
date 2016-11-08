@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="visualizarPerguntas" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="PerguntaUsuario::id" nome="id"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="visualizarPerguntas" tipo="tarefa">
+            <entidade nome="VisualizarPerguntas" metodo="visualizarPerguntas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

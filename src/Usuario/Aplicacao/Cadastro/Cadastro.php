@@ -8,15 +8,30 @@ class Cadastro {
         
         $arquivo = $msg->getCampo('Arquivo')->get('valor');
         $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
-        var_dump($arquivo);
-        exit();
+        
         if(!$caminho && $arquivo){
             $erro = Conteiner::get('Upload')->getErro();
             $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);
         }else{
-            $msg->setCampo('Usuario::endereco', $caminho);
+            $cadastro = Conteiner::get('Cadastro');
+            
+            $msg->setCampo('Usuario::endereco', $caminho[0]['url']);
             $msg->setCampo('entidade', 'Usuario');
-            Conteiner::get('Cadastro')->cadastrar($msg);
+            $cadastro->cadastrar($msg);
+            
+            $idUser = $msg->getCampo('Usuario::id')->get('valor');
+            
+            $msg->setCampo('entidade', 'Configuracoes');
+            $msg->setCampo('Configuracoes::usuarioId', $idUser);
+            $msg->setCampo('Configuracoes::visibilidadeId', 1);
+            $msg->setCampo('Configuracoes::notificacaoPresenca', 1);
+            $msg->setCampo('Configuracoes::notificacaoPublicacao', 1);
+            $msg->setCampo('Configuracoes::notificacaoSeguidor', 1);
+            $msg->setCampo('Configuracoes::aprovacaoSeguir', 1);
+            $msg->setCampo('Configuracoes::padraoAprovacao', 1);
+            $cadastro->cadastrar($msg);
+            
+            $msg->setCampoSessao('dadosUsuarioLogado,id', $idUser);
         }
     }
 }

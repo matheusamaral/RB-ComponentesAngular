@@ -7,6 +7,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $id = false;
         private $usuarioId = false;
         private $midiaId = false;
+        private $hashtagId = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -40,6 +41,18 @@ use Rubeus\ORM\Persistente as Persistente;
             if($midiaId instanceof Midia)
                 $this->midiaId = $midiaId;
             else $this->getMidiaId()->setId($midiaId);
+        } 
+            
+        public function getHashtagId() {
+            if(!$this->hashtagId)
+                    $this->hashtagId = new Hashtag(); 
+            return $this->hashtagId;
+        }
+
+        public function setHashtagId($hashtagId) {
+            if($hashtagId instanceof Hashtag)
+                $this->hashtagId = $hashtagId;
+            else $this->getHashtagId()->setId($hashtagId);
         } 
                 
         public function getAtivo() {

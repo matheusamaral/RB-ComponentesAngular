@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="perguntas" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Perguntas::localId" nome="local"/>
+        <campo regra="Obrigatorio" chave="Perguntas::titulo" nome="titulo"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="perguntas" tipo="tarefa">
+            <entidade nome="Perguntas" metodo="perguntas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

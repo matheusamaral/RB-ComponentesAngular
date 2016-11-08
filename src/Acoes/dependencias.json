@@ -1,0 +1,4 @@
+{
+    "ConsultaSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguir",
+    "ConsultaUsuariosPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaUsuarios"
+}

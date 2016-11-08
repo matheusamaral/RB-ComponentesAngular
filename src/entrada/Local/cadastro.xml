@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="cadastro" modulo="Local">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Local::latitude" nome="latitude"/> 
+        <campo regra="Obrigatorio" chave="Local::longitude" nome="longitude"/>
+        <campo regra="Obrigatorio" chave="Local::titulo" nome="titulo"/>
+        <campo regra="Obrigatorio" chave="Local::categoriaLocalId" nome="categoriaLocalId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="cadastro-local" tipo="tarefa">
+            <entidade nome="CadastroLocal" metodo="cadastro"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
