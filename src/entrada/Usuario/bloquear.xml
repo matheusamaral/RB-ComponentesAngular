@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="bloquear" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Bloqueado::usuarioBloqueadoId" nome="usuarioBloqueadoId"/>
+        <campo regra="Opcional" chave="Bloqueado::anonimo" nome="anonimo"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="bloquear" tipo="tarefa">
+            <entidade nome="Bloquear" metodo="bloquear"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

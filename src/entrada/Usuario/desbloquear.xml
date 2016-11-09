@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="desbloquear" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Bloqueado::usuarioBloqueadoId" nome="usuarioBloqueadoId"/>
+        <campo regra="Opcional" chave="Bloqueado::anonimo" nome="anonimo"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="desbloquear" tipo="tarefa">
+            <entidade nome="Desbloquear" metodo="desbloquear"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

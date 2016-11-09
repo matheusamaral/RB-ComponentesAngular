@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="editarContato" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Opcional" chave="Configuracoes::contato" nome="contato"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="editar-contato" tipo="tarefa">
+            <entidade nome="EditarContato" metodo="editarContato"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

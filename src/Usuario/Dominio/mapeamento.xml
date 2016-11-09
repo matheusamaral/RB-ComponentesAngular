@@ -53,9 +53,8 @@
     <propriedades coluna="momento" atributo="momento" /> 
     <propriedades coluna="notificacao_presenca" atributo="notificacaoPresenca" /> 
     <propriedades coluna="notificacao_publicacao" atributo="notificacaoPublicacao" /> 
-    <propriedades coluna="notificacao_seguidor" atributo="notificacaoSeguidor" /> 
-    <propriedades coluna="aprovacao_seguir" atributo="aprovacaoSeguir" /> 
     <propriedades coluna="padrao_aprovacao" atributo="padraoAprovacao" /> 
+    <propriedades coluna="contato" atributo="contato" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
 </classe>

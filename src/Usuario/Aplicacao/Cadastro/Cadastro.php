@@ -19,10 +19,10 @@ class Cadastro {
             $msg->setCampo('entidade', 'Usuario');
             $cadastro->cadastrar($msg);
             
-            $idUser = $msg->getCampo('Usuario::id')->get('valor');
+            $usuarioId = $msg->getCampo('Usuario::id')->get('valor');
             
             $msg->setCampo('entidade', 'Configuracoes');
-            $msg->setCampo('Configuracoes::usuarioId', $idUser);
+            $msg->setCampo('Configuracoes::usuarioId', $usuarioId);
             $msg->setCampo('Configuracoes::visibilidadeId', 1);
             $msg->setCampo('Configuracoes::notificacaoPresenca', 1);
             $msg->setCampo('Configuracoes::notificacaoPublicacao', 1);
@@ -30,8 +30,8 @@ class Cadastro {
             $msg->setCampo('Configuracoes::aprovacaoSeguir', 1);
             $msg->setCampo('Configuracoes::padraoAprovacao', 1);
             $cadastro->cadastrar($msg);
-            
-            $msg->setCampoSessao('dadosUsuarioLogado,id', $idUser);
+
+            $msg->setCampoSessao('dadosUsuarioLogado,id', $usuarioId);
         }
     }
 }

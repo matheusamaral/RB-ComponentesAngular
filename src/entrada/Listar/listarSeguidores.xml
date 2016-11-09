@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarSeguidores" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-seguidores" tipo="tarefa">
+            <entidade nome="ListarSeguidores" metodo="listarSeguidores"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

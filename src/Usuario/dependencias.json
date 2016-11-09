@@ -1,0 +1,5 @@
+{
+    "ConsultaDesbloquear": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaDesbloquear",
+    "ConsultaListarBloqueados": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaListarBloqueados",
+    "ConsultaVerificarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarConfiguracoes"
+}

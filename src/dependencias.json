@@ -23,16 +23,33 @@
     "ClienteTotvsWS": "\\Rubeus\\IntegracaoTotvs\\WebService\\ClienteTotvsWS",
     "EnvioEmailArq": "\\Rubeus\\Servicos\\Email\\EnvioEmailArq",
     
+    
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
+    "Bloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Bloquear",
+    "Desbloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Desbloquear",
+    "EditarConfiguracoes": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarConfiguracoes",
+    "AlterarAvatar": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\AlterarAvatar",
+    "EditarPerfil": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarPerfil",
+    "EditarContato": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarContato",
+    
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
+    
     
     "CheckIn": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\CheckIn",
     "Hashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Hashtag",
     "Midia": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Midia",
     "Seguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\Seguir",
+    "DeixarSeguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\DeixarSeguir",
     "ConfirmarSeguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\ConfirmarSeguir",
     "Curtir": "\\Quickpeek\\Acoes\\Aplicacao\\Curtir\\Curtir",
     "Perguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\Perguntas",
-    "VisualizarPerguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\VisualizarPerguntas"
+    "VisualizarPerguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\VisualizarPerguntas",
+    "Respostas": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\Respostas",
+    
+    "ListarSeguidores": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarSeguidores",
+    "ListarSeguidos": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarSeguidos",
+    "ListarHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarHashtag",
+    
+    "ListarBloqueados": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarBloqueados"
 }

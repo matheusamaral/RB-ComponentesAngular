@@ -3,7 +3,7 @@
 <processo codigo="seguir" modulo="Acoes">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Seguir::usuarioSeguirId" nome="usuario"/>
+        <campo regra="Obrigatorio" chave="Seguir::usuarioSeguirId" nome="usuarioSeguirId"/>
     </entrada>
     
     <atividades>

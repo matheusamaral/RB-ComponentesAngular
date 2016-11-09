@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarHashtag" modulo="Listar">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="CategoriaHashtag::id" nome="categoriaHashtagId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-hashtag" tipo="tarefa">
+            <entidade nome="ListarHashtag" metodo="listarHashtag"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

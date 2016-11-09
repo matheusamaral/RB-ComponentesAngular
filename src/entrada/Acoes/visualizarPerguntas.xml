@@ -7,7 +7,7 @@
     </entrada>
     
     <atividades>
-        <atividade codigo="visualizarPerguntas" tipo="tarefa">
+        <atividade codigo="visualizar-perguntas" tipo="tarefa">
             <entidade nome="VisualizarPerguntas" metodo="visualizarPerguntas"/>
         </atividade>
     </atividades>

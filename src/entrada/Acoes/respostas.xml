@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="respostas" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Respostas::perguntasId" nome="perguntasId"/>
+        <campo regra="Obrigatorio" chave="Respostas::titulo" nome="titulo"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="respostas" tipo="tarefa">
+            <entidade nome="Respostas" metodo="respostas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

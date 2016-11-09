@@ -9,9 +9,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $momento = false;
         private $notificacaoPresenca = false;
         private $notificacaoPublicacao = false;
-        private $notificacaoSeguidor = false;
-        private $aprovacaoSeguir = false;
         private $padraoAprovacao = false;
+        private $contato = false;
         private $usuarioId = false;
         private $visibilidadeId = false; 
                 
@@ -55,28 +54,20 @@ use Rubeus\ORM\Persistente as Persistente;
             $this->notificacaoPublicacao = $notificacaoPublicacao;
         } 
                 
-        public function getNotificacaoSeguidor() {
-            return $this->notificacaoSeguidor;
-        }
-
-        public function setNotificacaoSeguidor($notificacaoSeguidor) {
-            $this->notificacaoSeguidor = $notificacaoSeguidor;
-        } 
-                
-        public function getAprovacaoSeguir() {
-            return $this->aprovacaoSeguir;
-        }
-
-        public function setAprovacaoSeguir($aprovacaoSeguir) {
-            $this->aprovacaoSeguir = $aprovacaoSeguir;
-        } 
-                
         public function getPadraoAprovacao() {
             return $this->padraoAprovacao;
         }
 
         public function setPadraoAprovacao($padraoAprovacao) {
             $this->padraoAprovacao = $padraoAprovacao;
+        } 
+                
+        public function getContato() {
+            return $this->contato;
+        }
+
+        public function setContato($contato) {
+            $this->contato = $contato;
         } 
             
         public function getUsuarioId() {

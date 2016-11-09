@@ -3,7 +3,7 @@
 <processo codigo="midia" modulo="Acoes">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Midia::localId" nome="local"/>
+        <campo regra="Obrigatorio" chave="Midia::localId" nome="localId"/>
         <campo chave="Arquivo" nome="arquivo" type="file"/>
     </entrada>
     

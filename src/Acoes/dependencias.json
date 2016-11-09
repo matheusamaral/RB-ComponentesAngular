@@ -1,4 +1,9 @@
 {
     "ConsultaSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguir",
-    "ConsultaUsuariosPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaUsuarios"
+    "ConsultaDeixarSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaDeixarSeguir",
+    "ConsultaUsuariosPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaUsuarios",
+    
+    "ConsultaListarSeguidores": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarSeguidores",
+    "ConsultaListarSeguidos": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarSeguidos",
+    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

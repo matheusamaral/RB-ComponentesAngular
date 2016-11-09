@@ -63,9 +63,8 @@ CREATE TABLE `configuracoes`(
     `momento` datetime   ,
     `notificacao_presenca` varchar(45)   ,
     `notificacao_publicacao` varchar(45)   ,
-    `notificacao_seguidor` varchar(45)   ,
-    `aprovacao_seguir` varchar(45)   ,
     `padrao_aprovacao` varchar(45)   ,
+    `contato` varchar(45)   ,
     `usuario_id` INT   ,
     INDEX `configuracoes_fk_usuario_id_idx`(`usuario_id` ASC),
     CONSTRAINT `configuracoes_fk_usuario_id` 

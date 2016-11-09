@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="editarPerfil" modulo="Usuario">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Usuario::nome" nome="nome"/> 
+        <campo regra="Obrigatorio" chave="Usuario::apelido" nome="apelido"/>
+        <campo regra="Obrigatorio;Data" chave="Usuario::nascimento" nome="nascimento"/>
+        <campo regra="Obrigatorio" chave="Usuario::generoId" nome="generoId"/>
+        <campo chave="Arquivo" nome="arquivo" type="file"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="editar-perfil" tipo="tarefa">
+            <entidade nome="EditarPerfil" metodo="editarPerfil"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

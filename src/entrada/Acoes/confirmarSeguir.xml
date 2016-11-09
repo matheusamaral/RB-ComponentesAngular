@@ -3,11 +3,11 @@
 <processo codigo="confirmarSeguir" modulo="Acoes">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Seguir::id" nome="id"/>
+        <campo regra="Obrigatorio" chave="Seguir::id" nome="seguirId"/>
     </entrada>
     
     <atividades>
-        <atividade codigo="confirmarSeguir" tipo="tarefa">
+        <atividade codigo="confirmar-seguir" tipo="tarefa">
             <entidade nome="ConfirmarSeguir" metodo="confirmarSeguir"/>
         </atividade>
     </atividades>

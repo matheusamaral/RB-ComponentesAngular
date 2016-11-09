@@ -4,8 +4,8 @@
     
     <entrada>
         <campo regra="Obrigatorio" chave="Hashtag::titulo" nome="titulo"/>
-        <campo regra="Opcional" chave="HashtagLocal::localId" nome="local"/>
-        <campo regra="Opcional" chave="HashtagCategoria::categoriaHashtagId" nome="categoria"/>
+        <campo regra="Opcional" chave="HashtagLocal::localId" nome="localId"/>
+        <campo regra="Opcional" chave="HashtagCategoria::categoriaHashtagId" nome="categoriaId"/>
     </entrada>
     
     <atividades>

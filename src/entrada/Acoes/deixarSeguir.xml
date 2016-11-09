@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="deixarSeguir" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Seguir::usuarioSeguirId" nome="usuarioSeguirId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="deixar-seguir" tipo="tarefa">
+            <entidade nome="DeixarSeguir" metodo="deixarSeguir"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
