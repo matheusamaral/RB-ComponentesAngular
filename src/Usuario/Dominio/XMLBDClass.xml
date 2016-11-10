@@ -47,6 +47,7 @@
         <propriedades coluna="contato" atributo="contato" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
         <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="Visibilidade" tabela="visibilidade"/>
+        <propriedades coluna="visto_ultimo_id" atributo="vistoUltimoId" classe="Visibilidade" tabela="visibilidade"/>
     </classe>
     
     <classe nome="Visibilidade" tabela="visibilidade" namespace="Quickpeek\Usuario\Dominio" id="">

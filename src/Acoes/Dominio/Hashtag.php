@@ -8,7 +8,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $titulo = false;
         private $usuarioId = false;
         private $ativo = false;
-        private $momento = false; 
+        private $momento = false;
+        private $visivel = false; 
                 
         public function getId() {
             return $this->id;
@@ -52,6 +53,14 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setMomento($momento) {
             $this->momento = $momento;
+        } 
+                
+        public function getVisivel() {
+            return $this->visivel;
+        }
+
+        public function setVisivel($visivel) {
+            $this->visivel = $visivel;
         }
         
     }

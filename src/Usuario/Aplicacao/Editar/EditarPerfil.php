@@ -3,12 +3,12 @@ namespace Quickpeek\Usuario\Aplicacao\Editar;
 use Rubeus\ContenerDependencia\Conteiner;
 
 class EditarPerfil {
-    
+
     public function editarPerfil($msg){
-        
+
         $arquivo = $msg->getCampo('Arquivo')->get('valor');
         $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
-        
+
         if(!$caminho && $arquivo){
             $erro = Conteiner::get('Upload')->getErro();
             $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);

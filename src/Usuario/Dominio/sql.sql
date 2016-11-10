@@ -76,6 +76,12 @@ CREATE TABLE `configuracoes`(
     CONSTRAINT `configuracoes_fk_visibilidade_id` 
          FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
      ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `visto_ultimo_id` INT   ,
+    INDEX `configuracoes_fk_visto_ultimo_id_idx`(`visto_ultimo_id` ASC),
+    CONSTRAINT `configuracoes_fk_visto_ultimo_id` 
+         FOREIGN KEY (`visto_ultimo_id`) REFERENCES `visibilidade` (`id`)
+     ON DELETE NO ACTION
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `visibilidade`( 

@@ -2,9 +2,9 @@
 namespace Quickpeek\Usuario\Aplicacao\Editar;
 use Rubeus\ContenerDependencia\Conteiner;
 
-class EditarContato {
+class EditarContaPrivada {
     
-    public function editarContato($msg){
+    public function editarContaPrivada($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $query = Conteiner::get('ConsultaVerificarConfiguracoes')->consultar($usuarioId);

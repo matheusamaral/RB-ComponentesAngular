@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="editarNotificacoes" modulo="Usuario">
+    
+    <entrada>
+        <campo regra="Opcional" chave="Configuracoes::notificacaoPresenca" nome="notificacaoPresenca"/>
+        <campo regra="Opcional" chave="Configuracoes::notificacaoPublicacao" nome="notificacaoPublicacao"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="editar-notificacoes" tipo="tarefa">
+            <entidade nome="EditarNotificacoes" metodo="editarNotificacoes"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

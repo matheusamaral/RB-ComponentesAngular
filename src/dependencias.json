@@ -27,10 +27,13 @@
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
     "Bloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Bloquear",
     "Desbloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Desbloquear",
-    "EditarConfiguracoes": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarConfiguracoes",
-    "AlterarAvatar": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\AlterarAvatar",
+    "EditarNotificacoes": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarNotificacoes",
+    "EditarAvatar": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarAvatar",
     "EditarPerfil": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarPerfil",
     "EditarContato": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarContato",
+    "EditarContaPrivada": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarContaPrivada",
+    "EditarVistoUltimo": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarVistoUltimo",
+    "EditarVisibilidadePadrao": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarVisibilidadePadrao",
     
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",

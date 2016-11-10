@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="editarVisibilidadePadrao" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Opcional" chave="Configuracoes::visibilidadeId" nome="visibilidadeId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="editar-visibilidade-padrao" tipo="tarefa">
+            <entidade nome="EditarVisibilidadePadrao" metodo="editarVisibilidadePadrao"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

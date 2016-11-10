@@ -54,6 +54,7 @@
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="visivel" atributo="visivel" type="varchar(45)"/>
     </classe>
     
     <classe nome="HashtagLocal" tabela="hashtag_local" namespace="Quickpeek\Acoes\Dominio" id="">

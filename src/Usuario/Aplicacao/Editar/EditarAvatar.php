@@ -2,9 +2,9 @@
 namespace Quickpeek\Usuario\Aplicacao\Editar;
 use Rubeus\ContenerDependencia\Conteiner;
 
-class AlterarAvatar {
+class EditarAvatar {
     
-    public function alterarAvatar($msg){
+    public function editarAvatar($msg){
         
         $msg->setCampo('entidade', 'Usuario');
         $msg->setCampo('Usuario::id', $msg->getCampoSessao('dadosUsuarioLogado,id'));

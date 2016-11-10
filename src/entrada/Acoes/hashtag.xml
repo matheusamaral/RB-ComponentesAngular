@@ -3,9 +3,9 @@
 <processo codigo="hashtag" modulo="Acoes">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Hashtag::titulo" nome="titulo"/>
-        <campo regra="Opcional" chave="HashtagLocal::localId" nome="localId"/>
-        <campo regra="Opcional" chave="HashtagCategoria::categoriaHashtagId" nome="categoriaId"/>
+        <campo regra="Opcional" chave="Hashtag::id" nome="id" json="1"/>
+        <campo regra="Obrigatorio" chave="Hashtag::titulo" nome="titulo" json="1"/>
+        <campo regra="Obrigatorio" chave="HashtagCategoria::categoriaHashtagId" nome="categoriaId" json="1"/>
     </entrada>
     
     <atividades>

@@ -113,7 +113,8 @@ CREATE TABLE `hashtag`(
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
     `ativo` tinyint   ,
-    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    `momento` datetime   ,
+    `visivel` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `hashtag_local`( 
     `id` int  AUTO_INCREMENT ,

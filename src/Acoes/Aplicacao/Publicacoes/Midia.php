@@ -15,6 +15,7 @@ class Midia {
         }else{
             $msg->setCampo('entidade', 'Midia');
             $msg->setCampo('Midia::endereco', $caminho[0]['url']);
+            $msg->setCampo('Midia::localId', $msg->getCampoSessao('dadosUsuarioLogado,local'));
             $msg->setCampo('Midia::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
             Conteiner::get('Cadastro')->cadastrar($msg);
         }

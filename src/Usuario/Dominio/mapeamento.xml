@@ -57,6 +57,7 @@
     <propriedades coluna="contato" atributo="contato" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+    <nparaum coluna="visto_ultimo_id"  atributo="vistoUltimoId" />  
 </classe>
         
 <classe nome="Visibilidade" tabela="visibilidade"> 

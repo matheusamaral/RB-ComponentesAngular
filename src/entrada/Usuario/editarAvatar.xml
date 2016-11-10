@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<processo codigo="alterarAvatar" modulo="Usuario">
+<processo codigo="editarAvatar" modulo="Usuario">
     
     <entrada> 
         <campo regra="Obrigatorio" chave="Usuario::avataresId" nome="avataresId"/>
     </entrada>
     
     <atividades>
-        <atividade codigo="alterarAvatar" tipo="tarefa">
-            <entidade nome="AlterarAvatar" metodo="alterarAvatar"/>
+        <atividade codigo="editar-avatar" tipo="tarefa">
+            <entidade nome="EditarAvatar" metodo="editarAvatar"/>
         </atividade>
     </atividades>
     

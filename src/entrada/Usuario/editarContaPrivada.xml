@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="editarContaPrivada" modulo="Usuario">
+    
+    <entrada>
+        <campo regra="Opcional" chave="Configuracoes::padraoAprovacao" nome="padraoAprovacao"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="editar-conta-privada" tipo="tarefa">
+            <entidade nome="EditarContaPrivada" metodo="editarContaPrivada"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

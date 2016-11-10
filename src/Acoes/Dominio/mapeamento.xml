@@ -66,6 +66,7 @@
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="visivel" atributo="visivel" /> 
 </classe>
         
 <classe nome="HashtagLocal" tabela="hashtag_local"> 

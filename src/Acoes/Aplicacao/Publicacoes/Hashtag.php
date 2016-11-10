@@ -6,30 +6,47 @@ class Hashtag {
     
     public function hashtag($msg){
         
-        $session = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        
-        $localId = $msg->getCampo('HashtagLocal::localId')->get('valor');
-        $catHashId = $msg->getCampo('HashtagCategoria::categoriaHashtagId')->get('valor');
-        
+        $hashId = $msg->getCampo('Hashtag::id')->get('valor');
+        $catHash = $msg->getCampo('HashtagCategoria::categoriaHashtagId')->get('valor');
+            
         $cadastro = Conteiner::get('Cadastro');
-                
-        $msg->setCampo('entidade', 'Hashtag');
-        $msg->setCampo('Hashtag::usuarioId', $session);
-        $cadastro->cadastrar($msg);
+
+        $array = $msg->getCampo('Hashtag::titulo')->get('valor');
         
-        if($localId){
-            $msg->setCampo('entidade', 'HashtagLocal');
-            $msg->setCampo('HashtagLocal::usuarioId', $session);
-            $msg->setCampo('HashtagLocal::hashtagId', $msg->getCampo('Hashtag::id')->get('valor'));
-            $msg->setCampo('HashLocal::localId', $localId);
-            $cadastro->cadastrar($msg);
+        foreach($array as $v){
+            $usuarioId[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
+            $local[] = $msg->getCampoSessao('dadosUsuarioLogado,local');
         }
         
-        if($catHashId){
+        $msg->setCampo('entidade', 'Hashtag');
+        $msg->setCampo('Hashtag::usuarioId', $usuarioId);
+        $suc = $cadastro->cadastrar($msg);
+        
+        if($suc){
+            $msg->setCampo('entidade', 'HashtagLocal');
+            $msg->setCampo('HashtagLocal::usuarioId', $usuarioId);
+            $msg->setCampo('HashtagLocal::hashtagId', $msg->getCampo('Hashtag::id')->get('valor'));
+            $msg->setCampo('HashtagLocal::localId', $local);
+            $suc2 = $cadastro->cadastrar($msg);
+        }else{
+            $msg->setResultadoEtapa(false);
+        }
+        
+        if($suc2){
             $msg->setCampo('entidade', 'HashtagCategoria');
-            $msg->setCampo('HashtagCategoria::categoriaHashtagId', $catHashId);
-            $msg->setCampo('HashtagCategoria::hashtagId', $msg->getCampo('Hashtag::id')->get('valor'));
+            
+            for($i = 0; $i <= count($hashId); $i++){
+                $query[] = Conteiner::get('ConsultaHashtag')->consultar($catHash[$i], $hashId[$i]);
+            }
+            
+            if($query[0]){
+                $msg->setCampo('HashtagCategoria::id', $query);
+            }
+            
+            $msg->setCampo('HashtagCategoria::hashtagId', $msg->getCampo("Hashtag::id")->get('valor'));
             $cadastro->cadastrar($msg);
+        }else{
+            $msg->setResultadoEtapa(false);
         }
     }
 }
