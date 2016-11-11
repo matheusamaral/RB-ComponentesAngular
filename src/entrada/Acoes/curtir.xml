@@ -4,7 +4,6 @@
     
     <entrada>
         <campo regra="Opcional" chave="Curtir::midiaId" nome="midiaId"/>
-        <campo regra="Opcional" chave="Curtir::hashtagId" nome="hashtagId"/>
     </entrada>
     
     <atividades>

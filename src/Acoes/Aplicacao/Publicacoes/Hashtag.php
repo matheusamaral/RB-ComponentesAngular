@@ -8,7 +8,7 @@ class Hashtag {
         
         $hashId = $msg->getCampo('Hashtag::id')->get('valor');
         $catHash = $msg->getCampo('HashtagCategoria::categoriaHashtagId')->get('valor');
-            
+        
         $cadastro = Conteiner::get('Cadastro');
 
         $array = $msg->getCampo('Hashtag::titulo')->get('valor');
@@ -35,15 +35,20 @@ class Hashtag {
         if($suc2){
             $msg->setCampo('entidade', 'HashtagCategoria');
             
-            for($i = 0; $i <= count($hashId); $i++){
+            for($i = 0; $i < count($hashId); $i++){
                 $query[] = Conteiner::get('ConsultaHashtag')->consultar($catHash[$i], $hashId[$i]);
+                
             }
             
-            if($query[0]){
-                $msg->setCampo('HashtagCategoria::id', $query);
+            foreach($query as $v){
+                $hashIdEdit[] = $v['id'];
             }
             
-            $msg->setCampo('HashtagCategoria::hashtagId', $msg->getCampo("Hashtag::id")->get('valor'));
+            if($query){
+                $msg->setCampo('HashtagCategoria::id', $hashIdEdit);
+            }
+            
+            $msg->setCampo('HashtagCategoria::hashtagId', $msg->getCampo('Hashtag::id')->get('valor'));
             $cadastro->cadastrar($msg);
         }else{
             $msg->setResultadoEtapa(false);

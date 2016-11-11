@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="enviarMensagem" modulo="Mensagens">
+    
+    <entrada>
+        <campo regra="Opcional" chave="Mensagens::titulo" nome="titulo"/>
+        <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="usuarioMensagemId"/>
+        <campo chave="Arquivo" nome="arquivo" type="file"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="enviar-mensagem" tipo="tarefa">
+            <entidade nome="EnviarMensagem" metodo="enviarMensagem"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -8,6 +8,7 @@ CREATE TABLE `usuario`(
     `endereco` varchar(45)   ,
     `nascimento` varchar(45)   ,
     `telefone` varchar(45)   ,
+    `tutorial` varchar(45)   ,
     `avatares_id` INT   ,
     INDEX `usuario_fk_avatares_id_idx`(`avatares_id` ASC),
     CONSTRAINT `usuario_fk_avatares_id` 
@@ -121,10 +122,11 @@ CREATE TABLE `status_mensagem`(
 CREATE TABLE `mensagens`( 
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
-    `texto` tinyint   ,
+    `titulo` tinyint   ,
     `ativo` tinyint   ,
     `momento` datetime   ,
     `momento_visualizado` varchar(45)   ,
+    `endereco` varchar(45)   ,
     `usuario_id` INT   ,
     INDEX `mensagens_fk_usuario_id_idx`(`usuario_id` ASC),
     CONSTRAINT `mensagens_fk_usuario_id` 

@@ -10,6 +10,7 @@
     <propriedades coluna="endereco" atributo="endereco" /> 
     <propriedades coluna="nascimento" atributo="nascimento" /> 
     <propriedades coluna="telefone" atributo="telefone" /> 
+    <propriedades coluna="tutorial" atributo="tutorial" /> 
     <nparaum coluna="avatares_id"  atributo="avataresId" />  
     <nparaum coluna="genero_id"  atributo="generoId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
@@ -94,10 +95,11 @@
     <id coluna="id" atributo="id">
         <gerador classe="sequence"/>
     </id>  
-    <propriedades coluna="texto" atributo="texto" /> 
+    <propriedades coluna="titulo" atributo="titulo" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
     <propriedades coluna="momento_visualizado" atributo="momentoVisualizado" /> 
+    <propriedades coluna="endereco" atributo="endereco" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="usuario_mensagem_id"  atributo="usuarioMensagemId" />  
     <nparaum coluna="status_mensagem_id"  atributo="statusMensagemId" />  

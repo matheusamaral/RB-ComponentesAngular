@@ -12,7 +12,18 @@ class ListarSeguidores {
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
         }else{
             $msg->setResultadoEtapa(false);
-        }    
+        }
+    }
+    
+    public function listarQtdSeguidores($msg){
+        
+        $query = Conteiner::get('ConsultaListarSeguidores')->consultarQtd($msg->getCampoSessao('dadosUsuarioLogado,id'));
+        
+        if($query){
+            $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
+        }else{
+            $msg->setResultadoEtapa(false);
+        }
     }
 }
 

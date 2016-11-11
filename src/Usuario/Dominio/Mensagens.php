@@ -5,10 +5,11 @@ use Rubeus\ORM\Persistente as Persistente;
 
     class Mensagens extends Persistente{
         private $id = false;
-        private $texto = false;
+        private $titulo = false;
         private $ativo = false;
         private $momento = false;
         private $momentoVisualizado = false;
+        private $endereco = false;
         private $usuarioId = false;
         private $usuarioMensagemId = false;
         private $statusMensagemId = false; 
@@ -21,12 +22,12 @@ use Rubeus\ORM\Persistente as Persistente;
             $this->id = $id;
         } 
                 
-        public function getTexto() {
-            return $this->texto;
+        public function getTitulo() {
+            return $this->titulo;
         }
 
-        public function setTexto($texto) {
-            $this->texto = $texto;
+        public function setTitulo($titulo) {
+            $this->titulo = $titulo;
         } 
                 
         public function getAtivo() {
@@ -51,6 +52,14 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setMomentoVisualizado($momentoVisualizado) {
             $this->momentoVisualizado = $momentoVisualizado;
+        } 
+                
+        public function getEndereco() {
+            return $this->endereco;
+        }
+
+        public function setEndereco($endereco) {
+            $this->endereco = $endereco;
         } 
             
         public function getUsuarioId() {

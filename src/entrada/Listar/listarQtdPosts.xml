@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<processo codigo="listarHashtag" modulo="Listar">
+<processo codigo="listarQtdPosts" modulo="Listar">
     
     <entrada>
     </entrada>
     
     <atividades>
-        <atividade codigo="listar-hashtag" tipo="tarefa">
-            <entidade nome="ListarHashtag" metodo="listarHashtag"/>
+        <atividade codigo="listar-posts" tipo="tarefa">
+            <entidade nome="ListarPosts" metodo="listarPosts"/>
         </atividade>
     </atividades>
     

@@ -6,26 +6,32 @@ class Perguntas {
     
     public function perguntas($msg){
         
-        $cadastro = Conteiner::get('Cadastro');
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $localId = $msg->getCampo('Perguntas::localId')->get('valor');
         
-        $msg->setCampo('entidade', 'Perguntas');
-        $msg->setCampo('Perguntas::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
-        $cadastro->cadastrar($msg);
+        $query = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId);
         
-        $query = Conteiner::get('ConsultaUsuariosPerguntas')->consultar($msg->getCampo('Perguntas::localId')->get('valor'));
-        
-        if($query){
-            $perguntasId = $msg->getCampo('Perguntas::id')->get('valor');
-            foreach($query as $v){
+        if(count($query) < 3){
+            $cadastro = Conteiner::get('Cadastro');
 
-                $perguntas[] = $perguntasId;
-                $usuarios[] = $v['usuarioId'];
-            }
-            
-            $msg->setCampo('entidade', 'PerguntaUsuario');
-            $msg->setCampo('PerguntaUsuario::perguntasId', $perguntas);
-            $msg->setCampo('PerguntaUsuario::usuarioId', $usuarios);
+            $msg->setCampo('entidade', 'Perguntas');
+            $msg->setCampo('Perguntas::usuarioId', $usuarioId);
             $cadastro->cadastrar($msg);
+
+            $queryUser = Conteiner::get('ConsultaUsuariosPerguntas')->consultar($localId);
+
+            if($queryUser){
+                $perguntasId = $msg->getCampo('Perguntas::id')->get('valor');
+                foreach($queryUser as $v){
+
+                    $perguntas[] = $perguntasId;
+                    $usuarios[] = $v['usuarioId'];
+                }
+                $msg->setCampo('entidade', 'PerguntaUsuario');
+                $msg->setCampo('PerguntaUsuario::perguntasId', $perguntas);
+                $msg->setCampo('PerguntaUsuario::usuarioId', $usuarios);
+                $cadastro->cadastrar($msg);
+            }
         }
     }
 }

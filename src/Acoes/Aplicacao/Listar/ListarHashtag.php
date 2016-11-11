@@ -6,7 +6,7 @@ class ListarHashtag {
     
     public function listarHashtag($msg){
         
-        $query = Conteiner::get('ConsultaListarHashtag')->consultar($msg->getCampo('CategoriaHashtag::id')->get('valor'));
+        $query = Conteiner::get('ConsultaListarHashtag')->consultar();
         
         if($query){
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarQtdSeguidores" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-seguidores" tipo="tarefa">
+            <entidade nome="ListarSeguidores" metodo="listarQtdSeguidores"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="tutorial" modulo="Usuario">
+    
+    <entrada>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="tutorial" tipo="tarefa">
+            <entidade nome="Tutorial" metodo="tutorial"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

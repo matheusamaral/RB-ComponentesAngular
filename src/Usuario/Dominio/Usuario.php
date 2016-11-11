@@ -10,6 +10,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $endereco = false;
         private $nascimento = false;
         private $telefone = false;
+        private $tutorial = false;
         private $avataresId = false;
         private $generoId = false;
         private $ativo = false;
@@ -61,6 +62,14 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setTelefone($telefone) {
             $this->telefone = $telefone;
+        } 
+                
+        public function getTutorial() {
+            return $this->tutorial;
+        }
+
+        public function setTutorial($tutorial) {
+            $this->tutorial = $tutorial;
         } 
             
         public function getAvataresId() {

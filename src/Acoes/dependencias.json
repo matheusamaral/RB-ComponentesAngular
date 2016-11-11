@@ -5,8 +5,10 @@
     "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn",
     "ConsultaEncontrarLocal": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaEncontrarLocal",
     "ConsultaHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaHashtag",
+    "ConsultaLimitePerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLimitePerguntas",
     
     "ConsultaListarSeguidores": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarSeguidores",
     "ConsultaListarSeguidos": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarSeguidos",
-    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
+    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag",
+    "ConsultaListarPosts": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarPosts"
 }

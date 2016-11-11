@@ -25,6 +25,7 @@
     
     
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
+    "Tutorial": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Tutorial",
     "Bloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Bloquear",
     "Desbloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Desbloquear",
     "EditarNotificacoes": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarNotificacoes",
@@ -34,7 +35,7 @@
     "EditarContaPrivada": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarContaPrivada",
     "EditarVistoUltimo": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarVistoUltimo",
     "EditarVisibilidadePadrao": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarVisibilidadePadrao",
-    
+    "EnviarMensagem": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\EnviarMensagem",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
     
@@ -53,6 +54,7 @@
     "ListarSeguidores": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarSeguidores",
     "ListarSeguidos": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarSeguidos",
     "ListarHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarHashtag",
+    "ListarPosts": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarPosts",
     
     "ListarBloqueados": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarBloqueados"
 }
