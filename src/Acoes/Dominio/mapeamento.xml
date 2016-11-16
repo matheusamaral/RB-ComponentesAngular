@@ -22,6 +22,7 @@
     <propriedades coluna="momento" atributo="momento" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
+    <propriedades coluna="check_in" atributo="checkIn" /> 
 </classe>
         
 <classe nome="PerguntaUsuario" tabela="pergunta_usuario"> 

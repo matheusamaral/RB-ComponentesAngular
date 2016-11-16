@@ -145,3 +145,21 @@ CREATE TABLE `mensagens`(
          FOREIGN KEY (`status_mensagem_id`) REFERENCES `status_mensagem` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `mensagens_excluidas`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `ativo` tinyint   ,
+    `momento` datetime   ,
+    `usuario_id` INT   ,
+    INDEX `mensagens_excluidas_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `mensagens_excluidas_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `mensagens_id` INT   ,
+    INDEX `mensagens_excluidas_fk_mensagens_id_idx`(`mensagens_id` ASC),
+    CONSTRAINT `mensagens_excluidas_fk_mensagens_id` 
+         FOREIGN KEY (`mensagens_id`) REFERENCES `mensagens` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;

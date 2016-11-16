@@ -37,7 +37,8 @@ CREATE TABLE `respostas`(
     CONSTRAINT `respostas_fk_perguntas_id` 
          FOREIGN KEY (`perguntas_id`) REFERENCES `perguntas` (`id`)
      ON DELETE NO ACTION
-     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+     ON UPDATE NO ACTION,
+    `check_in` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `pergunta_usuario`( 
     `id` int  AUTO_INCREMENT ,

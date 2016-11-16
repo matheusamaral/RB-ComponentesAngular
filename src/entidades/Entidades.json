@@ -8,6 +8,7 @@
     "StatusMensagem": "\\Quickpeek\\Usuario\\Dominio\\StatusMensagem",
     "Usuario": "\\Quickpeek\\Usuario\\Dominio\\Usuario",
     "Visibilidade": "\\Quickpeek\\Usuario\\Dominio\\Visibilidade",
+    "MensagensExcluidas": "\\Quickpeek\\Usuario\\Dominio\\MensagensExcluidas",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
     "CheckIn": "\\Quickpeek\\Local\\Dominio\\CheckIn",

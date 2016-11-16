@@ -25,8 +25,19 @@ class Hashtag {
         if($suc){
             $msg->setCampo('entidade', 'HashtagLocal');
             $msg->setCampo('HashtagLocal::usuarioId', $usuarioId);
-            $msg->setCampo('HashtagLocal::hashtagId', $msg->getCampo('Hashtag::id')->get('valor'));
+            
+            $hashtagId = $msg->getCampo('Hashtag::id')->get('valor');
+            
+            if(!is_array($hashtagId)){
+                $hashtagArray[] = $hashtagId;
+                $msg->setCampo('Hashtag::id', $hashtagArray);
+                $msg->setCampo('HashtagLocal::hashtagId', $hashtagArray);
+            }else{
+                $msg->setCampo('HashtagLocal::hashtagId', $hashtagId);
+            }
+            
             $msg->setCampo('HashtagLocal::localId', $local);
+            
             $suc2 = $cadastro->cadastrar($msg);
         }else{
             $msg->setResultadoEtapa(false);
@@ -37,7 +48,6 @@ class Hashtag {
             
             for($i = 0; $i < count($hashId); $i++){
                 $query[] = Conteiner::get('ConsultaHashtag')->consultar($catHash[$i], $hashId[$i]);
-                
             }
             
             foreach($query as $v){

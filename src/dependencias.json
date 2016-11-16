@@ -36,6 +36,11 @@
     "EditarVistoUltimo": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarVistoUltimo",
     "EditarVisibilidadePadrao": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarVisibilidadePadrao",
     "EnviarMensagem": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\EnviarMensagem",
+    "ExcluirMensagem": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\ExcluirMensagem",
+    "ExcluirConversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\ExcluirConversa",
+    "Conversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\Conversa",
+    "SetarEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarEntregue",
+    "SetarVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarVisualizada",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
     
@@ -54,7 +59,12 @@
     "ListarSeguidores": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarSeguidores",
     "ListarSeguidos": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarSeguidos",
     "ListarHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarHashtag",
-    "ListarPosts": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarPosts",
+    "ListarRespostas": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarRespostas",
+    "ListarPerguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarPerguntas",
     
-    "ListarBloqueados": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarBloqueados"
+    "ListarBloqueados": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarBloqueados",
+    
+    "ListarAreaMapa": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarAreaMapa",
+    
+    "LoginTeste": "\\Quickpeek\\LoginTeste"
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="conversa" modulo="Mensagens">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="usuarioMensagemId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="conversa" tipo="tarefa">
+            <entidade nome="Conversa" metodo="conversa"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

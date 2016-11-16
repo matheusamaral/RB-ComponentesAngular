@@ -15,7 +15,8 @@ class ConsultaListarHashtag {
         $query->join('hashtag', 'h')->on('h.id = hc.hashtag_id')
                 ->add('categoria_hashtag', 'ch')->on('ch.id = hc.categoria_hashtag_id');
         $query->where('hc.ativo = 1')
-                ->add('h.ativo = 1');
+                ->add('h.ativo = 1')
+                ->add('h.visivel = 1');
         return $query->executar('EA', false, $this->structure());
     }
     

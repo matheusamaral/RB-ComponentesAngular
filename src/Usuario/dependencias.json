@@ -1,5 +1,8 @@
 {
     "ConsultaDesbloquear": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaDesbloquear",
     "ConsultaListarBloqueados": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaListarBloqueados",
-    "ConsultaVerificarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarConfiguracoes"
+    "ConsultaVerificarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarConfiguracoes",
+    "ConsultaExcluirConversa": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaExcluirConversa",
+    "ConsultaConversa": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaConversa",
+    "ConsultaSetarVisualizada": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarVisualizada"
 }

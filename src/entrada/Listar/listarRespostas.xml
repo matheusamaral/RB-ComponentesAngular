@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarRespostas" modulo="Listar">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Respostas::perguntasId" nome="perguntasId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-respostas" tipo="tarefa">
+            <entidade nome="ListarRespostas" metodo="listarRespostas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

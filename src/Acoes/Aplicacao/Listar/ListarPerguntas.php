@@ -2,11 +2,12 @@
 namespace Quickpeek\Acoes\Aplicacao\Listar;
 use Rubeus\ContenerDependencia\Conteiner;
 
-class ListarSeguidos{
+class ListarPerguntas {
     
-    public function listarSeguidos($msg){
+    public function listarPerguntas($msg){
         
-        $query = Conteiner::get('ConsultaListarSeguidos')->consultar($msg->getCampoSessao('dadosUsuarioLogado,id'));
+        $localId = $msg->getCampo('Perguntas::localId')->get('valor');
+        $query = Conteiner::get('ConsultaListarPerguntas')->consultar($localId);
         
         if($query){
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);

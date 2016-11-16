@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarPerguntas" modulo="Listar">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Perguntas::localId" nome="localId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-perguntas" tipo="tarefa">
+            <entidade nome="ListarPerguntas" metodo="listarPerguntas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="loginTeste" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Usuario::id" nome="id"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="login-teste" tipo="tarefa">
+            <entidade nome="LoginTeste" metodo="loginTeste"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarAreaMapa" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-area-mapa" tipo="tarefa">
+            <entidade nome="ListarAreaMapa" metodo="listarAreaMapa"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

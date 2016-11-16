@@ -86,5 +86,13 @@
         <propriedades coluna="usuario_mensagem_id" atributo="usuarioMensagemId" classe="Usuario" tabela="usuario"/>
         <propriedades coluna="status_mensagem_id" atributo="statusMensagemId" classe="StatusMensagem" tabela="status_mensagem"/>
     </classe>
+      
+    <classe nome="MensagensExcluidas" tabela="mensagens_excluidas" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="mensagens_id" atributo="mensagensId" classe="Mensagens" tabela="mensagens"/>
+    </classe>
     
 </configuracao>

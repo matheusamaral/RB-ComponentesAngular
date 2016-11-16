@@ -20,16 +20,4 @@ class ConsultaListarSeguidores {
         $query->addVariaveis([$usuarioId]);
         return $query->executar();
     }
-    
-    public function consultarQtd($usuarioId){
-        
-        $query = Conteiner::get('Query', false);
-        $query->select('count(id)', 'qtd');
-        $query->from('seguir');
-        $query->where('usuario_id = ?')
-                ->add('ativo = 1')
-                ->add('confirmar_seguir = 1');
-        $query->addVariaveis([$usuarioId]);
-        return $query->executar('A');
-    }
 }

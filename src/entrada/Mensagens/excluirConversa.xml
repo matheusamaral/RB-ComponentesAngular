@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="excluirConversa" modulo="Mensagens">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Usuario::id" nome="usuarioId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="excluir-conversa" tipo="tarefa">
+            <entidade nome="ExcluirConversa" metodo="excluirConversa"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

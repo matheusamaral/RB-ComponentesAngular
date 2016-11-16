@@ -2,8 +2,7 @@
 
 <processo codigo="listarHashtag" modulo="Listar">
     
-    <entrada>
-    </entrada>
+    <entrada> </entrada>
     
     <atividades>
         <atividade codigo="listar-hashtag" tipo="tarefa">

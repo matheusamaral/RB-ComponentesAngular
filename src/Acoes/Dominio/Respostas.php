@@ -9,7 +9,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $ativo = false;
         private $momento = false;
         private $usuarioId = false;
-        private $perguntasId = false; 
+        private $perguntasId = false;
+        private $checkIn = false; 
                 
         public function getId() {
             return $this->id;
@@ -65,6 +66,14 @@ use Rubeus\ORM\Persistente as Persistente;
             if($perguntasId instanceof Perguntas)
                 $this->perguntasId = $perguntasId;
             else $this->getPerguntasId()->setId($perguntasId);
+        } 
+                
+        public function getCheckIn() {
+            return $this->checkIn;
+        }
+
+        public function setCheckIn($checkIn) {
+            $this->checkIn = $checkIn;
         }
         
     }

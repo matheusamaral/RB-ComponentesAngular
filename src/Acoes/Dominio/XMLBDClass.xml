@@ -18,6 +18,7 @@
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="perguntas_id" atributo="perguntasId" classe="Perguntas" tabela="perguntas"/>
+        <propriedades coluna="check_in" atributo="checkIn" type="varchar(45)"/>
     </classe>
     
     <classe nome="PerguntaUsuario" tabela="pergunta_usuario" namespace="Quickpeek\Acoes\Dominio" id="">

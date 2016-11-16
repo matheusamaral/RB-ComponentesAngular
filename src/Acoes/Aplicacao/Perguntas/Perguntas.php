@@ -23,14 +23,21 @@ class Perguntas {
             if($queryUser){
                 $perguntasId = $msg->getCampo('Perguntas::id')->get('valor');
                 foreach($queryUser as $v){
-
                     $perguntas[] = $perguntasId;
                     $usuarios[] = $v['usuarioId'];
                 }
+                
+                if(!in_array($usuarioId, $usuarios)){
+                    $perguntas[] = $perguntasId;
+                    $usuarios[] = $usuarioId;
+                }
+                
                 $msg->setCampo('entidade', 'PerguntaUsuario');
                 $msg->setCampo('PerguntaUsuario::perguntasId', $perguntas);
                 $msg->setCampo('PerguntaUsuario::usuarioId', $usuarios);
                 $cadastro->cadastrar($msg);
+            }else{
+                $msg->setResultadoEtapa(false);
             }
         }
     }
