@@ -3,7 +3,6 @@
 <processo codigo="hashtag" modulo="Acoes">
     
     <entrada>
-        <campo regra="Opcional" chave="Hashtag::id" nome="id" json="1"/>
         <campo regra="Obrigatorio" chave="Hashtag::titulo" nome="titulo" json="1"/>
         <campo regra="Obrigatorio" chave="HashtagCategoria::categoriaHashtagId" nome="categoriaId" json="1"/>
     </entrada>

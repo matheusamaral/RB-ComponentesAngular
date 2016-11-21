@@ -65,3 +65,10 @@ CREATE TABLE `check_in`(
     `presente` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `configuracoes_quickpeek`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `tempo_hashtag` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

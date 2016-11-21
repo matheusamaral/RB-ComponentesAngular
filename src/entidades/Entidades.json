@@ -24,5 +24,6 @@
     "Midia": "\\Quickpeek\\Acoes\\Dominio\\Midia",
     "PerguntaUsuario": "\\Quickpeek\\Acoes\\Dominio\\PerguntaUsuario",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
-    "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas"
+    "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",
+    "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Dominio\\ConfiguracoesQuickpeek"
 }

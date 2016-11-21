@@ -22,7 +22,9 @@
     "Caracter": "\\Rubeus\\Servicos\\String\\Caracter",
     "ClienteTotvsWS": "\\Rubeus\\IntegracaoTotvs\\WebService\\ClienteTotvsWS",
     "EnvioEmailArq": "\\Rubeus\\Servicos\\Email\\EnvioEmailArq",
+    "Localizar": "\\Rubeus\\Servicos\\Localizacao\\Localizar",
     
+    "Consultar": "\\Quickpeek\\Local\\Infra\\Repositorio\\ConfiguracoesQuickpeek\\Consultar",
     
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
     "Tutorial": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Tutorial",

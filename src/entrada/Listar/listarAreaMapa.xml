@@ -2,7 +2,11 @@
 
 <processo codigo="listarAreaMapa" modulo="Listar">
     
-    <entrada> </entrada>
+    <entrada>      
+        <campo regra="Obrigatorio" chave="Local::id" nome="id" json="1"/>
+        <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/>
+        <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
+    </entrada>
     
     <atividades>
         <atividade codigo="listar-area-mapa" tipo="tarefa">

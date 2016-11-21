@@ -1,3 +1,8 @@
 {
-    "ConsultaHashtag": "\\Quickpeek\\Local\\Infra\\Repositorio\\ListarAreaMapa\\ConsultaHashtag"
+    "ConsultaHashtag": "\\Quickpeek\\Local\\Infra\\Repositorio\\ListarAreaMapa\\ConsultaHashtag",
+    "ConsultaMidia": "\\Quickpeek\\Local\\Infra\\Repositorio\\ListarAreaMapa\\ConsultaMidia",
+    "ConsultaPessoa": "\\Quickpeek\\Local\\Infra\\Repositorio\\ListarAreaMapa\\ConsultaPessoa",
+    "ConsultaPerguntas": "\\Quickpeek\\Local\\Infra\\Repositorio\\ListarAreaMapa\\ConsultaPerguntas",
+    "ConsultaPosicaoLocal": "\\Quickpeek\\Local\\Infra\\Repositorio\\ListarAreaMapa\\ConsultaPosicaoLocal",
+    "ConsultaDadosLocal": "\\Quickpeek\\Local\\Infra\\Repositorio\\ListarAreaMapa\\ConsultaDadosLocal"
 }

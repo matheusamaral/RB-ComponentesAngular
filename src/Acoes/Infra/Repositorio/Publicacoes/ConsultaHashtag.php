@@ -4,15 +4,14 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaHashtag {
     
-    public function consultar($catHash, $hashId){
+    public function consultar($hashtag){
         
         $query = Conteiner::get('Query', false);
         $query->select('id');
-        $query->from('hashtag_categoria');
-        $query->where('categoria_hashtag_id = ?')
-                ->add('hashtag_id = ?')
+        $query->from('hashtag');
+        $query->where('titulo = ?')
                 ->add('ativo = 1');
-        $query->addVariaveis([$catHash, $hashId]);
-        return $query->executar('A');
+        $query->addVariaveis([$hashtag]);
+        return $query->executar('{id}');
     }
 }

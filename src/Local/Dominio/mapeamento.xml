@@ -44,4 +44,13 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
+        
+<classe nome="ConfiguracoesQuickpeek" tabela="configuracoes_quickpeek"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="tempo_hashtag" atributo="tempoHashtag" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
 </root>
