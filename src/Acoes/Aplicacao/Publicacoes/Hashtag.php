@@ -22,11 +22,10 @@ class Hashtag {
             $localId[] = $msg->getCampoSessao('dadosUsuarioLogado,local');
         }
         
-        foreach($hashtagTitulo as $v){
-            $usuarioIdNovo[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        }
-        
         if($hashtagTitulo){
+            foreach($hashtagTitulo as $v){
+                $usuarioIdNovo[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
+            }
             $msg->setCampo('entidade', 'Hashtag');
             $msg->setCampo('Hashtag::usuarioId', $usuarioIdNovo);
             $msg->setCampo('Hashtag::titulo', $hashtagTitulo);

@@ -6,11 +6,10 @@ class Respostas {
     
     public function respostas($msg){
         
-        $cadastro = Conteiner::get('Cadastro');
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
         
-        $query = Conteiner::get('ConsultaRespostas')->consultar($perguntaId, $usuarioId);
+        $query = Conteiner::get('ConsultaCheckIn')->consultar($perguntaId, $usuarioId);
         
         if($query){
             $msg->setCampo('Respostas::checkIn', 1);
@@ -18,10 +17,22 @@ class Respostas {
             $msg->setCampo('Respostas::checkIn', 0);
         }
         
-        $msg->setCampo('entidade', 'Respostas');
-        $msg->setCampo('Respostas::usuarioId', $usuarioId);
-        $suc = $cadastro->cadastrar($msg);
-                
+        $arquivo = $msg->getCampo('Arquivo')->get('valor');
+        $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
+        
+        if(!$caminho && $arquivo){
+            $erro = Conteiner::get('Upload')->getErro();
+            $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);
+        }else{
+            $cadastro = Conteiner::get('Cadastro');
+            $msg->setCampo('entidade', 'Respostas');
+            $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+            $msg->setCampo('Respostas::visibilidadeId', $visibilidadeId);
+            $msg->setCampo('Respostas::endereco', $caminho[0]['url']);
+            $msg->setCampo('Respostas::usuarioId', $usuarioId);
+            $suc = $cadastro->cadastrar($msg);    
+        }
+        
         if($suc){
             $msg->setCampo('entidade', 'Perguntas');
             $msg->setCampo('Perguntas::id', $perguntaId);

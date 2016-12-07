@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarConfiguracoes" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-configuracoes" tipo="tarefa">
+            <entidade nome="ListarConfiguracoes" metodo="listarConfiguracoes"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

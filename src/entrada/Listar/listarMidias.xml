@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarMidias" modulo="Listar">
+    
+    <entrada>      
+        <campo regra="Obrigatorio" chave="Local::id" nome="id"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-midias" tipo="tarefa">
+            <entidade nome="ListarMidias" metodo="listarMidias"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

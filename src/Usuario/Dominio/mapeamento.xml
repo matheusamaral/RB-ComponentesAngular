@@ -13,6 +13,7 @@
     <propriedades coluna="tutorial" atributo="tutorial" /> 
     <nparaum coluna="avatares_id"  atributo="avataresId" />  
     <nparaum coluna="genero_id"  atributo="generoId" />  
+    <nparaum coluna="sms_codigo_id"  atributo="smsCodigoId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
@@ -58,7 +59,6 @@
     <propriedades coluna="contato" atributo="contato" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
-    <nparaum coluna="visto_ultimo_id"  atributo="vistoUltimoId" />  
 </classe>
         
 <classe nome="Visibilidade" tabela="visibilidade"> 
@@ -113,5 +113,39 @@
     <propriedades coluna="momento" atributo="momento" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="mensagens_id"  atributo="mensagensId" />  
+</classe>
+        
+<classe nome="SmsCodigo" tabela="sms_codigo"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="codigo" atributo="codigo" /> 
+    <propriedades coluna="telefone" atributo="telefone" /> 
+    <propriedades coluna="confirmado" atributo="confirmado" /> 
+    <propriedades coluna="editando" atributo="editando" /> 
+    <nparaum coluna="status_sms_id"  atributo="statusSmsId" />  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+</classe>
+        
+<classe nome="StatusSms" tabela="status_sms"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="codigo_mobi" atributo="codigo_mobi" /> 
+    <propriedades coluna="titulo" atributo="titulo" /> 
+</classe>
+        
+<classe nome="NumerounicoUsuario" tabela="numerounico_usuario"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="numerounico" atributo="numerounico" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
 </classe>
 </root>

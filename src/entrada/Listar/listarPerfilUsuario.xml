@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarPerfilUsuario" modulo="Listar">
+    
+    <entrada> 
+        <campo regra="Opcional" chave="Usuario::id" nome="usuarioId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-perfil-usuario" tipo="tarefa">
+            <entidade nome="ListarPerfilUsuario" metodo="listarPerfilUsuario"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

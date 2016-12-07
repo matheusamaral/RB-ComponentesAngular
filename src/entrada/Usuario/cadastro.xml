@@ -5,7 +5,7 @@
     <entrada>
         <campo regra="Obrigatorio" chave="Usuario::nome" nome="nome"/> 
         <campo regra="Obrigatorio" chave="Usuario::apelido" nome="apelido"/>
-        <campo regra="Obrigatorio;Telefone" chave="Usuario::telefone" nome="telefone"/>
+        <campo regra="Obrigatorio" chave="Usuario::telefone" nome="telefone"/>
         <campo regra="Obrigatorio;Data" chave="Usuario::nascimento" nome="nascimento"/>
         <campo regra="Obrigatorio" chave="Usuario::avataresId" nome="avataresId"/>
         <campo regra="Obrigatorio" chave="Usuario::generoId" nome="generoId"/>

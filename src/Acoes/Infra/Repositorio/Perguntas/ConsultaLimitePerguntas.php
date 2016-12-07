@@ -4,16 +4,16 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaLimitePerguntas {
     
-    public function consultar($usuarioId, $localId){
+    public function consultar($usuarioId, $localId, $tempo){
         
         $query = Conteiner::get('Query', false);
         $query->select('id');
         $query->from('perguntas');
-        $query->where('date_add(now(), INTERVAL -3 HOUR) < momento')
+        $query->where('date_add(now(), INTERVAL -? HOUR) < momento')
                 ->add('usuario_id = ?')
                 ->add('local_id = ?')
                 ->add('ativo = 1');
-        $query->addVariaveis([$usuarioId, $localId]);
+        $query->addVariaveis([$tempo, $usuarioId, $localId]);
         return $query->executar();
     }
 }

@@ -6,9 +6,13 @@ class Tutorial {
     
     public function tutorial($msg){
         
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        
+        $dados = Conteiner::get('ConsultaDadosUsuario')->consultar($usuarioId);
+        
         $msg->setCampo('entidade', 'Usuario');
-        $msg->setCampo('Usuario::tutorial', 1);
-        $msg->setCampo('Usuario::id', $msg->getCampoSessao('dadosUsuarioLogado,id'));
+        $msg->setCampo('Usuario::id', $usuarioId);
+        $msg->setCampo('Usuario::tutorial', $dados['tutorial'] + 1);
         Conteiner::get('Cadastro')->cadastrar($msg);
     }
 }

@@ -9,9 +9,9 @@
     <propriedades coluna="longitude" atributo="longitude" /> 
     <propriedades coluna="titulo" atributo="titulo" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
-    <nparaum coluna="categoria_local_id"  atributo="categoriaLocalId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="endereco" atributo="endereco" /> 
 </classe>
         
 <classe nome="CategoriaLocal" tabela="categoria_local"> 
@@ -19,15 +19,17 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="endereco" atributo="endereco" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
-    <nparaum coluna="icone_local_id"  atributo="iconeLocalId" />  
 </classe>
         
-<classe nome="IconeLocal" tabela="icone_local"> 
+<classe nome="LocalCategoria" tabela="local_categoria"> 
     <id coluna="id" atributo="id">
         <gerador classe="sequence"/>
     </id>  
+    <nparaum coluna="local_id"  atributo="localId" />  
+    <nparaum coluna="categoria_id"  atributo="categoriaId" />  
     <propriedades coluna="endereco" atributo="endereco" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
@@ -50,6 +52,16 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="tempo_hashtag" atributo="tempoHashtag" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="LocalGoogle" tabela="local_google"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="place_id" atributo="placeId" /> 
+    <nparaum coluna="local_id"  atributo="localId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

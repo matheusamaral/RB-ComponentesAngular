@@ -12,8 +12,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $padraoAprovacao = false;
         private $contato = false;
         private $usuarioId = false;
-        private $visibilidadeId = false;
-        private $vistoUltimoId = false; 
+        private $visibilidadeId = false; 
                 
         public function getId() {
             return $this->id;
@@ -93,18 +92,6 @@ use Rubeus\ORM\Persistente as Persistente;
             if($visibilidadeId instanceof Visibilidade)
                 $this->visibilidadeId = $visibilidadeId;
             else $this->getVisibilidadeId()->setId($visibilidadeId);
-        } 
-            
-        public function getVistoUltimoId() {
-            if(!$this->vistoUltimoId)
-                    $this->vistoUltimoId = new Visibilidade(); 
-            return $this->vistoUltimoId;
-        }
-
-        public function setVistoUltimoId($vistoUltimoId) {
-            if($vistoUltimoId instanceof Visibilidade)
-                $this->vistoUltimoId = $vistoUltimoId;
-            else $this->getVistoUltimoId()->setId($vistoUltimoId);
         }
         
     }

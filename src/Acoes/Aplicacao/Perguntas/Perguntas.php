@@ -9,36 +9,26 @@ class Perguntas {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $localId = $msg->getCampo('Perguntas::localId')->get('valor');
         
-        $query = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId);
+        $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
+        $query = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId, $tempo['limitePerguntas']);
         
         if(count($query) < 3){
             $cadastro = Conteiner::get('Cadastro');
-
+            
             $msg->setCampo('entidade', 'Perguntas');
+            
+            if(!$msg->getCampo('Perguntas::visibilidadeId')->get('valor')){
+                $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+                $msg->setCampo('Perguntas::visibilidadeId', $visibilidadeId);
+            }
+            
             $msg->setCampo('Perguntas::usuarioId', $usuarioId);
             $cadastro->cadastrar($msg);
-
-            $queryUser = Conteiner::get('ConsultaUsuariosPerguntas')->consultar($localId);
-
-            if($queryUser){
-                $perguntasId = $msg->getCampo('Perguntas::id')->get('valor');
-                foreach($queryUser as $v){
-                    $perguntas[] = $perguntasId;
-                    $usuarios[] = $v['usuarioId'];
-                }
-                
-                if(!in_array($usuarioId, $usuarios)){
-                    $perguntas[] = $perguntasId;
-                    $usuarios[] = $usuarioId;
-                }
-                
-                $msg->setCampo('entidade', 'PerguntaUsuario');
-                $msg->setCampo('PerguntaUsuario::perguntasId', $perguntas);
-                $msg->setCampo('PerguntaUsuario::usuarioId', $usuarios);
-                $cadastro->cadastrar($msg);
-            }else{
-                $msg->setResultadoEtapa(false);
-            }
+            $this->enviarNotificacao($msg);
         }
+    }
+    
+    private function enviarNotificacao($msg){
+        
     }
 }

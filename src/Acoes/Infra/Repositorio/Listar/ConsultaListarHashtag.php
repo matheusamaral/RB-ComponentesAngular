@@ -9,6 +9,7 @@ class ConsultaListarHashtag {
         $query = Conteiner::get('Query', false);
         $query->select('ch.id', 'categoriaId')
                 ->add('ch.titulo', 'categoriaTitulo')
+                ->add('ch.endereco', 'categoriaEndereco')
                 ->add('h.id', 'hashtagId')
                 ->add('h.titulo', 'hashtagTitulo');
         $query->from('hashtag_categoria', 'hc');
@@ -25,6 +26,7 @@ class ConsultaListarHashtag {
         return[
             "categoriaId"=>"id",
             "categoriaTitulo"=>"titulo",
+            "categoriaEndereco"=>"endereco",
             "hashtags"=>[
                 "hashtagId"=>"id",
                 "hashtagTitulo"=>"titulo"

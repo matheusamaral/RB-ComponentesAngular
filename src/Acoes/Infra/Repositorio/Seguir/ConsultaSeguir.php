@@ -4,19 +4,18 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaSeguir {
     
-    public function consultar($usuarioId, $usuarioSeguindo){
+    public function consultar($usuarioId, $usuarioSeguirId){
         
         $query = Conteiner::get('Query', false);
-        $query->select('cfg.padrao_aprovacao', 'padrao')
-                ->add('seg.id', 'id');
-        $query->from('configuracoes', 'cfg');
-        $query->join('seguir', 'seg', 'left')
-                ->on('seg.usuario_id = ?')
-                ->on('seg.usuario_seguir_id = ?')
-                ->on('seg.ativo = 1');
-        $query->where('cfg.usuario_id = ?')
-                ->add('cfg.ativo = 1');
-        $query->addVariaveis([$usuarioId, $usuarioSeguindo, $usuarioId]);
+        $query->select('c.padrao_aprovacao', 'padraoAprovacao')
+                ->add('s.id', 'id');
+        $query->from('configuracoes', 'c');
+        $query->join('seguir', 's', 'left')->on('s.usuario_id = ?')
+                ->on('s.usuario_seguir_id = ?')
+                ->on('s.ativo = 1');
+        $query->where('c.usuario_id = ?')
+                ->add('c.ativo = 1');
+        $query->addVariaveis([$usuarioId, $usuarioSeguirId, $usuarioSeguirId]);
         return $query->executar('A');
     }
 }

@@ -10,7 +10,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $momento = false;
         private $usuarioId = false;
         private $perguntasId = false;
-        private $momentoVisualizado = false; 
+        private $momentoVisualizado = false;
+        private $visibilidadeId = false; 
                 
         public function getId() {
             return $this->id;
@@ -74,6 +75,18 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setMomentoVisualizado($momentoVisualizado) {
             $this->momentoVisualizado = $momentoVisualizado;
+        } 
+            
+        public function getVisibilidadeId() {
+            if(!$this->visibilidadeId)
+                    $this->visibilidadeId = new \Quickpeek\Usuario\Dominio\Visibilidade(); 
+            return $this->visibilidadeId;
+        }
+
+        public function setVisibilidadeId($visibilidadeId) {
+            if($visibilidadeId instanceof \Quickpeek\Usuario\Dominio\Visibilidade)
+                $this->visibilidadeId = $visibilidadeId;
+            else $this->getVisibilidadeId()->setId($visibilidadeId);
         }
         
     }

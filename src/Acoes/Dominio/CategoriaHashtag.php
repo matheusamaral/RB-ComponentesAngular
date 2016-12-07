@@ -6,7 +6,7 @@ use Rubeus\ORM\Persistente as Persistente;
     class CategoriaHashtag extends Persistente{
         private $id = false;
         private $titulo = false;
-        private $iconeHashtagId = false;
+        private $endereco = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -25,17 +25,13 @@ use Rubeus\ORM\Persistente as Persistente;
         public function setTitulo($titulo) {
             $this->titulo = $titulo;
         } 
-            
-        public function getIconeHashtagId() {
-            if(!$this->iconeHashtagId)
-                    $this->iconeHashtagId = new IconeHashtag(); 
-            return $this->iconeHashtagId;
+                
+        public function getEndereco() {
+            return $this->endereco;
         }
 
-        public function setIconeHashtagId($iconeHashtagId) {
-            if($iconeHashtagId instanceof IconeHashtag)
-                $this->iconeHashtagId = $iconeHashtagId;
-            else $this->getIconeHashtagId()->setId($iconeHashtagId);
+        public function setEndereco($endereco) {
+            $this->endereco = $endereco;
         } 
                 
         public function getAtivo() {

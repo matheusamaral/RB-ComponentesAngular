@@ -9,6 +9,7 @@
     <propriedades coluna="respondida" atributo="respondida" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="local_id"  atributo="localId" />  
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
@@ -18,11 +19,23 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="titulo" atributo="titulo" /> 
+    <propriedades coluna="endereco" atributo="endereco" /> 
+    <propriedades coluna="check_in" atributo="checkIn" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
-    <propriedades coluna="check_in" atributo="checkIn" /> 
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+</classe>
+        
+<classe nome="RespostasVisualizadas" tabela="respostas_visualizadas"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="respostas_id"  atributo="respostasId" />  
 </classe>
         
 <classe nome="PerguntaUsuario" tabela="pergunta_usuario"> 
@@ -35,6 +48,18 @@
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
     <propriedades coluna="momento_visualizado" atributo="momentoVisualizado" /> 
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+</classe>
+        
+<classe nome="PerguntaAlerta" tabela="pergunta_alerta"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
+    <propriedades coluna="retorno" atributo="retorno" /> 
 </classe>
         
 <classe nome="Curtir" tabela="curtir"> 
@@ -44,6 +69,7 @@
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="midia_id"  atributo="midiaId" />  
     <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
@@ -96,15 +122,6 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="titulo" atributo="titulo" /> 
-    <nparaum coluna="icone_hashtag_id"  atributo="iconeHashtagId" />  
-    <propriedades coluna="ativo" atributo="ativo" /> 
-    <propriedades coluna="momento" atributo="momento" /> 
-</classe>
-        
-<classe nome="IconeHashtag" tabela="icone_hashtag"> 
-    <id coluna="id" atributo="id">
-        <gerador classe="sequence"/>
-    </id>  
     <propriedades coluna="endereco" atributo="endereco" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 

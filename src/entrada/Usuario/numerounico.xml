@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="numerounico" modulo="Usuario">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Numerounico" nome="numerounico"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="numero-unico" tipo="tarefa">
+            <entidade nome="Numerounico" metodo="numerounico"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

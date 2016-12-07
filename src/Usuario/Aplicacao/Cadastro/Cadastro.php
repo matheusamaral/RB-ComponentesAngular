@@ -15,8 +15,15 @@ class Cadastro {
         }else{
             $cadastro = Conteiner::get('Cadastro');
             
-            $msg->setCampo('Usuario::endereco', $caminho[0]['url']);
             $msg->setCampo('entidade', 'Usuario');
+            $msg->setCampo('Usuario::endereco', $caminho[0]['url']);
+            $msg->setCampo('Usuario::smsCodigoId', $msg->getCampoSessao('smsCodigoId'));
+            $cadastro->cadastrar($msg);
+            
+            $msg->setCampo('entidade', 'NumerounicoUsuario');
+            $msg->setCampo('NumerounicoUsuario::id', 
+            Conteiner::get('ConsultaVerificarNumero')->consultarIdNumero($msg->getCampoSessao('numerounico')));
+            $msg->setCampo('NumerounicoUsuario::usuarioId', $msg->getCampo('Usuario::id')->get('valor'));
             $cadastro->cadastrar($msg);
             
             $usuarioId = $msg->getCampo('Usuario::id')->get('valor');

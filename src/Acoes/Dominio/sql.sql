@@ -17,6 +17,12 @@ CREATE TABLE `perguntas`(
          FOREIGN KEY (`local_id`) REFERENCES `local` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `visibilidade_id` INT   ,
+    INDEX `perguntas_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `perguntas_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
@@ -24,6 +30,8 @@ CREATE TABLE `respostas`(
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `titulo` varchar(45)   ,
+    `endereco` varchar(45)   ,
+    `check_in` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ,
     `usuario_id` INT   ,
@@ -38,7 +46,30 @@ CREATE TABLE `respostas`(
          FOREIGN KEY (`perguntas_id`) REFERENCES `perguntas` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
-    `check_in` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    `visibilidade_id` INT   ,
+    INDEX `respostas_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `respostas_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `respostas_visualizadas`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `ativo` tinyint   ,
+    `momento` datetime   ,
+    `usuario_id` INT   ,
+    INDEX `respostas_visualizadas_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `respostas_visualizadas_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `respostas_id` INT   ,
+    INDEX `respostas_visualizadas_fk_respostas_id_idx`(`respostas_id` ASC),
+    CONSTRAINT `respostas_visualizadas_fk_respostas_id` 
+         FOREIGN KEY (`respostas_id`) REFERENCES `respostas` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `pergunta_usuario`( 
     `id` int  AUTO_INCREMENT ,
@@ -58,7 +89,32 @@ CREATE TABLE `pergunta_usuario`(
          FOREIGN KEY (`perguntas_id`) REFERENCES `perguntas` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
-    `momento_visualizado` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    `momento_visualizado` varchar(45)   ,
+    `visibilidade_id` INT   ,
+    INDEX `pergunta_usuario_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `pergunta_usuario_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `pergunta_alerta`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `ativo` tinyint   ,
+    `momento` datetime   ,
+    `usuario_id` INT   ,
+    INDEX `pergunta_alerta_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `pergunta_alerta_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `perguntas_id` INT   ,
+    INDEX `pergunta_alerta_fk_perguntas_id_idx`(`perguntas_id` ASC),
+    CONSTRAINT `pergunta_alerta_fk_perguntas_id` 
+         FOREIGN KEY (`perguntas_id`) REFERENCES `perguntas` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `retorno` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `curtir`( 
     `id` int  AUTO_INCREMENT ,
@@ -79,6 +135,12 @@ CREATE TABLE `curtir`(
     INDEX `curtir_fk_hashtag_id_idx`(`hashtag_id` ASC),
     CONSTRAINT `curtir_fk_hashtag_id` 
          FOREIGN KEY (`hashtag_id`) REFERENCES `hashtag` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `visibilidade_id` INT   ,
+    INDEX `curtir_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `curtir_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
     `ativo` tinyint   ,
@@ -163,18 +225,6 @@ CREATE TABLE `categoria_hashtag`(
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `titulo` varchar(45)   ,
-    `icone_hashtag_id` INT   ,
-    INDEX `categoria_hashtag_fk_icone_hashtag_id_idx`(`icone_hashtag_id` ASC),
-    CONSTRAINT `categoria_hashtag_fk_icone_hashtag_id` 
-         FOREIGN KEY (`icone_hashtag_id`) REFERENCES `icone_hashtag` (`id`)
-     ON DELETE NO ACTION
-     ON UPDATE NO ACTION,
-    `ativo` tinyint   ,
-    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        
-CREATE TABLE `icone_hashtag`( 
-    `id` int  AUTO_INCREMENT ,
-     PRIMARY KEY (`id`),
     `endereco` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
