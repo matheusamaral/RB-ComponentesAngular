@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>  
+    <pagina id="1" classePagina="\ProcessoSeletivoColegio\ProcessoSeletivo\Aplicacao\ProcessoInscricao\ClasseCadastroProcessoInscricao" endereco="iniciar">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-loading-inicial" acao="LoadingInicialCtrl" title="QuickPeek"/>
+    </pagina>   
+</root>
+
+<root>  
+    <pagina id="2" classePagina="\ProcessoSeletivoColegio\ProcessoSeletivo\Aplicacao\ProcessoInscricao\ClasseCadastroProcessoInscricao" endereco="comece-agora">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-comece-agora" acao="ComeceAgoraCtrl" title="QuickPeek"/>
+    </pagina>   
+</root>
+
+
+ 
+    
+    
+    

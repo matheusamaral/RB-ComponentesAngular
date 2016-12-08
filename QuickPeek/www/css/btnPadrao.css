@@ -1,0 +1,12 @@
+.btn-padrao{
+    height: 48px !important;
+    min-height: 20px;
+    width: 250px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.btn-padrao span{
+    color:#FFFFFF;
+}
