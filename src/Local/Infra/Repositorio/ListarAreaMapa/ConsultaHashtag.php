@@ -11,7 +11,7 @@ class ConsultaHashtag {
                 ->add('h.titulo', 'hashtagTitulo')
                 ->add('count(distinct hl.id)', 'hashtagQtd')
                 ->add('ch.titulo', 'categoriaTitulo')
-                ->add('ih.endereco', 'categoriaEndereco')
+                ->add('ch.endereco', 'categoriaEndereco')
                 ->add('case when hlo.id is null then 0 else 1 end', 'hashtag');
         $query->from('hashtag', 'h');
         $query->join('local', 'l')->on('l.ativo = 1');
@@ -28,7 +28,6 @@ class ConsultaHashtag {
         $query->join('hashtag_categoria', 'hc')->on('hc.hashtag_id = h.id')
                 ->on('hc.categoria_hashtag_id = ch.id')
                 ->on('hc.ativo = 1');
-        $query->join('icone_hashtag', 'ih')->on('ih.id = ch.icone_hashtag_id');
         $query->group('h.id');
         $query->order('hashtagQtd desc');
         $query->addVariaveis([$usuarioId, $localId, $tempo]);

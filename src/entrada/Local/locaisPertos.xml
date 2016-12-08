@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="locaisPertos" modulo="Local">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/> 
+        <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="locais-pertos" tipo="tarefa">
+            <entidade nome="LocaisPertos" metodo="locaisPertos"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -3,8 +3,8 @@
 <processo codigo="cadastro" modulo="Local">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Local::latitude" nome="latitude"/> 
-        <campo regra="Obrigatorio" chave="Local::longitude" nome="longitude"/>
+        <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/> 
+        <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
         <campo regra="Obrigatorio" chave="Local::titulo" nome="titulo"/>
         <campo regra="Obrigatorio" chave="Local::categoriaLocalId" nome="categoriaLocalId"/>
     </entrada>

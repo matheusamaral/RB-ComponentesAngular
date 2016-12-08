@@ -6,11 +6,13 @@ use Rubeus\ORM\Persistente as Persistente;
     class Respostas extends Persistente{
         private $id = false;
         private $titulo = false;
+        private $endereco = false;
+        private $checkIn = false;
         private $ativo = false;
         private $momento = false;
         private $usuarioId = false;
         private $perguntasId = false;
-        private $checkIn = false; 
+        private $visibilidadeId = false; 
                 
         public function getId() {
             return $this->id;
@@ -26,6 +28,22 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setTitulo($titulo) {
             $this->titulo = $titulo;
+        } 
+                
+        public function getEndereco() {
+            return $this->endereco;
+        }
+
+        public function setEndereco($endereco) {
+            $this->endereco = $endereco;
+        } 
+                
+        public function getCheckIn() {
+            return $this->checkIn;
+        }
+
+        public function setCheckIn($checkIn) {
+            $this->checkIn = $checkIn;
         } 
                 
         public function getAtivo() {
@@ -67,13 +85,17 @@ use Rubeus\ORM\Persistente as Persistente;
                 $this->perguntasId = $perguntasId;
             else $this->getPerguntasId()->setId($perguntasId);
         } 
-                
-        public function getCheckIn() {
-            return $this->checkIn;
+            
+        public function getVisibilidadeId() {
+            if(!$this->visibilidadeId)
+                    $this->visibilidadeId = new \Quickpeek\Usuario\Dominio\Visibilidade(); 
+            return $this->visibilidadeId;
         }
 
-        public function setCheckIn($checkIn) {
-            $this->checkIn = $checkIn;
+        public function setVisibilidadeId($visibilidadeId) {
+            if($visibilidadeId instanceof \Quickpeek\Usuario\Dominio\Visibilidade)
+                $this->visibilidadeId = $visibilidadeId;
+            else $this->getVisibilidadeId()->setId($visibilidadeId);
         }
         
     }

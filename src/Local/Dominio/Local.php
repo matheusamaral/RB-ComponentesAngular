@@ -9,9 +9,9 @@ use Rubeus\ORM\Persistente as Persistente;
         private $longitude = false;
         private $titulo = false;
         private $usuarioId = false;
-        private $categoriaLocalId = false;
         private $ativo = false;
-        private $momento = false; 
+        private $momento = false;
+        private $endereco = false; 
                 
         public function getId() {
             return $this->id;
@@ -56,18 +56,6 @@ use Rubeus\ORM\Persistente as Persistente;
                 $this->usuarioId = $usuarioId;
             else $this->getUsuarioId()->setId($usuarioId);
         } 
-            
-        public function getCategoriaLocalId() {
-            if(!$this->categoriaLocalId)
-                    $this->categoriaLocalId = new CategoriaLocal(); 
-            return $this->categoriaLocalId;
-        }
-
-        public function setCategoriaLocalId($categoriaLocalId) {
-            if($categoriaLocalId instanceof CategoriaLocal)
-                $this->categoriaLocalId = $categoriaLocalId;
-            else $this->getCategoriaLocalId()->setId($categoriaLocalId);
-        } 
                 
         public function getAtivo() {
             return $this->ativo;
@@ -83,6 +71,14 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setMomento($momento) {
             $this->momento = $momento;
+        } 
+                
+        public function getEndereco() {
+            return $this->endereco;
+        }
+
+        public function setEndereco($endereco) {
+            $this->endereco = $endereco;
         }
         
     }

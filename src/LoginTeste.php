@@ -8,5 +8,7 @@ class LoginTeste {
         
         $msg->setCampoSessao('dadosUsuarioLogado,id', $msg->getCampo('Usuario::id')->get('valor'));
         $msg->setResultadoEtapa(true, false, ['sessao'=>$_SESSION]);
+        
+//        $class = Conteiner::get('EstruturaSessao');
     }
 }

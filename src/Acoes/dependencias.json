@@ -6,11 +6,6 @@
     "ConsultaEncontrarLocal": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaEncontrarLocal",
     "ConsultaHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaHashtag",
     "ConsultaLimitePerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLimitePerguntas",
-    "ConsultaRespostas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaRespostas",
     
-    "ConsultaListarSeguidores": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarSeguidores",
-    "ConsultaListarSeguidos": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarSeguidos",
-    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag",
-    "ConsultaListarRespostas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarRespostas",
-    "ConsultaListarPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarPerguntas"
+    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

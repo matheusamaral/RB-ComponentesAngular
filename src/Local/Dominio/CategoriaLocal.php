@@ -6,9 +6,9 @@ use Rubeus\ORM\Persistente as Persistente;
     class CategoriaLocal extends Persistente{
         private $id = false;
         private $titulo = false;
+        private $endereco = false;
         private $ativo = false;
-        private $momento = false;
-        private $iconeLocalId = false; 
+        private $momento = false; 
                 
         public function getId() {
             return $this->id;
@@ -26,6 +26,14 @@ use Rubeus\ORM\Persistente as Persistente;
             $this->titulo = $titulo;
         } 
                 
+        public function getEndereco() {
+            return $this->endereco;
+        }
+
+        public function setEndereco($endereco) {
+            $this->endereco = $endereco;
+        } 
+                
         public function getAtivo() {
             return $this->ativo;
         }
@@ -40,18 +48,6 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setMomento($momento) {
             $this->momento = $momento;
-        } 
-            
-        public function getIconeLocalId() {
-            if(!$this->iconeLocalId)
-                    $this->iconeLocalId = new IconeLocal(); 
-            return $this->iconeLocalId;
-        }
-
-        public function setIconeLocalId($iconeLocalId) {
-            if($iconeLocalId instanceof IconeLocal)
-                $this->iconeLocalId = $iconeLocalId;
-            else $this->getIconeLocalId()->setId($iconeLocalId);
         }
         
     }

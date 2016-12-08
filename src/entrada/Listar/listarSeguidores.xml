@@ -2,7 +2,9 @@
 
 <processo codigo="listarSeguidores" modulo="Listar">
     
-    <entrada> </entrada>
+    <entrada>
+        <campo regra="Opcional" chave="Usuario::id" nome="usuarioId"/>
+    </entrada>
     
     <atividades>
         <atividade codigo="listar-seguidores" tipo="tarefa">

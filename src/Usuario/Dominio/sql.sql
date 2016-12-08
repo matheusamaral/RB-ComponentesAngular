@@ -21,6 +21,12 @@ CREATE TABLE `usuario`(
          FOREIGN KEY (`genero_id`) REFERENCES `genero` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `sms_codigo_id` INT   ,
+    INDEX `usuario_fk_sms_codigo_id_idx`(`sms_codigo_id` ASC),
+    CONSTRAINT `usuario_fk_sms_codigo_id` 
+         FOREIGN KEY (`sms_codigo_id`) REFERENCES `sms_codigo` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
@@ -76,12 +82,6 @@ CREATE TABLE `configuracoes`(
     INDEX `configuracoes_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
     CONSTRAINT `configuracoes_fk_visibilidade_id` 
          FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
-     ON DELETE NO ACTION
-     ON UPDATE NO ACTION,
-    `visto_ultimo_id` INT   ,
-    INDEX `configuracoes_fk_visto_ultimo_id_idx`(`visto_ultimo_id` ASC),
-    CONSTRAINT `configuracoes_fk_visto_ultimo_id` 
-         FOREIGN KEY (`visto_ultimo_id`) REFERENCES `visibilidade` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
@@ -161,5 +161,48 @@ CREATE TABLE `mensagens_excluidas`(
     INDEX `mensagens_excluidas_fk_mensagens_id_idx`(`mensagens_id` ASC),
     CONSTRAINT `mensagens_excluidas_fk_mensagens_id` 
          FOREIGN KEY (`mensagens_id`) REFERENCES `mensagens` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `sms_codigo`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `ativo` tinyint   ,
+    `momento` datetime   ,
+    `codigo` varchar(45)   ,
+    `telefone` varchar(45)   ,
+    `confirmado` varchar(45)   ,
+    `editando` varchar(45)   ,
+    `status_sms_id` INT   ,
+    INDEX `sms_codigo_fk_status_sms_id_idx`(`status_sms_id` ASC),
+    CONSTRAINT `sms_codigo_fk_status_sms_id` 
+         FOREIGN KEY (`status_sms_id`) REFERENCES `status_sms` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `usuario_id` INT   ,
+    INDEX `sms_codigo_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `sms_codigo_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `status_sms`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `ativo` tinyint   ,
+    `momento` datetime   ,
+    `codigo_mobi` varchar(45)   ,
+    `titulo` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `numerounico_usuario`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `ativo` tinyint   ,
+    `momento` datetime   ,
+    `numerounico` varchar(45)   ,
+    `usuario_id` INT   ,
+    INDEX `numerounico_usuario_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `numerounico_usuario_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;

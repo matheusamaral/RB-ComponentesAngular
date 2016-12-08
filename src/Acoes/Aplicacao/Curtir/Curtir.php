@@ -6,8 +6,12 @@ class Curtir {
     
     public function curtir($msg){
         
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        
         $msg->setCampo('entidade', 'Curtir');
-        $msg->setCampo('Curtir::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+        $msg->setCampo('Curtir::visibilidadeId', $visibilidadeId);
+        $msg->setCampo('Curtir::usuarioId', $usuarioId);
         Conteiner::get('Cadastro')->cadastrar($msg);
     }
 }

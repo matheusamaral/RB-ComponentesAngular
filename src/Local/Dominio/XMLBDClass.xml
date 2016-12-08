@@ -7,21 +7,23 @@
         <propriedades coluna="longitude" atributo="longitude" type="varchar(45)"/>
         <propriedades coluna="titulo" atributo="titulo" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
-        <propriedades coluna="categoria_local_id" atributo="categoriaLocalId" classe="CategoriaLocal" tabela="categoria_local"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="endereco" atributo="endereco" type="varchar(45)"/>
     </classe>
     
     <classe nome="CategoriaLocal" tabela="categoria_local" namespace="Quickpeek\Local\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="titulo" atributo="titulo" type="varchar(45)"/>
+        <propriedades coluna="endereco" atributo="endereco" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
-        <propriedades coluna="icone_local_id" atributo="iconeLocalId" classe="IconeLocal" tabela="icone_local"/>
-    </classe>
+    </classe>    
     
-    <classe nome="IconeLocal" tabela="icone_local" namespace="Quickpeek\Local\Dominio" id="">
+    <classe nome="LocalCategoria" tabela="local_categoria" namespace="Quickpeek\Local\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="local_id" atributo="localId" classe="Local" tabela="local"/>
+        <propriedades coluna="categoria_id" atributo="categoriaId" classe="CategoriaLocal" tabela="categoria_local"/>
         <propriedades coluna="endereco" atributo="endereco" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
@@ -40,6 +42,14 @@
     <classe nome="ConfiguracoesQuickpeek" tabela="configuracoes_quickpeek" namespace="Quickpeek\Local\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
         <propriedades coluna="tempo_hashtag" atributo="tempoHashtag" type="varchar(45)"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
+    <classe nome="LocalGoogle" tabela="local_google" namespace="Quickpeek\Local\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
+        <propriedades coluna="place_id" atributo="placeId" type="varchar(45)"/>
+        <propriedades coluna="local_id" atributo="localId" classe="Local" tabela="local"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>

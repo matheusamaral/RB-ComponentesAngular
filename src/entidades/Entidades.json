@@ -9,11 +9,15 @@
     "Usuario": "\\Quickpeek\\Usuario\\Dominio\\Usuario",
     "Visibilidade": "\\Quickpeek\\Usuario\\Dominio\\Visibilidade",
     "MensagensExcluidas": "\\Quickpeek\\Usuario\\Dominio\\MensagensExcluidas",
+    "SmsCodigo": "\\Quickpeek\\Usuario\\Dominio\\SmsCodigo",
+    "StatusSms": "\\Quickpeek\\Usuario\\Dominio\\StatusSms",
+    "NumerounicoUsuario": "\\Quickpeek\\Usuario\\Dominio\\NumerounicoUsuario",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
+    "LocalCategoria": "\\Quickpeek\\Local\\Dominio\\LocalCategoria",
     "CheckIn": "\\Quickpeek\\Local\\Dominio\\CheckIn",
-    "IconeLocal": "\\Quickpeek\\Local\\Dominio\\IconeLocal",
     "Local": "\\Quickpeek\\Local\\Dominio\\Local",
+    "LocalGoogle": "\\Quickpeek\\Local\\Dominio\\LocalGoogle",
     
     "CategoriaHashtag": "\\Quickpeek\\Acoes\\Dominio\\CategoriaHashtag",
     "Curtir": "\\Quickpeek\\Acoes\\Dominio\\Curtir",
@@ -23,6 +27,7 @@
     "IconeHashtag": "\\Quickpeek\\Acoes\\Dominio\\IconeHashtag",
     "Midia": "\\Quickpeek\\Acoes\\Dominio\\Midia",
     "PerguntaUsuario": "\\Quickpeek\\Acoes\\Dominio\\PerguntaUsuario",
+    "PerguntaAlerta": "\\Quickpeek\\Acoes\\Dominio\\PerguntaAlerta",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",
     "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Dominio\\ConfiguracoesQuickpeek"

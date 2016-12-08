@@ -16,7 +16,7 @@ class ConsultaMidia {
         $query->where('m.local_id = ?')
                 ->add('m.momento > date_add(now(), INTERVAL -? HOUR)')
                 ->add('m.ativo = 1');
-        $query->group('m.id order by count(c.id) desc limit 3');
+        $query->group('m.id order by count(distinct c.id) desc limit 3');
         $query->addVariaveis([$localId, $tempo]);
         return $query->executar();
     }

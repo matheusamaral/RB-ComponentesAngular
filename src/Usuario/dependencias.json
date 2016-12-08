@@ -4,5 +4,15 @@
     "ConsultaVerificarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarConfiguracoes",
     "ConsultaExcluirConversa": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaExcluirConversa",
     "ConsultaConversa": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaConversa",
-    "ConsultaSetarVisualizada": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarVisualizada"
+    "ConsultaSetarVisualizada": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarVisualizada",
+    "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
+    "ConsultaListarUltimosLocais": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarUltimosLocais",
+    "ConsultaListarPerfilUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPerfilUsuario",
+    "ConsultaListarSeguidores": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarSeguidores",
+    "ConsultaListarSeguidos": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarSeguidos",
+    "ConsultaVerificarCodigoSms": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarCodigoSms",
+    "ConsultaListarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarConfiguracoes",
+    "ConsultaVerificarNumero": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarNumero",
+    
+    "ConsultaVerificarEdicao": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarEdicao"
 }

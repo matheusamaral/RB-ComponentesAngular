@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="editarNumero" modulo="Usuario">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="TelefoneAntigo" nome="telefoneAntigo"/>
+        <campo regra="Obrigatorio" chave="Usuario::telefone" nome="telefoneNovo"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="editar-numero" tipo="tarefa" proximo="enviar-sms-editar">
+            <entidade nome="EditarNumero" metodo="editarNumero"/>
+        </atividade>        
+        
+        <atividade codigo="enviar-sms-editar" tipo="tarefa">
+            <entidade nome="EnviarSmsEditar" metodo="enviarSmsEditar"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -13,6 +13,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $tutorial = false;
         private $avataresId = false;
         private $generoId = false;
+        private $smsCodigoId = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -94,6 +95,18 @@ use Rubeus\ORM\Persistente as Persistente;
             if($generoId instanceof Genero)
                 $this->generoId = $generoId;
             else $this->getGeneroId()->setId($generoId);
+        } 
+            
+        public function getSmsCodigoId() {
+            if(!$this->smsCodigoId)
+                    $this->smsCodigoId = new SmsCodigo(); 
+            return $this->smsCodigoId;
+        }
+
+        public function setSmsCodigoId($smsCodigoId) {
+            if($smsCodigoId instanceof SmsCodigo)
+                $this->smsCodigoId = $smsCodigoId;
+            else $this->getSmsCodigoId()->setId($smsCodigoId);
         } 
                 
         public function getAtivo() {

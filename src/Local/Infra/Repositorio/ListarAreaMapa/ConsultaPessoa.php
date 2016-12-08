@@ -4,20 +4,23 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaPessoa {
     
-public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo){
+public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $limit){
         
         $query = Conteiner::get('Query', false);
         
         $query->select('distinct u.id', 'usuarioId')
+                ->add('c.visibilidade_id', 'visibilidade')
                 ->add('case when c.visibilidade_id = 1 then u.endereco'
                         . ' when c.visibilidade_id = 2 and s.id is not null then u.endereco'
-                        . ' else a.endereco end as endereco')
+                        . ' else a.endereco end', 'endereco')
                 ->add('c.local_id', 'localId')
                 ->add('ifnull(s.ativo, 0) + ((count(distinct cu.id) + consulta.soma) * 0.8)'
                         . ' + (count(distinct ci.id) * 0.7)', 'count')
-                ->add('count(distinct cur.id) * 0.2 + (count(distinct se.id) * 0.1)', 'count2');
+                ->add('count(distinct cur.id) * 0.2 + (count(distinct se.id) * 0.1)', 'count2')
+                ->add('timestampdiff(minute, c.momento, now())', 'minutos')
+                ->add('case when s.id is not null then 1 else 0 end', 'seguindo');
         $query->from('usuario', 'u');
-        $query->join('local', 'l', 'left')->on('l.ativo = 1');
+        $query->join('local', 'l')->on('l.ativo = 1');
         $query->join('check_in', 'c')->on('c.usuario_id = u.id')
                 ->on('c.local_id = l.id')
                 ->on('c.presente = 1')
@@ -51,8 +54,8 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo){
         $query->where('l.id = ?');
         $query->group('u.id');
         $query->order('count desc, count2 desc');
-        $query->limit('3');
-        $query->addVariaveis([$usuarioId, $midiaTempo, $localId, $hashtagTempo, $localId, $hashtagTempo, $localId,]);
+        $query->limit($limit);
+        $query->addVariaveis([$usuarioId, $midiaTempo, $localId, $hashtagTempo, $localId, $hashtagTempo, $localId]);
         return $query->executar();
     }
     

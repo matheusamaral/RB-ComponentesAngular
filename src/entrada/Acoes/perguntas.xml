@@ -5,6 +5,7 @@
     <entrada>
         <campo regra="Obrigatorio" chave="Perguntas::localId" nome="localId"/>
         <campo regra="Obrigatorio" chave="Perguntas::titulo" nome="titulo"/>
+        <campo regra="Opcional" chave="Perguntas::visibilidadeId" nome="visibilidadeId"/>
     </entrada>
     
     <atividades>

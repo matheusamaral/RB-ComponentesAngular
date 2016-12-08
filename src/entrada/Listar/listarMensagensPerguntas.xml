@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarMensagensPerguntas" modulo="Listar">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Perguntas::id" nome="perguntasId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-mensagens-perguntas" tipo="tarefa">
+            <entidade nome="ListarMensagensPerguntas" metodo="listarMensagensPerguntas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
