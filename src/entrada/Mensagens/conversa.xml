@@ -4,6 +4,8 @@
     
     <entrada>
         <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="usuarioMensagemId"/>
+        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeMensagensId" nome="visibilidadeMensagensId"/>
+        <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
     </entrada>
     
     <atividades>

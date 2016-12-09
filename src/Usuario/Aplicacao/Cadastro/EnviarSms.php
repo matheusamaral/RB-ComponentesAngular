@@ -15,17 +15,17 @@ class EnviarSms {
         if($editando){
             $msg->setResultadoEtapa(true, false, ['editando'=>1]);
         }else{
-            $credencial = urlencode('9201FB476813996D613D3407C36598D0E8741093');
-            $token = urlencode('75dEb9');
+            $credencial = urlencode('F3DB45E6D02E31330CF62F36C8F8242D68A572E9');
+            $token = urlencode('c74285');
 
             $emcrypt = Conteiner::get('Emcrypt');
             $codigo = $emcrypt::gerarCodigoBanco(ConteinerEntidade::getInstancia('SmsCodigo'), 'codigo', 6);
 
-            $mensagem = urlencode('+O+seu+código+do+Quickpeek+é+' . $codigo);
+            $mensagem = urlencode('O seu código do Quickpeek é ' . $codigo);
 
             $retorno = file_get_contents('https://www.mpgateway.com/v_3_00/sms/smspush/enviasms.aspx?Credencial=' . 
                     $credencial . '&Token=' . $token . '&Principal_User=FF' . '&Aux_User=F1' . 
-                    '&Mobile=' . $telefone . '&Send_Project=S' . '&Message=' . $mensagem);
+                    '&Mobile=' . $telefone . '&Send_Project=N' . '&Message=' . $mensagem);
 
             switch($retorno){
                 case '000':

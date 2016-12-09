@@ -5,6 +5,7 @@
     <entrada>
         <campo regra="Opcional" chave="Mensagens::titulo" nome="titulo"/>
         <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="usuarioMensagemId"/>
+        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeMensagensId" nome="visibilidadeMensagensId"/>
         <campo chave="Arquivo" nome="arquivo" type="file"/>
     </entrada>
     

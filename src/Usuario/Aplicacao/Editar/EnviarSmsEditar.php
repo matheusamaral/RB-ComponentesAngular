@@ -9,8 +9,8 @@ class EnviarSmsEditar {
         
         $telefone = urlencode($msg->getCampo('Usuario::telefone')->get('valor'));
         
-        $credencial = urlencode('9201FB476813996D613D3407C36598D0E8741093');
-        $token = urlencode('75dEb9');
+        $credencial = urlencode('F3DB45E6D02E31330CF62F36C8F8242D68A572E9');
+        $token = urlencode('c74285');
 
         $emcrypt = Conteiner::get('Emcrypt');
         $codigo = $emcrypt::gerarCodigoBanco(ConteinerEntidade::getInstancia('SmsCodigo'), 'codigo', 6);

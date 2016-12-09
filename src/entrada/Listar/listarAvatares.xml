@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarAvatares" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-avatares" tipo="tarefa">
+            <entidade nome="ListarAvatares" metodo="listarAvatares"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

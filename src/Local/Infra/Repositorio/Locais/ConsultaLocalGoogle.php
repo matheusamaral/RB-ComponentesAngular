@@ -1,5 +1,5 @@
 <?php
-namespace Quickpeek\Local\Infra\Repositorio\LocaisPertos;
+namespace Quickpeek\Local\Infra\Repositorio\Locais;
 use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaLocalGoogle {

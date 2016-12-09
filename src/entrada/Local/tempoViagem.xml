@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<processo codigo="mapa" modulo="Local">
+<processo codigo="tempoViagem" modulo="Local">
     
     <entrada>
         <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/> 
         <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
+        <campo regra="Obrigatorio" chave="LocalId" nome="localId"/>
     </entrada>
     
     <atividades>
-        <atividade codigo="mapa" tipo="tarefa">
-            <entidade nome="Mapa" metodo="mapa"/>
+        <atividade codigo="tempo-viagem" tipo="tarefa">
+            <entidade nome="TempoViagem" metodo="tempoViagem"/>
         </atividade>
     </atividades>
     
