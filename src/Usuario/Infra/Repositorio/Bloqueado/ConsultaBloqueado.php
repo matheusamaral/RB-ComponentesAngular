@@ -2,9 +2,9 @@
 namespace Quickpeek\Usuario\Infra\Repositorio\Bloqueado;
 use Rubeus\ContenerDependencia\Conteiner;
 
-class ConsultaDesbloquear {
+class ConsultaBloqueado {
     
-    public function consultar($usuarioId, $usuarioBloqId, $visibilidadeId){
+    public function consultar($usuarioId, $usuarioMensagemId, $visibilidadeId){
         
         $query = Conteiner::get('Query', false);
         $query->select('id');
@@ -13,7 +13,8 @@ class ConsultaDesbloquear {
                 ->add('usuario_bloqueado_id = ?')
                 ->add('visibilidade_id = ?')
                 ->add('ativo = 1');
-        $query->addVariaveis([$usuarioId, $usuarioBloqId, $visibilidadeId]);
-        return $query->executar('A');
+        $query->addVariaveis([$usuarioMensagemId, $usuarioId, $visibilidadeId]);
+        
+        return $query->executar('{id}');
     }
 }

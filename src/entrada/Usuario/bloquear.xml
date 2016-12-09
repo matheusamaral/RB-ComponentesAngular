@@ -4,7 +4,7 @@
     
     <entrada> 
         <campo regra="Obrigatorio" chave="Bloqueado::usuarioBloqueadoId" nome="usuarioBloqueadoId"/>
-        <campo regra="Opcional" chave="Bloqueado::anonimo" nome="anonimo"/>
+        <campo regra="Obrigatorio" chave="Bloqueado::visibilidadeId" nome="visibilidadeId"/>
     </entrada>
     
     <atividades>

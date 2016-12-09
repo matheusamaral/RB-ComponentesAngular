@@ -7,7 +7,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $id = false;
         private $ativo = false;
         private $momento = false;
-        private $anonimo = false;
+        private $visibilidadeId = false;
         private $usuarioId = false;
         private $usuarioBloqueadoId = false; 
                 
@@ -34,13 +34,17 @@ use Rubeus\ORM\Persistente as Persistente;
         public function setMomento($momento) {
             $this->momento = $momento;
         } 
-                
-        public function getAnonimo() {
-            return $this->anonimo;
+            
+        public function getVisibilidadeId() {
+            if(!$this->visibilidadeId)
+                    $this->visibilidadeId = new VisibilidadeMensagens(); 
+            return $this->visibilidadeId;
         }
 
-        public function setAnonimo($anonimo) {
-            $this->anonimo = $anonimo;
+        public function setVisibilidadeId($visibilidadeId) {
+            if($visibilidadeId instanceof VisibilidadeMensagens)
+                $this->visibilidadeId = $visibilidadeId;
+            else $this->getVisibilidadeId()->setId($visibilidadeId);
         } 
             
         public function getUsuarioId() {

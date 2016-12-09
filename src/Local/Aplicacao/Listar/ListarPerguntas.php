@@ -14,13 +14,6 @@ class ListarPerguntas {
                 $tempo['perguntas'], $tempo['respostas']);
         
         if($query){
-            foreach($query as $k=>$v){
-                if($v['usuarioId'] == $usuarioId){
-                    $query[$k]['voce'] = 1;
-                }else{
-                    $query[$k]['voce'] = 0;
-                }
-            }
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
         }else{
             $msg->setResultadoEtapa(false);

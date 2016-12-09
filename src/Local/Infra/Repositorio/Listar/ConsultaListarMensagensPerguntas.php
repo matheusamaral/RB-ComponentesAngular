@@ -11,16 +11,17 @@ class ConsultaListarMensagensPerguntas {
                 ->add('r.titulo', 'titulo')
                 ->add('r.endereco', 'enderecoMidia')
                 ->add('r.usuario_id', 'usuarioId')
-                ->add('case when r.visibilidade_id = 1 then u.nome '
+                ->add('case when u.ativo = 0 then ' . "'FotoPadrao'"
+                        . ' when r.visibilidade_id = 1 then u.nome '
                         . ' when r.visibilidade_id = 2 and s.id is not null then u.nome'
                         . ' else a.nome end', 'nomeUsuario')
-                ->add('case when r.visibilidade_id = 1 then u.endereco'
+                ->add('case when u.ativo = 0 then ' . "'Usuário do Quickpeek'" 
+                        . ' when r.visibilidade_id = 1 then u.endereco'
                         . ' when r.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . ' else a.endereco end', 'enderecoUsuario')
                 ->add('r.momento', 'momento');
         $query->from('respostas', 'r');
-        $query->join('usuario', 'u')->on('u.id = r.usuario_id')
-                ->on('u.ativo = 1');
+        $query->join('usuario', 'u')->on('u.id = r.usuario_id');
         $query->join('seguir', 's', 'left')->on('s.usuario_id = ?')
                 ->on('s.usuario_seguir_id = u.id')
                 ->on('s.confirmar_seguir = 1')

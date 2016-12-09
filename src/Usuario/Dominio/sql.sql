@@ -49,7 +49,12 @@ CREATE TABLE `bloqueado`(
      PRIMARY KEY (`id`),
     `ativo` tinyint   ,
     `momento` datetime   ,
-    `anonimo` varchar(45)   ,
+    `visibilidade_id` INT   ,
+    INDEX `bloqueado_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `bloqueado_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade_mensagens` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `usuario_id` INT   ,
     INDEX `bloqueado_fk_usuario_id_idx`(`usuario_id` ASC),
     CONSTRAINT `bloqueado_fk_usuario_id` 
@@ -86,6 +91,13 @@ CREATE TABLE `configuracoes`(
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `visibilidade`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `titulo` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `visibilidade_mensagens`( 
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `titulo` varchar(45)   ,
@@ -143,6 +155,12 @@ CREATE TABLE `mensagens`(
     INDEX `mensagens_fk_status_mensagem_id_idx`(`status_mensagem_id` ASC),
     CONSTRAINT `mensagens_fk_status_mensagem_id` 
          FOREIGN KEY (`status_mensagem_id`) REFERENCES `status_mensagem` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `visibilidade_mensagens_id` INT   ,
+    INDEX `mensagens_fk_visibilidade_mensagens_id_idx`(`visibilidade_mensagens_id` ASC),
+    CONSTRAINT `mensagens_fk_visibilidade_mensagens_id` 
+         FOREIGN KEY (`visibilidade_mensagens_id`) REFERENCES `visibilidade_mensagens` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         

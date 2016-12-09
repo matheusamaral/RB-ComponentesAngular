@@ -1,7 +1,7 @@
 {
     "PROJETO":"Quickpeek" ,
     "DIR_CONF" : "src/config/",
-    "URL_PROJETO":"192.168.0.115:8000/Quickpeek/" ,
+    "URL_PROJETO":"172.17.0.2/Quickpeek/" ,
     "DOMINIO_PROJETO":"http://192.168.0.115:8000/Quickpeek/" ,
     "DOMINIO":"http://192.168.0.115:8000/",    
     "DOMINIO_REQ":"http://192.168.0.115:8000/Quickpeek/api", 

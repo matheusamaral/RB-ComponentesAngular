@@ -25,6 +25,13 @@ class Perguntas {
             $msg->setCampo('Perguntas::usuarioId', $usuarioId);
             $cadastro->cadastrar($msg);
             $this->enviarNotificacao($msg);
+        }else{
+            $datetime1 = new \DateTime(date('Y-m-d H:i:s'));
+            $datetime2 = new \DateTime($query[0]['momento']);   
+            
+            $intervalo = $datetime1->diff($datetime2);
+            $minutos = ($intervalo->h * 60) + $intervalo->i;
+            $msg->setResultadoEtapa(false, false, ['dados'=>$minutos]);
         }
     }
     

@@ -3,7 +3,8 @@
 <processo codigo="setarVisualizada" modulo="Mensagens">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="usuarioMensagemId"/>
+        <campo regra="Obrigatorio" chave="UsuarioMensagemId" nome="usuarioMensagemId"/>
+        <campo regra="Obrigatorio" chave="VisibilidadeId" nome="visibilidadeId"/>
     </entrada>
     
     <atividades>

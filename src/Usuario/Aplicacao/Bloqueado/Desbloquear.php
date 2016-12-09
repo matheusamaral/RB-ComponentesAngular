@@ -10,7 +10,7 @@ class Desbloquear {
         $query = Conteiner::get('ConsultaDesbloquear')->consultar(
                 $msg->getCampoSessao('dadosUsuarioLogado,id'),
                 $msg->getCampo('Bloqueado::usuarioBloqueadoId')->get('valor'),
-                $msg->getCampo('Bloqueado::anonimo')->get('valor'));
+                $msg->getCampo('Bloqueado::visibilidadeId')->get('valor'));
         
         if($query){
             $entidade = ConteinerEntidade::getInstancia('Bloqueado');
