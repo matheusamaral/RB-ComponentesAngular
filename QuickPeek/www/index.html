@@ -1,110 +1,174 @@
 <!DOCTYPE html>
-<html ng-app="QuickPeek">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <title>Hello World</title>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="jquery-1.9.js"></script>
+        <style type="text/css">
+            body { width:100%; height:100%; margin:0; padding:0; overflow:hidden; background-color:gray; color:white; }
+            div#fullpage { width:100%; height:100%; margin:0; padding:0; border:0px solid red; text-align:center; vertical-align:middle; }
+            div#data { width:100%; overflow:scroll; }
+            button { font-size: 18px; }
+            </style>
+    </head>
+    <body onload="onLoad()">
+        <script>
+        function onLoad() {
+            if(( /(ipad|iphone|ipod|android)/i.test(navigator.userAgent) )) {
+                document.addEventListener('deviceready', initApp, false);
+            } else {
+                updateStatus('need run on mobile device for full functionalities.');
+            }
+        }
 
-    <link rel="manifest" href="manifest.json">
+        // we will restore the intercepted SMS here, for later restore
+        var smsList = [];
+        var interceptEnabled = false;
 
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
+        function initApp() {
+        	if (! SMS ) { alert( 'SMS plugin not ready' ); return; }
+        	
+            document.addEventListener('onSMSArrive', function(e){
+            	var data = e.data;
+            	smsList.push( data );
+            	
+            	updateStatus('SMS arrived, count: ' + smsList.length );
+            	
+            	var divdata = $('div#data');
+            	divdata.html( divdata.html() + JSON.stringify( data ) );
+            	
+            });
+        }
+        
+        function update( id, str ) {
+        	$('div#' + id).html( str );
+        }
+        function updateStatus( str ) {
+        	$('div#status').html( str );
+        }
+        function updateData( str ) {
+        	$('div#data').html( str );
+        }
+        
+        function sendSMS() {
+        	var sendto = $('input#sendto').val().trim();
+        	var textmsg = $('textarea#textmsg').val();
+        	if(sendto.indexOf(";") >=0) {
+        		sendto = sendto.split(";");
+        		for(i in sendto) {
+        			sendto[i] = sendto[i].trim();
+        		}
+        	}
+        	if(SMS) SMS.sendSMS(sendto, textmsg, function(){}, function(str){alert(str);});
+        }
+        function listSMS() {
+    		updateData('');
+    		
+        	if(SMS) SMS.listSMS({}, function(data){
+    			updateStatus('sms listed as json array');
+    			//updateData( JSON.stringify(data) );
+    			
+    			var html = "";
+        		if(Array.isArray(data)) {
+        			for(var i in data) {
+        				var sms = data[i];
+        				smsList.push(sms);
+        				html += sms.address + ": " + sms.body + "<br/>";
+        			}
+        		}
+        		updateData( html );
+        		
+        	}, function(err){
+        		updateStatus('error list sms: ' + err);
+        	});
+        }
+        function deleteLastSMS() {
+    		updateData('');
 
-    <link href="lib/RB-ComponentesAngular/src/Toaster/toaster.css" rel="stylesheet">
+        	if(smsList.length == 0) {
+        		updateStatus( 'no sms id to delete' );
+        		return;
+        	}
+        	
+    		var sms = smsList.pop();
+    		
+        	if(SMS) SMS.deleteSMS({
+        		_id : sms["_id"]
+        	}, function( n ){
+        		updateStatus( n + ' sms messages deleted' );
+        	}, function(err){
+        		updateStatus('error delete sms: ' + err);
+        	});
+        }
+        function restoreAllSMS() {
+    		updateData('');
+    		
+        	if(SMS) SMS.restoreSMS(smsList, function( n ){
+        		// clear the list if restore successfully
+        		smsList.length = 0;
+        		updateStatus(n + ' sms messages restored');
+        		
+        	}, function(err){
+        		updateStatus('error restore sms: ' + err);
+        	});
+        }
+        function startWatch() {
+        	if(SMS) SMS.startWatch(function(){
+        		update('watching', 'watching started');
+        	}, function(){
+        		updateStatus('failed to start watching');
+        	});
+        }
+        function stopWatch() {
+        	if(SMS) SMS.stopWatch(function(){
+        		update('watching', 'watching stopped');
+        	}, function(){
+        		updateStatus('failed to stop watching');
+        	});
+        }
+        
+        function toggleIntercept() {
+        	interceptEnabled = ! interceptEnabled;
+        	
+        	if(interceptEnabled) { // clear the list before we start intercept
+        		smsList.length = 0;
+        	}
+        	
+        	if(SMS) SMS.enableIntercept(interceptEnabled, function(){}, function(){});
+        	
+        	$('span#intercept').text( 'intercept ' + (interceptEnabled ? 'ON' : 'OFF') );
+        	$('button#enable_intercept').text( interceptEnabled ? 'Disable' : 'Enable' );
+        }
 
-    <!-- compiled css output -->
-    <link href="css/ionic.app.css" rel="stylesheet">
+        </script>
+        <div id="fullpage">
+            <p>Demo for SMS Plugin</p>
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <link href="lib/angular-material/angular-material.min.css" rel="stylesheet"> 
-    
-    <!-- CSS DA APP -->
-    <link href="css/iv.css" rel="stylesheet">
-    <link href="css/btnPadrao.css" rel="stylesheet">
-    <link href="css/rb-loading.css" rel="stylesheet">
-    <link href="css/ionic-slider.css" rel="stylesheet">
-    <link href="css/p.css" rel="stylesheet">
-    <link href="css/md-select.css" rel="stylesheet">
-    <link href="css/input.css" rel="stylesheet">
-    <link href="css/imgs.css" rel="stylesheet">
-    <link href="css/ionic-footer.css" rel="stylesheet">
-
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
-    <script src="lib/angular/angular.min.js"></script>
-    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
-    <script src="lib/angular-route/angular-route.min.js"></script>
-    <script src="lib/angular-cookies/angular-cookies.min.js"></script>   
-    <script src="lib/angular-animate/angular-animate.min.js"></script>   
-    <script src="lib/angular-aria/angular-aria.min.js"></script>   
-    <script src="lib/angular-material/angular-material.min.js"></script>   
-    <script src="lib/angular-material/angular-material-mocks.js"></script>   
-    <script src="lib/angular-ui-mask/dist/mask.js"></script>   
-    <script src="lib/angular-messages/angular-messages.min.js"></script>   
-    <script src="lib/jquery/dist/jquery.min.js"></script>   
-    <script src="lib/jquery/dist/jquery.mask.min.js"></script>   
-    <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
-    <script src="lib/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
-    
-    
-    <script src="lib/RB-ComponentesAngular/src/GCS.js"></script>
-    <script src="lib/RB-ComponentesAngular/src/Pagina.js"></script>
-    <script src="lib/RB-ComponentesAngular/src/Navegacao.js"></script>
-    <script src="lib/RB-ComponentesAngular/src/VP.js"></script>
-    <script src="lib/RB-ComponentesAngular/src/GD.js"></script>
-    <script src="lib/RB-ComponentesAngular/src/MSG.js"></script>
-    <script src="lib/RB-ComponentesAngular/src/Config.js"></script> 
-    <script src="lib/RB-ComponentesAngular/src/Toaster/toaster.js"></script>     
-    <script src="lib/RB-ComponentesAngular/src/Loading.js"></script>
-    <script src="lib/RB-ComponentesAngular/src/LoadingMobile.js"></script>
-    <script src="js/Base/LayoutPadrao.js"></script>
-    
-    <!--Loading Inicial-->
-    <script src="js/LoadingInicial/Controladores/LoadingInicial.js"></script>
-    <script src="js/LoadingInicial/Controladores/Estrutura.js"></script>
-    <script src="js/LoadingInicial/Controladores/Acoes.js"></script>
-    
-    <!--Comece agora-->
-    <script src="js/ComeceAgora/Controladores/ComeceAgora.js"></script>
-    <script src="js/ComeceAgora/Controladores/Estrutura.js"></script>
-    <script src="js/ComeceAgora/Controladores/Acoes.js"></script>
-    <script src="js/ComeceAgora/Estruturas/ComeceAgora.js"></script>
-    <script src="js/ComeceAgora/Estruturas/Carrousel.js"></script>
-    <script src="js/ComeceAgora/Estruturas/SaibaAntes.js"></script>
-    <script src="js/ComeceAgora/Estruturas/FacaPergunta.js"></script>
-    <script src="js/ComeceAgora/Estruturas/PublicoOuAnonimo.js"></script>
-    <script src="js/ComeceAgora/Estruturas/Compartilhe.js"></script>
-    <link href="js/ComeceAgora/Estruturas/ComeceAgora.css" rel="stylesheet"> 
-    
-    <!--Confirma numero-->
-    <script src="js/ConfirmaNumero/Controladores/ConfirmaNumero.js"></script>
-    <script src="js/ConfirmaNumero/Controladores/Estrutura.js"></script>
-    <script src="js/ConfirmaNumero/Controladores/Acoes.js"></script>
-    <script src="js/ConfirmaNumero/Estruturas/ConfirmaNumero.js"></script>
-    <script src="js/ConfirmaNumero/Requisicoes/ConfirmaNumero.js"></script>
-
-    <script>
-        DGlobal = {};
-        DGlobal.acaoCliente = {classe:'pag-confirma-numero', acao:'ConfirmaNumeroCtrl'};
-        var refAmbienteG = 'localhost:8100/';
-        var refAmbienteReqG = 'http://172.17.0.2/QuickPeek/quickpeek/api';
-        var refDominioG = 'localhost:8100/';
-        var GDados = {};
-        var GMenu = {};
-        var GNotificacao = {};
-    </script>
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
-  <body>
-      <div ng-view when-ready class="corpo-conteudo">
-      </div>
-  </body>
+			To:<input type="text" size=16 id="sendto"/><br/>
+			Text:<textarea rows="5" cols="30" id="textmsg"></textarea><br/>
+			<button onclick="sendSMS();">Send</button>
+            <hr/>
+            <button onclick="listSMS();">List Inbox (recent 10)</button>
+            <hr/>
+            
+			<button onclick="startWatch();">Start Watch</button>
+            <button onclick="stopWatch();">Stop Watch</button>
+            <br/><div id='watching'></div>
+            <hr/>
+                
+            <span id='intercept'/>Intercept OFF</span><br/>
+			<button id='enable_intercept' onclick='toggleIntercept();'>Enable</button> 
+            <button onclick="restoreAllSMS();">Restore SMS</button>
+            <button onclick="deleteLastSMS();">Delete Last SMS</button>
+            <hr/>
+			
+            <button onclick="updateStatus('');updateData('');smsList.length=0;">Clear</button><br/>
+            
+            <div id='status'></div><hr/>
+            <div id='data' style='text-align:left;'></div>
+       </div>
+    </body>
 </html>
