@@ -2,8 +2,34 @@
     display: -webkit-inline-box;
 }
 
-.background-img{
-    background-color: #EDECEC;
+.rb-line-heigth{
+    line-height: 25px;
+}
+
+.remove-box-shadow{
+    box-shadow: none !important;
+}
+
+.rb-padding-top-inicial{
+    padding-top: 60px !important;
+}
+
+.titulo-rodape{
+    font-size: 17px;
+    color: #FFFFFF;
+    margin-right: 10px;
+    margin-bottom: 0;
+    margin-top: 5px !important;
+}
+
+.rb-align-right{
+    display: -webkit-inline-box;
+    margin: auto;
+    margin-right: 10px;
+}
+
+.background-cinza{
+    background-color: #eeeeee;
 }
 
 .circulo{
@@ -26,26 +52,16 @@
     padding: 20px;
 }
 
-p{
-    font-size: 18px;
-    margin: 0;
-    color: #FFFFFF;
-    line-height: 30px;
-}
-
 .font-17-px{
     font-size: 17px;
 }
 
-.logo-quickPeek{
-    /*background-image: url(../img/img.svg);*/
-    background-color: red;
-    width: 135px;
-    height: 135px;
-}
-
 .negrito{
     font-weight: bold;
+}
+
+.padding-titulo-conteudo{
+    padding-top: 15px;
 }
 
 .remove-padding-bottom{
@@ -54,4 +70,17 @@ p{
 
 .limita-espaco-texto{
     max-width: 310px;
+}
+
+.background-cinza{
+    background-color: #eeeeee;
+}
+
+.font-amarela{
+    color:#ffb800;
+    text-decoration: underline;
+}
+
+.remove-padding-top{
+    padding-top: 0;
 }

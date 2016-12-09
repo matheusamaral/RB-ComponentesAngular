@@ -5,12 +5,14 @@ angular.module('QuickPeek', [
     'ngRoute',
     'ngCordova',
     'RB.GD',
+    'ui.mask',
     'RB.navegacao',
     'RB.gcs',
     'RB.loading',
     'QuickPeek.layoutPadrao',
     'QuickPeek.LoadingInicial',
-    'QuickPeek.ComeceAgora'
+    'QuickPeek.ComeceAgora',
+    'QuickPeek.ConfirmaNumero'
 ])
 
 .run(function($ionicPlatform) {
@@ -42,6 +44,14 @@ angular.module('QuickPeek', [
     //https://docs.angularjs.org/api/ng/service/$sce
     $sceProvider.enabled(false);
 })
+
+.config(['uiMask.ConfigProvider', function(uiMaskConfigProvider) {
+    uiMaskConfigProvider.maskDefinitions({'A': /[a-z]/, '*': /[a-zA-Z0-9]/});
+    uiMaskConfigProvider.clearOnBlur(false);
+    uiMaskConfigProvider.eventsToHandle(['input', 'keyup', 'click']);
+    uiMaskConfigProvider.allowInvalidValue(true);
+    uiMaskConfigProvider.addDefaultPlaceholder(false);
+}])
 
 .config(function ($mdThemingProvider) {
     var customPrimary = {

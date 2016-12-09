@@ -14,7 +14,6 @@ angular.module('QuickPeek.Acoes.ComeceAgora', [
     };
     
     function inicializar(){
-        navegar();
         addCss();
     };
     
@@ -23,14 +22,14 @@ angular.module('QuickPeek.Acoes.ComeceAgora', [
     }
     
     function navegar(){ 
-        console.log('teste');
-//        Pagina.navegar({idPage:1});
+        Pagina.navegar({idPage:3});
     };
 
     
     return {
         setScope:setScope,
-        inicializar:inicializar
+        inicializar:inicializar,
+        navegar:navegar
     };
     
  }]);

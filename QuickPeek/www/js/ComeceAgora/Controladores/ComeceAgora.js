@@ -10,7 +10,8 @@ angular.module('QuickPeek.ComeceAgora', [
     function ($scope,ComeceAgoraEstrutura,ComeceAgoraAcoes) {        
         ComeceAgoraEstrutura.setScope($scope).popular();
         ComeceAgoraAcoes.setScope($scope).inicializar();
-        alert('MAOE');
+        
+        $scope.navegar =  ComeceAgoraAcoes.navegar;
     }
 ])
 

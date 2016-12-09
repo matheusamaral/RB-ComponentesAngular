@@ -30,7 +30,7 @@ return '<ion-slide-box on-slide-changed="slideHasChanged($index)">\n\
         </ion-slide-box>\n\
         <div class="row">\n\
             <div class="col responsive text-center">\n\
-                <md-button ng-click="show()" class="md-raised md-primary btn-padrao">\n\
+                <md-button ng-click="navegar()" class="md-raised md-primary btn-padrao">\n\
                     COMEÇAR AGORA\n\
                 </md-button>\n\
             </div>\n\

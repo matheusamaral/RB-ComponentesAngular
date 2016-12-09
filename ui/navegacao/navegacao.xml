@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <root>  
-    <pagina id="1" classePagina="\ProcessoSeletivoColegio\ProcessoSeletivo\Aplicacao\ProcessoInscricao\ClasseCadastroProcessoInscricao" endereco="iniciar">
+    <pagina id="1" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="iniciar">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-loading-inicial" acao="LoadingInicialCtrl" title="QuickPeek"/>
     </pagina>   
-</root>
-
-<root>  
-    <pagina id="2" classePagina="\ProcessoSeletivoColegio\ProcessoSeletivo\Aplicacao\ProcessoInscricao\ClasseCadastroProcessoInscricao" endereco="comece-agora">
+ 
+    <pagina id="2" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="comece-agora">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-comece-agora" acao="ComeceAgoraCtrl" title="QuickPeek"/>
+    </pagina>  
+     
+    <pagina id="3" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="confirmar-numero">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-confirma-numero" acao="ConfirmaNumeroCtrl" title="QuickPeek"/>
     </pagina>   
 </root>
 

@@ -5,8 +5,8 @@ angular.module('QuickPeek.HTML.Compartilhe', [])
 .directive('compartilheHtml', [ function() {
        
     function montar() {
-        return '<div class="padding-separa-logo text-center rb-padding-padrao">\n\
-                    <div class="centraliza-horizontal logo-quickPeek">\n\
+        return '<div class="padding-separa-logo-top text-center rb-padding-padrao">\n\
+                    <div class="centraliza-horizontal img-compartilhe">\n\
                     </div>\n\
                 </div>\n\
                 <div class="text-center remove-padding-bottom rb-padding-padrao">\n\
@@ -16,7 +16,7 @@ angular.module('QuickPeek.HTML.Compartilhe', [])
                 </div>\n\
                 <div class="padding-bottom-grande text-center rb-padding-padrao">\n\
                     <div class="limita-espaco-texto centraliza-horizontal">\n\
-                        <p>Publique de forma simples como está o seu local atual e conheça novas pessoas.\n\
+                        <p class="rb-line-heigth">Publique de forma simples como está o seu local atual e conheça novas pessoas.\n\
                     </div>\n\
                 </div>';
     };        

@@ -6,6 +6,8 @@
 
 .slider-pager .slider-pager-page {
     font-size: 12px;
+    opacity: 1;
+    color:#ac9f95;
 }
 
 i{
