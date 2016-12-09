@@ -1,0 +1,86 @@
+.centraliza-horizontal{
+    display: -webkit-inline-box;
+}
+
+.rb-line-heigth{
+    line-height: 25px;
+}
+
+.remove-box-shadow{
+    box-shadow: none !important;
+}
+
+.rb-padding-top-inicial{
+    padding-top: 60px !important;
+}
+
+.titulo-rodape{
+    font-size: 17px;
+    color: #FFFFFF;
+    margin-right: 10px;
+    margin-bottom: 0;
+    margin-top: 5px !important;
+}
+
+.rb-align-right{
+    display: -webkit-inline-box;
+    margin: auto;
+    margin-right: 10px;
+}
+
+.background-cinza{
+    background-color: #eeeeee;
+}
+
+.circulo{
+    width: 9px;
+    border-radius: 22px;
+    margin: 7px;
+    margin-top: 10.4px;
+    height: 9px;
+    background-color: #aea096;
+}
+
+.circulo.ativo{
+    background-color: #FFFFFF !important;
+    width: 17px;
+    height: 17px;
+    margin-top: 6px !important;
+}
+
+.rb-padding-padrao{
+    padding: 20px;
+}
+
+.font-17-px{
+    font-size: 17px;
+}
+
+.negrito{
+    font-weight: bold;
+}
+
+.padding-titulo-conteudo{
+    padding-top: 15px;
+}
+
+.remove-padding-bottom{
+    padding-bottom: 0;
+}
+
+.limita-espaco-texto{
+    max-width: 310px;
+}
+
+.background-cinza{
+    background-color: #eeeeee;
+}
+
+.font-amarela{
+    color:#ffb800;
+    text-decoration: underline;
+}
+
+.remove-padding-top{
+    padding-top: 0;
+}

@@ -18,6 +18,12 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-confirma-numero" acao="ConfirmaNumeroCtrl" title="QuickPeek"/>
     </pagina>   
+    
+    <pagina id="4" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="confirmar-sms">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-confirma-sms" acao="ConfirmaSmsCtrl" title="QuickPeek"/>
+    </pagina>   
 </root>
 
 
