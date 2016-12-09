@@ -24,6 +24,12 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-confirma-sms" acao="ConfirmaSmsCtrl" title="QuickPeek"/>
     </pagina>   
+    
+    <pagina id="5" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="tirar-selfie">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-tira-selfie" acao="TiraSelfieCtrl" title="QuickPeek"/>
+    </pagina>   
 </root>
 
 

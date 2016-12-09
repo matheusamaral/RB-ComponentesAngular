@@ -53,7 +53,6 @@
     <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
     <script src="lib/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
     
-    
     <script src="lib/RB-ComponentesAngular/src/GCS.js"></script>
     <script src="lib/RB-ComponentesAngular/src/Pagina.js"></script>
     <script src="lib/RB-ComponentesAngular/src/Navegacao.js"></script>
@@ -64,6 +63,7 @@
     <script src="lib/RB-ComponentesAngular/src/Toaster/toaster.js"></script>     
     <script src="lib/RB-ComponentesAngular/src/Loading.js"></script>
     <script src="lib/RB-ComponentesAngular/src/LoadingMobile.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/RBCordovaCameraPreview/RBCameraPreview.js"></script>
     <script src="js/Base/LayoutPadrao.js"></script>
     
     <!--Loading Inicial-->
@@ -96,10 +96,18 @@
     <script src="js/ConfirmaSms/Controladores/Acoes.js"></script>
     <script src="js/ConfirmaSms/Estruturas/ConfirmaSms.js"></script>
     <script src="js/ConfirmaSms/Requisicoes/ConfirmaSms.js"></script>
+    
+    <!--Tira selfie-->
+    <script src="js/TiraSelfie/Controladores/TiraSelfie.js"></script>
+    <script src="js/TiraSelfie/Controladores/Estrutura.js"></script>
+    <script src="js/TiraSelfie/Controladores/Acoes.js"></script>
+    <script src="js/TiraSelfie/Estruturas/TiraSelfie.js"></script>
+    <script src="js/TiraSelfie/Requisicoes/TiraSelfie.js"></script>
+    <link href="js/TiraSelfie/Estruturas/TiraSelfie.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:'pag-confirma-numero', acao:'ConfirmaNumeroCtrl'};
+        DGlobal.acaoCliente = {classe:"pag-tira-selfie", acao:"TiraSelfieCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://172.17.0.2/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
@@ -110,7 +118,7 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body>
+  <body style="background-color:'transparent'">
       <div ng-view when-ready class="corpo-conteudo">
       </div>
   </body>

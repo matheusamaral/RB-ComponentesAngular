@@ -52,6 +52,22 @@
     height: 15px;
 }
 
+.img-seta-proximo-sem-traco{
+    background-image: url(../img/09.svg);
+    width: 12px;
+    height: 16px;
+    margin: 0 !important;
+    background-size: contain;
+    margin-left: 10px !important;
+}
+
+.img-btn-tirar-foto{
+    background-image: url(../img/08.svg);
+    width: 54px;
+    height: 53px;
+    position: absolute;
+}
+
 .background-img{
     background-image: url(../img/00.jpg);
     background-size: cover;

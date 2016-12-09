@@ -17,6 +17,7 @@
 
 .btn-padrao.btn-rodape span{
     font-size: 16px;
+    font-weight: bold;
 }
 
 .btn-padrao.btn-rodape md-icon{
@@ -27,4 +28,12 @@
 .md-button.md-raised[disabled]{
     background-color: initial;
     opacity: 0.5;
+}
+
+.btn-redondo-selfie{
+    border-radius: 35px;
+    width: 52px !important;
+    height: 52px !important;
+    position: relative;
+    box-shadow: 1px 2px 9px #676767
 }
