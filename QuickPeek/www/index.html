@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html ng-app="QuickPeek">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/RB-ComponentesAngular/src/Toaster/toaster.css" rel="stylesheet">
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <link href="lib/angular-material/angular-material.min.css" rel="stylesheet"> 
+    
+    <!-- CSS DA APP -->
+    <link href="css/iv.css" rel="stylesheet">
+    <link href="css/btnPadrao.css" rel="stylesheet">
+    <link href="css/rb-loading.css" rel="stylesheet">
+    <link href="css/ionic-slider.css" rel="stylesheet">
+    <link href="css/p.css" rel="stylesheet">
+    <link href="css/md-select.css" rel="stylesheet">
+    <link href="css/input.css" rel="stylesheet">
+    <link href="css/imgs.css" rel="stylesheet">
+    <link href="css/ionic-footer.css" rel="stylesheet">
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>   
+    <script src="lib/angular-animate/angular-animate.min.js"></script>   
+    <script src="lib/angular-aria/angular-aria.min.js"></script>   
+    <script src="lib/angular-material/angular-material.min.js"></script>   
+    <script src="lib/angular-material/angular-material-mocks.js"></script>   
+    <script src="lib/angular-ui-mask/dist/mask.js"></script>   
+    <script src="lib/angular-messages/angular-messages.min.js"></script>   
+    <script src="lib/jquery/dist/jquery.min.js"></script>   
+    <script src="lib/jquery/dist/jquery.mask.min.js"></script>   
+    <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
+    <script src="lib/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
+    
+    
+    <script src="lib/RB-ComponentesAngular/src/GCS.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/Pagina.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/Navegacao.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/VP.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/GD.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/MSG.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/Config.js"></script> 
+    <script src="lib/RB-ComponentesAngular/src/Toaster/toaster.js"></script>     
+    <script src="lib/RB-ComponentesAngular/src/Loading.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/LoadingMobile.js"></script>
+    <script src="js/Base/LayoutPadrao.js"></script>
+    
+    <!--Loading Inicial-->
+    <script src="js/LoadingInicial/Controladores/LoadingInicial.js"></script>
+    <script src="js/LoadingInicial/Controladores/Estrutura.js"></script>
+    <script src="js/LoadingInicial/Controladores/Acoes.js"></script>
+    
+    <!--Comece agora-->
+    <script src="js/ComeceAgora/Controladores/ComeceAgora.js"></script>
+    <script src="js/ComeceAgora/Controladores/Estrutura.js"></script>
+    <script src="js/ComeceAgora/Controladores/Acoes.js"></script>
+    <script src="js/ComeceAgora/Estruturas/ComeceAgora.js"></script>
+    <script src="js/ComeceAgora/Estruturas/Carrousel.js"></script>
+    <script src="js/ComeceAgora/Estruturas/SaibaAntes.js"></script>
+    <script src="js/ComeceAgora/Estruturas/FacaPergunta.js"></script>
+    <script src="js/ComeceAgora/Estruturas/PublicoOuAnonimo.js"></script>
+    <script src="js/ComeceAgora/Estruturas/Compartilhe.js"></script>
+    <link href="js/ComeceAgora/Estruturas/ComeceAgora.css" rel="stylesheet"> 
+    
+    <!--Confirma numero-->
+    <script src="js/ConfirmaNumero/Controladores/ConfirmaNumero.js"></script>
+    <script src="js/ConfirmaNumero/Controladores/Estrutura.js"></script>
+    <script src="js/ConfirmaNumero/Controladores/Acoes.js"></script>
+    <script src="js/ConfirmaNumero/Estruturas/ConfirmaNumero.js"></script>
+    <script src="js/ConfirmaNumero/Requisicoes/ConfirmaNumero.js"></script>
+
+    <script>
+        DGlobal = {};
+        DGlobal.acaoCliente = {classe:'pag-confirma-numero', acao:'ConfirmaNumeroCtrl'};
+        var refAmbienteG = 'localhost:8100/';
+        var refAmbienteReqG = 'http://172.17.0.2/QuickPeek/quickpeek/api';
+        var refDominioG = 'localhost:8100/';
+        var GDados = {};
+        var GMenu = {};
+        var GNotificacao = {};
+    </script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body>
+      <div ng-view when-ready class="corpo-conteudo">
+      </div>
+  </body>
+</html>

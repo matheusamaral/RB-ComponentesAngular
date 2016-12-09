@@ -1,0 +1,23 @@
+input.input-padrao{
+    border-bottom: 2.5px solid rgb(255,184,0);
+}
+
+input{
+    color:rgba(0,0,0,0.54) !important;
+}
+
+md-input-container.rb-input.md-input-invalid .md-input {
+    border-color: rgb(220, 14, 14);
+}
+
+md-input-container.rb-input.md-input-invalid [ng-message]{
+    color:rgb(220, 14, 14);
+}
+
+label.font-grande{
+    font-size: 21px;
+}
+
+md-input-container.rb-input.md-input-invalid.md-input-focused label{
+    color:rgb(220, 14, 14)
+}

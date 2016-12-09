@@ -1,0 +1,25 @@
+.btn-padrao{
+    height: 48px !important;
+    min-height: 20px;
+    width: 250px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.btn-padrao.largura-alto{
+    width: auto !important;
+}
+
+.btn-padrao span{
+    color:#FFFFFF;
+}
+
+.btn-padrao.btn-rodape span{
+    font-size: 16px;
+}
+
+.btn-padrao.btn-rodape md-icon{
+    margin-left: 14px;
+    margin-top: 8px;
+}

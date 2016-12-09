@@ -1,12 +1,6 @@
 {
-    "Quickpeek":{
-        "ARQ_UTILIZADO":[
-            "/lib/Quickpeek/*",
-            "/componentesJS/bower_components/RB-ComponentesAngular/src/*",
-            "/lib/Base/*",
-            "!/lib/Quickpeek/testesUnit/*",
-            "!/lib/Quickpeek/karma.conf.js"
-        ],
+    "QuickPeek":{
+        "ARQ_UTILIZADO":[],
         "ARQ_NAV":"ui/navegacao/navegacao.xml"
     },
     "root" : {

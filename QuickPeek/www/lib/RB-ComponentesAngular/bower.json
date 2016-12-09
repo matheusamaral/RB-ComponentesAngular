@@ -1,0 +1,55 @@
+{
+  "name": "RB-ComponentesAngular",
+  "description": "Componentes para angular padrão Rubeus.",
+  "main": [
+    "src/GCS.js",
+    "src/Config.js",
+    "src/GD.js",
+    "src/GEO.js",
+    "src/Imagem.js",
+    "src/Locale.js",
+    "src/MSG.js",
+    "src/Navegacao.js",
+    "src/Pagina.js",
+    "src/Loading.js",
+    "src/VP.js"
+  ],
+  "dependencies": {
+    "angular": "~1.5.0",
+    "angular-material": "~1.0.6",
+    "angular-cookies": "~1.5.1",
+    "angular-mocks": "~1.5.1",
+    "angular-sanitize": "~1.5.1",
+    "angular-route": "~1.5.1"
+  },
+  "devDependencies": {
+    "qunit": "~1.16.0"
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [],
+  "authors": [
+    "Matheus Amaral <matheusamaral.si@gmail.com>",
+    "José Geraldo <jgt.josegeraldo@gmail.com>"
+  ],
+  "license": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/matheusamaral/RB-ComponentesAngular.git"
+  },
+  "resolutions": {
+    "angular": "1.3.0-beta.16"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "nbproject"
+  ],
+  "private": false
+}
