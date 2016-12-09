@@ -23,3 +23,8 @@
     margin-left: 14px;
     margin-top: 8px;
 }
+
+.md-button.md-raised[disabled]{
+    background-color: initial;
+    opacity: 0.5;
+}
