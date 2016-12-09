@@ -12,7 +12,8 @@ angular.module('QuickPeek', [
     'QuickPeek.layoutPadrao',
     'QuickPeek.LoadingInicial',
     'QuickPeek.ComeceAgora',
-    'QuickPeek.ConfirmaNumero'
+    'QuickPeek.ConfirmaNumero',
+    'QuickPeek.ConfirmaSms'
 ])
 
 .run(function($ionicPlatform) {

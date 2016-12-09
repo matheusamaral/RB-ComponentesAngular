@@ -23,9 +23,7 @@ angular.module('QuickPeek.Acoes.ConfirmaNumero', [
     }
     
     function cadastrarNumero(){
-        var tel = scope.dadosCel.numero;
-        var obj = {telefone:tel};
-                console.log(obj);
+        var obj = {telefone:scope.dadosCel.ddi + scope.dadosCel.numero};;
         ConfirmaNumeroRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfirmaNumeroRequisicoes.successEnviarSms}).enviarSms();
     }
     

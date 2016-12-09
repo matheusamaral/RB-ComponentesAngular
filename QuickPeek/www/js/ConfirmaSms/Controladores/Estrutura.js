@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.ConfirmaNumero', [
+angular.module('QuickPeek.Estrutura.ConfirmaSms', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('ConfirmaNumeroEstrutura', ['GCS','Config','Pagina','VP',
+.factory('ConfirmaSmsEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     
@@ -17,10 +17,16 @@ angular.module('QuickPeek.Estrutura.ConfirmaNumero', [
     }
     
     function popular(){
-        scope.dadosCel = {
+        scope.dadosSms = {
             ddi:'55',
-            numero:''
+            numero:'',
+            codigo:''
         };
+        
+        if(DGlobal.dadosTelefone){
+            scope.dadosSms = DGlobal.dadosTelefone;
+        }
+        
         scope.ddis = VP.getDDiPaises();
     };
   

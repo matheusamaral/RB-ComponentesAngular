@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('QuickPeek.HTML.ConfirmaNumero', [
+angular.module('QuickPeek.HTML.ConfirmaSms', [
 ])
 
-.factory('ConfirmaNumeroHtml', [ function() {
+.factory('ConfirmaSmsHtml', [ function() {
        
     function montar() {
         return '<div class="rb-padding-padrao remove-padding-bottom rb-padding-top-inicial">\n\
@@ -16,9 +16,9 @@ angular.module('QuickPeek.HTML.ConfirmaNumero', [
                     </p>\n\
                 </div>\n\
                 <form name="formCadTel">\n\
-                    <div class="rb-padding-padrao">\n\
+                    <div class="rb-padding-padrao remove-padding-bottom">\n\
                         <md-input-container>\n\
-                            <md-select class="linha-comum" ng-model="dadosCel.ddi">\n\
+                            <md-select class="linha-comum" ng-model="dadosSms.ddi">\n\
                                 <md-option ng-repeat="ddi in ddis" ng-value="ddi.ddi">\n\
                                     {{ddi.pais}} (+{{ddi.ddi}})\n\
                                 </md-option>\n\
@@ -27,24 +27,22 @@ angular.module('QuickPeek.HTML.ConfirmaNumero', [
                     </div>\n\
                     <div class="rb-padding-padrao remove-padding-bottom">\n\
                         <md-input-container class="rb-input">\n\
-                            <label class="font-grande">Digite seu número</label>\n\
                             <input\n\
-                            ui-mask="(99)99999999?9"\n\
-                            ui-mask-placeholder-char="space"\n\
-                            minlength="8"\n\
-                            name="nCel"\n\
+                            name="codigo"\n\
                             class="input-padrao font-grande"\n\
-                            ng-model="dadosCel.numero"\n\
+                            ng-model="dadosSms.codigo"\n\
                             type="tel"\n\
                             ng-required="true">\n\
-                            <div ng-if="formCadTel.nCel.$touched && formCadTel.nCel.$invalid" ng-messages="formCadTel.nCel.$error">\n\
+                            <div ng-if="formCadTel.nCel.$touched && formCadTel.nCel.$invalid" ng-messages="formCadTel.codigo.$error">\n\
                                 <div ng-if="!formCadTel.nCel.$error.mask" ng-message="required">Este campo é obrigatório.</div>\n\
-                                <div ng-if="!formCadTel.nCel.$error.required" ng-message="minlength">Digite um telefone neste formato (DD)99999999.</div>\n\
                             </div>\n\
                         </md-input-container>\n\
                     </div>\n\
                     <div class="rb-padding-padrao remove-padding-top">\n\
-                        <p class="p-pequeno">Ao se inscrever, você concorda com os <span class="font-amarela">Termos e Condições</span> e com a <span class="font-amarela">Política de privacidade</span>.</p>\n\
+                        <p class="p-medio">\n\
+                            Não recebeu um código?</br>\n\
+                            <span ng-click="enviarNovoSms()" class="negrito color-amarelo">SOLICITAR NOVO CÓDIGO</span>\n\
+                        </p>\n\
                     </div>\n\
                 </form>';
     };        
@@ -54,11 +52,11 @@ angular.module('QuickPeek.HTML.ConfirmaNumero', [
     };
  }])
  
-.factory('ConfirmaNumeroRodape', [ function() {
+.factory('ConfirmaSmsRodape', [ function() {
        
     function montar() {
         return '<div class="bar bar-footer bar-positive" layout="row" layout-align="end center">\n\
-                    <md-button ng-disabled="formCadTel.$invalid" layout="row" layout-align="center center" ng-click="cadastrarNumero()" class="btn-rodape remove-box-shadow btn-padrao largura-alto md-primary md-raised">\n\
+                    <md-button ng-disabled="formCadTel.$invalid" layout="row" layout-align="center center" ng-click="confirmarSms()" class="btn-rodape remove-box-shadow btn-padrao largura-alto md-primary md-raised">\n\
                         PRÓXIMA <md-icon class="img-seta-proximo"></md-icon>\n\
                     </md-button>\n\
                 </div>';

@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
+angular.module('QuickPeek.Requisicao.ConfirmaSms', [
 
 ])
  
-.factory('ConfirmaNumeroRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
+.factory('ConfirmaSmsRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
       function (RBLoadingMobile,GCS, Config,ionicToast) {
         
         var dados;
@@ -20,8 +20,6 @@ angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
 
         function enviarSms(){
             RBLoadingMobile.show();
-            console.log('dados');
-            console.log(dados);
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Usuario/enviarSms",
                 dados: $.param(dados),
@@ -46,6 +44,31 @@ angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
             }
         };
         
+        function confirmarSms(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Usuario/verificarCodigoSms",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successConfirmarSms(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true) {
+                
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -60,8 +83,9 @@ angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
         return {
             set: set,
             enviarSms: enviarSms,
-            successEnviarSms: successEnviarSms
-            
+            successEnviarSms: successEnviarSms,
+            confirmarSms:confirmarSms,
+            successConfirmarSms:successConfirmarSms
         };
                            
 }]);     
