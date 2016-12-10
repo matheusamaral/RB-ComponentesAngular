@@ -68,6 +68,40 @@
     position: absolute;
 }
 
+.img-btn-concluir{
+    background-image: url(../img/26.svg);
+    width: 30px;
+    height: 24px;
+    background-size: contain;
+    position: absolute;
+}
+
+.img-galerie{
+    background-image: url(../img/89.svg);
+    width: 20px;
+    height: 21px;
+    background-size: contain;
+    position: absolute;
+}
+
+.img-seta-voltar{
+    background-image: url(../img/88.svg);
+    width: 30px;
+    height: 24px;
+    background-size: contain;
+    position: absolute;
+}
+
+.img-inverte-camera{
+    background-image: url(../img/07.svg);
+    width: 49px;
+    height: 52px;
+    background-size: cover;
+    position: absolute;
+    right: 10px;
+    top: -62px;
+}
+
 .background-img{
     background-image: url(../img/00.jpg);
     background-size: cover;

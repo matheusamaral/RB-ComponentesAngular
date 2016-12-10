@@ -10,8 +10,11 @@ angular.module('QuickPeek.TiraSelfie', [
     function ($scope,TiraSelfieEstrutura,TiraSelfieAcoes){        
         TiraSelfieEstrutura.setScope($scope).popular();
         TiraSelfieAcoes.setScope($scope).inicializar();
-        
-        $scope.openCamera = TiraSelfieAcoes.openCamera;
+        $scope.mostrarCamera = TiraSelfieAcoes.mostrarCamera;
+        $scope.abrirGaleria = TiraSelfieAcoes.abrirGaleria;
+        $scope.virarCamera = TiraSelfieAcoes.virarCamera;
+        $scope.createFile = TiraSelfieAcoes.createFile;
+        $scope.pular = TiraSelfieAcoes.pular;
     }
 ])
 

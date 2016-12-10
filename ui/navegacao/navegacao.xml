@@ -29,6 +29,12 @@
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-tira-selfie" acao="TiraSelfieCtrl" title="QuickPeek"/>
+    </pagina>  
+     
+    <pagina id="6" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="cadastro-dados">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-tira-selfie" acao="TiraSelfieCtrl" title="QuickPeek"/>
     </pagina>   
 </root>
 

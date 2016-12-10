@@ -3,11 +3,12 @@
 angular.module('QuickPeek.Acoes.TiraSelfie', [ 
     'RB.pagina',
     'QuickPeek.Requisicao.TiraSelfie',
-    'Cmp.CameraPreview'
+    'Cmp.CameraPreview',
+    'Cmp.ImagePicker'
 ])
 
-.factory('TiraSelfieAcoes', ['Pagina','TiraSelfieRequisicoes','CameraPreview','$timeout',
-    function(Pagina,TiraSelfieRequisicoes,CameraPreview,$timeout){
+.factory('TiraSelfieAcoes', ['Pagina','TiraSelfieRequisicoes','CameraPreview','$timeout','ImagePicker','$cordovaFile',
+    function(Pagina,TiraSelfieRequisicoes,CameraPreview,$timeout,ImagePicker,$cordovaFile){
     var scope;  
     
     function setScope(obj){
@@ -24,12 +25,42 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
         CameraPreview.setScope(scope).inicializar('cameraPerfil');
     }
     
+    function mostrarCamera(){
+        scope.cameraPerfil.mostrar();
+    }
+    
+    function virarCamera(){
+        scope.cameraPerfil.trocarCamera();
+    }
+    
+    function abrirGaleria(){
+        ImagePicker.setScope(scope).iniciar('cameraPerfil');
+    }
+    
     function addCss(){
-        $('ion-side-menu-content').addClass('background-cinza');
+        $('html,body,ion-side-menus,ion-side-menu-content').addClass('background-transparente');
+    }
+    
+    function createFile(path){
+        scope.arquivo = $cordovaFile.createFile(path,'perfil',true);
+        DGlobal.dadosSelfie = {
+            arquivo:scope.arquivo,
+            urlImg: path
+        };
+        Pagina.navegar({idPage:6});
+    }
+    
+    function pular(){
+        Pagina.navegar({idPage:6});
     }
     
     return {
         setScope:setScope,
-        inicializar:inicializar
+        inicializar:inicializar,
+        mostrarCamera:mostrarCamera,
+        abrirGaleria:abrirGaleria,
+        virarCamera:virarCamera,
+        createFile:createFile,
+        pular:pular
     };
  }]);
