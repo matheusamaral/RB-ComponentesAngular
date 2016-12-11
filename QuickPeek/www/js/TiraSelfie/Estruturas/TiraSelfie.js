@@ -6,14 +6,20 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
 .factory('TiraSelfieHtml', [ function() {
        
     function montar() {
-        return '<div class="background-cinza rb-padding-padrao box-shadow-padrao" id="cameraPerfilBarra">\n\
+        return '<div style="z-index:2 !important" class="background-cinza rb-padding-padrao box-shadow-padrao" id="cameraPerfilBarra">\n\
                     <p ng-if="!cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Faça uma selfie para seu perfil</p>\n\
                     <p ng-if="cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Ótimo, agora verifique a foto</p>\n\
                 </div>\n\
-                <div ng-if="cameraPerfil.galeria && cameraPerfil.fotoTirada" layout="row" layout-align="center center" class="pictures background-cinza" style="height:{{cameraPerfil.containerImgAltura}}px">\n\
-                    <img src="{{cameraPerfil.img}}" id="cameraPerfil" style="width:100%,height:auto"/>\n\
+                <div style="background-image: url({{cameraPerfil.img}});\n\
+                height:{{cameraPerfil.containerImgAltura}}px;"\n\
+                ng-if="cameraPerfil.galeria && cameraPerfil.fotoTirada" \n\
+                layout="row" \n\
+                layout-align="center center" \n\
+                class="pictures box-img">\n\
                 </div>\n\
-                <div ng-if="!cameraPerfil.galeria && cameraPerfil.fotoTirada" class="pictures">\n\
+                <div ng-if="!cameraPerfil.galeria && cameraPerfil.fotoTirada" \n\
+                class="pictures"\n\
+                style="height:{{cameraPerfil.containerImgAltura}}px;">\n\
                     <p>\n\
                         <img id="cameraPerfil" width="100%"/>\n\
                     </p>\n\
