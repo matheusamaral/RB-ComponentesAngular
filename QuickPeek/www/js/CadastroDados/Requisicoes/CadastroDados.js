@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.CadastroDados', [
-
+    'RB.pagina'
 ])
  
-.factory('CadastroDadosRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
-      function (RBLoadingMobile,GCS, Config,ionicToast) {
+.factory('CadastroDadosRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             return this;
         };
 
-        function enviarSms(){
+        function cadastrar(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/enviarSms",
+                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,36 +33,11 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
         };
         
         
-        function successEnviarSms(objRetorno){
+        function successCadastrar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                
-            }
-            else{
-                if(objRetorno.errors) OpenToast(objRetorno.errors);
-            }
-        };
-        
-        function confirmarSms(){
-            RBLoadingMobile.show();
-            var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/verificarCodigoSms",
-                dados: $.param(dados),
-                tipo: 'POST',
-                acao: acaoSuccess,
-                error: errorSalvar,
-                scope: scope,
-                exibeMSGCarregando: 0
-            };
-            GCS.conectar(obj);
-        };
-        
-        function successConfirmarSms(objRetorno){
-            RBLoadingMobile.hide();
-            console.log("objRetorno",objRetorno);
-            if(objRetorno.success === true) {
-                
+                Pagina.navegar({idPage : 7});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
@@ -82,10 +57,8 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
         
         return {
             set: set,
-            enviarSms: enviarSms,
-            successEnviarSms: successEnviarSms,
-            confirmarSms:confirmarSms,
-            successConfirmarSms:successConfirmarSms
+            cadastrar: cadastrar,
+            successCadastrar: successCadastrar
         };
                            
 }]);     

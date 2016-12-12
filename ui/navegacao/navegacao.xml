@@ -36,6 +36,12 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-cadastro-dados" acao="CadastroDadosCtrl" title="QuickPeek"/>
     </pagina>   
+    
+    <pagina id="7" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="avatares">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
+    </pagina>   
 </root>
 
 

@@ -1,0 +1,12 @@
+.box-avatar{
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto;
+    z-index: 1 !important;
+    background-position: center;
+}
+
+.titulo-avatar{
+    font-size: 13px !important;
+    font-weight: bold;
+}

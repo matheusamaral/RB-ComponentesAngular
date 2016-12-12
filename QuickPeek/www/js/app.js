@@ -15,7 +15,8 @@ angular.module('QuickPeek', [
     'QuickPeek.ConfirmaNumero',
     'QuickPeek.ConfirmaSms',
     'QuickPeek.TiraSelfie',
-    'QuickPeek.CadastroDados'
+    'QuickPeek.CadastroDados',
+    'QuickPeek.Avatares'
 ])
 
 .run(function($ionicPlatform) {

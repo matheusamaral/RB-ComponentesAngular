@@ -110,3 +110,9 @@ body,
 .row{
     margin: 0 !important;
 }
+
+.bar-header{
+    height: 60px;
+    box-shadow: 0px 2px 8px grey;
+    padding-top: 15px !important;
+}
