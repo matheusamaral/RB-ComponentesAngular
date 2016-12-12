@@ -29,3 +29,10 @@ p{
     font-size: 16px;
     color: #3a3738;
 }
+
+p.font-preta{
+    color: black;
+    font-size: 16px;
+    position: relative;
+    text-align: center;
+}

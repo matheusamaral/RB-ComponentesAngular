@@ -34,7 +34,7 @@
     <pagina id="6" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="cadastro-dados">
         <dadosSolicitados>
         </dadosSolicitados>   
-        <acaoCliente classe="pag-tira-selfie" acao="TiraSelfieCtrl" title="QuickPeek"/>
+        <acaoCliente classe="pag-cadastro-dados" acao="CadastroDadosCtrl" title="QuickPeek"/>
     </pagina>   
 </root>
 

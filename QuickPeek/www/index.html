@@ -25,7 +25,6 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <link href="lib/angular-material/angular-material.min.css" rel="stylesheet"> 
     <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
-    <link href="lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet"> 
     
     <!-- CSS DA APP -->
     <link href="css/iv.css" rel="stylesheet">
@@ -37,6 +36,7 @@
     <link href="css/input.css" rel="stylesheet">
     <link href="css/imgs.css" rel="stylesheet">
     <link href="css/ionic-footer.css" rel="stylesheet">
+    <link href="css/ionic-popup.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.css" rel="stylesheet">
 
     <!-- cordova script (this will be a 404 during development) -->
@@ -52,8 +52,7 @@
     <script src="lib/angular-ui-mask/dist/mask.js"></script>   
     <script src="lib/angular-messages/angular-messages.min.js"></script>   
     <script src="lib/jquery/dist/jquery.min.js"></script>   
-    <script src="lib/jquery/dist/jquery.mask.min.js"></script>   
-    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>   
+    <script src="lib/jquery/dist/jquery.mask.min.js"></script>     
     <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
     <script src="lib/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
     
@@ -109,10 +108,18 @@
     <script src="js/TiraSelfie/Estruturas/TiraSelfie.js"></script>
     <script src="js/TiraSelfie/Requisicoes/TiraSelfie.js"></script>
     <link href="js/TiraSelfie/Estruturas/TiraSelfie.css" rel="stylesheet"> 
+    
+    <!--Cadastro dados-->
+    <script src="js/CadastroDados/Controladores/CadastroDados.js"></script>
+    <script src="js/CadastroDados/Controladores/Estrutura.js"></script>
+    <script src="js/CadastroDados/Controladores/Acoes.js"></script>
+    <script src="js/CadastroDados/Estruturas/CadastroDados.js"></script>
+    <script src="js/CadastroDados/Requisicoes/CadastroDados.js"></script>
+    <link href="js/CadastroDados/Estruturas/CadastroDados.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:"pag-tira-selfie", acao:"TiraSelfieCtrl"};
+        DGlobal.acaoCliente = {classe:"pag-cadastro-dados", acao:"CadastroDadosCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://172.17.0.2/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';

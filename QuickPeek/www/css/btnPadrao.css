@@ -11,31 +11,51 @@
     width: auto !important;
 }
 
-.btn-padrao span{
-    color:#FFFFFF;
+.btn-rodape{
+    font-size: 16px !important;
+    font-weight: bold !important;
 }
 
-.btn-padrao.btn-rodape span{
-    font-size: 16px;
-    font-weight: bold;
+.btn-redondo{
+    border-radius: 30px;
+    border: 6px #FFFFFF solid !important;
+    width: 60px !important;
+    height: 60px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.31);
+    background-color: #cfd8dd !important;   
 }
 
-.btn-padrao.btn-rodape md-icon{
-    margin-left: 14px;
-    margin-top: 8px;
+.button:active{
+    box-shadow: 0px 0px 4px #585858 !important;
 }
 
-.md-button.md-raised[disabled]{
-    background-color: initial;
-    opacity: 0.5;
-}
-
-.btn-redondo-selfie{
-    border-radius: 35px;
-    width: 52px !important;
-    min-width: 52px !important;
+.btn-float-right{
+    position: absolute;
+    width: 49px;
+    min-height: 52px;
     height: 52px !important;
-    position: relative;
-    box-shadow: 1px 2px 9px #676767
+    top: -64px;
+    right: 32px;
 }
 
+.btn-txt-direita{
+    font-size: 16px !important;
+    font-weight: bold !important;
+    text-align: right;
+}
+
+.btn-redondo-grande{
+    border-radius: 55px;
+    border: 6px #FFFFFF solid !important;
+    width: 100px !important;
+    height: 100px;
+    position: relative;
+}
+
+.btn-redondo-medio{
+    border-radius: 55px;
+    border: 4px #FFFFFF solid !important;
+    width: 70px !important;
+    height: 70px;
+    position: relative;
+}

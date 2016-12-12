@@ -13,6 +13,7 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     
     function setScope(obj){
         scope = obj;
+        scope.cameraPerfil = {};
         return this;
     };
     
@@ -34,6 +35,8 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     }
     
     function abrirGaleria(){
+        scope.functionsdsd = scope.functionsdsd + 1;
+        scope.cameraPerfil.img = false;
         ImagePicker.setScope(scope).iniciar('cameraPerfil');
     }
     

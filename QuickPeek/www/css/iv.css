@@ -10,6 +10,13 @@
     box-shadow: 1px 2px 8px #929292;
 }
 
+html,
+body,
+.pane, 
+.view {
+   overflow-y: auto !important 
+}
+
 .box-shadow-padrao-bottom{
     box-shadow: 1px -1px 8px #929292;
 }
@@ -99,4 +106,7 @@
 
 .color-amarelo{
     color:#ffb800
+}
+.row{
+    margin: 0 !important;
 }

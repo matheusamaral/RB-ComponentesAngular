@@ -2,8 +2,16 @@ input.input-padrao{
     border-bottom: 2.5px solid rgb(255,184,0);
 }
 
+input.input-padrao-preto{
+    border-bottom: 1px solid #d6d6d6;
+}
+
 input.font-grande{
     color: black !important;
+    font-size: 20px;
+}
+
+input.font-grande-cinza{
     font-size: 20px;
 }
 
@@ -21,6 +29,12 @@ md-input-container.rb-input.md-input-invalid [ng-message]{
 
 label.font-grande{
     font-size: 21px;
+}
+
+label.font-comun{
+    font-size: 18px;
+    color:black !important;
+    font-weight: normal
 }
 
 md-input-container.rb-input.md-input-invalid.md-input-focused label{

@@ -7,12 +7,12 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
        
     function montar() {
         return '<div style="z-index:2 !important" class="background-cinza rb-padding-padrao box-shadow-padrao" id="cameraPerfilBarra">\n\
-                    <p ng-if="!cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Faça uma selfie para seu perfil</p>\n\
-                    <p ng-if="cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Ótimo, agora verifique a foto</p>\n\
+                    <p ng-if="!cameraPerfil.img && !cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Faça uma selfie para seu perfil</p>\n\
+                    <p ng-if="cameraPerfil.img || cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Ótimo, agora verifique a foto</p>\n\
                 </div>\n\
                 <div style="background-image: url({{cameraPerfil.img}});\n\
                 height:{{cameraPerfil.containerImgAltura}}px;"\n\
-                ng-if="cameraPerfil.galeria && cameraPerfil.fotoTirada" \n\
+                ng-if="cameraPerfil.galeria && cameraPerfil.img"\n\
                 layout="row" \n\
                 layout-align="center center" \n\
                 class="pictures box-img">\n\
@@ -34,34 +34,38 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
 .factory('TiraSelfieRodape', [ function() {
        
     function montar() {
-         return '<div ng-if="!cameraPerfil.fotoTirada" class="box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera" layout="row" layout-align="center center">\n\
-                    <span ng-click="virarCamera()" class="img-inverte-camera"></span>\n\
-                    <md-button ng-click="abrirGaleria()" layout="row" layout-align="center center" class="btn-rodape remove-box-shadow btn-padrao tamanho-btn md-primary md-raised">\n\
-                        <md-icon style="margin:0 !important" class="img-galerie"></md-icon>\n\
-                    </md-button>\n\
-                    <span flex></span>\n\
-                    <md-button layout="row" layout-align="center center" ng-click="cameraPerfil.tirarFoto()" class="btn-redondo-selfie btn-padrao md-primary md-raised">\n\
-                        <md-icon class="img-btn-tirar-foto"></md-icon>\n\
-                    </md-button>\n\
-                    <span flex></span>\n\
-                    <md-button layout="row" ng-click="pular()" layout-align="center center" class="btn-rodape remove-box-shadow btn-padrao tamanho-btn md-primary md-raised">\n\
-                        PULAR <md-icon class="img-seta-proximo-sem-traco"></md-icon>\n\
-                    </md-button>\n\
+         return '<div ng-if="!cameraPerfil.img && !cameraPerfil.fotoTirada" class="row box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera">\n\
+                    <button ng-click="virarCamera()" class="btn-float-right btn-rodape button-clear button button-positive">\n\
+                        <i class="icon img-inverte-camera"></i>\n\
+                    </button>\n\
+                    <div class="col col-center">\n\
+                        <button style="padding-left: 8px !important;" ng-click="abrirGaleria()" class="btn-rodape button button-positive">\n\
+                            <i class="icon ion-android-image"></i>\n\
+                        </button>\n\
+                    </div>\n\
+                    <div class="col col-center text-center">\n\
+                        <button ng-click="cameraPerfil.tirarFoto()" class="btn-rodape btn-redondo button button-positive">\n\
+                        </button>\n\
+                    </div>\n\
+                    <div class="col col-center">\n\
+                        <button ng-click="pular()" class="btn-rodape button button-positive">\n\
+                            PULAR <i class="icon btn-seta ion-chevron-right"></i>\n\
+                        </button>\n\
+                    </div>\n\
                 </div>\n\
-                <div ng-if="cameraPerfil.fotoTirada" class="box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera" layout="row" layout-align="center center">\n\
-                    <md-button layout="row" \n\
-                    layout-align="center center"\n\
-                    ng-click="mostrarCamera()"\n\
-                    class="btn-rodape remove-box-shadow btn-padrao tamanho-btn md-primary md-raised">\n\
-                        <md-icon class="img-seta-voltar"></md-icon>\n\
-                    </md-button>\n\
-                    <span flex></span>\n\
-                    <md-button layout="row" layout-align="center center" ng-click="createFile(cameraPerfil.img)" class="btn-redondo-selfie btn-padrao md-primary md-raised">\n\
-                        <md-icon class="img-btn-tirar-foto"></md-icon>\n\
-                        <span class="img-btn-concluir"></span>\n\
-                    </md-button>\n\
-                    <span flex></span>\n\
-                    <span style="width:36px"></span>\n\
+                <div ng-if="cameraPerfil.img || cameraPerfil.fotoTirada" class="box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera" layout="row" layout-align="center center">\n\
+                    <div class="col col-center">\n\
+                        <button ng-click="mostrarCamera()" class="btn-rodape button button-positive">\n\
+                            <i class="icon ion-reply"></i>\n\
+                        </button>\n\
+                    </div>\n\
+                    <div class="col col-center text-center">\n\
+                        <button ng-click="createFile(cameraPerfil.img)" class="btn-rodape btn-redondo button button-positive">\n\
+                            <i class="icon ion-checkmark-round"></i>\n\
+                        </button>\n\
+                    </div>\n\
+                    <div class="col col-center">\n\
+                    </div>\n\
                 </div>';
     };        
   

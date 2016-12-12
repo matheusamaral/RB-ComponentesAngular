@@ -6,10 +6,21 @@ angular.module('QuickPeek.CadastroDados', [
     'QuickPeek.HTML.CadastroDados'
 ])
 
-.controller('CadastroDadosCtrl', ['$scope','CadastroDadosEstrutura','CadastroDadosAcoes',
-    function ($scope,CadastroDadosEstrutura,CadastroDadosAcoes){        
+.controller('CadastroDadosCtrl', ['$scope','CadastroDadosEstrutura','CadastroDadosAcoes','$ionicPopup',
+    function ($scope,CadastroDadosEstrutura,CadastroDadosAcoes,$ionicPopup){        
         CadastroDadosEstrutura.setScope($scope).popular();
         CadastroDadosAcoes.setScope($scope).inicializar();
+        
+         $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'O que é isso?',
+     template: 'O avatar escolhido será a sua identidade anônima que aparecerá para as outras pessoas'
+   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
     }
 ])
 

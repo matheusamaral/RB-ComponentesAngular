@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.ConfirmaSms', [
+angular.module('QuickPeek.Requisicao.CadastroDados', [
 
 ])
  
-.factory('ConfirmaSmsRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
+.factory('CadastroDadosRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
       function (RBLoadingMobile,GCS, Config,ionicToast) {
         
         var dados;

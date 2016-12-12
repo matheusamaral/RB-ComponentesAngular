@@ -22,7 +22,8 @@ angular.module('QuickPeek.Estrutura.CadastroDados', [
             nascimento:'',
             generoId:'',
             avataresId:'',
-            arquivo:''
+            arquivo:'',
+            arquivoAvatar:''
         };
         
         if(DGlobal.dadosSelfie){
