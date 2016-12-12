@@ -8,8 +8,8 @@ angular.module('QuickPeek.HTML.Avatares', [
     function montar() {
         return '<div class="row bar bar-header bar-positive">\n\
                     <div>\n\
-                        <button ng-click="pular()" class="btn-txt-direita button button-positive">\n\
-                            <i class="icon ion-android-arrow-back"></i>ESCOLHA UM AVATAR\n\
+                        <button ng-click="voltarCad()" class="btn-txt-direita button button-clear">\n\
+                            <i class="icon ion-android-arrow-back seta-barra"></i>ESCOLHA UM AVATAR\n\
                         </button>\n\
                     </div>\n\
                     <div style="margin-left: auto;">\n\

@@ -39,28 +39,28 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
                         <i class="icon img-inverte-camera"></i>\n\
                     </button>\n\
                     <div class="col col-center">\n\
-                        <button style="padding-left: 8px !important;" ng-click="abrirGaleria()" class="btn-rodape button button-positive">\n\
+                        <button style="padding-left: 8px !important;" ng-click="abrirGaleria()" class="btn-rodape button button-clear">\n\
                             <i class="icon ion-android-image"></i>\n\
                         </button>\n\
                     </div>\n\
                     <div class="col col-center text-center">\n\
-                        <button ng-click="cameraPerfil.tirarFoto()" class="btn-rodape btn-redondo button button-positive">\n\
+                        <button ng-click="cameraPerfil.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
                         </button>\n\
                     </div>\n\
                     <div class="col col-center">\n\
-                        <button ng-click="pular()" class="btn-rodape button button-positive">\n\
+                        <button ng-click="pular()" class="btn-rodape button button-clear">\n\
                             PULAR <i class="icon btn-seta ion-chevron-right"></i>\n\
                         </button>\n\
                     </div>\n\
                 </div>\n\
                 <div ng-if="cameraPerfil.img || cameraPerfil.fotoTirada" class="box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera" layout="row" layout-align="center center">\n\
                     <div class="col col-center">\n\
-                        <button ng-click="mostrarCamera()" class="btn-rodape button button-positive">\n\
+                        <button ng-click="mostrarCamera()" class="btn-rodape button button-clear">\n\
                             <i class="icon ion-reply"></i>\n\
                         </button>\n\
                     </div>\n\
                     <div class="col col-center text-center">\n\
-                        <button ng-click="createFile(cameraPerfil.img)" class="btn-rodape btn-redondo button button-positive">\n\
+                        <button ng-click="createFile(cameraPerfil.img)" class="btn-rodape btn-redondo button button-clear">\n\
                             <i class="icon ion-checkmark-round"></i>\n\
                         </button>\n\
                     </div>\n\

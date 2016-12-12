@@ -84,6 +84,16 @@
     position: absolute;
 }
 
+.img-quick-logo{
+    background-image: url(../img/16.svg);
+    width: 29px;
+    height: 29px !important;
+    min-height: 24px;
+    margin: auto !important;
+    margin-top: 5px !important;
+    background-size: contain;
+}
+
 .img-inverte-camera{
     background-image: url(../img/07.svg);
     width: 49px;
@@ -94,13 +104,16 @@
     top: -1px;
 }
 
-.background-img{
-    background-image: url(../img/00.jpg);
+.img-anonimo{
+    background-image: url(../img/22.svg);
+    width: 20px;
+    height: 17px;
     background-size: cover;
 }
 
-.icon:before{
-    font-size: 28px !important;
+.background-img{
+    background-image: url(../img/00.jpg);
+    background-size: cover;
 }
 
 .btn-txt-direita icon:before{

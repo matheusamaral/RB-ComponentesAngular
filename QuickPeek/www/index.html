@@ -68,6 +68,7 @@
     <script src="lib/RB-ComponentesAngular/src/LoadingMobile.js"></script>
     <script src="lib/RB-ComponentesAngular/src/RBCordovaCameraPreview/RBCameraPreview.js"></script>
     <script src="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/RBAutocomplete/RBAutocomplete.js"></script>
     <script src="js/Base/LayoutPadrao.js"></script>
     
     <!--Loading Inicial-->
@@ -123,10 +124,18 @@
     <script src="js/Avatares/Controladores/Acoes.js"></script>
     <script src="js/Avatares/Estruturas/Avatares.js"></script>
     <link href="js/Avatares/Estruturas/Avatares.css" rel="stylesheet"> 
+    
+    <!--avatares-->
+    <script src="js/Perfil/Controladores/Perfil.js"></script>
+    <script src="js/Perfil/Controladores/Estrutura.js"></script>
+    <script src="js/Perfil/Controladores/Acoes.js"></script>
+    <script src="js/Perfil/Estruturas/Perfil.js"></script>
+    <script src="js/Perfil/Requisicoes/Perfil.js"></script>
+    <link href="js/Perfil/Estruturas/Perfil.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:"pag-avatares", acao:"AvataresCtrl"};
+        DGlobal.acaoCliente = {classe:"pag-confirma-numero", acao:"ConfirmaNumeroCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://172.17.0.2/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';

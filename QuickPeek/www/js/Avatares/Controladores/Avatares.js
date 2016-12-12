@@ -10,6 +10,8 @@ angular.module('QuickPeek.Avatares', [
     function ($scope,AvataresEstrutura,AvataresAcoes){        
         AvataresEstrutura.setScope($scope).popular();
         AvataresAcoes.setScope($scope).inicializar();
+        
+        $scope.voltarCad = AvataresAcoes.voltarCad;
     }
 ])
 

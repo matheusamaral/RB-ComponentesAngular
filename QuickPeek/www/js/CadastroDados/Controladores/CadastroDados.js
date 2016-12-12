@@ -13,6 +13,9 @@ angular.module('QuickPeek.CadastroDados', [
         
         $scope.cadastrar = CadastroDadosAcoes.cadastrar;
         $scope.showAlert = CadastroDadosAcoes.showAlert;
+        $scope.irAvatares = CadastroDadosAcoes.irAvatares;
+        $scope.voltarSelfie = CadastroDadosAcoes.voltarSelfie;
+        $scope.voltarPerfil = CadastroDadosAcoes.voltarPerfil;
     }
 ])
 

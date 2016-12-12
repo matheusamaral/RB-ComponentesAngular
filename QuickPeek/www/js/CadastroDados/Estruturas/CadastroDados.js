@@ -7,10 +7,22 @@ angular.module('QuickPeek.HTML.CadastroDados', [
        
     function montar() {
         return '<form name="formCad" class="col" style="padding: 0;">\n\
-                    <div class="row text-center rb-padding-padrao">\n\
+                    <div ng-if="dados.editando" class="row bar bar-header bar-positive">\n\
+                        <div>\n\
+                            <button ng-click="voltarPerfil()" class="btn-txt-direita button button-clear">\n\
+                                <i class="icon ion-android-arrow-back seta-barra"></i>EDITAR PERFIL\n\
+                            </button>\n\
+                        </div>\n\
+                        <div style="margin-left: auto;">\n\
+                            <button ng-click="pular()" ng-disabled="formCad.$invalid" class="btn-txt-direita button button-positive">\n\
+                                SALVAR\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div ng-class="{\'margin-barra\' : dados.editando}" class="row text-center rb-padding-padrao">\n\
                         <div class="col text-center">\n\
                             <div style="margin: auto;" class="btn-redondo-grande">\n\
-                                <button class="flutuante-btn button">\n\
+                                <button class="flutuante-btn button" ng-click="voltarSelfie()">\n\
                                     <i class="icon ion-android-camera"></i>\n\
                                 </button>\n\
                             </div>\n\
@@ -64,14 +76,14 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                             </md-input-container>\n\
                         </div>\n\
                     </div>\n\
-                    <div class="row rb-padding-padrao box-avatar" style="padding-top:20px !important;">\n\
+                    <div ng-if="!dados.editando" class="row rb-padding-padrao box-avatar" style="padding-top:20px !important;">\n\
                         <div class="col">\n\
                             <div class="row text-center">\n\
                                 <p class="col font-preta">Seu avatar anônimo <span ng-click="showAlert()" class="box-duvidas ion-help"></span></p>\n\
                             </div>\n\
                             <div class="row text-center">\n\
                                 <div style="margin: auto;background-image: url(img/Animais/anteater.svg)" class="btn-redondo-medio box-img-cad">\n\
-                                    <button class="flutuante-btn-medio button">\n\
+                                    <button ng-click="irAvatares()" class="flutuante-btn-medio button">\n\
                                         <i class="icon ion-edit"></i>\n\
                                     </button>\n\
                                 </div>\n\
@@ -82,11 +94,11 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                         </div>\n\
                     </div>\n\
                 </form>\n\
-                <div class="bar bar-positive" layout="row" layout-align="end center">\n\
+                <div ng-if="!dados.editando" class="bar barra-footer bar-positive" layout="row" layout-align="end center">\n\
                     <div class="col col-center">\n\
                     </div>\n\
                     <div class="col col-center col-50">\n\
-                        <button ng-click="pular()" class="col btn-txt-direita button button-positive">\n\
+                        <button ng-click="irAvatares()" class="col btn-txt-direita button button-clear">\n\
                             PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
                         </button>\n\
                     </div>\n\

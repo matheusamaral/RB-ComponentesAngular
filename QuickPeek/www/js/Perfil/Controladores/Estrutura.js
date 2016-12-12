@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.Avatares', [
+angular.module('QuickPeek.Estrutura.Perfil', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('AvataresEstrutura', ['GCS','Config','Pagina','VP',
+.factory('PerfilEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     
@@ -17,12 +17,7 @@ angular.module('QuickPeek.Estrutura.Avatares', [
     }
     
     function popular(){
-        scope.avatares = {};
-        
-        if(DGlobal.dadosEditar){
-            scope.avatares.editando = true;
-            delete DGlobal.dadosEditar;
-        }
+        scope.dados = {};
     };
   
     return {

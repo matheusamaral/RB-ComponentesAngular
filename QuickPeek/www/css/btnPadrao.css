@@ -21,11 +21,16 @@
     border: 6px #FFFFFF solid !important;
     width: 60px !important;
     height: 60px;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.31);
-    background-color: #cfd8dd !important;   
+    min-height: 60px !important;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.31) !important;
+    background-color: #cfd8dd !important;  
 }
 
-.button:active{
+.button.btn-redondo:active,
+.button.btn-redondo-grande:active,
+.button.btn-redondo-medio:active,
+.flutuante-btn:active,
+.flutuante-btn-medio:active{
     box-shadow: 0px 0px 4px #585858 !important;
 }
 
@@ -49,6 +54,14 @@
     border: 6px #FFFFFF solid !important;
     width: 100px !important;
     height: 100px;
+    position: relative;
+}
+
+.btn-redondo-grande-cinza{
+    border-radius: 55px;
+    border: 3px #e6e6e6 solid !important;
+    width: 75px !important;
+    height: 75px;
     position: relative;
 }
 

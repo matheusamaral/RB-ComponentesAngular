@@ -13,6 +13,7 @@ angular.module('QuickPeek.ConfirmaSms', [
         
         $scope.enviarNovoSms = ConfirmaSmsAcoes.enviarNovoSms;
         $scope.confirmarSms = ConfirmaSmsAcoes.confirmarSms;
+        $scope.toggleIntercept = ConfirmaSmsAcoes.toggleIntercept;
     }
 ])
 

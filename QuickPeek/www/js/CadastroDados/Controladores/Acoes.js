@@ -33,11 +33,26 @@ angular.module('QuickPeek.Acoes.CadastroDados', [
         });
     }
     
+    function irAvatares(){
+        Pagina.navegar({idPage:7});
+    }
+    
+    function voltarSelfie(){
+        Pagina.navegar({idPage:5});
+    }
+    
+    function voltarPerfil(){
+        Pagina.navegar({idPage:8});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
         cadastrar:cadastrar,
-        showAlert:showAlert
+        showAlert:showAlert,
+        irAvatares:irAvatares,
+        voltarSelfie:voltarSelfie,
+        voltarPerfil:voltarPerfil
     };
     
  }]);

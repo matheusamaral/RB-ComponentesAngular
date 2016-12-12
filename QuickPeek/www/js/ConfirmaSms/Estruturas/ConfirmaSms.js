@@ -18,11 +18,26 @@ angular.module('QuickPeek.HTML.ConfirmaSms', [
                 <form name="formCadTel">\n\
                     <div class="rb-padding-padrao remove-padding-bottom">\n\
                         <md-input-container>\n\
-                            <md-select class="linha-comum" ng-model="dadosSms.ddi">\n\
-                                <md-option ng-repeat="ddi in ddis" ng-value="ddi.ddi">\n\
-                                    {{ddi.pais}} (+{{ddi.ddi}})\n\
-                                </md-option>\n\
-                            </md-select>\n\
+                            <md-autocomplete ng-required="true" class="rb-autocomplete"\n\
+                                md-selected-item="ddiAutoComplete.selectedItem"\n\
+                                md-search-text-change="ddiAutoComplete.searchTextChange(ddiAutoComplete.searchText)"\n\
+                                md-search-text="ddiAutoComplete.searchText"\n\
+                                md-selected-item-change="ddiAutoComplete.selectedItemChange(item,{obj:\'dadosCel\',attr:\'ddi\'});"\n\
+                                md-items="item in ddiAutoComplete.querySearch(\'ddiAutoComplete\',ddiAutoComplete.searchText)"\n\
+                                md-item-text="item.display"\n\
+                                md-min-length="3"\n\
+                                md-no-cache="true"\n\
+                                placeholder=""\n\
+                                id="auto-cp-nome">\n\
+                                <md-item-template>\n\
+                                    <span md-highlight-text="ddiAutoComplete.searchText">{{item.display}}</span>\n\
+                                </md-item-template>\n\
+                                <md-not-found>\n\
+                                    <div class="">\n\
+                                        <p>Não foi encontrado nem um valor</p>\n\
+                                    </div>\n\
+                                </md-not-found>\n\
+                            </md-autocomplete>\n\
                         </md-input-container>\n\
                     </div>\n\
                     <div class="rb-padding-padrao remove-padding-bottom">\n\
@@ -56,9 +71,12 @@ angular.module('QuickPeek.HTML.ConfirmaSms', [
        
     function montar() {
         return '<div class="bar bar-footer bar-positive" layout="row" layout-align="end center">\n\
-                    <md-button ng-disabled="formCadTel.$invalid" layout="row" layout-align="center center" ng-click="confirmarSms()" class="btn-rodape remove-box-shadow btn-padrao largura-alto md-primary md-raised">\n\
-                        PRÓXIMA <md-icon class="img-seta-proximo"></md-icon>\n\
-                    </md-button>\n\
+                    <!--<button ng-disabled="formCadTel.$invalid" ng-click="confirmarSms()" class="col btn-txt-direita button button-clear">\n\
+                        PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
+                    </button>-->\n\
+                    <button ng-click="startWatch()" class="col btn-txt-direita button button-clear">\n\
+                        PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
+                    </button>\n\
                 </div>';
     };        
   

@@ -17,7 +17,10 @@
 }
 
 .box-avatar{
-    background-color: #FFFFFF;
+    background-color: #fbfbfb;
+    background-image: url(/img/90.svg);
+    background-repeat: repeat !important;
+    background-size: cover !important;
 }
 
 .box-duvidas{

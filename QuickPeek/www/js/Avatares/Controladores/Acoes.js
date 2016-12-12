@@ -21,9 +21,17 @@ angular.module('QuickPeek.Acoes.Avatares', [
         
     }  
     
+    function voltarCad(){
+        if(scope.avatares.editando)
+            Pagina.navegar({idPage:8});
+        else
+            Pagina.navegar({idPage:6});
+    }
+    
     return {
         setScope:setScope,
-        inicializar:inicializar
+        inicializar:inicializar,
+        voltarCad:voltarCad
     };
     
  }]);

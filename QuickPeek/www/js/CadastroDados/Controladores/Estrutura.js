@@ -31,6 +31,12 @@ angular.module('QuickPeek.Estrutura.CadastroDados', [
             scope.dados.urlImg = DGlobal.dadosSelfie.urlImg;
         }
         
+        if(DGlobal.dadosEditar){
+            scope.dados = DGlobal.dadosEditar;
+            scope.dados.editando = true;
+            delete DGlobal.dadosEditar;
+        }
+        
         scope.genero = [{id:1,titulo:'Masculino'},{id:2,titulo:'Feminino'}];
     };
   
