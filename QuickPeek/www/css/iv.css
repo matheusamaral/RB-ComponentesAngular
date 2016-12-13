@@ -84,7 +84,7 @@
 }
 
 .rb-padding-padrao{
-    padding: 20px;
+    padding: 10px;
 }
 
 .font-17-px{
@@ -148,4 +148,15 @@
 
 .box-shadow-padrao-barra{
     box-shadow: 0px 2px 8px grey;
+}
+
+li{
+    list-style: initial !important;
+    margin-left: 16px;
+}
+
+.font-azul-italica{
+    color:#6799ff;
+    font-size: 16px;
+    font-style: italic;
 }

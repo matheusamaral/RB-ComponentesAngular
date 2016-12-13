@@ -1,0 +1,14 @@
+.box-flutuante{
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 8px #989898;
+}
+
+.p-cinza-padrao{
+    color:#b0b0b0;
+    font-size: 16px;
+}
+
+input.font-media {
+    color: #b0b0b0 !important;
+    font-size: 18px;
+}

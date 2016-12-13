@@ -123,3 +123,11 @@
 .icon.btn-seta:before{
     font-size: 16px !important;
 }
+
+.img-phone{
+    background-image: url(../img/37.svg);
+    width: 200px !important;
+    height: 131px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

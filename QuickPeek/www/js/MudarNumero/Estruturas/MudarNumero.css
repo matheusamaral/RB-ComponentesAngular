@@ -15,3 +15,10 @@
 .remove-padding-left{
     padding-left: 0;
 }
+
+.p-mudar-numero{
+    color: #575455;
+    font-size: 16px;
+    text-align: start;
+    margin-bottom: 16px;
+}

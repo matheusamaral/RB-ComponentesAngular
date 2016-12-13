@@ -66,6 +66,24 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-pessoas-bloqueadas" acao="PessoasBloqueadasCtrl" title="Pessoas bloqueadas"/>
     </pagina>   
+    
+    <pagina id="12" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mudar-numero">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-mudar-numero" acao="MudarNumeroCtrl" title="Mude seu número"/>
+    </pagina>   
+    
+    <pagina id="13" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mudar-numero-final">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-mudar-numero-final" acao="MudarNumeroFinalCtrl" title="Mude seu número"/>
+    </pagina>   
+    
+    <pagina id="14" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="apagar-conta">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-apagar-conta" acao="ApagarContaCtrl" title="Apague  sua conta"/>
+    </pagina>   
 </root>
 
 

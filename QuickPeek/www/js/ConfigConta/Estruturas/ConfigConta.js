@@ -47,14 +47,14 @@ angular.module('QuickPeek.HTML.ConfigConta', [
                 </div>\n\
                 <div class="row divide-sessoes corpo-lista-config padding-padrao-contas" style="padding-top:15px !important">\n\
                     <div class="col remove-padding">\n\
-                        <div ng-click="irConfigConta()" class="col remove-padding">\n\
+                        <div ng-click="mudarNumero()" class="col remove-padding">\n\
                             <p class="col remove-padding titulo-sessao">Mudar o número</p>\n\
                         </div>\n\
                     </div>\n\
                 </div>\n\
                 <div class="row divide-sessoes corpo-lista-config padding-padrao-contas" style="padding-top:15px !important">\n\
                     <div class="col remove-padding">\n\
-                        <div ng-click="irConfigConta()" class="col remove-padding">\n\
+                        <div ng-click="irApagarConta()" class="col remove-padding">\n\
                             <p class="col remove-padding titulo-sessao">Apagar minha conta</p>\n\
                         </div>\n\
                     </div>\n\

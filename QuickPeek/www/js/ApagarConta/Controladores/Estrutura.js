@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.MudarNumero', [
+angular.module('QuickPeek.Estrutura.ApagarConta', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('MudarNumeroEstrutura', ['GCS','Config','Pagina','VP',
+.factory('ApagarContaEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     

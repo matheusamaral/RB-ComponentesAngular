@@ -20,7 +20,10 @@ angular.module('QuickPeek', [
     'QuickPeek.Perfil',
     'QuickPeek.Configuracoes',
     'QuickPeek.ConfigConta',
-    'QuickPeek.PessoasBloqueadas'
+    'QuickPeek.PessoasBloqueadas',
+    'QuickPeek.MudarNumero',
+    'QuickPeek.MudarNumeroFinal',
+    'QuickPeek.ApagarConta'
 ])
 
 .run(function($ionicPlatform) {

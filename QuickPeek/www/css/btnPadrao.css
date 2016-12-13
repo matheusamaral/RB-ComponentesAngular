@@ -72,3 +72,12 @@
     height: 70px;
     position: relative;
 }
+
+.btn-vermelho{
+    background-color: #ff3d00 !important;
+    font-size: 14px;
+    font-weight: bold;
+    height: 40px;
+    min-height: 45px;
+    line-height: 0;
+}

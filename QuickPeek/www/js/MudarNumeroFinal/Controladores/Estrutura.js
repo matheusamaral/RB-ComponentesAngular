@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.MudarNumero', [
+angular.module('QuickPeek.Estrutura.MudarNumeroFinal', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('MudarNumeroEstrutura', ['GCS','Config','Pagina','VP',
+.factory('MudarNumeroFinalEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     
@@ -17,7 +17,12 @@ angular.module('QuickPeek.Estrutura.MudarNumero', [
     }
     
     function popular(){
-        scope.dados = {};
+        scope.dados = {
+            ddiAntigo:'',
+            ddiNovo:'',
+            telNovo:'',
+            telAntigo:''
+        };
     };
   
     return {

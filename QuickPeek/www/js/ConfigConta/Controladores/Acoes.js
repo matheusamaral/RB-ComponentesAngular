@@ -60,12 +60,22 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
         Pagina.navegar({idPage:9});
     }
     
+    function mudarNumero(){
+        Pagina.navegar({idPage:12});
+    }
+    
+    function irApagarConta(){
+        Pagina.navegar({idPage:14});
+    }
+    
     return {
         setScope:setScope,
         popupVisto:popupVisto,
         popupContaPrivada:popupContaPrivada,
         listarPessoasBloqueadas:listarPessoasBloqueadas,
-        voltarConfiguracoes:voltarConfiguracoes
+        voltarConfiguracoes:voltarConfiguracoes,
+        mudarNumero:mudarNumero,
+        irApagarConta:irApagarConta
     };
     
  }]);

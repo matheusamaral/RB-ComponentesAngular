@@ -55,7 +55,6 @@
     <script src="lib/jquery/dist/jquery.min.js"></script>   
     <script src="lib/jquery/dist/jquery.mask.min.js"></script>     
     <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
-    <script src="lib/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
     
     <script src="lib/RB-ComponentesAngular/src/GCS.js"></script>
     <script src="lib/RB-ComponentesAngular/src/Pagina.js"></script>
@@ -154,10 +153,34 @@
     <script src="js/PessoasBloqueadas/Controladores/Acoes.js"></script>
     <script src="js/PessoasBloqueadas/Estruturas/PessoasBloqueadas.js"></script>
     <link href="js/PessoasBloqueadas/Estruturas/PessoasBloqueadas.css" rel="stylesheet"> 
+    
+    <!--configuracoes conta-->
+    <script src="js/MudarNumero/Controladores/MudarNumero.js"></script>
+    <script src="js/MudarNumero/Controladores/Estrutura.js"></script>
+    <script src="js/MudarNumero/Controladores/Acoes.js"></script>
+    <script src="js/MudarNumero/Estruturas/MudarNumero.js"></script>
+    <script src="js/MudarNumero/Requisicoes/MudarNumero.js"></script>
+    <link href="js/MudarNumero/Estruturas/MudarNumero.css" rel="stylesheet"> 
+    
+    <!--Mudar numero final-->
+    <script src="js/MudarNumeroFinal/Controladores/MudarNumeroFinal.js"></script>
+    <script src="js/MudarNumeroFinal/Controladores/Estrutura.js"></script>
+    <script src="js/MudarNumeroFinal/Controladores/Acoes.js"></script>
+    <script src="js/MudarNumeroFinal/Estruturas/MudarNumeroFinal.js"></script>
+    <script src="js/MudarNumeroFinal/Requisicoes/MudarNumeroFinal.js"></script>
+    <link href="js/MudarNumeroFinal/Estruturas/MudarNumeroFinal.css" rel="stylesheet"> 
+    
+    <!--Mudar numero final-->
+    <script src="js/ApagarConta/Controladores/ApagarConta.js"></script>
+    <script src="js/ApagarConta/Controladores/Estrutura.js"></script>
+    <script src="js/ApagarConta/Controladores/Acoes.js"></script>
+    <script src="js/ApagarConta/Estruturas/ApagarConta.js"></script>
+    <script src="js/ApagarConta/Requisicoes/ApagarConta.js"></script>
+    <link href="js/ApagarConta/Estruturas/ApagarConta.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:"pag-config-conta", acao:"ConfigContaCtrl"};
+        DGlobal.acaoCliente = {classe:"pag-apagar-conta", acao:"ApagarContaCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://172.17.0.2/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';

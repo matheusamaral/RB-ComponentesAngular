@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Acoes.MudarNumero', [ 
+angular.module('QuickPeek.Acoes.MudarNumeroFinal', [ 
     'RB.pagina'
 ])
 
-.factory('MudarNumeroAcoes', ['Pagina',
+.factory('MudarNumeroFinalAcoes', ['Pagina',
     function(Pagina) {
     var scope;  
     
@@ -18,8 +18,13 @@ angular.module('QuickPeek.Acoes.MudarNumero', [
         $('ion-side-menu-content').addClass('background-cinza');
     }
     
+    function voltarConfig(){
+        Pagina.navegar({idPage:11});
+    }
+    
     return {
-        setScope:setScope
+        setScope:setScope,
+        voltarConfig:voltarConfig
     };
     
  }]);
