@@ -13,6 +13,7 @@ angular.module('QuickPeek.Perfil', [
         
         $scope.editarAvatar = PerfilAcoes.editarAvatar;
         $scope.editarPerfil = PerfilAcoes.editarPerfil;
+        $scope.irConfiguracoes = PerfilAcoes.irConfiguracoes;
     }
 ])
 

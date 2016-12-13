@@ -32,7 +32,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                             <button style="margin-bottom: 10px;" ng-click="editarPerfil()" class="btn-perfil button button-outline button-stable">\n\
                                 <i class="icon ion-person config-icons-perfil"></i> Editar seu perfil\n\
                             </button>\n\
-                            <button class="btn-perfil button button-outline button-stable">\n\
+                            <button ng-click="irConfiguracoes()" class="btn-perfil button button-outline button-stable">\n\
                                 <i class="icon ion-gear-b config-icons-perfil"></i> Confgurações\n\
                             </button>\n\
                         </div>\n\

@@ -42,6 +42,24 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
     </pagina>   
+    
+    <pagina id="8" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perfil">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-perfil" acao="PerfilCtrl" title="QuickPeek"/>
+    </pagina>   
+    
+    <pagina id="9" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-configuracoes" acao="PerfilCtrl" title="ConfiguracoesCtrl"/>
+    </pagina>   
+    
+    <pagina id="10" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes-conta">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-conta" acao="PerfilCtrl" title="ConfigContaCtrl"/>
+    </pagina>   
 </root>
 
 

@@ -28,6 +28,10 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:7});
     }
     
+    function irConfiguracoes(){
+        Pagina.navegar({idPage:9});
+    }
+    
     function addCss(){
         //$('ion-side-menu-content').addClass('background-cinza');
     }
@@ -36,7 +40,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
         setScope:setScope,
         inicializar:inicializar,
         editarPerfil:editarPerfil,
-        editarAvatar:editarAvatar
+        editarAvatar:editarAvatar,
+        irConfiguracoes:irConfiguracoes
     };
     
  }]);

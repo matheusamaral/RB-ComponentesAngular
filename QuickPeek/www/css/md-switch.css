@@ -1,0 +1,25 @@
+md-switch{
+    margin: 0px;
+    border-radius: 12px;
+    background-color: #c7cbcc;
+}
+
+md-switch .md-bar{
+    background-color: #c7cbcc;
+}
+
+md-switch .md-container{
+        margin: 7px;
+}
+
+md-switch .md-thumb{
+    background-color: #FFFFFF;
+}
+
+md-switch.md-checked.md-primary .md-bar {
+    background-color: #c7cbcc;
+}
+
+md-switch.md-checked.md-primary .md-thumb {
+    background-color: rgb(255,184,0) !important;
+}
