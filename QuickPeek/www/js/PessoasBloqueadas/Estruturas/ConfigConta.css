@@ -1,0 +1,18 @@
+.titulo-sessao{
+    color: black;
+    font-size: 16px;
+}
+
+.padding-padrao-contas{
+    padding: 15px;
+}
+
+.conteudo-sessao{
+    color: #a9a9a9;
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+.divide-sessoes{
+    border-bottom: 1px solid #EDECEC;
+}
