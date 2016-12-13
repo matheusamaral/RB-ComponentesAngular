@@ -10,6 +10,24 @@
     box-shadow: 1px 2px 8px #929292;
 }
 
+.altura-barra{
+    padding-top: 60px !important;
+}
+
+.icone-padrao{
+    font-size: 37px;
+    color: #ffb800;
+}
+
+.text-left{
+    text-align: start !important;
+}
+
+.remove-padding-row{
+    padding-top: 0 ;
+    padding-bottom: 0 !important;
+}
+
 .pane, 
 .view {
    overflow-y: auto !important 

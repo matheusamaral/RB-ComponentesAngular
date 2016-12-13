@@ -52,10 +52,20 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
         scope.contaPrivadaPopup.close();
     }
     
+    function listarPessoasBloqueadas(){
+        Pagina.navegar({idPage:11});
+    }
+    
+    function voltarConfiguracoes(){
+        Pagina.navegar({idPage:9});
+    }
+    
     return {
         setScope:setScope,
         popupVisto:popupVisto,
-        popupContaPrivada:popupContaPrivada
+        popupContaPrivada:popupContaPrivada,
+        listarPessoasBloqueadas:listarPessoasBloqueadas,
+        voltarConfiguracoes:voltarConfiguracoes
     };
     
  }]);

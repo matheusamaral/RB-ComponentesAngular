@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
+angular.module('QuickPeek.Estrutura.Configuracoes', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('PessoasBloqueadasEstrutura', ['GCS','Config','Pagina','VP',
+.factory('ConfiguracoesEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     
@@ -17,9 +17,7 @@ angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
     }
     
     function popular(){
-        scope.dados = {
-            pessoas:new Array()
-        };
+        scope.dados = {};
     };
   
     return {

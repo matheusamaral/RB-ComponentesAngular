@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('QuickPeek.Acoes.ConfigConta', [ 
+angular.module('QuickPeek.Acoes.PessoasBloqueadas', [ 
     'RB.pagina',
-    'QuickPeek.HTML.ConfigConta'
+    'QuickPeek.HTML.PessoasBloqueadas'
 ])
 
-.factory('ConfigContaAcoes', ['Pagina','$ionicPopup','popupUltimoHtml','contaPrivadaHtml',
-    function(Pagina,$ionicPopup,popupUltimoHtml,contaPrivadaHtml) {
+.factory('PessoasBloqueadasAcoes', ['Pagina','$ionicPopup','PessoasBloqueadasHtmlPopup',
+    function(Pagina,$ionicPopup,PessoasBloqueadasHtmlPopup) {
     var scope;  
     
     function setScope(obj){
@@ -14,48 +14,25 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
         return this;
     };
     
-    function popupVisto(){
-        var alertPopup = $ionicPopup.alert({
+    function popupContaPrivada(){
+        scope.desbloquearPopup = $ionicPopup.alert({
             scope:scope,
-            title: 'Visto por último',
-            template: popupUltimoHtml.montar(),
+            title: 'Alterar para conta privada?',
+            template: PessoasBloqueadasHtmlPopup.montar(),
             buttons:[
-                {text:'CANCELAR',type:['button-positive','button-outline']}
+                {text:'CANCELAR',type:['button-stable','button-outline']}
             ]
         });
     }
     
-    function popupContaPrivada(){
-        console.log(scope.dados.contaPrivada);
-        scope.opTemporarea = scope.dados.contaPrivada;
-        if(scope.opTemporarea == 0){
-            scope.contaPrivadaPopup = $ionicPopup.alert({
-                scope:scope,
-                title: 'Alterar para conta privada?',
-                template: contaPrivadaHtml.montar(),
-                buttons:[
-                    {text:'CANCELAR',type:['button-stable','button-outline'],onTap:fecharPopup},
-                    {text:'OK',type:['button-positive','button-outline'],onTap:alterarPrivacidade}
-                ]
-            });
-        }else{
-            alterarPrivacidade();
-        }
-    }
-    
-    function fecharPopup(){
-        scope.dados.contaPrivada = scope.opTemporarea;
-        scope.contaPrivadaPopup.close();
-    }
-    
-    function alterarPrivacidade(){
-        scope.contaPrivadaPopup.close();
+    function voltarConfig(){
+        Pagina.navegar({idPage:10});
     }
     
     return {
         setScope:setScope,
-        popupVisto:popupVisto,
-        popupContaPrivada:popupContaPrivada
+        popupContaPrivada:popupContaPrivada,
+        voltarConfig:voltarConfig
     };
     
  }]);

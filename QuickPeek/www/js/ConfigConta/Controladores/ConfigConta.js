@@ -13,6 +13,8 @@ angular.module('QuickPeek.ConfigConta', [
         
         $scope.popupVisto = ConfigContaAcoes.popupVisto;
         $scope.popupContaPrivada = ConfigContaAcoes.popupContaPrivada;
+        $scope.listarPessoasBloqueadas = ConfigContaAcoes.listarPessoasBloqueadas;
+        $scope.voltarConfiguracoes = ConfigContaAcoes.voltarConfiguracoes;
     }
 ])
 

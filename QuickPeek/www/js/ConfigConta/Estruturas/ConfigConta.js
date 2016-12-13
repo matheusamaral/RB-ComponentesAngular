@@ -8,7 +8,7 @@ angular.module('QuickPeek.HTML.ConfigConta', [
     function montar() {
         return '<div class="row bar bar-header bar-positive">\n\
                     <div>\n\
-                        <button ng-click="voltarPerfil()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="voltarConfiguracoes()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>Conta\n\
                         </button>\n\
                     </div>\n\
@@ -39,7 +39,7 @@ angular.module('QuickPeek.HTML.ConfigConta', [
                 </div>\n\
                 <div class="row divide-sessoes corpo-lista-config padding-padrao-contas" style="padding-top:15px !important">\n\
                     <div class="col remove-padding">\n\
-                        <div ng-click="irConfigConta()" class="col remove-padding">\n\
+                        <div ng-click="listarPessoasBloqueadas()" class="col remove-padding">\n\
                             <p class="col remove-padding titulo-sessao">Bloqueados: 2</p>\n\
                             <p class="conteudo-sessao">Lista dos contatos bloqueados</p>\n\
                         </div>\n\
@@ -48,7 +48,7 @@ angular.module('QuickPeek.HTML.ConfigConta', [
                 <div class="row divide-sessoes corpo-lista-config padding-padrao-contas" style="padding-top:15px !important">\n\
                     <div class="col remove-padding">\n\
                         <div ng-click="irConfigConta()" class="col remove-padding">\n\
-                            <p class="col remove-padding titulo-sessao">Mudar o nome</p>\n\
+                            <p class="col remove-padding titulo-sessao">Mudar o número</p>\n\
                         </div>\n\
                     </div>\n\
                 </div>\n\

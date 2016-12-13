@@ -60,6 +60,12 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-config-conta" acao="PerfilCtrl" title="ConfigContaCtrl"/>
     </pagina>   
+    
+    <pagina id="11" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pessoas-bloqueadas">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-pessoas-bloqueadas" acao="PessoasBloqueadasCtrl" title="Pessoas bloqueadas"/>
+    </pagina>   
 </root>
 
 

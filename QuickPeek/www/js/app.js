@@ -19,7 +19,8 @@ angular.module('QuickPeek', [
     'QuickPeek.Avatares',
     'QuickPeek.Perfil',
     'QuickPeek.Configuracoes',
-    'QuickPeek.ConfigConta'
+    'QuickPeek.ConfigConta',
+    'QuickPeek.PessoasBloqueadas'
 ])
 
 .run(function($ionicPlatform) {
