@@ -21,11 +21,27 @@ class Cadastro {
             $endereco = null;
         }
         
+        $cadastro = Conteiner::get('Cadastro');
+        
         $msg->setCampo('entidade', 'Local');
-        $msg->setCampo('Local::numero', $endereco);
+        $msg->setCampo('Local::endereco', $endereco);
         $msg->setCampo('Local::latitude', $latitude);
         $msg->setCampo('Local::longitude', $longitude);
         $msg->setCampo('Local::usuarioId', $usuarioId);
-        Conteiner::get('Cadastro')->cadastrar($msg);
+        $cad = $cadastro->cadastrar($msg);
+        
+        if($cad){
+            $localId = $msg->getCampo('Local::id')->get('valor');
+            $categoriaId = $msg->getCampo('LocalCategoria::categoriaId')->get('valor');
+            
+            foreach($categoriaId as $v){
+                $locaisId[] = $localId;
+            }
+            $msg->setCampo('entidade', 'LocalCategoria');
+            $msg->setCampo('LocalCategoria::localId', $locaisId);
+            $cadastro->cadastrar($msg);
+        }else{
+            $msg->setResultadoEtapa(false);
+        }
     }
 }

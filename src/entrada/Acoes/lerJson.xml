@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="lerJson" modulo="Acoes">
+    
+    <entrada></entrada>
+    
+    <atividades>
+        <atividade codigo="ler-json" tipo="tarefa">
+            <entidade nome="LerJson" metodo="lerJson"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

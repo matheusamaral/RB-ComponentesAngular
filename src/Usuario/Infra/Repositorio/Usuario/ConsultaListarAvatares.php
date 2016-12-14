@@ -7,7 +7,8 @@ class ConsultaListarAvatares {
     public function consultar(){
         
         $query = Conteiner::get('Query', false);
-        $query->select('nome')
+        $query->select('id')
+                ->add('nome')
                 ->add('endereco');
         $query->from('avatares');
         $query->where('ativo = 1');

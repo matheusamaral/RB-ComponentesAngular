@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarCategoriasFiltroMapa" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-categorias-filtro-mapa" tipo="tarefa">
+            <entidade nome="ListarCategoriasFiltroMapa" metodo="listarCategoriasFiltroMapa"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

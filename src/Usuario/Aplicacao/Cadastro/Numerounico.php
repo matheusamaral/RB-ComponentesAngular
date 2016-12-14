@@ -10,9 +10,9 @@ class Numerounico {
         
         $msg->setCampo('entidade', 'NumerounicoUsuario');
         $msg->setCampo('NumerounicoUsuario::numerounico', $numeroUnico);
-        $result = Conteiner::get('Cadastro')->cadastrar($msg);
+        $cad = Conteiner::get('Cadastro')->cadastrar($msg);
         
-        if($result){
+        if($cad){
             $msg->setCampoSessao('numerounico', $numeroUnico);
             $msg->setResultadoEtapa(true);
         }else{

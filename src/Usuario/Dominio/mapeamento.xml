@@ -158,4 +158,15 @@
     <propriedades coluna="numerounico" atributo="numerounico" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
 </classe>
+        
+<classe nome="DdiPaises" tabela="ddi_paises"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ddi" atributo="ddi" /> 
+    <propriedades coluna="nome" atributo="nome" /> 
+    <propriedades coluna="cobertura" atributo="cobertura" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
 </root>

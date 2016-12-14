@@ -30,5 +30,7 @@
     "PerguntaAlerta": "\\Quickpeek\\Acoes\\Dominio\\PerguntaAlerta",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",
-    "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Dominio\\ConfiguracoesQuickpeek"
+    "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Dominio\\ConfiguracoesQuickpeek",
+    
+    "DdiPaises": "\\Quickpeek\\Usuario\\Dominio\\DdiPaises"
 }
