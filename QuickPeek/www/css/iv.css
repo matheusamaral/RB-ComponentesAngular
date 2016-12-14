@@ -160,3 +160,7 @@ li{
     font-size: 16px;
     font-style: italic;
 }
+
+.bar-header{
+    position: fixed;
+}

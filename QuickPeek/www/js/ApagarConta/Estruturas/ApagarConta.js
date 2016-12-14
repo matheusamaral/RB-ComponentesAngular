@@ -31,7 +31,7 @@ angular.module('QuickPeek.HTML.ApagarConta', [
                         <p class="col font-azul-italica">Ao invés disso, deseja apenas mudar o número?</p>\n\
                     </div>\n\
                 </div>\n\
-                <div class="row altura-barra rb-padding-padrao">\n\
+                <div class="row rb-padding-padrao">\n\
                     <form name="formTel" style="margin-top:15px !important;" class="col rb-padding-padrao box-flutuante">\n\
                         <div class="row">\n\
                             <p class="p-cinza-padrao">Para apagar a sua conta, confirme o código do país e o número do seu telefone</p>\n\
