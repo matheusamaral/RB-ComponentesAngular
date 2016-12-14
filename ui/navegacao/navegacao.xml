@@ -18,6 +18,72 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-confirma-numero" acao="ConfirmaNumeroCtrl" title="QuickPeek"/>
     </pagina>   
+    
+    <pagina id="4" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="confirmar-sms">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-confirma-sms" acao="ConfirmaSmsCtrl" title="QuickPeek"/>
+    </pagina>   
+    
+    <pagina id="5" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="tirar-selfie">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-tira-selfie" acao="TiraSelfieCtrl" title="QuickPeek"/>
+    </pagina>  
+     
+    <pagina id="6" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="cadastro-dados">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-cadastro-dados" acao="CadastroDadosCtrl" title="QuickPeek"/>
+    </pagina>   
+    
+    <pagina id="7" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="avatares">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
+    </pagina>   
+    
+    <pagina id="8" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perfil">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-perfil" acao="PerfilCtrl" title="QuickPeek"/>
+    </pagina>   
+    
+    <pagina id="9" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-configuracoes" acao="PerfilCtrl" title="ConfiguracoesCtrl"/>
+    </pagina>   
+    
+    <pagina id="10" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes-conta">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-conta" acao="PerfilCtrl" title="ConfigContaCtrl"/>
+    </pagina>   
+    
+    <pagina id="11" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pessoas-bloqueadas">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-pessoas-bloqueadas" acao="PessoasBloqueadasCtrl" title="Pessoas bloqueadas"/>
+    </pagina>   
+    
+    <pagina id="12" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mudar-numero">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-mudar-numero" acao="MudarNumeroCtrl" title="Mude seu número"/>
+    </pagina>   
+    
+    <pagina id="13" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mudar-numero-final">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-mudar-numero-final" acao="MudarNumeroFinalCtrl" title="Mude seu número"/>
+    </pagina>   
+    
+    <pagina id="14" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="apagar-conta">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-apagar-conta" acao="ApagarContaCtrl" title="Apague  sua conta"/>
+    </pagina>   
 </root>
 
 

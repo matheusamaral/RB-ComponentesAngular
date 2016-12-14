@@ -24,6 +24,7 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <link href="lib/angular-material/angular-material.min.css" rel="stylesheet"> 
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
     
     <!-- CSS DA APP -->
     <link href="css/iv.css" rel="stylesheet">
@@ -35,6 +36,9 @@
     <link href="css/input.css" rel="stylesheet">
     <link href="css/imgs.css" rel="stylesheet">
     <link href="css/ionic-footer.css" rel="stylesheet">
+    <link href="css/ionic-popup.css" rel="stylesheet">
+    <link href="css/md-switch.css" rel="stylesheet">
+    <link href="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.css" rel="stylesheet">
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -49,10 +53,8 @@
     <script src="lib/angular-ui-mask/dist/mask.js"></script>   
     <script src="lib/angular-messages/angular-messages.min.js"></script>   
     <script src="lib/jquery/dist/jquery.min.js"></script>   
-    <script src="lib/jquery/dist/jquery.mask.min.js"></script>   
+    <script src="lib/jquery/dist/jquery.mask.min.js"></script>     
     <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
-    <script src="lib/ng-cpf-cnpj/lib/ngCpfCnpj.js"></script>
-    
     
     <script src="lib/RB-ComponentesAngular/src/GCS.js"></script>
     <script src="lib/RB-ComponentesAngular/src/Pagina.js"></script>
@@ -64,6 +66,9 @@
     <script src="lib/RB-ComponentesAngular/src/Toaster/toaster.js"></script>     
     <script src="lib/RB-ComponentesAngular/src/Loading.js"></script>
     <script src="lib/RB-ComponentesAngular/src/LoadingMobile.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/RBCordovaCameraPreview/RBCameraPreview.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/RBAutocomplete/RBAutocomplete.js"></script>
     <script src="js/Base/LayoutPadrao.js"></script>
     
     <!--Loading Inicial-->
@@ -89,10 +94,93 @@
     <script src="js/ConfirmaNumero/Controladores/Acoes.js"></script>
     <script src="js/ConfirmaNumero/Estruturas/ConfirmaNumero.js"></script>
     <script src="js/ConfirmaNumero/Requisicoes/ConfirmaNumero.js"></script>
+    
+    <!--Confirma sms-->
+    <script src="js/ConfirmaSms/Controladores/ConfirmaSms.js"></script>
+    <script src="js/ConfirmaSms/Controladores/Estrutura.js"></script>
+    <script src="js/ConfirmaSms/Controladores/Acoes.js"></script>
+    <script src="js/ConfirmaSms/Estruturas/ConfirmaSms.js"></script>
+    <script src="js/ConfirmaSms/Requisicoes/ConfirmaSms.js"></script>
+    
+    <!--Tira selfie-->
+    <script src="js/TiraSelfie/Controladores/TiraSelfie.js"></script>
+    <script src="js/TiraSelfie/Controladores/Estrutura.js"></script>
+    <script src="js/TiraSelfie/Controladores/Acoes.js"></script>
+    <script src="js/TiraSelfie/Estruturas/TiraSelfie.js"></script>
+    <script src="js/TiraSelfie/Requisicoes/TiraSelfie.js"></script>
+    <link href="js/TiraSelfie/Estruturas/TiraSelfie.css" rel="stylesheet"> 
+    
+    <!--Cadastro dados-->
+    <script src="js/CadastroDados/Controladores/CadastroDados.js"></script>
+    <script src="js/CadastroDados/Controladores/Estrutura.js"></script>
+    <script src="js/CadastroDados/Controladores/Acoes.js"></script>
+    <script src="js/CadastroDados/Estruturas/CadastroDados.js"></script>
+    <script src="js/CadastroDados/Requisicoes/CadastroDados.js"></script>
+    <link href="js/CadastroDados/Estruturas/CadastroDados.css" rel="stylesheet"> 
+    
+    <!--avatares-->
+    <script src="js/Avatares/Controladores/Avatares.js"></script>
+    <script src="js/Avatares/Controladores/Estrutura.js"></script>
+    <script src="js/Avatares/Controladores/Acoes.js"></script>
+    <script src="js/Avatares/Estruturas/Avatares.js"></script>
+    <link href="js/Avatares/Estruturas/Avatares.css" rel="stylesheet"> 
+    
+    <!--avatares-->
+    <script src="js/Perfil/Controladores/Perfil.js"></script>
+    <script src="js/Perfil/Controladores/Estrutura.js"></script>
+    <script src="js/Perfil/Controladores/Acoes.js"></script>
+    <script src="js/Perfil/Estruturas/Perfil.js"></script>
+    <script src="js/Perfil/Requisicoes/Perfil.js"></script>
+    <link href="js/Perfil/Estruturas/Perfil.css" rel="stylesheet"> 
+    
+    <!--configuracoes-->
+    <script src="js/Configuracoes/Controladores/Configuracoes.js"></script>
+    <script src="js/Configuracoes/Controladores/Estrutura.js"></script>
+    <script src="js/Configuracoes/Controladores/Acoes.js"></script>
+    <script src="js/Configuracoes/Estruturas/Configuracoes.js"></script>
+    <link href="js/Configuracoes/Estruturas/Configuracoes.css" rel="stylesheet"> 
+    
+    <!--configuracoes conta-->
+    <script src="js/ConfigConta/Controladores/ConfigConta.js"></script>
+    <script src="js/ConfigConta/Controladores/Estrutura.js"></script>
+    <script src="js/ConfigConta/Controladores/Acoes.js"></script>
+    <script src="js/ConfigConta/Estruturas/ConfigConta.js"></script>
+    <link href="js/ConfigConta/Estruturas/ConfigConta.css" rel="stylesheet"> 
+    
+    <!--configuracoes conta-->
+    <script src="js/PessoasBloqueadas/Controladores/PessoasBloqueadas.js"></script>
+    <script src="js/PessoasBloqueadas/Controladores/Estrutura.js"></script>
+    <script src="js/PessoasBloqueadas/Controladores/Acoes.js"></script>
+    <script src="js/PessoasBloqueadas/Estruturas/PessoasBloqueadas.js"></script>
+    <link href="js/PessoasBloqueadas/Estruturas/PessoasBloqueadas.css" rel="stylesheet"> 
+    
+    <!--configuracoes conta-->
+    <script src="js/MudarNumero/Controladores/MudarNumero.js"></script>
+    <script src="js/MudarNumero/Controladores/Estrutura.js"></script>
+    <script src="js/MudarNumero/Controladores/Acoes.js"></script>
+    <script src="js/MudarNumero/Estruturas/MudarNumero.js"></script>
+    <script src="js/MudarNumero/Requisicoes/MudarNumero.js"></script>
+    <link href="js/MudarNumero/Estruturas/MudarNumero.css" rel="stylesheet"> 
+    
+    <!--Mudar numero final-->
+    <script src="js/MudarNumeroFinal/Controladores/MudarNumeroFinal.js"></script>
+    <script src="js/MudarNumeroFinal/Controladores/Estrutura.js"></script>
+    <script src="js/MudarNumeroFinal/Controladores/Acoes.js"></script>
+    <script src="js/MudarNumeroFinal/Estruturas/MudarNumeroFinal.js"></script>
+    <script src="js/MudarNumeroFinal/Requisicoes/MudarNumeroFinal.js"></script>
+    <link href="js/MudarNumeroFinal/Estruturas/MudarNumeroFinal.css" rel="stylesheet"> 
+    
+    <!--Mudar numero final-->
+    <script src="js/ApagarConta/Controladores/ApagarConta.js"></script>
+    <script src="js/ApagarConta/Controladores/Estrutura.js"></script>
+    <script src="js/ApagarConta/Controladores/Acoes.js"></script>
+    <script src="js/ApagarConta/Estruturas/ApagarConta.js"></script>
+    <script src="js/ApagarConta/Requisicoes/ApagarConta.js"></script>
+    <link href="js/ApagarConta/Estruturas/ApagarConta.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:'pag-confirma-numero', acao:'ConfirmaNumeroCtrl'};
+        DGlobal.acaoCliente = {classe:"pag-comece-agora", acao:"ComeceAgoraCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://172.17.0.2/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
@@ -103,7 +191,7 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body>
+  <body style="background-color:transparent !important">
       <div ng-view when-ready class="corpo-conteudo">
       </div>
   </body>

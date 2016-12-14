@@ -6,6 +6,41 @@
     line-height: 25px;
 }
 
+.box-shadow-padrao{
+    box-shadow: 1px 2px 8px #929292;
+}
+
+.altura-barra{
+    padding-top: 60px !important;
+}
+
+.icone-padrao{
+    font-size: 37px;
+    color: #ffb800;
+}
+
+.text-left{
+    text-align: start !important;
+}
+
+.remove-padding-row{
+    padding-top: 0 ;
+    padding-bottom: 0 !important;
+}
+
+.pane, 
+.view {
+   overflow-y: auto !important 
+}
+
+.box-shadow-padrao-bottom{
+    box-shadow: 1px -1px 8px #929292;
+}
+
+.background-transparente{
+    background-color: transparent!important;
+}
+
 .remove-box-shadow{
     box-shadow: none !important;
 }
@@ -49,7 +84,7 @@
 }
 
 .rb-padding-padrao{
-    padding: 20px;
+    padding: 10px;
 }
 
 .font-17-px{
@@ -83,4 +118,49 @@
 
 .remove-padding-top{
     padding-top: 0;
+}
+
+.color-amarelo{
+    color:#ffb800
+}
+.row{
+    margin: 0 !important;
+}
+
+.bar-header{
+    height: 60px;
+    box-shadow: 0px 2px 8px grey;
+    padding-top: 15px !important;
+}
+
+.margin-auto{
+    margin: auto;
+}
+
+.tabs{
+    height: 75px;
+    padding-top: 16px !important;
+}
+
+.tabs-top > .tabs, .tabs.tabs-top{
+    top:0;
+}
+
+.box-shadow-padrao-barra{
+    box-shadow: 0px 2px 8px grey;
+}
+
+li{
+    list-style: initial !important;
+    margin-left: 16px;
+}
+
+.font-azul-italica{
+    color:#6799ff;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.bar-header{
+    position: fixed;
 }

@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
-
+    'RB.pagina'
 ])
  
-.factory('ConfirmaNumeroRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
-      function (RBLoadingMobile,GCS, Config,ionicToast) {
+.factory('ConfirmaNumeroRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
@@ -14,15 +14,18 @@ angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
-            acaoSuccess = obj.acaoSucsess;
+            acaoSuccess = obj.acaoSuccess;
             return this;
         };
 
         function enviarSms(){
             RBLoadingMobile.show();
+            console.log('dados');
+            console.log(dados);
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Usuario/enviarSms",
                 dados: $.param(dados),
+                tipo: 'POST',
                 acao: acaoSuccess,
                 error: errorSalvar,
                 scope: scope,
@@ -36,7 +39,8 @@ angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                
+                DGlobal.dadosTelefone = scope.dadosCel;
+                Pagina.navegar({idPage:4});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);

@@ -2,11 +2,12 @@
 
 angular.module('QuickPeek.Acoes.ConfirmaNumero', [ 
     'RB.pagina',
-    'QuickPeek.Requisicao.ConfirmaNumero'
+    'QuickPeek.Requisicao.ConfirmaNumero',
+    'Cmp.AutoComplete'
 ])
 
-.factory('ConfirmaNumeroAcoes', ['Pagina','ConfirmaNumeroRequisicoes',
-    function(Pagina,ConfirmaNumeroRequisicoes) {
+.factory('ConfirmaNumeroAcoes', ['Pagina','ConfirmaNumeroRequisicoes','AutoComplete',
+    function(Pagina,ConfirmaNumeroRequisicoes,AutoComplete) {
     var scope;  
     
     function setScope(obj){
@@ -16,16 +17,19 @@ angular.module('QuickPeek.Acoes.ConfirmaNumero', [
     
     function inicializar(){
         addCss();
+        iniciarAutoComplete();
     };
+    
+    function iniciarAutoComplete(){
+        AutoComplete.setScope(scope).iniciarAutoComplete('ddiAutoComplete',scope.ddis,scope.dadosCel.ddi);
+    }
     
     function addCss(){
         $('ion-side-menu-content').addClass('background-cinza');
     }
     
     function cadastrarNumero(){
-        var tel = scope.dadosCel.numero;
-        var obj = {telefone:tel};
-                console.log(obj);
+        var obj = {telefone:scope.dadosCel.ddi + scope.dadosCel.numero};;
         ConfirmaNumeroRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfirmaNumeroRequisicoes.successEnviarSms}).enviarSms();
     }
     

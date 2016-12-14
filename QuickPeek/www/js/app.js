@@ -1,8 +1,8 @@
 angular.module('QuickPeek', [
     'ionic',
     'ionic-toast',
-    'ngMaterial',
     'ngRoute',
+    'ngMaterial',
     'ngCordova',
     'RB.GD',
     'ui.mask',
@@ -12,7 +12,18 @@ angular.module('QuickPeek', [
     'QuickPeek.layoutPadrao',
     'QuickPeek.LoadingInicial',
     'QuickPeek.ComeceAgora',
-    'QuickPeek.ConfirmaNumero'
+    'QuickPeek.ConfirmaNumero',
+    'QuickPeek.ConfirmaSms',
+    'QuickPeek.TiraSelfie',
+    'QuickPeek.CadastroDados',
+    'QuickPeek.Avatares',
+    'QuickPeek.Perfil',
+    'QuickPeek.Configuracoes',
+    'QuickPeek.ConfigConta',
+    'QuickPeek.PessoasBloqueadas',
+    'QuickPeek.MudarNumero',
+    'QuickPeek.MudarNumeroFinal',
+    'QuickPeek.ApagarConta'
 ])
 
 .run(function($ionicPlatform) {
@@ -39,11 +50,18 @@ angular.module('QuickPeek', [
     
 }])
 
+
+
 .config(function($sceProvider) {
     //Não recomendavel utilizar
     //https://docs.angularjs.org/api/ng/service/$sce
     $sceProvider.enabled(false);
 })
+
+.config(function( $mdGestureProvider ) {
+    $mdGestureProvider.skipClickHijack();
+ })
+
 
 .config(['uiMask.ConfigProvider', function(uiMaskConfigProvider) {
     uiMaskConfigProvider.maskDefinitions({'A': /[a-z]/, '*': /[a-zA-Z0-9]/});
@@ -138,5 +156,5 @@ angular.module('QuickPeek', [
        .primaryPalette('customPrimary')
        .accentPalette('customAccent')
        .warnPalette('customWarn')
-       .backgroundPalette('customBackground')
+       .backgroundPalette('customBackground');
 });

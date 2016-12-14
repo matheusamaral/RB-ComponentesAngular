@@ -1,0 +1,22 @@
+.box-avatar{
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto;
+    z-index: 1 !important;
+    background-position: center;
+    position: relative;
+}
+
+.titulo-avatar{
+    font-size: 13px !important;
+    font-weight: bold;
+}
+
+.margin-barra{
+    padding-top: 75px !important;
+}
+
+.seta-barra.icon:before{
+    font-size: 23px !important;
+    margin-right: 9px !important;
+}

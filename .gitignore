@@ -2,3 +2,4 @@
 /vendor
 /composer.lock
 /.htaccess
+/QuickPeek/www/lib/
