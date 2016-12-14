@@ -20,8 +20,6 @@ angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
 
         function enviarSms(){
             RBLoadingMobile.show();
-            console.log('dados');
-            console.log(dados);
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Usuario/enviarSms",
                 dados: $.param(dados),

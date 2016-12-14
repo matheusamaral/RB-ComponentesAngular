@@ -6,7 +6,7 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
 .factory('TiraSelfieHtml', [ function() {
        
     function montar() {
-        return '<div style="z-index:2 !important" class="background-cinza rb-padding-padrao box-shadow-padrao" id="cameraPerfilBarra">\n\
+        return '<div style="z-index:2 !important;padding:20px !important" class="background-cinza rb-padding-padrao box-shadow-padrao" id="cameraPerfilBarra">\n\
                     <p ng-if="!cameraPerfil.img && !cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Faça uma selfie para seu perfil</p>\n\
                     <p ng-if="cameraPerfil.img || cameraPerfil.fotoTirada" class="negrito p-cinza font-19-px">Ótimo, agora verifique a foto</p>\n\
                 </div>\n\
@@ -34,7 +34,7 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
 .factory('TiraSelfieRodape', [ function() {
        
     function montar() {
-         return '<div ng-if="!cameraPerfil.img && !cameraPerfil.fotoTirada" class="row box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera">\n\
+         return '<div id="cameraPerfilRodape" ng-if="!cameraPerfil.img && !cameraPerfil.fotoTirada" class="row box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera">\n\
                     <button ng-click="virarCamera()" class="btn-float-right btn-rodape button-clear button button-positive">\n\
                         <i class="icon img-inverte-camera"></i>\n\
                     </button>\n\
@@ -53,7 +53,7 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div ng-if="cameraPerfil.img || cameraPerfil.fotoTirada" class="box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera" layout="row" layout-align="center center">\n\
+                <div id="cameraPerfilRodape" ng-if="cameraPerfil.img || cameraPerfil.fotoTirada" class="box-shadow-padrao-bottom bar bar-footer bar-positive footer-camera" layout="row" layout-align="center center">\n\
                     <div class="col col-center">\n\
                         <button ng-click="mostrarCamera()" class="btn-rodape button button-clear">\n\
                             <i class="icon ion-reply"></i>\n\

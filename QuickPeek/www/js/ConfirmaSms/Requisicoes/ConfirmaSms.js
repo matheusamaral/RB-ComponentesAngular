@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.ConfirmaSms', [
-
+    'RB.pagina'
 ])
  
-.factory('ConfirmaSmsRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
-      function (RBLoadingMobile,GCS, Config,ionicToast) {
+.factory('ConfirmaSmsRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
@@ -37,10 +37,10 @@ angular.module('QuickPeek.Requisicao.ConfirmaSms', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
+                Pagina.navegar({idPage:5});
             }
         };
         
@@ -62,10 +62,11 @@ angular.module('QuickPeek.Requisicao.ConfirmaSms', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                
+                Pagina.navegar({idPage:5});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
+                Pagina.navegar({idPage:5});
             }
         };
         
