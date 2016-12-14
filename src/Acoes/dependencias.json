@@ -6,6 +6,8 @@
     "ConsultaEncontrarLocal": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaEncontrarLocal",
     "ConsultaHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaHashtag",
     "ConsultaLimitePerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLimitePerguntas",
+    "ConsultaDescurtirMidia": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirMidia",
+    "ConsultaDescurtirHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirHashtag",
     
     "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

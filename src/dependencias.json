@@ -26,13 +26,13 @@
     "EstruturaRegistrarSessao": "\\Rubeus\\Servicos\\Entrada\\EstruturaSessao",
     
     
-    
     "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Infra\\Repositorio\\ConfiguracoesQuickpeek\\Consultar",
     "ConsultaVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Visibilidade\\ConsultaVisibilidade",
     
     
     "Numerounico": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Numerounico",
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
+    "SalvarFoto": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\SalvarFoto",
     "EnviarSms": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\EnviarSms",
     "VerificarCodigoSms": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\VerificarCodigoSms",
     "Tutorial": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Tutorial",
@@ -61,14 +61,16 @@
     "Mapa": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\Mapa",
     "MapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\MapaLocaisPertos",
     "TempoViagem": "\\Quickpeek\\Local\\Aplicacao\\Locais\\TempoViagem",
+    "ExcluirLocais": "\\Quickpeek\\Local\\Aplicacao\\Locais\\ExcluirLocais",
     
     "CheckIn": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\CheckIn",
-    "Hashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Hashtag",
-    "Midia": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Midia",
+    "Publicar": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Publicar",
     "Seguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\Seguir",
     "DeixarSeguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\DeixarSeguir",
     "ConfirmarSeguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\ConfirmarSeguir",
-    "Curtir": "\\Quickpeek\\Acoes\\Aplicacao\\Curtir\\Curtir",
+    "CurtirMidia": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\CurtirMidia",
+    "CurtirHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\CurtirHashtag",
+    "ExcluirMidia": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\ExcluirMidia",
     "Perguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\Respostas",
     
@@ -82,6 +84,7 @@
     "ListarPerfilUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPerfilUsuario",
     "ListarConfiguracoes": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarConfiguracoes",
     "ListarAvatares": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarAvatares",
+    "ListarPaisesCobertura": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPaisesCobertura",
     
     "ListarAreaMapa": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarAreaMapa",
     "ListarMidias": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarMidias",
@@ -89,6 +92,9 @@
     "ListarPerguntas": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarPerguntas",
     "ListarMensagensPerguntas": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarMensagensPerguntas",
     "ListarVisualizadoEntregue": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarVisualizadoEntregue",
+    "ListarCategoriasFiltroMapa": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarCategoriasFiltroMapa",
     
-    "LoginTeste": "\\Quickpeek\\LoginTeste"
+    "LoginTeste": "\\Quickpeek\\LoginTeste",
+    "LerJson": "\\Quickpeek\\LerJson"
+    
 }

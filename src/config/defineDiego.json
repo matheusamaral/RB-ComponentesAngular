@@ -1,9 +1,9 @@
 {
-    "PROJETO":"Quickpeek" ,
+    "PROJETO":"QuickPeek" ,
     "DIR_CONF" : "src/config/",
     "URL_PROJETO":"172.17.0.2/Quickpeek/" ,
     "DOMINIO_PROJETO":"http://192.168.0.115:8000/Quickpeek/" ,
-    "DOMINIO":"http://192.168.0.115:8000/",    
+    "DOMINIO":"http://192.168.0.115:8000",
     "DOMINIO_REQ":"http://192.168.0.115:8000/Quickpeek/api", 
     "ROTAS": "src/config/define_rotas_diego.json",   
     "DEPENDENCIA": "src/config/define_dependencia.json",  

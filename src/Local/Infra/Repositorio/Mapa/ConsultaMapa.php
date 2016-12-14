@@ -22,7 +22,8 @@ class ConsultaMapa {
                 ->add('(count(distinct cin.id))', 'relevancia2')
                 ->add('sub.hashtag_id', 'hashtagId')
                 ->add('sub.countHash')
-                ->add('ch.endereco', 'categoriaEndereco');
+                ->add('ch.id', 'categoriaId')
+                ->add("ifnull(ch.endereco, 'FotoPadrao')", 'categoriaEndereco');
         $query->from('local', 'l');
         $query->join('check_in', 'c')->on('c.local_id = l.id')
                 ->on('c.presente = 1')
@@ -49,6 +50,7 @@ class ConsultaMapa {
                 ->on('hc.ativo = 1');
         $query->join('categoria_hashtag', 'ch', 'left')->on('ch.id = hc.categoria_hashtag_id')
                 ->on('ch.ativo = 1');
+        $query->where('l.ativo = 1');
         $query->group('l.id');
         $query->order('relevancia desc, relevancia2 desc');
         $query->limit(50);

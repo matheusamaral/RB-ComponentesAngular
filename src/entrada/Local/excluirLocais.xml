@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="excluirLocais" modulo="Local">
+    
+    <entrada></entrada>
+    
+    <atividades>
+        <atividade codigo="excluir-locais" tipo="tarefa">
+            <entidade nome="ExcluirLocais" metodo="excluirLocais"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

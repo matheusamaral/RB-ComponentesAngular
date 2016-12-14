@@ -16,6 +16,6 @@
     "ConsultaVerificarCodigoSms": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarCodigoSms",
     "ConsultaListarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarConfiguracoes",
     "ConsultaVerificarNumero": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarNumero",
-    
+    "ConsultaListarPaisesCobertura": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPaisesCobertura",
     "ConsultaVerificarEdicao": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarEdicao"
 }

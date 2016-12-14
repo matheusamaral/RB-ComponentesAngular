@@ -6,7 +6,7 @@
         <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/> 
         <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
         <campo regra="Obrigatorio" chave="Local::titulo" nome="titulo"/>
-        <campo regra="Obrigatorio" chave="Local::categoriaLocalId" nome="categoriaLocalId"/>
+        <campo regra="Obrigatorio" chave="LocalCategoria::categoriaId" nome="categoriaId" json="1"/>
     </entrada>
     
     <atividades>

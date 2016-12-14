@@ -12,7 +12,7 @@ class ConsultaHashtag {
                 ->add('count(distinct hl.id)', 'hashtagQtd')
                 ->add('ch.titulo', 'categoriaTitulo')
                 ->add('ch.endereco', 'categoriaEndereco')
-                ->add('case when hlo.id is null then 0 else 1 end', 'hashtag');
+                ->add('case when hlo.id is null then 0 else 1 end', 'jaCurtiu');
         $query->from('hashtag', 'h');
         $query->join('local', 'l')->on('l.ativo = 1');
         $query->join('hashtag_local', 'hl')->on('hl.local_id = l.id')

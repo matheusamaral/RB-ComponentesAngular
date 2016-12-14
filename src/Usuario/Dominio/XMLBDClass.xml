@@ -131,4 +131,13 @@
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
     </classe>
     
+    <classe nome="DdiPaises" tabela="ddi_paises" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="ddi" atributo="ddi" type="varchar(45)"/>
+        <propriedades coluna="nome" atributo="nome" type="varchar(45)"/>
+        <propriedades coluna="cobertura" atributo="cobertura" type="varchar(45)"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
 </configuracao>

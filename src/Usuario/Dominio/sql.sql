@@ -224,3 +224,12 @@ CREATE TABLE `numerounico_usuario`(
          FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `ddi_paises`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `ddi` varchar(45)   ,
+    `nome` varchar(45)   ,
+    `cobertura` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

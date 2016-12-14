@@ -41,6 +41,7 @@ class ConsultaDadosLocais {
                 ->on('cin.local_id = l.id')
                 ->on('cin.presente = 1')
                 ->on('cin.ativo = 1');
+        $query->join('check_in', 'check', 'left')->on('check.usuario_id = ?')
         $query->where('l.id not in (' . $notIn . ')');
         $query->group('l.id');
         $query->order('relevancia desc, relevancia2 desc');

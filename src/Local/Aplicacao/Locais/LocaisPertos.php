@@ -5,7 +5,6 @@ use Rubeus\ContenerDependencia\Conteiner;
 class LocaisPertos {
     
     public function locaisPertos($msg){
-        
         $latitude = $msg->getCampo('Latitude')->get('valor');
         $longitude = $msg->getCampo('Longitude')->get('valor');
         
@@ -20,14 +19,11 @@ class LocaisPertos {
         foreach($json->results as $v){
             $id = $query->consultar($v->place_id);
             if(!$id){
-                $file2 = file_get_contents('https://maps.googleapis.com/maps/api/place/details/json?' . 
-                'placeid=' . $v->place_id . '&key=AIzaSyBc3mboIyrPS1q7DIo-rEoDfRCLhskxRmc');
-                $json2 = json_decode($file2);
                 $placeId[] = $v->place_id;
                 $name[] = $v->name;
+                $endereco[] = $v->vicinity;
                 $lat[] = $v->geometry->location->lat;
                 $lng[] = $v->geometry->location->lng;
-                $endereco[] = $json2->result->formatted_address;
                 $tipos[] = $v->types;
             }
         }
@@ -45,7 +41,7 @@ class LocaisPertos {
         
         $locaisId = $msg->getCampo('Local::id')->get('valor');
         foreach($locaisId as $k=>$id){
-            $this->setarLocalCategoria($tipos[$k], $id, $msg);
+            $this->setarLocalCategoria($name[$k], $tipos[$k], $id, $msg);
         }
         
         if($result){
@@ -58,98 +54,143 @@ class LocaisPertos {
         }
     }
     
-    private function setarLocalCategoria($tipos, $localId, $msg){
+    private function setarLocalCategoria($nome, $tipos, $localId, $msg){
         
-        $outros = false;
+        $categoria1 = false;$categoria2 = false;$categoria3 = false;$categoria4 = false;$categoria5 = false;
+        $categoria6 = false;$categoria7 = false;$categoria8 = false;$categoria9 = false;$categoria10 = false;
+        $categoria11 = false;$categoria12 = false;$categoria13 = false;$categoria14 = false;$categoria15 = false;
+        $categoria16 = false;$categoria17 = false;$outros = false;
         
         foreach($tipos as $tipo){
-            if($tipo == 'bank' || $tipo == 'atm'){
+            if(($tipo == 'bank' || $tipo == 'atm') && !$categoria1){
+                $categoria1 = 1;
                 $outros = 1;
                 $categoriaId[] = 1;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'bar' || $tipo == 'liquor_store'){
+            
+            if(($tipo == 'bar' || $tipo == 'liquor_store') && !$categoria2){
+                $categoria2 = 1;
                 $outros = 1;
                 $categoriaId[] = 2;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'cafe'){
+            
+            if($tipo == 'cafe' && !$categoria3){
+                $categoria3 = 1;
                 $outros = 1;
                 $categoriaId[] = 3;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'restaurant' || $tipo == 'food'){
+            
+            if($tipo == 'restaurant' && !$categoria4){
+                $categoria4 = 1;
                 $outros = 1;
                 $categoriaId[] = 4;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'restaurant' || $tipo == 'food'){
+            
+            if((strpos($nome, 'Pizzaria') !== false || strpos($nome, 'pizzaria') !== false
+                    || strpos($nome, 'Pizza') !== false || strpos($nome, 'pizza') !== false) && !$categoria5){
+                $categoria5 = 1;
                 $outros = 1;
                 $categoriaId[] = 5;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'restaurant' || $tipo == 'food'){
+            
+            if((strpos($nome, 'Churrascaria') !== false || strpos($nome, 'churrascaria') !== false
+                    || strpos($nome, 'Churrasco') !== false || strpos($nome, 'churrasco') !== false) && !$categoria6){
+                $categoria6 = 1;
                 $outros = 1;
                 $categoriaId[] = 6;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'night_club' || $tipo == 'bar'){
+            
+            if(($tipo == 'night_club' || $tipo == 'bar') && !$categoria7){
+                $categoria7 = 1;
                 $outros = 1;
                 $categoriaId[] = 7;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'shopping_mall'){
+            
+            if($tipo == 'shopping_mall' && !$categoria8){
+                $categoria8 = 1;
                 $outros = 1;
                 $categoriaId[] = 8;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'night_club'){
+            
+            if($tipo == 'night_club' && !$categoria9){
+                $categoria9 = 1;
                 $outros = 1;
                 $categoriaId[] = 9;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'point_of_interest'){
+            
+            if((strpos($nome, 'Teatro') !== false || strpos($nome, 'teatro') !== false) && !$categoria10){
+                $categoria10 = 1;
                 $outros = 1;
                 $categoriaId[] = 10;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'bicycle_store' || $tipo == 'book_store' || $tipo == 'clothing_store'
+            
+            if(($tipo == 'store' || $tipo == 'bicycle_store' || $tipo == 'book_store' || $tipo == 'clothing_store'
                     || $tipo == 'convenience_store' || $tipo == 'department_store' || $tipo == 'eletronics_store'
                     || $tipo == 'furniture_store' || $tipo == 'grocery_or_supermarket' || $tipo == 'hardware_store'
-                    || $tipo == 'jewelry_store'|| $tipo == 'pet_store'|| $tipo == 'pharmacy' || $tipo == 'shoe_store'){
+                    || $tipo == 'jewelry_store'|| $tipo == 'pet_store'|| $tipo == 'pharmacy' || $tipo == 'shoe_store')
+                    && !$categoria11){
+                $categoria11 = 1;
                 $outros = 1;
                 $categoriaId[] = 11;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'bakery'){
+            
+            if($tipo == 'bakery' && !$categoria12){
+                $categoria12 = 1;
                 $outros = 1;
                 $categoriaId[] = 12;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'health'){
+            
+            if($tipo == 'gym' && !$categoria13){
+                $categoria13 = 1;
                 $outros = 1;
                 $categoriaId[] = 13;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'hospital' || $tipo == 'health'){
+            
+            if(($tipo == 'hospital' || $tipo == 'health') && !$categoria14 && !$categoria13){
+                $categoria14 = 1;
                 $outros = 1;
                 $categoriaId[] = 14;
                 $locaisId[] = $localId;
             }
-            if($tipo == 'city_hall' || $tipo == 'courthouse' || $tipo == 'library' || $tipo == 'local_government_office'
-                    || $tipo == 'police' || $tipo == 'post_office' || $tipo == 'school' || $tipo == 'university'){
+            
+            if(($tipo == 'city_hall' || $tipo == 'courthouse' || $tipo == 'library' || $tipo == 'local_government_office'
+                    || $tipo == 'police' || $tipo == 'post_office' || $tipo == 'school' || $tipo == 'university') && !$categoria15){
+                $categoria15 = 1;
                 $outros = 1;
                 $categoriaId[] = 15;
                 $locaisId[] = $localId;
             }
-            if(!$outros){
+            
+            if($tipo == 'health' && !$categoria16 && !$categoria13){
+                $categoria16 = 1;
+                $outros = 1;
                 $categoriaId[] = 16;
                 $locaisId[] = $localId;
             }
-            $msg->setCampo('entidade', 'LocalCategoria');
-            $msg->setCampo('LocalCategoria::localId', $locaisId);
-            $msg->setCampo('LocalCategoria::categoriaId', $categoriaId);
-            Conteiner::get('Cadastro')->cadastrar($msg);
         }
+        
+        if(!$outros){
+            $categoriaId = 17;
+            $locaisId = $localId;
+        }
+        
+        $msg->setCampo('entidade', 'LocalCategoria');
+        $msg->setCampo('LocalCategoria::localId', $locaisId);
+        $msg->setCampo('LocalCategoria::categoriaId', $categoriaId);
+        Conteiner::get('Cadastro')->cadastrar($msg);
+        $msg->setCampo('LocalCategoria::id', false);
     }
 }

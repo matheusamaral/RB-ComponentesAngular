@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="excluirMidia" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Opcional" chave="Curtir::midiaId" nome="midiaId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="excluir-midia" tipo="tarefa">
+            <entidade nome="ExcluirMidia" metodo="excluirMidia"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

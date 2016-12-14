@@ -10,11 +10,14 @@
     "ConsultaListarPerguntas": "\\Quickpeek\\Local\\Infra\\Repositorio\\Listar\\ConsultaListarPerguntas",
     "ConsultaListarMensagensPerguntas": "\\Quickpeek\\Local\\Infra\\Repositorio\\Listar\\ConsultaListarMensagensPerguntas",
     "ConsultaListarVisualizadoEntregue": "\\Quickpeek\\Local\\Infra\\Repositorio\\Listar\\ConsultaListarVisualizadoEntregue",
+    "ConsultaListarCategoriasFiltro": "\\Quickpeek\\Local\\Infra\\Repositorio\\Listar\\ConsultaListarCategoriasFiltro",
     
     "ConsultaPerguntaUsuario": "\\Quickpeek\\Local\\Infra\\Repositorio\\Perguntas\\ConsultaPerguntaUsuario",
     
     "ConsultaLocalGoogle": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaLocalGoogle",
+    "ConsultaExcluirLocais": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaExcluirLocais",
     
     "ConsultaMapa": "\\Quickpeek\\Local\\Infra\\Repositorio\\Mapa\\ConsultaMapa",
+    "ConsultaMapaFiltro": "\\Quickpeek\\Local\\Infra\\Repositorio\\Mapa\\ConsultaMapaFiltro",
     "ConsultaMapaLocaisPertos": "\\Quickpeek\\Local\\Infra\\Repositorio\\Mapa\\ConsultaMapaLocaisPertos"
 }
