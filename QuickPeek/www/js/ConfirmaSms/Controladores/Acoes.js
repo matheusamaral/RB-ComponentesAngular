@@ -12,7 +12,7 @@ angular.module('QuickPeek.Acoes.ConfirmaSms', [
     
     function setScope(obj){
         scope = obj;
-        onLoad();
+        //onLoad();
         return this;
     };
     
@@ -140,7 +140,6 @@ angular.module('QuickPeek.Acoes.ConfirmaSms', [
         	});
         }
         function startWatch() {
-            alert('sdssd');
         	if(SMS) SMS.startWatch(function(){
                         alert('sdssd');
         		update('watching', 'watching started');

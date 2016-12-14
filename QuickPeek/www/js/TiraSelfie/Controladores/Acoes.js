@@ -42,14 +42,16 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     
     function addCss(){
         $('html,body,ion-side-menus,ion-side-menu-content').addClass('background-transparente');
+        $('html,body,ion-side-menus,ion-side-menu-content').removeClass('background-cinza');
     }
     
     function createFile(path){
         scope.arquivo = $cordovaFile.createFile(path,'perfil',true);
-        DGlobal.dadosSelfie = {
+        DGlobal.dadosSelfie ={
             arquivo:scope.arquivo,
             urlImg: path
         };
+        
         Pagina.navegar({idPage:6});
     }
     

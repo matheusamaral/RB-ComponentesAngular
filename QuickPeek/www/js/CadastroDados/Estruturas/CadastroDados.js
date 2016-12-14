@@ -21,7 +21,7 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                     </div>\n\
                     <div ng-class="{\'margin-barra\' : dados.editando}" class="row text-center rb-padding-padrao">\n\
                         <div class="col text-center">\n\
-                            <div style="margin: auto;" class="btn-redondo-grande">\n\
+                            <div style="margin: auto;" class="btn-redondo-grande" style="background-image:url({{dados.urlImg}})">\n\
                                 <button class="flutuante-btn button" ng-click="voltarSelfie()">\n\
                                     <i class="icon ion-android-camera"></i>\n\
                                 </button>\n\
