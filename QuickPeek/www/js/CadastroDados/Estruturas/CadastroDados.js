@@ -21,7 +21,7 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                     </div>\n\
                     <div ng-class="{\'margin-barra\' : dados.editando}" class="row text-center rb-padding-padrao">\n\
                         <div class="col text-center">\n\
-                            <div style="margin: auto;" class="btn-redondo-grande" style="background-image:url({{dados.urlImg}})">\n\
+                            <div style="background-size: contain;margin: auto;background-image:url(../img/04.svg)" class="btn-redondo-grande">\n\
                                 <button class="flutuante-btn button" ng-click="voltarSelfie()">\n\
                                     <i class="icon ion-android-camera"></i>\n\
                                 </button>\n\
@@ -98,7 +98,7 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                     <div class="col col-center">\n\
                     </div>\n\
                     <div class="col col-center col-50">\n\
-                        <button ng-click="irAvatares()" class="col btn-txt-direita button button-clear">\n\
+                        <button ng-click="cadastrar()" class="col btn-txt-direita button button-clear">\n\
                             PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
                         </button>\n\
                     </div>\n\

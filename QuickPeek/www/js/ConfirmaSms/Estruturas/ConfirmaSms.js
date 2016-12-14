@@ -64,7 +64,7 @@ angular.module('QuickPeek.HTML.ConfirmaSms', [
                     <!--<button ng-disabled="formCadTel.$invalid" ng-click="confirmarSms()" class="col btn-txt-direita button button-clear">\n\
                         PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
                     </button>-->\n\
-                    <button ng-click="confirmarSms()" class="col btn-txt-direita button button-clear">\n\
+                    <button ng-disabled="formCadTel.$invalid" ng-click="confirmarSms()" class="col btn-txt-direita button button-clear">\n\
                         PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
                     </button>\n\
                 </div>';

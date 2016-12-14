@@ -33,6 +33,9 @@
      
     <pagina id="6" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="cadastro-dados">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarAvatares" objeto='avatares'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-cadastro-dados" acao="CadastroDadosCtrl" title="QuickPeek"/>
     </pagina>   
