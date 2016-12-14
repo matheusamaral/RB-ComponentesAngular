@@ -41,17 +41,20 @@ class ConsultaDadosLocais {
                 ->on('cin.local_id = l.id')
                 ->on('cin.presente = 1')
                 ->on('cin.ativo = 1');
-        $query->join('check_in', 'check', 'left')->on('check.usuario_id = ?')
+        $query->join('check_in', 'chec', 'left')->on('chec.usuario_id = ?')
+                ->on('chec.local_id = l.id')
+                ->on('chec.presente = 1')
+                ->on('chec.ativo = 1');
         $query->where('l.id not in (' . $notIn . ')');
         $query->group('l.id');
-        $query->order('relevancia desc, relevancia2 desc');
+        $query->order('chec.id desc, relevancia desc, relevancia2 desc');
         $query->limit(15);
         $query->addVariaveis([$latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude,
-            $tempoMidia, $tempoHashtag, $usuarioId, $usuarioId]);
+            $tempoMidia, $tempoHashtag, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }
 }

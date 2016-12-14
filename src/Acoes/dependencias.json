@@ -3,11 +3,13 @@
     "ConsultaDeixarSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaDeixarSeguir",
     "ConsultaUsuariosPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaUsuarios",
     "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn",
-    "ConsultaEncontrarLocal": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaEncontrarLocal",
+    "ConsultaAlterarVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaAlterarVisibilidade",
     "ConsultaHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaHashtag",
     "ConsultaLimitePerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLimitePerguntas",
     "ConsultaDescurtirMidia": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirMidia",
     "ConsultaDescurtirHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirHashtag",
+    "ConsultaUsuarioPergunta": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaUsuarioPergunta",
+    "ConsultaCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaCheckIn",
     
     "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

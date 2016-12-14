@@ -14,7 +14,7 @@
     "ConsultaListarSeguidos": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarSeguidos",
     "ConsultaListarAvatares": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarAvatares",
     "ConsultaVerificarCodigoSms": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarCodigoSms",
-    "ConsultaListarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarConfiguracoes",
+    "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "ConsultaVerificarNumero": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarNumero",
     "ConsultaListarPaisesCobertura": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPaisesCobertura",
     "ConsultaVerificarEdicao": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarEdicao"

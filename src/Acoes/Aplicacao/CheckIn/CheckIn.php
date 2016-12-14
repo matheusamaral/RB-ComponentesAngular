@@ -19,10 +19,13 @@ class CheckIn {
         
         $msg->setCampo('entidade', 'CheckIn');
         $msg->setCampo('CheckIn::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
-        Conteiner::get('Cadastro')->cadastrar($msg);
+        $cad = Conteiner::get('Cadastro')->cadastrar($msg);
         
-        $local = Conteiner::get('ConsultaEncontrarLocal')->consultar($usuarioId);
-        $msg->setCampoSessao('dadosUsuarioLogado,local', $local['localId']);
-        $msg->setResultadoEtapa(true);
+        if($cad){
+            $msg->setCampoSessao('dadosUsuarioLogado,local', $msg->getCampo('CheckIn::localId')->get('valor'));
+            $msg->setResultadoEtapa(true);
+        }else{
+            $msg->setResultadoEtapa(false);
+        }
     }
 }

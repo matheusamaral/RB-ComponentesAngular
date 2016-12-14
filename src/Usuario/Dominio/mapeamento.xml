@@ -6,7 +6,6 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="nome" atributo="nome" /> 
-    <propriedades coluna="apelido" atributo="apelido" /> 
     <propriedades coluna="endereco" atributo="endereco" /> 
     <propriedades coluna="nascimento" atributo="nascimento" /> 
     <propriedades coluna="telefone" atributo="telefone" /> 

@@ -6,7 +6,6 @@ use Rubeus\ORM\Persistente as Persistente;
     class Usuario extends Persistente{
         private $id = false;
         private $nome = false;
-        private $apelido = false;
         private $endereco = false;
         private $nascimento = false;
         private $telefone = false;
@@ -31,14 +30,6 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setNome($nome) {
             $this->nome = $nome;
-        } 
-                
-        public function getApelido() {
-            return $this->apelido;
-        }
-
-        public function setApelido($apelido) {
-            $this->apelido = $apelido;
         } 
                 
         public function getEndereco() {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="alterarVisibilidade" modulo="Local">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="CheckIn::visibilidadeId" nome="visibilidadeId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="alterar-visibilidade" tipo="tarefa">
+            <entidade nome="AlterarVisibilidade" metodo="alterarVisibilidade"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -30,14 +30,27 @@ class Respostas {
             $msg->setCampo('Respostas::visibilidadeId', $visibilidadeId);
             $msg->setCampo('Respostas::endereco', $caminho[0]['url']);
             $msg->setCampo('Respostas::usuarioId', $usuarioId);
-            $suc = $cadastro->cadastrar($msg);    
+            $suc = $cadastro->cadastrar($msg);
         }
         
         if($suc){
-            $msg->setCampo('entidade', 'Perguntas');
-            $msg->setCampo('Perguntas::id', $perguntaId);
-            $msg->setCampo('Perguntas::respondida', 1);
-            $cadastro->cadastrar($msg);
+            $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+            $usuarioAcaoId = Conteiner::get('ConsultaUsuarioPergunta')->consultar($perguntaId);
+            
+            if($usuarioAcaoId != $usuarioId){
+                $respostaId = $msg->getCampo('Respostas::id')->get('valor');
+                $msg->setCampo('entidade', 'Notificacoes');
+                $msg->setCampo('Notificacoes::respostaId', $respostaId);
+                $msg->setCampo('Notificacoes::usuarioId', $usuarioId);
+                $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioAcaoId);
+                $msg->setCampo('Notificacoes::tipo', 2);
+                $cadastro->cadastrar($msg);
+                
+                $msg->setCampo('entidade', 'Perguntas');
+                $msg->setCampo('Perguntas::id', $perguntaId);
+                $msg->setCampo('Perguntas::respondida', 1);
+                $cadastro->cadastrar($msg);
+            }
         }else{
             $msg->setResultadoEtapa(false);
         }

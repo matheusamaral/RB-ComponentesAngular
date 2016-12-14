@@ -4,7 +4,6 @@
     <classe nome="Usuario" tabela="usuario" namespace="Quickpeek\Usuario\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
         <propriedades coluna="nome" atributo="nome" type="varchar(45)"/>
-        <propriedades coluna="apelido" atributo="apelido" type="varchar(45)"/>
         <propriedades coluna="endereco" atributo="endereco" type="varchar(45)"/>
         <propriedades coluna="nascimento" atributo="nascimento" type="varchar(45)"/>
         <propriedades coluna="telefone" atributo="telefone" type="varchar(45)"/>

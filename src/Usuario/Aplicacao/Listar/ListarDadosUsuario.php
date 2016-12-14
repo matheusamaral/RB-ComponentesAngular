@@ -2,13 +2,13 @@
 namespace Quickpeek\Usuario\Aplicacao\Listar;
 use Rubeus\ContenerDependencia\Conteiner;
 
-class ListarConfiguracoes {
+class ListarDadosUsuario {
     
-    public function listarConfiguracoes($msg){
+    public function listarDadosUsuario($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         
-        $query = Conteiner::get('ConsultaListarConfiguracoes')->consultar($usuarioId);
+        $query = Conteiner::get('ConsultaListarDadosUsuario')->consultar($usuarioId);
         
         if($query){
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
