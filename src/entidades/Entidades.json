@@ -18,6 +18,7 @@
     "CheckIn": "\\Quickpeek\\Local\\Dominio\\CheckIn",
     "Local": "\\Quickpeek\\Local\\Dominio\\Local",
     "LocalGoogle": "\\Quickpeek\\Local\\Dominio\\LocalGoogle",
+    "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Dominio\\ConfiguracoesQuickpeek",
     
     "CategoriaHashtag": "\\Quickpeek\\Acoes\\Dominio\\CategoriaHashtag",
     "Curtir": "\\Quickpeek\\Acoes\\Dominio\\Curtir",
@@ -30,7 +31,8 @@
     "PerguntaAlerta": "\\Quickpeek\\Acoes\\Dominio\\PerguntaAlerta",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",
-    "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Dominio\\ConfiguracoesQuickpeek",
+    "Notificacoes": "\\Quickpeek\\Acoes\\Dominio\\Notificacoes",
+    "TipoNotificacoes": "\\Quickpeek\\Acoes\\Dominio\\TipoNotificacoes",
     
     "DdiPaises": "\\Quickpeek\\Usuario\\Dominio\\DdiPaises"
 }

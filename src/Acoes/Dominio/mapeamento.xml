@@ -126,4 +126,26 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
+        
+<classe nome="TipoNotificacoes" tabela="tipo_notificacoes"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="nome" atributo="nome" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Notificacoes" tabela="notificacoes"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="usuario_acao_id"  atributo="usuarioAcaoId" />  
+    <nparaum coluna="tipo_id"  atributo="tipoId" />  
+    <nparaum coluna="respostas_id"  atributo="respostas_id" />  
+    <propriedades coluna="visualizado" atributo="visualizado" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
 </root>

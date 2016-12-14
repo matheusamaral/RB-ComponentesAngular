@@ -228,3 +228,41 @@ CREATE TABLE `categoria_hashtag`(
     `endereco` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `tipo_notificacoes`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `nome` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `notificacoes`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `usuario_id` INT   ,
+    INDEX `notificacoes_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `notificacoes_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario_id` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `usuario_acao_id` INT   ,
+    INDEX `notificacoes_fk_usuario_acao_id_idx`(`usuario_acao_id` ASC),
+    CONSTRAINT `notificacoes_fk_usuario_acao_id` 
+         FOREIGN KEY (`usuario_acao_id`) REFERENCES `usuario_acao_id` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `tipo_id` INT   ,
+    INDEX `notificacoes_fk_tipo_id_idx`(`tipo_id` ASC),
+    CONSTRAINT `notificacoes_fk_tipo_id` 
+         FOREIGN KEY (`tipo_id`) REFERENCES `tipo_notificacoes` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `respostas_id` INT   ,
+    INDEX `notificacoes_fk_respostas_id_idx`(`respostas_id` ASC),
+    CONSTRAINT `notificacoes_fk_respostas_id` 
+         FOREIGN KEY (`respostas_id`) REFERENCES `respostas` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `visualizado` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

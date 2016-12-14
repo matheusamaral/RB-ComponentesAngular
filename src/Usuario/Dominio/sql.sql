@@ -4,7 +4,6 @@ CREATE TABLE `usuario`(
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `nome` varchar(45)   ,
-    `apelido` varchar(45)   ,
     `endereco` varchar(45)   ,
     `nascimento` varchar(45)   ,
     `telefone` varchar(45)   ,

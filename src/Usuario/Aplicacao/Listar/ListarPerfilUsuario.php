@@ -16,11 +16,6 @@ class ListarPerfilUsuario {
         $query = Conteiner::get('ConsultaListarPerfilUsuario')->consultar($usuarioId, $usuarioIdSessao);
         
         if($query){
-            if($query['usuarioId'] == $usuarioIdSessao){
-                $query['usuario'] = 1;
-            }else{
-                $query['usuario'] = 0;
-            }
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
         }else{
             $msg->setResultadoEtap(false);

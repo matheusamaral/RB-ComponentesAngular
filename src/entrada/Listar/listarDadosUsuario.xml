@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarDadosUsuario" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-dados-usuario" tipo="tarefa">
+            <entidade nome="ListarDadosUsuario" metodo="listarDadosUsuario"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

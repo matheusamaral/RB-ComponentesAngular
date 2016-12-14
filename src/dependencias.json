@@ -63,6 +63,7 @@
     "TempoViagem": "\\Quickpeek\\Local\\Aplicacao\\Locais\\TempoViagem",
     "ExcluirLocais": "\\Quickpeek\\Local\\Aplicacao\\Locais\\ExcluirLocais",
     
+    "AlterarVisibilidade": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\AlterarVisibilidade",
     "CheckIn": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\CheckIn",
     "Publicar": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Publicar",
     "Seguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\Seguir",
@@ -82,7 +83,7 @@
     "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarUltimosLocais": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarUltimosLocais",
     "ListarPerfilUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPerfilUsuario",
-    "ListarConfiguracoes": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarConfiguracoes",
+    "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarAvatares": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarAvatares",
     "ListarPaisesCobertura": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPaisesCobertura",
     
