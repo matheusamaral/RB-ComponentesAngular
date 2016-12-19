@@ -72,7 +72,6 @@ CREATE TABLE `configuracoes`(
      PRIMARY KEY (`id`),
     `ativo` tinyint   ,
     `momento` datetime   ,
-    `notificacao_presenca` varchar(45)   ,
     `notificacao_publicacao` varchar(45)   ,
     `padrao_aprovacao` varchar(45)   ,
     `contato` varchar(45)   ,
@@ -133,7 +132,7 @@ CREATE TABLE `status_mensagem`(
 CREATE TABLE `mensagens`( 
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
-    `titulo` tinyint   ,
+    `titulo` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ,
     `momento_visualizado` varchar(45)   ,
@@ -161,7 +160,8 @@ CREATE TABLE `mensagens`(
     CONSTRAINT `mensagens_fk_visibilidade_mensagens_id` 
          FOREIGN KEY (`visibilidade_mensagens_id`) REFERENCES `visibilidade_mensagens` (`id`)
      ON DELETE NO ACTION
-     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+     ON UPDATE NO ACTION,
+    `visualizado` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `mensagens_excluidas`( 
     `id` int  AUTO_INCREMENT ,

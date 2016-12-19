@@ -114,10 +114,10 @@
     
     <classe nome="Notificacoes" tabela="notificacoes" namespace="Quickpeek\Acoes\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
-        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Quickpeek\Usuario\Dominio\Usuario" tabela="usuario_id"/>
-        <propriedades coluna="usuario_acao_id" atributo="usuarioAcaoId" classe="Quickpeek\Usuario\Dominio\Usuario" tabela="usuario_acao_id"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario_id"/>
+        <propriedades coluna="usuario_acao_id" atributo="usuarioAcaoId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario_id"/>
         <propriedades coluna="tipo_id" atributo="tipoId" classe="TipoNotificacoes" tabela="tipo_notificacoes"/>
-        <propriedades coluna="respostas_id" atributo="respostas_id" classe="Respostas" tabela="respostas"/>
+        <propriedades coluna="resposta_id" atributo="respostaId" classe="Respostas" tabela="respostas"/>
         <propriedades coluna="visualizado" atributo="visualizado" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>

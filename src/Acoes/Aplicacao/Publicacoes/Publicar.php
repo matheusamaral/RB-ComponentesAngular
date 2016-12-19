@@ -23,7 +23,7 @@ class Publicar {
                 $usuarioId[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
                 $localId[] = $msg->getCampoSessao('dadosUsuarioLogado,local');
             }
-
+            
             if($hashtagTitulo){
                 foreach($hashtagTitulo as $v){
                     $usuarioIdNovo[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
@@ -50,18 +50,17 @@ class Publicar {
             if($situacao){
                 $msg->setCampo('entidade', 'HashtagCategoria');
                 $msg->setCampo('HashtagCategoria::hashtagId', $hashtagId);
-                $situacao2 = $cadastro->cadastrar($msg);
-                if(!$situacao2){
-                    $msg->setResultadoEtapa(false);
-                }
+                $cadastro->cadastrar($msg);
             }else{
                 $msg->setResultadoEtapa(false);
             }
         }
+        
+        $this->enviarNotificacao($msg);
     }
+    
     private function midia($msg){
-        $arquivo = $msg->getCampo('Arquivo')->get('valor');        
-        $cadastro = Conteiner::get('Cadastro');
+        $arquivo = $msg->getCampo('Arquivo')->get('valor');
         if($arquivo){
             $caminho = Conteiner::get('Upload')->upar($arquivo, 'midia', 'mda');    
             if(!$caminho){
@@ -72,8 +71,22 @@ class Publicar {
                 $msg->setCampo('Midia::endereco', $caminho[0]['url']);
                 $msg->setCampo('Midia::localId', $msg->getCampoSessao('dadosUsuarioLogado,local'));
                 $msg->setCampo('Midia::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
-                $cadastro->cadastrar($msg);
+                Conteiner::get('Cadastro')->cadastrar($msg);
             }
+        }
+    }
+    
+    private function enviarNotificacao($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $localId = $msg->getCampo('HashtagLocal::localId')->get('valor');
+        if(!$localId){
+            $localId = $msg->getCampo('Midia::localId')->get('valor');
+        }
+        $query = Conteiner::get('ConsultaNotificacao')->consultar($usuarioId, $localId);
+        var_dump($query);
+        if(!$query){
+            
         }
     }
 }

@@ -7,7 +7,6 @@ use Rubeus\ORM\Persistente as Persistente;
         private $id = false;
         private $ativo = false;
         private $momento = false;
-        private $notificacaoPresenca = false;
         private $notificacaoPublicacao = false;
         private $padraoAprovacao = false;
         private $contato = false;
@@ -36,14 +35,6 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setMomento($momento) {
             $this->momento = $momento;
-        } 
-                
-        public function getNotificacaoPresenca() {
-            return $this->notificacaoPresenca;
-        }
-
-        public function setNotificacaoPresenca($notificacaoPresenca) {
-            $this->notificacaoPresenca = $notificacaoPresenca;
         } 
                 
         public function getNotificacaoPublicacao() {

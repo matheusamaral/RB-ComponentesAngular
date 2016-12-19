@@ -81,7 +81,9 @@ class EnviarSms {
             $return = $this->setarSmsCodigo($msg, $id, $codigo);
 
             if($return){
-                $msg->setResultadoEtapa(true);
+                $telefone = $msg->getCampo('Usuario::telefone')->get('valor');
+                $msg->setCampoSessao('dadosUsuarioLogado,telefone', $telefone);
+                $msg->setResultadoEtapa(true, false, ['telefone'=>$telefone]);
             }else{
                 $msg->setResultadoEtapa(false);
             }

@@ -55,6 +55,7 @@
     "PaginaConversas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\PaginaConversas",
     "SetarEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarEntregue",
     "SetarVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarVisualizada",
+    "SetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagensVisualizadas",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
     "LocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Locais\\LocaisPertos",
@@ -86,6 +87,7 @@
     "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarAvatares": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarAvatares",
     "ListarPaisesCobertura": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPaisesCobertura",
+    "ListarNaoVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarNaoVisualizadas",
     
     "ListarAreaMapa": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarAreaMapa",
     "ListarMidias": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarMidias",

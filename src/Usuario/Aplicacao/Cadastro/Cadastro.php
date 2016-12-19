@@ -7,10 +7,11 @@ class Cadastro {
     public function cadastro($msg){
         
         $cadastro = Conteiner::get('Cadastro');
-
+        
         $msg->setCampo('entidade', 'Usuario');
         $msg->setCampo('Usuario::endereco', $msg->getCampoSessao('salvarFoto'));
         $msg->setCampo('Usuario::smsCodigoId', $msg->getCampoSessao('smsCodigoId'));
+        $msg->setCampo('Usuario::telefone', $msg->getCampoSessao('dadosUsuarioLogado,telefone'));
         $cadastro->cadastrar($msg);
         
         $msg->setCampoSessao('dadosUsuarioLogado,id', $msg->getCampo('Usuario::id')->get('valor'));
@@ -25,12 +26,6 @@ class Cadastro {
         if($cad){
             $msg->setCampo('entidade', 'Configuracoes');
             $msg->setCampo('Configuracoes::usuarioId', $usuarioId);
-            $msg->setCampo('Configuracoes::visibilidadeId', 1);
-            $msg->setCampo('Configuracoes::notificacaoPresenca', 1);
-            $msg->setCampo('Configuracoes::notificacaoPublicacao', 1);
-            $msg->setCampo('Configuracoes::notificacaoSeguidor', 1);
-            $msg->setCampo('Configuracoes::aprovacaoSeguir', 1);
-            $msg->setCampo('Configuracoes::padraoAprovacao', 1);
             $cadastro->cadastrar($msg);
         }
     }

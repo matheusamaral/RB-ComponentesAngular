@@ -248,7 +248,7 @@ CREATE TABLE `notificacoes`(
     `usuario_acao_id` INT   ,
     INDEX `notificacoes_fk_usuario_acao_id_idx`(`usuario_acao_id` ASC),
     CONSTRAINT `notificacoes_fk_usuario_acao_id` 
-         FOREIGN KEY (`usuario_acao_id`) REFERENCES `usuario_acao_id` (`id`)
+         FOREIGN KEY (`usuario_acao_id`) REFERENCES `usuario_id` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
     `tipo_id` INT   ,
@@ -257,10 +257,10 @@ CREATE TABLE `notificacoes`(
          FOREIGN KEY (`tipo_id`) REFERENCES `tipo_notificacoes` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
-    `respostas_id` INT   ,
-    INDEX `notificacoes_fk_respostas_id_idx`(`respostas_id` ASC),
-    CONSTRAINT `notificacoes_fk_respostas_id` 
-         FOREIGN KEY (`respostas_id`) REFERENCES `respostas` (`id`)
+    `resposta_id` INT   ,
+    INDEX `notificacoes_fk_resposta_id_idx`(`resposta_id` ASC),
+    CONSTRAINT `notificacoes_fk_resposta_id` 
+         FOREIGN KEY (`resposta_id`) REFERENCES `respostas` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
     `visualizado` varchar(45)   ,
