@@ -20,7 +20,7 @@ angular.module('QuickPeek.Estrutura.TiraSelfie', [
         scope.dadosSms = {
             ddi:'55',
             numero:'',
-            codigo:''
+            codigo:true
         };
         
         if(DGlobal.dadosTelefone){

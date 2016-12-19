@@ -46,12 +46,14 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     }
     
     function createFile(path){
-        scope.arquivo = $cordovaFile.createFile(path,'perfil',true);
-        DGlobal.dadosSelfie ={
-            arquivo:scope.arquivo,
-            urlImg: path
-        };
-        
+//        var obj = {arquivo:path};
+//        
+//        DGlobal.dadosSelfie ={
+//            arquivo:scope.arquivo,
+//            urlImg: path
+//        };
+//        
+//        TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successSalvar}).salvarImg();
         Pagina.navegar({idPage:6});
     }
     

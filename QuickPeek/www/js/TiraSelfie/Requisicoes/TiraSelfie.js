@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.TiraSelfie', [
-
+    'RB.pagina'
 ])
  
-.factory('TiraSelfieRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast',
-      function (RBLoadingMobile,GCS, Config,ionicToast) {
+.factory('TiraSelfieRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
@@ -18,10 +18,11 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
             return this;
         };
 
-        function enviarSms(){
+        function salvarImg(){
             RBLoadingMobile.show();
+            console.log(dados);
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/enviarSms",
+                url: Config.getRefAmbienteReq()+"/Usuario/salvarFoto",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,11 +34,11 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         };
         
         
-        function successEnviarSms(objRetorno){
+        function successSalvar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                
+                 Pagina.navegar({idPage:6});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
@@ -49,15 +50,14 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
             OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
         };
         
-        
         function OpenToast(message) {
           ionicToast.show(message, 'bottom', false, 3000);
         }
         
         return {
             set: set,
-            enviarSms: enviarSms,
-            successEnviarSms: successEnviarSms
+            salvarImg: salvarImg,
+            successSalvar: successSalvar
         };
                            
 }]);     
