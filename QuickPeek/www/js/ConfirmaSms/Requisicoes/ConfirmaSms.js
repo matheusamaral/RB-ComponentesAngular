@@ -10,11 +10,13 @@ angular.module('QuickPeek.Requisicao.ConfirmaSms', [
         var dados;
         var scope;
         var acaoSuccess;
+        var acaoPosterior = false;
 
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
             acaoSuccess = obj.acaoSuccess;
+            if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
             return this;
         };
 
@@ -37,6 +39,7 @@ angular.module('QuickPeek.Requisicao.ConfirmaSms', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
+                if(acaoPosterior)acaoPosterior();
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);

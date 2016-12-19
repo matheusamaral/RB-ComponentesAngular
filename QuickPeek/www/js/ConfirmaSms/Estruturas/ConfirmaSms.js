@@ -41,7 +41,7 @@ angular.module('QuickPeek.HTML.ConfirmaSms', [
                         </md-input-container>\n\
                     </div>\n\
                     <div class="rb-padding-padrao remove-padding-bottom">\n\
-                        <md-input-container class="rb-input">\n\
+                        <md-input-container style="position:relative" class="rb-input">\n\
                             <input\n\
                             name="codigo"\n\
                             class="input-padrao font-grande"\n\
@@ -51,6 +51,7 @@ angular.module('QuickPeek.HTML.ConfirmaSms', [
                             <div ng-if="formCadTel.nCel.$touched && formCadTel.nCel.$invalid" ng-messages="formCadTel.codigo.$error">\n\
                                 <div ng-if="!formCadTel.nCel.$error.mask" ng-message="required">Este campo é obrigatório.</div>\n\
                             </div>\n\
+                            <p ng-if="!dadosSms.codigo" class="msg-erro">Não foi possível verificar automaticamente seu SMS, por favor, verifique manualmente</p>\n\
                         </md-input-container>\n\
                     </div>\n\
                     <div class="rb-padding-padrao remove-padding-top">\n\

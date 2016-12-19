@@ -11,6 +11,13 @@
     bottom:0;
 }
 
+.msg-erro{
+    position: absolute;
+    bottom: 0;
+    font-size: 9px;
+    color: #c11818;
+}
+
 .box-shadow-padrao{
     box-shadow: 1px 2px 8px #929292;
 }
