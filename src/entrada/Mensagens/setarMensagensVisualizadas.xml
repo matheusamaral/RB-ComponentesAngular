@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="setarMensagensVisualizadas" modulo="Mensagens">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="setar-mensagens-visualizadas" tipo="tarefa">
+            <entidade nome="SetarMensagensVisualizadas" metodo="setarMensagensVisualizadas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

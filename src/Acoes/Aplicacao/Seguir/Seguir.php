@@ -13,6 +13,8 @@ class Seguir {
             if($query['padraoAprovacao'] == 0){
                 $msg->setCampo('Seguir::confirmarSeguir', 1);
                 $msg->setCampo('Seguir::momentoConfirmarSeguir', date('Y-m-d H:i:s'));
+            }else{
+                $this->enviarNotificacao($msg);
             }
             $msg->setCampo('entidade', 'Seguir');
             $msg->setCampo('Seguir::usuarioId', $usuarioId);
@@ -20,5 +22,16 @@ class Seguir {
         }else{
             $msg->setResultadoEtapa(false);
         }
+    }
+    
+    private function enviarNotificacao($msg){
+        
+        $usuarioAcaoId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $usuarioId = $msg->getCampo('Seguir::usuarioSeguirId')->get('valor');
+        $msg->setCampo('entidade', 'Notificacoes');
+        $msg->setCampo('Notificacoes::usuarioId', $usuarioId);
+        $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioAcaoId);
+        $msg->setCampo('Notificacoes::tipoId', 1);
+        Conteiner::get('Cadastro')->cadastrar($msg);
     }
 }

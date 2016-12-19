@@ -10,9 +10,9 @@ class Perguntas {
         $localId = $msg->getCampo('Perguntas::localId')->get('valor');
         
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
-        $query = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId, $tempo['limitePerguntas']);
+        $perguntas = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId, $tempo['limitePerguntas']);
         
-        if(count($query) < 3){
+        if(count($perguntas) < 3){
             $cadastro = Conteiner::get('Cadastro');
             
             $msg->setCampo('entidade', 'Perguntas');
@@ -24,18 +24,13 @@ class Perguntas {
             
             $msg->setCampo('Perguntas::usuarioId', $usuarioId);
             $cadastro->cadastrar($msg);
-            $this->enviarNotificacao($msg);
         }else{
             $datetime1 = new \DateTime(date('Y-m-d H:i:s'));
-            $datetime2 = new \DateTime($query[0]['momento']);   
+            $datetime2 = new \DateTime($perguntas[0]['momento']);
             
             $intervalo = $datetime1->diff($datetime2);
             $minutos = ($intervalo->h * 60) + $intervalo->i;
             $msg->setResultadoEtapa(false, false, ['dados'=>$minutos]);
         }
-    }
-    
-    private function enviarNotificacao($msg){
-        
     }
 }

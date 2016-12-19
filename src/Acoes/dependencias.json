@@ -10,6 +10,8 @@
     "ConsultaDescurtirHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirHashtag",
     "ConsultaUsuarioPergunta": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaUsuarioPergunta",
     "ConsultaCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaCheckIn",
+    "ConsultaSeguirId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguirId",
+    "ConsultaNotificacao": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaNotificacao",
     
     "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

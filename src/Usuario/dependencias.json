@@ -7,6 +7,7 @@
     "ConsultaConversa": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaConversa",
     "ConsultaPaginaConversas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaPaginaConversas",
     "ConsultaSetarVisualizada": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarVisualizada",
+    "ConsultaSetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarMensagensVisualizadas",
     "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "ConsultaListarUltimosLocais": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarUltimosLocais",
     "ConsultaListarPerfilUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPerfilUsuario",
@@ -17,5 +18,6 @@
     "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "ConsultaVerificarNumero": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarNumero",
     "ConsultaListarPaisesCobertura": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPaisesCobertura",
-    "ConsultaVerificarEdicao": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarEdicao"
+    "ConsultaVerificarEdicao": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarEdicao",
+    "ConsultaListarNaoVisualizadas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarNaoVisualizadas"
 }

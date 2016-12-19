@@ -8,7 +8,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $usuarioId = false;
         private $usuarioAcaoId = false;
         private $tipoId = false;
-        private $respostas_id = false;
+        private $respostaId = false;
         private $visualizado = false;
         private $ativo = false;
         private $momento = false; 
@@ -23,24 +23,24 @@ use Rubeus\ORM\Persistente as Persistente;
             
         public function getUsuarioId() {
             if(!$this->usuarioId)
-                    $this->usuarioId = new Quickpeek\Usuario\Dominio\Usuario(); 
+                    $this->usuarioId = new \Quickpeek\Usuario\Dominio\Usuario(); 
             return $this->usuarioId;
         }
 
         public function setUsuarioId($usuarioId) {
-            if($usuarioId instanceof Quickpeek\Usuario\Dominio\Usuario)
+            if($usuarioId instanceof \Quickpeek\Usuario\Dominio\Usuario)
                 $this->usuarioId = $usuarioId;
             else $this->getUsuarioId()->setId($usuarioId);
         } 
             
         public function getUsuarioAcaoId() {
             if(!$this->usuarioAcaoId)
-                    $this->usuarioAcaoId = new Quickpeek\Usuario\Dominio\Usuario(); 
+                    $this->usuarioAcaoId = new \Quickpeek\Usuario\Dominio\Usuario(); 
             return $this->usuarioAcaoId;
         }
 
         public function setUsuarioAcaoId($usuarioAcaoId) {
-            if($usuarioAcaoId instanceof Quickpeek\Usuario\Dominio\Usuario)
+            if($usuarioAcaoId instanceof \Quickpeek\Usuario\Dominio\Usuario)
                 $this->usuarioAcaoId = $usuarioAcaoId;
             else $this->getUsuarioAcaoId()->setId($usuarioAcaoId);
         } 
@@ -57,16 +57,16 @@ use Rubeus\ORM\Persistente as Persistente;
             else $this->getTipoId()->setId($tipoId);
         } 
             
-        public function getRespostas_id() {
-            if(!$this->respostas_id)
-                    $this->respostas_id = new Respostas(); 
-            return $this->respostas_id;
+        public function getRespostaId() {
+            if(!$this->respostaId)
+                    $this->respostaId = new Respostas(); 
+            return $this->respostaId;
         }
 
-        public function setRespostas_id($respostas_id) {
-            if($respostas_id instanceof Respostas)
-                $this->respostas_id = $respostas_id;
-            else $this->getRespostas_id()->setId($respostas_id);
+        public function setRespostaId($respostaId) {
+            if($respostaId instanceof Respostas)
+                $this->respostaId = $respostaId;
+            else $this->getRespostaId()->setId($respostaId);
         } 
                 
         public function getVisualizado() {

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarNaoVisualizadas" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-nao-visualizadas" tipo="tarefa">
+            <entidade nome="ListarNaoVisualizadas" metodo="listarNaoVisualizadas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -16,7 +16,6 @@ class ConsultaListarDadosUsuario {
                 ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.padrao_aprovacao', 'contaPrivada')
                 ->add('c.notificacao_publicacao', 'notificacaoPublicacao')
-                ->add('c.notificacao_presenca', 'notificacaoPresenca')
                 ->add('count(distinct b.id)', 'bloqueados');
         $query->from('usuario', 'u');
         $query->join('configuracoes', 'c')

@@ -42,7 +42,6 @@
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
-        <propriedades coluna="notificacao_presenca" atributo="notificacaoPresenca" type="varchar(45)"/>
         <propriedades coluna="notificacao_publicacao" atributo="notificacaoPublicacao" type="varchar(45)"/>
         <propriedades coluna="padrao_aprovacao" atributo="padraoAprovacao" type="varchar(45)"/>
         <propriedades coluna="contato" atributo="contato" type="varchar(45)"/>
@@ -83,7 +82,7 @@
     
     <classe nome="Mensagens" tabela="mensagens" namespace="Quickpeek\Usuario\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
-        <propriedades coluna="titulo" atributo="titulo" type="tinyint"/>
+        <propriedades coluna="titulo" atributo="titulo" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
         <propriedades coluna="momento_visualizado" atributo="momentoVisualizado" type="varchar(45)"/>
@@ -92,6 +91,7 @@
         <propriedades coluna="usuario_mensagem_id" atributo="usuarioMensagemId" classe="Usuario" tabela="usuario"/>
         <propriedades coluna="status_mensagem_id" atributo="statusMensagemId" classe="StatusMensagem" tabela="status_mensagem"/>
         <propriedades coluna="visibilidade_mensagens_id" atributo="visibilidadeMensagensId" classe="VisibilidadeMensagens" tabela="visibilidade_mensagens"/>
+        <propriedades coluna="visualizado" atributo="visualizado" type="varchar(45)"/>
     </classe>
       
     <classe nome="MensagensExcluidas" tabela="mensagens_excluidas" namespace="Quickpeek\Usuario\Dominio" id="">
