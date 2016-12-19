@@ -16,10 +16,10 @@
     color:#ffb800;
 }
 
-.box-avatar{
+.box-avatar-cad{
     background-color: #fbfbfb;
-    background-image: url(/img/90.svg);
-    background-repeat: repeat !important;
+    background-image: url(../../../img/90.svg);
+    background-repeat: no-repeat !important;
     background-size: cover !important;
 }
 
@@ -64,4 +64,11 @@
     color: #ffb800;
     font-size: 20px !important;
     line-height: 27px;
+}
+
+.box-img-cad{
+    background-size: contain;
+    margin: auto !important;
+    background-repeat: no-repeat;
+    background-position: center;
 }

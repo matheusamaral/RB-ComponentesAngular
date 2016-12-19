@@ -13,37 +13,21 @@ angular.module('QuickPeek.HTML.Avatares', [
                         </button>\n\
                     </div>\n\
                     <div style="margin-left: auto;">\n\
-                        <button ng-click="pular()" ng-disabled="!avatares.selecionado" class="btn-txt-direita button button-positive">\n\
+                        <button ng-click="mudarAvatar()" class="btn-txt-direita button button-positive">\n\
                             ACEITAR\n\
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div class="row" style="margin-top:80px !important">\n\
-                    <div class="col">\n\
-                        <div class="box-avatar btn-redondo-grande" style="background-image: url(img/Animais/anteater.svg)"></div>\n\
-                        <p class="col font-preta titulo-avatar">Nome do avatar</p>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="box-avatar btn-redondo-grande" style="background-image: url(img/Animais/bat.svg)"></div>\n\
-                        <p class="col font-preta titulo-avatar">Nome do avatar</p>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="box-avatar btn-redondo-grande" style="background-image: url(img/Animais/bear.svg)"></div>\n\
-                        <p class="col font-preta titulo-avatar">Nome do avatar</p>\n\
-                    </div>\n\
-                </div>\n\
-                <div class="row">\n\
-                    <div class="col">\n\
-                        <div class="box-avatar btn-redondo-grande" style="background-image: url(img/Animais/bee.svg)"></div>\n\
-                        <p class="col font-preta titulo-avatar">Nome do avatar</p>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="box-avatar btn-redondo-grande" style="background-image: url(img/Animais/bird.svg)"></div>\n\
-                        <p class="col font-preta titulo-avatar">Nome do avatar</p>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="box-avatar btn-redondo-grande" style="background-image: url(img/Animais/boar.svg)"></div>\n\
-                        <p class="col font-preta titulo-avatar">Nome do avatar</p>\n\
+                <div ng-repeat="linhaAvatar in objAvatares" \n\
+                ng-class="{\'margin-barra\' : $index == 0}"\n\
+                class="row">\n\
+                    <div class="col" ng-repeat="avatar in linhaAvatar">\n\
+                        <div\n\
+                        ng-class="{\'borda-dourada\' : avatar.selecionado}"\n\
+                        ng-click="selecionarAvatar(avatar.id)" \n\
+                        class="box-avatar btn-redondo-grande" \n\
+                        style="background-image: url({{avatar.endereco}})"></div>\n\
+                        <p ng-class="{\'font-dourada\' : avatar.selecionado}" class="col font-preta titulo-avatar">{{avatar.nome}}</p>\n\
                     </div>\n\
                 </div>';
     };        

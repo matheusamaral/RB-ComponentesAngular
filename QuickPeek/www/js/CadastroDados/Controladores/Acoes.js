@@ -2,11 +2,12 @@
 
 angular.module('QuickPeek.Acoes.CadastroDados', [ 
     'RB.pagina',
-    'QuickPeek.Requisicao.CadastroDados'
+    'QuickPeek.Requisicao.CadastroDados',
+    'RB.validacoesPadroes'
 ])
 
-.factory('CadastroDadosAcoes', ['Pagina','CadastroDadosRequisicoes','$ionicPopup',
-    function(Pagina,CadastroDadosRequisicoes,$ionicPopup) {
+.factory('CadastroDadosAcoes', ['Pagina','CadastroDadosRequisicoes','$ionicPopup','VP',
+    function(Pagina,CadastroDadosRequisicoes,$ionicPopup,VP){
     var scope;  
     
     function setScope(obj){
@@ -23,6 +24,7 @@ angular.module('QuickPeek.Acoes.CadastroDados', [
     }
     
     function cadastrar(){
+        scope.dados.nascimento = VP.formataDataBanco(scope.dados.nascimentoVisao);
         CadastroDadosRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:CadastroDadosRequisicoes.successCadastrar}).cadastrar();
     }  
     
@@ -35,14 +37,17 @@ angular.module('QuickPeek.Acoes.CadastroDados', [
     
     function irAvatares(){
         Pagina.navegar({idPage:7});
+        DGlobal.dadosCadastro = scope.dados;
     }
     
     function voltarSelfie(){
         Pagina.navegar({idPage:5});
+        DGlobal.dadosCadastro = scope.dados;
     }
     
     function voltarPerfil(){
         Pagina.navegar({idPage:8});
+        DGlobal.dadosCadastro = scope.dados;
     }
     
     return {

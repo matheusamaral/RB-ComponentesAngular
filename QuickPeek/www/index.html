@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    
     <title></title>
 
     <link rel="manifest" href="manifest.json">
@@ -45,8 +46,7 @@
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <script src="lib/angular-route/angular-route.min.js"></script>
-    <script src="lib/angular-cookies/angular-cookies.min.js"></script>   
-    <script src="lib/angular-animate/angular-animate.min.js"></script>   
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>    
     <script src="lib/angular-aria/angular-aria.min.js"></script>   
     <script src="lib/angular-material/angular-material.min.js"></script>   
     <script src="lib/angular-material/angular-material-mocks.js"></script>   
@@ -180,7 +180,7 @@
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:"pag-comece-agora", acao:"ComeceAgoraCtrl"};
+        DGlobal.acaoCliente = {classe:"pag-cadastro-dados", acao:"CadastroDadosCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://192.168.0.121:8000/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
@@ -190,6 +190,7 @@
     </script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    
   </head>
   <body style="background-color:transparent !important">
       <div ng-view when-ready class="corpo-conteudo">
