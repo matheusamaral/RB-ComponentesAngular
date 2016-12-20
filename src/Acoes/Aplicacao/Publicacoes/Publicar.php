@@ -79,12 +79,9 @@ class Publicar {
     private function enviarNotificacao($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $localId = $msg->getCampo('HashtagLocal::localId')->get('valor');
-        if(!$localId){
-            $localId = $msg->getCampo('Midia::localId')->get('valor');
-        }
+        $localId = $msg->getCampoSessao('dadosUsuarioLogado,local');
+        
         $query = Conteiner::get('ConsultaNotificacao')->consultar($usuarioId, $localId);
-        var_dump($query);
         if(!$query){
             
         }
