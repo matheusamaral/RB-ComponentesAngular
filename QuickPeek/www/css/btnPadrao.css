@@ -55,6 +55,7 @@
     width: 100px !important;
     height: 100px;
     position: relative;
+    display: block;
 }
 
 .btn-redondo-grande-cinza{
