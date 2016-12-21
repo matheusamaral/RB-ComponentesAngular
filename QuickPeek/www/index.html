@@ -45,10 +45,12 @@
     <script src="cordova.js"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
-    <script src="lib/angular-route/angular-route.min.js"></script>
+    <!--<script src="lib/angular-route/angular-route.min.js"></script>-->
+    <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="lib/angular-cookies/angular-cookies.min.js"></script>    
     <script src="lib/angular-aria/angular-aria.min.js"></script>   
-    <script src="lib/angular-material/angular-material.min.js"></script>   
+    <script src="lib/angular-material/angular-material.min.js"></script> 
+    <script src="lib/angular-base64/angular-base64.js"></script>
     <script src="lib/angular-material/angular-material-mocks.js"></script>   
     <script src="lib/angular-ui-mask/dist/mask.js"></script>   
     <script src="lib/angular-messages/angular-messages.min.js"></script>   
@@ -147,7 +149,7 @@
     <script src="js/ConfigConta/Estruturas/ConfigConta.js"></script>
     <link href="js/ConfigConta/Estruturas/ConfigConta.css" rel="stylesheet"> 
     
-    <!--configuracoes conta-->
+    <!--pessoas bloq-->
     <script src="js/PessoasBloqueadas/Controladores/PessoasBloqueadas.js"></script>
     <script src="js/PessoasBloqueadas/Controladores/Estrutura.js"></script>
     <script src="js/PessoasBloqueadas/Controladores/Acoes.js"></script>
@@ -177,10 +179,27 @@
     <script src="js/ApagarConta/Estruturas/ApagarConta.js"></script>
     <script src="js/ApagarConta/Requisicoes/ApagarConta.js"></script>
     <link href="js/ApagarConta/Estruturas/ApagarConta.css" rel="stylesheet"> 
+    
+    <!--Seguidores-->
+    <script src="js/Seguidores/Controladores/Seguidores.js"></script>
+    <script src="js/Seguidores/Controladores/Estrutura.js"></script>
+    <script src="js/Seguidores/Controladores/Acoes.js"></script>
+    <script src="js/Seguidores/Estruturas/Seguidores.js"></script>
+    <script src="js/Seguidores/Requisicoes/Seguidores.js"></script>
+    <link href="js/Seguidores/Estruturas/Seguidores.css" rel="stylesheet"> 
+    
+    <!--Seguindo-->
+    <script src="js/Seguindo/Controladores/Seguindo.js"></script>
+    <script src="js/Seguindo/Controladores/Estrutura.js"></script>
+    <script src="js/Seguindo/Controladores/Acoes.js"></script>
+    <script src="js/Seguindo/Estruturas/Seguindo.js"></script>
+    <script src="js/Seguindo/Requisicoes/Seguindo.js"></script>
+    <link href="js/Seguindo/Estruturas/Seguindo.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:"pag-cadastro-dados", acao:"CadastroDadosCtrl"};
+        DGlobal.acaoCliente = {classe:"pag-tira-selfie", acao:"TiraSelfieCtrl"};
+        //DGlobal.acaoCliente = {classe:"pag-comece-agora", acao:"ComeceAgoraCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://192.168.0.121:8000/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
@@ -192,8 +211,8 @@
     <script src="js/app.js"></script>
     
   </head>
-  <body style="background-color:transparent !important">
-      <div ng-view when-ready class="corpo-conteudo">
+  <body>
+      <div ui-view when-ready class="corpo-conteudo" >
       </div>
   </body>
 </html>

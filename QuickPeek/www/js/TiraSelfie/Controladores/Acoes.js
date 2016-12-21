@@ -4,11 +4,12 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     'RB.pagina',
     'QuickPeek.Requisicao.TiraSelfie',
     'Cmp.CameraPreview',
-    'Cmp.ImagePicker'
+    'Cmp.ImagePicker',
+    'RB.validacoesPadroes'
 ])
 
-.factory('TiraSelfieAcoes', ['Pagina','TiraSelfieRequisicoes','CameraPreview','$timeout','ImagePicker','$cordovaFile',
-    function(Pagina,TiraSelfieRequisicoes,CameraPreview,$timeout,ImagePicker,$cordovaFile){
+.factory('TiraSelfieAcoes', ['Pagina','TiraSelfieRequisicoes','CameraPreview','$timeout','ImagePicker','$cordovaFile','RBLoadingMobile','VP','$base64',
+    function(Pagina,TiraSelfieRequisicoes,CameraPreview,$timeout,ImagePicker,$cordovaFile,RBLoadingMobile,VP,$base64){
     var scope;  
     
     function setScope(obj){
@@ -28,6 +29,10 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     
     function mostrarCamera(){
         scope.cameraPerfil.mostrar();
+        scope.cameraPerfil.img = '';
+        scope.cameraPerfil.fotoTirada = false;
+        scope.cameraPerfil.galeria = false;
+        //scope.cameraPerfil.mostrar();
     }
     
     function virarCamera(){
@@ -35,7 +40,6 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     }
     
     function abrirGaleria(){
-        scope.functionsdsd = scope.functionsdsd + 1;
         scope.cameraPerfil.img = false;
         ImagePicker.setScope(scope).iniciar('cameraPerfil');
     }
@@ -46,18 +50,21 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     }
     
     function createFile(path){
-//        var obj = {arquivo:path};
-//        
-//        DGlobal.dadosSelfie ={
-//            arquivo:scope.arquivo,
-//            urlImg: path
-//        };
-//        
-//        TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successSalvar}).salvarImg();
-        Pagina.navegar({idPage:6});
+        var obj = {arquivo:$base64.encode(toString(path))};
+        DGlobal.dadosSelfie ={
+            urlImg: path
+        };
+        
+        TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successSalvar}).salvarImg();
+    }
+    
+    function tirarFoto(evento){
+        VP.pararEvento(evento);
+        scope.cameraPerfil.tirarFoto();
     }
     
     function pular(){
+        scope.cameraPerfil.pararCamera();
         Pagina.navegar({idPage:6});
     }
     
@@ -68,6 +75,7 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
         abrirGaleria:abrirGaleria,
         virarCamera:virarCamera,
         createFile:createFile,
-        pular:pular
+        pular:pular,
+        tirarFoto:tirarFoto
     };
  }]);

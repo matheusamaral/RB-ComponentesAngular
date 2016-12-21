@@ -17,7 +17,7 @@ angular.module('QuickPeek.HTML.ConfigConta', [
                     <div class="col remove-padding">\n\
                         <div ng-click="popupVisto()" class="col remove-padding">\n\
                             <p class="titulo-sessao">Ao marcar presença em um local, seu perfil estará disponível para quem?</p>\n\
-                            <p class="conteudo-sessao">Ninguém</p>\n\
+                            <p class="conteudo-sessao">{{dados.visibilidadeTitulo}}</p>\n\
                         </div>\n\
                     </div>\n\
                 </div>\n\
@@ -71,7 +71,7 @@ angular.module('QuickPeek.HTML.ConfigConta', [
     function montar() {
         return '<div class="col remove-padding">\n\
                     <md-radio-group ng-model="dados.vistoUltimo">\n\
-                        <md-radio-button ng-repeat="op in dados.vistoUltimoOp" value="{{op.id}}" class="md-primary">{{op.titulo}}</md-radio-button>\n\
+                        <md-radio-button ng-click="attVisibilidade(op.titulo,op.id)" ng-repeat="op in dados.vistoUltimoOp" value="{{op.id}}" class="md-primary">{{op.titulo}}</md-radio-button>\n\
                     </md-radio-group>\n\
                 </div>';
     };        

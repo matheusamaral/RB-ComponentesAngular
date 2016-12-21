@@ -8,12 +8,12 @@ angular.module('QuickPeek.HTML.MudarNumero', [
     function montar() {
         return '<div class="row bar bar-header bar-positive">\n\
                     <div>\n\
-                        <button ng-click="voltarPerfil()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="voltarConfig()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>Mudar n°\n\
                         </button>\n\
                     </div>\n\
                     <div style="margin-left: auto;">\n\
-                        <button ng-click="pular()" ng-disabled="formCad.$invalid" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="avancar()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-checkmark seta-barra"></i>Avançar\n\
                         </button>\n\
                     </div>\n\

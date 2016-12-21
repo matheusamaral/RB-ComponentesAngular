@@ -18,13 +18,13 @@ angular.module('QuickPeek.Acoes.MudarNumeroFinal', [
         $('ion-side-menu-content').addClass('background-cinza');
     }
     
-    function voltarConfig(){
-        Pagina.navegar({idPage:11});
+    function voltarNumero(){
+        Pagina.navegar({idPage:12});
     }
     
     return {
         setScope:setScope,
-        voltarConfig:voltarConfig
+        voltarNumero:voltarNumero
     };
     
  }]);

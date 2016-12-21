@@ -9,9 +9,9 @@ angular.module('QuickPeek.HTML.Perfil', [
         return tabs()+'\n\
                 <div class="row" style="padding:0;padding-top:90px !important">\n\
                     <div class="col col-25 remove-padding">\n\
-                        <div style="remove-padding; margin: auto;" class="btn-redondo-grande-cinza-perfil">\n\
+                        <div style="background-image:url({{dados.urlImg}});remove-padding; margin: auto;" class="box-img-cad btn-redondo-grande-cinza-perfil">\n\
                         </div>\n\
-                        <p class="col font-preta-perfil negrito remove-padding">Renato Silva</p>\n\
+                        <p class="col font-preta-perfil negrito remove-padding">{{dados.nome}}</p>\n\
                     </div>\n\
                     <div class="col remove-padding">\n\
                         <div class="row remove-padding">\n\
@@ -19,11 +19,11 @@ angular.module('QuickPeek.HTML.Perfil', [
                                 <p class="remove-padding col font-preta-perfil negrito">802</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">posts</p>\n\
                             </div>\n\
-                            <div class="col text-center remove-padding">\n\
+                            <div ng-click="irSeguidores()" class="col text-center remove-padding">\n\
                                 <p class="remove-padding col font-preta-perfil negrito">711</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">seguidores</p>\n\
                             </div>\n\
-                            <div class="col text-center remove-padding">\n\
+                            <div ng-click="irSeguindo()" class="col text-center remove-padding">\n\
                                 <p class="remove-padding col font-preta-perfil negrito">900</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">seguindo</p>\n\
                             </div>\n\
@@ -33,7 +33,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                                 <i class="icon ion-person config-icons-perfil"></i> Editar seu perfil\n\
                             </button>\n\
                             <button ng-click="irConfiguracoes()" class="btn-perfil button button-outline button-stable">\n\
-                                <i class="icon ion-gear-b config-icons-perfil"></i> Confgurações\n\
+                                <i class="icon ion-gear-b config-icons-perfil"></i> Configurações\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
@@ -44,12 +44,12 @@ angular.module('QuickPeek.HTML.Perfil', [
     };  
     
     function sessaoAvatar(){
-        return'<div class="box-shadow-padrao-barra row box-avatar" style="margin-top:20px !important; padding-top:20px;">\n\
+        return'<div class="box-shadow-padrao-barra row box-avatar-cad" style="margin-top:20px !important; padding-top:20px;">\n\
                     <div class="col col-25 remove-padding">\n\
-                        <div style="margin: auto;background-image: url(img/Animais/anteater.svg)" \n\
+                        <div style="margin: auto;background-image: url({{dados.avatar.endereco}})" \n\
                         class="btn-perfil-medio box-img-cad">\n\
                         </div>\n\
-                        <p class="col font-preta negrito">Tatu Feliz</p>\n\
+                        <p class="col font-preta negrito">{{dados.avatar.nome}}</p>\n\
                     </div>\n\
                     <div class="col col-center remove-padding">\n\
                         <button ng-click="editarAvatar()" style="line-height: 20px;" class="row btn-perfil-full btn-att-avatar button button-outline button-stable">\n\
@@ -68,7 +68,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                         <div class="row text-center">\n\
                             <p class="p-local-grande">Cais do Chopp</p>\n\
                         </div>\n\
-                        <div class="row text-center remove-padding" style="padding-top: 15px !important;">\n\
+                        <div class="row text-center remove-padding" style="padding-top: 25px !important;">\n\
                             <div class="col remove-padding">\n\
                                 <button class="btn-perfil-clear button button-clear button-positive">\n\
                                     <i style="margin-right: 10px;" class="icon ion-android-globe"></i>Alterar privacidade\n\
@@ -93,6 +93,18 @@ angular.module('QuickPeek.HTML.Perfil', [
                         <div class="col box-ultimo-local rb-padding-padrao">\n\
                             <p class="titulo-local">Bar do Broa</p>\n\
                             <p class="descricao-local">19 km. há 2 minutos</p>\n\
+                        </div>\n\
+                        <div class="col box-ultimo-local rb-padding-padrao">\n\
+                            <p class="titulo-local">Deck</p>\n\
+                            <p class="descricao-local">19 km. há 10 horas</p>\n\
+                        </div>\n\
+                        <div class="col box-ultimo-local rb-padding-padrao">\n\
+                            <p class="titulo-local">Bar do Broa</p>\n\
+                            <p class="descricao-local">19 km. há 15 horas</p>\n\
+                        </div>\n\
+                        <div class="col box-ultimo-local rb-padding-padrao">\n\
+                            <p class="titulo-local">Reduto</p>\n\
+                            <p class="descricao-local">19 km. há 17 horas</p>\n\
                         </div>\n\
                     </div>\n\
                 </div>';

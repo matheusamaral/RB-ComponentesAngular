@@ -22,15 +22,28 @@ angular.module('QuickPeek.Acoes.Avatares', [
     }  
     
     function voltarCad(){
-        if(scope.avatares.editando)
+        if(DGlobal.avatarSelecionado && DGlobal.avatarSelecionado.perfil){
             Pagina.navegar({idPage:8});
-        else
-            Pagina.navegar({idPage:6});
+        }else{
+            if(scope.avatares.editando)
+                Pagina.navegar({idPage:8});
+            else
+                Pagina.navegar({idPage:6});
+        }
     }
     
     function mudarAvatar(){
-        DGlobal.avatarSelecionado = scope.avatarSelecionado;
-        Pagina.navegar({idPage:6});
+        if(DGlobal.avatarSelecionado && DGlobal.avatarSelecionado.perfil){
+            Pagina.navegar({idPage:8});
+            DGlobal.avatarSelecionado = scope.avatarSelecionado;
+        }else{
+            DGlobal.avatarSelecionado = scope.avatarSelecionado;
+            if(DGlobal.dadosEditar){
+                delete DGlobal.dadosEditar;
+                Pagina.navegar({idPage:8});
+            }else
+                Pagina.navegar({idPage:6});
+        }
     }
     
     function selecionarAvatar(id){
@@ -42,6 +55,7 @@ angular.module('QuickPeek.Acoes.Avatares', [
             }
             else scope.avatares[i].selecionado = false;
         }
+        scope.avatarMarcado = true;
     }
     
     return {

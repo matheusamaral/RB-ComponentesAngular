@@ -23,12 +23,24 @@ angular.module('QuickPeek.Estrutura.ConfirmaSms', [
             codigo:''
         };
         
-        if(DGlobal.dadosTelefone){
-            scope.dadosSms = DGlobal.dadosTelefone;
+        if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
+            scope.dadosSms.ddi = separaDdi(DGlobal.dadosUsuario.dados.telefone).ddi;
+            scope.dadosSms.numero = separaDdi(DGlobal.dadosUsuario.dados.telefone).num;
         }
         
         scope.ddis = VP.getDDiPaises();
     };
+    
+    function separaDdi(num){
+        var tel = {ddi:'',num:''};
+        var numeroQuebrado = num.split('');
+        tel.ddi = numeroQuebrado[0]+numeroQuebrado[1];
+        for(var i = 2; i < numeroQuebrado.length;i++){
+            tel.num = tel.num+numeroQuebrado[i];
+        }
+        
+        return tel;
+    }
   
     return {
         setScope:setScope,

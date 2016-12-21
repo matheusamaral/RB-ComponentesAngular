@@ -12,6 +12,8 @@ angular.module('QuickPeek.PessoasBloqueadas', [
         PessoasBloqueadasAcoes.setScope($scope);
         
         $scope.voltarConfig = PessoasBloqueadasAcoes.voltarConfig;
+        $scope.popupDesbloquear = PessoasBloqueadasAcoes.popupDesbloquear;
+        $scope.desbloquear = PessoasBloqueadasAcoes.desbloquear;
     }
 ])
 

@@ -1,7 +1,7 @@
 angular.module('QuickPeek', [
     'ionic',
     'ionic-toast',
-    'ngRoute',
+    'ui.router',
     'ngMaterial',
     'ngCordova',
     'RB.GD',
@@ -23,7 +23,10 @@ angular.module('QuickPeek', [
     'QuickPeek.PessoasBloqueadas',
     'QuickPeek.MudarNumero',
     'QuickPeek.MudarNumeroFinal',
-    'QuickPeek.ApagarConta'
+    'QuickPeek.ApagarConta',
+    'QuickPeek.Seguidores',
+    'QuickPeek.Seguindo',
+    'base64'
 ])
 
 .run(function($ionicPlatform) {
@@ -37,25 +40,6 @@ angular.module('QuickPeek', [
       StatusBar.styleDefault();
     }
   });
-})
-
-.config(['$locationProvider', function($locationProvider) {
-//    if(window.history && window.history.pushState) $locationProvider.html5Mode(true);
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
-    
-//    $ionicConfigProvider.scrolling.jsScrolling(true);
-    
-}])
-
-
-
-.config(function($sceProvider) {
-    //Não recomendavel utilizar
-    //https://docs.angularjs.org/api/ng/service/$sce
-    $sceProvider.enabled(false);
 })
 
 .config(function( $mdGestureProvider ) {

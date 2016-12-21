@@ -26,6 +26,7 @@ angular.module('QuickPeek.Acoes.ConfirmaNumero', [
     
     function addCss(){
         $('ion-side-menu-content').addClass('background-cinza');
+        $('#nCel').mask('(99)999999999');
     }
     
     function cadastrarNumero(){

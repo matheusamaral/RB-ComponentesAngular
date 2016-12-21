@@ -14,14 +14,12 @@ angular.module('QuickPeek.Acoes.PessoasBloqueadas', [
         return this;
     };
     
-    function popupContaPrivada(){
+    function popupDesbloquear(){
         scope.desbloquearPopup = $ionicPopup.alert({
             scope:scope,
-            title: 'Alterar para conta privada?',
+            title: '',
             template: PessoasBloqueadasHtmlPopup.montar(),
-            buttons:[
-                {text:'CANCELAR',type:['button-stable','button-outline']}
-            ]
+            buttons:false
         });
     }
     
@@ -29,10 +27,16 @@ angular.module('QuickPeek.Acoes.PessoasBloqueadas', [
         Pagina.navegar({idPage:10});
     }
     
+    function desbloquear(){
+        scope.dados.pessoas = new Array();
+        scope.desbloquearPopup.close();
+    }
+    
     return {
         setScope:setScope,
-        popupContaPrivada:popupContaPrivada,
-        voltarConfig:voltarConfig
+        popupDesbloquear:popupDesbloquear,
+        voltarConfig:voltarConfig,
+        desbloquear:desbloquear
     };
     
  }]);

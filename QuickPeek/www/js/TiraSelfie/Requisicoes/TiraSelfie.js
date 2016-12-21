@@ -37,10 +37,12 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         function successSalvar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
+            alert(dados.arquivo);
             if(objRetorno.success === true) {
+                 alert('asasas');
                  Pagina.navegar({idPage:6});
-            }
-            else{
+            }else{
+                alert('asasas else');
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };

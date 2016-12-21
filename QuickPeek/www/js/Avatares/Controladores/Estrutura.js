@@ -19,7 +19,7 @@ angular.module('QuickPeek.Estrutura.Avatares', [
     function popular(){
         if(DGlobal.avatares && DGlobal.avatares.success){
             scope.objAvatares = new Array();
-            estruturaLinhas(0,2);
+            estruturaLinhas();
         }
     };
     
@@ -29,8 +29,10 @@ angular.module('QuickPeek.Estrutura.Avatares', [
         for(var i = 0; i < scope.avatares.length; i++){
             contAvatares++;
             if(DGlobal.avatarSelecionado){
-                if(DGlobal.avatarSelecionado.id == scope.avatares[i].id)
+                if(DGlobal.avatarSelecionado.id == scope.avatares[i].id){
                     scope.avatares[i].selecionado = true;
+                    scope.avatarSelecionado = scope.avatares[i];
+                }
             }
             linhaAvatar.push(scope.avatares[i]);
             if(contAvatares == 3 || (contAvatares != 3 && i == scope.avatares.length - 1)){
@@ -38,6 +40,14 @@ angular.module('QuickPeek.Estrutura.Avatares', [
                 linhaAvatar = new Array();
                 contAvatares = 0;
             }
+        }
+        verificaAvatarSelecionado();
+    }
+    
+    function verificaAvatarSelecionado(){
+        scope.avatarMarcado = false;
+        for(var i = 0; i < scope.avatares.length; i++){
+            if(scope.avatares[i].selecionado == true)scope.avatarMarcado = true;
         }
     }
     
@@ -66,8 +76,6 @@ angular.module('QuickPeek.Estrutura.Avatares', [
             DGlobal.avatares = objRetorno;
             if(DGlobal.avatares && DGlobal.avatares.success){
                 scope.avatares = DGlobal.avatares.dados;
-                console.log('scope.avatares');
-                console.log(scope.avatares);
             }
         }
         else{

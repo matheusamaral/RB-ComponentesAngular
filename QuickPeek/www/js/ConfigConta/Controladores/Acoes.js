@@ -15,7 +15,7 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
     };
     
     function popupVisto(){
-        var alertPopup = $ionicPopup.alert({
+        scope.popupVisibilidade = $ionicPopup.alert({
             scope:scope,
             title: 'Visto por último',
             template: popupUltimoHtml.montar(),
@@ -68,6 +68,12 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
         Pagina.navegar({idPage:14});
     }
     
+    function attVisibilidade(titulo,id){
+        scope.dados.visibilidadeTitulo = titulo;
+        scope.dados.visibilidade = id;
+        scope.popupVisibilidade.close();
+    }
+    
     return {
         setScope:setScope,
         popupVisto:popupVisto,
@@ -75,7 +81,8 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
         listarPessoasBloqueadas:listarPessoasBloqueadas,
         voltarConfiguracoes:voltarConfiguracoes,
         mudarNumero:mudarNumero,
-        irApagarConta:irApagarConta
+        irApagarConta:irApagarConta,
+        attVisibilidade:attVisibilidade
     };
     
  }]);

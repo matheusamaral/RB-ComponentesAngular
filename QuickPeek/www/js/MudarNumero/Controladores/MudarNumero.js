@@ -10,6 +10,9 @@ angular.module('QuickPeek.MudarNumero', [
     function ($scope,MudarNumeroEstrutura,MudarNumeroAcoes){        
         MudarNumeroEstrutura.setScope($scope).popular();
         MudarNumeroAcoes.setScope($scope);
+        
+        $scope.avancar = MudarNumeroAcoes.avancar;
+        $scope.voltarConfig = MudarNumeroAcoes.voltarConfig;
     }
 ])
 

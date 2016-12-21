@@ -26,7 +26,7 @@ angular.module('QuickPeek.HTML.ApagarConta', [
                         </div>\n\
                     </div>\n\
                 </div>\n\
-                <div class="row rb-padding-padrao">\n\
+                <div ng-click="alterarNumero()" class="row rb-padding-padrao">\n\
                     <div style="margin-top:15px !important;" class="row rb-padding-padrao box-flutuante">\n\
                         <p class="col font-azul-italica">Ao invés disso, deseja apenas mudar o número?</p>\n\
                     </div>\n\
@@ -90,7 +90,7 @@ angular.module('QuickPeek.HTML.ApagarConta', [
                             </md-input-container>\n\
                         </div>\n\
                         <div class="row remove-padding">\n\
-                            <button ng-click="voltarConfig()" class="btn-vermelho col button button-positive">\n\
+                            <button ng-click="voltarInicio()" class="btn-vermelho col button button-positive">\n\
                                 APAGAR MINHA CONTA\n\
                             </button>\n\
                         </div>\n\
@@ -100,19 +100,6 @@ angular.module('QuickPeek.HTML.ApagarConta', [
   
     return {
         montar: montar
-    };
- }])
-
-.factory('PessoasBloqueadasHtmlPopup', [ function() {
-       
-    function montar() {
-        return '<div class="col remove-padding">\n\
-                    oi\n\
-                </div>';
-    };        
-  
-    return {
-        montar:montar
     };
  }]);
 
