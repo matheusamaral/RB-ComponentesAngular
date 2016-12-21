@@ -25,7 +25,7 @@ angular.module('QuickPeek.HTML.Configuracoes', [
                                 </div>\n\
                             </div>\n\
                         </div>\n\
-                        <div class="row remove-padding">\n\
+                        <div class="row remove-padding" ng-click="irNotificacoes()">\n\
                             <div class="col-20 text-center" style="padding: 20px;">\n\
                                 <i class="icon ion-android-notifications"></i>\n\
                             </div>\n\
@@ -35,7 +35,7 @@ angular.module('QuickPeek.HTML.Configuracoes', [
                                 </div>\n\
                             </div>\n\
                         </div>\n\
-                        <div class="row remove-padding">\n\
+                        <div class="row remove-padding" ng-click="irContatos()">\n\
                             <div class="col-20 text-center" style="padding: 20px;">\n\
                                 <i class="icon ion-ios-people"></i>\n\
                             </div>\n\
@@ -45,7 +45,7 @@ angular.module('QuickPeek.HTML.Configuracoes', [
                                 </div>\n\
                             </div>\n\
                         </div>\n\
-                        <div class="row remove-padding">\n\
+                        <div class="row remove-padding" ng-click="irSobre()">\n\
                             <div class="col-20 text-center" style="padding: 20px;">\n\
                                 <i class="icon ion-help-circled"></i>\n\
                             </div>\n\

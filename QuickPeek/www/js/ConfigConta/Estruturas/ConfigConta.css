@@ -1,10 +1,10 @@
 .titulo-sessao{
-    color: black;
+    color: #3f3c3d;
     font-size: 16px;
 }
 
 .padding-padrao-contas{
-    padding: 15px;
+    padding: 15px !important;
 }
 
 .conteudo-sessao{

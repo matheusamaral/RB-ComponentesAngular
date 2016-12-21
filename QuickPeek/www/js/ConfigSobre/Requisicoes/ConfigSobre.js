@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.TiraSelfie', [
+angular.module('QuickPeek.Requisicao.ConfigSobre', [
     'RB.pagina'
 ])
  
-.factory('TiraSelfieRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('ConfigSobreRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
@@ -18,11 +18,10 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
             return this;
         };
 
-        function salvarImg(){
+        function cadastrar(){
             RBLoadingMobile.show();
-            console.log(dados);
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/salvarFoto",
+                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -34,21 +33,23 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         };
         
         
-        function successSalvar(objRetorno){
+        function successCadastrar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
-            alert(dados.arquivo);
             if(objRetorno.success === true) {
-                 Pagina.navegar({idPage:6});
-            }else{
+                Pagina.navegar({idPage : 7});
+            }
+            else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
+        
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
             OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
         };
+        
         
         function OpenToast(message) {
           ionicToast.show(message, 'bottom', false, 3000);
@@ -56,8 +57,8 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         
         return {
             set: set,
-            salvarImg: salvarImg,
-            successSalvar: successSalvar
+            cadastrar: cadastrar,
+            successCadastrar: successCadastrar
         };
                            
 }]);     

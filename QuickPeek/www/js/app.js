@@ -26,7 +26,11 @@ angular.module('QuickPeek', [
     'QuickPeek.ApagarConta',
     'QuickPeek.Seguidores',
     'QuickPeek.Seguindo',
-    'base64'
+    'base64',
+    'QuickPeek.ConfigNotificacoes',
+    'QuickPeek.ConfigContatos',
+    'QuickPeek.ConfigSobre',
+    'QuickPeek.Sobre'
 ])
 
 .run(function($ionicPlatform) {

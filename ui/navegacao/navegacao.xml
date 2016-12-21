@@ -97,9 +97,33 @@
         <acaoCliente classe="pag-seguidores" acao="SeguidoresCtrl" title="Seus seguidores"/>
     </pagina>   
     
-    <pagina id="16" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguidores">
+    <pagina id="16" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguindo">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-seguindo" acao="SeguindoCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="17" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="notificacoes-config">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-notificacoes" acao="ConfigNotificacoesCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="18" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="contatos-config">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-contatos" acao="ConfigContatosCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="19" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="sobre-config">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-sobre" acao="ConfigSobreCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="20" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="sobre">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-sobre" acao="SobreCtrl" title="Seus seguidores"/>
     </pagina>   
 </root>

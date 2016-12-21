@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.TiraSelfie', [
+angular.module('QuickPeek.Requisicao.ConfigNotificacoes', [
     'RB.pagina'
 ])
  
-.factory('TiraSelfieRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('ConfigNotificacoesRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
@@ -18,11 +18,10 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
             return this;
         };
 
-        function salvarImg(){
+        function editarNotificacoes(){
             RBLoadingMobile.show();
-            console.log(dados);
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/salvarFoto",
+                url: Config.getRefAmbienteReq()+"/Usuario/editarNotificacoes",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -34,21 +33,24 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         };
         
         
-        function successSalvar(objRetorno){
+        function successEditarNotificacoes(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
-            alert(dados.arquivo);
-            if(objRetorno.success === true) {
-                 Pagina.navegar({idPage:6});
-            }else{
-                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            if(objRetorno.success === true){
+            }
+            else{
+                if(scope.dados.notificacaoPublicacao == 1)scope.dados.notificacaoPublicacao = 0;
+                else scope.dados.notificacaoPublicacao = 1;
+                OpenToast('Não foi possível atualizar as configurações de suas notificações');
             }
         };
+        
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
             OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
         };
+        
         
         function OpenToast(message) {
           ionicToast.show(message, 'bottom', false, 3000);
@@ -56,8 +58,8 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         
         return {
             set: set,
-            salvarImg: salvarImg,
-            successSalvar: successSalvar
+            editarNotificacoes: editarNotificacoes,
+            successEditarNotificacoes: successEditarNotificacoes
         };
                            
 }]);     

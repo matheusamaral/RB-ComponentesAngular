@@ -21,5 +21,13 @@ md-switch.md-checked.md-primary .md-bar {
 }
 
 md-switch.md-checked.md-primary .md-thumb {
-    background-color: rgb(255,184,0) !important;
+    background-color: #FFFFFF !important;
+}
+
+md-switch.switch-verde.md-checked.md-primary .md-bar{
+    background-color: #7ccf00;
+}
+
+md-switch.switch-verde{
+    background-color: #7ccf00;
 }
