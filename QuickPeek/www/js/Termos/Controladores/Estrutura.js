@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.Seguindo', [
+angular.module('QuickPeek.Estrutura.Termos', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('SeguindoEstrutura', ['GCS','Config','Pagina','VP',
+.factory('TermosEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     
@@ -17,12 +17,7 @@ angular.module('QuickPeek.Estrutura.Seguindo', [
     }
     
     function popular(){
-        scope.dados = {
-            seguidores:[
-                {urlImg:'',nome:'Arthur Maneiro 2',seguindo:1},
-                {urlImg:'',nome:'Anderson Campos',seguindo:1}
-            ]
-        };
+        scope.dados = {};
     };
   
     return {

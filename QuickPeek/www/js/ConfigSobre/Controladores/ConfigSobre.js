@@ -12,6 +12,7 @@ angular.module('QuickPeek.ConfigSobre', [
         ConfigSobreAcoes.setScope($scope);
         
         $scope.voltarConfiguracoes = ConfigSobreAcoes.voltarConfiguracoes;
+        $scope.irTermos = ConfigSobreAcoes.irTermos;
         $scope.irSobre = ConfigSobreAcoes.irSobre;
     }
 ])

@@ -21,10 +21,15 @@ angular.module('QuickPeek.Acoes.ConfigSobre', [
         Pagina.navegar({idPage:20});
     }
     
+    function irTermos(){
+        Pagina.navegar({idPage:21});
+    }
+    
     return {
         setScope:setScope,
         voltarConfiguracoes:voltarConfiguracoes,
-        irSobre:irSobre
+        irSobre:irSobre,
+        irTermos:irTermos
     };
     
  }]);

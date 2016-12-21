@@ -126,4 +126,10 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-sobre" acao="SobreCtrl" title="Seus seguidores"/>
     </pagina>   
+    
+    <pagina id="21" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="termos-politicas">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"/>
+    </pagina>   
 </root>

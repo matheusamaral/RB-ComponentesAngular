@@ -20,16 +20,16 @@ angular.module('QuickPeek.HTML.ConfigSobre', [
                         </div>\n\
                     </div>\n\
                 </div>\n\
-                <div class="row divide-sessoes corpo-lista-config padding-padrao-contas padding-adpatado-contatos">\n\
+                <a ng-href="http://quickpeek.dev.codevip.com.br/fale-conosco/" class="row divide-sessoes corpo-lista-config padding-padrao-contas padding-adpatado-contatos">\n\
                     <div class="col remove-padding">\n\
-                        <div ng-click="popupVisto()" class="col remove-padding">\n\
+                        <div class="col remove-padding">\n\
                             <p class="titulo-sessao">FAQ</p>\n\
                         </div>\n\
                     </div>\n\
-                </div>\n\
-                <div class="row divide-sessoes corpo-lista-config padding-padrao-contas padding-adpatado-contatos">\n\
+                </a>\n\
+                <div ng-click="irTermos()" class="row divide-sessoes corpo-lista-config padding-padrao-contas padding-adpatado-contatos">\n\
                     <div class="col remove-padding">\n\
-                        <div ng-click="popupVisto()" class="col remove-padding">\n\
+                        <div class="col remove-padding">\n\
                             <p class="titulo-sessao">Termos e política de privacidade</p>\n\
                         </div>\n\
                     </div>\n\
