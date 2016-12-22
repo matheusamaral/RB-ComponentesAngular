@@ -49,7 +49,7 @@
         <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
     </pagina>   
     
-    <pagina id="8" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perfil">
+    <pagina id="8" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="perfil">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-perfil" acao="PerfilCtrl" title="QuickPeek"/>

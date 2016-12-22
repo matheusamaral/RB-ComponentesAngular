@@ -16,11 +16,7 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     
     function inicializar(){
         addCss();
-        RBLoadingMobile.show();
-        $timeout(function(){
-            navegar();
-            RBLoadingMobile.hide();
-        },1000);
+        navegar();
     };
     
     function addCss(){
@@ -28,7 +24,7 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     }
     
     function navegar(){ 
-        Pagina.navegar({idPage:2});
+        Pagina.navegar({idPage:8});
     };
 
     
