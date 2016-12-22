@@ -32,7 +32,7 @@ angular.module('QuickPeek.Estrutura.CadastroDados', [
             }
 
             if(DGlobal.dadosSelfie){
-                scope.dados.arquivo = DGlobal.dadosSelfie.arquivo;
+                //scope.dados.arquivo = DGlobal.dadosSelfie.arquivo;
                 scope.dados.urlImg = DGlobal.dadosSelfie.urlImg;
             }
 

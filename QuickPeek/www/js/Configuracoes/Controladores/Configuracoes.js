@@ -13,6 +13,9 @@ angular.module('QuickPeek.Configuracoes', [
         
         $scope.voltarPerfil = ConfiguracoesAcoes.voltarPerfil;
         $scope.irConfigConta = ConfiguracoesAcoes.irConfigConta;
+        $scope.irNotificacoes = ConfiguracoesAcoes.irNotificacoes;
+        $scope.irContatos = ConfiguracoesAcoes.irContatos;
+        $scope.irSobre = ConfiguracoesAcoes.irSobre;
     }
 ])
 

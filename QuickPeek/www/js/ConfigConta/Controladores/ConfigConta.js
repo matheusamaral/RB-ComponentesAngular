@@ -17,6 +17,7 @@ angular.module('QuickPeek.ConfigConta', [
         $scope.voltarConfiguracoes = ConfigContaAcoes.voltarConfiguracoes;
         $scope.mudarNumero = ConfigContaAcoes.mudarNumero;
         $scope.irApagarConta = ConfigContaAcoes.irApagarConta;
+        $scope.attVisibilidade = ConfigContaAcoes.attVisibilidade;
     }
 ])
 

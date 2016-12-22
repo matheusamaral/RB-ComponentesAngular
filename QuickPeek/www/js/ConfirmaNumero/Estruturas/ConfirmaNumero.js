@@ -44,16 +44,15 @@ angular.module('QuickPeek.HTML.ConfirmaNumero', [
                         <md-input-container class="rb-input">\n\
                             <label class="font-grande">Digite seu número</label>\n\
                             <input\n\
-                            ui-mask="(99)99999999?9"\n\
-                            ui-mask-placeholder-char="space"\n\
-                            minlength="8"\n\
+                            minlength="12"\n\
                             name="nCel"\n\
+                            id="nCel"\n\
                             class="input-padrao font-grande"\n\
                             ng-model="dadosCel.numero"\n\
                             type="tel"\n\
                             ng-required="true">\n\
                             <div ng-if="formCadTel.nCel.$touched && formCadTel.nCel.$invalid" ng-messages="formCadTel.nCel.$error">\n\
-                                <div ng-if="!formCadTel.nCel.$error.mask" ng-message="required">Este campo é obrigatório.</div>\n\
+                                <div ng-if="!formCadTel.nCel.$error.minlength" ng-message="required">Este campo é obrigatório.</div>\n\
                                 <div ng-if="!formCadTel.nCel.$error.required" ng-message="minlength">Digite um telefone neste formato (DD)99999999.</div>\n\
                             </div>\n\
                         </md-input-container>\n\

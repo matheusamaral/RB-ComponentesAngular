@@ -37,7 +37,6 @@ angular.module('QuickPeek.Requisicao.ConfirmaNumero', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                DGlobal.dadosTelefone = scope.dadosCel;
                 Pagina.navegar({idPage:4});
             }
             else{

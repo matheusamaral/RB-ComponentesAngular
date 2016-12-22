@@ -15,8 +15,8 @@ class EnviarSms {
         if($editando){
             $msg->setResultadoEtapa(true, false, ['editando'=>1]);
         }else{
-            $credencial = urlencode('BAFECA24CF226E426C795B67CA7CB71C21F802CA');
-            $token = urlencode('0B1456');
+            $credencial = urlencode('8C02F31AF4957B6E1177F21F652CEFC1CE043586');
+            $token = urlencode('20f72');
 
             $emcrypt = Conteiner::get('Emcrypt');
             $codigo = $emcrypt::gerarCodigoBanco(ConteinerEntidade::getInstancia('SmsCodigo'), 'codigo', 6);

@@ -17,7 +17,20 @@ angular.module('QuickPeek.Estrutura.Perfil', [
     }
     
     function popular(){
-        scope.dados = {};
+        scope.dados = {
+            avatar:''
+        };
+        
+        if(DGlobal.dadosPerfil){
+            scope.dados = DGlobal.dadosPerfil;
+        }
+        
+        if(DGlobal.avatarSelecionado){
+            scope.dados.avatar = DGlobal.avatarSelecionado;
+        }
+        
+        console.log('scope.dados');
+        console.log(scope.dados);
     };
   
     return {

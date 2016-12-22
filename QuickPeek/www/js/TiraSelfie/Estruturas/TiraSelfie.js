@@ -13,7 +13,7 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
                 <div style="background-image: url({{cameraPerfil.img}});\n\
                 height:{{cameraPerfil.containerImgAltura}}px;"\n\
                 ng-if="cameraPerfil.galeria && cameraPerfil.img"\n\
-                layout="row" \n\
+                layout="row"\n\
                 layout-align="center center" \n\
                 class="pictures box-img">\n\
                 </div>\n\
@@ -44,11 +44,11 @@ angular.module('QuickPeek.HTML.TiraSelfie', [
                         </button>\n\
                     </div>\n\
                     <div class="col col-center text-center">\n\
-                        <button ng-click="cameraPerfil.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
+                        <button ng-click="tirarFoto($event)" class="btn-rodape btn-redondo button button-clear">\n\
                         </button>\n\
                     </div>\n\
                     <div class="col col-center">\n\
-                        <button ng-click="pular()" class="btn-rodape button button-clear">\n\
+                        <button style="margin:auto" ng-click="pular()" class="col btn-rodape button button-clear">\n\
                             PULAR <i class="icon btn-seta ion-chevron-right"></i>\n\
                         </button>\n\
                     </div>\n\

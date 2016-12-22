@@ -15,6 +15,7 @@ angular.module('QuickPeek.TiraSelfie', [
         $scope.virarCamera = TiraSelfieAcoes.virarCamera;
         $scope.createFile = TiraSelfieAcoes.createFile;
         $scope.pular = TiraSelfieAcoes.pular;
+        $scope.tirarFoto = TiraSelfieAcoes.tirarFoto;
     }
 ])
 

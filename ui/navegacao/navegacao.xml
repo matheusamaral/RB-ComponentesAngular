@@ -21,6 +21,9 @@
     
     <pagina id="4" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="confirmar-sms">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-confirma-sms" acao="ConfirmaSmsCtrl" title="QuickPeek"/>
     </pagina>   
@@ -33,6 +36,9 @@
      
     <pagina id="6" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="cadastro-dados">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-cadastro-dados" acao="CadastroDadosCtrl" title="QuickPeek"/>
     </pagina>   
@@ -52,13 +58,13 @@
     <pagina id="9" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes">
         <dadosSolicitados>
         </dadosSolicitados>   
-        <acaoCliente classe="pag-configuracoes" acao="PerfilCtrl" title="ConfiguracoesCtrl"/>
+        <acaoCliente classe="pag-configuracoes" acao="ConfiguracoesCtrl" title="Configurações"/>
     </pagina>   
     
     <pagina id="10" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes-conta">
         <dadosSolicitados>
         </dadosSolicitados>   
-        <acaoCliente classe="pag-config-conta" acao="PerfilCtrl" title="ConfigContaCtrl"/>
+        <acaoCliente classe="pag-config-conta" acao="ConfigContaCtrl" title="ConfigContaCtrl"/>
     </pagina>   
     
     <pagina id="11" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pessoas-bloqueadas">
@@ -84,10 +90,46 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-apagar-conta" acao="ApagarContaCtrl" title="Apague  sua conta"/>
     </pagina>   
+    
+    <pagina id="15" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguidores">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-seguidores" acao="SeguidoresCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="16" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguindo">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-seguindo" acao="SeguindoCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="17" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="notificacoes-config">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-notificacoes" acao="ConfigNotificacoesCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="18" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="contatos-config">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-contatos" acao="ConfigContatosCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="19" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="sobre-config">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-config-sobre" acao="ConfigSobreCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="20" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="sobre">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-sobre" acao="SobreCtrl" title="Seus seguidores"/>
+    </pagina>   
+    
+    <pagina id="21" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="termos-politicas">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"/>
+    </pagina>   
 </root>
-
-
- 
-    
-    
-    

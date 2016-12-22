@@ -14,14 +14,14 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                             </button>\n\
                         </div>\n\
                         <div style="margin-left: auto;">\n\
-                            <button ng-click="pular()" ng-disabled="formCad.$invalid" class="btn-txt-direita button button-positive">\n\
+                            <button ng-click="cadastrar()" ng-disabled="formCad.$invalid" class="btn-txt-direita button button-positive">\n\
                                 SALVAR\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
                     <div ng-class="{\'margin-barra\' : dados.editando}" class="row text-center rb-padding-padrao">\n\
                         <div class="col text-center">\n\
-                            <div style="background-image:url(../img/00.jpg)" class="box-img-cad btn-redondo-grande">\n\
+                            <div style="background-image:url({{dados.urlImg}})" class="box-img-cad btn-redondo-grande">\n\
                                 <button class="flutuante-btn button" ng-click="voltarSelfie()">\n\
                                     <i class="icon ion-android-camera"></i>\n\
                                 </button>\n\
@@ -50,12 +50,11 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                                 <label class="font-comun">Data de nascimento</label>\n\
                                 <input\n\
                                 name="dtNasc"\n\
-                                ui-mask="99/99/9999"\n\
+                                id="dtnasc"\n\
                                 pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}"\n\
-                                ui-mask-placeholder-char="space"\n\
                                 class="input-padrao-preto font-grande-cinza"\n\
                                 ng-model="dados.nascimentoVisao"\n\
-                                type="text"\n\
+                                type="tel"\n\
                                 ng-required="true">\n\
                                 <div ng-if="formCad.dtNasc.$touched && formCad.dtNasc.$invalid" ng-messages="formCad.dtNasc.$error">\n\
                                     <div ng-if="!formCad.dtNasc.$error.pattern" ng-message="required">Este campo é obrigatório.</div>\n\

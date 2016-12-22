@@ -14,6 +14,8 @@ angular.module('QuickPeek.Perfil', [
         $scope.editarAvatar = PerfilAcoes.editarAvatar;
         $scope.editarPerfil = PerfilAcoes.editarPerfil;
         $scope.irConfiguracoes = PerfilAcoes.irConfiguracoes;
+        $scope.irSeguindo = PerfilAcoes.irSeguindo;
+        $scope.irSeguidores = PerfilAcoes.irSeguidores;
     }
 ])
 

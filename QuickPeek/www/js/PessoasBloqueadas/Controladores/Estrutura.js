@@ -18,7 +18,9 @@ angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
     
     function popular(){
         scope.dados = {
-            pessoas:new Array()
+            pessoas:[
+                {nome:'Amanda Costa'}
+            ]
         };
     };
   

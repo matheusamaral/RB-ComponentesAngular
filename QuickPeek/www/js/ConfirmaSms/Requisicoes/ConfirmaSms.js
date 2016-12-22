@@ -43,7 +43,6 @@ angular.module('QuickPeek.Requisicao.ConfirmaSms', [
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
-                Pagina.navegar({idPage:5});
             }
         };
         

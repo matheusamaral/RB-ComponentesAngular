@@ -12,6 +12,8 @@ class ListarDadosUsuario {
         
         if($query){
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
+        }else if($msg->getCampoSessao('dadosUsuarioLogado')){
+            $msg->setResultadoEtapa(true, false, ['dados'=>$msg->getCampoSessao('dadosUsuarioLogado')]);
         }else{
             $msg->setResultadoEtapa(false);
         }

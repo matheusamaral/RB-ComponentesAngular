@@ -6,14 +6,14 @@ angular.module('QuickPeek.Acoes.ConfirmaSms', [
     'Cmp.AutoComplete'
 ])
 
-.factory('ConfirmaSmsAcoes', ['Pagina','ConfirmaSmsRequisicoes','AutoComplete','RBLoadingMobile','$timeout',
-    function(Pagina,ConfirmaSmsRequisicoes,AutoComplete,RBLoadingMobile,$timeout) {
+.factory('ConfirmaSmsAcoes', ['Pagina','ConfirmaSmsRequisicoes','AutoComplete','RBLoadingMobile','$timeout','ionicToast',
+    function(Pagina,ConfirmaSmsRequisicoes,AutoComplete,RBLoadingMobile,$timeout,ionicToast) {
     var scope;  
     
     function setScope(obj){
         scope = obj;
         scope.smsList = [];
-        //verificarSMS();
+        verificarSMS();
         return this;
     };
     
@@ -22,7 +22,7 @@ angular.module('QuickPeek.Acoes.ConfirmaSms', [
         RBLoadingMobile.show('Verificando SMS...');
         $timeout(function(){
             listSMS();
-        },10000);
+        },30000);
     }
     
     function inicializar(){
@@ -120,17 +120,28 @@ angular.module('QuickPeek.Acoes.ConfirmaSms', [
             
             $timeout(function(){
                 scope.dadosSms.codigo = organizaSms(scope.smsList);
+                if(scope.dadosSms.codigo == false){
+                    scope.dadosSms.codigo = '';
+                    OpenToast("Não foi possível verificar seu SMS automaticamente, por favor, verifique manualmente");
+                }
                 RBLoadingMobile.hide();
             },0);
         }
         
+        function OpenToast(message) {
+            ionicToast.show(message, 'bottom', false, 5000);
+        }
+        
         function organizaSms(array){
             var msgAtual;
-            if(array.length < 1 || array[0].address != '+5511990009044'){
-                return false;
+            for(var i = 0; i < 3;i++){
+                if(array.length >= 1 && array[i].address == '+5511990009044'){
+                    msgAtual = array[i].body.split(' ');
+                    return msgAtual[msgAtual.length - 1];
+                };
             }
-            msgAtual = array[0].body.split(' ');
-            return msgAtual[msgAtual.length - 1];
+            
+            return false;
         }
         
         function deleteLastSMS() {

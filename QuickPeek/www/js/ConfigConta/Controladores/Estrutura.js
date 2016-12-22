@@ -18,7 +18,9 @@ angular.module('QuickPeek.Estrutura.ConfigConta', [
     
     function popular(){
         scope.dados = {
-            contaPrivada:0
+            contaPrivada:0,
+            visibilidade:2,
+            visibilidadeTitulo:'Ninguém'
         };
         
         scope.dados.vistoUltimoOp = [

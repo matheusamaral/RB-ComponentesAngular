@@ -18,9 +18,19 @@ angular.module('QuickPeek.Acoes.ApagarConta', [
         Pagina.navegar({idPage:10});
     }
     
+    function voltarInicio(){
+        Pagina.navegar({idPage:2});
+    }
+    
+    function alterarNumero(){
+        Pagina.navegar({idPage:12});
+    }
+    
     return {
         setScope:setScope,
-        voltarConfig:voltarConfig
+        voltarConfig:voltarConfig,
+        voltarInicio:voltarInicio,
+        alterarNumero:alterarNumero
     };
     
  }]);

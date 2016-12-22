@@ -24,12 +24,24 @@ angular.module('QuickPeek.Acoes.Perfil', [
     }
     
     function editarAvatar(){
-        DGlobal.dadosEditar = scope.dados;
+        if(!DGlobal.avatarSelecionado)DGlobal.avatarSelecionado = {};
+        if(!scope.dados.avatar)scope.dados.avatar = {};
+        DGlobal.avatarSelecionado = scope.dados.avatar;
+        DGlobal.avatarSelecionado.perfil = true;
         Pagina.navegar({idPage:7});
     }
     
     function irConfiguracoes(){
         Pagina.navegar({idPage:9});
+    }
+    
+    function irSeguidores(){
+        Pagina.navegar({idPage:15});
+    }
+    
+    function irSeguindo(){
+        DGlobal.seguindo = true;
+        Pagina.navegar({idPage:16});
     }
     
     function addCss(){
@@ -41,7 +53,9 @@ angular.module('QuickPeek.Acoes.Perfil', [
         inicializar:inicializar,
         editarPerfil:editarPerfil,
         editarAvatar:editarAvatar,
-        irConfiguracoes:irConfiguracoes
+        irConfiguracoes:irConfiguracoes,
+        irSeguidores:irSeguidores,
+        irSeguindo:irSeguindo
     };
     
  }]);

@@ -16,7 +16,8 @@ angular.module('QuickPeek.HTML.PessoasBloqueadas', [
                 <div ng-repeat="pessoa in dados.pessoas" \n\
                 class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
                 ng-class="{\'altura-barra\' : $index == 0}"\n\
-                ng-if="dados.pessoas.length > 0">\n\
+                ng-if="dados.pessoas.length > 0"\n\
+                ng-click="popupDesbloquear()">\n\
                     <div class="col-33 remove-padding">\n\
                         <div style="background-image:url({{pessoa.urlImg}})" class="btn-redondo-medio"></div>\n\
                     </div>\n\
@@ -40,8 +41,8 @@ angular.module('QuickPeek.HTML.PessoasBloqueadas', [
 .factory('PessoasBloqueadasHtmlPopup', [ function() {
        
     function montar() {
-        return '<div class="col remove-padding">\n\
-                    oi\n\
+        return '<div ng-click="desbloquear()" class="config-font-desbloque col remove-padding">\n\
+                    Desbloquear Amanda Costa\n\
                 </div>';
     };        
   

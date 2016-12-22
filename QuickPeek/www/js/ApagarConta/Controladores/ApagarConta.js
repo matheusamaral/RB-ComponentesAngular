@@ -12,6 +12,8 @@ angular.module('QuickPeek.ApagarConta', [
         ApagarContaAcoes.setScope($scope);
         
         $scope.voltarConfig = ApagarContaAcoes.voltarConfig;
+        $scope.voltarInicio = ApagarContaAcoes.voltarInicio;
+        $scope.alterarNumero = ApagarContaAcoes.alterarNumero;
     }
 ])
 

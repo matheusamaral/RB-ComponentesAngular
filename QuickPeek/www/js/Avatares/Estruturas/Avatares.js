@@ -13,7 +13,7 @@ angular.module('QuickPeek.HTML.Avatares', [
                         </button>\n\
                     </div>\n\
                     <div style="margin-left: auto;">\n\
-                        <button ng-click="mudarAvatar()" class="btn-txt-direita button button-positive">\n\
+                        <button ng-disabled="!avatarMarcado" ng-click="mudarAvatar()" class="btn-txt-direita button button-positive">\n\
                             ACEITAR\n\
                         </button>\n\
                     </div>\n\

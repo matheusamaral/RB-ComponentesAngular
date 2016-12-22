@@ -15,7 +15,7 @@ angular.module('QuickPeek.HTML.PublicoOuAnonimo', [])
                     </div>\n\
                 </div>\n\
                 <div class="padding-bottom-grande text-center rb-padding-padrao">\n\
-                    <div class="limita-espaco-texto" centraliza-horizontal">\n\
+                    <div class="limita-espaco-texto centraliza-horizontal">\n\
                         <p class="rb-line-heigth">Converse diretamente com as pessoas de modo público ou anônimo.\n\
                     </div>\n\
                 </div>';

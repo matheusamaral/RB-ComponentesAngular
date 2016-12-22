@@ -37,7 +37,7 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 7});
+                Pagina.navegar({idPage : 8});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);

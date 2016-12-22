@@ -21,10 +21,25 @@ angular.module('QuickPeek.Acoes.Configuracoes', [
         Pagina.navegar({idPage:10});
     }
     
+    function irNotificacoes(){
+        Pagina.navegar({idPage:17});
+    }
+    
+    function irContatos(){
+        Pagina.navegar({idPage:18});
+    }
+    
+    function irSobre(){
+        Pagina.navegar({idPage:19});
+    }
+    
     return {
         setScope:setScope,
         voltarPerfil:voltarPerfil,
-        irConfigConta:irConfigConta
+        irConfigConta:irConfigConta,
+        irNotificacoes:irNotificacoes,
+        irContatos:irContatos,
+        irSobre:irSobre
     };
     
  }]);
