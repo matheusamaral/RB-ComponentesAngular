@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="visualizarNotificacoes" modulo="Acoes">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="visualizar-notificacoes" tipo="tarefa">
+            <entidade nome="VisualizarNotificacoes" metodo="visualizarNotificacoes"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

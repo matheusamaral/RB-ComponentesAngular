@@ -127,15 +127,6 @@
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
         
-<classe nome="TipoNotificacoes" tabela="tipo_notificacoes"> 
-    <id coluna="id" atributo="id">
-        <gerador classe="sequence"/>
-    </id>  
-    <propriedades coluna="nome" atributo="nome" /> 
-    <propriedades coluna="ativo" atributo="ativo" /> 
-    <propriedades coluna="momento" atributo="momento" /> 
-</classe>
-        
 <classe nome="Notificacoes" tabela="notificacoes"> 
     <id coluna="id" atributo="id">
         <gerador classe="sequence"/>
@@ -144,7 +135,18 @@
     <nparaum coluna="usuario_acao_id"  atributo="usuarioAcaoId" />  
     <nparaum coluna="tipo_id"  atributo="tipoId" />  
     <nparaum coluna="resposta_id"  atributo="respostaId" />  
+    <nparaum coluna="hashtag_local_id"  atributo="hashtagLocalId" />  
+    <nparaum coluna="midia_id"  atributo="midiaId" />  
     <propriedades coluna="visualizado" atributo="visualizado" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="TipoNotificacoes" tabela="tipo_notificacoes"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="nome" atributo="nome" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

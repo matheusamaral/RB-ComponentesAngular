@@ -1,5 +1,5 @@
 {
-    "ConsultaSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguir",
+    "ConsultaContaPrivada": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaContaPrivada",
     "ConsultaDeixarSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaDeixarSeguir",
     "ConsultaUsuariosPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaUsuarios",
     "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn",
@@ -10,8 +10,10 @@
     "ConsultaDescurtirHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirHashtag",
     "ConsultaUsuarioPergunta": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaUsuarioPergunta",
     "ConsultaCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaCheckIn",
-    "ConsultaSeguirId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguirId",
     "ConsultaNotificacao": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaNotificacao",
+    "ConsultaUsuarioSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaUsuarioSeguir",
+    "ConsultaVisualizarNotificacoes": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaVisualizarNotificacoes",
+    "ConsultaSeguidoresId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguidoresId",
     
     "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

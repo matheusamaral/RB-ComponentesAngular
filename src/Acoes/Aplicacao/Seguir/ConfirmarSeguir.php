@@ -1,38 +1,47 @@
 <?php
 namespace Quickpeek\Acoes\Aplicacao\Seguir;
 use Rubeus\ContenerDependencia\Conteiner;
+use Rubeus\ManipulacaoEntidade\Dominio\ConteinerEntidade;
 
 class ConfirmarSeguir {
     
     public function confirmarSeguir($msg){
         
-        $usuarioSessaoId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $usuarioId = $msg->getCampo('Seguir::usuarioId')->get('valor');
+        $aceitar = $msg->getCampo('Aceitar')->get('valor');
         
-        $seguirId = Conteiner::get('ConsultaSeguirId')->consultar($usuarioSessaoId, $usuarioId);
-        if($seguirId){
+        if($aceitar){
             $msg->setCampo('entidade', 'Seguir');
-            $msg->setCampo('Seguir::id', $seguirId);
             $msg->setCampo('Seguir::confirmarSeguir', 1);
             $msg->setCampo('Seguir::momentoConfirmarSeguir', date('Y-m-d H:i:s'));
             $cad = Conteiner::get('Cadastro')->cadastrar($msg);
+        }else{
+            $entidade = ConteinerEntidade::getInstancia('Seguir');
+            $entidade->setId($msg->getCampo('Seguir::id')->get('valor'));
+            $qtdErro = $entidade->deletar();
         }
         
         if($cad){
-            $this->enviarNotificacao($msg);
+            $this->enviarNotificacoes($msg);
+        }elseif(!$qtdErro){
+            $msg->setResultadoEtapa(true);
         }else{
             $msg->setResultadoEtapa(false);
         }
     }
     
-    private function enviarNotificacao($msg){
+    private function enviarNotificacoes($msg){
         
-        $usuarioAcaoId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $usuarioId = $msg->getCampo('Seguir::usuarioId')->get('valor');
+        $seguirId = $msg->getCampo('Seguir::id')->get('valor');
+        $dadosSeguir = Conteiner::get('ConsultaUsuarioSeguir')->consultar($seguirId);
+        
+        $usuariosNotificacao = [$dadosSeguir['usuarioId'], $dadosSeguir['usuarioSeguirId']];
+        $usuariosAcao = [$dadosSeguir['usuarioSeguirId'], $dadosSeguir['usuarioId']];
+        $tipos = [2, 5];
+        
         $msg->setCampo('entidade', 'Notificacoes');
-        $msg->setCampo('Notificacoes::usuarioId', $usuarioId);
-        $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioAcaoId);
-        $msg->setCampo('Notificacoes::tipoId', 2);
+        $msg->setCampo('Notificacoes::usuarioId', $usuariosNotificacao);
+        $msg->setCampo('Notificacoes::usuarioAcaoId', $usuariosAcao);
+        $msg->setCampo('Notificacoes::tipoId', $tipos);
         Conteiner::get('Cadastro')->cadastrar($msg);
     }
 }

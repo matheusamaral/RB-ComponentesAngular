@@ -43,7 +43,7 @@
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
         <propriedades coluna="notificacao_publicacao" atributo="notificacaoPublicacao" type="varchar(45)"/>
-        <propriedades coluna="padrao_aprovacao" atributo="padraoAprovacao" type="varchar(45)"/>
+        <propriedades coluna="conta_privada" atributo="contaPrivada" type="varchar(45)"/>
         <propriedades coluna="contato" atributo="contato" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
         <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="Visibilidade" tabela="visibilidade"/>

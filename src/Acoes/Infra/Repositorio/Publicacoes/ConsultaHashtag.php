@@ -11,6 +11,7 @@ class ConsultaHashtag {
         $query->from('hashtag');
         $query->where('titulo = ?')
                 ->add('ativo = 1');
+        $query->group('titulo');
         $query->addVariaveis([$hashtag]);
         return $query->executar('{id}');
     }

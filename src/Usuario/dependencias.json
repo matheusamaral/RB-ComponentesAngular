@@ -19,5 +19,7 @@
     "ConsultaVerificarNumero": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarNumero",
     "ConsultaListarPaisesCobertura": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPaisesCobertura",
     "ConsultaVerificarEdicao": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarEdicao",
-    "ConsultaListarNaoVisualizadas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarNaoVisualizadas"
+    "ConsultaListarNaoVisualizadas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarNaoVisualizadas",
+    "ConsultaUsuariosConfirmarSeguir": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaUsuariosConfirmarSeguir",
+    "ConsultaListarNotificacoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Listar\\ConsultaListarNotificacoes"
 }

@@ -15,7 +15,7 @@ class ConsultaVisibilidade {
         $query->join('configuracoes', 'con', 'left')->on('con.usuario_id = u.id')
                 ->on('con.ativo = 1');
         $query->where('u.id = ?')->add('u.ativo = 1');
-        $query->addVariaveis([$usuarioId]);
+        $query->addVariaveis($usuarioId);
         return $query->executar('{visibilidade}');
     }
 }

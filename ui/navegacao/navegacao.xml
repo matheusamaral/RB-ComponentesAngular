@@ -9,7 +9,7 @@
  
     <pagina id="2" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="comece-agora">
         <dadosSolicitados>
-        </dadosSolicitados>   
+        </dadosSolicitados>
         <acaoCliente classe="pag-comece-agora" acao="ComeceAgoraCtrl" title="QuickPeek"/>
     </pagina>  
      

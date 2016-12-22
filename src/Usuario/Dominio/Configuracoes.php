@@ -8,7 +8,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $ativo = false;
         private $momento = false;
         private $notificacaoPublicacao = false;
-        private $padraoAprovacao = false;
+        private $contaPrivada = false;
         private $contato = false;
         private $usuarioId = false;
         private $visibilidadeId = false; 
@@ -45,12 +45,12 @@ use Rubeus\ORM\Persistente as Persistente;
             $this->notificacaoPublicacao = $notificacaoPublicacao;
         } 
                 
-        public function getPadraoAprovacao() {
-            return $this->padraoAprovacao;
+        public function getContaPrivada() {
+            return $this->contaPrivada;
         }
 
-        public function setPadraoAprovacao($padraoAprovacao) {
-            $this->padraoAprovacao = $padraoAprovacao;
+        public function setContaPrivada($contaPrivada) {
+            $this->contaPrivada = $contaPrivada;
         } 
                 
         public function getContato() {
