@@ -9,6 +9,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $usuarioAcaoId = false;
         private $tipoId = false;
         private $respostaId = false;
+        private $hashtagLocalId = false;
+        private $midiaId = false;
         private $visualizado = false;
         private $ativo = false;
         private $momento = false; 
@@ -67,6 +69,30 @@ use Rubeus\ORM\Persistente as Persistente;
             if($respostaId instanceof Respostas)
                 $this->respostaId = $respostaId;
             else $this->getRespostaId()->setId($respostaId);
+        } 
+            
+        public function getHashtagLocalId() {
+            if(!$this->hashtagLocalId)
+                    $this->hashtagLocalId = new HashtagLocal(); 
+            return $this->hashtagLocalId;
+        }
+
+        public function setHashtagLocalId($hashtagLocalId) {
+            if($hashtagLocalId instanceof HashtagLocal)
+                $this->hashtagLocalId = $hashtagLocalId;
+            else $this->getHashtagLocalId()->setId($hashtagLocalId);
+        } 
+            
+        public function getMidiaId() {
+            if(!$this->midiaId)
+                    $this->midiaId = new Midia(); 
+            return $this->midiaId;
+        }
+
+        public function setMidiaId($midiaId) {
+            if($midiaId instanceof Midia)
+                $this->midiaId = $midiaId;
+            else $this->getMidiaId()->setId($midiaId);
         } 
                 
         public function getVisualizado() {

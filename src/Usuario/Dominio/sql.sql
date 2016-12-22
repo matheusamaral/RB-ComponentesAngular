@@ -73,7 +73,7 @@ CREATE TABLE `configuracoes`(
     `ativo` tinyint   ,
     `momento` datetime   ,
     `notificacao_publicacao` varchar(45)   ,
-    `padrao_aprovacao` varchar(45)   ,
+    `conta_privada` varchar(45)   ,
     `contato` varchar(45)   ,
     `usuario_id` INT   ,
     INDEX `configuracoes_fk_usuario_id_idx`(`usuario_id` ASC),

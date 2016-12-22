@@ -3,7 +3,7 @@
 <processo codigo="editarContaPrivada" modulo="Usuario">
     
     <entrada>
-        <campo regra="Opcional" chave="Configuracoes::padraoAprovacao" nome="padraoAprovacao"/>
+        <campo regra="Opcional" chave="Configuracoes::contaPrivada" nome="contaPrivada"/>
     </entrada>
     
     <atividades>

@@ -229,13 +229,6 @@ CREATE TABLE `categoria_hashtag`(
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
-CREATE TABLE `tipo_notificacoes`( 
-    `id` int  AUTO_INCREMENT ,
-     PRIMARY KEY (`id`),
-    `nome` varchar(45)   ,
-    `ativo` tinyint   ,
-    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        
 CREATE TABLE `notificacoes`( 
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
@@ -263,6 +256,25 @@ CREATE TABLE `notificacoes`(
          FOREIGN KEY (`resposta_id`) REFERENCES `respostas` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `hashtag_local_id` INT   ,
+    INDEX `notificacoes_fk_hashtag_local_id_idx`(`hashtag_local_id` ASC),
+    CONSTRAINT `notificacoes_fk_hashtag_local_id` 
+         FOREIGN KEY (`hashtag_local_id`) REFERENCES `hashtag_local` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `midia_id` INT   ,
+    INDEX `notificacoes_fk_midia_id_idx`(`midia_id` ASC),
+    CONSTRAINT `notificacoes_fk_midia_id` 
+         FOREIGN KEY (`midia_id`) REFERENCES `midia` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `visualizado` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `tipo_notificacoes`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `nome` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

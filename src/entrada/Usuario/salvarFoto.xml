@@ -3,6 +3,7 @@
 <processo codigo="salvarFoto" modulo="Usuario">
     
     <entrada>
+        <campo regra="Opcional" chave="ArquivoBase64" nome="arquivoBase64"/>
         <campo chave="Arquivo" nome="arquivo" type="file"/>
     </entrada>
     

@@ -53,7 +53,7 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
     <propriedades coluna="notificacao_publicacao" atributo="notificacaoPublicacao" /> 
-    <propriedades coluna="padrao_aprovacao" atributo="padraoAprovacao" /> 
+    <propriedades coluna="conta_privada" atributo="contaPrivada" /> 
     <propriedades coluna="contato" atributo="contato" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  

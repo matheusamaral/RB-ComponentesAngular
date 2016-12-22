@@ -4,24 +4,25 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaNotificacao {
     
-    public function consultar($usuarioId, $localId){
+    public function consultarHashtag($usuarioId, $localId){
         
         $query = Conteiner::get('Query', false);
-        $query->select('hl.id')
-                ->add('p.id')
-                ->add('m.id');
-        $query->from('hashtag_local', 'hl');
-        $query->join('perguntas', 'p', 'left')
-                ->on('p.usuario_id = ?')
-                ->on('p.local_id = ?');
-        $query->join('midia', 'm')
-                ->on('m.usuario_id = ?')
-                ->on('m.local_id = ?');
-        $query->where('hl.usuario_id = ?')
-                ->add('hl.local_id = ?');
-        $query->addVariaveis([$usuarioId, $localId, 
-            $usuarioId, $localId, 
-            $usuarioId, $localId]);
+        $query->select('id');
+        $query->from('hashtag_local');
+        $query->where('usuario_id = ?')
+                ->add('local_id = ?');
+        $query->addVariaveis([$usuarioId, $localId]);
+        return $query->executar();
+    }
+    
+    public function consultarMidia($usuarioId, $localId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('id');
+        $query->from('midia');
+        $query->where('usuario_id = ?')
+                ->add('local_id = ?');
+        $query->addVariaveis([$usuarioId, $localId]);
         return $query->executar();
     }
 }

@@ -3,7 +3,8 @@
 <processo codigo="confirmarSeguir" modulo="Acoes">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Seguir::usuarioId" nome="usuarioId"/>
+        <campo regra="Obrigatorio" chave="Seguir::id" nome="seguirId"/>
+        <campo regra="Opcional" chave="Aceitar" nome="aceitar"/>
     </entrada>
     
     <atividades>

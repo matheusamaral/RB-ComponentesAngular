@@ -14,8 +14,9 @@ class ConsultaListarDadosUsuario {
                 ->add('u.telefone', 'usuarioTelefone')
                 ->add('u.genero_id', 'usuarioGeneroId')
                 ->add('c.visibilidade_id', 'visibilidadeId')
-                ->add('c.padrao_aprovacao', 'contaPrivada')
+                ->add('c.conta_privada', 'contaPrivada')
                 ->add('c.notificacao_publicacao', 'notificacaoPublicacao')
+                ->add('c.contato', 'contato')
                 ->add('count(distinct b.id)', 'bloqueados');
         $query->from('usuario', 'u');
         $query->join('configuracoes', 'c')
