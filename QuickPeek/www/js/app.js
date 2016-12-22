@@ -30,8 +30,7 @@ angular.module('QuickPeek', [
     'QuickPeek.ConfigNotificacoes',
     'QuickPeek.ConfigContatos',
     'QuickPeek.ConfigSobre',
-    'QuickPeek.Sobre',
-    'QuickPeek.Termos'
+    'QuickPeek.Sobre'
 ])
 
 .run(function($ionicPlatform) {

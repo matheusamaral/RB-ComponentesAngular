@@ -15,6 +15,8 @@ angular.module('QuickPeek.Acoes.ConfigSobre', [
     
     function voltarConfiguracoes(){
         Pagina.navegar({idPage:9});
+        var bala = JSON.parse(JSON.stringify(localStorage.getItem("dadosSessao")));
+        console.log(bala);
     }
     
     function irSobre(){
@@ -22,14 +24,24 @@ angular.module('QuickPeek.Acoes.ConfigSobre', [
     }
     
     function irTermos(){
-        Pagina.navegar({idPage:21});
+        window.open('http://quickpeek.dev.codevip.com.br/termos-e-privacidade?app=true','_blank'); 
+    }
+    
+    function irFAQ(){
+        window.open('http://quickpeek.dev.codevip.com.br/faq?app=true','_blank'); 
+    }
+    
+    function irFaleConosco(){
+        window.open('http://quickpeek.dev.codevip.com.br/relatar-um-erro?app=true','_blank'); 
     }
     
     return {
         setScope:setScope,
         voltarConfiguracoes:voltarConfiguracoes,
         irSobre:irSobre,
-        irTermos:irTermos
+        irTermos:irTermos,
+        irFAQ:irFAQ,
+        irFaleConosco:irFaleConosco
     };
     
  }]);
