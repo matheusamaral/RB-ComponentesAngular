@@ -9,25 +9,26 @@ class ListarMensagensPerguntas {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $perguntaId = $msg->getCampo('Perguntas::id')->get('valor');
         
+        $notIn = $this->atualizando($msg);
+        
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
-        $dados = Conteiner::get('ConsultaListarMensagensPerguntas')->consultar($usuarioId, $perguntaId, $tempo['respostas']);
+        $dados = Conteiner::get('ConsultaListarMensagensPerguntas')->consultar($usuarioId, $perguntaId, 
+                $tempo['respostas'], $notIn);
         $pergunta = Conteiner::get('ConsultaListarMensagensPerguntas')->consultarPergunta($usuarioId, $perguntaId);
         
         if($pergunta){
-            foreach($dados as $k=>$v){
-                if($v['usuarioId'] == $usuarioId){
-                    $dados[$k]['voce'] = 1;
-                }else{
-                    $dados[$k]['voce'] = 0;
+            if($dados){
+                foreach($dados as $v){
+                    $respostasId[] = $v['respostaId'];
                 }
-            }
-            
-            if($pergunta['usuarioId'] == $usuarioId){
-                $pergunta['voce'] = 1;
+                if($notIn){
+                    $respostasId = array_merge($msg->getCampoSessao('respostasNotIn'), $respostasId);
+                }
+                $msg->setCampoSessao('respostasNotIn', $respostasId);
+                array_unshift($dados, $pergunta);
             }else{
-                $pergunta['voce'] = 0;
+                $dados = $pergunta;
             }
-            array_unshift($dados, $pergunta);
             
             $this->setarPerguntaVisualizada($msg);
             
@@ -49,10 +50,19 @@ class ListarMensagensPerguntas {
             $msg->setCampo('PerguntaUsuario::id', $id);
             $msg->setCampo('PerguntaUsuario::visualizado', 1);
             $msg->setCampo('PerguntaUsuario::momentoVisualizado', date('Y-m-d H:i:s'));
-            $result = Conteiner::get('Cadastro')->cadastrar($msg);
-            return $result;
-        }else{
-            return 0;
+            Conteiner::get('Cadastro')->cadastrar($msg);
         }
+    }
+    
+    private function atualizando($msg){
+        
+        $atualizando = $msg->getCampo('Atualizando')->get('valor');
+        
+        if($atualizando){
+            $notIn = implode(', ', $msg->getCampoSessao('respostasNotIn'));
+        }else{
+            $notIn = 0;
+        }
+        return $notIn;
     }
 }

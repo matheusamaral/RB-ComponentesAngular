@@ -4,6 +4,7 @@
     
     <entrada> 
         <campo regra="Obrigatorio" chave="Perguntas::id" nome="perguntasId"/>
+        <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
     </entrada>
     
     <atividades>

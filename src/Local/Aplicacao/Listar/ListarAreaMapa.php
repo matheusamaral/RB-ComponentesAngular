@@ -16,25 +16,20 @@ class ListarAreaMapa {
             $longitude = $msg->getCampo('Longitude')->get('valor');
         }
         
-        $locaisNotIn = $msg->getCampoSessao('locaisNotIn');
-        $atualizando = $msg->getCampo('Atualizando')->get('valor');
+        $notIn = $this->atualizando($msg);
         
-        if($atualizando){
-            $notIn = implode(', ', $locaisNotIn);
-        }else{
-            $notIn = 0;
-        }
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         
         $dadosLocais = Conteiner::get('ConsultaDadosLocais')->consultar($usuarioId, 
                 $latitude, $longitude, $tempo['midia'], $tempo['hashtag'], $notIn);
+        
         if($dadosLocais){
             foreach($dadosLocais as $v){
                 $locaisId[] = $v['localId'];
             }
-            if($atualizando){
-                $locaisId = array_merge($locaisNotIn, $locaisId);
+            if($notIn){
+                $locaisId = array_merge($msg->getCampoSessao('locaisNotIn'), $locaisId);
             }
             $msg->setCampoSessao('locaisNotIn', $locaisId);
 
@@ -47,7 +42,7 @@ class ListarAreaMapa {
                 $hashtags[] = $hashtag->consultar($usuarioId, $v['localId'], $tempo['hashtag']);
                 $midias[] = $midia->consultar($v['localId'], $tempo['midia']);
                 $qtdMidia[] = $midia->consultarQtd($v['localId'], $tempo['midia']);
-                $pessoas[] = $pessoa->consultar($usuarioId, $v['localId'], $tempo['midia'], $tempo['hashtag'], 3);
+                $pessoas[] = $pessoa->consultar($usuarioId, $v['localId'], $tempo['midia'], $tempo['hashtag'], 3, 0);
                 $qtdPerguntas[] = $perguntas->consultarQtd($v['localId'], $tempo['perguntas']);
             }
 
@@ -68,5 +63,17 @@ class ListarAreaMapa {
         }else{
             $msg->setResultadoEtapa(false);
         }
+    }
+    
+    private function atualizando($msg){
+        
+        $atualizando = $msg->getCampo('Atualizando')->get('valor');
+        
+        if($atualizando){
+            $notIn = implode(', ', $msg->getCampoSessao('locaisNotIn'));
+        }else{
+            $notIn = 0;
+        }
+        return $notIn;
     }
 }

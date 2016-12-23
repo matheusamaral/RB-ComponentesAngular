@@ -8,27 +8,32 @@ class ListarNotificacoes {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         
-        $atualizando = $msg->getCampo('Atualizando')->get('valor');
-        $notificacaoNotIn = $msg->getCampoSessao('notIn');
-        
-        if($atualizando){
-            $notIn = implode(', ', $notificacaoNotIn);
-        }else{
-            $notIn = 0;
-        }
+        $notIn = $this->atualizando($msg);
         
         $notificacoes = Conteiner::get('ConsultaListarNotificacoes')->consultar($usuarioId, $notIn);
         if($notificacoes){
             foreach($notificacoes as $v){
                 $notificacaoId[] = $v['id'];
             }
-            if($atualizando){
-                $notificacaoId = array_merge($notificacaoId, $notificacaoNotIn);
+            if($notIn){
+                $notificacaoId = array_merge($notificacaoId, $msg->getCampoSessao('notificacoesNotIn'));
             }
-            $msg->setCampoSessao('notIn', $notificacaoId);
+            $msg->setCampoSessao('notificacoesNotIn', $notificacaoId);
             $msg->setResultadoEtapa(true, false, ['dados'=>$notificacoes]);
         }else{
             $msg->setResultadoEtapa(false);
         }
+    }
+    
+    private function atualizando($msg){
+        
+        $atualizando = $msg->getCampo('Atualizando')->get('valor');
+        
+        if($atualizando){
+            $notIn = implode(', ', $msg->getCampoSessao('notificacoesNotIn'));
+        }else{
+            $notIn = 0;
+        }
+        return $notIn;
     }
 }
