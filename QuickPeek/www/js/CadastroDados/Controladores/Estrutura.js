@@ -26,7 +26,11 @@ angular.module('QuickPeek.Estrutura.CadastroDados', [
         };
 
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
-            alert(JSON.stringify(DGlobal.dadosUsuario.dados));
+            scope.dados.nome = DGlobal.dadosUsuario.dados.usuarioNome;
+            scope.dados.nascimento = DGlobal.dadosUsuario.dados.usuarioNascimento;
+            scope.dados.nascimentoVisao = VP.organizaDataVisao(DGlobal.dadosUsuario.dados.usuarioNascimento);
+            scope.dados.generoId = DGlobal.dadosUsuario.dados.usuarioGeneroId;
+            scope.dados.avataresId = 2;
         }
 
         scope.genero = [{id:1,titulo:'Masculino'},{id:2,titulo:'Feminino'}];

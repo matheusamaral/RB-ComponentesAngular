@@ -36,6 +36,7 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         
         function successSalvar(objRetorno){
             RBLoadingMobile.hide();
+            //alert(JSON.stringify());
             console.log("objRetorno",objRetorno);
             alert(dados.arquivo);
             if(objRetorno.success === true) {
