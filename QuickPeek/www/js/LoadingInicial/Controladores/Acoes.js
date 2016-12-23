@@ -23,8 +23,8 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
         $('ion-side-menu-content').addClass('background-img');
     }
     
-    function navegar(){ 
-        Pagina.navegar({idPage:8});
+    function navegar(){
+        Pagina.navegar({idPage:6});
     };
 
     

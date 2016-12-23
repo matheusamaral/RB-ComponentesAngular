@@ -22,28 +22,23 @@ angular.module('QuickPeek.Acoes.Avatares', [
     }  
     
     function voltarCad(){
-        if(DGlobal.avatarSelecionado && DGlobal.avatarSelecionado.perfil){
-            Pagina.navegar({idPage:8});
-        }else{
-            if(scope.avatares.editando)
-                Pagina.navegar({idPage:8});
-            else
-                Pagina.navegar({idPage:6});
+        if(DGlobal.veioCadastro){
+            Pagina.navegar({idPage:6});
         }
     }
     
     function mudarAvatar(){
-        if(DGlobal.avatarSelecionado && DGlobal.avatarSelecionado.perfil){
-            Pagina.navegar({idPage:8});
-            DGlobal.avatarSelecionado = scope.avatarSelecionado;
-        }else{
-            DGlobal.avatarSelecionado = scope.avatarSelecionado;
-            if(DGlobal.dadosEditar){
-                delete DGlobal.dadosEditar;
-                Pagina.navegar({idPage:8});
-            }else
+       // if(DGlobal.avatarSelecionado && DGlobal.avatarSelecionado.perfil){
+            //Pagina.navegar({idPage:8});
+            //DGlobal.avatarSelecionado = scope.avatarSelecionado;
+        //}else{
+            //DGlobal.avatarSelecionado = scope.avatarSelecionado;
+            //if(DGlobal.dadosEditar){
+                //delete DGlobal.dadosEditar;
+               // Pagina.navegar({idPage:8});
+            //}else
                 Pagina.navegar({idPage:6});
-        }
+        //}
     }
     
     function selecionarAvatar(id){

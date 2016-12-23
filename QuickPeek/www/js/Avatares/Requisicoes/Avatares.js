@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.CadastroDados', [
+angular.module('QuickPeek.Requisicao.Avatares', [
     'RB.pagina'
 ])
  
-.factory('CadastroDadosRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('AvataresRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
