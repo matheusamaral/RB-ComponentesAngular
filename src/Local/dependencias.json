@@ -13,6 +13,7 @@
     "ConsultaListarCategoriasFiltro": "\\Quickpeek\\Local\\Infra\\Repositorio\\Listar\\ConsultaListarCategoriasFiltro",
     
     "ConsultaPerguntaUsuario": "\\Quickpeek\\Local\\Infra\\Repositorio\\Perguntas\\ConsultaPerguntaUsuario",
+    "ConsultaVisualizarRespostas": "\\Quickpeek\\Local\\Infra\\Repositorio\\Perguntas\\ConsultaVisualizarRespostas",
     
     "ConsultaLocalGoogle": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaLocalGoogle",
     "ConsultaExcluirLocais": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaExcluirLocais",

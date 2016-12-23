@@ -22,6 +22,7 @@
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="perguntas_id" atributo="perguntasId" classe="Perguntas" tabela="perguntas"/>
         <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="\Quickpeek\Usuario\Dominio\Visibilidade" tabela="visibilidade"/>
+        <propriedades coluna="bloqueado" atributo="bloqueado" type="varchar(45)"/>
     </classe>
     
     <classe nome="RespostasVisualizadas" tabela="respostas_visualizadas" namespace="Quickpeek\Acoes\Dominio" id="">

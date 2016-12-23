@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaCheckIn {
     
-    public function consultar($perguntaId, $usuarioId){
+    public function consultar($usuarioId, $perguntaId){
         
         $query = Conteiner::get('Query', false);
         $query->select('c.id');

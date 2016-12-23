@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaPaginaConversas {
     
-    public function consultar($usuarioId){
+    public function consultar($usuarioId, $notIn){
         
         $query = Conteiner::get('Query', false);
         $query->select('u.id', 'usuarioId')
@@ -18,7 +18,10 @@ class ConsultaPaginaConversas {
                 ->add('men.visibilidade_mensagens_id', 'visibilidadeId')
                 ->add('men.id', 'mensagemId')
                 ->add('men.titulo', 'mensagem')
-                ->add('men.endereco', 'mensagemEndereco');
+                ->add('men.endereco', 'mensagemEndereco')
+                ->add("case when men.usuario_mensagem_id = ? then concat(men.usuario_mensagem_id, '-', men.usuario_id, "
+                . "'-', men.visibilidade_mensagens_id) else concat(men.usuario_id, '-', men.usuario_mensagem_id, '-', "
+                . "men.visibilidade_mensagens_id) end", 'agrupamento');
         $query->from('usuario', 'u');
         $query->join($this->subConsulta(), 'm')
                 ->on('1');
@@ -39,10 +42,10 @@ class ConsultaPaginaConversas {
                 ->on('b.ativo = 1');
         $query->where('case when men.usuario_mensagem_id = ? then u.id = men.usuario_id '
                 . ' else u.id = men.usuario_mensagem_id end');
-        $query->group("case when men.usuario_mensagem_id = ? then concat(men.usuario_mensagem_id, '-', men.usuario_id, "
-                . "'-', men.visibilidade_mensagens_id) else concat(men.usuario_id, '-', men.usuario_mensagem_id, '-', "
-                . "men.visibilidade_mensagens_id) end");
+        $query->group('agrupamento');
+        $query->having('agrupamento not in ('. $notIn .')');
         $query->order('men.momento desc');
+        $query->limit(15);
         $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }
