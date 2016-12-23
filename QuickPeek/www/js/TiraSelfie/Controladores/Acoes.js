@@ -15,6 +15,7 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     function setScope(obj){
         scope = obj;
         scope.cameraPerfil = {};
+        calcularAlturaRodape();
         return this;
     };
     
@@ -27,21 +28,29 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
         CameraPreview.setScope(scope).inicializar('cameraPerfil');
     }
     
-    function mostrarCamera(){
-        scope.cameraPerfil.mostrar();
-        scope.cameraPerfil.img = '';
-        scope.cameraPerfil.fotoTirada = false;
-        scope.cameraPerfil.galeria = false;
-        //scope.cameraPerfil.mostrar();
+    function mostrarCamera(evento){
+        VP.pararEvento(evento);
+        $timeout(function(){
+            scope.cameraPerfil.mostrar();
+            scope.cameraPerfil.img = '';
+            scope.cameraPerfil.fotoTirada = false;
+            scope.cameraPerfil.galeria = false;
+        },0);
     }
     
-    function virarCamera(){
-        scope.cameraPerfil.trocarCamera();
+    function virarCamera(evento){
+        VP.pararEvento(evento);
+        $timeout(function(){
+            scope.cameraPerfil.trocarCamera();
+        },0);
     }
     
-    function abrirGaleria(){
-        scope.cameraPerfil.img = false;
-        ImagePicker.setScope(scope).iniciar('cameraPerfil');
+    function abrirGaleria(evento){
+        VP.pararEvento(evento);
+        $timeout(function(){
+            scope.cameraPerfil.img = false;
+            ImagePicker.setScope(scope).iniciar('cameraPerfil');
+        },0);
     }
     
     function addCss(){
@@ -60,12 +69,18 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     
     function tirarFoto(evento){
         VP.pararEvento(evento);
-        scope.cameraPerfil.tirarFoto();
+        $timeout(function(){
+            scope.cameraPerfil.tirarFoto();
+        },0);
     }
     
     function pular(){
         scope.cameraPerfil.pararCamera();
         Pagina.navegar({idPage:6});
+    }
+    
+    function calcularAlturaRodape(){
+        scope.alturaRodape = $('body').height() - (($('#cameraPerfilBarra').height() + 40) + $('body').width());
     }
     
     return {

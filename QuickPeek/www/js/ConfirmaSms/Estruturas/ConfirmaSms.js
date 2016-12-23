@@ -46,7 +46,7 @@ angular.module('QuickPeek.HTML.ConfirmaSms', [
                             name="codigo"\n\
                             class="input-padrao font-grande"\n\
                             ng-model="dadosSms.codigo"\n\
-                            type="tel"\n\
+                            type="text"\n\
                             ng-required="true">\n\
                             <div ng-if="formCadTel.nCel.$touched && formCadTel.nCel.$invalid" ng-messages="formCadTel.codigo.$error">\n\
                                 <div ng-if="!formCadTel.nCel.$error.mask" ng-message="required">Este campo é obrigatório.</div>\n\

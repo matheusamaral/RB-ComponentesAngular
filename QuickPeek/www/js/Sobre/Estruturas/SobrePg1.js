@@ -30,7 +30,7 @@ angular.module('QuickPeek.HTML.SobrePg1', [])
                 </div>\n\
                 <div class="row">\n\
                     <div class="margin-auto col col-75 responsive text-center">\n\
-                        <button style="font-weight: bold;" ng-click="proximoSlide()" class="col button button-clear button-positive">\n\
+                        <button style="font-weight: bold;" ng-click="irTermos()" class="col button button-clear button-positive">\n\
                             LICENÇAS\n\
                         </button>\n\
                     </div>\n\

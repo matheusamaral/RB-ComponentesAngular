@@ -71,6 +71,7 @@
     <script src="lib/RB-ComponentesAngular/src/RBCordovaCameraPreview/RBCameraPreview.js"></script>
     <script src="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.js"></script>
     <script src="lib/RB-ComponentesAngular/src/RBAutocomplete/RBAutocomplete.js"></script>
+    <script src="lib/RB-ComponentesAngular/src/RBGerenciaSMS/RBGerenciaSMS.js"></script>
     <script src="js/Base/LayoutPadrao.js"></script>
     
     <!--Loading Inicial-->
@@ -226,17 +227,10 @@
     <script src="js/Sobre/Controladores/Acoes.js"></script>
     <script src="js/Sobre/Estruturas/Carrousel.js"></script>
     <script src="js/Sobre/Estruturas/SobrePg1.js"></script>
-    <script src="js/Sobre/Estruturas/SobrePg2.js"></script>
-    
-    <!--Termos-->
-    <script src="js/Termos/Controladores/Termos.js"></script>
-    <script src="js/Termos/Controladores/Estrutura.js"></script>
-    <script src="js/Termos/Controladores/Acoes.js"></script>
-    <script src="js/Termos/Estruturas/Termos.js"></script>
 
     <script>
         DGlobal = {};
-        DGlobal.acaoCliente = {classe:"pag-config-sobre", acao:"ConfigSobreCtrl"};
+        DGlobal.acaoCliente = {classe:"pag-loading-inicial", acao:"LoadingInicialCtrl"};
         //DGlobal.acaoCliente = {classe:"pag-comece-agora", acao:"ComeceAgoraCtrl"};
         var refAmbienteG = 'localhost:8100/';
         var refAmbienteReqG = 'http://192.168.0.121:8000/QuickPeek/quickpeek/api';
@@ -250,7 +244,7 @@
     
   </head>
   <body>
-      <div ui-view when-ready class="corpo-conteudo" >
+      <div ui-view when-ready class="corpo-conteudo">
       </div>
   </body>
 </html>

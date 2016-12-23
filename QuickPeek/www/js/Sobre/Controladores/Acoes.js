@@ -26,32 +26,19 @@ angular.module('QuickPeek.Acoes.Sobre', [
         Pagina.navegar({idPage:19});
     };
 
-    function proximoSlide(){
-        $ionicSlideBoxDelegate.next();
+    function irTermos(){
+        window.open('http://quickpeek.dev.codevip.com.br/termos-e-privacidade?app=true','_blank'); 
     }
     
     function voltarSlide(){
         $ionicSlideBoxDelegate.previous();
     }
     
-    function verificaBackground(){
-        if($('ion-side-menu-content').hasClass('background-img')){
-            $('ion-side-menu-content').removeClass('background-img');
-            $('ion-side-menu-content').addClass('background-cinza');
-        }else{
-            if($('ion-side-menu-content').hasClass('background-cinza')){
-                $('ion-side-menu-content').removeClass('background-cinza');
-                $('ion-side-menu-content').addClass('background-img');
-            }
-        }
-    }
-    
     return {
         setScope:setScope,
         inicializar:inicializar,
         navegar:navegar,
-        proximoSlide:proximoSlide,
-        verificaBackground:verificaBackground,
+        irTermos:irTermos,
         voltarSlide:voltarSlide
     };
     

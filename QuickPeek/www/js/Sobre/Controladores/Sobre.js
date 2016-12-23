@@ -12,9 +12,7 @@ angular.module('QuickPeek.Sobre', [
         SobreAcoes.setScope($scope).inicializar();
         
         $scope.navegar =  SobreAcoes.navegar;
-        $scope.proximoSlide =  SobreAcoes.proximoSlide;
-        $scope.verificaBackground =  SobreAcoes.verificaBackground;
-        $scope.voltarSlide =  SobreAcoes.voltarSlide;
+        $scope.irTermos =  SobreAcoes.irTermos;
     }
 ])
 
