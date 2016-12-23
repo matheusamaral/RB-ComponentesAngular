@@ -17,6 +17,9 @@ class ConsultaListarDadosUsuario {
                 ->add('c.conta_privada', 'contaPrivada')
                 ->add('c.notificacao_publicacao', 'notificacaoPublicacao')
                 ->add('c.contato', 'contato')
+                ->add('a.id', 'avatarId')
+                ->add('a.nome', 'avatarNome')
+                ->add('a.endereco', 'avatarEndereco')
                 ->add('count(distinct b.id)', 'bloqueados');
         $query->from('usuario', 'u');
         $query->join('configuracoes', 'c')
@@ -28,6 +31,9 @@ class ConsultaListarDadosUsuario {
                 ->on('b.usuario_id = u.id')
                 ->on('b.usuario_bloqueado_id = us.id')
                 ->on('b.ativo = 1');
+        $query->join('avatares', 'a', 'left')
+                ->on('a.id = u.avatares_id')
+                ->on('a.ativo = 1');
         $query->where('u.id = ?')
                 ->add('u.ativo = 1');
         $query->addVariaveis($usuarioId);

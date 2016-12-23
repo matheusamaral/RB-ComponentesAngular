@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaPessoa {
     
-public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $limit){
+public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $limit, $notIn){
         
         $query = Conteiner::get('Query', false);
         
@@ -51,7 +51,8 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->on('hl.ativo = 1');
         $query->join($this->query1(), 'consulta', 'left')
                 ->on('consulta.id = u.id');
-        $query->where('l.id = ?');
+        $query->where('l.id = ?')
+                ->add('u.id not in (' . $notIn .')');
         $query->group('u.id');
         $query->order('count desc, count2 desc');
         $query->limit($limit);

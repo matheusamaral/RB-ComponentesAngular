@@ -4,10 +4,10 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaListarMensagensPerguntas {
     
-    public function consultar($usuarioId, $perguntaId, $tempo){
+    public function consultar($usuarioId, $perguntaId, $tempo, $notIn){
         
         $query = Conteiner::get('Query', false);
-        $query->select('distinct r.id', 'idResposta')
+        $query->select('distinct r.id', 'respostaId')
                 ->add('r.titulo', 'titulo')
                 ->add('r.endereco', 'enderecoMidia')
                 ->add('r.usuario_id', 'usuarioId')
@@ -28,7 +28,11 @@ class ConsultaListarMensagensPerguntas {
                 ->on('s.ativo = 1');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
-        $query->where('r.perguntas_id = ?')->add('r.momento > date_add(now(), INTERVAL -? HOUR)')->add('r.ativo = 1');
+        $query->where('r.perguntas_id = ?')
+                ->add('r.momento > date_add(now(), INTERVAL -? HOUR)')
+                ->add('r.id not in(' . $notIn . ')')
+                ->add('r.ativo = 1');
+        $query->limit(15);
         $query->addVariaveis([$usuarioId, $perguntaId, $tempo]);
         return $query->executar();
     }
