@@ -8,7 +8,7 @@ angular.module('QuickPeek.CadastroDados', [
 
 .controller('CadastroDadosCtrl', ['$scope','CadastroDadosEstrutura','CadastroDadosAcoes','$ionicPopup',
     function ($scope,CadastroDadosEstrutura,CadastroDadosAcoes,$ionicPopup){        
-        CadastroDadosEstrutura.setScope($scope).requisicoesIniciais();
+        CadastroDadosEstrutura.setScope($scope).popular();
         CadastroDadosAcoes.setScope($scope).inicializar();
         
         $scope.cadastrar = CadastroDadosAcoes.cadastrar;

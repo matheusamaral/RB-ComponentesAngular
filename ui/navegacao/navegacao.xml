@@ -33,11 +33,12 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-tira-selfie" acao="TiraSelfieCtrl" title="QuickPeek"/>
     </pagina>  
-     
+    
     <pagina id="6" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="cadastro-dados">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarAvatares" objeto='avatares'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-cadastro-dados" acao="CadastroDadosCtrl" title="QuickPeek"/>
@@ -45,12 +46,18 @@
     
     <pagina id="7" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="avatares">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarAvatares" objeto='avatares'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
     </pagina>   
     
     <pagina id="8" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="perfil">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-perfil" acao="PerfilCtrl" title="QuickPeek"/>
     </pagina>   

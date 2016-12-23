@@ -25,7 +25,6 @@ angular.module('QuickPeek.Acoes.CadastroDados', [
     }
     
     function cadastrar(){
-        DGlobal.dadosPerfil = scope.dados;
         scope.dados.nascimento = VP.organizaDataString(scope.dados.nascimentoVisao);
         CadastroDadosRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:CadastroDadosRequisicoes.successCadastrar}).cadastrar();
     }  
@@ -42,7 +41,7 @@ angular.module('QuickPeek.Acoes.CadastroDados', [
     
     function irAvatares(){
         Pagina.navegar({idPage:7});
-        DGlobal.dadosCadastro = scope.dados;
+        DGlobal.veioCadastro = scope.dados;
     }
     
     function voltarSelfie(){
