@@ -101,5 +101,6 @@
     "ListarVisualizadoEntregue": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarVisualizadoEntregue",
     "ListarCategoriasFiltroMapa": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarCategoriasFiltroMapa",
     
+    "SetarDadosBanco": "\\Quickpeek\\Usuario\\Aplicacao\\DadosBanco\\SetarDadosBanco",
     "LoginTeste": "\\Quickpeek\\LoginTeste"
 }
