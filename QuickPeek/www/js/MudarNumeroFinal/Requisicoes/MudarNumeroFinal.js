@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.MudarNumeroFinal', [
             return this;
         };
 
-        function cadastrar(){
+        function editarNumero(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
+                url: Config.getRefAmbienteReq()+"/Usuario/editarNumero",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -32,24 +32,22 @@ angular.module('QuickPeek.Requisicao.MudarNumeroFinal', [
             GCS.conectar(obj);
         };
         
-        
-        function successCadastrar(objRetorno){
+        function successEditarNumero(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 7});
-            }
-            else{
-                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                Pagina.navegar({idPage : 10});
+                OpenToast('Número editado com sucesso!');
+            }else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors)
+                else OpenToast('Não foi possível realizar esta ação, tente novamente mais tarde');
             }
         };
-        
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
             OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
         };
-        
         
         function OpenToast(message) {
           ionicToast.show(message, 'bottom', false, 3000);
@@ -57,8 +55,8 @@ angular.module('QuickPeek.Requisicao.MudarNumeroFinal', [
         
         return {
             set: set,
-            cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            editarNumero: editarNumero,
+            successEditarNumero: successEditarNumero
         };
                            
 }]);     

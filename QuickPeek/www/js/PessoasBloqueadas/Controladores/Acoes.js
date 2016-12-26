@@ -2,11 +2,12 @@
 
 angular.module('QuickPeek.Acoes.PessoasBloqueadas', [ 
     'RB.pagina',
-    'QuickPeek.HTML.PessoasBloqueadas'
+    'QuickPeek.HTML.PessoasBloqueadas',
+    'QuickPeek.Requisicao.PessoasBloqueadas'
 ])
 
-.factory('PessoasBloqueadasAcoes', ['Pagina','$ionicPopup','PessoasBloqueadasHtmlPopup',
-    function(Pagina,$ionicPopup,PessoasBloqueadasHtmlPopup) {
+.factory('PessoasBloqueadasAcoes', ['Pagina','$ionicPopup','PessoasBloqueadasHtmlPopup','ConfigContaRequisicoes',
+    function(Pagina,$ionicPopup,PessoasBloqueadasHtmlPopup,ConfigContaRequisicoes) {
     var scope;  
     
     function setScope(obj){
@@ -14,7 +15,11 @@ angular.module('QuickPeek.Acoes.PessoasBloqueadas', [
         return this;
     };
     
-    function popupDesbloquear(){
+    function popupDesbloquear(codigo,nome){
+        scope.dadosDesbloquear={
+            id:codigo,
+            nome: nome
+        };
         scope.desbloquearPopup = $ionicPopup.alert({
             scope:scope,
             title: '',
@@ -27,9 +32,9 @@ angular.module('QuickPeek.Acoes.PessoasBloqueadas', [
         Pagina.navegar({idPage:10});
     }
     
-    function desbloquear(){
-        scope.dados.pessoas = new Array();
-        scope.desbloquearPopup.close();
+    function desbloquear(id,visibilidade){
+        var obj = {usuarioBloqueadoId:id,visibilidadeId:visibilidade};
+        ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successDesbloquear}).desbloquear();
     }
     
     return {

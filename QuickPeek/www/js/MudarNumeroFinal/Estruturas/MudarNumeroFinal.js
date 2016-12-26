@@ -13,7 +13,7 @@ angular.module('QuickPeek.HTML.MudarNumeroFinal', [
                         </button>\n\
                     </div>\n\
                     <div style="margin-left: auto;">\n\
-                        <button ng-click="pular()" ng-disabled="true" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="alterarNumero()" ng-disabled="formTel.$invalid" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-checkmark seta-barra"></i>Concluir\n\
                         </button>\n\
                     </div>\n\
@@ -38,10 +38,9 @@ angular.module('QuickPeek.HTML.MudarNumeroFinal', [
                             </md-input-container>\n\
                             <md-input-container class="rb-input">\n\
                                 <input\n\
-                                ui-mask="(99)99999999?9"\n\
-                                ui-mask-placeholder-char="space"\n\
-                                minlength="8"\n\
+                                minlength="12"\n\
                                 name="nCelAntigo"\n\
+                                id="telAntigo"\n\
                                 class="input-padrao font-media"\n\
                                 ng-model="dados.telAntigo"\n\
                                 type="tel"\n\
@@ -70,9 +69,8 @@ angular.module('QuickPeek.HTML.MudarNumeroFinal', [
                             </md-input-container>\n\
                             <md-input-container class="rb-input">\n\
                                 <input\n\
-                                ui-mask="(99)99999999?9"\n\
-                                ui-mask-placeholder-char="space"\n\
-                                minlength="8"\n\
+                                minlength="12"\n\
+                                id="telNovo"\n\
                                 name="nCelNovo"\n\
                                 class="input-padrao font-media"\n\
                                 ng-model="dados.telNovo"\n\

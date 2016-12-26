@@ -30,7 +30,6 @@ angular.module('QuickPeek.Estrutura.ConfigConta', [
         ];
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
-            alert(JSON.stringify(DGlobal.dadosUsuario.dados));
             scope.dados.visibilidade = DGlobal.dadosUsuario.dados.visibilidadeId;
             scope.dados.contaPrivada = DGlobal.dadosUsuario.dados.contaPrivada;
             scope.dados.bloqueados = DGlobal.dadosUsuario.dados.bloqueados;
