@@ -24,6 +24,11 @@ angular.module('QuickPeek.Estrutura.Seguidores', [
                 {urlImg:'',nome:'Anderson Campos',seguindo:1}
             ]
         };
+        
+        if(DGlobal.seguidores && DGlobal.seguidores.success){
+            alert(JSON.stringify(DGlobal.seguidores.dados));
+            scope.dados.seguidores = DGlobal.seguidores.dados;
+        }
     };
   
     return {

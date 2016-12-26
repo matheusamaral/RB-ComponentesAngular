@@ -4,7 +4,7 @@ angular.module('QuickPeek.Requisicao.Seguindo', [
     'RB.pagina'
 ])
  
-.factory('SeguidoresRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('SeguindoRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.Seguindo', [
             return this;
         };
 
-        function cadastrar(){
+        function deixarSeguir(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
+                url: Config.getRefAmbienteReq()+"/Acoes/deixarSeguir",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,11 +33,15 @@ angular.module('QuickPeek.Requisicao.Seguindo', [
         };
         
         
-        function successCadastrar(objRetorno){
+        function successDeixarSeguir(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 7});
+                for(var i = 0; i < scope.dados.seguidores.length;i++){
+                    if(scope.dados.seguidores[i].usuarioId == dados.usuarioSeguirId){
+                        scope.dados.seguidores.splice(i,1);
+                    }
+                }
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
@@ -57,8 +61,8 @@ angular.module('QuickPeek.Requisicao.Seguindo', [
         
         return {
             set: set,
-            cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            deixarSeguir: deixarSeguir,
+            successDeixarSeguir: successDeixarSeguir
         };
                            
 }]);     
