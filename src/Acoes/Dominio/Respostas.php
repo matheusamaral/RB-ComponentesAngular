@@ -12,7 +12,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $momento = false;
         private $usuarioId = false;
         private $perguntasId = false;
-        private $visibilidadeId = false; 
+        private $visibilidadeId = false;
+        private $bloqueado = false; 
                 
         public function getId() {
             return $this->id;
@@ -96,6 +97,14 @@ use Rubeus\ORM\Persistente as Persistente;
             if($visibilidadeId instanceof \Quickpeek\Usuario\Dominio\Visibilidade)
                 $this->visibilidadeId = $visibilidadeId;
             else $this->getVisibilidadeId()->setId($visibilidadeId);
+        } 
+                
+        public function getBloqueado() {
+            return $this->bloqueado;
+        }
+
+        public function setBloqueado($bloqueado) {
+            $this->bloqueado = $bloqueado;
         }
         
     }

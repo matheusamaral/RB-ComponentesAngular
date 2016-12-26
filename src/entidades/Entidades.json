@@ -31,6 +31,7 @@
     "PerguntaAlerta": "\\Quickpeek\\Acoes\\Dominio\\PerguntaAlerta",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",
+    "RespostasVisualizadas": "\\Quickpeek\\Acoes\\Dominio\\RespostasVisualizadas",
     "Notificacoes": "\\Quickpeek\\Acoes\\Dominio\\Notificacoes",
     "TipoNotificacoes": "\\Quickpeek\\Acoes\\Dominio\\TipoNotificacoes",
     

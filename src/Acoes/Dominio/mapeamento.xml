@@ -26,6 +26,7 @@
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+    <propriedades coluna="bloqueado" atributo="bloqueado" /> 
 </classe>
         
 <classe nome="RespostasVisualizadas" tabela="respostas_visualizadas"> 

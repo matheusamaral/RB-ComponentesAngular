@@ -31,9 +31,10 @@ class ConsultaListarMensagensPerguntas {
         $query->where('r.perguntas_id = ?')
                 ->add('r.momento > date_add(now(), INTERVAL -? HOUR)')
                 ->add('r.id not in(' . $notIn . ')')
+                ->add('(r.usuario_id = ? or bloqueado = 0)')
                 ->add('r.ativo = 1');
         $query->limit(15);
-        $query->addVariaveis([$usuarioId, $perguntaId, $tempo]);
+        $query->addVariaveis([$usuarioId, $perguntaId, $tempo, $usuarioId]);
         return $query->executar();
     }
     
@@ -61,5 +62,17 @@ class ConsultaListarMensagensPerguntas {
         $query->where('p.id = ?')->add('p.ativo = 1');
         $query->addVariaveis([$usuarioId, $perguntaId]);
         return $query->executar('A');
+    }
+    
+    public function consultaRespostasId($perguntaId, $tempo){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('id');
+        $query->from('respostas');
+        $query->where('perguntas_id = ?')
+                ->add('momento > date_add(now(), INTERVAL -? HOUR)')
+                ->add('ativo = 1');
+        $query->addVariaveis([$perguntaId, $tempo]);
+        return $query->executar('AA1', false, 'id');
     }
 }

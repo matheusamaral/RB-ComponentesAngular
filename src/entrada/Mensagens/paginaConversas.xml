@@ -2,7 +2,9 @@
 
 <processo codigo="paginaConversas" modulo="Mensagens">
     
-    <entrada></entrada>
+    <entrada>
+        <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
+    </entrada>
     
     <atividades>
         <atividade codigo="pagina-conversas" tipo="tarefa">
