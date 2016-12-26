@@ -34,7 +34,6 @@ angular.module('QuickPeek.Requisicao.PessoasBloqueadas', [
         
         function successDesbloquear(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
                 for(var i = 0; i < scope.dados.pessoas.length;i++){

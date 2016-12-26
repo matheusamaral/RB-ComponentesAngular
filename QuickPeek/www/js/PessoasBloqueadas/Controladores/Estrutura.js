@@ -22,7 +22,6 @@ angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
         };
         
         if(DGlobal.pessoasBloqueadas && DGlobal.pessoasBloqueadas.success){
-            alert(JSON.stringify(DGlobal.pessoasBloqueadas.dados));
             scope.dados.pessoas = DGlobal.pessoasBloqueadas.dados;
         }
         
