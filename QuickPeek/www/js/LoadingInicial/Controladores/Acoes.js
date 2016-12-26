@@ -24,7 +24,8 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     }
     
     function navegar(){
-        Pagina.navegar({idPage:6});
+        //Pagina.navegar({idPage:8});
+        Pagina.navegar({idPage:10});
     };
 
     

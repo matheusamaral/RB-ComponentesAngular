@@ -9,22 +9,22 @@ angular.module('QuickPeek.HTML.Perfil', [
         return tabs()+'\n\
                 <div class="row" style="padding:0;padding-top:90px !important">\n\
                     <div class="col col-25 remove-padding">\n\
-                        <div style="background-image:url({{dados.urlImg}});remove-padding; margin: auto;" class="box-img-cad btn-redondo-grande-cinza-perfil">\n\
+                        <div style="background-image:url({{dados.usuarioEndereco}});remove-padding; margin: auto;" class="box-img-cad btn-redondo-grande-cinza-perfil">\n\
                         </div>\n\
-                        <p class="col font-preta-perfil negrito remove-padding">{{dados.nome}}</p>\n\
+                        <p class="col font-preta-perfil negrito remove-padding">{{dados.usuarioNome}}</p>\n\
                     </div>\n\
                     <div class="col remove-padding">\n\
                         <div class="row remove-padding">\n\
                             <div class="col text-center remove-padding">\n\
-                                <p class="remove-padding col font-preta-perfil negrito">802</p>\n\
+                                <p class="remove-padding col font-preta-perfil negrito">{{dados.publicacoes}}</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">posts</p>\n\
                             </div>\n\
                             <div ng-click="irSeguidores()" class="col text-center remove-padding">\n\
-                                <p class="remove-padding col font-preta-perfil negrito">711</p>\n\
+                                <p class="remove-padding col font-preta-perfil negrito">{{dados.qtdSeguidores}}</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">seguidores</p>\n\
                             </div>\n\
                             <div ng-click="irSeguindo()" class="col text-center remove-padding">\n\
-                                <p class="remove-padding col font-preta-perfil negrito">900</p>\n\
+                                <p class="remove-padding col font-preta-perfil negrito">{{dados.qtdSeguindo}}</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">seguindo</p>\n\
                             </div>\n\
                         </div>\n\

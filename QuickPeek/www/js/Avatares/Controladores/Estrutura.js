@@ -28,8 +28,8 @@ angular.module('QuickPeek.Estrutura.Avatares', [
         var linhaAvatar = new Array();
         for(var i = 0; i < scope.avatares.length; i++){
             contAvatares++;
-            if(DGlobal.avatarSelecionado){
-                if(DGlobal.avatarSelecionado.id == scope.avatares[i].id){
+            if(DGlobal.veioCadastro){
+                if(DGlobal.veioCadastro.avataresId == scope.avatares[i].id){
                     scope.avatares[i].selecionado = true;
                     scope.avatarSelecionado = scope.avatares[i];
                 }

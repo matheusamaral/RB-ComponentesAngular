@@ -18,10 +18,14 @@ angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
     
     function popular(){
         scope.dados = {
-            pessoas:[
-                {nome:'Amanda Costa'}
-            ]
+            pessoas:new Array()
         };
+        
+        if(DGlobal.pessoasBloqueadas && DGlobal.pessoasBloqueadas.success){
+            scope.dados.pessoas = DGlobal.pessoasBloqueadas.dados;
+        }
+        
+        scope.dados.pessoas.push({usuarioId:1,nome:'Coelho neurótico',endereco:'img/rabbit.svg'});
     };
   
     return {

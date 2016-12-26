@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.ConfigConta', [
+angular.module('QuickPeek.Requisicao.PessoasBloqueadas', [
     'RB.pagina'
 ])
  
@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.ConfigConta', [
             return this;
         };
 
-        function cadastrar(){
+        function desbloquear(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
+                url: Config.getRefAmbienteReq()+"/Usuario/desbloquear",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -32,15 +32,20 @@ angular.module('QuickPeek.Requisicao.ConfigConta', [
             GCS.conectar(obj);
         };
         
-        
-        function successCadastrar(objRetorno){
+        function successDesbloquear(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 7});
+                for(var i = 0; i < scope.dados.pessoas.length;i++){
+                    if(dados.usuarioBloqueadoId == scope.dados.pessoas[i].usuarioId){
+                        scope.dados.pessoas.splice(i,1);
+                    }
+                }
+                scope.desbloquearPopup.close();
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
+                else OpenToast('Não foi possível desbloquear esta pessoa!');
             }
         };
         
@@ -57,8 +62,8 @@ angular.module('QuickPeek.Requisicao.ConfigConta', [
         
         return {
             set: set,
-            cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            desbloquear: desbloquear,
+            successDesbloquear: successDesbloquear
         };
                            
 }]);     

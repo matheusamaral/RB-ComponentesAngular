@@ -12,6 +12,7 @@ angular.module('QuickPeek.MudarNumeroFinal', [
         MudarNumeroFinalAcoes.setScope($scope);
         
         $scope.voltarNumero = MudarNumeroFinalAcoes.voltarNumero;
+        $scope.alterarNumero = MudarNumeroFinalAcoes.alterarNumero;
     }
 ])
 

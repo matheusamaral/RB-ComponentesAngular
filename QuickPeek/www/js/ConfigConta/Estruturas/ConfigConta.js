@@ -29,8 +29,8 @@ angular.module('QuickPeek.HTML.ConfigConta', [
                                 <md-switch \n\
                                 ng-click="popupContaPrivada()" \n\
                                 ng-model="dados.contaPrivada" class="md-primary md-raised"\n\
-                                ng-true-value="1"\n\
-                                ng-false-value="0">\n\
+                                ng-true-value="\'1\'"\n\
+                                ng-false-value="\'0\'">\n\
                                 </md-switch>\n\
                             </div>\n\
                             <p class="conteudo-sessao">Quando sua conta é privada, somente as pessoas que você aprova podem ver as presenças que você compartilha com seus seguidores.seus seguidores existentes não serão afetados.</p>\n\
@@ -40,7 +40,7 @@ angular.module('QuickPeek.HTML.ConfigConta', [
                 <div class="row divide-sessoes corpo-lista-config padding-padrao-contas" style="padding-top:15px !important">\n\
                     <div class="col remove-padding">\n\
                         <div ng-click="listarPessoasBloqueadas()" class="col remove-padding">\n\
-                            <p class="col remove-padding titulo-sessao">Bloqueados: 2</p>\n\
+                            <p class="col remove-padding titulo-sessao">Bloqueados: {{dados.bloqueados}}</p>\n\
                             <p class="conteudo-sessao">Lista dos contatos bloqueados</p>\n\
                         </div>\n\
                     </div>\n\
@@ -70,7 +70,7 @@ angular.module('QuickPeek.HTML.ConfigConta', [
        
     function montar() {
         return '<div class="col remove-padding">\n\
-                    <md-radio-group ng-model="dados.vistoUltimo">\n\
+                    <md-radio-group ng-model="dados.visibilidade">\n\
                         <md-radio-button ng-click="attVisibilidade(op.titulo,op.id)" ng-repeat="op in dados.vistoUltimoOp" value="{{op.id}}" class="md-primary">{{op.titulo}}</md-radio-button>\n\
                     </md-radio-group>\n\
                 </div>';

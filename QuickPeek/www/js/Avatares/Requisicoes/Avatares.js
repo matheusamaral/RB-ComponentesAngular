@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.Avatares', [
             return this;
         };
 
-        function cadastrar(){
+        function editarAvatar(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
+                url: Config.getRefAmbienteReq()+"/Usuario/editarAvatar",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,11 +33,10 @@ angular.module('QuickPeek.Requisicao.Avatares', [
         };
         
         
-        function successCadastrar(objRetorno){
+        function successEditarAvatar(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
             console.log("objRetorno",objRetorno);
-            if(objRetorno.success === true) {
+            if(objRetorno.success === true){
                 Pagina.navegar({idPage : 8});
             }
             else{
@@ -58,8 +57,8 @@ angular.module('QuickPeek.Requisicao.Avatares', [
         
         return {
             set: set,
-            cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            editarAvatar: editarAvatar,
+            successEditarAvatar: successEditarAvatar
         };
                            
 }]);     

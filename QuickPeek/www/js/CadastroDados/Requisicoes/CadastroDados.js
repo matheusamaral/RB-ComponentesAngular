@@ -35,7 +35,6 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
         
         function successCadastrar(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
                 Pagina.navegar({idPage : 8});

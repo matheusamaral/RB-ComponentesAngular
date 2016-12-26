@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.ConfigConta', [
             return this;
         };
 
-        function cadastrar(){
+        function editarVisibilidade(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
+                url: Config.getRefAmbienteReq()+"/Usuario/editarVisibilidadePadrao",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,14 +33,55 @@ angular.module('QuickPeek.Requisicao.ConfigConta', [
         };
         
         
-        function successCadastrar(objRetorno){
+        function successEditarVisibilidade(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
-            if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 7});
+            if(objRetorno.success === true){
+                scope.dados.visibilidadeTitulo = dados.titulo;
+                scope.dados.visibilidade = dados.visibilidadeId;
+                scope.popupVisibilidade.close();
             }
             else{
-                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                scope.dados.visibilidadeTitulo = scope.dadosAntigos.visibilidadeTitulo;
+                scope.dados.visibilidade = scope.dadosAntigos.visibilidade;
+                scope.popupVisibilidade.close();
+                if(objRetorno.errors){
+                    OpenToast(objRetorno.errors);
+                }else{
+                    OpenToast("Não foi possível atualizar esta configuração");
+                }
+            }
+        };
+        
+        function editarCPrivada(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Usuario/editarContaPrivada",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successEditarCPrivada(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                scope.contaPrivadaPopup.close();
+            }
+            else{
+                scope.dados.contaPrivada = scope.opTemporarea;
+                scope.contaPrivadaPopup.close();
+                if(objRetorno.errors){
+                    OpenToast(objRetorno.errors);
+                }else{
+                    OpenToast("Não foi possível atualizar esta configuração");
+                }
             }
         };
         
@@ -52,13 +93,15 @@ angular.module('QuickPeek.Requisicao.ConfigConta', [
         
         
         function OpenToast(message) {
-          ionicToast.show(message, 'bottom', false, 3000);
+          ionicToast.show(message, 'top', false, 3000);
         }
         
         return {
             set: set,
-            cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            editarVisibilidade: editarVisibilidade,
+            editarCPrivada:editarCPrivada,
+            successEditarVisibilidade: successEditarVisibilidade,
+            successEditarCPrivada: successEditarCPrivada
         };
                            
 }]);     
