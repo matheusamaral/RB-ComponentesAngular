@@ -19,15 +19,27 @@ angular.module('QuickPeek.Estrutura.ConfigConta', [
     function popular(){
         scope.dados = {
             contaPrivada:0,
-            visibilidade:2,
-            visibilidadeTitulo:'Ninguém'
+            visibilidade:'',
+            visibilidadeTitulo:''
         };
         
         scope.dados.vistoUltimoOp = [
-            {id:0,titulo:'Todos'},
-            {id:1,titulo:'Meus seguidores'},
-            {id:2,titulo:'Ninguém'}
+            {id:1,titulo:'Todos'},
+            {id:2,titulo:'Meus seguidores'},
+            {id:3,titulo:'Ninguém'}
         ];
+        
+        if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
+            alert(JSON.stringify(DGlobal.dadosUsuario.dados));
+            scope.dados.visibilidade = DGlobal.dadosUsuario.dados.visibilidadeId;
+            scope.dados.contaPrivada = DGlobal.dadosUsuario.dados.contaPrivada;
+            scope.dados.bloqueados = DGlobal.dadosUsuario.dados.bloqueados;
+            for(var i = 0;i < scope.dados.vistoUltimoOp.length; i++){
+                if(scope.dados.vistoUltimoOp[i].id == scope.dados.visibilidade){
+                    scope.dados.visibilidadeTitulo = scope.dados.vistoUltimoOp[i].titulo; 
+                }
+            }
+        }
     };
   
     return {

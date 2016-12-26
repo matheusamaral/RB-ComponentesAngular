@@ -2,11 +2,12 @@
 
 angular.module('QuickPeek.Acoes.ConfigConta', [ 
     'RB.pagina',
-    'QuickPeek.HTML.ConfigConta'
+    'QuickPeek.HTML.ConfigConta',
+    'QuickPeek.Requisicao.ConfigConta'
 ])
 
-.factory('ConfigContaAcoes', ['Pagina','$ionicPopup','popupUltimoHtml','contaPrivadaHtml',
-    function(Pagina,$ionicPopup,popupUltimoHtml,contaPrivadaHtml) {
+.factory('ConfigContaAcoes', ['Pagina','$ionicPopup','popupUltimoHtml','contaPrivadaHtml','ConfigContaRequisicoes',
+    function(Pagina,$ionicPopup,popupUltimoHtml,contaPrivadaHtml,ConfigContaRequisicoes){
     var scope;  
     
     function setScope(obj){
@@ -20,13 +21,15 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
             title: 'Visto por último',
             template: popupUltimoHtml.montar(),
             buttons:[
-                {text:'CANCELAR',type:['button-positive','button-outline']}
+                {
+                    text:'CANCELAR',
+                    type:['button-positive','button-outline'],
+                }
             ]
         });
     }
     
     function popupContaPrivada(){
-        console.log(scope.dados.contaPrivada);
         scope.opTemporarea = scope.dados.contaPrivada;
         if(scope.opTemporarea == 0){
             scope.contaPrivadaPopup = $ionicPopup.alert({
@@ -49,7 +52,9 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
     }
     
     function alterarPrivacidade(){
-        scope.contaPrivadaPopup.close();
+        var obj = {contaPrivada : scope.dados.contaPrivada};
+        ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successEditarCPrivada}).editarCPrivada();
+        //scope.contaPrivadaPopup.close();
     }
     
     function listarPessoasBloqueadas(){
@@ -69,9 +74,13 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
     }
     
     function attVisibilidade(titulo,id){
-        scope.dados.visibilidadeTitulo = titulo;
-        scope.dados.visibilidade = id;
-        scope.popupVisibilidade.close();
+        console.log(id);
+        scope.dadosAntigos = {
+            visibilidadeTitulo : scope.dados.visibilidadeTitulo,
+            visibilidade : scope.dados.visibilidade
+        };
+        var obj = {visibilidadeId:id,titulo:titulo};
+        ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successEditarVisibilidade}).editarVisibilidade();
     }
     
     return {

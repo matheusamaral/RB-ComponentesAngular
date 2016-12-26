@@ -21,17 +21,22 @@ angular.module('QuickPeek.Estrutura.Perfil', [
             avatar:''
         };
         
-        if(DGlobal.dadosPerfil){
-            scope.dados = DGlobal.dadosPerfil;
+        if(DGlobal.dadosAvatares && DGlobal.dadosAvatares.success){
+            scope.avatares = DGlobal.dadosAvatares.dados;
         }
         
-        if(DGlobal.avatarSelecionado){
-            scope.dados.avatar = DGlobal.avatarSelecionado;
+        if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
+            alert(JSON.stringify(DGlobal.dadosUsuario.dados));
+            scope.dados = DGlobal.dadosUsuario.dados; 
+            montaAvatar();
         }
-        
-        console.log('scope.dados');
-        console.log(scope.dados);
     };
+    
+    function montaAvatar(){
+        scope.dados.avatar = {};
+        scope.dados.avatar.nome = DGlobal.dadosUsuario.dados.avatarNome;
+        scope.dados.avatar.endereco = DGlobal.dadosUsuario.dados.avatarEndereco;
+    }
   
     return {
         setScope:setScope,

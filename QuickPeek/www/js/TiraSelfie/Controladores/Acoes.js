@@ -59,12 +59,29 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
     }
     
     function createFile(path){
-        var obj = {arquivo:$base64.encode(toString(path))};
-        DGlobal.dadosSelfie ={
-            urlImg: path
-        };
+        var obj = {};
+        RBLoadingMobile.show('Salvando foto...');
+        $timeout(function(){
+            window.plugins.Base64.encodeFile(path, function(base64){
+                obj = {arquivoBase64:base64};
+            });
+
+            $timeout(function(){
+                TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successSalvar}).salvarImg();
+            },0);
+        },0);
+    }
+    
+    function preparaArquivo(url){
+        var nomeArquivo = url.split('/')[url.split('/').length - 1];
+        var caminho = '';
+        for(var i = 0 ; i < url.split('/').length - 1; i++){
+            caminho = caminho + url.split('/')[i]+'/';
+        }
         
-        TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successSalvar}).salvarImg();
+        alert(caminho);
+        
+        return $cordovaFile.checkFile(caminho, nomeArquivo);
     }
     
     function tirarFoto(evento){

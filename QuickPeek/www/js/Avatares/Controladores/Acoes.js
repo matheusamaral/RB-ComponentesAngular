@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('QuickPeek.Acoes.Avatares', [ 
-    'RB.pagina'
+    'RB.pagina',
+    'QuickPeek.Requisicao.Avatares'
 ])
 
-.factory('AvataresAcoes', ['Pagina',
-    function(Pagina) {
+.factory('AvataresAcoes', ['Pagina','AvataresRequisicoes',
+    function(Pagina,AvataresRequisicoes){
     var scope;  
     
     function setScope(obj){
@@ -22,23 +23,24 @@ angular.module('QuickPeek.Acoes.Avatares', [
     }  
     
     function voltarCad(){
-        if(DGlobal.veioCadastro){
+        if(DGlobal.veioCadastro && !DGlobal.veioCadastro.executarReq){
             Pagina.navegar({idPage:6});
+        }
+        
+        if(DGlobal.veioCadastro && DGlobal.veioCadastro.executarReq){
+            Pagina.navegar({idPage:8});
         }
     }
     
     function mudarAvatar(){
-       // if(DGlobal.avatarSelecionado && DGlobal.avatarSelecionado.perfil){
-            //Pagina.navegar({idPage:8});
-            //DGlobal.avatarSelecionado = scope.avatarSelecionado;
-        //}else{
-            //DGlobal.avatarSelecionado = scope.avatarSelecionado;
-            //if(DGlobal.dadosEditar){
-                //delete DGlobal.dadosEditar;
-               // Pagina.navegar({idPage:8});
-            //}else
-                Pagina.navegar({idPage:6});
-        //}
+        //alert(JSON.stringify(scope.avatarSelecionado));
+        var obj = {avataresId:scope.avatarSelecionado.id};
+        if(DGlobal.veioCadastro.executarReq){
+            AvataresRequisicoes.set({dados:obj,scope:scope,acaoSuccess:AvataresRequisicoes.successEditarAvatar}).editarAvatar();
+        }else{
+            DGlobal.avatarSelecionado = scope.avatarSelecionado;
+            Pagina.navegar({idPage:6});
+        }
     }
     
     function selecionarAvatar(id){

@@ -24,10 +24,9 @@ angular.module('QuickPeek.Acoes.Perfil', [
     }
     
     function editarAvatar(){
-        if(!DGlobal.avatarSelecionado)DGlobal.avatarSelecionado = {};
-        if(!scope.dados.avatar)scope.dados.avatar = {};
-        DGlobal.avatarSelecionado = scope.dados.avatar;
-        DGlobal.avatarSelecionado.perfil = true;
+        DGlobal.veioCadastro = scope.dados;
+        DGlobal.veioCadastro.avataresId = scope.dados.avatar.id;
+        DGlobal.veioCadastro.executarReq = true;
         Pagina.navegar({idPage:7});
     }
     
