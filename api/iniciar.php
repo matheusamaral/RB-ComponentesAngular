@@ -13,7 +13,7 @@ abstract class Ambiente{
     }
     
     public static function amb(){
-        return isset($_SERVER['AmbExec']) ? $_SERVER['AmbExec'] : 'server';
+        return isset($_SERVER['AmbExec']) ? $_SERVER['AmbExec'] : 'diego';
     }
 }
 

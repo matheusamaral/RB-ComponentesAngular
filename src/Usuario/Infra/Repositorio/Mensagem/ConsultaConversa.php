@@ -9,7 +9,7 @@ class ConsultaConversa {
         $query = Conteiner::get('Query', false);
         $query->select('m.id', 'id')
                 ->add('m.titulo', 'mensagem')
-                ->add('m.endereco', 'endereco')
+                ->add('m.endereco', 'enderecoMensagem')
                 ->add('m.momento', 'momento')
                 ->add('m.status_mensagem_id', 'statusMensagem')
                 ->add('case when u.ativo = 0 or b.id is not null then ' . "'FotoPadrao'" 

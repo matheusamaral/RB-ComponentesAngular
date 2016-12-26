@@ -32,6 +32,8 @@ class EnviarMensagem {
             $msg->setCampo('Mensagens::usuarioId', $usuarioId);
             $msg->setCampo('entidade', 'Mensagens');
             $cadastro->cadastrar($msg);
+            $msg->setResultadoEtapa(true, false, ['from'=>$usuarioId, 'to'=>[$usuarioMensagemId], 
+                'toMsg'=>['tituloMensagens'=>$msg->getCampo('Mensagens::titulo')->get('valor')]]);
         }else{
             $msg->setResultadoEtapa(false, 'bloqueado');
         }

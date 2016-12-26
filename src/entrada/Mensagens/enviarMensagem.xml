@@ -3,9 +3,9 @@
 <processo codigo="enviarMensagem" modulo="Mensagens">
     
     <entrada>
-        <campo regra="Opcional" chave="Mensagens::titulo" nome="titulo"/>
-        <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="usuarioMensagemId"/>
-        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeMensagensId" nome="visibilidadeMensagensId"/>
+        <campo regra="Opcional" chave="Mensagens::titulo" nome="Mensagens::titulo"/>
+        <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="Mensagens::usuarioMensagemId"/>
+        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeMensagensId" nome="Mensagens::visibilidadeMensagensId"/>
         <campo chave="Arquivo" nome="arquivo" type="file"/>
     </entrada>
     
