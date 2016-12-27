@@ -152,5 +152,11 @@
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"/>
+    </pagina>
+    
+    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-mapa" acao="MapaCtrl" title="Mapa"/>
     </pagina>   
 </root>
