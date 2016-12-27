@@ -28,12 +28,20 @@ class EnviarMensagem {
                 $cadastro = Conteiner::get('Cadastro');
                 $msg->setCampo('Mensagens::endereco', $caminho[0]['url']);
             }
-
+            
             $msg->setCampo('Mensagens::usuarioId', $usuarioId);
             $msg->setCampo('entidade', 'Mensagens');
-            $cadastro->cadastrar($msg);
-            $msg->setResultadoEtapa(true, false, ['from'=>$usuarioId, 'to'=>[$usuarioMensagemId], 
-                'toMsg'=>['tituloMensagens'=>$msg->getCampo('Mensagens::titulo')->get('valor')]]);
+            $cad = $cadastro->cadastrar($msg);
+            if($cad){
+                $mensagemId = $msg->getCampo('Mensagens::id')->get('valor');
+                $mensagem = $msg->getCampo('Mensagens::titulo')->get('valor');
+                $mensagemEndereco = $msg->getCampo('Mensagens::endereco')->get('valor');
+                $statusMensagem = 1;
+                $msg->setResultadoEtapa(true, false, ['from'=>$usuarioId, 'to'=>[$usuarioMensagemId],
+                    'toMsg'=>$mensagem]);
+            }else{
+                $msg->setResultadoEtapa(false);
+            }
         }else{
             $msg->setResultadoEtapa(false, 'bloqueado');
         }
