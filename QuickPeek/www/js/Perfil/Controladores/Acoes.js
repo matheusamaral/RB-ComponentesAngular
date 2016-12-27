@@ -24,6 +24,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
     }
     
     function editarAvatar(){
+        console.log('ID AVATAR');
+        console.log(scope.dados.avatar.id);
         DGlobal.veioCadastro = scope.dados;
         DGlobal.veioCadastro.avataresId = scope.dados.avatar.id;
         DGlobal.veioCadastro.executarReq = true;

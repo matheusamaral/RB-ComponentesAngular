@@ -26,8 +26,8 @@ angular.module('QuickPeek.HTML.ConfigContatos', [
                             <md-switch\n\
                             ng-click="attNotificacoes()"\n\
                             ng-model="dados.contato" class="md-primary md-raised"\n\
-                            ng-true-value="1"\n\
-                            ng-false-value="0"\n\
+                            ng-true-value="\'1\'"\n\
+                            ng-false-value="\'0\'"\n\
                             ng-class="{\'switch-verde\' : dados.contato == 1}">\n\
                             </md-switch>\n\
                         </div>\n\

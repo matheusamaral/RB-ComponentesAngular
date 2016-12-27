@@ -35,6 +35,7 @@ angular.module('QuickPeek.Estrutura.Perfil', [
         scope.dados.avatar = {};
         scope.dados.avatar.nome = DGlobal.dadosUsuario.dados.avatarNome;
         scope.dados.avatar.endereco = DGlobal.dadosUsuario.dados.avatarEndereco;
+        scope.dados.avatar.id = DGlobal.dadosUsuario.dados.avatarId;
     }
   
     return {

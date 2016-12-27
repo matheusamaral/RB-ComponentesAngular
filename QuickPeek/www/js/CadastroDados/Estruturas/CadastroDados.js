@@ -75,7 +75,7 @@ angular.module('QuickPeek.HTML.CadastroDados', [
                             </md-input-container>\n\
                         </div>\n\
                     </div>\n\
-                    <div class="row rb-padding-padrao box-avatar-cad" style="padding-top:20px !important;">\n\
+                    <div ng-if="!dados.editando" class="row rb-padding-padrao box-avatar-cad" style="padding-top:20px !important;">\n\
                         <div class="col">\n\
                             <div class="row text-center">\n\
                                 <p class="col font-preta">Seu avatar anônimo <span ng-click="showAlert()" class="box-duvidas ion-help"></span></p>\n\
