@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('QuickPeek.Acoes.Seguindo', [ 
-    'RB.pagina'
+    'RB.pagina',
+    'QuickPeek.Requisicao.Seguindo'
 ])
 
-.factory('SeguindoAcoes', ['Pagina',
-    function(Pagina) {
+.factory('SeguindoAcoes', ['Pagina','SeguindoRequisicoes',
+    function(Pagina,SeguindoRequisicoes) {
     var scope;  
     
     function setScope(obj){
@@ -17,9 +18,15 @@ angular.module('QuickPeek.Acoes.Seguindo', [
         Pagina.navegar({idPage:8});
     }
     
+    function deixarDeSeguir(id){
+        var obj = {usuarioSeguirId: id};
+        SeguindoRequisicoes.set({dados:obj,acaoSuccess:SeguindoRequisicoes.successDeixarSeguir,scope:scope}).deixarSeguir();
+    }
+    
     return {
         setScope:setScope,
-        voltarPerfil:voltarPerfil
+        voltarPerfil:voltarPerfil,
+        deixarDeSeguir:deixarDeSeguir
     };
     
  }]);

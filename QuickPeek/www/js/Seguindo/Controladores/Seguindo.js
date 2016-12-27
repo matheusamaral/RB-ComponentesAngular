@@ -12,6 +12,7 @@ angular.module('QuickPeek.Seguindo', [
         SeguindoAcoes.setScope($scope);
         
         $scope.voltarPerfil = SeguindoAcoes.voltarPerfil;
+        $scope.deixarDeSeguir = SeguindoAcoes.deixarDeSeguir;
     }
 ])
 

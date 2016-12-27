@@ -26,7 +26,6 @@ angular.module('QuickPeek.Estrutura.Perfil', [
         }
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
-            alert(JSON.stringify(DGlobal.dadosUsuario.dados));
             scope.dados = DGlobal.dadosUsuario.dados; 
             montaAvatar();
         }

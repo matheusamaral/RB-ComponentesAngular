@@ -81,6 +81,9 @@
     
     <pagina id="11" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pessoas-bloqueadas">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarBloqueados" objeto='pessoasBloqueadas'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-pessoas-bloqueadas" acao="PessoasBloqueadasCtrl" title="Pessoas bloqueadas"/>
     </pagina>   
@@ -105,12 +108,18 @@
     
     <pagina id="15" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguidores">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarSeguidores" objeto='seguidores'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-seguidores" acao="SeguidoresCtrl" title="Seus seguidores"/>
     </pagina>   
     
     <pagina id="16" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguindo">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarSeguidos" objeto='seguindos'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-seguindo" acao="SeguindoCtrl" title="Seus seguidores"/>
     </pagina>   

@@ -18,11 +18,12 @@ angular.module('QuickPeek.Estrutura.Seguindo', [
     
     function popular(){
         scope.dados = {
-            seguidores:[
-                {urlImg:'',nome:'Arthur Maneiro 2',seguindo:1},
-                {urlImg:'',nome:'Anderson Campos',seguindo:1}
-            ]
+            seguidores:new Array()
         };
+        
+        if(DGlobal.seguindos && DGlobal.seguindos.success){
+            scope.dados.seguidores = DGlobal.seguindos.dados;
+        }
     };
   
     return {

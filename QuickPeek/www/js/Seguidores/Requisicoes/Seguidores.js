@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.Seguidores', [
             return this;
         };
 
-        function cadastrar(){
+        function seguir(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
+                url: Config.getRefAmbienteReq()+"/Acoes/seguir",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,17 +33,52 @@ angular.module('QuickPeek.Requisicao.Seguidores', [
         };
         
         
-        function successCadastrar(objRetorno){
+        function successSeguir(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 7});
+                for(var i = 0; i < scope.dados.seguidores.length; i++){
+                    if(dados.usuarioSeguirId == scope.dados.seguidores[i].usuarioId){
+                        scope.dados.seguidores[i].seguindo = 1;
+                    }
+                }
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
+                else
+                    OpenToast('Não foi possível seguir!');
             }
         };
+        function deixarDeSeguir(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/deixarSeguir",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
         
+        
+        function successDeixarDeSeguir(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true) {
+                for(var i = 0; i < scope.dados.seguidores.length; i++){
+                    if(dados.usuarioSeguirId == scope.dados.seguidores[i].usuarioId){
+                        scope.dados.seguidores[i].seguindo = 0;
+                    }
+                }
+            }else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                else
+                    OpenToast('Não foi possível seguir!');
+            }
+        };
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -57,8 +92,10 @@ angular.module('QuickPeek.Requisicao.Seguidores', [
         
         return {
             set: set,
-            cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            seguir: seguir,
+            successSeguir: successSeguir,
+            deixarDeSeguir:deixarDeSeguir,
+            successDeixarDeSeguir:successDeixarDeSeguir
         };
                            
 }]);     
