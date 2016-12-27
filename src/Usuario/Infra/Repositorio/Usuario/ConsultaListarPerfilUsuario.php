@@ -13,6 +13,7 @@ class ConsultaListarPerfilUsuario {
                 ->add('count(distinct hl.id) + count(distinct m.id)', 'publicacoes')
                 ->add('count(distinct s.id)', 'qtdSeguidores')
                 ->add('count(distinct se.id)', 'qtdSeguindo')
+                ->add('a.id', 'avatarId')
                 ->add('a.nome', 'avatarNome')
                 ->add('a.endereco', 'avatarEndereco')
                 ->add('l.titulo', 'local')
