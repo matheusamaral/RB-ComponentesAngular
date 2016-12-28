@@ -6,8 +6,9 @@ angular.module('QuickPeek.CadastroDados', [
     'QuickPeek.HTML.CadastroDados'
 ])
 
-.controller('CadastroDadosCtrl', ['$scope','CadastroDadosEstrutura','CadastroDadosAcoes','$ionicPopup',
-    function ($scope,CadastroDadosEstrutura,CadastroDadosAcoes,$ionicPopup){        
+.controller('CadastroDadosCtrl', ['$scope','CadastroDadosEstrutura','CadastroDadosAcoes',
+    function ($scope,CadastroDadosEstrutura,CadastroDadosAcoes){     
+        
         CadastroDadosEstrutura.setScope($scope).popular();
         CadastroDadosAcoes.setScope($scope).inicializar();
         
@@ -16,6 +17,7 @@ angular.module('QuickPeek.CadastroDados', [
         $scope.irAvatares = CadastroDadosAcoes.irAvatares;
         $scope.voltarSelfie = CadastroDadosAcoes.voltarSelfie;
         $scope.voltarPerfil = CadastroDadosAcoes.voltarPerfil;
+        
     }
 ])
 

@@ -30,11 +30,13 @@ angular.module('QuickPeek', [
     'QuickPeek.ConfigNotificacoes',
     'QuickPeek.ConfigContatos',
     'QuickPeek.ConfigSobre',
-    'QuickPeek.Sobre'
+    'QuickPeek.Sobre',
+    'QuickPeek.Mapa'
 ])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+    
     if(window.cordova && window.cordova.plugins.Keyboard) {
 
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -43,6 +45,24 @@ angular.module('QuickPeek', [
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    
+//    var permissions = cordova.plugins.permissions;
+//    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
+//
+//    function checkPermissionCallback(status) {
+//      if(!status.hasPermission) {
+//        var errorCallback = function() {
+//          console.warn('Camera permission is not turned on');
+//        };
+//
+//        permissions.requestPermission(
+//            permissions.READ_SMS,
+//            function(status) {
+//            if(!status.hasPermission) errorCallback();
+//            },
+//            errorCallback);
+//        }
+//    }
   });
 })
 

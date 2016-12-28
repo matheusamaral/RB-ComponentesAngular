@@ -18,7 +18,7 @@ class ListarPerfilUsuario {
         if($query){
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
         }else{
-            $msg->setResultadoEtap(false);
+            $msg->setResultadoEtapa(false);
         }
     }
 }

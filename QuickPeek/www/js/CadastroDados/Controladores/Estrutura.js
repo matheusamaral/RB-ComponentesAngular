@@ -29,12 +29,12 @@ angular.module('QuickPeek.Estrutura.CadastroDados', [
             scope.avatares = DGlobal.avatares.dados;
         }
 
-        if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
-            scope.dados.nome = DGlobal.dadosUsuario.dados.usuarioNome;
-            scope.dados.nascimento = DGlobal.dadosUsuario.dados.usuarioNascimento;
-            scope.dados.nascimentoVisao = VP.organizaDataVisao(DGlobal.dadosUsuario.dados.usuarioNascimento);
-            scope.dados.generoId = DGlobal.dadosUsuario.dados.usuarioGeneroId;
-            scope.dados.urlImg = DGlobal.dadosUsuario.dados.usuarioEndereco;
+        if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success && DGlobal.dadosUsuario.dados){
+            if(DGlobal.dadosUsuario.dados.usuarioNome)scope.dados.nome = DGlobal.dadosUsuario.dados.usuarioNome;
+            if(DGlobal.dadosUsuario.dados.usuarioNascimento)scope.dados.nascimento = DGlobal.dadosUsuario.dados.usuarioNascimento;
+            if(DGlobal.dadosUsuario.dados.usuarioNascimento)scope.dados.nascimentoVisao = VP.organizaDataVisao(DGlobal.dadosUsuario.dados.usuarioNascimento);
+            if(DGlobal.dadosUsuario.dados.usuarioGeneroId)scope.dados.generoId = DGlobal.dadosUsuario.dados.usuarioGeneroId;
+            if(DGlobal.dadosUsuario.dados.usuarioEndereco)scope.dados.urlImg = DGlobal.dadosUsuario.dados.usuarioEndereco;
         }
         
         if(DGlobal.dadosSelfie){

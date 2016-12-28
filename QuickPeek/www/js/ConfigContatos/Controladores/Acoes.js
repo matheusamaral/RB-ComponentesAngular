@@ -40,8 +40,22 @@ angular.module('QuickPeek.Acoes.ConfigContatos', [
     }
     
     function compartilhar(){
+        var currentPlatform = ionic.Platform.platform();
+        
+        var isWebView = ionic.Platform.isWebView();
+        var isIPad = ionic.Platform.isIPad();
+        var isIOS = ionic.Platform.isIOS();
+        var isAndroid = ionic.Platform.isAndroid();
+        var isWindowsPhone = ionic.Platform.isWindowsPhone();
+        
+        var textoSms = 'Oi,eu baixei o QuickPeek no meu '
+        +currentPlatform+'.\n\n\
+        É um aplicativo que me ajuda a saber como está um local antes de sair de casa.\n\
+        Você já teve vontade de saber como estava algum lugar e não tinha ninguém pra te contar?\n\
+        Com o Quickpeek é possível espiar onde você quiser agora e conversar com as pessoas que estão lá.';
+        
         $cordovaSocialSharing
-        .share('Oi', 'sub', null, 'www') // Share via native share sheet
+        .share(textoSms,null, null, null) // Share via native share sheet
         .then(function(result) {
         }, function(err) {
         });

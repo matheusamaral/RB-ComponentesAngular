@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.Seguidores', [
+angular.module('QuickPeek.Estrutura.Mapa', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('SeguidoresEstrutura', ['GCS','Config','Pagina','VP',
+.factory('MapaEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     
@@ -17,12 +17,7 @@ angular.module('QuickPeek.Estrutura.Seguidores', [
     }
     
     function popular(){
-        scope.dados = {
-            seguidores:new Array()};
-        
-        if(DGlobal.seguidores && DGlobal.seguidores.success){
-            scope.dados.seguidores = DGlobal.seguidores.dados;
-        }
+        scope.dados = {};
     };
   
     return {

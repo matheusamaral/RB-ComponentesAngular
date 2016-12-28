@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.PessoasBloqueadas', [
+angular.module('QuickPeek.Requisicao.Mapa', [
     'RB.pagina'
 ])
  
-.factory('PessoasBloqueadasRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('MapaRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
@@ -18,10 +18,10 @@ angular.module('QuickPeek.Requisicao.PessoasBloqueadas', [
             return this;
         };
 
-        function desbloquear(){
+        function cadastrar(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/desbloquear",
+                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -32,20 +32,15 @@ angular.module('QuickPeek.Requisicao.PessoasBloqueadas', [
             GCS.conectar(obj);
         };
         
-        function successDesbloquear(objRetorno){
+        
+        function successCadastrar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                for(var i = 0; i < scope.dados.pessoas.length;i++){
-                    if(dados.usuarioBloqueadoId == scope.dados.pessoas[i].usuarioId){
-                        scope.dados.pessoas.splice(i,1);
-                    }
-                }
-                scope.desbloquearPopup.close();
+                Pagina.navegar({idPage : 7});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
-                else OpenToast('Não foi possível desbloquear esta pessoa!');
             }
         };
         
@@ -62,8 +57,8 @@ angular.module('QuickPeek.Requisicao.PessoasBloqueadas', [
         
         return {
             set: set,
-            desbloquear: desbloquear,
-            successDesbloquear: successDesbloquear
+            cadastrar: cadastrar,
+            successCadastrar: successCadastrar
         };
                            
 }]);     

@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.PessoasBloqueadas', [
     'QuickPeek.Requisicao.PessoasBloqueadas'
 ])
 
-.factory('PessoasBloqueadasAcoes', ['Pagina','$ionicPopup','PessoasBloqueadasHtmlPopup','ConfigContaRequisicoes',
-    function(Pagina,$ionicPopup,PessoasBloqueadasHtmlPopup,ConfigContaRequisicoes) {
+.factory('PessoasBloqueadasAcoes', ['Pagina','$ionicPopup','PessoasBloqueadasHtmlPopup','PessoasBloqueadasRequisicoes',
+    function(Pagina,$ionicPopup,PessoasBloqueadasHtmlPopup,PessoasBloqueadasRequisicoes) {
     var scope;  
     
     function setScope(obj){
@@ -34,7 +34,7 @@ angular.module('QuickPeek.Acoes.PessoasBloqueadas', [
     
     function desbloquear(id,visibilidade){
         var obj = {usuarioBloqueadoId:id,visibilidadeId:visibilidade};
-        ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successDesbloquear}).desbloquear();
+        PessoasBloqueadasRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PessoasBloqueadasRequisicoes.successDesbloquear}).desbloquear();
     }
     
     return {

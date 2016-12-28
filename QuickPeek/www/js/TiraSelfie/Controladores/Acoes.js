@@ -72,18 +72,6 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
         },0);
     }
     
-    function preparaArquivo(url){
-        var nomeArquivo = url.split('/')[url.split('/').length - 1];
-        var caminho = '';
-        for(var i = 0 ; i < url.split('/').length - 1; i++){
-            caminho = caminho + url.split('/')[i]+'/';
-        }
-        
-        alert(caminho);
-        
-        return $cordovaFile.checkFile(caminho, nomeArquivo);
-    }
-    
     function tirarFoto(evento){
         VP.pararEvento(evento);
         $timeout(function(){
