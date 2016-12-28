@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            
+            conn = new WebSocket('ws://172.17.0.2:8080');
+            var cont = 0;
+
+            conn.onopen = function(e) {
+            console.log("Connection established!");
+            iniciar();
+
+//            enviar();
+            };
+
+            conn.onmessage = function(e) {
+            //            var obj = JSON.parse(e.data);
+            console.log(e.data);
+            //            msgRecebidas.push(obj.nome+' : '+obj.msg);
+            //            console.log(obj.nome+' : '+obj.msg);
+            };
+
+            enviar = function(){
+            console.log("enviar");
+
+            conn.send(JSON.stringify({codsessrt:'PwB37ZpyZrNtgFuDJWShzLfftMfKRPAf0VydEZi0cp7Zuz4nzeogvFlAHV6aM5Vk5NUT80TReFs75CBzhqlxUlM8l4UMm8TFhrVl',processo:'Mensagens', etapa:'enviarMensagem',
+            'Mensagens::titulo':'msg22222', 'Mensagens::usuarioMensagemId':'1', 
+            'Mensagens::visibilidadeMensagensId':'2'}));
+            setTimeout(function(){
+                if(cont < 100){
+                    console.log('entrou');
+                    enviar(); 
+                }
+                cont++;
+            }, 1000);
+            };
+
+iniciar = function(){
+console.log("iniciar");
+
+conn.send(JSON.stringify({codsessrt:'PwB37ZpyZrNtgFuDJWShzLfftMfKRPAf0VydEZi0cp7Zuz4nzeogvFlAHV6aM5Vk5NUT80TReFs75CBzhqlxUlM8l4UMm8TFhrVl'
+    ,processo:'Usuario', etapa:'setarDadosBanco'}));
+iniciou = true;
+};
+        </script>
+        <div>TODO write content</div>
+    </body>
+</html>

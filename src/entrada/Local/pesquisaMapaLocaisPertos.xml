@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="pesquisaMapaLocaisPertos" modulo="Local">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/>
+        <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
+        <campo regra="Opcional" chave="Nome" nome="nome"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="pesquisa-mapa-locais-pertos" tipo="tarefa">
+            <entidade nome="PesquisaMapaLocaisPertos" metodo="pesquisaMapaLocaisPertos"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

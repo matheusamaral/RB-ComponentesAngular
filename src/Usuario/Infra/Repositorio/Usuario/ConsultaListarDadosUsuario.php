@@ -39,5 +39,20 @@ class ConsultaListarDadosUsuario {
         $query->addVariaveis($usuarioId);
         return $query->executar('A');
     }
+    
+    public function consultarDadosVisibilidade($usuarioId, $visibilidadeId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select("case when $visibilidadeId = 1 then u.nome else a.nome end", 'usuarioNome')
+                ->add("case when $visibilidadeId = 1 then u.endereco else a.endereco end", 'usuarioEndereco');
+        $query->from('usuario', 'u');
+        $query->join('avatares', 'a')
+                ->on('a.id = u.avatares_id')
+                ->on('a.ativo = 1');
+        $query->where('u.id = ?')
+                ->add('u.ativo = 1');
+        $query->addVariaveis($usuarioId);
+        return $query->executar('A');
+    }
 }
 

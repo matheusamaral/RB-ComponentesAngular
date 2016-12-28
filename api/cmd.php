@@ -12,26 +12,31 @@ use Rubeus\Processo\Dominio\Processo\RepositorioProcesso;
 class Chat implements MessageComponentInterface {
     protected $clients;
     protected $dadosBanco = [];
+    public $maiorQtd = 0;
     
-    public function __construct() {
+    public function __construct(){
         $this->clients = new \SplObjectStorage;
     }
     
-    public function onOpen(ConnectionInterface $conn) {
+    public function onOpen(ConnectionInterface $conn){
+        if(count($this->clients) > $this->maiorQtd){
+            $this->maiorQtd = count($this->clients);
+        }
+        var_dump($this->maiorQtd);
         $this->clients->attach($conn);
         echo "New connection! ({$conn->resourceId})\n";
     }
     
-    public function setarDadosBanco($resourceId, $usuarioId){
+    public function setarDadosBanco($resourceId, $usuarioId, $pagina){
         
-        $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId];
+        $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
     }
     
-    public function onMessage(ConnectionInterface $from, $mensagem) {
+    public function onMessage(ConnectionInterface $from, $mensagem){
         Sessao::setSessionPhp(1);
         $obj = json_decode($mensagem);
         Sessao::iniciar($obj->codsessrt);
-        $msg = Conteiner::get('Mensagem');
+        $msg = Conteiner::get('Mensagem', false);
         foreach($obj as $k=>$v){
             $msg->setCampo($k, $v);
         }
@@ -50,20 +55,20 @@ class Chat implements MessageComponentInterface {
         
         foreach($this->clients as $client){
             if(isset($toConexao) && in_array($client->resourceId, $toConexao)){
-                $client->send(json_encode($resultado['toMsg']));
+                $client->send(json_encode($resultado));
             }
-            if($client->resourceId == $fromConexao){
+            if(isset($fromConexao) && $client->resourceId == $fromConexao){
                 $client->send(json_encode($resultado['success']));
             }
         }
     }
     
-    public function onClose(ConnectionInterface $conn) {
+    public function onClose(ConnectionInterface $conn){
         $this->clients->detach($conn);
         echo "Connection {$conn->resourceId} has disconnected\n";
     }
     
-    public function onError(ConnectionInterface $conn, \Exception $e) {
+    public function onError(ConnectionInterface $conn, \Exception $e){
         echo "An error has occurred: {$e->getMessage()}\n";
         $conn->close();
     }

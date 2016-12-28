@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="apagarConta" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Usuario::telefone" nome="telefone"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="apaga-conta" tipo="tarefa">
+            <entidade nome="ApagarConta" metodo="apagarConta"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

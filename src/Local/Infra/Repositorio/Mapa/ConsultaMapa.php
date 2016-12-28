@@ -23,7 +23,9 @@ class ConsultaMapa {
                 ->add('sub.hashtag_id', 'hashtagId')
                 ->add('sub.countHash')
                 ->add('ch.id', 'categoriaId')
-                ->add("ifnull(ch.endereco, 'FotoPadrao')", 'categoriaEndereco');
+                ->add('l.foto', 'fotoLocal')
+                ->add('ch.endereco', 'categoriaHashtagFoto')
+                ->add('cl.endereco', 'categoriaLocalFoto');
         $query->from('local', 'l');
         $query->join('check_in', 'c')->on('c.local_id = l.id')
                 ->on('c.presente = 1')
@@ -50,6 +52,12 @@ class ConsultaMapa {
                 ->on('hc.ativo = 1');
         $query->join('categoria_hashtag', 'ch', 'left')->on('ch.id = hc.categoria_hashtag_id')
                 ->on('ch.ativo = 1');
+        $query->join('local_categoria', 'lc', 'left')
+                ->on('lc.local_id = l.id')
+                ->on('lc.ativo = 1');
+        $query->join('categoria_local', 'cl', 'left')
+                ->on('cl.id = lc.categoria_id')
+                ->on('cl.ativo = 1');
         $query->where('l.ativo = 1');
         $query->group('l.id');
         $query->order('relevancia desc, relevancia2 desc');
