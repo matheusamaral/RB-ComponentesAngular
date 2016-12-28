@@ -40,12 +40,13 @@
     <link href="css/md-switch.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBAutocomplete/RBAutocomplete.css" rel="stylesheet">
+    <link href="lib/RB-ComponentesAngular/src/RBGeoBackGround/RBGeoBackGround.css" rel="stylesheet">
 
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWQx-tDxCw5ytYejac0p8wu4fTJZUnDIQ"></script>
     <script src="lib/angular/angular.min.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
     <!--<script src="lib/angular-route/angular-route.min.js"></script>-->
     <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="lib/angular-cookies/angular-cookies.min.js"></script>    
@@ -246,7 +247,7 @@
         //DGlobal.acaoCliente = {classe:"pag-loading-inicial", acao:"LoadingInicialCtrl"};
         DGlobal.acaoCliente = {classe:"pag-mapa", acao:"MapaCtrl"};
         var refAmbienteG = 'localhost:8100/';
-        var refAmbienteReqG = 'http://192.168.0.121:8000/QuickPeek/quickpeek/api';
+        var refAmbienteReqG = 'http://192.168.0.115:8000/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
         var GDados = {};
         var GMenu = {};

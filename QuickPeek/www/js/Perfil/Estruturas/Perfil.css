@@ -1,5 +1,5 @@
 .box-shadow-barra{
-    box-shadow: 0px 2px 8px grey !important;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.58) !important;
 }
 
 .tabs-top > .tabs{

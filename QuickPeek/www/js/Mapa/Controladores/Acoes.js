@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
     'Cmp.Geolocation'
 ])
 
-.factory('MapaAcoes', ['Pagina','MapaRequisicoes','Geolocation',
-    function(Pagina,MapaRequisicoes,Geolocation){
+.factory('MapaAcoes', ['Pagina','MapaRequisicoes','Geolocation','$timeout',
+    function(Pagina,MapaRequisicoes,Geolocation,$timeout){
     var scope;  
     
     function setScope(obj){
@@ -16,8 +16,27 @@ angular.module('QuickPeek.Acoes.Mapa', [
     };
     
     function inicializar(){
-        Geolocation.setScope(scope).inicializar('mapaGeral');
+        Geolocation.setScope(scope).inicializar('mapaGeral',getLocaisProximos);
     };
+    
+    function getLocaisProximos(){
+        var obj = {
+            latitude:scope.mapaGeral.coordenadas.lat,
+            longitude:scope.mapaGeral.coordenadas.lng
+        };
+        MapaRequisicoes.set({acaoPosterior:marcarNoMapa,dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successVerificarLocaisProximos}).verificarLocaisProximos();
+    }
+    
+    function marcarNoMapa(array){
+        for(var i = 0; i < array.length; i++){
+            scope.mapaGeral.marker = new google.maps.Marker({
+                position: new google.maps.LatLng(array[i].latitude,array[i].longitude), // variável com as coordenadas Lat e Lng
+                map: scope.mapaGeral.map,
+                title:array[i].localNome,
+                icon:'img/79.svg'
+            });
+        }
+    }
     
     return {
         setScope:setScope,

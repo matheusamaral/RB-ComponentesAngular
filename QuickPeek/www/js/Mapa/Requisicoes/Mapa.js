@@ -10,18 +10,20 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         var dados;
         var scope;
         var acaoSuccess;
+        var acaoPosterior = false;
 
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
             acaoSuccess = obj.acaoSuccess;
+            if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
             return this;
         };
 
-        function cadastrar(){
+        function verificarLocaisProximos(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/cadastro",
+                url: Config.getRefAmbienteReq()+"/Local/mapa",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,11 +35,15 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         };
         
         
-        function successCadastrar(objRetorno){
+        function successVerificarLocaisProximos(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 7});
+                //alert(JSON.stringify(objRetorno));
+                scope.locais = objRetorno.dados;
+                console.log('scope.locais');
+                console.log(scope.locais);
+                if(acaoPosterior)acaoPosterior(scope.locais);
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
@@ -57,8 +63,8 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         
         return {
             set: set,
-            cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            verificarLocaisProximos: verificarLocaisProximos,
+            successVerificarLocaisProximos: successVerificarLocaisProximos
         };
                            
 }]);     
