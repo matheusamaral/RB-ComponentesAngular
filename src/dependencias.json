@@ -48,6 +48,7 @@
     "EditarNumero": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarNumero",
     "VerificarCodigoSmsEditar": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\VerificarCodigoSmsEditar",
     "EnviarSmsEditar": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EnviarSmsEditar",
+    "ApagarConta": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\ApagarConta",
     
     "EnviarMensagem": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\EnviarMensagem",
     "ExcluirMensagem": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\ExcluirMensagem",
@@ -62,6 +63,7 @@
     "LocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Locais\\LocaisPertos",
     "Mapa": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\Mapa",
     "MapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\MapaLocaisPertos",
+    "PesquisaMapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\PesquisaMapaLocaisPertos",
     "TempoViagem": "\\Quickpeek\\Local\\Aplicacao\\Locais\\TempoViagem",
     "ExcluirLocais": "\\Quickpeek\\Local\\Aplicacao\\Locais\\ExcluirLocais",
     

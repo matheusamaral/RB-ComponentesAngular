@@ -36,9 +36,20 @@ class EnviarMensagem {
                 $mensagemId = $msg->getCampo('Mensagens::id')->get('valor');
                 $mensagem = $msg->getCampo('Mensagens::titulo')->get('valor');
                 $mensagemEndereco = $msg->getCampo('Mensagens::endereco')->get('valor');
-                $statusMensagem = 1;
-                $msg->setResultadoEtapa(true, false, ['from'=>$usuarioId, 'to'=>[$usuarioMensagemId],
-                    'toMsg'=>$mensagem]);
+                $agrupamento = $usuarioId . "-" . $usuarioMensagemId . "-" . $visibilidadeId;
+                $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId);
+                
+                $dados['mensagemId'] = $mensagemId;
+                $dados['mensagem'] = $mensagem;
+                $dados['mensagemEndereco'] = $mensagemEndereco;
+                $dados['mensagemStatus'] = 1;
+                $dados['mensagemMomento'] = date('Y-m-d H:i:s');
+                $dados['agrupamento'] = $agrupamento;
+                $dados['from'] = $usuarioId;
+                $dados['usuarioNome'] = $dadosUsuario['usuarioNome'];
+                $dados['usuarioEndereco'] = $dadosUsuario['usuarioEndereco'];
+                $dados['to'] = [$usuarioMensagemId];
+                $msg->setResultadoEtapa(true, false, $dados);
             }else{
                 $msg->setResultadoEtapa(false);
             }

@@ -4,6 +4,7 @@
     
     <entrada> 
         <campo regra="Obrigatorio" chave="ResourceId" nome="ResourceId"/>
+        <campo regra="Obrigatorio" chave="Pagina" nome="Pagina"/>
     </entrada>
     
     <atividades>
