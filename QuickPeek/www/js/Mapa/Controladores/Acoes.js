@@ -20,6 +20,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
     };
     
     function getLocaisProximos(){
+        //alert(JSON.stringify(scope.mapaGeral.coordenadas));
         var obj = {
             latitude:scope.mapaGeral.coordenadas.lat,
             longitude:scope.mapaGeral.coordenadas.lng
@@ -29,11 +30,24 @@ angular.module('QuickPeek.Acoes.Mapa', [
     
     function marcarNoMapa(array){
         for(var i = 0; i < array.length; i++){
+            var img = 'img/79.svg';
+            if(array[i].fotoLocal){
+                img = array[i].fotoLocal;
+            }else{
+                if(array[i].categoriaHashtagFoto){
+                    img = array[i].categoriaHashtagFoto;
+                }else{
+                    if(array[i].categoriaLocalFoto){
+                        img = array[i].categoriaLocalFoto;
+                    }
+                }
+            }
             scope.mapaGeral.marker = new google.maps.Marker({
                 position: new google.maps.LatLng(array[i].latitude,array[i].longitude), // variável com as coordenadas Lat e Lng
                 map: scope.mapaGeral.map,
                 title:array[i].localNome,
-                icon:'img/79.svg'
+                icon:img,
+                label:array[i].localNome
             });
         }
     }
