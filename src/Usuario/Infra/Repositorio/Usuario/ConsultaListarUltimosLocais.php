@@ -12,6 +12,7 @@ class ConsultaListarUltimosLocais {
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
                 ->add('ci.presente', 'presente')
+                ->add("ifnull(cidade, substring_index(endereco, ',', -1))", 'cidade')
                 ->add('timestampdiff(minute, ci.momento, now())', 'minutos')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) 
                     * cos(radians(?) - radians(l.longitude)) 

@@ -14,7 +14,9 @@ CREATE TABLE `local`(
      ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ,
-    `endereco` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+    `endereco` varchar(45)   ,
+    `cidade` varchar(45)   ,
+    `foto` varchar(255)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `categoria_local`( 
     `id` int  AUTO_INCREMENT ,

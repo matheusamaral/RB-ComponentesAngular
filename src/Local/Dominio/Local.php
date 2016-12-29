@@ -11,7 +11,9 @@ use Rubeus\ORM\Persistente as Persistente;
         private $usuarioId = false;
         private $ativo = false;
         private $momento = false;
-        private $endereco = false; 
+        private $endereco = false;
+        private $cidade = false;
+        private $foto = false; 
                 
         public function getId() {
             return $this->id;
@@ -79,6 +81,22 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setEndereco($endereco) {
             $this->endereco = $endereco;
+        } 
+                
+        public function getCidade() {
+            return $this->cidade;
+        }
+
+        public function setCidade($cidade) {
+            $this->cidade = $cidade;
+        } 
+                
+        public function getFoto() {
+            return $this->foto;
+        }
+
+        public function setFoto($foto) {
+            $this->foto = $foto;
         }
         
     }

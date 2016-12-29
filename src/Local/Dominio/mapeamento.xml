@@ -12,6 +12,8 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
     <propriedades coluna="endereco" atributo="endereco" /> 
+    <propriedades coluna="cidade" atributo="cidade" /> 
+    <propriedades coluna="foto" atributo="foto" /> 
 </classe>
         
 <classe nome="CategoriaLocal" tabela="categoria_local"> 

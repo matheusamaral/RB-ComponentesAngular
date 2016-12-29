@@ -7,10 +7,10 @@ class Mapa {
     public function mapa($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-
+        
         $latitude = $msg->getCampo('Latitude')->get('valor');
         $longitude = $msg->getCampo('Longitude')->get('valor');
-
+        
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         
         $categorias = $msg->getCampo('Categorias')->get('valor');

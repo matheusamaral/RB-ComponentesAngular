@@ -53,11 +53,11 @@ class ListarAreaMapa {
             $array = [];
 
             foreach($dadosLocais as $k=>$v){
-                $array['local ' . $k]['dados'] = $dadosLocais[$k];
-                $array['local ' . $k]['hashtags'] = $hashtags[$k];
-                $array['local ' . $k]['midias'] = $midias[$k];
-                $array['local ' . $k]['pessoas'] = $pessoas[$k];
-                $array['local ' . $k]['qtdPerguntas'] = $qtdPerguntas[$k];
+                $array[$k]['dados'] = $dadosLocais[$k];
+                $array[$k]['hashtags'] = $hashtags[$k];
+                $array[$k]['midias'] = $midias[$k];
+                $array[$k]['pessoas'] = $pessoas[$k];
+                $array[$k]['qtdPerguntas'] = $qtdPerguntas[$k];
             }
             $msg->setResultadoEtapa(true, false, ['dados'=>$array]);
         }else{
