@@ -7,8 +7,8 @@ angular.module('QuickPeek.HTML.Mapa', [
        
     function montar(){
         return tabs()+'\n\
-                <div class="row" style="padding:0;padding-top:90px !important">\n\
-                    <div class="container-mapa" id="map"></div>\n\
+                <div class="row" style="padding:0;padding-top:75px !important">\n\
+                    <div style="width:{{mapaGeral.larguraMapa}}px;height:{{mapaGeral.alturaMapa}}px;" class="container-mapa" id="map"></div>\n\
                 </div>';
     };  
     
