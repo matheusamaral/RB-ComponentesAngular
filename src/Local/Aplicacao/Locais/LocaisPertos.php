@@ -14,37 +14,49 @@ class LocaisPertos {
         
         $json = json_decode($file);
         
-        $query = Conteiner::get('ConsultaLocalGoogle');
-        $cadastro = Conteiner::get('Cadastro');
-        foreach($json->results as $v){
-            $id = $query->consultar($v->place_id);
-            if(!$id){
-                $placeId[] = $v->place_id;
-                $name[] = $v->name;
-                $endereco[] = $v->vicinity;
-                $lat[] = $v->geometry->location->lat;
-                $lng[] = $v->geometry->location->lng;
-                $tipos[] = $v->types;
+        if($json->status == 'OK'){
+            $query = Conteiner::get('ConsultaLocalGoogle');
+            $cadastro = Conteiner::get('Cadastro');
+            foreach($json->results as $v){
+                $id = $query->consultar($v->place_id);
+                if(!$id){
+                    $placeId[] = $v->place_id;
+                    $name[] = $v->name;
+                    $virgulas = explode(',', $v->vicinity);
+                    if(count($virgulas) < 2){
+                        $checar = $this->checarEndereco($v->place_id);
+                        $endereco[] = $checar['endereco'];
+                        $cidade[] = $checar['cidade'];
+                    }else{
+                        $endereco[] = $v->vicinity;
+                        $cidade[] = false;
+                    }
+                    $lat[] = $v->geometry->location->lat;
+                    $lng[] = $v->geometry->location->lng;
+                    $tipos[] = $v->types;
+                }
             }
+        }else{
+            $msg->setResultadoEtapa(false);
         }
         
-        if($placeId){
+        if(isset($placeId)){
             $msg->setCampo('entidade', 'Local');
             $msg->setCampo('Local::titulo', $name);
             $msg->setCampo('Local::latitude', $lat);
             $msg->setCampo('Local::longitude', $lng);
             $msg->setCampo('Local::endereco', $endereco);
+            $msg->setCampo('Local::cidade', $cidade);
             $result = $cadastro->cadastrar($msg);
         }else{
             $msg->setResultadoEtapa(false);
         }
         
-        $locaisId = $msg->getCampo('Local::id')->get('valor');
-        foreach($locaisId as $k=>$id){
-            $this->setarLocalCategoria($name[$k], $tipos[$k], $id, $msg);
-        }
-        
-        if($result){
+        if(isset($result)){
+            $locaisId = $msg->getCampo('Local::id')->get('valor');
+            foreach($locaisId as $k=>$id){
+                $this->setarLocalCategoria($name[$k], $tipos[$k], $id, $msg);
+            }
             $msg->setCampo('entidade', 'LocalGoogle');
             $msg->setCampo('LocalGoogle::placeId', $placeId);
             $msg->setCampo('LocalGoogle::localId', $msg->getCampo('Local::id')->get('valor'));
@@ -52,6 +64,20 @@ class LocaisPertos {
         }else{
             $msg->setResultadoEtapa(false);
         }
+    }
+    
+    private function checarEndereco($placeid){
+        
+        $file = file_get_contents('https://maps.googleapis.com/maps/api/place/details/json?placeid='
+                . $placeid . '&key=AIzaSyBc3mboIyrPS1q7DIo-rEoDfRCLhskxRmc');
+        $json = json_decode($file);
+        foreach($json->result->address_components as $v){
+            if($v->types[0] == 'locality' && $v->types[1] == 'political'){
+                $checar['cidade'] = $v->long_name;
+            }
+        }
+        $checar['endereco'] = $json->result->formatted_address;
+        return $checar;
     }
     
     private function setarLocalCategoria($nome, $tipos, $localId, $msg){

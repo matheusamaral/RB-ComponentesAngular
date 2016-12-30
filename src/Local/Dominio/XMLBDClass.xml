@@ -10,6 +10,7 @@
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
         <propriedades coluna="endereco" atributo="endereco" type="varchar(45)"/>
+        <propriedades coluna="cidade" atributo="cidade" type="varchar(45)"/>
         <propriedades coluna="foto" atributo="foto" type="varchar(255)"/>
     </classe>
     
