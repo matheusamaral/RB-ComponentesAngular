@@ -159,4 +159,19 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-mapa" acao="MapaCtrl" title="Mapa"/>
     </pagina>   
+    
+    <pagina id="23" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="filtro-mapa">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarCategoriasFiltroMapa" objeto='categorias'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-filtro-mapa" acao="FiltroMapaCtrl" title="Filtrar no mapa"/>
+    </pagina>   
+    
+    <pagina id="24" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="locais">
+        <dadosSolicitados>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-locais" acao="LocaisCtrl" title="Locais e proximidades"/>
+    </pagina>   
 </root>

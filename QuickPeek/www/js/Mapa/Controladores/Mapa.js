@@ -12,30 +12,7 @@ angular.module('QuickPeek.Mapa', [
         MapaEstrutura.setScope($scope).popular();
         MapaAcoes.setScope($scope).inicializar();
         
-        $scope.loading = true;
- 
-            $scope.toCelsius = function(temperature) {
-                return ((temperature - 32) / 1.8).toFixed(1);
-            };
- 
-            $cordovaGeolocation
-                .getCurrentPosition({
-                    timeout: 10000,
-                    enableHighAccuracy: false
-                })
-                .then(function(position) {
-                    var lat = position.coords.latitude;
-                    var long = position.coords.longitude;
- 
-                    Geolocation.getCurrentWeather(lat, long).then(function(data) {
-                        $scope.weatherInfo = data;
-                        $scope.loading = false;
-                    }, function(error) {
-                        //TODO Display error message
-                    });
-                }, function(err) {
-                    //TODO Display error message
-                });
+        $scope.irFiltro = MapaAcoes.irFiltro;
     }
 ])
 

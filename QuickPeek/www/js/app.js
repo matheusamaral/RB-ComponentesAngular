@@ -31,7 +31,9 @@ angular.module('QuickPeek', [
     'QuickPeek.ConfigContatos',
     'QuickPeek.ConfigSobre',
     'QuickPeek.Sobre',
-    'QuickPeek.Mapa'
+    'QuickPeek.Mapa',
+    'QuickPeek.FiltroMapa',
+    'QuickPeek.Locais'
 ])
 
 .run(function($ionicPlatform) {

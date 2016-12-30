@@ -9,7 +9,10 @@ angular.module('QuickPeek.HTML.Mapa', [
         return tabs()+'\n\
                 <div class="row" style="padding:0;padding-top:75px !important">\n\
                     <div style="width:{{mapaGeral.larguraMapa}}px;height:{{mapaGeral.alturaMapa}}px;" class="container-mapa" id="map"></div>\n\
-                </div>';
+                </div>\n\
+                <md-button ng-click="irFiltro()" class="btn-flutuante-redondo md-fab">\n\
+                    <md-icon class="img-seta-funil"></md-icon>\n\
+                </md-button>';
     };  
     
     function tabs(){

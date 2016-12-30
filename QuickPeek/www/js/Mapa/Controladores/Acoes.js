@@ -20,11 +20,19 @@ angular.module('QuickPeek.Acoes.Mapa', [
     };
     
     function getLocaisProximos(){
-        //alert(JSON.stringify(scope.mapaGeral.coordenadas));
-        var obj = {
-            latitude:scope.mapaGeral.coordenadas.lat,
-            longitude:scope.mapaGeral.coordenadas.lng
-        };
+        if(DGlobal.filtro){
+            var obj = {
+                latitude:scope.mapaGeral.coordenadas.lat,
+                longitude:scope.mapaGeral.coordenadas.lng,
+                categorias:DGlobal.filtro.categorias,
+                tipos:DGlobal.filtro.tipos
+            };
+        }else{
+            var obj = {
+                latitude:scope.mapaGeral.coordenadas.lat,
+                longitude:scope.mapaGeral.coordenadas.lng
+            };
+        }
         MapaRequisicoes.set({acaoPosterior:marcarNoMapa,dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successVerificarLocaisProximos}).verificarLocaisProximos();
     }
     
@@ -52,9 +60,14 @@ angular.module('QuickPeek.Acoes.Mapa', [
         }
     }
     
+    function irFiltro(){
+        Pagina.navegar({idPage:23});
+    }
+    
     return {
         setScope:setScope,
-        inicializar:inicializar
+        inicializar:inicializar,
+        irFiltro:irFiltro
     };
     
  }]);

@@ -38,6 +38,7 @@
     <link href="css/ionic-footer.css" rel="stylesheet">
     <link href="css/ionic-popup.css" rel="stylesheet">
     <link href="css/md-switch.css" rel="stylesheet">
+    <link href="css/md-menu.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBAutocomplete/RBAutocomplete.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBGeoBackGround/RBGeoBackGround.css" rel="stylesheet">
@@ -227,6 +228,14 @@
     <script src="js/ConfigSobre/Requisicoes/ConfigSobre.js"></script>
     <link href="js/ConfigSobre/Estruturas/ConfigSobre.css" rel="stylesheet"> 
     
+    <!--Locais-->
+    <script src="js/Locais/Controladores/Locais.js"></script>
+    <script src="js/Locais/Controladores/Estrutura.js"></script>
+    <script src="js/Locais/Controladores/Acoes.js"></script>
+    <script src="js/Locais/Estruturas/Locais.js"></script>
+    <script src="js/Locais/Requisicoes/Locais.js"></script>
+    <link href="js/Locais/Estruturas/Locais.css" rel="stylesheet"> 
+    
     <!--Mapa-->
     <script src="js/Mapa/Controladores/Mapa.js"></script>
     <script src="js/Mapa/Controladores/Estrutura.js"></script>
@@ -241,13 +250,20 @@
     <script src="js/Sobre/Controladores/Acoes.js"></script>
     <script src="js/Sobre/Estruturas/Carrousel.js"></script>
     <script src="js/Sobre/Estruturas/SobrePg1.js"></script>
+    
+    <!--FiltroMapa-->
+    <script src="js/FiltroMapa/Controladores/FiltroMapa.js"></script>
+    <script src="js/FiltroMapa/Controladores/Estrutura.js"></script>
+    <script src="js/FiltroMapa/Controladores/Acoes.js"></script>
+    <script src="js/FiltroMapa/Estruturas/FiltroMapa.js"></script>
+    <link href="js/FiltroMapa/Estruturas/FiltroMapa.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
-        //DGlobal.acaoCliente = {classe:"pag-loading-inicial", acao:"LoadingInicialCtrl"};
-        DGlobal.acaoCliente = {classe:"pag-mapa", acao:"MapaCtrl"};
+        DGlobal.acaoCliente = {classe:"pag-loading-inicial", acao:"LoadingInicialCtrl"};
+        //DGlobal.acaoCliente = {classe:"pag-filtro-mapa", acao:"FiltroMapaCtrl"};
         var refAmbienteG = 'localhost:8100/';
-        var refAmbienteReqG = 'http://192.168.0.115:8000/QuickPeek/quickpeek/api';
+        var refAmbienteReqG = 'http://192.168.0.121:8000/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
         var GDados = {};
         var GMenu = {};

@@ -112,7 +112,7 @@
 }
 
 .remove-padding-bottom{
-    padding-bottom: 0;
+    padding-bottom: 0 !important;
 }
 
 .limita-espaco-texto{
@@ -129,7 +129,7 @@
 }
 
 .remove-padding-top{
-    padding-top: 0;
+    padding-top: 0 !important;
 }
 
 .color-amarelo{
@@ -140,8 +140,9 @@
 }
 
 .bar-header{
+    background-image: none !important;
     height: 60px;
-    box-shadow: 0px 2px 8px grey;
+    box-shadow: 0px 2px 8px #B6B6B6;
     padding-top: 15px !important;
 }
 

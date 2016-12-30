@@ -52,6 +52,22 @@
     height: 15px;
 }
 
+.img-seta-funil{
+    background-image: url(../img/44.svg);
+    width: 21px !important;
+    height: 16px !important;
+    margin: auto;
+    display: block;
+    margin-top: 5px;
+}
+
+.img-interrogacao-vermelha{
+    background-image: url(../img/53.svg);
+    width: 41px !important;
+    height: 41px !important;
+    margin: auto;
+}
+
 .img-seta-proximo-sem-traco{
     background-image: url(../img/09.svg);
     width: 12px;

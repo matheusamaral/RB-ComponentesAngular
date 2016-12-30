@@ -1,0 +1,15 @@
+md-menu-item button{
+    background-color: #FFFFFF !important;
+    color: #8a8a8a !important;
+}
+
+md-menu-content{
+    padding: 0;
+}
+
+md-menu-item{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 55px;
+    background-color: #FFFFFF;
+}
