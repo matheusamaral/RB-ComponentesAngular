@@ -1,0 +1,168 @@
+.barra-local{
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+.barra-local.padding-top-barra{
+    padding-top: 70px !important;
+}
+
+.p-titulo-local{
+    color:#848484;
+    font-weight: bold;
+}
+
+.span-dourado{
+    color: #ffb800;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.icone-dourado{
+    color: #ffb800;
+}
+
+.icone-tamanho-personalizado:before{
+    font-size: 31px;
+}
+
+.box-hashTag{
+    border-radius: 90px;
+    background-color: #FFFFFF;
+    width: auto;
+    margin-right: 11px !important;
+    box-shadow: 0px 1px 8px #d0d0d0;
+    border: 1px solid transparent;
+}
+
+.box-hashTag.selecionado{
+    box-shadow: none;
+    border: 2px solid rgb(255, 184, 0);
+}
+
+.p-titulo-hastag{
+    color: #cdcdcd;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 14px;
+    padding-right: 10px;
+}
+
+.p-titulo-hastag.selecionado{
+    color: rgb(255, 184, 0);
+}
+
+.box-img-hashtag{
+    width: 28px;
+    margin-right: 9px;
+    height: 28px;
+    background-size: contain;
+    border-radius: 16px;
+}
+
+.container-hashs{
+    overflow-x: auto !important;
+}
+
+.hr-locais{
+    border: 1px solid #EDECEC;
+    width: 85%;
+}
+
+.padding-mod-hashs{
+    padding-top: 20px !important;
+}
+
+.padding-hashs{
+    padding: 2px !important;
+}
+
+.box-fotos{
+    position: relative;
+    height: 110px;
+}
+
+.moldura-foto{
+    width: 65px;
+    position: absolute;
+    height: 43px;
+    box-shadow: 0px 2px 8px #ababab;
+    border: 2px solid #FFFFFF;
+}
+
+.moldura-foto-redonda{
+    width: 40px;
+    position: absolute;
+    height: 40px;
+    box-shadow: 0px 2px 8px #ababab;
+    border: 2px solid #FFFFFF;
+    border-radius: 36px;
+}
+
+.moldura-foto.pos1{
+    z-index: 5;
+    background-color: red;
+    left: 13px;
+    top: 30px;
+    background-size: cover;
+}
+
+.moldura-foto.pos2{
+    z-index: 4;
+    left: 26px;
+    background-color: green;
+    top: 18px;
+    background-size: cover;
+}
+
+.moldura-foto.pos3{
+    z-index: 3;
+    background-color: black;
+    left: 39px;
+    top:6px;
+    background-size: cover;
+}
+
+.moldura-foto-redonda.pos1{
+    z-index: 5;
+    background-color: red;
+    left: 13px;
+    top: 30px;
+    background-size: cover;
+}
+
+.moldura-foto-redonda.pos2{
+    z-index: 4;
+    left: 32px;
+    background-color: green;
+    top: 21px;
+    background-size: cover;
+}
+
+.moldura-foto-redonda.pos3{
+    z-index: 3;
+    background-color: black;
+    left: 51px;
+    top:12px;
+    background-size: cover;
+}
+
+.p-config-itens{
+    color: #737373;
+    padding-top: 83px;
+    top: 80px;
+    font-size: 12px;
+    text-align: center;
+    display: block;
+}
+
+.box-perguntas{
+    padding-top: 22px;
+}
+
+.p-config-itens-pers{
+    color: #737373;
+    font-size: 12px;
+    padding-top: 21px;
+    text-align: center;
+}

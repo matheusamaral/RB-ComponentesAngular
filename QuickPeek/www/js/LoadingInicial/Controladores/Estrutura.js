@@ -4,11 +4,12 @@ angular.module('QuickPeek.Estrutura.LoadingInicial', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
-    'RB.loadingMobile'
+    'RB.loadingMobile',
+    
 ])
 
 .factory('LoadingInicialEstrutura', ['GCS','Config','Pagina','RBLoadingMobile',
-    function(GCS,Config,Pagina,RBLoadingMobile) {
+    function(GCS,Config,Pagina,RBLoadingMobile){
     var scope;  
     
     function setScope(obj){
@@ -17,7 +18,7 @@ angular.module('QuickPeek.Estrutura.LoadingInicial', [
     }
     
     function popular(){
-        scope.esconderBotao = true;
+        scope.dados = {};
     };
 
     return {

@@ -1,29 +1,27 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.Mapa', [
+angular.module('QuickPeek.Requisicao.Locais', [
     'RB.pagina'
 ])
  
-.factory('MapaRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('LocaisRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
         var acaoSuccess;
-        var acaoPosterior = false;
 
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
             acaoSuccess = obj.acaoSuccess;
-            if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
             return this;
         };
 
-        function verificarLocaisProximos(){
+        function listarAreas(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Local/mapa",
+                url: Config.getRefAmbienteReq()+"/Listar/listarAreaMapa",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -34,17 +32,13 @@ angular.module('QuickPeek.Requisicao.Mapa', [
             GCS.conectar(obj);
         };
         
-        
-        function successVerificarLocaisProximos(objRetorno){
+        function successListarAreas(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
-            if(objRetorno.success === true) {
-                scope.locais = objRetorno.dados;
-                if(acaoPosterior)acaoPosterior(scope.locais);
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
             }
             else{
-                if(acaoPosterior)acaoPosterior(scope.locais);
-                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                OpenToast('Não foi possível localizar locais proximos');
             }
         };
         
@@ -61,8 +55,8 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         
         return {
             set: set,
-            verificarLocaisProximos: verificarLocaisProximos,
-            successVerificarLocaisProximos: successVerificarLocaisProximos
+            successListarAreas: successListarAreas,
+            listarAreas: listarAreas
         };
                            
 }]);     
