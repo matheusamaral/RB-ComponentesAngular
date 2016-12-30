@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listaContatos" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Nome" nome="nome"/>
+        <campo regra="Obrigatorio" chave="Telefone" nome="telefone"/>
+    </entrada>
+    
+    <atividas>
+        <ativida codigo="lista-contatos" tipo="tarefa">
+            <entida nome="ListaContatos" metodo="listaContatos"/>
+        </ativida>
+    </atividas>
+    
+    <saida> </saida>
+    
+</processo>

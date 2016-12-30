@@ -19,7 +19,8 @@ class ConsultaDadosLocais {
         when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 0.3
 		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
     end ', 'relevancia')
-                ->add('(count(distinct cin.id))', 'relevancia2');
+                ->add('(count(distinct cin.id))', 'relevancia2')
+                ->add('chec.ativo', 'checkIn');
         $query->from('local', 'l');
         $query->join('check_in', 'c')->on('c.local_id = l.id')
                 ->on('c.presente = 1')
@@ -47,7 +48,7 @@ class ConsultaDadosLocais {
                 ->on('chec.ativo = 1');
         $query->where('l.id not in (' . $notIn . ')');
         $query->group('l.id');
-        $query->order('chec.id desc, relevancia desc, relevancia2 desc');
+        $query->order('relevancia desc, relevancia2 desc');
         $query->limit(15);
         $query->addVariaveis([$latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 

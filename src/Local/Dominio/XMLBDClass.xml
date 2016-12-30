@@ -56,4 +56,12 @@
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>
     
+    <classe nome="ListaContatos" tabela="lista_contatos" namespace="Quickpeek\Local\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
+        <propriedades coluna="place_id" atributo="placeId" type="varchar(45)"/>
+        <propriedades coluna="local_id" atributo="localId" classe="Local" tabela="local"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
 </configuracao>

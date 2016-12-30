@@ -37,8 +37,11 @@
     "EnviarSms": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\EnviarSms",
     "VerificarCodigoSms": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\VerificarCodigoSms",
     "Tutorial": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Tutorial",
+    "ListaContatos": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\ListaContatos",
+    
     "Bloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Bloquear",
     "Desbloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Desbloquear",
+    
     "EditarNotificacoes": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarNotificacoes",
     "EditarAvatar": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarAvatar",
     "EditarPerfil": "\\Quickpeek\\Usuario\\Aplicacao\\Editar\\EditarPerfil",
