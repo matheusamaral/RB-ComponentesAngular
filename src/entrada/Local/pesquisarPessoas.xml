@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="pesquisarPessoas" modulo="Local">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Pesquisa" nome="pesquisa"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="pesquisar-pessoas" tipo="tarefa">
+            <entidade nome="PesquisarPessoas" metodo="pesquisarPessoas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

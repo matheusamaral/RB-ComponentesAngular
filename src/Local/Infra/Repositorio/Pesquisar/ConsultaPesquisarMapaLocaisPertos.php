@@ -1,8 +1,8 @@
 <?php
-namespace Quickpeek\Local\Infra\Repositorio\Mapa;
+namespace Quickpeek\Local\Infra\Repositorio\Pesquisar;
 use Rubeus\ContenerDependencia\Conteiner;
 
-class ConsultaPesquisaMapaLocaisPertos {
+class ConsultaPesquisarMapaLocaisPertos {
     
     public function consultar($latitude, $longitude, $nome){
         
