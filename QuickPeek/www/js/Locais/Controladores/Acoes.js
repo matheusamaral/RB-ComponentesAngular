@@ -26,7 +26,7 @@ angular.module('QuickPeek.Acoes.Locais', [
     
     function irPessoas(idLocal){
         DGlobal.idLocal = idLocal;
-        Pagina.navegar({idPage:26,paramAdd:'?id='+idLocal});
+        Pagina.navegar({idPage:26,paramAdd:'?id='+idLocal+'&atualizando=0'});
     }
     
     return {

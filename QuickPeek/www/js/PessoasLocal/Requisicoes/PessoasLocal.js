@@ -55,6 +55,5 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
             set: set,
             listar: listar,
             successListar: successListar
-        };
-                           
-}]);     
+        };       
+}]);

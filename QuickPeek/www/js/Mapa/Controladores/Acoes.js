@@ -37,27 +37,37 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function marcarNoMapa(array){
-        for(var i = 0; i < array.length; i++){
-            var img = 'img/79.svg';
-            if(array[i].fotoLocal){
-                img = array[i].fotoLocal;
-            }else{
-                if(array[i].categoriaHashtagFoto){
-                    img = array[i].categoriaHashtagFoto;
+        if(array){
+            for(var i = 0; i < array.length; i++){
+                var img = 'img/79.svg';
+                if(array[i].fotoLocal){
+                    img = array[i].fotoLocal;
                 }else{
-                    if(array[i].categoriaLocalFoto){
-                        img = array[i].categoriaLocalFoto;
+                    if(array[i].categoriaHashtagFoto){
+                        img = array[i].categoriaHashtagFoto;
+                    }else{
+                        if(array[i].categoriaLocalFoto){
+                            img = array[i].categoriaLocalFoto;
+                        }
                     }
                 }
+                scope.mapaGeral['marker'+i] = new google.maps.Marker({
+                    position: new google.maps.LatLng(array[i].latitude,array[i].longitude), // variável com as coordenadas Lat e Lng
+                    map: scope.mapaGeral.map,
+                    title:array[i].localNome,
+                    icon:img,
+                    label:array[i].localNome
+                });
+
+                scope.mapaGeral['marker'+i].addListener('click', function() {
+                    irLocal();
+                });
             }
-            scope.mapaGeral.marker = new google.maps.Marker({
-                position: new google.maps.LatLng(array[i].latitude,array[i].longitude), // variável com as coordenadas Lat e Lng
-                map: scope.mapaGeral.map,
-                title:array[i].localNome,
-                icon:img,
-                label:array[i].localNome
-            });
         }
+    }
+    
+    function irLocal(id){
+        Pagina.navegar({idPage:24,paramAdd:'?localId='+id+'&atualizando=0'});
     }
     
     function irFiltro(){
@@ -67,7 +77,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
     return {
         setScope:setScope,
         inicializar:inicializar,
-        irFiltro:irFiltro
+        irFiltro:irFiltro,
+        irLocal:irLocal
     };
     
  }]);

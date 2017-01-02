@@ -66,11 +66,6 @@ angular.module('QuickPeek.Estrutura.PessoasLocal', [
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados;
         }
-        
-            
-            for(var i = 0; i < 6;i ++){
-                scope.dados.pessoas.push(VP.removeReferencia(scope.dados.pessoas[0]));
-            }
     };
   
     return {
