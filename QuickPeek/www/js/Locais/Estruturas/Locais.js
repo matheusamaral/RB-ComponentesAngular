@@ -50,13 +50,13 @@ angular.module('QuickPeek.HTML.Locais', [
                     '+sessaoHashtag()+
                     '<div class="container-fotos">\n\
                         <div class="row remove-padding">\n\
-                            <div ng-if="local.midias.length > 0" ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
+                            <div ng-if="local.qtdMidias > 0" ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
                                 '+sessaoFotos()+'\n\
                             </div>\n\
-                            <div ng-if="local.pessoas.length > 0" class="col remove-padding">\n\
+                            <div ng-if="local.qtdPessoas > 0" ng-click="irPessoas(local.dados.localId)" class="col remove-padding">\n\
                                 '+sessaoPessoas()+'\n\
                             </div>\n\
-                            <div ng-if="local.qtdPerguntas.qtd > 0" class="col remove-padding">\n\
+                            <div ng-if="local.qtdPerguntas > 0" class="col remove-padding">\n\
                                 '+sessaoPerguntas()+'\n\
                             </div>\n\
                         </div>\n\
@@ -70,7 +70,7 @@ angular.module('QuickPeek.HTML.Locais', [
                     ng-repeat="midia in local.midias"\n\
                     class="moldura-foto pos{{$index + 1}} posicao-{{local.midias.length}}-foto-quadrada"\n\
                     style="background-image:url({{midia.endereco}})"></div>\n\
-                    <p class="p-config-itens"><span style="font-weight:bold">{{local.midias[local.midias.length - 1].qtd}}</span> Imagens</p>\n\
+                    <p class="p-config-itens"><span style="font-weight:bold">{{local.qtdMidias}}</span> Imagens</p>\n\
                 </div>';
     }
     
@@ -78,17 +78,18 @@ angular.module('QuickPeek.HTML.Locais', [
          return'<div class="box-fotos">\n\
                     <div \n\
                     ng-repeat="pessoa in local.pessoas"\n\
+                    ng-class="{\'borda-dourada-fina\' : pessoa.usuarioId == dadosUser.usuarioId}"\n\
                     class="moldura-foto-redonda pos{{$index+1}} posicao-{{local.pessoas.length}}-foto-quadrada"\n\
                     style="background-image:url({{pessoa.endereco}})">\n\
                     </div>\n\
-                    <p class="p-config-itens"><span style="font-weight:bold">{{local.pessoas.length}}</span> Pessoas</p>\n\
+                    <p class="p-config-itens"><span style="font-weight:bold">{{local.qtdPessoas}}</span> Pessoas</p>\n\
                 </div>';
     }
     
     function sessaoPerguntas(){
          return'<div class="box-perguntas">\n\
                     <div class="img-interrogacao-vermelha"></div>\n\
-                    <p class="p-config-itens-pers"><span style="font-weight:bold">{{local.qtdPerguntas.qtd}}</span> Perguntas</p>\n\
+                    <p class="p-config-itens-pers"><span style="font-weight:bold">{{local.qtdPerguntas}}</span> Perguntas</p>\n\
                 </div>';
     }
     

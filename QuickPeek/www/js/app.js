@@ -34,7 +34,9 @@ angular.module('QuickPeek', [
     'QuickPeek.Mapa',
     'QuickPeek.FiltroMapa',
     'QuickPeek.Locais',
-    'QuickPeek.ExibirMidia'
+    'QuickPeek.ExibirMidia',
+    'QuickPeek.PessoasLocal',
+    'infinite-scroll'
 ])
 
 .run(function($ionicPlatform) {

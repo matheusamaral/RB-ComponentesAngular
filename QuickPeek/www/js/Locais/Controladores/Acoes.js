@@ -24,10 +24,16 @@ angular.module('QuickPeek.Acoes.Locais', [
         LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarMidias}).listarMidias();
     }
     
+    function irPessoas(idLocal){
+        DGlobal.idLocal = idLocal;
+        Pagina.navegar({idPage:26,paramAdd:'?id='+idLocal});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
-        exibirMidias:exibirMidias
+        exibirMidias:exibirMidias,
+        irPessoas:irPessoas
     };
     
  }]);

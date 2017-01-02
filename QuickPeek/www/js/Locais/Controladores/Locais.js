@@ -13,6 +13,7 @@ angular.module('QuickPeek.Locais', [
         
         $scope.montaLinhasHashs = LocaisEstrutura.montaLinhasHashs;
         $scope.exibirMidias = LocaisAcoes.exibirMidias;
+        $scope.irPessoas = LocaisAcoes.irPessoas;
     }
 ])
 
