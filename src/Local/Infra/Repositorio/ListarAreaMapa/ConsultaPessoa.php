@@ -18,7 +18,9 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                         . ' + (count(distinct ci.id) * 0.7)', 'count')
                 ->add('count(distinct cur.id) * 0.2 + (count(distinct se.id) * 0.1)', 'count2')
                 ->add('timestampdiff(minute, c.momento, now())', 'minutos')
-                ->add('case when s.id is not null then 1 else 0 end', 'seguindo');
+                ->add('case when s.ativo is not null and s.confirmar_seguir = 1 then 1'
+                        . ' when s.ativo is not null and s.confirmar_seguir = 0 then 2'
+                        . ' else 0 end', 'seguindo');
         $query->from('usuario', 'u');
         $query->join('local', 'l')->on('l.ativo = 1');
         $query->join('check_in', 'c')->on('c.usuario_id = u.id')
@@ -26,7 +28,6 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->on('c.presente = 1')
                 ->on('c.ativo = 1');
         $query->join('seguir', 's', 'left')->on('s.usuario_id = ?')
-                ->on('s.confirmar_seguir = 1')
                 ->on('s.ativo = 1')
                 ->on('s.usuario_seguir_id = u.id');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
@@ -95,5 +96,17 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->add('hl.ativo = 1');
         $query3->group('hl.hashtag_id');
         return $query3;
+    }
+    
+    public function consultarQtd($localId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('count(distinct id)', 'qtd');
+        $query->from('check_in');
+        $query->where('local_id = ?')
+                ->add('presente = 1')
+                ->add('ativo = 1');
+        $query->addVariaveis($localId);
+        return $query->executar('{qtd}');
     }
 }

@@ -232,3 +232,17 @@ CREATE TABLE `ddi_paises`(
     `cobertura` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `lista_contatos`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `nome` varchar(45)   ,
+    `telefone` varchar(45)   ,
+    `usuario_id` INT   ,
+    INDEX `lista_contatos_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `lista_contatos_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

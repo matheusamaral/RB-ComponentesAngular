@@ -41,15 +41,12 @@ class ListarAreaMapa {
             foreach($dadosLocais as $v){
                 $hashtags[] = $hashtag->consultar($usuarioId, $v['localId'], $tempo['hashtag']);
                 $midias[] = $midia->consultar($v['localId'], $tempo['midia']);
-                $qtdMidia[] = $midia->consultarQtd($v['localId'], $tempo['midia']);
                 $pessoas[] = $pessoa->consultar($usuarioId, $v['localId'], $tempo['midia'], $tempo['hashtag'], 3, 0);
+                $qtdMidias[] = $midia->consultarQtd($v['localId'], $tempo['midia']);
                 $qtdPerguntas[] = $perguntas->consultarQtd($v['localId'], $tempo['perguntas']);
+                $qtdPessoas[]  = $pessoa->consultarQtd($v['localId']);
             }
-
-            for($i = 0; $i < count($dadosLocais); $i++){
-                $midias[$i][] = $qtdMidia[$i];
-            }
-
+            
             $array = [];
 
             foreach($dadosLocais as $k=>$v){
@@ -58,6 +55,8 @@ class ListarAreaMapa {
                 $array[$k]['midias'] = $midias[$k];
                 $array[$k]['pessoas'] = $pessoas[$k];
                 $array[$k]['qtdPerguntas'] = $qtdPerguntas[$k];
+                $array[$k]['qtdMidias'] = $qtdMidias[$k];
+                $array[$k]['qtdPessoas'] = $qtdPessoas[$k];
             }
             $msg->setResultadoEtapa(true, false, ['dados'=>$array]);
         }else{

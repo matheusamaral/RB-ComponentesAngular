@@ -14,7 +14,7 @@ class ListarPessoas {
         $notIn = $this->atualizando($msg);
         
         $query = Conteiner::get('ConsultaPessoa')->consultar($usuarioId, $localId, 
-                $tempo['midia'], $tempo['hashtag'], 1, $notIn);
+                $tempo['midia'], $tempo['hashtag'], 20, $notIn);
         
         if($query){
             foreach($query as $v){

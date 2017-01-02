@@ -1,5 +1,5 @@
 <?php
-namespace Quickpeek\Local\Aplicacao\Mapa;
+namespace Quickpeek\Local\Aplicacao\Pesquisar;
 use Rubeus\ContenerDependencia\Conteiner;
 
 class PesquisaMapaLocaisPertos {

@@ -11,6 +11,8 @@
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
         <propriedades coluna="endereco" atributo="endereco" type="varchar(45)"/>
         <propriedades coluna="cidade" atributo="cidade" type="varchar(45)"/>
+        <propriedades coluna="estado" atributo="estado" type="varchar(45)"/>
+        <propriedades coluna="pais" atributo="pais" type="varchar(45)"/>
         <propriedades coluna="foto" atributo="foto" type="varchar(255)"/>
     </classe>
     
@@ -49,14 +51,6 @@
     </classe>
     
     <classe nome="LocalGoogle" tabela="local_google" namespace="Quickpeek\Local\Dominio" id="">
-        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
-        <propriedades coluna="place_id" atributo="placeId" type="varchar(45)"/>
-        <propriedades coluna="local_id" atributo="localId" classe="Local" tabela="local"/>
-        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
-        <propriedades coluna="momento" atributo="momento" type="datetime"/>
-    </classe>
-    
-    <classe nome="ListaContatos" tabela="lista_contatos" namespace="Quickpeek\Local\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
         <propriedades coluna="place_id" atributo="placeId" type="varchar(45)"/>
         <propriedades coluna="local_id" atributo="localId" classe="Local" tabela="local"/>

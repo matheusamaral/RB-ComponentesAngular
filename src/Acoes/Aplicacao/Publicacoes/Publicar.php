@@ -40,11 +40,16 @@ class Publicar {
                     $hashtagsTitulo[] = $v;
                 }
             }
-
-            $hashtagsNovosIds = $this->cadastrarHashtags($msg, $hashtagsTitulo, $hashtagsId);
-
-            if($this->cadastrarHashtagLocal($msg, $hashtagsNovosIds, $localId, $usuarioId)){
-                $this->cadastrarHashtagCategoria($msg, $hashtagsNovosIds, $categoriaId);
+            if(isset($hashtagsTitulo)){
+                $hashtagsNovosIds = $this->cadastrarHashtags($msg, $hashtagsTitulo, $hashtagsId);
+            }
+            
+            if(isset($hashtagsNovosIds)){
+                if($this->cadastrarHashtagLocal($msg, $hashtagsNovosIds, $localId, $usuarioId)){
+                    $this->cadastrarHashtagCategoria($msg, $hashtagsNovosIds, $categoriaId);
+                }else{
+                    $msg->setResultadoEtapa(false);
+                }
             }else{
                 $msg->setResultadoEtapa(false);
             }
@@ -73,22 +78,21 @@ class Publicar {
     
     private function cadastrarHashtags($msg, $hashtagsTitulo, $hashtagsId){
         
-        if($hashtagsTitulo){
-            foreach($hashtagsTitulo as $v){
-                $usuarioIdNovo[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
-            }
-            $msg->setCampo('entidade', 'Hashtag');
-            $msg->setCampo('Hashtag::usuarioId', $usuarioIdNovo);
-            $msg->setCampo('Hashtag::titulo', $hashtagsTitulo);
-            Conteiner::get('Cadastro')->cadastrar($msg);
-            $hashtagIdValor = $msg->getCampo('Hashtag::id')->get('valor');
+        foreach($hashtagsTitulo as $v){
+            $usuarioIdNovo[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
 
-            if(!is_array($hashtagIdValor)){
-                $hashtagIdNovo[] = $hashtagIdValor;
-            }else{
-                $hashtagIdNovo = $hashtagIdValor;
-            }
+        $msg->setCampo('entidade', 'Hashtag');
+        $msg->setCampo('Hashtag::usuarioId', $usuarioIdNovo);
+        $msg->setCampo('Hashtag::titulo', $hashtagsTitulo);
+        Conteiner::get('Cadastro')->cadastrar($msg);
+        $hashtagIdValor = $msg->getCampo('Hashtag::id')->get('valor');
+
+        if(!is_array($hashtagIdValor)){
+            $hashtagIdNovo[] = $hashtagIdValor;
+        }else{
+            $hashtagIdNovo = $hashtagIdValor;
         }
+    }
         $x = 0;
         for($i = 0; $i < count($hashtagsId); $i++){
             if(!$hashtagsId[$i]){
@@ -137,9 +141,9 @@ class Publicar {
             $msg->setCampo('Notificacoes::usuarioId', $seguidores);
             $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioAcaoId);
             $msg->setCampo('Notificacoes::tipoId', $tipoId);
-            if($hashtagsId){
+            if(isset($hashtagsId)){
                 $msg->setCampo('Notificacoes::hashtagLocalId', $hashtagsId);
-            }elseif($midiasId){
+            }elseif(isset($midiasId)){
                 $msg->setCampo('Notificacoes::midiaId', $midiasId);
             }
             Conteiner::get('Cadastro')->cadastrar($msg);
