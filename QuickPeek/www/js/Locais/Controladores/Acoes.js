@@ -19,9 +19,15 @@ angular.module('QuickPeek.Acoes.Locais', [
         $('ion-side-menu-content').addClass('background-cinza-claro');
     }
     
+    function exibirMidias(id){
+        var obj = {id:id};
+        LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarMidias}).listarMidias();
+    }
+    
     return {
         setScope:setScope,
-        inicializar:inicializar
+        inicializar:inicializar,
+        exibirMidias:exibirMidias
     };
     
  }]);

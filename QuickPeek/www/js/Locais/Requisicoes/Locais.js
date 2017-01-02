@@ -36,6 +36,33 @@ angular.module('QuickPeek.Requisicao.Locais', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
+                scope.locais = objRetorno.dados;
+            }
+            else{
+                OpenToast('Não foi possível localizar locais proximos');
+            }
+        };
+        
+        function listarMidias(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Listar/listarMidias",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successListarMidias(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                DGlobal.midias = objRetorno.dados;
+                Pagina.navegar({idPage:25});
             }
             else{
                 OpenToast('Não foi possível localizar locais proximos');
@@ -56,7 +83,9 @@ angular.module('QuickPeek.Requisicao.Locais', [
         return {
             set: set,
             successListarAreas: successListarAreas,
-            listarAreas: listarAreas
+            listarAreas: listarAreas,
+            listarMidias:listarMidias,
+            successListarMidias:successListarMidias
         };
                            
 }]);     

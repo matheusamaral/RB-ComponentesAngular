@@ -1,6 +1,7 @@
 .barra-local{
     background-color: #FFFFFF;
     padding: 10px;
+    box-shadow: 0px 1px 8px #EDECEC;
 }
 
 .barra-local.padding-top-barra{
@@ -62,6 +63,7 @@
 
 .container-hashs{
     overflow-x: auto !important;
+    padding-bottom: 10px;
 }
 
 .hr-locais{
@@ -80,6 +82,8 @@
 .box-fotos{
     position: relative;
     height: 110px;
+    width: 68px;
+    margin: auto;
 }
 
 .moldura-foto{
@@ -101,49 +105,31 @@
 
 .moldura-foto.pos1{
     z-index: 5;
-    background-color: red;
-    left: 13px;
-    top: 30px;
     background-size: cover;
 }
 
 .moldura-foto.pos2{
     z-index: 4;
-    left: 26px;
-    background-color: green;
-    top: 18px;
     background-size: cover;
 }
 
 .moldura-foto.pos3{
     z-index: 3;
-    background-color: black;
-    left: 39px;
-    top:6px;
     background-size: cover;
 }
 
 .moldura-foto-redonda.pos1{
     z-index: 5;
-    background-color: red;
-    left: 13px;
-    top: 30px;
     background-size: cover;
 }
 
 .moldura-foto-redonda.pos2{
     z-index: 4;
-    left: 32px;
-    background-color: green;
-    top: 21px;
     background-size: cover;
 }
 
 .moldura-foto-redonda.pos3{
     z-index: 3;
-    background-color: black;
-    left: 51px;
-    top:12px;
     background-size: cover;
 }
 
@@ -165,4 +151,69 @@
     font-size: 12px;
     padding-top: 21px;
     text-align: center;
+}
+
+.container-fotos{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.moldura-foto.pos1.posicao-1-foto-quadrada{
+    top: 20px;
+    left: 1px;
+}
+
+.moldura-foto.pos1.posicao-2-foto-quadrada{
+    top: 22px;
+    left: -2px;
+}
+
+.moldura-foto.pos1.posicao-3-foto-quadrada{
+    top: 27px;
+    left: -8px;
+}
+
+.moldura-foto.pos2.posicao-2-foto-quadrada{
+    left: 8px;
+    top: 11px;
+}
+
+.moldura-foto.pos2.posicao-3-foto-quadrada{
+    left: -1px;
+    top: 18px;
+}
+
+.moldura-foto.pos3.posicao-3-foto-quadrada{
+    left: 6px;
+    top: 10px;
+}
+
+.moldura-foto-redonda.pos1.posicao-1-foto-quadrada{
+    top: 20px;
+    left: 1px;
+}
+
+.moldura-foto-redonda.pos1.posicao-2-foto-quadrada{
+    top: 22px;
+    left: -2px;
+}
+
+.moldura-foto-redonda.pos1.posicao-3-foto-quadrada{
+    top: 27px;
+    left: -8px;
+}
+
+.moldura-foto-redonda.pos2.posicao-2-foto-quadrada{
+    left: 8px;
+    top: 11px;
+}
+
+.moldura-foto-redonda.pos2.posicao-3-foto-quadrada{
+    left: 10px;
+    top: 18px;
+}
+
+.moldura-foto-redonda.pos3.posicao-3-foto-quadrada{
+    left: 29px;
+    top: 10px;
 }
