@@ -3,10 +3,10 @@
 angular.module('QuickPeek.HTML.ExibirMidia', [
 ])
 
-.factory('ExibirMidiaHtml', [ function() {
+.factory('ExibirMidiaHtml', [ function(){
        
     function montar() {
-        return '<button style="margin-top: 18px;font-weight: bold;" ng-click="voltarLocais()" class="btn-flutuante col button button-clear">\n\
+        return '<button style="z-index:2000;margin-top: 18px;font-weight: bold;" ng-click="voltarLocais()" class="btn-flutuante col button button-clear">\n\
                     <i class="icon ion-android-arrow-back" style="color:#FFFFFF"></i>\n\
                 </button>\n\
                 <ion-slide-box style="height:100%;" show-pager="false" on-slide-changed="slideHasChanged($index)">\n\

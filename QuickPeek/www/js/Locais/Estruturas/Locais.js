@@ -50,13 +50,13 @@ angular.module('QuickPeek.HTML.Locais', [
                     '+sessaoHashtag()+
                     '<div class="container-fotos">\n\
                         <div class="row remove-padding">\n\
-                            <div ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
+                            <div ng-if="local.midias.length > 0" ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
                                 '+sessaoFotos()+'\n\
                             </div>\n\
-                            <div class="col remove-padding">\n\
+                            <div ng-if="local.pessoas.length > 0" class="col remove-padding">\n\
                                 '+sessaoPessoas()+'\n\
                             </div>\n\
-                            <div class="col remove-padding">\n\
+                            <div ng-if="local.qtdPerguntas.qtd > 0" class="col remove-padding">\n\
                                 '+sessaoPerguntas()+'\n\
                             </div>\n\
                         </div>\n\
@@ -88,7 +88,7 @@ angular.module('QuickPeek.HTML.Locais', [
     function sessaoPerguntas(){
          return'<div class="box-perguntas">\n\
                     <div class="img-interrogacao-vermelha"></div>\n\
-                    <p class="p-config-itens-pers"><span style="font-weight:bold">49</span> Perguntas</p>\n\
+                    <p class="p-config-itens-pers"><span style="font-weight:bold">{{local.qtdPerguntas.qtd}}</span> Perguntas</p>\n\
                 </div>';
     }
     
