@@ -3,15 +3,15 @@
 <processo codigo="listaContatos" modulo="Usuario">
     
     <entrada> 
-        <campo regra="Obrigatorio" chave="Nome" nome="nome"/>
-        <campo regra="Obrigatorio" chave="Telefone" nome="telefone"/>
+        <campo regra="Obrigatorio" chave="ListaContatos::nome" nome="nome" json="1"/>
+        <campo regra="Obrigatorio" chave="ListaContatos::telefone" nome="telefone" json="1"/>
     </entrada>
     
-    <atividas>
-        <ativida codigo="lista-contatos" tipo="tarefa">
-            <entida nome="ListaContatos" metodo="listaContatos"/>
-        </ativida>
-    </atividas>
+    <atividades>
+        <atividade codigo="lista-contatos" tipo="tarefa">
+            <entidade nome="ListaContatos" metodo="listaContatos"/>
+        </atividade>
+    </atividades>
     
     <saida> </saida>
     

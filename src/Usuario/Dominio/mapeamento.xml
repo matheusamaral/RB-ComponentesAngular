@@ -168,4 +168,15 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
+        
+<classe nome="ListaContatos" tabela="lista_contatos"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="nome" atributo="nome" /> 
+    <propriedades coluna="telefone" atributo="telefone" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
 </root>

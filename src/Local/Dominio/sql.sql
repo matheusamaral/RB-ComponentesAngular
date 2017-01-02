@@ -16,6 +16,8 @@ CREATE TABLE `local`(
     `momento` datetime   ,
     `endereco` varchar(45)   ,
     `cidade` varchar(45)   ,
+    `estado` varchar(45)   ,
+    `pais` varchar(45)   ,
     `foto` varchar(255)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `categoria_local`( 

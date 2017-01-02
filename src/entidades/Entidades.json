@@ -12,6 +12,7 @@
     "SmsCodigo": "\\Quickpeek\\Usuario\\Dominio\\SmsCodigo",
     "StatusSms": "\\Quickpeek\\Usuario\\Dominio\\StatusSms",
     "NumerounicoUsuario": "\\Quickpeek\\Usuario\\Dominio\\NumerounicoUsuario",
+    "ListaContatos": "\\Quickpeek\\Usuario\\Dominio\\ListaContatos",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
     "LocalCategoria": "\\Quickpeek\\Local\\Dominio\\LocalCategoria",

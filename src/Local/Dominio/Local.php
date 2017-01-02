@@ -13,6 +13,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $momento = false;
         private $endereco = false;
         private $cidade = false;
+        private $estado = false;
+        private $pais = false;
         private $foto = false; 
                 
         public function getId() {
@@ -89,6 +91,22 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setCidade($cidade) {
             $this->cidade = $cidade;
+        } 
+                
+        public function getEstado() {
+            return $this->estado;
+        }
+
+        public function setEstado($estado) {
+            $this->estado = $estado;
+        } 
+                
+        public function getPais() {
+            return $this->pais;
+        }
+
+        public function setPais($pais) {
+            $this->pais = $pais;
         } 
                 
         public function getFoto() {

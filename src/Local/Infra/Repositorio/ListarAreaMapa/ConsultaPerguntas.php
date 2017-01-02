@@ -4,10 +4,6 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaPerguntas {
     
-    public function consultar(){
-        
-    }
-    
     public function consultarQtd($localId, $tempo){
         
         $query = Conteiner::get('Query', false);
@@ -17,6 +13,6 @@ class ConsultaPerguntas {
                 ->add('momento > date_add(now(), INTERVAL -? HOUR)')
                 ->add('ativo = 1');
         $query->addVariaveis([$localId, $tempo]);
-        return $query->executar('A');
+        return $query->executar('{qtd}');
     }
 }
