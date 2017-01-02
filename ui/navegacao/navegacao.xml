@@ -174,4 +174,13 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-locais" acao="LocaisCtrl" title="Locais e proximidades"/>
     </pagina>   
+    
+    <pagina id="25" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="midias">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-exibir-midia" acao="ExibirMidiaCtrl" title="Midias"/>
+    </pagina>   
 </root>

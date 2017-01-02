@@ -6,6 +6,10 @@
     line-height: 25px;
 }
 
+.texto-branco{
+    color:#FFFFFF !important;
+}
+
 .bar-footer{
     position:fixed;
     bottom:0;

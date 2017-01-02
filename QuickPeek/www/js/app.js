@@ -33,7 +33,8 @@ angular.module('QuickPeek', [
     'QuickPeek.Sobre',
     'QuickPeek.Mapa',
     'QuickPeek.FiltroMapa',
-    'QuickPeek.Locais'
+    'QuickPeek.Locais',
+    'QuickPeek.ExibirMidia'
 ])
 
 .run(function($ionicPlatform) {

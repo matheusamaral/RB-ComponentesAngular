@@ -10,6 +10,9 @@ angular.module('QuickPeek.Locais', [
     function ($scope,LocaisEstrutura,LocaisAcoes){        
         LocaisEstrutura.setScope($scope).popular();
         LocaisAcoes.setScope($scope).inicializar();
+        
+        $scope.montaLinhasHashs = LocaisEstrutura.montaLinhasHashs;
+        $scope.exibirMidias = LocaisAcoes.exibirMidias;
     }
 ])
 

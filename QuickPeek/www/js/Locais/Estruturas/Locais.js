@@ -13,49 +13,52 @@ angular.module('QuickPeek.HTML.Locais', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div class="altura-barra-padding padding-top-barra row barra-local">\n\
-                    <div class="col">\n\
-                        <p class="p-titulo-local">Empório</p>\n\
+                <div ng-repeat="local in locais">\n\
+                    <div ng-class="{\'padding-top-barra\' : $index == 0}"\n\
+                    class="row barra-local">\n\
+                        <div class="col">\n\
+                            <p class="p-titulo-local">{{local.dados.localNome}}</p>\n\
+                            <div class="row remove-padding">\n\
+                                <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
+                            </div>\n\
+                        </div>\n\
+                        <div class="text-right">\n\
+                            <md-menu>\n\
+                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                    <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
+                                </md-button>\n\
+                                <md-menu-content width="4">\n\
+                                    <md-menu-item>\n\
+                                        <md-button ng-click="ctrl.redial($event)">\n\
+                                            Alterar localização\n\
+                                        </md-button>\n\
+                                    </md-menu-item>\n\
+                                    <md-menu-item>\n\
+                                        <md-button ng-click="ctrl.redial($event)">\n\
+                                            Alterar privacidade\n\
+                                        </md-button>\n\
+                                    </md-menu-item>\n\
+                                    <md-menu-item>\n\
+                                        <md-button ng-click="ctrl.redial($event)">\n\
+                                            Navegar até o local\n\
+                                        </md-button>\n\
+                                    </md-menu-item>\n\
+                                </md-menu-content>\n\
+                            </md-menu>\n\
+                        </div>\n\
+                    </div>\n\
+                    '+sessaoHashtag()+
+                    '<div class="container-fotos">\n\
                         <div class="row remove-padding">\n\
-                            <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
-                        </div>\n\
-                    </div>\n\
-                    <div class="col text-right">\n\
-                        <md-menu>\n\
-                            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
-                                <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
-                            </md-button>\n\
-                            <md-menu-content width="4">\n\
-                                <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
-                                        Alterar localização\n\
-                                    </md-button>\n\
-                                </md-menu-item>\n\
-                                <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
-                                        Alterar privacidade\n\
-                                    </md-button>\n\
-                                </md-menu-item>\n\
-                                <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
-                                        Navegar até o local\n\
-                                    </md-button>\n\
-                                </md-menu-item>\n\
-                            </md-menu-content>\n\
-                        </md-menu>\n\
-                    </div>\n\
-                </div>\n\
-                '+sessaoHashtag()+
-                '<div class="container-fotos">\n\
-                    <div class="row remove-padding">\n\
-                        <div class="col remove-padding">\n\
-                            '+sessaoFotos()+'\n\
-                        </div>\n\
-                        <div class="col remove-padding">\n\
-                            '+sessaoPessoas()+'\n\
-                        </div>\n\
-                        <div class="col remove-padding">\n\
-                            '+sessaoPerguntas()+'\n\
+                            <div ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
+                                '+sessaoFotos()+'\n\
+                            </div>\n\
+                            <div class="col remove-padding">\n\
+                                '+sessaoPessoas()+'\n\
+                            </div>\n\
+                            <div class="col remove-padding">\n\
+                                '+sessaoPerguntas()+'\n\
+                            </div>\n\
                         </div>\n\
                     </div>\n\
                 </div>';
@@ -63,19 +66,22 @@ angular.module('QuickPeek.HTML.Locais', [
     
     function sessaoFotos(){
          return'<div class="box-fotos">\n\
-                    <div class="moldura-foto pos1" style="background-image:url(img/deOlhoAudacia.jpg)"></div>\n\
-                    <div class="moldura-foto pos2" style="background-image:url(img/deOlhoAudacia.jpg)"></div>\n\
-                    <div class="moldura-foto pos3" style="background-image:url(img/deOlhoAudacia.jpg)"></div>\n\
-                    <p class="p-config-itens"><span style="font-weight:bold">3</span> Imagens</p>\n\
+                    <div\n\
+                    ng-repeat="midia in local.midias"\n\
+                    class="moldura-foto pos{{$index + 1}} posicao-{{local.midias.length}}-foto-quadrada"\n\
+                    style="background-image:url({{midia.endereco}})"></div>\n\
+                    <p class="p-config-itens"><span style="font-weight:bold">{{local.midias[local.midias.length - 1].qtd}}</span> Imagens</p>\n\
                 </div>';
     }
     
     function sessaoPessoas(){
          return'<div class="box-fotos">\n\
-                    <div class="moldura-foto-redonda pos1" style="background-image:url(img/deOlhoAudacia.jpg)"></div>\n\
-                    <div class="moldura-foto-redonda pos2" style="background-image:url(img/deOlhoAudacia.jpg)"></div>\n\
-                    <div class="moldura-foto-redonda pos3" style="background-image:url(img/deOlhoAudacia.jpg)"></div>\n\
-                    <p class="p-config-itens"><span style="font-weight:bold">49</span> Pessoas</p>\n\
+                    <div \n\
+                    ng-repeat="pessoa in local.pessoas"\n\
+                    class="moldura-foto-redonda pos{{$index+1}} posicao-{{local.pessoas.length}}-foto-quadrada"\n\
+                    style="background-image:url({{pessoa.endereco}})">\n\
+                    </div>\n\
+                    <p class="p-config-itens"><span style="font-weight:bold">{{local.pessoas.length}}</span> Pessoas</p>\n\
                 </div>';
     }
     
@@ -88,10 +94,10 @@ angular.module('QuickPeek.HTML.Locais', [
     
     function sessaoHashtag(){
          return'<div class="container-hashs">\
-                    <div ng-repeat="linha in objHashs" \n\
+                    <div ng-repeat="linha in local.linhasHashs" ng-if="local.hashtags.length > 0"\n\
                     style="padding-top:10px;" \n\
                     class="row rb-padding-padrao"\n\
-                    ng-class="{\'remove-padding-bottom\' : $index != objHashs.length - 1,\n\
+                    ng-class="{\'remove-padding-bottom\' : $index != local.hashtags.length - 1,\n\
                     \'padding-mod-hashs\' : $index == 0}">\n\
                         <div class="padding-hashs row box-hashTag" \n\
                         ng-repeat="hash in linha"\n\
@@ -99,11 +105,17 @@ angular.module('QuickPeek.HTML.Locais', [
                             <div style="background-image:url({{hash.categoriaEndereco}})" class="box-img-hashtag"></div>\n\
                             <p class="p-titulo-hastag"\n\
                             ng-class="{\'selecionado\' : hash.jaCurtiu == 1}">\n\
-                                {{hash.hashtagTitulo}}</br>\n\
+                                #{{hash.hashtagTitulo}}</br>\n\
                                 <span style="font-weight:normal !important;">\n\
                                     {{hash.hashtagQtd}}\n\
                                 </span>\n\
                             </p>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div ng-if="local.hashtags.length == 0 || !local.hashtags.length" class="row padding-padrao-contas">\n\
+                        <div class="col text-center">\n\
+                            <i class="icone-padrao icon ion-alert-circled"></i>\n\
+                            <p style="color:#b0b0b0">Nenhuma hashtag relacionada</p>\n\
                         </div>\n\
                     </div>\n\
                 </div>\n\
