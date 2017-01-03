@@ -19,7 +19,6 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
         };
 
         function listar(){
-            RBLoadingMobile.show();
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Listar/listarPessoas",
                 dados: $.param(dados),
@@ -48,7 +47,7 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
         
         
         function OpenToast(message) {
-          ionicToast.show(message, 'bottom', false, 3000);
+            ionicToast.show(message, 'bottom', false, 3000);
         }
         
         return {

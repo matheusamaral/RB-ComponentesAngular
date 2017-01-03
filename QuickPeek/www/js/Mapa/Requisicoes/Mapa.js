@@ -37,7 +37,7 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         
         function successVerificarLocaisProximos(objRetorno){
             RBLoadingMobile.hide();
-            //alert(JSON.stringify(objRetorno));
+            alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true) {
                 scope.locais = objRetorno.dados;
                 if(acaoPosterior)acaoPosterior(scope.locais);
