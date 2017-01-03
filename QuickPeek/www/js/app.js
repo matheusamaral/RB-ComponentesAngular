@@ -34,7 +34,9 @@ angular.module('QuickPeek', [
     'QuickPeek.Mapa',
     'QuickPeek.FiltroMapa',
     'QuickPeek.Locais',
-    'QuickPeek.ExibirMidia'
+    'QuickPeek.ExibirMidia',
+    'QuickPeek.PessoasLocal',
+    'infinite-scroll'
 ])
 
 .run(function($ionicPlatform) {
@@ -50,22 +52,70 @@ angular.module('QuickPeek', [
     }
     
 //    var permissions = cordova.plugins.permissions;
-//    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
-//
-//    function checkPermissionCallback(status) {
-//      if(!status.hasPermission) {
-//        var errorCallback = function() {
-//          console.warn('Camera permission is not turned on');
-//        };
-//
-//        permissions.requestPermission(
-//            permissions.READ_SMS,
-//            function(status) {
-//            if(!status.hasPermission) errorCallback();
-//            },
-//            errorCallback);
-//        }
-//    }
+//    //permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
+//    permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkPermissionCallbackLocation, null);
+//    permissions.hasPermission(permissions.ACCESS_LOCATION_EXTRA_COMMANDS, checkPermissionCallbackExtraLocation, null);
+//    permissions.hasPermission(permissions.LOCATION_HARDWARE, checkPermissionCallbackPrincipalLocation, null);
+
+    function checkPermissionCallback(status) {
+      if(!status.hasPermission) {
+        var errorCallback = function() {
+          console.warn('Camera permission is not turned on');
+        };
+
+        permissions.requestPermission(
+            permissions.READ_SMS,
+            function(status) {
+            if(!status.hasPermission) errorCallback();
+            },
+            errorCallback);
+        }
+    }
+    
+    function checkPermissionCallbackLocation(status) {
+      if(!status.hasPermission) {
+        var errorCallback = function() {
+          console.warn('Camera permission is not turned on');
+        };
+
+        permissions.requestPermission(
+            permissions.ACCESS_FINE_LOCATION,
+            function(status) {
+            if(!status.hasPermission) errorCallback();
+            },
+            errorCallback);
+        }
+    }
+    
+    function checkPermissionCallbackExtraLocation(status) {
+      if(!status.hasPermission) {
+        var errorCallback = function() {
+          console.warn('Camera permission is not turned on');
+        };
+
+        permissions.requestPermission(
+            permissions.ACCESS_LOCATION_EXTRA_COMMANDS,
+            function(status) {
+            if(!status.hasPermission) errorCallback();
+            },
+            errorCallback);
+        }
+    }
+    
+    function checkPermissionCallbackPrincipalLocation(status) {
+      if(!status.hasPermission) {
+        var errorCallback = function() {
+          console.warn('Camera permission is not turned on');
+        };
+
+        permissions.requestPermission(
+            permissions.LOCATION_HARDWARE,
+            function(status) {
+            if(!status.hasPermission) errorCallback();
+            },
+            errorCallback);
+        }
+    }
   });
 })
 

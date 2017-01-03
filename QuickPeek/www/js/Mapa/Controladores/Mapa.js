@@ -13,6 +13,7 @@ angular.module('QuickPeek.Mapa', [
         MapaAcoes.setScope($scope).inicializar();
         
         $scope.irFiltro = MapaAcoes.irFiltro;
+        $scope.irLocal = MapaAcoes.irLocal;
     }
 ])
 

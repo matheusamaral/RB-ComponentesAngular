@@ -72,6 +72,7 @@
     width: 70px !important;
     height: 70px;
     position: relative;
+    background-size: cover;
 }
 
 .btn-vermelho{

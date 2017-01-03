@@ -4,11 +4,12 @@ angular.module('QuickPeek.Estrutura.Mapa', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
-    'RB.validacoesPadroes'
+    'RB.validacoesPadroes',
+    'Cmp.Geolocation'
 ])
 
-.factory('MapaEstrutura', ['GCS','Config','Pagina','VP',
-    function(GCS,Config,Pagina,VP) {
+.factory('MapaEstrutura', ['GCS','$timeout','Pagina','VP','Geolocation',
+    function(GCS,$timeout,Pagina,VP,Geolocation) {
     var scope;  
     
     function setScope(obj){
@@ -18,6 +19,12 @@ angular.module('QuickPeek.Estrutura.Mapa', [
     
     function popular(){
         scope.dados = {};
+        
+        if(DGlobal.locais && DGlobal.locais.success){
+            Geolocation.setScope(scope).inicializar('mapaGeral',DGlobal.locais.dados);
+        }else{
+            Geolocation.setScope(scope).inicializar('mapaGeral');
+        }
     };
   
     return {
