@@ -69,6 +69,7 @@
     
     "PesquisarMapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarMapaLocaisPertos",
     "PesquisarPessoas": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarPessoas",
+    "PesquisarLocais": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarLocais",
     
     "TempoViagem": "\\Quickpeek\\Local\\Aplicacao\\Locais\\TempoViagem",
     "ExcluirLocais": "\\Quickpeek\\Local\\Aplicacao\\Locais\\ExcluirLocais",

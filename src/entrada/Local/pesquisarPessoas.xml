@@ -4,6 +4,7 @@
     
     <entrada>
         <campo regra="Obrigatorio" chave="Pesquisa" nome="pesquisa"/>
+        <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
     </entrada>
     
     <atividades>

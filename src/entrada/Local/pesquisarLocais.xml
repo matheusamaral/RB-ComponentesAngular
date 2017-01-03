@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="pesquisarLocais" modulo="Local">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/>
+        <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
+        <campo regra="Obrigatorio" chave="Nome" nome="nome"/>
+        <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="pesquisar-locais" tipo="tarefa">
+            <entidade nome="PesquisarLocais" metodo="pesquisarLocais"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

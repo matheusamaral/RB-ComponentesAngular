@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaPesquisarPessoas {
     
-    public function consultar($usuarioId, $pesquisa){
+    public function consultar($usuarioId, $pesquisa, $notIn){
         
         $query = Conteiner::get('Query', false);
         $query->select('distinct u.id', 'usuarioId')
@@ -45,10 +45,11 @@ class ConsultaPesquisarPessoas {
                 ->on('seg.usuario_id = ?')
                 ->on('seg.usuario_seguir_id = u.id')
                 ->on('seg.ativo = 1');
-        $query->where()->like('u.nome', $pesquisa)
-                ->like('or', 'u.telefone', $pesquisa, 'cmc');
+        $query->where()->like('(u.nome', $pesquisa)->like('or', 'u.telefone', $pesquisa, 'cmc')
+                ->add(')and', 'u.id not in(' . $notIn . ')');
         $query->group('u.id');
         $query->order('contagem desc');
+        $query->limit(15);
         $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }
@@ -61,6 +62,7 @@ class ConsultaPesquisarPessoas {
         $query->from('check_in');
         $query->where('usuario_id = ?')
                 ->add('ativo = 1');
+        return $query;
     }
     
     private function query2(){
@@ -70,9 +72,11 @@ class ConsultaPesquisarPessoas {
                 ->add('l.cidade')
                 ->add('l.estado')
                 ->add('l.pais')
+                ->add('l.ativo')
                 ->add('l.usuario_id');
         $query->from($this->query3(), 'l');
         $query->group('l.usuario_id');
+        return $query;
     }
     
     private function query3(){
@@ -81,6 +85,7 @@ class ConsultaPesquisarPessoas {
         $query->select('l.cidade')
                 ->add('l.estado')
                 ->add('l.pais')
+                ->add('l.ativo')
                 ->add('ci.usuario_id')
                 ->add('count(distinct ci.id)', 'contagem');
         $query->from('local', 'l');
@@ -89,6 +94,7 @@ class ConsultaPesquisarPessoas {
                 ->on('ci.ativo = 1');
         $query->group('ci.usuario_id, l.cidade, l.estado, l.pais');
         $query->order('contagem');
+        return $query;
     }
     
     private function query4(){
@@ -99,5 +105,6 @@ class ConsultaPesquisarPessoas {
                 ->add('usuario_mensagem_id');
         $query->from('mensagens');
         $query->where('usuario_id = ? or usuario_mensagem_id = ?');
+        return $query;
     }
 }

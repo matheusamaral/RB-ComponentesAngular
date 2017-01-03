@@ -23,5 +23,6 @@
     "ConsultaMapaLocaisPertos": "\\Quickpeek\\Local\\Infra\\Repositorio\\Mapa\\ConsultaMapaLocaisPertos",
     
     "ConsultaPesquisarMapaLocaisPertos": "\\Quickpeek\\Local\\Infra\\Repositorio\\Pesquisar\\ConsultaPesquisarMapaLocaisPertos",
-    "ConsultaPesquisarPessoas": "\\Quickpeek\\Local\\Infra\\Repositorio\\Pesquisar\\ConsultaPesquisarPessoas"
+    "ConsultaPesquisarPessoas": "\\Quickpeek\\Local\\Infra\\Repositorio\\Pesquisar\\ConsultaPesquisarPessoas",
+    "ConsultaPesquisarLocais": "\\Quickpeek\\Local\\Infra\\Repositorio\\Pesquisar\\ConsultaPesquisarLocais"
 }

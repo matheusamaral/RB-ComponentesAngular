@@ -13,7 +13,7 @@ class ConsultaDadosLocais {
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
-                ->add('(count(distinct c.id) * 1) + ((count(distinct m.id) + count(distinct hl.id)) * 0.9) + (count(distinct ci.id) * 0.8) * case
+                ->add('((count(distinct c.id) * 1) + ((count(distinct m.id) + count(distinct hl.id)) * 0.9) + (count(distinct ci.id) * 0.8)) * case
         when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 10 then 0.6
         when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 20 then 0.5
         when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 0.3

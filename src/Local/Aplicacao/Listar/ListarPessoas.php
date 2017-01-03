@@ -13,8 +13,9 @@ class ListarPessoas {
         
         $notIn = $this->atualizando($msg);
         
-        $query = Conteiner::get('ConsultaPessoa')->consultar($usuarioId, $localId, 
-                $tempo['midia'], $tempo['hashtag'], 20, $notIn);
+        $pessoa = Conteiner::get('ConsultaPessoa');
+        $query = $pessoa->consultar($usuarioId, $localId, 
+                $tempo['midia'], $tempo['hashtag'], 15, $notIn);
         
         if($query){
             foreach($query as $v){
@@ -24,6 +25,7 @@ class ListarPessoas {
                 $usuariosId = array_merge($msg->getCampoSessao('usuariosNotIn'), $usuariosId);
             }
             $msg->setCampoSessao('usuariosNotIn', $usuariosId);
+            $query['qtd'] = $pessoa->consultarQtd($localId);
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
         }else{
             $msg->setResultadoEtapa(false);
