@@ -7,7 +7,10 @@ class PesquisarLocais {
     public function pesquisarLocais($msg) {
 
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $pesquisa = explode(" ", $msg->getCampo('Nome')->get('valor'));
+        $pesquisa = $msg->getCampo('Nome')->get('valor');
+        
+        $pesquisa = $this->percorrerPalavras($pesquisa);
+        
         $latitude = $msg->getCampo('Latitude')->get('valor');
         $longitude = $msg->getCampo('Longitude')->get('valor');
         
@@ -33,6 +36,25 @@ class PesquisarLocais {
         }else{
             $msg->setResultadoEtapa(false);
         }
+    }
+    
+    private function percorrerPalavras($pesquisa){
+        
+        $pesquisa = explode(' ', $pesquisa);
+        for($i = 0; $i < count($pesquisa); $i++){
+            $x = 0;
+            $var = '';
+            for($k = $i; $k < count($pesquisa); $k++){
+                if(!$x == 0){
+                    $comb[] = $var . ' ' . $pesquisa[$k];
+                }else{
+                    $comb[] = $pesquisa[$k];
+                }
+                $var = end($comb);
+                $x++;
+            }
+        }
+        return $comb;
     }
 
     private function stopWords($pesquisa) {

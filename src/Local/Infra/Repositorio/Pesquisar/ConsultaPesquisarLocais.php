@@ -13,6 +13,7 @@ class ConsultaPesquisarLocais {
                 ->add('l.latitude', 'localLatitude')
                 ->add('l.longitude', 'localLongitude')
                 ->add('chec.ativo', 'checkIn')
+                ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + case when loc.ativo is not null then 0.5 else 0 end + case when loca.ativo is not null then 0.5 else 0 end)', 'teste')
                 ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + IFNULL(loc.ativo, 0) + IFNULL(loca.ativo, 0)) * ((COUNT(DISTINCT c.id) * 1) + ((COUNT(DISTINCT m.id) + COUNT(DISTINCT hl.id)) * 0.9) + (COUNT(DISTINCT ci.id) * 0.8)) 
                     * CASE WHEN (6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) * COS(RADIANS(?) - RADIANS(l.longitude)) 
                     + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude)))) <= 10 THEN 0.6 WHEN (6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) 
@@ -74,7 +75,7 @@ class ConsultaPesquisarLocais {
                 ->on('cl.ativo = 1')
                 ->on($categoriaLocal);
         foreach($pesquisa as $v){
-            $categoriaLocal->like('or', 'cl.titulo', $v);
+            $categoriaLocal->like('or', 'cl.titulo', $v, 'cmc');
         }
         
         $hashtag = $query->condicao();
@@ -83,7 +84,7 @@ class ConsultaPesquisarLocais {
                 ->on('h.ativo = 1')
                 ->on($hashtag);
         foreach($pesquisa as $v){
-            $hashtag->like('or', 'h.titulo', $v);
+            $hashtag->like('or', 'h.titulo', $v, 'cmc');
         }
         
         $loc = $query->condicao();
@@ -92,21 +93,21 @@ class ConsultaPesquisarLocais {
                 ->on('loc.ativo = 1')
                 ->on($loc);
         foreach($pesquisa as $v){
-            $loc->like('or', 'loc.cidade', $v);
+            $loc->like('or', 'loc.cidade', $v, 'cmc');
         }
         
         $loca = $query->condicao();
         $query->join('local', 'loca', 'left')
                 ->on('loca.id = l.id')
                 ->on('loca.ativo = 1')
-                ->on($loc);
+                ->on($loca);
         foreach($pesquisa as $v){
             $loca->like('or', 'loca.endereco', $v);
         }
         
         $query->where('l.id not in(' . $notIn . ')')
                 ->add('l.ativo = 1')
-                ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + IFNULL(loc.ativo, 0) + IFNULL(loca.ativo, 0)) != 0');
+                ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + case when loc.ativo is not null then 0.5 else 0 end + case when loca.ativo is not null then 0.5 else 0 end) > 1');
         $query->group('l.id');
         $query->order('relevancia desc, relevancia2 desc');
         $query->limit(15);

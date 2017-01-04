@@ -5,6 +5,7 @@
     <entrada>
         <campo regra="Obrigatorio" chave="Respostas::perguntasId" nome="perguntasId"/>
         <campo regra="Opcional" chave="Respostas::titulo" nome="titulo"/>
+        <campo regra="Opcional" chave="Respostas::endereco" nome="endereco"/>
         <campo chave="Arquivo" nome="arquivo" type="file"/>
     </entrada>
     

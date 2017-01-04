@@ -17,18 +17,18 @@ class EnviarMensagem {
             if($bloqueado){
                 $msg->setCampo('Mensagens::statusMensagemId', 4);
             }
-
-            $arquivo = $msg->getCampo('Arquivo')->get('valor');
-            $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
-
-            if(!$caminho && $arquivo){
-                $erro = Conteiner::get('Upload')->getErro();
-                $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);
-            }else{
-                $cadastro = Conteiner::get('Cadastro');
-                $msg->setCampo('Mensagens::endereco', $caminho[0]['url']);
-            }
             
+            $arquivo = $msg->getCampo('Arquivo')->get('valor');
+            if($arquivo){
+                $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
+                if(!$caminho && $arquivo){
+                    $erro = Conteiner::get('Upload')->getErro();
+                    $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);
+                }else{
+                    $msg->setCampo('Mensagens::endereco', $caminho[0]['url']);
+                }
+            }
+            $cadastro = Conteiner::get('Cadastro');
             $msg->setCampo('Mensagens::usuarioId', $usuarioId);
             $msg->setCampo('entidade', 'Mensagens');
             $cad = $cadastro->cadastrar($msg);
