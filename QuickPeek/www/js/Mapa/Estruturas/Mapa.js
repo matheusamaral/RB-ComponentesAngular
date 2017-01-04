@@ -8,10 +8,13 @@ angular.module('QuickPeek.HTML.Mapa', [
     function montar(){
         return tabs()+'\n\
                 <div class="row" style="padding:0;padding-top:75px !important">\n\
-                    <div style="width:{{mapaGeral.larguraMapa}}px;height:{{mapaGeral.alturaMapa}}px;" class="container-mapa" id="map"></div>\n\
+                    <div style="width:{{larguraMapa}}px;height:{{alturaMapa}}px;" class="container-mapa" id="map"></div>\n\
                 </div>\n\
                 <md-button ng-click="irFiltro()" class="btn-flutuante-redondo md-fab">\n\
                     <md-icon class="img-seta-funil"></md-icon>\n\
+                </md-button>\n\
+                <md-button ng-click="irPesquisa()" class="btn-flutuante-pesquisar md-fab">\n\
+                    <i style="font-size: 26px;color: #4d4d4d;" class="icon ion-android-search"></i>\n\
                 </md-button>';
     };  
     

@@ -14,6 +14,7 @@ angular.module('QuickPeek.Mapa', [
         
         $scope.irFiltro = MapaAcoes.irFiltro;
         $scope.irLocal = MapaAcoes.irLocal;
+        $scope.irPesquisa = MapaAcoes.irPesquisa;
     }
 ])
 

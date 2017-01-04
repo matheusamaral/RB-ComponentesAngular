@@ -154,7 +154,7 @@
         <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"/>
     </pagina>
     
-    <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
+    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="mapa" objeto='locais'></metodo>
@@ -198,5 +198,24 @@
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-pessoas-local" acao="PessoasLocalCtrl" title="Midias"/>
+    </pagina>   
+    
+    <pagina id="27" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Pessoas no local">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarPerguntas" objeto='perguntas'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-perguntas-local" acao="PerguntasLocalCtrl" title="Midias"/>
+    </pagina>   
+    
+    <pagina id="28" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Pesquisar">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-pesquisar-mapa" acao="PesquisarMapaCtrl" title="Pesquisar"/>
     </pagina>   
 </root>

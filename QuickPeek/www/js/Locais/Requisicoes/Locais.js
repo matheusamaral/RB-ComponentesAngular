@@ -34,9 +34,11 @@ angular.module('QuickPeek.Requisicao.Locais', [
         
         function successListarAreas(objRetorno){
             RBLoadingMobile.hide();
+            alert('trouxeMaisDados');
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                scope.locais = objRetorno.dados;
+                
+                //scope.locais = objRetorno.dados;
             }
             else{
                 OpenToast('Não foi possível localizar locais proximos');

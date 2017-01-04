@@ -20,12 +20,21 @@ angular.module('QuickPeek.Estrutura.Mapa', [
     function popular(){
         scope.dados = {};
         
-        if(DGlobal.locais && DGlobal.locais.success){
-            Geolocation.setScope(scope).inicializar('mapaGeral',DGlobal.locais.dados);
-        }else{
-            Geolocation.setScope(scope).inicializar('mapaGeral');
-        }
+        calculaDimensoesMapa();
+        
+        $timeout(function(){
+            if(DGlobal.locais && DGlobal.locais.success){
+                Geolocation.setScope(scope).inicializar('mapaGeral',DGlobal.locais.dados);
+            }else{
+                Geolocation.setScope(scope).inicializar('mapaGeral');
+            }
+        },0);
     };
+    
+    function calculaDimensoesMapa(){
+        scope.larguraMapa = $('body').width();
+        scope.alturaMapa = $('body').height() - 75;
+    }
   
     return {
         setScope:setScope,
