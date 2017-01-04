@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="gifSearch" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Pesquisa" nome="pesquisa"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="gif-search" tipo="tarefa">
+            <entidade nome="Search" metodo="search"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
