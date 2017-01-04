@@ -18,6 +18,8 @@ angular.module('QuickPeek.Estrutura.PesquisarMapa', [
     
     function popular(){
         scope.dados = {};
+        
+        scope.nSlide = 0;
     };
   
     return {
