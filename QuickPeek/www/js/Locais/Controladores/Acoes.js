@@ -24,16 +24,51 @@ angular.module('QuickPeek.Acoes.Locais', [
         LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarMidias}).listarMidias();
     }
     
+    function carregarLocais(){
+        if(DGlobal.localAtual){
+            var obj = {localId:DGlobal.localAtual,atualizando:true};
+            LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
+        }
+        //navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+        
+    }
+    
     function irPessoas(idLocal){
         DGlobal.idLocal = idLocal;
         Pagina.navegar({idPage:26,paramAdd:'?id='+idLocal+'&atualizando=0'});
+    }
+    
+    function irPerguntas(id){
+        Pagina.navegar({idPage:27,paramAdd:'?localId='+id});
+    }
+    
+    function voltarMapa(){
+        if(DGlobal.coordenadasAtual){
+            Pagina.navegar({idPage:22,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        }else{
+            var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
+            navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+        }
+    }
+    
+    var onSuccess = function(position){
+        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+        Pagina.navegar({idPage:22,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+    };
+
+    function onError(error){
+        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
+        Pagina.navegar({idPage:22,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     }
     
     return {
         setScope:setScope,
         inicializar:inicializar,
         exibirMidias:exibirMidias,
-        irPessoas:irPessoas
+        irPessoas:irPessoas,
+        irPerguntas:irPerguntas,
+        carregarLocais:carregarLocais,
+        voltarMapa:voltarMapa
     };
     
  }]);

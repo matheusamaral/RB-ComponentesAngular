@@ -8,61 +8,84 @@ angular.module('QuickPeek.HTML.Locais', [
     function montar(){
         return '<div class="row bar bar-header bar-positive">\n\
                     <div>\n\
-                        <button ng-click="voltarConfig()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="voltarMapa()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>Área no mapa\n\
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div ng-repeat="local in locais">\n\
-                    <div ng-class="{\'padding-top-barra\' : $index == 0}"\n\
-                    class="row barra-local">\n\
-                        <div class="col">\n\
-                            <p class="p-titulo-local">{{local.dados.localNome}}</p>\n\
-                            <div class="row remove-padding">\n\
-                                <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
-                            </div>\n\
-                        </div>\n\
-                        <div class="text-right">\n\
-                            <md-menu>\n\
-                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
-                                    <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
-                                </md-button>\n\
-                                <md-menu-content width="4">\n\
-                                    <md-menu-item>\n\
-                                        <md-button ng-click="ctrl.redial($event)">\n\
-                                            Alterar localização\n\
+                <div id="container-infinite-scrol">\n\
+                    <div infinite-scroll="carregarLocais()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\\n\
+                        <div ng-repeat="local in locais">\n\
+                            <div ng-class="{\'padding-top-barra\' : $index == 0}"\n\
+                            class="row barra-local">\n\
+                                <div class="col">\n\
+                                    <p class="p-titulo-local">{{local.dados.localNome}}</p>\n\
+                                    <div class="row remove-padding">\n\
+                                        <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
+                                    </div>\n\
+                                </div>\n\
+                                <div class="text-right">\n\
+                                    <md-menu>\n\
+                                        <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                            <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                                         </md-button>\n\
-                                    </md-menu-item>\n\
-                                    <md-menu-item>\n\
-                                        <md-button ng-click="ctrl.redial($event)">\n\
-                                            Alterar privacidade\n\
-                                        </md-button>\n\
-                                    </md-menu-item>\n\
-                                    <md-menu-item>\n\
-                                        <md-button ng-click="ctrl.redial($event)">\n\
-                                            Navegar até o local\n\
-                                        </md-button>\n\
-                                    </md-menu-item>\n\
-                                </md-menu-content>\n\
-                            </md-menu>\n\
-                        </div>\n\
-                    </div>\n\
-                    '+sessaoHashtag()+
-                    '<div class="container-fotos">\n\
-                        <div class="row remove-padding">\n\
-                            <div ng-if="local.qtdMidias > 0" ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
-                                '+sessaoFotos()+'\n\
+                                        <md-menu-content width="4">\n\
+                                            <md-menu-item>\n\
+                                                <md-button ng-click="ctrl.redial($event)">\n\
+                                                    Alterar localização\n\
+                                                </md-button>\n\
+                                            </md-menu-item>\n\
+                                            <md-menu-item>\n\
+                                                <md-button ng-click="ctrl.redial($event)">\n\
+                                                    Alterar privacidade\n\
+                                                </md-button>\n\
+                                            </md-menu-item>\n\
+                                            <md-menu-item>\n\
+                                                <md-button ng-click="ctrl.redial($event)">\n\
+                                                    Navegar até o local\n\
+                                                </md-button>\n\
+                                            </md-menu-item>\n\
+                                        </md-menu-content>\n\
+                                    </md-menu>\n\
+                                </div>\n\
                             </div>\n\
-                            <div ng-if="local.qtdPessoas > 0" ng-click="irPessoas(local.dados.localId)" class="col remove-padding">\n\
-                                '+sessaoPessoas()+'\n\
+                            '+sessaoHashtag()+
+                            '<div class="container-fotos">\n\
+                                <div class="row remove-padding">\n\
+                                    <div ng-if="local.qtdMidias > 0" ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
+                                        '+sessaoFotos()+'\n\
+                                    </div>\n\
+                                    <div ng-if="local.qtdPessoas > 0" ng-click="irPessoas(local.dados.localId)" class="col remove-padding">\n\
+                                        '+sessaoPessoas()+'\n\
+                                    </div>\n\
+                                    <div ng-if="local.qtdPerguntas > 0" ng-click="irPerguntas(local.dados.localId)" class="col remove-padding">\n\
+                                        '+sessaoPerguntas()+'\n\
+                                    </div>\n\
+                                </div>\n\
                             </div>\n\
-                            <div ng-if="local.qtdPerguntas > 0" class="col remove-padding">\n\
-                                '+sessaoPerguntas()+'\n\
-                            </div>\n\
+                            <hr class="hr-locais"></hr>\n\
+                            '+sessaoBtns()+'\n\
                         </div>\n\
                     </div>\n\
                 </div>';
     };
+    
+    function sessaoBtns(){
+         return'<div class="container-btns">\n\
+                    <div class="row" style="padding-bottom: 10px !important;">\n\
+                        <div class="col text-center">\n\
+                            <button ng-disabled="true" ng-click="voltarMapa()" class="btn-txt-direita button button-positive">\n\
+                                <i class="icon ion-help-circled seta-barra"></i>Perguntar\n\
+                            </button>\n\
+                        </div>\n\
+                        <div class="col text-center">\n\
+                            <button ng-disabled="true" ng-click="voltarMapa()" class="btn-txt-direita button button-positive">\n\
+                                <i class="icon ion-edit seta-barra"></i>Publicar\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                </div>';
+    }
     
     function sessaoFotos(){
          return'<div class="box-fotos">\n\

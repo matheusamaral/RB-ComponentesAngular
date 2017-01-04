@@ -4,7 +4,7 @@
     border: none !important;
 }
 
-#oi{
+#container-infinite-scrol{
     max-height: 100%;
     overflow-y: scroll;
 }
