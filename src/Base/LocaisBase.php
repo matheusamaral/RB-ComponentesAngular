@@ -6,17 +6,17 @@ class LocaisBase {
     
     public function locaisBase($msg){
         
-        for($i = 0; $i <= 5000; $i++){
+        for($i = 0; $i <= 1000; $i++){
             $lati[] = '-' . rand(1, 28) . '.' . rand(1, 9) . rand(1, 9) . rand(1, 9) . rand(1, 9);
             $lon[] = '-' . rand(39, 57) . '.' . rand(1, 9) . rand(1, 9) . rand(1, 9) . rand(1, 9);
         }
         
         foreach($lati as $k=>$v){
-            var_dump('entrou');
             $file = file_get_contents('https://maps.googleapis.com/maps/api/place/nearbysearch/json?' . 
                     'location=' . $v . ',' . $lon[$k].  
-                    '&rankby=distance&key=AIzaSyBc3mboIyrPS1q7DIo-rEoDfRCLhskxRmc');
+                    '&rankby=distance&key=AIzaSyDT7im6koAJeBO7kfFJZzTR3vmPEQUeRUk');
             $json[] = json_decode($file);
+            var_dump($json[$k]);
         }
         
         $query = Conteiner::get('ConsultaLocalGoogle');

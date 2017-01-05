@@ -114,5 +114,8 @@
     "LoginTeste": "\\Quickpeek\\LoginTeste",
     "ConsultaLocalGoogle": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaLocalGoogle",
     "LocaisBase": "\\Quickpeek\\Base\\LocaisBase",
-    "UsuariosBase": "\\Quickpeek\\Base\\UsuariosBase"
+    "UsuariosBase": "\\Quickpeek\\Base\\UsuariosBase",
+    "HashtagsBase": "\\Quickpeek\\Base\\HashtagsBase",
+    "CurtirBase": "\\Quickpeek\\Base\\CurtirBase",
+    "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn"
 }
