@@ -111,5 +111,8 @@
     "ListarCategoriasFiltroMapa": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarCategoriasFiltroMapa",
     
     "SetarDadosBanco": "\\Quickpeek\\Usuario\\Aplicacao\\DadosBanco\\SetarDadosBanco",
-    "LoginTeste": "\\Quickpeek\\LoginTeste"
+    "LoginTeste": "\\Quickpeek\\LoginTeste",
+    "ConsultaLocalGoogle": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaLocalGoogle",
+    "LocaisBase": "\\Quickpeek\\Base\\LocaisBase",
+    "UsuariosBase": "\\Quickpeek\\Base\\UsuariosBase"
 }

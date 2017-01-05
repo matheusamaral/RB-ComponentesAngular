@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="locais" modulo="PreencherBase">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="locais" tipo="tarefa">
+            <entidade nome="LocaisBase" metodo="locaisBase"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
