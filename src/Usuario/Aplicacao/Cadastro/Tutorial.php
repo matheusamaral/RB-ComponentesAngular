@@ -8,11 +8,15 @@ class Tutorial {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         
-        $dados = Conteiner::get('ConsultaDadosUsuario')->consultar($usuarioId);
+        $tutorial = Conteiner::get('ConsultaListarDadosUsuario')->consultarTutorial($usuarioId);
         
-        $msg->setCampo('entidade', 'Usuario');
-        $msg->setCampo('Usuario::id', $usuarioId);
-        $msg->setCampo('Usuario::tutorial', $dados['tutorial'] + 1);
-        Conteiner::get('Cadastro')->cadastrar($msg);
+        if($tutorial){
+            $msg->setCampo('entidade', 'Usuario');
+            $msg->setCampo('Usuario::id', $usuarioId);
+            $msg->setCampo('Usuario::tutorial', $tutorial + 1);
+            Conteiner::get('Cadastro')->cadastrar($msg);
+        }else{
+            $msg->setResultadoEtapa(false);
+        }
     }
 }

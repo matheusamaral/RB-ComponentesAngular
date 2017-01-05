@@ -13,6 +13,7 @@ class ConsultaListarDadosUsuario {
                 ->add('u.nascimento', 'usuarioNascimento')
                 ->add('u.telefone', 'usuarioTelefone')
                 ->add('u.genero_id', 'usuarioGeneroId')
+                ->add('u.tutorial', 'tutorial')
                 ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.conta_privada', 'contaPrivada')
                 ->add('c.notificacao_publicacao', 'notificacaoPublicacao')
@@ -53,6 +54,17 @@ class ConsultaListarDadosUsuario {
                 ->add('u.ativo = 1');
         $query->addVariaveis($usuarioId);
         return $query->executar('A');
+    }
+    
+    public function consultarTutorial($usuarioId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('tutorial');
+        $query->from('usuario');
+        $query->where('id = ?')
+                ->add('ativo = 1');
+        $query->addVariaveis([$usuarioId]);
+        return $query->executar('{tutorial}');
     }
 }
 
