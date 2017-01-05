@@ -15,8 +15,27 @@ angular.module('QuickPeek.HTML.Mapa', [
                 </md-button>\n\
                 <md-button ng-click="irPesquisa()" class="btn-flutuante-pesquisar md-fab">\n\
                     <i style="font-size: 26px;color: #4d4d4d;" class="icon ion-android-search"></i>\n\
-                </md-button>';
+                </md-button>'+barraLocalizacaoAtual()+tutorial();
     };  
+    
+    function barraLocalizacaoAtual(){
+         return'<div class="row barra-localizacao-atual">\n\
+                    <div class="col">\n\
+                        <div class="row remove-padding">\n\
+                            <p class="p-subtitulo">Você está agora em</p>\n\
+                        </div>\n\
+                        <p class="p-titulo-local">Empório?</p>\n\
+                    </div>\n\
+                    <div class="col text-right">\n\
+                        <button ng-click="irCheckin()" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
+                            Não\n\
+                        </button>\n\
+                        <button ng-click="checkin()" class="config-btn-mapa button button-positive">\n\
+                            Sim\n\
+                        </button>\n\
+                    </div>\n\
+                </div>';
+    }
     
     function tabs(){
         return'<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
@@ -34,6 +53,18 @@ angular.module('QuickPeek.HTML.Mapa', [
                             <i class="icon ion-person"></i>\n\
                         </a>\n\
                     </div>\n\
+                </div>';
+    }
+    
+    function tutorial(){
+        return'<div class="row rb-padding container-tutorial">\n\
+                    <div class="tutorial tutorial-mapa-1">\n\
+                    </div>\n\
+                    <p class="negrito posiciona-p-tutorial1">Bem vindo!"</p>\n\
+                    <p class="posiciona-p-tutorial1-1">Explore no mapa o que está</br> acontecendo agora ao seu redor!"</p>\n\
+                    <button class="btn-mapa-tutorial button button-clear button-positive">\n\
+                        PULAR<i class="icon ion-chevron-right"></i>\n\
+                    </button>\n\
                 </div>';
     }
   

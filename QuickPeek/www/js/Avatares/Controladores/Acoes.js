@@ -23,19 +23,23 @@ angular.module('QuickPeek.Acoes.Avatares', [
     }  
     
     function voltarCad(){
-        if(DGlobal.veioCadastro && !DGlobal.veioCadastro.executarReq){
+        if(DGlobal.veioCadastro && !DGlobal.veioCadastro.executarReq && !DGlobal.veioCadastro.executarReqPrivacidade){
             Pagina.navegar({idPage:6});
         }
         
         if(DGlobal.veioCadastro && DGlobal.veioCadastro.executarReq){
             Pagina.navegar({idPage:8});
         }
+        
+        if(DGlobal.veioCadastro && DGlobal.veioCadastro.executarReqPrivacidade){
+            Pagina.navegar({idPage:30});
+        }
     }
     
     function mudarAvatar(){
         //alert(JSON.stringify(scope.avatarSelecionado));
         var obj = {avataresId:scope.avatarSelecionado.id};
-        if(DGlobal.veioCadastro.executarReq){
+        if(DGlobal.veioCadastro.executarReq || DGlobal.veioCadastro.executarReqPrivacidade){
             AvataresRequisicoes.set({dados:obj,scope:scope,acaoSuccess:AvataresRequisicoes.successEditarAvatar}).editarAvatar();
         }else{
             DGlobal.avatarSelecionado = scope.avatarSelecionado;
