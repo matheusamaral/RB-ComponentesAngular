@@ -44,11 +44,6 @@
     padding-bottom: 0 !important;
 }
 
-.pane, 
-.view {
-   overflow-y: auto !important 
-}
-
 .box-shadow-padrao-bottom{
     box-shadow: 1px -1px 8px #929292;
 }

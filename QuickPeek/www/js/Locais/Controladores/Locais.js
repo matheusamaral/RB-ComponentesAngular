@@ -17,6 +17,7 @@ angular.module('QuickPeek.Locais', [
         $scope.irPerguntas = LocaisAcoes.irPerguntas;
         $scope.carregarLocais = LocaisAcoes.carregarLocais;
         $scope.voltarMapa = LocaisAcoes.voltarMapa;
+        $scope.attTutorial = LocaisAcoes.attTutorial;
     }
 ])
 

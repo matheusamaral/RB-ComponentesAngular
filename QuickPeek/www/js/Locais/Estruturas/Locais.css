@@ -4,6 +4,14 @@
     box-shadow: 0px 1px 8px #EDECEC;
 }
 
+.font-branca{
+    color: #FFFFFF !important;
+}
+
+.remove-box-shadow{
+    box-shadow: none !important;
+}
+
 .barra-local.padding-top-barra{
     padding-top: 70px !important;
 }
@@ -102,7 +110,6 @@
     width: 40px;
     position: absolute;
     height: 40px;
-    box-shadow: 0px 2px 8px #ababab;
     border: 2px solid #FFFFFF;
     border-radius: 36px;
 }
@@ -140,10 +147,11 @@
 .p-config-itens{
     color: #737373;
     padding-top: 83px;
-    top: 80px;
+    top: 1px;
     font-size: 12px;
     text-align: center;
     display: block;
+    position: absolute;
 }
 
 .box-perguntas{
@@ -212,6 +220,16 @@
     top: 11px;
 }
 
+.elevado-locais{
+    z-index: 21 !important;
+}
+
+.tutorial-4-locais{
+    position: absolute;
+    border-radius: 765px;
+    background-color: rgba(0, 0, 0, 0.64);
+}
+
 .moldura-foto-redonda.pos2.posicao-3-foto-quadrada{
     left: 10px;
     top: 18px;
@@ -220,4 +238,189 @@
 .moldura-foto-redonda.pos3.posicao-3-foto-quadrada{
     left: 29px;
     top: 10px;
+}
+
+.config-btn-mapa-4{
+    height: 18px;
+    line-height: 33px;
+    margin-top: 3px;
+    min-height: 36px;
+}
+
+.tutorial-mapa-4{
+    width: 540px;
+    height: 540px;
+    left: -261px;
+    top: -253px;
+    z-index: 20;
+}
+
+.posiciona-p-tutorial4{
+    position: absolute;
+    top: -129px;
+    right: 21px;
+    z-index: 21;
+    white-space: nowrap;
+}
+
+.posiciona-p-tutorial4-4{
+    position: absolute;
+    font-size: 14px;
+    top: -97px;
+    right: -16px;
+    z-index: 21;
+    white-space: nowrap;
+}
+
+.btn-mapa-tutorial-4{
+    color: #666666 !important;
+    font-weight: bold;
+    right: 153px;
+    width: 96px;
+    z-index: 21;
+    top: -37px;
+}
+
+.btn-mapa-tutorial-4 i::before{
+    margin-left: 8px;
+    font-size: 18px !important;
+}
+
+.icone-tutorial-4{
+    position: absolute;
+    bottom: 113px;
+    color: #FFFFFF;
+    right: 28px;
+    z-index: 21;
+    font-size: 36px;
+}
+
+.config-btn-mapa-5{
+    height: 18px;
+    line-height: 33px;
+    margin-top: 3px;
+    min-height: 36px;
+}
+
+.tutorial-mapa-5{
+    width: 540px;
+    height: 540px;
+    left: -168px;
+    top: -253px;
+    z-index: 27;
+}
+
+.posiciona-p-tutorial5{
+    position: absolute;
+    top: -149px;
+    left: 22px;
+    text-align: start;
+    z-index: 27;
+    white-space: nowrap;
+}
+
+.posiciona-p-tutorial5-5{
+    position: absolute;
+    font-size: 14px;
+    top: -96px;
+    left: 23px;
+    z-index: 27;
+    text-align: start;
+    white-space: nowrap;
+}
+
+.btn-mapa-tutorial-5{
+    color: #666666 !important;
+    font-weight: bold;
+    left: 148px;
+    width: 96px;
+    z-index: 27;
+    top: -49px;
+}
+
+.z-index-locais{
+    z-index: 27;
+}
+
+.btn-mapa-tutorial-5 i::before{
+    margin-left: 8px;
+    font-size: 18px !important;
+}
+
+.icone-tutorial-5{
+    position: absolute;
+    bottom: 66px;
+    color: #FFFFFF;
+    left: 76px;
+    z-index: 27;
+    font-size: 36px;
+}
+
+.tutorial-5-locais{
+    position: absolute;
+    border-radius: 765px;
+background-color: rgba(0, 0, 0, 0.64);
+}
+
+.config-btn-mapa-6{
+    height: 18px;
+    line-height: 33px;
+    margin-top: 3px;
+    min-height: 36px;
+}
+
+.tutorial-mapa-6{
+    width: 540px;
+    height: 540px;
+    left: -196px;
+    top: -300px;
+    z-index: 27;
+}
+
+.posiciona-p-tutorial6{
+    position: absolute;
+    top: -149px;
+    right: -8px;
+    text-align: start;
+    z-index: 27;
+    white-space: nowrap;
+}
+
+.posiciona-p-tutorial6-6{
+    position: absolute;
+    font-size: 14px;
+    top: -104px;
+    right: -48px;
+    z-index: 27;
+    text-align: start;
+    white-space: nowrap;
+}
+
+.btn-mapa-tutorial-6{
+    color: #666666 !important;
+    font-weight: bold;
+    right: 104px;
+    width: 96px;
+    z-index: 27;
+    top: -52px;
+}
+
+.btn-mapa-tutorial-6 i::before{
+    margin-left: 8px;
+    font-size: 18px !important;
+}
+
+.icone-tutorial-6{
+    position: absolute;
+    bottom: 66px;
+    color: #FFFFFF;
+    left: 76px;
+    z-index: 27;
+    font-size: 36px;
+}
+
+.tutorial-6-locais{
+    position: absolute;
+    border-radius: 765px;
+    background-color: rgba(0, 0, 0, 0.64);
 }

@@ -19,6 +19,7 @@ angular.module('QuickPeek.Estrutura.Mapa', [
     
     function popular(){
         scope.dados = {};
+        scope.dadosUser = {};
         
         calculaDimensoesMapa();
         
@@ -28,7 +29,13 @@ angular.module('QuickPeek.Estrutura.Mapa', [
             }else{
                 Geolocation.setScope(scope).inicializar('mapaGeral');
             }
+            
+            if(DGlobal.dadosUser && DGlobal.dadosUser.success){
+                scope.dadosUser = DGlobal.dadosUser.dados;
+            }
+            
         },0);
+        
     };
     
     function calculaDimensoesMapa(){
