@@ -20,9 +20,11 @@ class ConsultaMapaLocaisPertos {
                 ->add('cl.endereco', 'categoriaEndereco')
                 ->add('cl.titulo', 'categoriaNome');
         $query->from('local', 'l');
-        $query->join('local_categoria', 'lc')->on('lc.local_id = l.id')
+        $query->join('local_categoria', 'lc')
+                ->on('lc.local_id = l.id')
                 ->on('lc.ativo = 1');
-        $query->join('categoria_local', 'cl')->on('cl.id = lc.categoria_id')
+        $query->join('categoria_local', 'cl')
+                ->on('cl.id = lc.categoria_id')
                 ->on('cl.ativo = 1');
         $query->where('l.ativo = 1');
         $query->having('distancia <= 0.05');

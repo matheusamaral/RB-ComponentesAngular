@@ -19,21 +19,25 @@ class UsuariosBase {
             'HTTP://172.17.0.2/Quickpeek//file/imagem/8.jpg', 
             'HTTP://172.17.0.2/Quickpeek//file/imagem/9.jpg', 
             'HTTP://172.17.0.2/Quickpeek//file/imagem/10.jpg'];
-        $nomes = ['Jose', 'Augusto', 'Ana', 'Maria', 'Feliz', 'Cale', 'Diego', 'Thiago', 'Clara', 'Aline'];
+        $nomes = ['Jose', 'Augusto', 'Ana', 'Maria', 'Feliz', 'Cale', 'Aline', 'Thiago', 'Clara', 'Diego'];
         
-        for($i = 0; $i < 100; $i++){
-            $endereco[] = array_rand($imagens, 1);
-            $nome[] = array_rand($nomes, 1);
+        for($i = 0; $i < 10000; $i++){
+            $k = array_rand($imagens, 1);
+            $x = array_rand($nomes, 1);
+            $endereco[] = $imagens[$k];
+            $nome[] = $nomes[$x];
             $telefone[] = '55' . rand(11, 99) . rand(1111, 9999) . rand(1111, 9999);
             $genero[] = rand(1, 2);
             $nascimento[] = rand(1978, 2000) . '-' . rand(1, 12) . '-' . rand(1, 29);
+            $avatares[] = rand(1, 4);
         }
         
         $msg->setCampo('Usuario::endereco', $endereco);
         $msg->setCampo('Usuario::telefone', $telefone);
         $msg->setCampo('Usuario::nome', $nome);
-        $msg->setCampo('Usuario::genero', $genero);
+        $msg->setCampo('Usuario::generoId', $genero);
         $msg->setCampo('Usuario::nascimento', $nascimento);
+        $msg->setCampo('Usuario::avataresId', $avatares);
         $cad = $cadastro->cadastrar($msg);
         
         if($cad){
