@@ -218,4 +218,13 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-pesquisar-mapa" acao="PesquisarMapaCtrl" title="Pesquisar"/>
     </pagina>   
+    
+    <pagina id="29" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="CheckIn">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-check-in" acao="CheckInCtrl" title="Efetue Check in"/>
+    </pagina>   
 </root>

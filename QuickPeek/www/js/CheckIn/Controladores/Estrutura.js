@@ -1,15 +1,14 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.Mapa', [
+angular.module('QuickPeek.Estrutura.CheckIn', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
-    'RB.validacoesPadroes',
-    'Cmp.Geolocation'
+    'RB.validacoesPadroes'
 ])
 
-.factory('MapaEstrutura', ['GCS','$timeout','Pagina','VP','Geolocation',
-    function(GCS,$timeout,Pagina,VP,Geolocation) {
+.factory('CheckInEstrutura', ['GCS','$timeout','Pagina','VP',
+    function(GCS,$timeout,Pagina,VP) {
     var scope;  
     
     function setScope(obj){
@@ -19,22 +18,7 @@ angular.module('QuickPeek.Estrutura.Mapa', [
     
     function popular(){
         scope.dados = {};
-        
-        calculaDimensoesMapa();
-        
-        $timeout(function(){
-            if(DGlobal.locais && DGlobal.locais.success){
-                Geolocation.setScope(scope).inicializar('mapaGeral',DGlobal.locais.dados);
-            }else{
-                Geolocation.setScope(scope).inicializar('mapaGeral');
-            }
-        },0);
     };
-    
-    function calculaDimensoesMapa(){
-        scope.larguraMapa = $('body').width();
-        scope.alturaMapa = $('body').height() - 75;
-    }
   
     return {
         setScope:setScope,
