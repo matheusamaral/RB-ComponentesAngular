@@ -20,9 +20,15 @@ angular.module('QuickPeek.Acoes.CheckIn', [
         $('ion-side-menu-content').addClass('background-chekin');
     };
     
+    function checkInLocal(local){
+        DGlobal.checkIn = {local:local};
+        Pagina.navegar({idPage:30});
+    }
+    
     return {
         setScope:setScope,
-        inicializar:inicializar
+        inicializar:inicializar,
+        checkInLocal:checkInLocal
     };
     
  }]);

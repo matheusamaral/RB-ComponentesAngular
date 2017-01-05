@@ -1,13 +1,84 @@
 .btn-flutuante-redondo{
     position: fixed;
-    bottom: 88px;
+    bottom: 148px;
     right: 20px;
     background-color: #FFFFFF !important;
 }
 
 .btn-flutuante-pesquisar{
     position: fixed;
-    bottom: 20px;
+    bottom: 80px;
     right: 20px;
     background-color: #FFFFFF !important;
+}
+
+.barra-localizacao-atual{
+    position: fixed;
+    height: 60px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0px -2px 8px black;
+}
+
+.p-subtitulo{
+    font-weight: normal;
+    font-size: 10px;
+    color:#848484;
+}
+
+.config-btn-mapa{
+    height: 18px;
+    line-height: 33px;
+    margin-top: 3px;
+    min-height: 36px;
+}
+
+.container-tutorial{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 20;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.tutorial{
+    position: absolute;
+    top: -308px;
+    border-radius: 765px;
+    
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.tutorial-mapa-1{
+    width: 600px;
+    height: 600px;
+    left: -259px;
+}
+
+.posiciona-p-tutorial1{
+    position: absolute;
+    top: 37px;
+    left: 37px;
+}
+
+.posiciona-p-tutorial1-1{
+    position: absolute;
+    font-size: 14px;
+    top: 67px;
+    left: 37px;
+}
+
+.btn-mapa-tutorial{
+    color: #666666 !important;
+    font-weight: bold;
+    left: 27px;
+    top: 112px;
+}
+
+.btn-mapa-tutorial i::before{
+    margin-left: 8px;
+    font-size: 18px !important;
 }

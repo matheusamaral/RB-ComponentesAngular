@@ -10,6 +10,8 @@ angular.module('QuickPeek.CheckIn', [
     function ($scope,CheckInEstrutura,CheckInAcoes){        
         CheckInEstrutura.setScope($scope).popular();
         CheckInAcoes.setScope($scope).inicializar();
+        
+        $scope.checkInLocal = CheckInAcoes.checkInLocal;
     }
 ])
 

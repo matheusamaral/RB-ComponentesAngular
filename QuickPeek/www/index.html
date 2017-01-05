@@ -298,6 +298,14 @@
     <script src="js/CheckIn/Estruturas/CheckIn.js"></script>
     <script src="js/CheckIn/Requisicoes/CheckIn.js"></script>
     <link href="js/CheckIn/Estruturas/CheckIn.css" rel="stylesheet"> 
+    
+    <!--Privacidade-->
+    <script src="js/Privacidade/Controladores/Privacidade.js"></script>
+    <script src="js/Privacidade/Controladores/Estrutura.js"></script>
+    <script src="js/Privacidade/Controladores/Acoes.js"></script>
+    <script src="js/Privacidade/Estruturas/Privacidade.js"></script>
+    <script src="js/Privacidade/Requisicoes/Privacidade.js"></script>
+    <link href="js/Privacidade/Estruturas/Privacidade.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
@@ -313,9 +321,28 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     
+    
+    
   </head>
   <body>
-      <div ui-view when-ready class="corpo-conteudo">
-      </div>
+        <script>
+            window.fbAsyncInit = function() {
+              FB.init({
+                appId      : '223191511422958',
+                xfbml      : true,
+                version    : 'v2.8'
+              });
+            };
+
+            (function(d, s, id){
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {return;}
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+        <div ui-view when-ready class="corpo-conteudo">
+        </div>
   </body>
 </html>

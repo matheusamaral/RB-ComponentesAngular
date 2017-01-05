@@ -147,3 +147,10 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.img-anonimo-privacidade{
+    background-image: url(../img/22.svg);
+    width: 27px;
+    height: 23px;
+    background-size: cover;
+}

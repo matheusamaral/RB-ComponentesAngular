@@ -1,27 +1,29 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.Avatares', [
+angular.module('QuickPeek.Requisicao.Privacidade', [
     'RB.pagina'
 ])
  
-.factory('AvataresRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('PrivacidadeRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
         var acaoSuccess;
+        var acaoPosterior = false;
 
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
             acaoSuccess = obj.acaoSuccess;
+            if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
             return this;
         };
 
-        function editarAvatar(){
+        function fazerCheckIn(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/editarAvatar",
+                url: Config.getRefAmbienteReq()+"/Local/checkIn",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -33,14 +35,12 @@ angular.module('QuickPeek.Requisicao.Avatares', [
         };
         
         
-        function successEditarAvatar(objRetorno){
+        function successFazerCheckIn(objRetorno){
             RBLoadingMobile.hide();
-            console.log("objRetorno",objRetorno);
+            //alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true){
-                if(DGlobal.veioCadastro && DGlobal.veioCadastro.executarReqPrivacidade){
-                    Pagina.navegar({idPage:30});
-                }else
-                    Pagina.navegar({idPage : 8});
+                DGlobal.localAtual = dados.localId;
+                Pagina.navegar({idPage:24,paramAdd:'?localId='+dados.localId+'&atualizando=0'})
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
@@ -60,8 +60,8 @@ angular.module('QuickPeek.Requisicao.Avatares', [
         
         return {
             set: set,
-            editarAvatar: editarAvatar,
-            successEditarAvatar: successEditarAvatar
+            fazerCheckIn: fazerCheckIn,
+            successFazerCheckIn: successFazerCheckIn
         };
                            
 }]);     
