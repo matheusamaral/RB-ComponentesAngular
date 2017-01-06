@@ -154,10 +154,14 @@
         <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"/>
     </pagina>
     
+    <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina-->
     <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="mapa" objeto='locais'></metodo>
+            </classe>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUser'></metodo>
             </classe>
         </dadosSolicitados>
         <acaoCliente classe="pag-mapa" acao="MapaCtrl" title="Mapa"/>
