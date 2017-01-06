@@ -10,6 +10,7 @@ class ConsultaMapa {
         $query->select('l.id', 'localId')
                 ->add('l.titulo', 'localNome')
                 ->add('l.endereco', 'localEndereco')
+                ->add('ifnull(chec.ativo, 0)', 'checkIn')
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
@@ -30,6 +31,11 @@ class ConsultaMapa {
         $query->join('check_in', 'c')->on('c.local_id = l.id')
                 ->on('c.presente = 1')
                 ->on('c.ativo = 1');
+        $query->join('check_in', 'chec', 'left')
+                ->on('chec.usuario_id = ?')
+                ->on('chec.local_id = l.id')
+                ->on('chec.ativo = 1')
+                ->on('chec.presente = 1');
         $query->join('midia', 'm', 'left')->on('m.local_id = l.id')
                 ->on('m.momento > date_add(now(), interval - ? hour)')
                 ->on('m.ativo = 1');
@@ -60,14 +66,16 @@ class ConsultaMapa {
                 ->on('cl.ativo = 1');
         $query->where('l.ativo = 1');
         $query->group('l.id');
-        $query->order('relevancia desc, relevancia2 desc');
+        $query->order('distancia desc, relevancia desc, relevancia2 desc');
         $query->limit(50);
-        $query->addVariaveis([$latitude, $longitude, $latitude, 
+        $query->addVariaveis([$usuarioId, 
+            $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude,
-            $tempoMidia, $tempoHashtag, $usuarioId, $usuarioId, $tempoHashtag]);
+            $tempoMidia, $tempoHashtag, $usuarioId, 
+            $usuarioId, $tempoHashtag]);
         return $query->executar();
     }
     

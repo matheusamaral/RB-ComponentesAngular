@@ -24,6 +24,7 @@
     "EnvioEmailArq": "\\Rubeus\\Servicos\\Email\\EnvioEmailArq",
     "Localizacao": "\\Rubeus\\Servicos\\Localizacao\\Distancia",
     "EstruturaRegistrarSessao": "\\Rubeus\\Servicos\\Entrada\\EstruturaSessao",
+    "Imagem": "\\Rubeus\\Servicos\\Upload\\Imagem",
     "Base64": "\\Rubeus\\Servicos\\Base64\\Upload",
     
     
