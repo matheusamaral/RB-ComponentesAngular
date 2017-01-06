@@ -1,0 +1,18 @@
+[
+    {
+        "tipo": 1,
+        "dimensoes":
+        [
+            {
+                "altura": 30, 
+                "largura": 30, 
+                "suf": "-amn"
+            },
+            {
+                "altura": "100%",
+                "largura": "100%",
+                "suf": "-origem"
+            }
+        ]
+    }
+]
