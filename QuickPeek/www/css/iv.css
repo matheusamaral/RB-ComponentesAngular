@@ -10,6 +10,11 @@
     color:#FFFFFF !important;
 }
 
+.pane, 
+.view {
+   overflow-y: auto !important 
+}
+
 .bar-footer{
     position:fixed;
     bottom:0;

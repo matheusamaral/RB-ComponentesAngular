@@ -41,7 +41,7 @@ angular.module('QuickPeek.HTML.Mapa', [
     
     function tabs(){
         return'<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
-                    <div class="tabs box-shadow-barra">\n\
+                    <div class="tabs box-shadow-preta">\n\
                         <a class="tab-item active" href="#">\n\
                             <i class="icon img-quick-logo"></i>\n\
                         </a>\n\

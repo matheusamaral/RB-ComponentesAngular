@@ -21,7 +21,6 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         };
 
         function verificarLocaisProximos(){
-            RBLoadingMobile.show();
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Local/mapa",
                 dados: $.param(dados),
@@ -37,14 +36,13 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         
         function successVerificarLocaisProximos(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
-            if(objRetorno.success === true) {
-                scope.locais = objRetorno.dados;
-                if(acaoPosterior)acaoPosterior(scope.locais);
+            //alert(JSON.stringify(objRetorno));
+            console.log(objRetorno);
+            if(objRetorno.success === true){
+                
             }
             else{
-                if(acaoPosterior)acaoPosterior(scope.locais);
-                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                //if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
         

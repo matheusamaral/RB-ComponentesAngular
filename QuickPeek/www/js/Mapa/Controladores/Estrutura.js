@@ -24,14 +24,13 @@ angular.module('QuickPeek.Estrutura.Mapa', [
         calculaDimensoesMapa();
         
         $timeout(function(){
+            if(DGlobal.dadosUser && DGlobal.dadosUser.success){
+                scope.dadosUser = DGlobal.dadosUser.dados;
+            }
             if(DGlobal.locais && DGlobal.locais.success){
                 Geolocation.setScope(scope).inicializar('mapaGeral',DGlobal.locais.dados);
             }else{
                 Geolocation.setScope(scope).inicializar('mapaGeral');
-            }
-            
-            if(DGlobal.dadosUser && DGlobal.dadosUser.success){
-                scope.dadosUser = DGlobal.dadosUser.dados;
             }
             
         },0);

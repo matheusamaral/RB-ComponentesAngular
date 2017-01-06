@@ -113,7 +113,7 @@ angular.module('QuickPeek.HTML.Perfil', [
     function tabs(){
         return'<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
                     <div class="tabs box-shadow-barra">\n\
-                        <a class="tab-item" href="#">\n\
+                        <a class="tab-item" href="#" ng-click="irMapa()">\n\
                             <i style="opacity: 0.5;" class="icon img-quick-logo"></i>\n\
                         </a>\n\
                         <a class="tab-item" href="#">\n\

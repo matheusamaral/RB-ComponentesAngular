@@ -32,7 +32,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function inicializar(){
-        
+        var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
     };
     
     function irFiltro(){
@@ -95,6 +95,10 @@ angular.module('QuickPeek.Acoes.Mapa', [
     function attTutorial(){
         MapaRequisicoes.set({dados:false,scope:scope,acaoSuccess:MapaRequisicoes.successAttTutorial}).attTutorial();
     }
+    
+    function geolocationSuccess(position){
+        //alert('Alterour posicao'+JSON.stringify(position));
+    };
     
     return {
         setScope:setScope,
