@@ -8,7 +8,7 @@ class LoginTeste {
         
         $msg->setCampoSessao('dadosUsuarioLogado,id', $msg->getCampo('Usuario::id')->get('valor'));
         $msg->setResultadoEtapa(true, false, ['sessao'=>$_SESSION]);
-        $this->checkIn($msg);
+//        $this->checkIn($msg);
     }
     
     public function checkIn($msg){
