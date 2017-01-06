@@ -5,6 +5,7 @@
     <entrada>
         <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/> 
         <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
+        <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
         <campo regra="Opcional" chave="Categorias" nome="categorias" json="1"/>
         <campo regra="Opcional" chave="Tipos" nome="tipos" json="1"/>
     </entrada>
