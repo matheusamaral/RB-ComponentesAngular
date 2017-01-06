@@ -48,6 +48,34 @@ angular.module('QuickPeek.Requisicao.Mapa', [
             }
         };
         
+        function attTutorial(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Usuario/tutorial",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successAttTutorial(objRetorno){
+            RBLoadingMobile.hide();
+            //alert(JSON.stringify(objRetorno));
+            console.log(objRetorno);
+            if(objRetorno.success === true) {
+                scope.dadosUser.tutorial ++;
+            }
+            else{
+                if(acaoPosterior)acaoPosterior(scope.locais);
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -62,7 +90,9 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         return {
             set: set,
             verificarLocaisProximos: verificarLocaisProximos,
-            successVerificarLocaisProximos: successVerificarLocaisProximos
+            successVerificarLocaisProximos: successVerificarLocaisProximos,
+            attTutorial:attTutorial,
+            successAttTutorial:successAttTutorial
         };
                            
 }]);     

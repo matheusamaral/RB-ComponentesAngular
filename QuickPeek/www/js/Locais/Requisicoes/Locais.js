@@ -82,12 +82,41 @@ angular.module('QuickPeek.Requisicao.Locais', [
           ionicToast.show(message, 'bottom', false, 3000);
         }
         
+        function attTutorial(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Usuario/tutorial",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successAttTutorial(objRetorno){
+            RBLoadingMobile.hide();
+            //alert(JSON.stringify(objRetorno));
+            console.log(objRetorno);
+            if(objRetorno.success === true) {
+                scope.dadosUser.tutorial ++;
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
         return {
             set: set,
             successListarAreas: successListarAreas,
             listarAreas: listarAreas,
             listarMidias:listarMidias,
-            successListarMidias:successListarMidias
+            successListarMidias:successListarMidias,
+            attTutorial:attTutorial,
+            successAttTutorial:successAttTutorial
         };
                            
 }]);     

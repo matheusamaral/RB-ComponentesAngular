@@ -13,13 +13,15 @@ angular.module('QuickPeek.HTML.Mapa', [
                 <md-button ng-click="irFiltro()" class="btn-flutuante-redondo md-fab">\n\
                     <md-icon class="img-seta-funil"></md-icon>\n\
                 </md-button>\n\
-                <md-button ng-click="irPesquisa()" class="btn-flutuante-pesquisar md-fab">\n\
+                <md-button ng-class="{\'z-index-superior\' : dadosUser.tutorial == 2}"\n\
+                ng-click="irPesquisa()" class="btn-flutuante-pesquisar md-fab">\n\
                     <i style="font-size: 26px;color: #4d4d4d;" class="icon ion-android-search"></i>\n\
                 </md-button>'+barraLocalizacaoAtual()+tutorial();
     };  
     
     function barraLocalizacaoAtual(){
-         return'<div class="row barra-localizacao-atual">\n\
+         return'<div ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
+                class="row barra-localizacao-atual">\n\
                     <div class="col">\n\
                         <div class="row remove-padding">\n\
                             <p class="p-subtitulo">Você está agora em</p>\n\
@@ -57,14 +59,19 @@ angular.module('QuickPeek.HTML.Mapa', [
     }
     
     function tutorial(){
-        return'<div class="row rb-padding container-tutorial">\n\
-                    <div class="tutorial tutorial-mapa-1">\n\
+        return'<div ng-if="dadosUser.tutorial == 1 || dadosUser.tutorial == 3 || dadosUser.tutorial == 2" class="row rb-padding container-tutorial">\n\
+                    <div class="tutorial tutorial-mapa-{{dadosUser.tutorial}}">\n\
                     </div>\n\
-                    <p class="negrito posiciona-p-tutorial1">Bem vindo!"</p>\n\
-                    <p class="posiciona-p-tutorial1-1">Explore no mapa o que está</br> acontecendo agora ao seu redor!"</p>\n\
-                    <button class="btn-mapa-tutorial button button-clear button-positive">\n\
+                    <p ng-if="dadosUser.tutorial == 1" class="negrito posiciona-p-tutorial{{dadosUser.tutorial}}">Bem vindo!</p>\n\
+                    <p ng-if="dadosUser.tutorial == 1" class="posiciona-p-tutorial{{dadosUser.tutorial}}-{{dadosUser.tutorial}}">Explore no mapa o que está</br> acontecendo agora ao seu redor!</p>\n\
+                    <p ng-if="dadosUser.tutorial == 2" class="negrito posiciona-p-tutorial{{dadosUser.tutorial}}">Pesquisar</p>\n\
+                    <p ng-if="dadosUser.tutorial == 2" class="posiciona-p-tutorial{{dadosUser.tutorial}}-{{dadosUser.tutorial}}">Busque pelo nome o</br> destino desejado.</p>\n\
+                    <p ng-if="dadosUser.tutorial == 3" class="negrito posiciona-p-tutorial{{dadosUser.tutorial}}">Onde você está?</p>\n\
+                    <p ng-if="dadosUser.tutorial == 3" class="posiciona-p-tutorial{{dadosUser.tutorial}}-{{dadosUser.tutorial}}">Informe o local que</br> está agora.</p>\n\
+                    <button ng-click="attTutorial()" class="btn-mapa-tutorial-{{dadosUser.tutorial}} button button-clear button-positive">\n\
                         PULAR<i class="icon ion-chevron-right"></i>\n\
                     </button>\n\
+                    <md-icon ng-if="dadosUser.tutorial == 3 || dadosUser.tutorial == 2" class="icone-tutorial-{{dadosUser.tutorial}} ion-android-arrow-down"></md-icon>\n\
                 </div>';
     }
   

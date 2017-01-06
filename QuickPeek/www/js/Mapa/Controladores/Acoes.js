@@ -92,13 +92,18 @@ angular.module('QuickPeek.Acoes.Mapa', [
         Pagina.navegar({idPage:29,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     }
     
+    function attTutorial(){
+        MapaRequisicoes.set({dados:false,scope:scope,acaoSuccess:MapaRequisicoes.successAttTutorial}).attTutorial();
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
         irFiltro:irFiltro,
         irPesquisa:irPesquisa,
         irCheckin:irCheckin,
-        checkin:checkin
+        checkin:checkin,
+        attTutorial:attTutorial
     };
     
  }]);

@@ -61,6 +61,10 @@ angular.module('QuickPeek.Acoes.Locais', [
         Pagina.navegar({idPage:22,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     }
     
+    function attTutorial(){
+        LocaisRequisicoes.set({dados:false,scope:scope,acaoSuccess:LocaisRequisicoes.successAttTutorial}).attTutorial();
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -68,7 +72,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         irPessoas:irPessoas,
         irPerguntas:irPerguntas,
         carregarLocais:carregarLocais,
-        voltarMapa:voltarMapa
+        voltarMapa:voltarMapa,
+        attTutorial:attTutorial
     };
     
  }]);
