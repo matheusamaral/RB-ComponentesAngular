@@ -155,7 +155,7 @@
     </pagina>
     
     <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina-->
-    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
+    <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="mapa" objeto='locais'></metodo>
@@ -180,6 +180,7 @@
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarAreaMapa" objeto='locais'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-locais" acao="LocaisCtrl" title="Locais e proximidades"/>

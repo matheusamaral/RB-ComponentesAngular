@@ -19,7 +19,6 @@ angular.module('QuickPeek.Requisicao.Locais', [
         };
 
         function listarAreas(){
-            RBLoadingMobile.show();
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Listar/listarAreaMapa",
                 dados: $.param(dados),
@@ -67,7 +66,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
                 Pagina.navegar({idPage:25});
             }
             else{
-                OpenToast('Não foi possível localizar locais proximos');
+                OpenToast('Não foi possível localizar midias');
             }
         };
         

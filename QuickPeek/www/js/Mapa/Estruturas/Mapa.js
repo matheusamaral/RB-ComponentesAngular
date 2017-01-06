@@ -51,7 +51,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <a class="tab-item" href="#">\n\
                             <i class="icon ion-android-notifications"></i>\n\
                         </a>\n\
-                        <a class="tab-item" href="#">\n\
+                        <a class="tab-item" href="#" ng-click="irPerfil()">\n\
                             <i class="icon ion-person"></i>\n\
                         </a>\n\
                     </div>\n\

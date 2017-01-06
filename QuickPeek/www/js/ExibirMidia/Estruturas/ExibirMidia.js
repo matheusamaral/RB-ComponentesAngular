@@ -18,11 +18,17 @@ angular.module('QuickPeek.HTML.ExibirMidia', [
                         <p ng-if="midia.jaCurtiu == 1 && midia.curtidas && midia.curtidas.length == 1" class="p-midia">Você curtiu isso</p>\n\
                         <p ng-if="midia.curtidas == false && !midia.curtidas.length" class="p-midia">Seja o primeiro a curtir isso</p>\n\
                         <hr class="hr-midias"></hr>\n\
-                        <button\n\
+                        <button ng-if="midia.jaCurtiu == 0"\n\
                         ng-click="curtir(midia.id)"\n\
                         ng-class="{\'texto-azul\' : midia.jaCurtiu == 1,\'texto-branco\' : midia.jaCurtiu == 0}"\n\
                         class="config-btn-midia text-center button button-clear button-positive">\n\
-                            <i class="icon">Curtir\n\
+                            <md-icon  class="img-curtir"></md-icon>Curtir\n\
+                        </button>\n\
+                        <button ng-if="midia.jaCurtiu == 1"\n\
+                        ng-click="curtir(midia.id)"\n\
+                        ng-class="{\'texto-azul\' : midia.jaCurtiu == 1,\'texto-branco\' : midia.jaCurtiu == 0}"\n\
+                        class="config-btn-midia text-center button button-clear button-positive">\n\
+                            <md-icon class="img-curtir-azul"></md-icon>Curtir\n\
                         </button>\n\
                     </ion-slide>\n\
                 </ion-slide-box>';

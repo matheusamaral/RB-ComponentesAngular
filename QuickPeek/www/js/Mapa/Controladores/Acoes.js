@@ -100,6 +100,10 @@ angular.module('QuickPeek.Acoes.Mapa', [
         //alert('Alterour posicao'+JSON.stringify(position));
     };
     
+    function irPerfil(){
+        Pagina.navegar({idPage:8});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -107,7 +111,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
         irPesquisa:irPesquisa,
         irCheckin:irCheckin,
         checkin:checkin,
-        attTutorial:attTutorial
+        attTutorial:attTutorial,
+        irPerfil:irPerfil
     };
     
  }]);

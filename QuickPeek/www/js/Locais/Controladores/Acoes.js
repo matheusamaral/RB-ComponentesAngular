@@ -25,12 +25,7 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function carregarLocais(){
-        if(DGlobal.localAtual){
-            var obj = {localId:DGlobal.localAtual,atualizando:true};
-            LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
-        }
-        //navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
-        
+        navigator.geolocation.getCurrentPosition(onSuccessScroll,onErrorScroll);
     }
     
     function irPessoas(idLocal){
@@ -55,7 +50,17 @@ angular.module('QuickPeek.Acoes.Locais', [
         DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
         Pagina.navegar({idPage:22,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
+    
+    var onSuccessScroll = function(position){
+        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+        var obj = {latitude:DGlobal.coordenadasAtual.latitude,longitude:DGlobal.coordenadasAtual.longitude,atualizando:true};
+        LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
+    };
 
+    function onErrorScroll(error){
+        
+    }
+    
     function onError(error){
         var coordenadas = {latitude:-21.135445,longitude:-42.365089};
         Pagina.navegar({idPage:22,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
