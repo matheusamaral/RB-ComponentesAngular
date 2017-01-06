@@ -21,7 +21,6 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         };
 
         function verificarLocaisProximos(){
-            RBLoadingMobile.show();
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Local/mapa",
                 dados: $.param(dados),
@@ -37,16 +36,54 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         
         function successVerificarLocaisProximos(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
-            if(objRetorno.success === true) {
-                scope.locais = objRetorno.dados;
-                if(acaoPosterior)acaoPosterior(scope.locais);
+            //alert(JSON.stringify(objRetorno));
+            console.log(objRetorno);
+            if(objRetorno.success === true){
+                marcarNoMapa(objRetorno.dados);
             }
             else{
-                if(acaoPosterior)acaoPosterior(scope.locais);
-                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                //if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
+        
+        function marcarNoMapa(array){
+            if(array){
+                for(var i = 0; i < array.length; i++){
+                    var img = 'img/79.svg';
+                    if(array[i].fotoLocal){
+                        img = array[i].fotoLocal;
+                    }else{
+                        if(array[i].categoriaHashtagFoto){
+                            img = array[i].categoriaHashtagFoto;
+                        }else{
+                            if(array[i].categoriaLocalFoto){
+                                img = array[i].categoriaLocalFoto;
+                            }
+                        }
+                    }
+                    
+                    scope.mapaGeral['marker'+i] = new google.maps.Marker({
+                        position: new google.maps.LatLng(array[i].latitude,array[i].longitude), // variável com as coordenadas Lat e Lng
+                        map: scope.mapaGeral.map,
+                        title:array[i].localNome,
+                        icon:img,
+                        idMarcador:array[i].localId,
+                        label:array[i].localNome
+                    });
+                    
+                    //var id = array[i].localId;
+
+                    scope.mapaGeral['marker'+i].addListener('click', function(){
+                        irLocal(this.idMarcador);
+                    });
+                }
+            }
+        }
+        
+        function irLocal(id){
+            DGlobal.localAtual = id;
+            Pagina.navegar({idPage:24,paramAdd:'?localId='+id+'&atualizando=0'});
+        }
         
         function attTutorial(){
             RBLoadingMobile.show();

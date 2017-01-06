@@ -41,7 +41,7 @@ angular.module('QuickPeek.HTML.Mapa', [
     
     function tabs(){
         return'<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
-                    <div class="tabs box-shadow-barra">\n\
+                    <div class="tabs box-shadow-preta">\n\
                         <a class="tab-item active" href="#">\n\
                             <i class="icon img-quick-logo"></i>\n\
                         </a>\n\
@@ -51,7 +51,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <a class="tab-item" href="#">\n\
                             <i class="icon ion-android-notifications"></i>\n\
                         </a>\n\
-                        <a class="tab-item" href="#">\n\
+                        <a class="tab-item" href="#" ng-click="irPerfil()">\n\
                             <i class="icon ion-person"></i>\n\
                         </a>\n\
                     </div>\n\

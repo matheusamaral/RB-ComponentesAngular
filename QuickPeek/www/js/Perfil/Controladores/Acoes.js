@@ -43,6 +43,25 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:16});
     }
     
+    function irMapa(){
+        if(DGlobal.coordenadasAtual){
+            Pagina.navegar({idPage:22,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        }else{
+            var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
+            navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+        }
+    }
+    
+    var onSuccess = function(position){
+        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+        Pagina.navegar({idPage:22,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+    };
+
+    function onError(error){
+        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
+        Pagina.navegar({idPage:22,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+    }
+    
     function addCss(){
         //$('ion-side-menu-content').addClass('background-cinza');
     }
@@ -54,7 +73,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
         editarAvatar:editarAvatar,
         irConfiguracoes:irConfiguracoes,
         irSeguidores:irSeguidores,
-        irSeguindo:irSeguindo
+        irSeguindo:irSeguindo,
+        irMapa:irMapa
     };
     
  }]);

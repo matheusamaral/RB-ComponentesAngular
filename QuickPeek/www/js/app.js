@@ -55,12 +55,29 @@ angular.module('QuickPeek', [
       StatusBar.styleDefault();
     }
     
-//    var permissions = cordova.plugins.permissions;
-//    //permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
-//    permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkPermissionCallbackLocation, null);
-//    permissions.hasPermission(permissions.ACCESS_LOCATION_EXTRA_COMMANDS, checkPermissionCallbackExtraLocation, null);
-//    permissions.hasPermission(permissions.LOCATION_HARDWARE, checkPermissionCallbackPrincipalLocation, null);
+    var permissions = cordova.plugins.permissions;
+    permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
+    permissions.hasPermission(permissions.CAMERA, checkPermissionCAMERA, null);
+    
+    permissions.hasPermission(permissions.ACCESS_COARSE_LOCATION, checkPermissionCallbackPrincipalLocation, null);
+    permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkPermissionCallbackLocation, null);
+    permissions.hasPermission(permissions.ACCESS_LOCATION_EXTRA_COMMANDS, checkPermissionCallbackExtraLocation, null);
 
+    function checkPermissionCAMERA(status) {
+      if(!status.hasPermission) {
+        var errorCallback = function() {
+          console.warn('Camera permission is not turned on');
+        };
+
+        permissions.requestPermission(
+            permissions.CAMERA,
+            function(status) {
+            if(!status.hasPermission) errorCallback();
+            },
+            errorCallback);
+        }
+    }
+    
     function checkPermissionCallback(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {
@@ -113,7 +130,7 @@ angular.module('QuickPeek', [
         };
 
         permissions.requestPermission(
-            permissions.LOCATION_HARDWARE,
+            permissions.ACCESS_COARSE_LOCATION,
             function(status) {
             if(!status.hasPermission) errorCallback();
             },

@@ -48,11 +48,20 @@ angular.module('QuickPeek.Requisicao.ExibirMidia', [
         
         function validaCurtidaCliente(){
             for(var i = 0; i < scope.midias.length; i++){
-                if(dados.midiaId == scope.midias[i].id)
-                    scope.midias[i].jaCurtiu = 1;
-                    scope.midias[i].curtidas.push(
-                        {usuarioId:scope.dadosUser.usuarioId,nome:scope.dadosUser.usuarioNome}
-                    );
+                if(dados.midiaId == scope.midias[i].id){
+                    if(scope.midias[i].jaCurtiu == 0){
+                        scope.midias[i].jaCurtiu = 1;
+                        scope.midias[i].curtidas.push(
+                            {usuarioId:scope.dadosUser.usuarioId,nome:scope.dadosUser.usuarioNome}
+                        );
+                    }else{
+                        scope.midias[i].jaCurtiu = 0;
+                        for(var j = 0; j < scope.midias[i].curtidas.length; j++){
+                            if(scope.dadosUser.usuarioId == scope.midias[i].curtidas[j].usuarioId)
+                            scope.midias[i].curtidas.splice(j,1);
+                        }
+                    }
+                }
             }
         }
         

@@ -127,6 +127,24 @@
     background-size: cover;
 }
 
+.img-curtir{
+    background-image: url(../img/91.svg);
+    width: 20px;
+    margin-right: 11px;
+    height: 17px;
+    background-size: cover;
+    margin-bottom: 8px;
+}
+
+.img-curtir-azul{
+    background-image: url(../img/92.svg);
+    width: 20px;
+    margin-right: 11px;
+    height: 17px;
+    background-size: cover;
+    margin-bottom: 8px;
+}
+
 .background-img{
     background-image: url(../img/00.jpg);
     background-size: cover;

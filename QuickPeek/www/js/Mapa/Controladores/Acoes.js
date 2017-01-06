@@ -32,7 +32,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function inicializar(){
-        
+        var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
     };
     
     function irFiltro(){
@@ -96,6 +96,14 @@ angular.module('QuickPeek.Acoes.Mapa', [
         MapaRequisicoes.set({dados:false,scope:scope,acaoSuccess:MapaRequisicoes.successAttTutorial}).attTutorial();
     }
     
+    function geolocationSuccess(position){
+        //alert('Alterour posicao'+JSON.stringify(position));
+    };
+    
+    function irPerfil(){
+        Pagina.navegar({idPage:8});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -103,7 +111,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
         irPesquisa:irPesquisa,
         irCheckin:irCheckin,
         checkin:checkin,
-        attTutorial:attTutorial
+        attTutorial:attTutorial,
+        irPerfil:irPerfil
     };
     
  }]);

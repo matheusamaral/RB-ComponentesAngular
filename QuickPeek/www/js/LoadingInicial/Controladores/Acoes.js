@@ -34,13 +34,13 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
         RBLoadingMobile.hide();
         var coordenadas = {latitude:position.coords.latitude,longitude:position.coords.longitude};
         DGlobal.coordenadasAtual = coordenadas;
-        Pagina.navegar({idPage:22,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     };
 
     function onError(error){
         RBLoadingMobile.hide();
         var coordenadas = {latitude:-21.135445,longitude:-42.365089};
-        Pagina.navegar({idPage:22,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     }
 
     

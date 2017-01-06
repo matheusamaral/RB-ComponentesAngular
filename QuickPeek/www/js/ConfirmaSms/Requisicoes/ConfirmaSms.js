@@ -67,6 +67,7 @@ angular.module('QuickPeek.Requisicao.ConfirmaSms', [
                 Pagina.navegar({idPage:5});
             }
             else{
+                Pagina.navegar({idPage:5});
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };

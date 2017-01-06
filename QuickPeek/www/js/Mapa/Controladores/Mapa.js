@@ -18,6 +18,7 @@ angular.module('QuickPeek.Mapa', [
         $scope.irCheckin = MapaAcoes.irCheckin;
         $scope.checkin = MapaAcoes.checkin;
         $scope.attTutorial = MapaAcoes.attTutorial;
+        $scope.irPerfil = MapaAcoes.irPerfil;
     }
 ])
 

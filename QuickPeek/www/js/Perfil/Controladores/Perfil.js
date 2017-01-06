@@ -16,6 +16,7 @@ angular.module('QuickPeek.Perfil', [
         $scope.irConfiguracoes = PerfilAcoes.irConfiguracoes;
         $scope.irSeguindo = PerfilAcoes.irSeguindo;
         $scope.irSeguidores = PerfilAcoes.irSeguidores;
+        $scope.irMapa = PerfilAcoes.irMapa;
     }
 ])
 
