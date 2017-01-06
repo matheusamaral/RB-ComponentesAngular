@@ -51,7 +51,7 @@ angular.module('QuickPeek.HTML.CheckIn', [
                                 <div ng-click="checkInLocal(locais[2])" ng-if="locais[2]" class="alinha-item-bottom-direita col text-center" style="margin-top: 19px;">\n\
                                     <div style="background-image:url({{locais[2].categoriaHashtagFoto}})" class="box-img-cad icone-redondo-medio">\n\
                                     </div>\n\
-                                    <p class="nome-icone">locais[2].localNome</p>\n\
+                                    <p class="nome-icone">{{locais[2].localNome}}</p>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\

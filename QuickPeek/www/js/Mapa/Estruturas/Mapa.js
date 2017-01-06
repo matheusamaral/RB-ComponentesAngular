@@ -20,7 +20,7 @@ angular.module('QuickPeek.HTML.Mapa', [
     };  
     
     function barraLocalizacaoAtual(){
-         return'<div ng-if="dadosbarra && dadosbarra.checkIn == 0" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
+         return'<div ng-if="dadosbarra && dadosbarra.distancia" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
                 class="row barra-localizacao-atual">\n\
                     <div class="col">\n\
                         <div class="row remove-padding">\n\
