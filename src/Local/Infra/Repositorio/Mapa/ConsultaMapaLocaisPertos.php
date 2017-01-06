@@ -27,7 +27,7 @@ class ConsultaMapaLocaisPertos {
                 ->on('cl.id = lc.categoria_id')
                 ->on('cl.ativo = 1');
         $query->where('l.ativo = 1');
-        $query->having('distancia <= 0.05');
+        $query->having('distancia <= 0.02');
         $query->group('l.id');
         $query->order('distancia');
         $query->limit(4);

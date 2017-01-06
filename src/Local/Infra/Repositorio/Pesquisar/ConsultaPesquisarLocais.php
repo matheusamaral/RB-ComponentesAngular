@@ -75,7 +75,7 @@ class ConsultaPesquisarLocais {
                 ->on('cl.ativo = 1')
                 ->on($categoriaLocal);
         foreach($pesquisa as $v){
-            $categoriaLocal->like('or', 'cl.titulo', $v, 'cmc');
+            $categoriaLocal->like('or', 'cl.titulo', $v, 'fim');
         }
         
         $hashtag = $query->condicao();
@@ -84,7 +84,7 @@ class ConsultaPesquisarLocais {
                 ->on('h.ativo = 1')
                 ->on($hashtag);
         foreach($pesquisa as $v){
-            $hashtag->like('or', 'h.titulo', $v, 'cmc');
+            $hashtag->like('or', 'h.titulo', $v, 'fim');
         }
         
         $loc = $query->condicao();
@@ -93,7 +93,7 @@ class ConsultaPesquisarLocais {
                 ->on('loc.ativo = 1')
                 ->on($loc);
         foreach($pesquisa as $v){
-            $loc->like('or', 'loc.cidade', $v, 'cmc');
+            $loc->like('or', 'loc.cidade', $v, 'fim');
         }
         
         $loca = $query->condicao();
@@ -107,7 +107,9 @@ class ConsultaPesquisarLocais {
         
         $query->where('l.id not in(' . $notIn . ')')
                 ->add('l.ativo = 1')
-                ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + case when loc.ativo is not null then 0.5 else 0 end + case when loca.ativo is not null then 0.5 else 0 end) > 1');
+                ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) +'
+                        . ' case when loc.ativo is not null then 0.4 else 0 end +'
+                        . ' case when loca.ativo is not null then 0.4 else 0 end) > 0.8');
         $query->group('l.id');
         $query->order('relevancia desc, relevancia2 desc');
         $query->limit(15);
