@@ -33,14 +33,14 @@ angular.module('QuickPeek.Requisicao.Locais', [
         
         function successListarAreas(objRetorno){
             RBLoadingMobile.hide();
-            alert('trouxeMaisDados');
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                
-                //scope.locais = objRetorno.dados;
+                for(var i = 0; i < objRetorno.dados.length;i++){
+                    scope.locais.push(objRetorno.dados[i]);
+                }
             }
             else{
-                OpenToast('Não foi possível localizar locais proximos');
+                OpenToast('Não foi possível localizar mais locais proximos');
             }
         };
         
