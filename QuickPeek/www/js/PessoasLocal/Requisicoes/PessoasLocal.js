@@ -33,16 +33,18 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
         
         function successListar(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
+            //alert(JSON.stringify(objRetorno));
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                
+                for(var i = 0; i < objRetorno.dados.length;i++){
+                    scope.dados.pessoas.push(objRetorno.dados[i]);
+                }
             }
         };
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
-            OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
+            OpenToast("Não existem mais pessoas neste local");
         };
         
         

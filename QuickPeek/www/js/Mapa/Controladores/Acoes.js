@@ -40,7 +40,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:23});
         }else{
-            navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+            navigator.geolocation.getCurrentPosition(onSuccess,onError);
         }
     }
     
@@ -49,7 +49,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:28});
         }else{
-            navigator.geolocation.getCurrentPosition(onPesquisa,onPesquisaError,options);
+            navigator.geolocation.getCurrentPosition(onPesquisa,onPesquisaError);
         }
     }
     
@@ -58,7 +58,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
         }else{
-            navigator.geolocation.getCurrentPosition(onCheckin,onChekinError,options);
+            navigator.geolocation.getCurrentPosition(onCheckin,onChekinError);
         }
     }
     
