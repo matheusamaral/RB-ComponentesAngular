@@ -159,6 +159,8 @@
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="mapa" objeto='locais'></metodo>
+                <metodo name="sugestaoLocal" objeto='localBarra'>
+                </metodo>
             </classe>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUser'></metodo>

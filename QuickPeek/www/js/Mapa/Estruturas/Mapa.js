@@ -20,13 +20,13 @@ angular.module('QuickPeek.HTML.Mapa', [
     };  
     
     function barraLocalizacaoAtual(){
-         return'<div ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
+         return'<div ng-if="dadosbarra && dadosbarra.checkIn == 0" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
                 class="row barra-localizacao-atual">\n\
                     <div class="col">\n\
                         <div class="row remove-padding">\n\
                             <p class="p-subtitulo">Você está agora em</p>\n\
                         </div>\n\
-                        <p class="p-titulo-local">Empório?</p>\n\
+                        <p class="p-titulo-local">{{dadosbarra.localTitulo}}?</p>\n\
                     </div>\n\
                     <div class="col text-right">\n\
                         <button ng-click="irCheckin()" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
@@ -35,6 +35,38 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <button ng-click="checkin()" class="config-btn-mapa button button-positive">\n\
                             Sim\n\
                         </button>\n\
+                    </div>\n\
+                </div>\n\
+                <div class="row barra-localizacao-atual barra-local" ng-if="dadosbarra && dadosbarra.checkIn == 1">\n\
+                    <div class="col">\n\
+                        <p class="p-titulo-local">{{dadosbarra.localTitulo}}</p>\n\
+                        <div class="row remove-padding">\n\
+                            <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div class="text-right">\n\
+                        <md-menu>\n\
+                            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
+                            </md-button>\n\
+                            <md-menu-content width="4">\n\
+                                <md-menu-item>\n\
+                                    <md-button ng-click="ctrl.redial($event)">\n\
+                                        Alterar localização\n\
+                                    </md-button>\n\
+                                </md-menu-item>\n\
+                                <md-menu-item>\n\
+                                    <md-button ng-click="ctrl.redial($event)">\n\
+                                        Alterar privacidade\n\
+                                    </md-button>\n\
+                                </md-menu-item>\n\
+                                <md-menu-item>\n\
+                                    <md-button ng-click="ctrl.redial($event)">\n\
+                                        Navegar até o local\n\
+                                    </md-button>\n\
+                                </md-menu-item>\n\
+                            </md-menu-content>\n\
+                        </md-menu>\n\
                     </div>\n\
                 </div>';
     }
