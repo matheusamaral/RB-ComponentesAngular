@@ -20,7 +20,7 @@ class ConsultaDadosLocais {
 		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
     end ', 'relevancia')
                 ->add('(count(distinct cin.id))', 'relevancia2')
-                ->add('chec.ativo', 'checkIn');
+                ->add('ifnull(chec.ativo, 0)', 'checkIn');
         $query->from('local', 'l');
         $query->join('check_in', 'c')->on('c.local_id = l.id')
                 ->on('c.presente = 1')
