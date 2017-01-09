@@ -8,23 +8,27 @@ class DetalhesLocais {
         
         $query = $this->consultar();
         
-        $i = 0;
-        foreach($query as $value){
-            foreach($value as $k=>$v){
-                if($k == 'placeId'){
-                    $file = file_get_contents('https://maps.googleapis.com/maps/api/place/details/json?placeid=' . $v 
-                            . '&key=AIzaSyDVQESyGCFB4YkN6Pn3s64c7xZsUTnCsVM');
-                    var_dump('file ' . $i);
-                    $i++;
-                    $jsons[] = json_decode($file);
+        if($query){
+            $i = 0;
+            foreach($query as $value){
+                foreach($value as $k=>$v){
+                    if($k == 'placeId'){
+                        $file = file_get_contents('https://maps.googleapis.com/maps/api/place/details/json?placeid=' . $v 
+                                . '&key=AIzaSyBc3mboIyrPS1q7DIo-rEoDfRCLhskxRmc');
+                        var_dump('file ' . $i);
+                        $i++;
+                        $json = json_decode($file);
+                        if($json->status == "OK"){
+                            $jsons[] = $json;
+                        }
+                    }
                 }
             }
         }
         
         foreach($jsons as $k=>$json){
-            
             $endereco[] = $json->result->formatted_address;
-            
+
             foreach($json->result->address_components as $v){
                 if(in_array('locality', $v->types)){
                     $cidade[] = $v->long_name;
@@ -45,7 +49,9 @@ class DetalhesLocais {
             }
         }
         
-        $this->cadastrarLocais($msg, $query, $endereco, $cidade, $estado, $pais);
+        if(isset($cidade)){
+            $this->cadastrarLocais($msg, $query, $endereco, $cidade, $estado, $pais);
+        }
     }
     
     private function consultar(){
@@ -62,7 +68,7 @@ class DetalhesLocais {
         $query->where('lg.local_Id = l.id')
                 ->add('lg.ativo = 1');
         $query->order('l.id');
-        $query->limit(700);
+        $query->limit(200);
         return $query->executar();
     }
     
