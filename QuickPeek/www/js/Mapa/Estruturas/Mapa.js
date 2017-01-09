@@ -10,17 +10,17 @@ angular.module('QuickPeek.HTML.Mapa', [
                 <div class="row" style="padding:0;padding-top:75px !important">\n\
                     <div style="width:{{larguraMapa}}px;height:{{alturaMapa}}px;" class="container-mapa" id="map"></div>\n\
                 </div>\n\
-                <md-button ng-click="irFiltro()" class="btn-flutuante-redondo md-fab">\n\
+                <md-button style="bottom:{{btnAltura +100}}px" ng-click="irFiltro()" class="btn-flutuante-redondo md-fab">\n\
                     <md-icon class="img-seta-funil"></md-icon>\n\
                 </md-button>\n\
-                <md-button ng-class="{\'z-index-superior\' : dadosUser.tutorial == 2}"\n\
+                <md-button style="bottom:{{btnAltura +30}}px" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 2}"\n\
                 ng-click="irPesquisa()" class="btn-flutuante-pesquisar md-fab">\n\
                     <i style="font-size: 26px;color: #4d4d4d;" class="icon ion-android-search"></i>\n\
                 </md-button>'+barraLocalizacaoAtual()+tutorial();
     };  
     
     function barraLocalizacaoAtual(){
-         return'<div ng-if="dadosbarra && dadosbarra.distancia" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
+         return'<div id="barra-local-atual" ng-if="dadosbarra && dadosbarra.distancia" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
                 class="row barra-localizacao-atual">\n\
                     <div class="col">\n\
                         <div class="row remove-padding">\n\
@@ -28,35 +28,35 @@ angular.module('QuickPeek.HTML.Mapa', [
                         </div>\n\
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}?</p>\n\
                     </div>\n\
-                    <div class="col text-right">\n\
+                    <div class="col text-right alinha-vertical">\n\
                         <button ng-click="irCheckin()" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
                             Não\n\
                         </button>\n\
-                        <button ng-click="checkin()" class="config-btn-mapa button button-positive">\n\
+                        <button ng-click="checkInLocal(dadosbarra)" class="config-btn-mapa button button-positive">\n\
                             Sim\n\
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div class="row barra-localizacao-atual barra-local" ng-if="dadosbarra && dadosbarra.checkIn == 1">\n\
-                    <div class="col">\n\
+                <div id="barra-local-atual" style="display:flex" class="row barra-localizacao-atual barra-local" ng-if="dadosbarra && dadosbarra.checkIn == 1">\n\
+                    <div class="col col-75">\n\
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}</p>\n\
                         <div class="row remove-padding">\n\
                             <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
                         </div>\n\
                     </div>\n\
-                    <div class="text-right">\n\
+                    <div class="text-right col">\n\
                         <md-menu>\n\
                             <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
                                 <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                             </md-button>\n\
                             <md-menu-content width="4">\n\
                                 <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
+                                    <md-button ng-click="irCheckin()">\n\
                                         Alterar localização\n\
                                     </md-button>\n\
                                 </md-menu-item>\n\
                                 <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
+                                    <md-button ng-click="checkInLocal(dadosbarra)">\n\
                                         Alterar privacidade\n\
                                     </md-button>\n\
                                 </md-menu-item>\n\

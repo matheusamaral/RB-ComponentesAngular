@@ -33,6 +33,9 @@ angular.module('QuickPeek.Acoes.Mapa', [
     
     function inicializar(){
         var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
+        $timeout(function(){
+            scope.btnAltura = $('#barra-local-atual').height();
+        },0);
     };
     
     function irFiltro(){
@@ -47,7 +50,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
     function irPesquisa(){
         var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
         if(DGlobal.coordenadasAtual){
-            Pagina.navegar({idPage:28});
+            Pagina.navegar({idPage:28,paramAdd:'?usuarioId='+scope.dadosUser.usuarioId+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
         }else{
             navigator.geolocation.getCurrentPosition(onPesquisa,onPesquisaError);
         }
@@ -74,7 +77,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
     
     var onPesquisa = function(position){
         DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-        Pagina.navegar({idPage:28});
+        Pagina.navegar({idPage:28,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
 
     function onError(error){
@@ -104,6 +107,12 @@ angular.module('QuickPeek.Acoes.Mapa', [
         Pagina.navegar({idPage:8});
     }
     
+    function checkInLocal(local){
+        DGlobal.checkIn = {local:local};
+        if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
+        Pagina.navegar({idPage:30});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -112,7 +121,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
         irCheckin:irCheckin,
         checkin:checkin,
         attTutorial:attTutorial,
-        irPerfil:irPerfil
+        irPerfil:irPerfil,
+        checkInLocal:checkInLocal
     };
     
  }]);

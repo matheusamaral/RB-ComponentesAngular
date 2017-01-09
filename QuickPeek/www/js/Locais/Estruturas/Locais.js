@@ -20,8 +20,14 @@ angular.module('QuickPeek.HTML.Locais', [
                             class="row barra-local">\n\
                                 <div class="col">\n\
                                     <p class="p-titulo-local">{{local.dados.localNome}}</p>\n\
-                                    <div class="row remove-padding">\n\
+                                    <div ng-if="local.dados.checkIn == 1" class="row remove-padding">\n\
                                         <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
+                                    </div>\n\
+                                    <div ng-if="local.dados.distancia >=1" style="padding-top:3px !important" ng-if="local.dados.checkIn != 1" class="row remove-padding">\n\
+                                        <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{local.dados.distancia.split(\'.\')[0]}}km de distância</span>\n\
+                                    </div>\n\
+                                    <div ng-if="local.dados.distancia < 1" style="padding-top:3px !important" ng-if="local.dados.checkIn != 1" class="row remove-padding">\n\
+                                        <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{(1000 * local.dados.distancia).split(\'.\')[0]}}m de distância</span>\n\
                                     </div>\n\
                                 </div>\n\
                                 <div class="text-right">\n\
@@ -31,12 +37,12 @@ angular.module('QuickPeek.HTML.Locais', [
                                         </md-button>\n\
                                         <md-menu-content width="4">\n\
                                             <md-menu-item>\n\
-                                                <md-button ng-click="ctrl.redial($event)">\n\
+                                                <md-button ng-click="irCheckin(true)">\n\
                                                     Alterar localização\n\
                                                 </md-button>\n\
                                             </md-menu-item>\n\
                                             <md-menu-item>\n\
-                                                <md-button ng-click="ctrl.redial($event)">\n\
+                                                <md-button ng-click="checkInLocal(local)">\n\
                                                     Alterar privacidade\n\
                                                 </md-button>\n\
                                             </md-menu-item>\n\
@@ -128,7 +134,8 @@ angular.module('QuickPeek.HTML.Locais', [
                     class="row rb-padding-padrao"\n\
                     ng-class="{\'remove-padding-bottom\' : $index != local.hashtags.length - 1,\n\
                     \'padding-mod-hashs\' : $index == 0}">\n\
-                        <div class="padding-hashs row box-hashTag" \n\
+                        <div class="padding-hashs row box-hashTag"\n\
+                        ng-click="curtirHashtag(hash,local.dados.localId)"\n\
                         ng-repeat="hash in linha"\n\
                         ng-class="{\'selecionado\' : hash.jaCurtiu == 1}">\n\
                             <div style="background-image:url({{hash.categoriaEndereco}})" class="box-img-hashtag"></div>\n\

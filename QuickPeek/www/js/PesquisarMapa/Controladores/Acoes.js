@@ -6,13 +6,12 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     'RB.validacoesPadroes'
 ])
 
-.factory('PesquisarMapaAcoes', ['Pagina','PesquisarMapaRequisicoes','VP','$timeout',
-    function(Pagina,PessoasLocalRequisicoes,VP,$timeout){
+.factory('PesquisarMapaAcoes', ['Pagina','PesquisarMapaRequisicoes','RBLoadingMobile','$timeout',
+    function(Pagina,PesquisarMapaRequisicoes,RBLoadingMobile,$timeout){
     var scope;  
     
     function setScope(obj){
         scope = obj;
-        
         return this;
     };
     
@@ -35,17 +34,52 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     }
     
-    function pesquisar(){
+    function pesquisarLocal(){
         $timeout.cancel(scope.timeoutPesquisa);
         scope.timeoutPesquisa = $timeout(function(){
-            alert('pesquisou');
+            RBLoadingMobile.show();
+            scope.dados.latitude = DGlobal.coordenadasAtual.latitude,
+            scope.dados.longitude = DGlobal.coordenadasAtual.longitude,
+            scope.dados.atualizando = 0,
+            PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarLocais}).pesquisarLocais();
         },1500);
+    }
+    
+    function pesquisarLocalScroll(){
+        scope.dados.latitude = DGlobal.coordenadasAtual.latitude,
+        scope.dados.longitude = DGlobal.coordenadasAtual.longitude,
+        scope.dados.atualizando = true,
+        PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarLocaisScroll}).pesquisarLocais();
+    }
+    
+    function pesquisarPessoa(){
+        $timeout.cancel(scope.timeoutPesquisaPessoa);
+        scope.timeoutPesquisaPessoa = $timeout(function(){
+            RBLoadingMobile.show();
+            scope.dados.atualizando = 0,
+            PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarPessoas}).pesquisarPessoas();
+        },1500);
+    }
+    
+    function pesquisarPessoaScroll(){
+        scope.dados.atualizando = true,
+        PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarPessoasScroll}).pesquisarPessoas();
+    }
+    
+    function irPerfil(id){
+        Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id});
+        DGlobal.perfilOutros = true;
+        DGlobal.paginaVoltar = 28;
     }
     
     return {
         setScope:setScope,
         voltarMapa:voltarMapa,
-        pesquisar:pesquisar
+        pesquisarLocal:pesquisarLocal,
+        pesquisarLocalScroll:pesquisarLocalScroll,
+        pesquisarPessoa:pesquisarPessoa,
+        pesquisarPessoaScroll:pesquisarPessoaScroll,
+        irPerfil:irPerfil
     };
     
  }]);

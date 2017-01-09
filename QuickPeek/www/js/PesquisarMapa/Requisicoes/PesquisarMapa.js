@@ -18,9 +18,9 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
             return this;
         };
 
-        function listar(){
+        function pesquisarLocais(){
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Listar/listarPessoas",
+                url: Config.getRefAmbienteReq()+"/Local/pesquisarLocais",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -31,12 +31,58 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
             GCS.conectar(obj);
         };
         
-        function successListar(objRetorno){
+        function successPesquisarLocais(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                
+//                for(var i = 0; i < objRetorno.dados.length;i++){
+//                    scope.locais.push(objRetorno.dados[i]);
+//                }
+                scope.locais = objRetorno.dados;
+            }
+        };
+        
+        function successPesquisarLocaisScroll(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                for(var i = 0; i < objRetorno.dados.length;i++){
+                    scope.locais.push(objRetorno.dados[i]);
+                }
+            }
+        };
+        
+        function pesquisarPessoas(){
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/pesquisarPessoas",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successPesquisarPessoas(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+//                for(var i = 0; i < objRetorno.dados.length;i++){
+//                    scope.locais.push(objRetorno.dados[i]);
+//                }
+                scope.pessoas = objRetorno.dados;
+            }
+        };
+        
+        function successPesquisarPessoasScroll(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                for(var i = 0; i < objRetorno.dados.length;i++){
+                    scope.pessoas.push(objRetorno.dados[i]);
+                }
             }
         };
         
@@ -52,7 +98,11 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
         
         return {
             set: set,
-            listar: listar,
-            successListar: successListar
+            pesquisarLocais: pesquisarLocais,
+            successPesquisarLocais: successPesquisarLocais,
+            successPesquisarLocaisScroll: successPesquisarLocaisScroll,
+            pesquisarPessoas: pesquisarPessoas,
+            successPesquisarPessoas: successPesquisarPessoas,
+            successPesquisarPessoasScroll: successPesquisarPessoasScroll
         };       
 }]);

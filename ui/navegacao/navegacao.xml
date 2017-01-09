@@ -54,7 +54,7 @@
         <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
     </pagina>   
     
-    <pagina id="8" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="perfil">
+    <pagina id="8" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perfil">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarPerfilUsuario" objeto='dadosUsuario'></metodo>
@@ -217,10 +217,11 @@
         <acaoCliente classe="pag-perguntas-local" acao="PerguntasLocalCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="28" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Pesquisar">
+    <pagina id="28" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pesquisar">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarUltimosLocais" objeto='ultimosLocais'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-pesquisar-mapa" acao="PesquisarMapaCtrl" title="Pesquisar"/>

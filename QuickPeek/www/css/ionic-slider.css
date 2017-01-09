@@ -17,3 +17,7 @@ i{
 ion-side-menu-content > .slider{
     height: 80%;
 }
+
+ion-side-menu-content > .slider.slider-full{
+    height: 100%!important;
+}

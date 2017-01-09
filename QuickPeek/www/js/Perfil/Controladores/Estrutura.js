@@ -29,6 +29,9 @@ angular.module('QuickPeek.Estrutura.Perfil', [
             scope.dados = DGlobal.dadosUsuario.dados; 
             montaAvatar();
         }
+        
+        if(DGlobal.perfilOutros)
+            scope.outraPessoa = true;
     };
     
     function montaAvatar(){

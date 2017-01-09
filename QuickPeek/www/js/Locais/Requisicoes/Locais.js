@@ -10,11 +10,13 @@ angular.module('QuickPeek.Requisicao.Locais', [
         var dados;
         var scope;
         var acaoSuccess;
+        var acaoPosterior = false;
 
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
             acaoSuccess = obj.acaoSuccess;
+            if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
             return this;
         };
 
@@ -70,6 +72,42 @@ angular.module('QuickPeek.Requisicao.Locais', [
             }
         };
         
+        function curtirHashTag(){
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/curtirHashtag",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successCurtirHashtag(objRetorno){
+            console.log("objRetorno",objRetorno);
+            console.log(scope.locais);
+            if(objRetorno.success === true){
+                for(var i = 0; i < scope.locais.length;i++){
+                    if(scope.locais[i].dados.localId == dados.localId){
+                        for(var j = 0; j < scope.locais[i].hashtags.length;j++){
+                            if(scope.locais[i].hashtags[j].hashtagId == dados.hashtagId){
+                                if(scope.locais[i].hashtags[j].jaCurtiu == 1)scope.locais[i].hashtags[j].jaCurtiu = 0;
+                                else scope.locais[i].hashtags[j].jaCurtiu = 1;
+                            }
+                        }
+                    }
+                }
+                
+                if(acaoPosterior)acaoPosterior();
+                console.log(scope.locais);
+            }
+            else{
+                OpenToast('Não foi possível curtir esta hashtag');
+            }
+        };
+        
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -115,7 +153,9 @@ angular.module('QuickPeek.Requisicao.Locais', [
             listarMidias:listarMidias,
             successListarMidias:successListarMidias,
             attTutorial:attTutorial,
-            successAttTutorial:successAttTutorial
+            successAttTutorial:successAttTutorial,
+            successCurtirHashtag:successCurtirHashtag,
+            curtirHashTag:curtirHashTag
         };
                            
 }]);     

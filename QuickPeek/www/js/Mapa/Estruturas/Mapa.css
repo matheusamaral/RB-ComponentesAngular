@@ -1,20 +1,23 @@
 .btn-flutuante-redondo{
     position: fixed;
-    bottom: 148px;
     right: 20px;
     background-color: #FFFFFF !important;
 }
 
+.alinha-vertical{
+    display: table-cell;
+    vertical-align: middle;
+}
+
 .btn-flutuante-pesquisar{
     position: fixed;
-    bottom: 80px;
     right: 20px;
     background-color: #FFFFFF !important;
 }
 
 .barra-localizacao-atual{
     position: fixed;
-    height: 67px;
+    display: table;
     bottom: 0px;
     left: 0px;
     width: 100%;

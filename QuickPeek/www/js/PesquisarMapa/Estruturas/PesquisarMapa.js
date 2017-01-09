@@ -11,13 +11,13 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                         <button style="padding-top: 2px;" ng-click="voltarMapa()" class="btn-txt-direita button button-clear">\n\
                             <i class="icone-dourado icon ion-android-arrow-back seta-barra"></i>\n\
                         </button>\n\
-                        <input ng-keyup="pesquisar()" class="input-pesquisa" type="text" placeholder="Pesquisar locais...">\n\
+                        <input ng-keyup="pesquisarLocal()" ng-model="dados.nome" class="input-pesquisa" type="text" placeholder="Pesquisar locais...">\n\
                     </div>\n\
                     <div ng-if="nSlide == 1" class="row">\n\
                         <button style="padding-top: 2px;" ng-click="voltarMapa()" class="btn-txt-direita button button-clear">\n\
                             <i class="icone-dourado icon ion-android-arrow-back seta-barra"></i>\n\
                         </button>\n\
-                        <input ng-keyup="pesquisar()" class="input-pesquisa" type="text" placeholder="Pesquisar pessoas...">\n\
+                        <input ng-keyup="pesquisarPessoa()" ng-model="dados.pesquisa" class="input-pesquisa" type="text" placeholder="Pesquisar pessoas...">\n\
                     </div>\n\
                 </div>'+tabs();
     };     
@@ -37,36 +37,38 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                         </a>\n\
                     </div>\n\
                 </div>\n\
-                <ion-slide-box show-pager="false" style="padding-top:125px;" active-slide="nSlide" on-slide-changed="slideHasChanged($index)">\n\
+                <ion-slide-box class="slider-full" show-pager="false" style="padding-top:125px;" active-slide="nSlide" on-slide-changed="slideHasChanged($index)">\n\
                     <ion-slide>\n\
-                        <div>'+sessaoUltimosLocais()+'</div>\n\
+                        <div id="container-infinite-scrol">'+sessaoUltimosLocais()+'</div>\n\
                     </ion-slide>\n\
                     <ion-slide>\n\
-                        <div>'+pessoas()+'</div>\n\
+                        <div id="container-infinite-scrol-pessoas">'+pessoas()+'</div>\n\
                     </ion-slide>\n\
                 </ion-slide-box>';
     }
     
     function pessoas(){
-         return'<div\n\
-                class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
-                ng-class="{\'padding-top-bloqueados\' : $index == 0}">\n\
-                    <div class="col-25 remove-padding">\n\
-                        <div ng-class="{\'borda-dourada\' : dadosUser.usuarioId == pessoa.usuarioId}" style="background-image:url(https://scontent-gru2-1.xx.fbcdn.net/v/t1.0-9/14100393_1088344121255279_2344681261483649428_n.jpg?oh=6cc650480cf90663ec6809e8c79e840d&oe=58E78D50)" class="btn-redondo-medio"></div>\n\
-                    </div>\n\
-                    <div class="col remove-padding col-center">\n\
-                        <p class="font-preta negrito text-left">Teste</p>\n\
-                    </div>\n\
-                    <div class="remove-padding col-center">\n\
-                        <button ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
-                            <i class="icon ion-ios-plus-empty"></i>Seguir\n\
-                        </button>\n\
-                        <button ng-disabled="dadosUser.usuarioId == pessoa.usuarioId" ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId == pessoa.usuarioId" class="btn-voce btn-seguidores button button-outline button-positive">\n\
-                            <i class="icon ion-ios-plus-empty"></i>Seguir\n\
-                        </button>\n\
-                        <button ng-click="deixarSeguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
-                            <i class="icon ion-checkmark"></i>Seguindo\n\
-                        </button>\n\
+         return'<div infinite-scroll="pesquisarPessoaScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol-pessoas\'">\n\
+                    <div ng-click="irPerfil(pessoa.usuarioId)"\n\
+                    class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
+                    ng-repeat="pessoa in pessoas">\n\
+                        <div class="col-25 remove-padding">\n\
+                            <div ng-class="{\'borda-dourada\' : dadosUser.usuarioId == pessoa.usuarioId}" style="background-image:url({{pessoa}})" class="btn-redondo-medio"></div>\n\
+                        </div>\n\
+                        <div class="col remove-padding col-center">\n\
+                            <p class="font-preta negrito text-left">{{pessoa.nome}}</p>\n\
+                        </div>\n\
+                        <div class="remove-padding col-center">\n\
+                            <button ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
+                                <i class="icon ion-ios-plus-empty"></i>Seguir\n\
+                            </button>\n\
+                            <button ng-disabled="dadosUser.usuarioId == pessoa.usuarioId" ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId == pessoa.usuarioId" class="btn-voce btn-seguidores button button-outline button-positive">\n\
+                                <i class="icon ion-ios-plus-empty"></i>Voce\n\
+                            </button>\n\
+                            <button ng-click="deixarSeguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
+                                <i class="icon ion-checkmark"></i>Seguindo\n\
+                            </button>\n\
+                        </div>\n\
                     </div>\n\
                 </div>';
     }
@@ -79,36 +81,45 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                         </div>\n\
                     </div>\n\
                 </div>\n\
-                <div class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
-                    <div class="col">\n\
-                        <p class="p-titulo-local">Empório</p>\n\
-                        <div class="row remove-padding">\n\
-                            <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
+                <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
+                    <div ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
+                        <div ng-if="local.presente == 1" class="col">\n\
+                            <p class="p-titulo-local">{{local.localNome}}</p>\n\
+                            <div class="row remove-padding">\n\
+                                <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual - {{local.cidade}}</span>\n\
+                            </div>\n\
                         </div>\n\
-                    </div>\n\
-                    <div class="text-right">\n\
-                        <md-menu>\n\
-                            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
-                                <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
-                            </md-button>\n\
-                            <md-menu-content width="4">\n\
-                                <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
-                                        Alterar localização\n\
-                                    </md-button>\n\
-                                </md-menu-item>\n\
-                                <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
-                                        Alterar privacidade\n\
-                                    </md-button>\n\
-                                </md-menu-item>\n\
-                                <md-menu-item>\n\
-                                    <md-button ng-click="ctrl.redial($event)">\n\
-                                        Navegar até o local\n\
-                                    </md-button>\n\
-                                </md-menu-item>\n\
-                            </md-menu-content>\n\
-                        </md-menu>\n\
+                        <div ng-if="local.presente != 1" class="col">\n\
+                            <p class="p-titulo-local">{{local.localNome}}</p>\n\
+                            <div class="row remove-padding" style="padding-top:3px !important">\n\
+                                <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia >= 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia >= 1">{{local.distancia.split(\'.\')[0]}} km de distância - {{local.cidade}}</span>\n\
+                                <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia < 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia < 1">{{(1000 * local.distancia).split(\'.\')[0]}} m de distância - {{local.cidade}}</span>\n\
+                            </div>\n\
+                        </div>\n\
+                        <div class="text-right">\n\
+                            <md-menu>\n\
+                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                    <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
+                                </md-button>\n\
+                                <md-menu-content width="4">\n\
+                                    <md-menu-item>\n\
+                                        <md-button ng-click="ctrl.redial($event)">\n\
+                                            Alterar localização\n\
+                                        </md-button>\n\
+                                    </md-menu-item>\n\
+                                    <md-menu-item>\n\
+                                        <md-button ng-click="ctrl.redial($event)">\n\
+                                            Alterar privacidade\n\
+                                        </md-button>\n\
+                                    </md-menu-item>\n\
+                                    <md-menu-item>\n\
+                                        <md-button ng-click="ctrl.redial($event)">\n\
+                                            Navegar até o local\n\
+                                        </md-button>\n\
+                                    </md-menu-item>\n\
+                                </md-menu-content>\n\
+                            </md-menu>\n\
+                        </div>\n\
                     </div>\n\
                 </div>';
     }

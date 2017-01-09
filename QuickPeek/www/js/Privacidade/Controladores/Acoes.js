@@ -19,8 +19,12 @@ angular.module('QuickPeek.Acoes.Privacidade', [
     };
     
     function voltar(){
-        if(DGlobal.checkIn)
-            Pagina.navegar({idPage:29});
+        if(DGlobal.voltarLocais){
+            Pagina.navegar({idPage:24,paramAdd:'?localId='+DGlobal.localAtual+'&atualizando=0'});
+        }else{
+            if(DGlobal.checkIn)
+                Pagina.navegar({idPage:29});
+        }
     }
     
     function editarAvatar(){

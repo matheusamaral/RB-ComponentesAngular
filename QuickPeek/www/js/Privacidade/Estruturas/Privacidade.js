@@ -28,7 +28,8 @@ angular.module('QuickPeek.HTML.Privacidade', [
                                 <i class="icon ion-edit"></i>\n\
                             </button>\n\
                         </div>\n\
-                        <p class="p-privacidade-nome">{{dadosUser.usuarioNome}}</p>\n\
+                        <p ng-if="dados.visibilidadeId != 3" class="p-privacidade-nome">{{dadosUser.usuarioNome}}</p>\n\
+                        <p ng-if="dados.visibilidadeId == 3" class="p-privacidade-nome">{{dadosUser.avatarNome}}</p>\n\
                     </div>\n\
                 </div>\n\
                 <div class="row">\n\
