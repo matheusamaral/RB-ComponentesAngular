@@ -27,10 +27,15 @@ angular.module('QuickPeek.Estrutura.Mapa', [
             if(DGlobal.dadosUser && DGlobal.dadosUser.success){
                 scope.dadosUser = DGlobal.dadosUser.dados;
             }
+            
             if(DGlobal.locais && DGlobal.locais.success){
                 Geolocation.setScope(scope).inicializar('mapaGeral',DGlobal.locais.dados);
             }else{
                 Geolocation.setScope(scope).inicializar('mapaGeral');
+            }
+            
+            if(DGlobal.localBarra && DGlobal.localBarra.success){
+                scope.dadosbarra = DGlobal.localBarra.dados;
             }
             
         },0);

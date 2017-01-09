@@ -37,6 +37,7 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         function successVerificarLocaisProximos(objRetorno){
             RBLoadingMobile.hide();
             //alert(JSON.stringify(objRetorno));
+            console.log('Pega valores no bancoe marca no mapa'+objRetorno);
             console.log(objRetorno);
             if(objRetorno.success === true){
                 marcarNoMapa(objRetorno.dados);
@@ -44,6 +45,26 @@ angular.module('QuickPeek.Requisicao.Mapa', [
             else{
                 //if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
+        };
+        
+        function cadastrarLocaisProximo(){
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/locaisPertos",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successCadastrarLocaisProximo(objRetorno){
+            console.log('Salva locais do mapa nop banco '+objRetorno);
+            console.log(objRetorno);
+            if(acaoPosterior)acaoPosterior();
         };
         
         function marcarNoMapa(array){
@@ -129,7 +150,9 @@ angular.module('QuickPeek.Requisicao.Mapa', [
             verificarLocaisProximos: verificarLocaisProximos,
             successVerificarLocaisProximos: successVerificarLocaisProximos,
             attTutorial:attTutorial,
-            successAttTutorial:successAttTutorial
+            successAttTutorial:successAttTutorial,
+            successCadastrarLocaisProximo:successCadastrarLocaisProximo,
+            cadastrarLocaisProximo:cadastrarLocaisProximo
         };
                            
 }]);     

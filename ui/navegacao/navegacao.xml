@@ -158,7 +158,9 @@
     <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
+                <metodo name="locaisPertos" objeto='teste'></metodo>
                 <metodo name="mapa" objeto='locais'></metodo>
+                <metodo name="sugestaoLocal" objeto='localBarra'></metodo>
             </classe>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUser'></metodo>
@@ -227,7 +229,7 @@
     <pagina id="29" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="CheckIn">
         <dadosSolicitados>
             <classe name="Local">
-                <metodo name="mapa" objeto='locais'></metodo>
+                <metodo name="mapaLocaisPertos" objeto='locais'></metodo>
             </classe>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
