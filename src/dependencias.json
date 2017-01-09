@@ -64,6 +64,7 @@
     "SetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagensVisualizadas",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
+    "DetalhesLocais": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\DetalhesLocais",
     "LocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Locais\\LocaisPertos",
     "Mapa": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\Mapa",
     "MapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\MapaLocaisPertos",
