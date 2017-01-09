@@ -30,6 +30,7 @@ class ConsultaSugestaoLocal {
                 ->add('l.titulo', 'localTitulo')
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
+                ->add('ifnull(c.presente, 0)', 'checkIn')
                 ->add('(6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) * COS(RADIANS(?) '
                         . '- RADIANS(l.longitude)) + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude))))', 'distancia');
         $query->from('local', 'l');
