@@ -94,6 +94,7 @@ class ConsultaMapa {
         $query->where('s.usuario_id = ?')
                 ->add('s.confirmar_seguir = 1')
                 ->add('s.ativo = 1');
+        $query->group('cin.local_id');
         return $query;
     }
     

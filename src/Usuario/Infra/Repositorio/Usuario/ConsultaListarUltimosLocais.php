@@ -17,12 +17,14 @@ class ConsultaListarUltimosLocais {
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) 
                     * cos(radians(?) - radians(l.longitude)) 
                     + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia');
-        $query->from('check_in', 'ci');
-        $query->join('local', 'l')->on('l.id = ci.local_id')
-                ->on('l.ativo = 1');
-        $query->where('ci.usuario_id = ?')->add('ci.ativo = 1');
+        $query->from('local', 'l');
+        $query->join('check_in', 'ci')
+                ->on('ci.local_id = l.id')
+                ->on('ci.usuario_id = ?')
+                ->on('ci.ativo = 1');
+        $query->where('l.ativo = 1');
         $query->order('ci.presente desc, ci.momento desc');
-        $query->limit('11');
+        $query->limit(11);
         $query->addVariaveis([$latitude, $longitude, $latitude, $usuarioId]);
         return $query->executar();
     }

@@ -44,7 +44,7 @@ class ConsultaPaginaConversas {
                 . ' else u.id = men.usuario_mensagem_id end');
         $query->group('agrupamento');
         $query->having('agrupamento not in ('. $notIn .')');
-        $query->order('men.momento desc');
+        $query->order('men.id desc');
         $query->limit(15);
         $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
