@@ -14,6 +14,7 @@ angular.module('QuickPeek.PessoasLocal', [
         $scope.voltarLocais = PessoasLocalAcoes.voltarLocais;
         $scope.converteMinutoshoras = PessoasLocalAcoes.converteMinutoshoras;
         $scope.maisPessoas = PessoasLocalAcoes.maisPessoas;
+        $scope.irPerfil = PessoasLocalAcoes.irPerfil;
     }
 ])
 

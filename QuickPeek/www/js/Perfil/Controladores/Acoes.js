@@ -66,6 +66,14 @@ angular.module('QuickPeek.Acoes.Perfil', [
         //$('ion-side-menu-content').addClass('background-cinza');
     }
     
+    function voltar(){
+        if(DGlobal.perfilOutros)delete DGlobal.perfilOutros;
+        if(DGlobal.paginaVoltar){
+            Pagina.navegar({idPage:DGlobal.paginaVoltar});
+            delete DGlobal.paginaVoltar;
+        }
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -74,7 +82,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
         irConfiguracoes:irConfiguracoes,
         irSeguidores:irSeguidores,
         irSeguindo:irSeguindo,
-        irMapa:irMapa
+        irMapa:irMapa,
+        voltar:voltar
     };
     
  }]);

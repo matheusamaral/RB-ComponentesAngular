@@ -18,7 +18,8 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
                         <div ng-repeat="pessoa in dados.pessoas" \n\
                         class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
                         ng-class="{\'padding-top-bloqueados\' : $index == 0}"\n\
-                        ng-if="dados.pessoas.length > 0">\n\
+                        ng-if="dados.pessoas.length > 0"\n\
+                        ng-click="irPerfil(pessoa.usuarioId)">\n\
                             <div class="col-25 remove-padding">\n\
                                 <div ng-class="{\'borda-dourada\' : dadosUser.usuarioId == pessoa.usuarioId}" style="background-image:url({{pessoa.endereco}})" class="btn-redondo-medio"></div>\n\
                             </div>\n\

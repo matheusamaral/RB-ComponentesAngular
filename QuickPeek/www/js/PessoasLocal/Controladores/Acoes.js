@@ -12,7 +12,6 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
     
     function setScope(obj){
         scope = obj;
-        
         return this;
     };
     
@@ -29,11 +28,18 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
         PessoasLocalRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PessoasLocalRequisicoes.successListar}).listar();
     }
     
+    function irPerfil(id){
+        Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id});
+        DGlobal.perfilOutros = true;
+        DGlobal.paginaVoltar = 26;
+    }
+    
     return {
         setScope:setScope,
         voltarLocais:voltarLocais,
         converteMinutoshoras:converteMinutoshoras,
-        maisPessoas:maisPessoas
+        maisPessoas:maisPessoas,
+        irPerfil:irPerfil
     };
     
  }]);

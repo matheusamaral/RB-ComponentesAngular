@@ -12,7 +12,11 @@ angular.module('QuickPeek.PesquisarMapa', [
         PesquisarMapaAcoes.setScope($scope);
         
         $scope.voltarMapa = PesquisarMapaAcoes.voltarMapa;
-        $scope.pesquisar = PesquisarMapaAcoes.pesquisar;
+        $scope.pesquisarLocal = PesquisarMapaAcoes.pesquisarLocal;
+        $scope.pesquisarLocalScroll = PesquisarMapaAcoes.pesquisarLocalScroll;
+        $scope.pesquisarPessoa = PesquisarMapaAcoes.pesquisarPessoa;
+        $scope.pesquisarPessoaScroll = PesquisarMapaAcoes.pesquisarPessoaScroll;
+        $scope.irPerfil = PesquisarMapaAcoes.irPerfil;
     }
 ])
 

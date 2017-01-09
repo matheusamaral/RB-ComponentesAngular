@@ -12,6 +12,13 @@
     font-size: 13px;
 }
 
+.btn-perfil-geral{
+    width: 64% !important;
+    margin: auto;
+    display: block;
+    margin-bottom: 13px !important;
+}
+
 p.font-preta-perfil{
     color: black;
     font-size: 16px;

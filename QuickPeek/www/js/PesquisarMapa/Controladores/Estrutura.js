@@ -20,6 +20,10 @@ angular.module('QuickPeek.Estrutura.PesquisarMapa', [
         scope.dados = {};
         
         scope.nSlide = 0;
+        
+        if(DGlobal.ultimosLocais && DGlobal.ultimosLocais.success){
+            scope.locais = DGlobal.ultimosLocais.dados;
+        }
     };
   
     return {

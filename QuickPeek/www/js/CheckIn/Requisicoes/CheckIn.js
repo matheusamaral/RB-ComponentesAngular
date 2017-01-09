@@ -23,7 +23,7 @@ angular.module('QuickPeek.Requisicao.CheckIn', [
         function verificarLocaisProximos(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Local/mapa",
+                url: Config.getRefAmbienteReq()+"/Local/mapaLocaisPertos",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -37,13 +37,11 @@ angular.module('QuickPeek.Requisicao.CheckIn', [
         
         function successVerificarLocaisProximos(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
+            //alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true) {
                 scope.locais = objRetorno.dados;
-                if(acaoPosterior)acaoPosterior(scope.locais);
             }
             else{
-                if(acaoPosterior)acaoPosterior(scope.locais);
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };

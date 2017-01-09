@@ -8,17 +8,17 @@ angular.module('QuickPeek.HTML.CheckIn', [
     function montar(){
         return '<div style="box-shadow: 0px -2px 8px black !important;" class="row bar bar-header bar-positive">\n\
                     <div class="col remove-padding">\n\
-                        <button ng-click="voltarConfig()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="voltarMapa()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>Onde você está?\n\
                         </button>\n\
                     </div>\n\
                     <div class="col col-20 remove-padding text-right">\n\
-                        <button ng-click="voltarConfig()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="irPesquisa()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-search seta-barra"></i>\n\
                         </button>\n\
                     </div>\n\
                     <div class="col col-20  text-right remove-padding">\n\
-                        <button ng-click="voltarConfig()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="attLocais()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-sync seta-barra"></i>\n\
                         </button>\n\
                     </div>\n\

@@ -28,12 +28,23 @@ angular.module('QuickPeek.HTML.Perfil', [
                                 <p class="remove-padding col p-cinza-perfil">seguindo</p>\n\
                             </div>\n\
                         </div>\n\
-                        <div class="col" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
+                        <div class="col" ng-if="!outraPessoa" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
                             <button style="margin-bottom: 10px;" ng-click="editarPerfil()" class="btn-perfil button button-outline button-stable">\n\
                                 <i class="icon ion-person config-icons-perfil"></i> Editar seu perfil\n\
                             </button>\n\
                             <button ng-click="irConfiguracoes()" class="btn-perfil button button-outline button-stable">\n\
                                 <i class="icon ion-gear-b config-icons-perfil"></i> Configurações\n\
+                            </button>\n\
+                        </div>\n\
+                        <div class="col" ng-if="outraPessoa" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
+                            <button ng-click="seguir(pessoa.usuarioId)" ng-if="dados.seguindo == 0" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
+                                <i class="icon ion-ios-plus-empty"></i>Seguir\n\
+                            </button>\n\
+                            <button ng-click="deixarSeguir(pessoa.usuarioId)" ng-if="dados.seguindo == 1" class="btn-perfil-geral btn-seguidores button button button-balanced">\n\
+                                <i class="icon ion-checkmark"></i>Seguindo\n\
+                            </button>\n\
+                            <button ng-click="irConfiguracoes()" class="btn-perfil-geral btn-perfil button button-outline button-stable">\n\
+                                <i class="icon ion-chatbox-working config-icons-perfil"></i> Conversar\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
@@ -44,7 +55,7 @@ angular.module('QuickPeek.HTML.Perfil', [
     };  
     
     function sessaoAvatar(){
-        return'<div class="box-shadow-padrao-barra row box-avatar-cad" style="margin-top:20px !important; padding-top:20px;">\n\
+        return'<div ng-if="!outraPessoa" class="box-shadow-padrao-barra row box-avatar-cad" style="margin-top:20px !important; padding-top:20px;">\n\
                     <div class="col col-25 remove-padding">\n\
                         <div style="margin: auto;background-image: url({{dados.avatar.endereco}})" \n\
                         class="btn-perfil-medio box-img-cad">\n\
@@ -63,7 +74,8 @@ angular.module('QuickPeek.HTML.Perfil', [
         return'<div class="row box-sessao-local">\n\
                     <div class="col">\n\
                         <div class="row text-center">\n\
-                            <p class="p-local-pequeno">ONDE ESTOU AGORA</p>\n\
+                            <p ng-if="!outraPessoa" class="p-local-pequeno">ONDE ESTOU AGORA</p>\n\
+                            <p ng-if="outraPessoa" class="p-local-pequeno">ONDE ESTÁ AGORA</p>\n\
                         </div>\n\
                         <div class="row text-center">\n\
                             <p class="p-local-grande">Cais do Chopp</p>\n\
@@ -111,7 +123,7 @@ angular.module('QuickPeek.HTML.Perfil', [
     }
     
     function tabs(){
-        return'<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
+        return'<div ng-if="!outraPessoa" class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
                     <div class="tabs box-shadow-barra">\n\
                         <a class="tab-item" href="#" ng-click="irMapa()">\n\
                             <i style="opacity: 0.5;" class="icon img-quick-logo"></i>\n\
@@ -125,6 +137,13 @@ angular.module('QuickPeek.HTML.Perfil', [
                         <a class="tab-item active" href="#">\n\
                             <i class="icon ion-person"></i>\n\
                         </a>\n\
+                    </div>\n\
+                </div>\n\
+                <div ng-if="outraPessoa" class="row bar bar-header bar-positive">\n\
+                    <div>\n\
+                        <button ng-click="voltar()" class="btn-txt-direita button button-clear">\n\
+                            <i class="icon ion-android-arrow-back seta-barra"></i>Perfil\n\
+                        </button>\n\
                     </div>\n\
                 </div>';
     }
