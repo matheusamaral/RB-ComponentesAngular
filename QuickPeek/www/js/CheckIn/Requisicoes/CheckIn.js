@@ -29,7 +29,7 @@ angular.module('QuickPeek.Requisicao.CheckIn', [
                 acao: acaoSuccess,
                 error: errorSalvar,
                 scope: scope,
-                exibeMSGCarregando: 0
+                exibeMSGCarregando: 1
             };
             GCS.conectar(obj);
         };

@@ -48,8 +48,6 @@ angular.module('QuickPeek.Acoes.CheckIn', [
         Pagina.navegar({idPage:30});
     }
     
-    
-    
     function attLocais(){
         navigator.geolocation.getCurrentPosition(onSuccessGetNovaCoord,onErrorNovaCoord);
     }

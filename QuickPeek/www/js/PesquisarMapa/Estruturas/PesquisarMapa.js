@@ -82,7 +82,7 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                     </div>\n\
                 </div>\n\
                 <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
-                    <div ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
+                    <div ng-click="checkInLocal(local)" ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
                         <div ng-if="local.presente == 1" class="col">\n\
                             <p class="p-titulo-local">{{local.localNome}}</p>\n\
                             <div class="row remove-padding">\n\

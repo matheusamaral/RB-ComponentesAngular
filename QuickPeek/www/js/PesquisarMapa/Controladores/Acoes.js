@@ -72,6 +72,11 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         DGlobal.paginaVoltar = 28;
     }
     
+    function checkInLocal(local){
+        DGlobal.checkIn = {local:local};
+        Pagina.navegar({idPage:30});
+    }
+    
     return {
         setScope:setScope,
         voltarMapa:voltarMapa,
@@ -79,7 +84,8 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         pesquisarLocalScroll:pesquisarLocalScroll,
         pesquisarPessoa:pesquisarPessoa,
         pesquisarPessoaScroll:pesquisarPessoaScroll,
-        irPerfil:irPerfil
+        irPerfil:irPerfil,
+        checkInLocal:checkInLocal
     };
     
  }]);
