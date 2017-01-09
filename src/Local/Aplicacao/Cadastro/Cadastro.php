@@ -28,13 +28,28 @@ class Cadastro {
 
         $endereco = $json->results[0]->formatted_address;
         foreach($json->results[0]->address_components as $v){
-            if($v->types[0] == 'locality' && $v->types[1] == 'political'){
+            if($v->types[0] == 'locality'){
                 $cidade = $v->long_name;
+            }
+            if($v->types[0] == 'administrative_area_level_1'){
+                $estado = $v->long_name;
+            }
+            if($v->types[0] == 'country'){
+                $pais = $v->long_name;
+            }
+        }
+        if(!isset($cidade)){
+            foreach($json->results[0]->address_components as $v){
+                if($v->types[0] == 'administrative_area_level_2'){
+                    $cidade = $v->long_name;
+                }
             }
         }
         $msg->setCampo('entidade', 'Local');
         $msg->setCampo('Local::endereco', $endereco);
         $msg->setCampo('Local::cidade', $cidade);
+        $msg->setCampo('Local::estado', $estado);
+        $msg->setCampo('Local::pais', $pais);
         $msg->setCampo('Local::latitude', $latitude);
         $msg->setCampo('Local::longitude', $longitude);
         $msg->setCampo('Local::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));

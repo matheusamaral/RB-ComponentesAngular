@@ -36,19 +36,20 @@ class TempoViagem {
             $local['driving']['distancia']['valor'] = $driving->rows[0]->elements[0]->distance->value;
             $local['driving']['duracao']['texto'] = $driving->rows[0]->elements[0]->duration->value;
             $local['driving']['duracao']['valor'] = $driving->rows[0]->elements[0]->duration->value;
-            if($bicycling->status == 'OK'){
-                $local['bicycling']['distancia']['texto'] = $bicycling->rows[0]->elements[0]->distance->text;
-                $local['bicycling']['distancia']['valor'] = $bicycling->rows[0]->elements[0]->distance->value;
-                $local['bicycling']['duracao']['texto'] = $bicycling->rows[0]->elements[0]->duration->value;
-                $local['bicycling']['duracao']['valor'] = $bicycling->rows[0]->elements[0]->duration->value;
-            }
-            if($walking->status == 'OK'){
-                $local['walking']['distancia']['texto'] = $walking->rows[0]->elements[0]->distance->text;
-                $local['walking']['distancia']['valor'] = $walking->rows[0]->elements[0]->distance->value;
-                $local['walking']['duracao']['texto'] = $walking->rows[0]->elements[0]->duration->value;
-                $local['walking']['duracao']['valor'] = $walking->rows[0]->elements[0]->duration->value;
-            }
-            
+        }
+        if($bicycling->status == 'OK'){
+            $local['bicycling']['distancia']['texto'] = $bicycling->rows[0]->elements[0]->distance->text;
+            $local['bicycling']['distancia']['valor'] = $bicycling->rows[0]->elements[0]->distance->value;
+            $local['bicycling']['duracao']['texto'] = $bicycling->rows[0]->elements[0]->duration->value;
+            $local['bicycling']['duracao']['valor'] = $bicycling->rows[0]->elements[0]->duration->value;
+        }
+        if($walking->status == 'OK'){
+            $local['walking']['distancia']['texto'] = $walking->rows[0]->elements[0]->distance->text;
+            $local['walking']['distancia']['valor'] = $walking->rows[0]->elements[0]->distance->value;
+            $local['walking']['duracao']['texto'] = $walking->rows[0]->elements[0]->duration->value;
+            $local['walking']['duracao']['valor'] = $walking->rows[0]->elements[0]->duration->value;
+        }
+        if(isset($local)){
             $msg->setResultadoEtapa(true, false, ['dados'=>$local]);
         }else{
             $msg->setResultadoEtapa(false);

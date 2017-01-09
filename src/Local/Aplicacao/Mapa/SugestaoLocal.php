@@ -12,7 +12,7 @@ class SugestaoLocal {
         if($checkIn){
             $msg->setResultadoEtapa(true, false, ['dados'=>$checkIn]);
         }else{
-            $sugestao = $query->consultarSugestao($usuarioId);
+            $sugestao = $query->consultarSugestao($usuarioId, $msg->getCampo('Latitude')->get('valor'), $msg->getCampo('Longitude')->get('valor'));
             if($sugestao){
                 $msg->setResultadoEtapa(true, false, ['dados'=>$sugestao]);
             }else{

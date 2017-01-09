@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="detalhesLocais" modulo="Local">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="detalhes-locais" tipo="tarefa">
+            <entidade nome="DetalhesLocais" metodo="detalhesLocais"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
