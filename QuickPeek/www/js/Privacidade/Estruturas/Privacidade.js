@@ -19,7 +19,7 @@ angular.module('QuickPeek.HTML.Privacidade', [
                     </div>\n\
                 </div>\n\
                 <div class="altura-barra-padding remove-padding">\n\
-                    <p class="p-privacidade">Seu perfil em <span class="font-dourada">{{dados.local.localNome}}</span> estará visível para quem?</p>\n\
+                    <p class="p-privacidade">Seu perfil em <span class="font-dourada">{{dados.local.nome}}</span> estará visível para quem?</p>\n\
                     <div class="col text-center">\n\
                         <div ng-if="dados.visibilidadeId != 3" style="background-image:url({{dadosUser.usuarioEndereco}})" class="box-img-cad icone-redondo-privacidade-foto">\n\
                         </div>\n\

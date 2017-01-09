@@ -17,6 +17,7 @@ angular.module('QuickPeek.PesquisarMapa', [
         $scope.pesquisarPessoa = PesquisarMapaAcoes.pesquisarPessoa;
         $scope.pesquisarPessoaScroll = PesquisarMapaAcoes.pesquisarPessoaScroll;
         $scope.irPerfil = PesquisarMapaAcoes.irPerfil;
+        $scope.checkInLocal = PesquisarMapaAcoes.checkInLocal;
     }
 ])
 

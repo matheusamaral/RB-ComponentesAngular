@@ -34,9 +34,9 @@ angular.module('QuickPeek.HTML.CheckIn', [
                         <div class="onda dois" style="left:{{(larguraTela/2)-125}}px">\n\
                             <div ng-click="checkInLocal(locais[0])" ng-if="locais[0]" class="container-icone-checkin">\n\
                                 <div class="alinha-item-bottom col text-center" style="margin-top: 19px;">\n\
-                                    <div style="background-image:url({{locais[0].categoriaHashtagFoto}})" class="box-img-cad icone-redondo-medio">\n\
+                                    <div style="background-image:url({{locais[0].categoriaEndereco}})" class="box-img-cad icone-redondo-medio">\n\
                                     </div>\n\
-                                    <p class="nome-icone">{{locais[0].localNome}}</p>\n\
+                                    <p class="nome-icone">{{locais[0].nome}}</p>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\
@@ -44,14 +44,14 @@ angular.module('QuickPeek.HTML.CheckIn', [
                         <div class="onda quatro" style="left:{{(larguraTela/2)-225}}px">\n\
                             <div class="container-icone-checkin">\n\
                                 <div ng-click="checkInLocal(locais[1])" ng-if="locais[1]" class="alinha-item-bottom-esquerda col text-center" style="margin-top: 19px;">\n\
-                                    <div style="background-image:url({{locais[1].categoriaHashtagFoto}})" class="box-img-cad icone-redondo-medio">\n\
+                                    <div style="background-image:url({{locais[1].categoriaEndereco}})" class="box-img-cad icone-redondo-medio">\n\
                                     </div>\n\
-                                    <p class="nome-icone">{{locais[1].localNome}}</p>\n\
+                                    <p class="nome-icone">{{locais[1].nome}}</p>\n\
                                 </div>\n\
                                 <div ng-click="checkInLocal(locais[2])" ng-if="locais[2]" class="alinha-item-bottom-direita col text-center" style="margin-top: 19px;">\n\
-                                    <div style="background-image:url({{locais[2].categoriaHashtagFoto}})" class="box-img-cad icone-redondo-medio">\n\
+                                    <div style="background-image:url({{locais[2].categoriaEndereco}})" class="box-img-cad icone-redondo-medio">\n\
                                     </div>\n\
-                                    <p class="nome-icone">{{locais[2].localNome}}</p>\n\
+                                    <p class="nome-icone">{{locais[2].nome}}</p>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\
@@ -59,9 +59,9 @@ angular.module('QuickPeek.HTML.CheckIn', [
                         <div class="onda seis" style="left:{{(larguraTela/2)-325}}px">\n\
                             <div ng-click="checkInLocal(locais[3])" ng-if="locais[3]" class="container-icone-checkin">\n\
                                 <div class="alinha-item-bottom-ultimo col text-center" style="margin-top: 19px;">\n\
-                                    <div style="background-image:url({{locais[3].categoriaHashtagFoto}})" class="box-img-cad icone-redondo-medio">\n\
+                                    <div style="background-image:url({{locais[3].categoriaEndereco}})" class="box-img-cad icone-redondo-medio">\n\
                                     </div>\n\
-                                    <p class="nome-icone">{{locais[3].localNome}}</p>\n\
+                                    <p class="nome-icone">{{locais[3].nome}}</p>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\
