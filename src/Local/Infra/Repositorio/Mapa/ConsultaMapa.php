@@ -43,7 +43,8 @@ class ConsultaMapa {
         $query->join($this->subCheckIn(), 'cin', 'left')
                 ->on('cin.local_id = l.id');
         $query->where('l.ativo = 1')
-                ->add('l.id not in(' . $notIn . ')');
+                ->add('l.id not in(' . $notIn . ')')
+                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 5');
         $query->group('l.id');
         $query->order('distancia, relevancia desc, relevancia2 desc');
         $query->limit(50);
@@ -54,7 +55,8 @@ class ConsultaMapa {
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude,
             $usuarioId, $tempoHashtag, $tempoMidia, 
-            $usuarioId, $usuarioId]);
+            $usuarioId, $usuarioId,
+            $latitude, $longitude, $latitude]);
         return $query->executar();
     }
     
