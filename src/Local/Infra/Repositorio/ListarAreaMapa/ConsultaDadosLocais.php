@@ -12,12 +12,12 @@ class ConsultaDadosLocais {
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
-                ->add('((count(distinct c.id) * 1) + ((m.contagem + hl.contagem) * 0.9) + (count(distinct ci.id) * 0.8)) * case
-        when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 10 then 0.6
-        when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 20 then 0.5
-        when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 0.3
+                ->add('((count(distinct c.id) * 1) + ((ifnull(m.contagem, 0) + ifnull(hl.contagem, 0)) * 0.9) + (count(distinct ci.id) * 0.8)) * 
+                    (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + 
+                    sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 21/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * 
+                    cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
 		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
-    end ', 'relevancia')
+    end)', 'relevancia')
                 ->add('cin.contagem', 'relevancia2')
                 ->add('ifnull(chec.ativo, 0)', 'checkIn');
         $query->from('local', 'l');
@@ -42,10 +42,9 @@ class ConsultaDadosLocais {
         $query->group('l.id');
         $query->order('l.id = ' . $localId . ' desc, relevancia desc , relevancia2 desc');
         $query->limit(15);
-        $query->addVariaveis([$latitude, $longitude, $latitude, 
-            $latitudeLocal, $longitudeLocal, $latitudeLocal, 
-            $latitudeLocal, $longitudeLocal, $latitudeLocal, 
-            $latitudeLocal, $longitudeLocal, $latitudeLocal, 
+        $query->addVariaveis([$latitude, $longitude, $latitude,
+            $latitudeLocal, $longitudeLocal, $latitudeLocal,
+            $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $tempoMidia, $tempoHashtag, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
