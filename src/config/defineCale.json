@@ -10,6 +10,7 @@
     "DEFINE_APP": "src/config/define_app.json",
     "PERMITIR_COMMIT": 1,
     "PROTOCOLLO":"HTTP",
+    "CONFIG_IMAGEM":"src/config/define_imagem.json",
     
     "ARQ_CONFIG":{
         "ARQ_EMAIL": "src/config/define_email.json",

@@ -13,7 +13,7 @@ class ConsultaPesquisarMapaLocaisPertos {
                 ->add('titulo');
         $query->from('local');
         $query->where()->like('titulo', $nome);
-        $query->having('distancia <= 0.02');
+        $query->having('distancia <= 0.03');
         $query->order('distancia');
         $query->addVariaveis([$latitude, $longitude, $latitude]);
         return $query->executar();

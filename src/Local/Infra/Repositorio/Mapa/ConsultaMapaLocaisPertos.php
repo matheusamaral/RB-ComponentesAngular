@@ -27,10 +27,10 @@ class ConsultaMapaLocaisPertos {
                 ->on('cl.id = lc.categoria_id')
                 ->on('cl.ativo = 1');
         $query->where('l.ativo = 1');
-        $query->having('distancia <= 0.02');
+        $query->having('distancia <= 0.03');
         $query->group('l.id');
         $query->order('distancia');
-        $query->limit(4);
+        $query->limit(40);
         $query->addVariaveis([$latitude, $longitude, $latitude]);
         return $query->executar();
     }
