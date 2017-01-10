@@ -40,7 +40,7 @@ class ConsultaSugestaoLocal {
                 ->on('c.presente = 0')
                 ->on('c.ativo = 1');
         $query->where('(6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) * COS(RADIANS(?) '
-                . '- RADIANS(l.longitude)) + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude)))) <= 0.02');
+                . '- RADIANS(l.longitude)) + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude)))) <= 0.03');
         $query->group('l.id');
         $query->order('count(c.id) desc, distancia, c.id desc, localId');
         $query->limit('1');

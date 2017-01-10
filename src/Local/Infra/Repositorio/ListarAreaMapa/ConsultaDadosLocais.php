@@ -4,8 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaDadosLocais {
     
-    public function consultar($usuarioId, $latitude, $longitude, $tempoMidia, $tempoHashtag, $notIn){
-        
+    public function consultar($usuarioId,  $latitude, $longitude, $latitudeLocal, $longitudeLocal, $tempoMidia, $tempoHashtag, $notIn, $localId){
         $query = Conteiner::get('Query', false);
         $query->select('l.id', 'localId')
                 ->add('l.titulo', 'localNome')
@@ -41,13 +40,13 @@ class ConsultaDadosLocais {
                 ->on('chec.ativo = 1');
         $query->where('l.id not in (' . $notIn . ')');
         $query->group('l.id');
-        $query->order('relevancia desc, relevancia2 desc');
+        $query->order('l.id = ' . $localId . ' desc, relevancia desc , relevancia2 desc');
         $query->limit(15);
         $query->addVariaveis([$latitude, $longitude, $latitude, 
-            $latitude, $longitude, $latitude, 
-            $latitude, $longitude, $latitude, 
-            $latitude, $longitude, $latitude, 
-            $latitude, $longitude, $latitude,
+            $latitudeLocal, $longitudeLocal, $latitudeLocal, 
+            $latitudeLocal, $longitudeLocal, $latitudeLocal, 
+            $latitudeLocal, $longitudeLocal, $latitudeLocal, 
+            $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $tempoMidia, $tempoHashtag, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }

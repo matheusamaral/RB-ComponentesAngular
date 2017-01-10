@@ -3,9 +3,9 @@
 <processo codigo="listarAreaMapa" modulo="Listar">
     
     <entrada>
-        <campo regra="Opcional" chave="Local::id" nome="localId"/>
-        <campo regra="Opcional" chave="Latitude" nome="latitude"/>
-        <campo regra="Opcional" chave="Longitude" nome="longitude"/>
+        <campo regra="Obrigatorio" chave="Local::id" nome="localId"/>
+        <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/>
+        <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
         <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
     </entrada>
     
