@@ -22,7 +22,6 @@ angular.module('QuickPeek.Requisicao.Locais', [
         
         function listarAreas(){
             console.log('atençãaaaaaoo');
-            console.log(this);
             if (scope.busy) return;
             scope.busy = true;
             RBLoadingMobile.show();
@@ -39,17 +38,19 @@ angular.module('QuickPeek.Requisicao.Locais', [
         };
         
         function successListarAreas(objRetorno){
+            
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 $timeout(function(){
                     for(var i = 0; i < objRetorno.dados.length;i++){
                         scope.locais.push(objRetorno.dados[i]);
                     }
-                    RBLoadingMobile.hide();
                     scope.busy = false;
+                    RBLoadingMobile.hide();
                 },0);
             }
             else{
+                RBLoadingMobile.hide();
                 OpenToast('Não foi possível localizar mais locais proximos');
             }
         };
