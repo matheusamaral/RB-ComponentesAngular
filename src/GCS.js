@@ -1,17 +1,30 @@
 'use strict';
 
-angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.mensagem', 'RB.config', 'ngCookies'])
+angular.module('RB.gcs', ['ui.router', 'RB.loading','RB.validacoesPadroes', 'RB.mensagem', 'RB.config', 'ngCookies'])
 
 .config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.withCredentials = true;
+    //$httpProvider.defaults.withCredentials = true;
+    $httpProvider.defaults.useXDomain = true;
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }])
 
 .run(['$http', '$cookies', function($http, $cookies) {
     $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
 }])
 
-.factory('GCS', ['RBLoading','VP', 'MSG', '$http', '$location', '$route',
-     function(RBLoading, VP, MSG, $http, $location, $route) {
+.factory('GCS', ['RBLoading','VP', 'MSG', '$http', '$location','$state',
+    function(RBLoading, VP, MSG, $http, $location,$state) {
+        
+    var codsessrt = '';
+        
+    if(DGlobal && !DGlobal.codsessrt){
+        var rbDadosSessao = JSON.parse(localStorage.getItem("dadosSessao"));
+        if(!VP.ehValido(rbDadosSessao)){
+//            console.log("Não existe essa variável.");
+        }else{
+            codsessrt = rbDadosSessao.codsessrt;
+        }
+    }
        
     function conectar(dados) {
         var dadosRequisicao = {
@@ -35,37 +48,59 @@ angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.me
         
         dados = VP.validarObj(dados, dadosRequisicao);
         
-         
+        if(dados.exibeMSGCarregando == 1){
+            RBLoading.changeStatus(true); 
+        }
+        
+        if(!DGlobal.countReq && DGlobal.countReq!=0) DGlobal.countReq=0;
+        else DGlobal.countReq++;
+//        console.log("dados",dados.dados);
+        
         if(typeof dados.dados === 'object') {
             if(dados.dados){ 
-                dados.dados.idAba = DGlobal.acaoCliente.aba;
+//                dados.dados.idAba = DGlobal.acaoCliente.aba;
                 dados.dados.conteudoCliente = conteudosJaNoCliente();
                 dados.dados = $.param(dados.dados);
             }
-        } else if(String(dados.dados) === 'null')
-            dados.dados = {idAba: DGlobal.acaoCliente.aba, conteudoCliente: conteudosJaNoCliente()};
-        
-        else
-            dados.dados += '&idAba=' + DGlobal.acaoCliente.aba
-                        + '&conteudoCliente='+$.param(conteudosJaNoCliente());
-        
-        if(dados.exibeMSGCarregando) RBLoading.changeStatus(true);                                       
-        
+        } 
+//        else if(String(dados.dados) === 'null')
+////            dados.dados = {idAba: DGlobal.acaoCliente.aba, conteudoCliente: conteudosJaNoCliente()};
+//        
+//        else
+////            dados.dados += '&idAba=' + DGlobal.acaoCliente.aba
+////                        + '&conteudoCliente='+$.param(conteudosJaNoCliente());
+        var concatUrl = '&codsessrt=';
+        if(!verfificaParametroGet(dados.url))
+                concatUrl = '?codsessrt=';
+                
         var objEnviar = {
             method: dados.tipo, 
-            url: dados.url, 
+//            method: 'GET', 
+            //url: dados.url+'&callback=JSON_CALLBACK&app=multi&call='+DGlobal.countReq, 
+            url: dados.url+concatUrl+codsessrt, 
             data: dados.dados,
             //cache: $templateCache, 
             cache: dados.cache, 
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         };
         
+//        console.log('===> url', objEnviar.url);
+        
         $http(objEnviar).
-            success(function(data, status) {
+            success(function(data, status){
+                codsessrt = data.codsessrt;
                 RBLoading.changeStatus(false);
                 dados.acao(data, dados.scope);
+                if(data && data.codsessrt){
+                    var objSessao = {codsessrt:data.codsessrt};
+                    localStorage.setItem('dadosSessao', JSON.stringify(objSessao));
+                }
             }).
-            error(function(data, status) {
+            error(function(data, status){
+                if(data && data.codsessrt){
+                    var objSessao = {codsessrt:data.codsessrt};
+                    localStorage.setItem('dadosSessao', JSON.stringify(objSessao));
+                }
                 RBLoading.changeStatus(false);
                 dados.error(data, dados.scope);
           });
@@ -80,6 +115,14 @@ angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.me
         }
         return array;
     };
+    
+    function verfificaParametroGet(url){
+        for(var i = 0; i < url.length;i++){
+            if(url[i] == '?')
+                return true;
+        }
+        return false;
+    }
 
     function verificarMsgServidor(dados) {
         if (dados.success) {
@@ -88,6 +131,7 @@ angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.me
             MSG.abirMesagemAcao(dados.errors);
         }
     };
+    
     function executarAcaoServidor(dados){
         popularDadosLocais(dados);
         popularGDados(dados);
@@ -96,9 +140,12 @@ angular.module('RB.gcs', ['ngRoute', 'RB.loading','RB.validacoesPadroes', 'RB.me
             direcionamento = dados.acaoCliente.nomeURL;
         }
         
-        if(String($location.path()) === '/'+direcionamento) $route.reload();        
-        //$location.url(direcionamento);*/
-        $location.path(direcionamento, false);
+//        if(String($location.path()) === '/'+direcionamento || direcionamento==='inicio') $route.reload();        
+//        //$location.url(direcionamento);
+//        $location.path(direcionamento, false);
+        console.log('ola00#########################');
+//        $state.go(direcionamento);
+        $state.reload();
     };
     
     function popularDadosLocais(dados) {

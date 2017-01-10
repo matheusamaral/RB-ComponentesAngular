@@ -1,0 +1,28 @@
+/*.gm-style div > a,
+.gmnoprint{
+    display: none !important;
+}
+
+*/.gm-style > div > div div:nth-child(4) div > div > div div{
+    color: #FFFFFF !important;
+    margin-top: 85px !important;
+    width: 145px;
+    white-space: normal;
+}
+
+/*.gm-style > div:first-child > div:first-child > div:nth-child(4) > div:nth-child(2) > img{
+    width: 43px !important;
+    height: 43px !important;
+    border-radius: 30px !important;
+    border: 2px solid #FFFFFF !important;
+}*/
+
+/*
+.gm-style > div:first-child > div:first-child > div:nth-child(4) > div:nth-child(2) > img::before{
+    color:red;
+}
+
+.gm-style > div:first-child > div:first-child > div:nth-child(4) > div:nth-child(2){
+    width: 43px !important;
+    height: 43px !important;
+}*/

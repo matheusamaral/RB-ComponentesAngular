@@ -7,6 +7,7 @@ angular.module('RB.config', [])
     var refAmbiente = refAmbienteG;
     var refDiretorio = refAmbienteReqG;
     var refDominio = refDominioG;
+    var urlDominioServer = 'http://delivery.rubeus.com.br/';
         
     function setRefDominio(ref){
         refDominio = ref;
@@ -32,13 +33,18 @@ angular.module('RB.config', [])
         return refDiretorio;
     };
     
+    function getUrlDominioServer(){
+        return urlDominioServer;
+    };
+    
     return {
         getRefDominio: getRefDominio,
         setRefDominio: setRefDominio,
         setRefAmbiente: setRefAmbiente ,
         setRefAmbienteReq: setRefAmbienteReq,
         getRefAmbiente: getRefAmbiente,
-        getRefAmbienteReq: getRefAmbienteReq        
+        getRefAmbienteReq: getRefAmbienteReq,
+        getUrlDominioServer:getUrlDominioServer
     };
     
  }]);

@@ -22,7 +22,6 @@ angular.module('RB.loading', ['ngAnimate'])
     };
     
     function getScopo(){
-        console.log('getScope');
         return scopo;
     };
     

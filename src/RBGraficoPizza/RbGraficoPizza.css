@@ -1,0 +1,19 @@
+.rb-grafico-Pizza-div-graficos {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+label.rb-grafico-Pizza-label {
+    color: #000;
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+.rb-grafico-pizza-box-grafico {
+    border-bottom: solid 1px #ddd;
+    border-left: solid 1px #ddd;
+}
+
+.rb-grafico-Pizza-div-graficos > .rb-grafico-pizza-box-grafico:nth-child(1){
+    border-left: solid 0px;
+}

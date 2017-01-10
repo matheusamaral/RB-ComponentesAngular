@@ -19,17 +19,24 @@ angular.module('RB.uploadImagem', ['RB.config', 'toaster'])
         fd.append('imagem', imagem);
         scope.imgCarregando = true;
 
-        $http.post(Config.getRefAmbienteReq()+'/InstituicaoEnsino/Upload/imagem?id='+id, fd, {
+        $http.post(Config.getRefAmbienteReq()+'/Curso/uploadImagem?id='+id, fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })
         .success(function(data){
             console.log(data);   
             scope.imgCarregando = false;
-            if(data.success) acao(data.caminho[id]);
-            else toaster.error({title: "Falhou", body:data.errors});
+            if(data.success){ 
+                acao(data.caminho[id]);
+                scope.botaoSalvar = true;
+            }
+            else{ 
+                toaster.error({title: "Falhou", body:data.errors});
+                scope.botaoSalvar = false;
+            }
         })
         .error(function(data){
+            scope.botaoSalvar = false;
             scope.imgCarregando = false;
             toaster.error({title: "Falhou", body:'Não foi possivel enviar a imagem. Tente novamente.'});
         });
@@ -49,7 +56,7 @@ angular.module('RB.uploadImagem', ['RB.config', 'toaster'])
         },
         restrict: 'A',
         link: function(scope, element, attrs) {
-            element.bind('change', function(){        
+            element.bind('change', function(){ 
                 scope.imgacao(element[0].files[0]);                
             });
         }
