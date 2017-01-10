@@ -14,13 +14,13 @@ class ConsultaPesquisarLocais {
                 ->add('l.longitude', 'localLongitude')
                 ->add('chec.ativo', 'checkIn')
                 ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + case when loc.ativo is not null then 0.5 else 0 end + case when loca.ativo is not null then 0.5 else 0 end)', 'teste')
-                ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + IFNULL(loc.ativo, 0) + IFNULL(loca.ativo, 0)) * ((COUNT(DISTINCT c.id) * 1) + ((COUNT(DISTINCT m.id) + COUNT(DISTINCT hl.id)) * 0.9) + (COUNT(DISTINCT ci.id) * 0.8)) 
-                    * CASE WHEN (6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) * COS(RADIANS(?) - RADIANS(l.longitude)) 
-                    + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude)))) <= 10 THEN 0.6 WHEN (6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) 
-                    * COS(RADIANS(?) - RADIANS(l.longitude)) + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude)))) <= 20 THEN 0.5 WHEN 
-                    (6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) * COS(RADIANS(?) - RADIANS(l.longitude)) + SIN(RADIANS(?)) 
-                    * SIN(RADIANS(l.latitude)))) <= 40 THEN 0.3 ELSE 7 / (6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) 
-                    * COS(RADIANS(?) - RADIANS(l.longitude)) + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude)))) END', 'relevancia')
+                ->add('(IFNULL(lo.ativo, 0) + IFNULL(cl.ativo, 0) + IFNULL(h.ativo, 0) + IFNULL(loc.ativo, 0) + IFNULL(loca.ativo, 0)) * 
+                    ((COUNT(DISTINCT c.id) * 1) + ((COUNT(DISTINCT m.id) + COUNT(DISTINCT hl.id)) * 0.9) + (COUNT(DISTINCT ci.id) * 0.8)) 
+                    * (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + 
+                    sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 21/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * 
+                    cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
+		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * 
+                sin(radians(l.latitude)))) end)', 'relevancia')
                 ->add('(COUNT(DISTINCT cin.id))', 'relevancia2')
                 ->add('(6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) '
                         . '* COS(RADIANS(?) - RADIANS(l.longitude)) + SIN(RADIANS(?)) '
@@ -114,7 +114,6 @@ class ConsultaPesquisarLocais {
         $query->order('relevancia desc, relevancia2 desc');
         $query->limit(15);
         $query->addVariaveis([
-            $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude,

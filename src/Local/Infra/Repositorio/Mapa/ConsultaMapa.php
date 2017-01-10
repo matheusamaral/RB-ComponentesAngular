@@ -14,12 +14,12 @@ class ConsultaMapa {
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
-                ->add('(count(distinct c.id) * 1) + ((m.contagem + hl.contagem) * 0.9) + (count(distinct ci.id) * 0.8) * case
-        when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 10 then 0.6
-        when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 20 then 0.5
-        when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 0.3
+                ->add('((count(distinct c.id) * 1) + ((ifnull(m.contagem, 0) + ifnull(hl.contagem, 0)) * 0.9) + (count(distinct ci.id) * 0.8)) * 
+                    (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + 
+                    sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 21/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * 
+                    cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
 		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
-    end ', 'relevancia')
+    end)', 'relevancia')
                 ->add('(count(distinct cin.id))', 'relevancia2')
                 ->add('l.foto', 'fotoLocal');
         $query->from('local', 'l');
@@ -53,7 +53,6 @@ class ConsultaMapa {
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
-            $latitude, $longitude, $latitude,
             $usuarioId, $tempoHashtag, $tempoMidia, 
             $usuarioId, $usuarioId,
             $latitude, $longitude, $latitude]);
