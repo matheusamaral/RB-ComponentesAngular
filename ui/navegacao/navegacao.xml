@@ -155,7 +155,7 @@
     </pagina>
     
     <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina-->
-    <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
+    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="locaisPertos" objeto='teste'></metodo>
@@ -246,5 +246,14 @@
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-privacidade" acao="PrivacidadeCtrl" title="Privacidade"/>
+    </pagina>   
+    
+    <pagina id="31" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pesquisar-locais">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-pesquisar-locais-checkin" acao="PesquisarLocaisCheckinCtrl" title="Pesquisar"/>
     </pagina>   
 </root>

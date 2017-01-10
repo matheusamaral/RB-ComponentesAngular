@@ -103,7 +103,21 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         
         function irLocal(id){
             DGlobal.localAtual = id;
-            Pagina.navegar({idPage:24,paramAdd:'?localId='+id+'&atualizando=0'});
+            if(DGlobal.coordenadasAtual){
+                Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+id+'&atualizando=0'});
+            }else{
+                navigator.geolocation.getCurrentPosition(onPesquisa,onPesquisaError);
+            }
+        }
+        
+        var onPesquisa = function(position){
+            DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+            Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+        };
+        
+        function onPesquisaError(error){
+            var coordenadas = {latitude:-21.135445,longitude:-42.365089};
+            Pagina.navegar({idPage:24,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
         }
         
         function attTutorial(){

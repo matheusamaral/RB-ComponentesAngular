@@ -104,8 +104,8 @@ class ConsultaMapa {
         $query = Conteiner::get('Query', false);
         $query->select('sub.*')
                 ->add('l.id', 'localId')
-                ->add('ch.endereco', 'categoriaHashtagEndereco')
-                ->add('cl.endereco', 'categoriaLocalEndereco');
+                ->add('ch.endereco', 'categoriaHashtagFoto')
+                ->add('cl.endereco', 'categoriaLocalFoto');
         $query->from('local', 'l');
         $query->join($this->subHashtagLocal($locaisId), 'sub', 'left')
                 ->on('sub.local_id = l.id');

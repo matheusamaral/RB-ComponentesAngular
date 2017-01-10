@@ -67,7 +67,7 @@ angular.module('QuickPeek.Acoes.CheckIn', [
     function irPesquisa(){
         var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
         if(DGlobal.coordenadasAtual){
-            Pagina.navegar({idPage:28,paramAdd:'?usuarioId='+scope.dadosUser.usuarioId+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            Pagina.navegar({idPage:31,paramAdd:'?usuarioId='+scope.dadosUser.usuarioId+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
         }else{
             navigator.geolocation.getCurrentPosition(onPesquisa,onPesquisaError);
         }
@@ -75,12 +75,12 @@ angular.module('QuickPeek.Acoes.CheckIn', [
     
     var onPesquisa = function(position){
         DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-        Pagina.navegar({idPage:28,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        Pagina.navegar({idPage:31,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
     
     function onPesquisaError(error){
         var coordenadas = {latitude:-21.135445,longitude:-42.365089};
-        Pagina.navegar({idPage:28});
+        Pagina.navegar({idPage:31});
     }
     
     return {
