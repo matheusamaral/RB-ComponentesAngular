@@ -51,8 +51,8 @@ class Mapa {
         foreach($queryMapa as $v){
             foreach($query as $k=>$value){
                 if($v['localId'] == $value['localId']){
-                    $query[$k]['categoriaHashtagEndereco'] = $v['categoriaHashtagEndereco'];
-                    $query[$k]['categoriaLocalEndereco'] = $v['categoriaLocalEndereco'];
+                    $query[$k]['categoriaHashtagFoto'] = $v['categoriaHashtagFoto'];
+                    $query[$k]['categoriaLocalFoto'] = $v['categoriaLocalFoto'];
                 }
             }
         }

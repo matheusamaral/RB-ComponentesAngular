@@ -14,6 +14,7 @@ angular.module('QuickPeek.Estrutura.Locais', [
     
     function setScope(obj){
         scope = obj;
+        scope.busy = false;
         return this;
     }
     

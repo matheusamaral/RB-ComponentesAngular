@@ -40,7 +40,8 @@ angular.module('QuickPeek', [
     'QuickPeek.PerguntasLocal',
     'QuickPeek.PesquisarMapa',
     'QuickPeek.CheckIn',
-    'QuickPeek.Privacidade'
+    'QuickPeek.Privacidade',
+    'QuickPeek.PesquisarLocaisCheckin'
 ])
 
 .run(function($ionicPlatform) {

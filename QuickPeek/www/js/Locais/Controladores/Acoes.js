@@ -7,8 +7,8 @@ angular.module('QuickPeek.Acoes.Locais', [
     'QuickPeek.Estrutura.Locais'
 ])
 
-.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura',
-    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura){
+.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','RBLoadingMobile',
+    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,RBLoadingMobile){
     var scope;  
     
     function setScope(obj){
@@ -26,7 +26,9 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function carregarLocais(){
-        navigator.geolocation.getCurrentPosition(onSuccessScroll,onErrorScroll);
+        //navigator.geolocation.getCurrentPosition(onSuccessScroll,onErrorScroll);
+        var obj = {latitude:DGlobal.coordenadasAtual.latitude,longitude:DGlobal.coordenadasAtual.longitude,atualizando:true};
+        LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
     }
     
     function irPessoas(idLocal){
@@ -54,9 +56,8 @@ angular.module('QuickPeek.Acoes.Locais', [
     };
     
     var onSuccessScroll = function(position){
-        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-        var obj = {latitude:DGlobal.coordenadasAtual.latitude,longitude:DGlobal.coordenadasAtual.longitude,atualizando:true};
-        LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
+        //DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+        
     };
 
     function onErrorScroll(error){

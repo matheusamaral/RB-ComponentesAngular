@@ -1,0 +1,40 @@
+.config-barra-pesquisar{
+    background-color: #fbfbfb !important;
+    border: none !important;
+    margin-top: 45px;
+}
+
+.config-barra-pesquisar .cor-icones{
+    color:rgb(153, 153, 153);
+}
+
+.config-barra-pesquisar a{
+    border-color: rgb(153, 153, 153) !important;
+}
+
+.icone-dourado{
+    color:#ffb800 !important;
+}
+
+.desativo{
+    opacity: 0.4 !important;
+}
+
+.desativo:active{
+    opacity: 1 !important;
+}
+
+.padding-top-personalizado{
+    padding-top: 10px !important;
+}
+
+.header-pesquisa{
+    background-color: #fbfbfb;
+    box-shadow: none !important;
+}
+
+.input-pesquisa{
+    width: 100%;
+    background-color: #fbfbfb;
+    font-size: 17px !important;
+}

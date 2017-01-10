@@ -14,7 +14,7 @@ angular.module('QuickPeek.HTML.Locais', [
                     </div>\n\
                 </div>\n\
                 <div id="container-infinite-scrol">\n\
-                    <div infinite-scroll="carregarLocais()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
+                    <div infinite-scroll="carregarLocais()" infinite-scroll-distance="1" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
                         <div ng-repeat="local in locais">\n\
                             <div ng-class="{\'padding-top-barra\' : $index == 0}"\n\
                             class="row barra-local">\n\

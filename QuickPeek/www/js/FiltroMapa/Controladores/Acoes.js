@@ -87,7 +87,22 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
     
     function aplicarFiltro(){
         DGlobal.filtro = scope.dados;
-        Pagina.navegar({idPage:22});
+        if(DGlobal.coordenadasAtual){
+            Pagina.navegar({idPage:22,paramAdd:'?categorias='+scope.dados.categorias+'&tipos='+scope.dados.tipos+'&atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        }else{
+            var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
+            navigator.geolocation.getCurrentPosition(onSuccessPar,onErrorPar);
+        }
+    };
+    
+    var onSuccessPar = function(position){
+        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+        Pagina.navegar({idPage:22,paramAdd:'?categorias='+scope.dados.categorias+'&tipos='+scope.dados.tipos+'&atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+    };
+    
+    var onErrorPar = function(){
+        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
+        Pagina.navegar({idPage:22,paramAdd:'?categorias='+scope.dados.categorias+'&tipos='+scope.dados.tipos+'&atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     };
     
     function voltarMapa(){
