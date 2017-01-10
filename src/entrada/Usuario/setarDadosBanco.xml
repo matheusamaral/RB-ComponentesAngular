@@ -2,8 +2,7 @@
 
 <processo codigo="setarDadosBanco" modulo="Usuario">
     
-    <entrada> 
-        <campo regra="Obrigatorio" chave="ResourceId" nome="ResourceId"/>
+    <entrada>
         <campo regra="Obrigatorio" chave="Pagina" nome="Pagina"/>
     </entrada>
     

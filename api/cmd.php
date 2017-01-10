@@ -22,14 +22,14 @@ class Chat implements MessageComponentInterface {
         if(count($this->clients) > $this->maiorQtd){
             $this->maiorQtd = count($this->clients);
         }
-        var_dump($this->maiorQtd);
         $this->clients->attach($conn);
-        echo "New connection! ({$conn->resourceId})\n";
+        echo "New connection! ({$conn->resourceId})" . "   " . $this->maiorQtd . "\n";
     }
     
     public function setarDadosBanco($resourceId, $usuarioId, $pagina){
         
         $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
+        Conteiner::registrar('DadosBanco', $this->dadosBanco);
     }
     
     public function onMessage(ConnectionInterface $from, $mensagem){
@@ -42,23 +42,26 @@ class Chat implements MessageComponentInterface {
         }
         $msg->setCampo('ResourceId', $from->resourceId);
         $processo = RepositorioProcesso::get($obj->processo, $obj->etapa);
-        $resultado = $processo->executar($msg, true);
-        
-        for($i = 0; $i < count($this->dadosBanco); $i++){
-            if(isset($resultado['from']) && $this->dadosBanco[$i]['usuario'] == $resultado['from']){
-                $fromConexao = $this->dadosBanco[$i]['conexao'];
-            }
-            if(isset($resultado['to']) && in_array($this->dadosBanco[$i]['usuario'], $resultado['to'])){
-                $toConexao[] = $this->dadosBanco[$i]['conexao'];
-            }
-        }
+        $processo->executar($msg, true);
         
         foreach($this->clients as $client){
-            if(isset($toConexao) && in_array($client->resourceId, $toConexao)){
+            if(isset($resultado['to']) && in_array($client->resourceId, $resultado['to'])){
                 $client->send(json_encode($resultado));
             }
-            if(isset($fromConexao) && $client->resourceId == $fromConexao){
+            if(isset($resultado['from']) && $client->resourceId == $resultado['from']){
                 $client->send(json_encode($resultado['success']));
+            }
+        }
+    }
+    
+    public function enviarMensagem($mensagem){
+        
+        foreach($this->clients as $client){
+            if(in_array($client->resourceId, $mensagem['to'])){
+                $client->send(json_encode($mensagem));
+            }
+            if($client->resourceID == $mensagem['from']){
+                $client->send(json_encode($mensagem['success']));
             }
         }
     }

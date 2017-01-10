@@ -13,6 +13,7 @@ class Perguntas {
         $perguntas = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId, $tempo['limitePerguntas']);
         
         if(count($perguntas) < 3){
+            
             $cadastro = Conteiner::get('Cadastro');
             
             $msg->setCampo('entidade', 'Perguntas');
@@ -23,7 +24,10 @@ class Perguntas {
             }
             
             $msg->setCampo('Perguntas::usuarioId', $usuarioId);
-            $cadastro->cadastrar($msg);
+            $cad = $cadastro->cadastrar($msg);
+            if($cad){
+                $this->conexaoSocket($msg);
+            }
         }else{
             $datetime1 = new \DateTime(date('Y-m-d H:i:s'));
             $datetime2 = new \DateTime($perguntas[0]['momento']);
@@ -32,5 +36,33 @@ class Perguntas {
             $minutos = ($intervalo->h * 60) + $intervalo->i;
             $msg->setResultadoEtapa(false, false, ['dados'=>$minutos]);
         }
+    }
+    
+    private function conexaoSocket($msg){
+        
+        $localId = $msg->getCampo('Perguntas::localId')->get('valor');
+        $visibilidadeId = $msg->getCampo('Perguntas::visibilidadeId')->get('valor');
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        
+        $dadosBanco = Conteiner::get('DadosBanco');
+        $pagina = '27' . '-' . $localId;
+
+        for($i = 0; $i < count($dadosBanco); $i++){
+            if($dadosBanco[$i]['usuario'] == $usuarioId){
+                $fromConexao = $dadosBanco[$i]['conexao'];
+            }
+            if(in_array($pagina, $dadosBanco[$i]['pagina'])){
+                $toConexao[] = $dadosBanco[$i]['conexao'];
+                $usuarioId[] = $dadosBanco[$i]['usuarioId'];
+            }
+        }
+        
+        foreach($usuarioId as $v){
+            $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
+        }
+        
+        $dados['to'] = $toConexao;
+        $dados['from'] = $fromConexao;
+        $dados['nome'] = $dadosUsuario['usuarioNome'];
     }
 }
