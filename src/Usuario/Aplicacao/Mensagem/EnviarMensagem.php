@@ -33,22 +33,7 @@ class EnviarMensagem {
             $msg->setCampo('entidade', 'Mensagens');
             $cad = $cadastro->cadastrar($msg);
             if($cad){
-                $mensagemId = $msg->getCampo('Mensagens::id')->get('valor');
-                $mensagem = $msg->getCampo('Mensagens::titulo')->get('valor');
-                $mensagemEndereco = $msg->getCampo('Mensagens::endereco')->get('valor');
-                $agrupamento = $usuarioId . "-" . $usuarioMensagemId . "-" . $visibilidadeId;
-                $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId);
-                
-                $dados['mensagemId'] = $mensagemId;
-                $dados['mensagem'] = $mensagem;
-                $dados['mensagemEndereco'] = $mensagemEndereco;
-                $dados['mensagemStatus'] = 1;
-                $dados['mensagemMomento'] = date('Y-m-d H:i:s');
-                $dados['agrupamento'] = $agrupamento;
-                $dados['from'] = $usuarioId;
-                $dados['usuarioNome'] = $dadosUsuario['usuarioNome'];
-                $dados['usuarioEndereco'] = $dadosUsuario['usuarioEndereco'];
-                $dados['to'] = [$usuarioMensagemId];
+                $dados = $this->conexaoSocket($msg);
                 $msg->setResultadoEtapa(true, false, $dados);
             }else{
                 $msg->setResultadoEtapa(false);
@@ -56,5 +41,31 @@ class EnviarMensagem {
         }else{
             $msg->setResultadoEtapa(false, 'bloqueado');
         }
+    }
+    
+    private function conexaoSocket($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        $visibilidadeId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        
+        $mensagemId = $msg->getCampo('Mensagens::id')->get('valor');
+        $mensagem = $msg->getCampo('Mensagens::titulo')->get('valor');
+        $mensagemEndereco = $msg->getCampo('Mensagens::endereco')->get('valor');
+        $agrupamento = $usuarioId . "-" . $usuarioMensagemId . "-" . $visibilidadeId;
+        $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId);
+
+        $dados['mensagemId'] = $mensagemId;
+        $dados['mensagem'] = $mensagem;
+        $dados['mensagemEndereco'] = $mensagemEndereco;
+        $dados['mensagemStatus'] = 1;
+        $dados['mensagemMomento'] = date('Y-m-d H:i:s');
+        $dados['agrupamento'] = $agrupamento;
+        $dados['from'] = $usuarioId;
+        $dados['usuarioNome'] = $dadosUsuario['usuarioNome'];
+        $dados['usuarioEndereco'] = $dadosUsuario['usuarioEndereco'];
+        $dados['to'] = [$usuarioMensagemId];
+        
+        return $dados;
     }
 }

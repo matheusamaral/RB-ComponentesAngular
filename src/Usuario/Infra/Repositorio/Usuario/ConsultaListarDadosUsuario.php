@@ -41,18 +41,27 @@ class ConsultaListarDadosUsuario {
         return $query->executar('A');
     }
     
-    public function consultarDadosVisibilidade($usuarioId, $visibilidadeId){
+    public function consultarDadosVisibilidade($usuarioId, $visibilidadeId, $usuario2 = 0){
         
         $query = Conteiner::get('Query', false);
-        $query->select("case when $visibilidadeId = 1 then u.nome else a.nome end", 'usuarioNome')
-                ->add("case when $visibilidadeId = 1 then u.endereco else a.endereco end", 'usuarioEndereco');
+        $query->select("case when $visibilidadeId = 1 then u.nome "
+                . "when $visibilidadeId = 2 and s.id is not null then u.nome "
+                . "else a.nome end", 'usuarioNome')
+                ->add("case when $visibilidadeId = 1 then u.endereco "
+                        . "when $visibilidadeId = 2 and s.id is not null then u.endereco "
+                        . "else a.endereco end", 'usuarioEndereco');
         $query->from('usuario', 'u');
         $query->join('avatares', 'a')
                 ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
+        $query->join('seguir', 's', 'left')
+                ->on('s.usuario_id = ?')
+                ->on('s.usuario_seguir_id = ?')
+                ->on('s.confirmar_seguir = 1')
+                ->on('s.ativo = 1');
         $query->where('u.id = ?')
                 ->add('u.ativo = 1');
-        $query->addVariaveis($usuarioId);
+        $query->addVariaveis([$usuario2, $usuarioId, $usuarioId]);
         return $query->executar('A');
     }
     

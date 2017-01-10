@@ -3,9 +3,9 @@
 <processo codigo="perguntas" modulo="Acoes">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Perguntas::localId" nome="localId"/>
-        <campo regra="Obrigatorio" chave="Perguntas::titulo" nome="titulo"/>
-        <campo regra="Opcional" chave="Perguntas::visibilidadeId" nome="visibilidadeId"/>
+        <campo regra="Obrigatorio" chave="Perguntas::localId" nome="Perguntas::localId"/>
+        <campo regra="Obrigatorio" chave="Perguntas::titulo" nome="Perguntas::titulo"/>
+        <campo regra="Opcional" chave="Perguntas::visibilidadeId" nome="Perguntas::visibilidadeId"/>
     </entrada>
     
     <atividades>
