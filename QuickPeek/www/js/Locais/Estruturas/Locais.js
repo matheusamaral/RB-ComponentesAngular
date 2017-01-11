@@ -27,7 +27,7 @@ angular.module('QuickPeek.HTML.Locais', [
                                         <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{local.dados.distancia.split(\'.\')[0]}}km de distância</span>\n\
                                     </div>\n\
                                     <div ng-if="local.dados.distancia < 1" style="padding-top:3px !important" ng-if="local.dados.checkIn != 1" class="row remove-padding">\n\
-                                        <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{(1000 * local.dados.distancia).split(\'.\')[0]}}m de distância</span>\n\
+                                        <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{String((1000 * (parseFloat(0.01154544)))).split(\'.\')[0]}}m de distância</span>\n\
                                     </div>\n\
                                 </div>\n\
                                 <div class="text-right">\n\
