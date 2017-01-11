@@ -8,10 +8,10 @@ angular.module('QuickPeek.HTML.PesquisarLocaisCheckin', [
     function montar(){
         return '<div class="header-pesquisa has-tabs-top row bar bar-header">\n\
                     <div class="row">\n\
-                        <button style="padding-top: 2px;" ng-click="voltarMapa()" class="btn-txt-direita button button-clear">\n\
+                        <button style="padding-top: 2px;" ng-click="voltarCheckin()" class="btn-txt-direita button button-clear">\n\
                             <i class="icone-dourado icon ion-android-arrow-back seta-barra"></i>\n\
                         </button>\n\
-                        <input ng-keyup="pesquisarLocal()" ng-model="dados.nome" class="input-pesquisa" type="text" placeholder="Pesquisar locaisdd...">\n\
+                        <input ng-keyup="pesquisarLocal()" ng-model="dados.nome" class="input-pesquisa" type="text" placeholder="Pesquisar locais...">\n\
                     </div>\n\
                 </div>'+sessaoUltimosLocais();
     };  

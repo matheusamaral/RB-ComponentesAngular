@@ -12,6 +12,7 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     
     function setScope(obj){
         scope = obj;
+        scope.busca = {buscandoPessoa : false};
         return this;
     };
     
@@ -62,6 +63,7 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     }
     
     function pesquisarPessoaScroll(){
+        RBLoadingMobile.show();
         scope.dados.atualizando = true,
         PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarPessoasScroll}).pesquisarPessoas();
     }

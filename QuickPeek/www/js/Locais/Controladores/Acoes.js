@@ -27,7 +27,12 @@ angular.module('QuickPeek.Acoes.Locais', [
     
     function carregarLocais(){
         //navigator.geolocation.getCurrentPosition(onSuccessScroll,onErrorScroll);
-        var obj = {latitude:DGlobal.coordenadasAtual.latitude,longitude:DGlobal.coordenadasAtual.longitude,atualizando:true};
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude,
+            atualizando:true,
+            localId:scope.locais[0].dados.localId
+        };
         LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
     }
     
@@ -104,6 +109,10 @@ angular.module('QuickPeek.Acoes.Locais', [
         LocaisRequisicoes.set({acaoPosterior:LocaisEstrutura.montaHashtags,dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successCurtirHashtag}).curtirHashTag();
     }
     
+    function converteKmM(km){
+        return String((1000 * (parseFloat(km)))).split('.')[0];
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -115,7 +124,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         attTutorial:attTutorial,
         irCheckin:irCheckin,
         checkInLocal:checkInLocal,
-        curtirHashtag:curtirHashtag
+        curtirHashtag:curtirHashtag,
+        converteKmM:converteKmM
     };
     
  }]);

@@ -155,7 +155,7 @@
     </pagina>
     
     <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina-->
-    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
+    <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="locaisPertos" objeto='teste'></metodo>

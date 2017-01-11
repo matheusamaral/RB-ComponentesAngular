@@ -20,7 +20,7 @@ angular.module('QuickPeek.HTML.Mapa', [
     };  
     
     function barraLocalizacaoAtual(){
-         return'<div id="barra-local-atual" ng-if="dadosbarra && dadosbarra.distancia" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
+         return'<div ng-click="irLocal(dadosbarra.localId)" id="barra-local-atual" ng-if="dadosbarra && dadosbarra.distancia" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
                 class="row barra-localizacao-atual">\n\
                     <div class="col col-70" style="width: 190px;">\n\
                         <div class="row remove-padding">\n\
@@ -37,7 +37,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div id="barra-local-atual" style="display:flex" class="row barra-localizacao-atual barra-local" ng-if="dadosbarra && dadosbarra.checkIn == 1">\n\
+                <div ng-click="irLocal(dadosbarra.localId)" id="barra-local-atual" style="display:flex" class="row barra-localizacao-atual barra-local" ng-if="dadosbarra && dadosbarra.checkIn == 1">\n\
                     <div class="col col-75">\n\
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}</p>\n\
                         <div class="row remove-padding">\n\

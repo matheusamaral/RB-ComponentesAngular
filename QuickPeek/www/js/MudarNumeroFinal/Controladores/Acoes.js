@@ -27,8 +27,8 @@ angular.module('QuickPeek.Acoes.MudarNumeroFinal', [
     
     function alterarNumero(){
         var obj = {
-            telefoneAntigo:'+'+scope.dados.ddiAntigo+scope.dados.telAntigo,
-            telefoneNovo:'+'+scope.dados.ddiNovo+scope.dados.telNovo
+            telefoneAntigo:scope.dados.ddiAntigo+scope.dados.telAntigo,
+            telefoneNovo:scope.dados.ddiNovo+scope.dados.telNovo
         };
         MudarNumeroFinalRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MudarNumeroFinalRequisicoes.successEditarNumero}).editarNumero();
     }

@@ -48,7 +48,7 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
     }
     
     function pessoas(){
-         return'<div infinite-scroll="pesquisarPessoaScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol-pessoas\'">\n\
+         return'<div infinite-scroll="pesquisarPessoaScroll()" infinite-scroll-distance="1" infinite-scroll-container="\'#container-infinite-scrol-pessoas\'">\n\
                     <div ng-click="irPerfil(pessoa.usuarioId)"\n\
                     class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
                     ng-repeat="pessoa in pessoas">\n\

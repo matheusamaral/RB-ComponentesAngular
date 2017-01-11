@@ -34,6 +34,7 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
         function successPesquisarLocais(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
+            alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true){
 //                for(var i = 0; i < objRetorno.dados.length;i++){
 //                    scope.locais.push(objRetorno.dados[i]);
@@ -53,16 +54,19 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
         };
         
         function pesquisarPessoas(){
-            var obj = {
-                url: Config.getRefAmbienteReq()+"/Local/pesquisarPessoas",
-                dados: $.param(dados),
-                tipo: 'POST',
-                acao: acaoSuccess,
-                error: errorSalvar,
-                scope: scope,
-                exibeMSGCarregando: 0
-            };
-            GCS.conectar(obj);
+            if(scope.busca.buscandoPessoa == false){
+                scope.busca.buscandoPessoa = true;
+                var obj = {
+                    url: Config.getRefAmbienteReq()+"/Local/pesquisarPessoas",
+                    dados: $.param(dados),
+                    tipo: 'POST',
+                    acao: acaoSuccess,
+                    error: errorSalvar,
+                    scope: scope,
+                    exibeMSGCarregando: 0
+                };
+                GCS.conectar(obj);
+            }
         };
         
         function successPesquisarPessoas(objRetorno){
@@ -74,6 +78,7 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
 //                }
                 scope.pessoas = objRetorno.dados;
             }
+            scope.busca.buscandoPessoa = false;
         };
         
         function successPesquisarPessoasScroll(objRetorno){
@@ -84,6 +89,7 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
                     scope.pessoas.push(objRetorno.dados[i]);
                 }
             }
+            scope.busca.buscandoPessoa = false;
         };
         
         function errorSalvar(dados, scope){
