@@ -42,26 +42,17 @@ class Chat implements MessageComponentInterface {
         }
         $msg->setCampo('ResourceId', $from->resourceId);
         $processo = RepositorioProcesso::get($obj->processo, $obj->etapa);
-        $processo->executar($msg, true);
         
-        foreach($this->clients as $client){
-            if(isset($resultado['to']) && in_array($client->resourceId, $resultado['to'])){
-                $client->send(json_encode($resultado));
-            }
-            if(isset($resultado['from']) && $client->resourceId == $resultado['from']){
-                $client->send(json_encode($resultado['success']));
-            }
-        }
+        $resultado = $processo->executar($msg, true);
+        
+        $this->enviarMensagem($resultado, $from->resourceId);
     }
     
-    public function enviarMensagem($mensagem){
+    public function enviarMensagem($mensagem, $conexao){
         
         foreach($this->clients as $client){
-            if(in_array($client->resourceId, $mensagem['to'])){
+            if($client->resourceId == $conexao){
                 $client->send(json_encode($mensagem));
-            }
-            if($client->resourceID == $mensagem['from']){
-                $client->send(json_encode($mensagem['success']));
             }
         }
     }
