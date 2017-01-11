@@ -22,15 +22,11 @@ class VerificarCodigoSms {
             
             $usuarioId = Conteiner::get('ConsultaVerificarNumero')->consultarNumero($telefone);
             if($usuarioId){
-                $numId = Conteiner::get('ConsultaVerificarNumero')->consultarNumerounico($usuarioId);
-                $entidade = ConteinerEntidade::getInstancia('NumerounicoUsuario');
-                $entidade->setId($numId);
-                $entidade->deletar();
-                
-                $msg->setCampo('entidade', 'NumerounicoUsuario');
-                $msg->setCampo('NumerounicoUsuario::usuarioId', $usuarioId);
-                $msg->setCampo('NumerounicoUsuario::numerounico', $msg->getCampoSessao('numerounico'));
-                Conteiner::get('Cadastro')->cadastrar($msg);
+                $sessao = Conteiner::get('ConsultaSessaoBanco')->consultar($usuarioId);
+                $entidade = ConteinerEntidade::getInstancia('SessaoBanco');
+                $entidade->setId($sessao['id']);
+                $entidade->setDadosSessao('{"codSess":"' . $sessao['codigo'] . '"}');
+                $entidade->salvar();
                 
                 $msg->setCampoSessao('dadosUsuarioLogado,id', $usuarioId);
                 $conta = 1;

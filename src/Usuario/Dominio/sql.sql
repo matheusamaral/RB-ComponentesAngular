@@ -211,19 +211,6 @@ CREATE TABLE `status_sms`(
     `codigo_mobi` varchar(45)   ,
     `titulo` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
-CREATE TABLE `numerounico_usuario`( 
-    `id` int  AUTO_INCREMENT ,
-     PRIMARY KEY (`id`),
-    `ativo` tinyint   ,
-    `momento` datetime   ,
-    `numerounico` varchar(45)   ,
-    `usuario_id` INT   ,
-    INDEX `numerounico_usuario_fk_usuario_id_idx`(`usuario_id` ASC),
-    CONSTRAINT `numerounico_usuario_fk_usuario_id` 
-         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-     ON DELETE NO ACTION
-     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        
 CREATE TABLE `ddi_paises`( 
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),

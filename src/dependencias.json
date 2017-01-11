@@ -32,7 +32,6 @@
     "ConsultaVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Visibilidade\\ConsultaVisibilidade",
     
     
-    "Numerounico": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Numerounico",
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
     "SalvarFoto": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\SalvarFoto",
     "EnviarSms": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\EnviarSms",

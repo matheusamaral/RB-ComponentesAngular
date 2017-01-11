@@ -20,13 +20,13 @@ class EnviarSms {
 
             $emcrypt = Conteiner::get('Emcrypt');
             $codigo = $emcrypt::gerarCodigoBanco(ConteinerEntidade::getInstancia('SmsCodigo'), 'codigo', 6);
-
+            
             $mensagem = urlencode('O seu código do Quickpeek é ' . $codigo);
-
+            
             $retorno = file_get_contents('https://www.mpgateway.com/v_3_00/sms/smspush/enviasms.aspx?Credencial=' . 
                     $credencial . '&Token=' . $token . '&Principal_User=FF' . '&Aux_User=F1' . 
                     '&Mobile=' . $telefone . '&Send_Project=N' . '&Message=' . $mensagem);
-
+            
             switch($retorno){
                 case '000':
                     $id = 1;

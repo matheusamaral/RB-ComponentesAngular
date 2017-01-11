@@ -11,8 +11,8 @@
     "MensagensExcluidas": "\\Quickpeek\\Usuario\\Dominio\\MensagensExcluidas",
     "SmsCodigo": "\\Quickpeek\\Usuario\\Dominio\\SmsCodigo",
     "StatusSms": "\\Quickpeek\\Usuario\\Dominio\\StatusSms",
-    "NumerounicoUsuario": "\\Quickpeek\\Usuario\\Dominio\\NumerounicoUsuario",
     "ListaContatos": "\\Quickpeek\\Usuario\\Dominio\\ListaContatos",
+    "DdiPaises": "\\Quickpeek\\Usuario\\Dominio\\DdiPaises",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
     "LocalCategoria": "\\Quickpeek\\Local\\Dominio\\LocalCategoria",
@@ -36,5 +36,5 @@
     "Notificacoes": "\\Quickpeek\\Acoes\\Dominio\\Notificacoes",
     "TipoNotificacoes": "\\Quickpeek\\Acoes\\Dominio\\TipoNotificacoes",
     
-    "DdiPaises": "\\Quickpeek\\Usuario\\Dominio\\DdiPaises"
+    "SessaoBanco": "\\Rubeus\\Servicos\\Entrada\\Estrutura\\SessaoBanco"
 }

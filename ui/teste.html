@@ -18,9 +18,6 @@ and open the template in the editor.
 
             conn.onopen = function(e) {
             console.log("Connection established!");
-            iniciar();
-
-            enviar();
             };
 
             conn.onmessage = function(e) {
@@ -29,30 +26,30 @@ and open the template in the editor.
 //                        msgRecebidas.push(obj.nome+' : '+obj.msg);
 //                        console.log(obj.nome+' : '+obj.msg);
             };
-
+            
+        </script>
+            <button onclick="enviar()">Enviar pergunta</button> 
+        <script>
             enviar = function(){
             console.log("enviar");
 
-            conn.send(JSON.stringify({codsessrt:'PwB37ZpyZrNtgFuDJWShzLfftMfKRPAf0VydEZi0cp7Zuz4nzeogvFlAHV6aM5Vk5NUT80TReFs75CBzhqlxUlM8l4UMm8TFhrVl',
+            conn.send(JSON.stringify({codsessrt:'PG1EcZFcD3tCvULXGCQpCJJVM1UycaU62rTSBMu3vMDCg3PZED5Nz3suvP99UFwwYw7p8ZbveWe8I8lC5awlMl7pLQ0xqIIE5B7M',
                 processo:'Acoes', etapa:'perguntas',
             'Perguntas::titulo':'pergunta teste', 'Perguntas::localId':'1', 
             'Mensagens::visibilidadeId':'2'}));
-            setTimeout(function(){
-                if(cont < 100){
-                    console.log('entrou');
-                    enviar(); 
-                }
-                cont++;
-            }, 1000);
             };
-
-iniciar = function(){
-console.log("iniciar");
-
-conn.send(JSON.stringify({codsessrt:'PwB37ZpyZrNtgFuDJWShzLfftMfKRPAf0VydEZi0cp7Zuz4nzeogvFlAHV6aM5Vk5NUT80TReFs75CBzhqlxUlM8l4UMm8TFhrVl'
-    ,processo:'Usuario', etapa:'setarDadosBanco'}));
-iniciou = true;
-};
+            
+        iniciar = function(){
+        console.log("iniciar");
+        
+        conn.send(JSON.stringify({codsessrt:'PG1EcZFcD3tCvULXGCQpCJJVM1UycaU62rTSBMu3vMDCg3PZED5Nz3suvP99UFwwYw7p8ZbveWe8I8lC5awlMl7pLQ0xqIIE5B7M'
+            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'27-1'}));
+        };
+        
+        setTimeout(
+            iniciar,
+            300
+            );
         </script>
         <div>TODO write content</div>
     </body>

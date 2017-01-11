@@ -148,16 +148,6 @@
     <propriedades coluna="titulo" atributo="titulo" /> 
 </classe>
         
-<classe nome="NumerounicoUsuario" tabela="numerounico_usuario"> 
-    <id coluna="id" atributo="id">
-        <gerador classe="sequence"/>
-    </id>  
-    <propriedades coluna="ativo" atributo="ativo" /> 
-    <propriedades coluna="momento" atributo="momento" /> 
-    <propriedades coluna="numerounico" atributo="numerounico" /> 
-    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
-</classe>
-        
 <classe nome="DdiPaises" tabela="ddi_paises"> 
     <id coluna="id" atributo="id">
         <gerador classe="sequence"/>
