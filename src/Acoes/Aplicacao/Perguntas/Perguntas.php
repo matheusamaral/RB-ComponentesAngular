@@ -61,20 +61,16 @@ class Perguntas {
             $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
         }
         
+        $cmd = Conteiner::get('Socket');
         for($i = 0; $i < count($toConexao); $i++){
             $mensagem[$i]['to'] = $toConexao[$i];
             $mensagem[$i]['from'] = $fromConexao;
             $mensagem[$i]['nome'] = $dadosUsuario[$i]['usuarioNome'];
             $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
+            $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
+            $mensagem[$i]['pergunta'] = $msg->getCampo('Perguntas::titulo');
+            
+            $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
         }
-        
-        $cmd = Conteiner::get('Socket');
-        for($i = 0; $i < count($toConexao); $i++){
-            $cmd->enviarMensagem($mensagem[$i]);
-        }
-        
-        $dados['to'] = $toConexao;
-        $dados['from'] = $fromConexao;
-        $dados['nome'] = $dadosUsuario['usuarioNome'];
     }
 }

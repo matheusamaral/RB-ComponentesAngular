@@ -20,23 +20,23 @@ and open the template in the editor.
             console.log("Connection established!");
             iniciar();
 
-//            enviar();
+            enviar();
             };
 
             conn.onmessage = function(e) {
             //            var obj = JSON.parse(e.data);
             console.log(e.data);
-            //            msgRecebidas.push(obj.nome+' : '+obj.msg);
-            //            console.log(obj.nome+' : '+obj.msg);
+//                        msgRecebidas.push(obj.nome+' : '+obj.msg);
+//                        console.log(obj.nome+' : '+obj.msg);
             };
 
             enviar = function(){
             console.log("enviar");
 
             conn.send(JSON.stringify({codsessrt:'PwB37ZpyZrNtgFuDJWShzLfftMfKRPAf0VydEZi0cp7Zuz4nzeogvFlAHV6aM5Vk5NUT80TReFs75CBzhqlxUlM8l4UMm8TFhrVl',
-                processo:'Mensagens', etapa:'enviarMensagem',
-            'Mensagens::titulo':'msg22222', 'Mensagens::usuarioMensagemId':'1', 
-            'Mensagens::visibilidadeMensagensId':'2'}));
+                processo:'Acoes', etapa:'perguntas',
+            'Perguntas::titulo':'pergunta teste', 'Perguntas::localId':'1', 
+            'Mensagens::visibilidadeId':'2'}));
             setTimeout(function(){
                 if(cont < 100){
                     console.log('entrou');
