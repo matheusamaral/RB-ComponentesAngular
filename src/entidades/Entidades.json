@@ -30,6 +30,7 @@
     "Midia": "\\Quickpeek\\Acoes\\Dominio\\Midia",
     "PerguntaUsuario": "\\Quickpeek\\Acoes\\Dominio\\PerguntaUsuario",
     "PerguntaAlerta": "\\Quickpeek\\Acoes\\Dominio\\PerguntaAlerta",
+    "PerguntaExcluida": "\\Quickpeek\\Acoes\\Dominio\\PerguntaExcluida",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",
     "RespostasVisualizadas": "\\Quickpeek\\Acoes\\Dominio\\RespostasVisualizadas",

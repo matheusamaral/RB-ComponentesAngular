@@ -10,8 +10,8 @@ class EditarContaPrivada {
         $query = Conteiner::get('ConsultaVerificarConfiguracoes')->consultar($usuarioId);
         
         if($query){
-            $msg->setCampo('Configuracoes::id', $query['id']);
             $msg->setCampo('entidade', 'Configuracoes');
+            $msg->setCampo('Configuracoes::id', $query['id']);
             Conteiner::get('Cadastro')->cadastrar($msg);
         }else{
             $msg->setResultadoEtapa(false);

@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaMapaLocaisPertos {
     
-    public function consultar($latitude, $longitude){
+    public function consultar($latitude, $longitude, $usuarioId){
         
         $query = Conteiner::get('Query', false);
         $query->select('distinct (6371 * acos(cos(radians(?)) '
@@ -26,12 +26,18 @@ class ConsultaMapaLocaisPertos {
         $query->join('categoria_local', 'cl')
                 ->on('cl.id = lc.categoria_id')
                 ->on('cl.ativo = 1');
-        $query->where('l.ativo = 1');
+        $query->join('check_in', 'ci', 'left')
+                ->on('ci.local_id = l.id')
+                ->on('ci.usuario_id = ?')
+                ->on('ci.presente = 1')
+                ->on('ci.ativo = 1');
+        $query->where('l.ativo = 1')
+                ->add('ci.id is null');
         $query->having('distancia <= 0.03');
         $query->group('l.id');
         $query->order('distancia');
         $query->limit(40);
-        $query->addVariaveis([$latitude, $longitude, $latitude]);
+        $query->addVariaveis([$latitude, $longitude, $latitude, $usuarioId]);
         return $query->executar();
     }
 }

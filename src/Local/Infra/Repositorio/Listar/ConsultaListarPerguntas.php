@@ -31,10 +31,16 @@ class ConsultaListarPerguntas {
                 ->on('s.usuario_seguir_id = u.id')
                 ->on('s.confirmar_seguir = 1 and s.ativo = 1');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id and a.ativo = 1');
-        $query->where('p.local_id = ?')->add('p.momento > date_add(now(), INTERVAL -? HOUR)');
+        $query->join('pergunta_excluida', 'pe', 'left')
+                ->on('pe.perguntas_id = p.id')
+                ->on('pe.usuario_id = ?')
+                ->on('pe.ativo = 1');
+        $query->where('p.local_id = ?')
+                ->add('pe.id is null')
+                ->add('p.momento > date_add(now(), INTERVAL -? HOUR)');
         $query->group('p.id');
         $query->order('p.momento desc');
-        $query->addVariaveis([$tempoResposta, $usuarioId, $usuarioId, $localId, $tempoPergunta]);
+        $query->addVariaveis([$tempoResposta, $usuarioId, $usuarioId, $usuarioId, $localId, $tempoPergunta]);
         return $query->executar();
     }
 }

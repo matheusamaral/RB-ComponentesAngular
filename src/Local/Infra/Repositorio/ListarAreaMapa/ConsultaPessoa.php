@@ -21,7 +21,8 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->add('timestampdiff(minute, c.momento, now())', 'minutos')
                 ->add('case when s.ativo is not null and s.confirmar_seguir = 1 then 1'
                         . ' when s.ativo is not null and s.confirmar_seguir = 0 then 2'
-                        . ' else 0 end', 'seguindo');
+                        . ' else 0 end', 'seguindo')
+                ->add('s.id', 'seguirId');
         $query->from('usuario', 'u');
         $query->join('local', 'l')->on('l.ativo = 1');
         $query->join('check_in', 'c')->on('c.usuario_id = u.id')
@@ -29,8 +30,8 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->on('c.presente = 1')
                 ->on('c.ativo = 1');
         $query->join('seguir', 's', 'left')->on('s.usuario_id = ?')
-                ->on('s.ativo = 1')
-                ->on('s.usuario_seguir_id = u.id');
+                ->on('s.usuario_seguir_id = u.id')
+                ->on('s.ativo = 1');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
         $query->join('midia', 'm', 'left')->on('m.usuario_id = u.id')

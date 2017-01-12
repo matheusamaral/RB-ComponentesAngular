@@ -12,13 +12,15 @@ class ListarMensagensPerguntas {
         $notIn = $this->atualizando($msg);
         
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
-        $dados = Conteiner::get('ConsultaListarMensagensPerguntas')->consultar($usuarioId, $perguntaId, 
+        $respostas = Conteiner::get('ConsultaListarMensagensPerguntas')->consultar($usuarioId, $perguntaId, 
                 $tempo['respostas'], $notIn);
         $pergunta = Conteiner::get('ConsultaListarMensagensPerguntas')->consultarPergunta($usuarioId, $perguntaId);
         
         if($pergunta){
-            if($dados){
-                foreach($dados as $v){
+            $dados['pergunta'] = $pergunta;
+            
+            if($respostas){
+                foreach($respostas as $v){
                     $respostasId[] = $v['respostaId'];
                 }
                 $this->visualizarRespostas($msg, $perguntaId, $tempo['respostas']);
@@ -27,9 +29,8 @@ class ListarMensagensPerguntas {
                     $respostasId = array_merge($msg->getCampoSessao('respostasNotIn'), $respostasId);
                 }
                 $msg->setCampoSessao('respostasNotIn', $respostasId);
-                array_unshift($dados, $pergunta);
-            }else{
-                $dados = $pergunta;
+                
+                $dados['respostas'] = $respostas;
             }
             
             $this->setarPerguntaVisualizada($msg);

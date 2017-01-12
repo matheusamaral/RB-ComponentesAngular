@@ -25,8 +25,9 @@ class ListarPessoas {
                 $usuariosId = array_merge($msg->getCampoSessao('usuariosNotIn'), $usuariosId);
             }
             $msg->setCampoSessao('usuariosNotIn', $usuariosId);
-            $query['qtd'] = $pessoa->consultarQtd($localId);
-            $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
+            $dados['pessoas'] = $query;
+            $dados['qtd'] = $pessoa->consultarQtd($localId);
+            $msg->setResultadoEtapa(true, false, ['dados'=>$dados]);
         }else{
             $msg->setResultadoEtapa(false);
         }

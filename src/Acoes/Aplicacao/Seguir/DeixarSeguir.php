@@ -14,8 +14,10 @@ class DeixarSeguir {
         if($query){
             $entidade = ConteinerEntidade::getInstancia('Seguir');
             $entidade->setId($query['id']);
-            $entidade->deletar();
-            $msg->setResultadoEtapa(true);
+            $qtdErro = $entidade->deletar();
+            if(!$qtdErro){
+                $msg->setResultadoEtapa(true);
+            }
         }else{
             $msg->setResultadoEtapa(false);
         }

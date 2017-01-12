@@ -8,7 +8,7 @@ class ConsultaListarMensagensPerguntas {
         
         $query = Conteiner::get('Query', false);
         $query->select('distinct r.id', 'respostaId')
-                ->add('r.titulo', 'titulo')
+                ->add('r.titulo', 'respostaTitulo')
                 ->add('r.endereco', 'enderecoMidia')
                 ->add('r.usuario_id', 'usuarioId')
                 ->add('case when u.ativo = 0 then ' . "'FotoPadrao'"
@@ -28,13 +28,18 @@ class ConsultaListarMensagensPerguntas {
                 ->on('s.ativo = 1');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
+        $query->join('pergunta_excluida', 'pe', 'left')
+                ->on('pe.respostas_id = r.id')
+                ->on('pe.usuario_id = ?')
+                ->on('pe.ativo = 1');
         $query->where('r.perguntas_id = ?')
                 ->add('r.momento > date_add(now(), INTERVAL -? HOUR)')
+                ->add('pe.id is null')
                 ->add('r.id not in(' . $notIn . ')')
                 ->add('(r.usuario_id = ? or bloqueado = 0)')
                 ->add('r.ativo = 1');
         $query->limit(15);
-        $query->addVariaveis([$usuarioId, $perguntaId, $tempo, $usuarioId]);
+        $query->addVariaveis([$usuarioId, $usuarioId, $perguntaId, $tempo, $usuarioId]);
         return $query->executar();
     }
     
@@ -49,7 +54,8 @@ class ConsultaListarMensagensPerguntas {
                         . ' else a.nome end', 'nomeUsuario')
                 ->add('case when p.visibilidade_id = 1 then u.endereco'
                         . ' when p.visibilidade_id = 2 and s.id is not null then u.endereco'
-                        . ' else a.endereco end', 'enderecoUsuario');
+                        . ' else a.endereco end', 'enderecoUsuario')
+                ->add('p.momento', 'momento');
         $query->from('perguntas', 'p');
         $query->join('usuario', 'u')->on('u.id = p.usuario_id')
                 ->on('u.ativo = 1');

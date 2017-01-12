@@ -81,7 +81,7 @@ class Respostas {
         $cadastro = Conteiner::get('Cadastro');
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         
-        if($usuarioNotificacaoId != $usuarioId){
+        if($usuarioNotificacaoId && $usuarioNotificacaoId != $usuarioId){
             $respostaId = $msg->getCampo('Respostas::id')->get('valor');
             $msg->setCampo('entidade', 'Notificacoes');
             $msg->setCampo('Notificacoes::respostaId', $respostaId);

@@ -15,7 +15,8 @@ class ConsultaPesquisarPessoas {
                     + (IFNULL(m.ativo, 0) * 3) + (IFNULL(s.ativo, 0) * 3)', 'contagem')
                 ->add('case when seg.ativo is not null and seg.confirmar_seguir = 1 then 1'
                         . ' when seg.ativo is not null and seg.confirmar_seguir = 0 then 2'
-                        . ' else 0 end', 'seguindo');
+                        . ' else 0 end', 'seguindo')
+                ->add('seg.id', 'seguirId');
         $query->from('usuario', 'u');
         $query->join('lista_contatos', 'lc', 'left')
                 ->on('lc.usuario_id = ?')
