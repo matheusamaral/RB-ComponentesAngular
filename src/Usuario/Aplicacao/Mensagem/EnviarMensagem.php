@@ -9,6 +9,7 @@ class EnviarMensagem {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
         $visibilidadeId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
         $bloqueoou = Conteiner::get('ConsultaBloqueado')->consultar($usuarioMensagemId, $usuarioId, $visibilidadeId);
         
@@ -48,11 +49,12 @@ class EnviarMensagem {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
         $visibilidadeId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
         $mensagemId = $msg->getCampo('Mensagens::id')->get('valor');
         $mensagem = $msg->getCampo('Mensagens::titulo')->get('valor');
         $mensagemEndereco = $msg->getCampo('Mensagens::endereco')->get('valor');
-        $agrupamento = $usuarioId . "-" . $usuarioMensagemId . "-" . $visibilidadeId;
+        $agrupamento = $usuarioId . "-" . $usuarioMensagemId . "-" . $visibilidadeId . "-" . $visibilidadeUsuarioId;
         $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId);
 
         $dados['mensagemId'] = $mensagemId;

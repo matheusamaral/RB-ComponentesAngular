@@ -17,6 +17,13 @@ class CheckIn {
             $entidade->salvar();
         }
         
+        $sugestaoCheckIn = $msg->getCampoSessao('sugestaoCheckIn');
+        if($sugestaoCheckIn){
+            $msg->setCampo('CheckIn::id', $sugestaoCheckIn);
+            $msg->setCampo('CheckIn::momento', $msg->getCampoSessao('sugestaoCheckInMomento'));
+            $msg->setCampo('CheckIn::presente', 1);
+        }
+        
         $msg->setCampo('entidade', 'CheckIn');
         $msg->setCampo('CheckIn::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
         $cad = Conteiner::get('Cadastro')->cadastrar($msg);
