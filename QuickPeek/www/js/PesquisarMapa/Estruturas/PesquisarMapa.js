@@ -62,6 +62,9 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                             <button ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
                                 <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                             </button>\n\
+                            <button ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 2" class="btn-seguidores button button-outline button-positive">\n\
+                                Solicitado\n\
+                            </button>\n\
                             <button ng-disabled="dadosUser.usuarioId == pessoa.usuarioId" ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId == pessoa.usuarioId" class="btn-voce btn-seguidores button button-outline button-positive">\n\
                                 <i class="icon ion-ios-plus-empty"></i>Voce\n\
                             </button>\n\
@@ -74,7 +77,7 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
     }
     
     function sessaoUltimosLocais(){
-         return'<div class="row box-ultimos remove-padding">\n\
+         return'<div ng-if="!pesquisou" class="row box-ultimos remove-padding">\n\
                     <div class="col remove-padding">\n\
                         <div class="row padding-pequeno-ultimo">\n\
                             <p class="p-ultimos-locais"> Locais recentes</p>\n\
@@ -82,18 +85,20 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                     </div>\n\
                 </div>\n\
                 <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
-                    <div ng-click="checkInLocal(local)" ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
+                    <div ng-click="irLocal(local.localId)" ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
                         <div ng-if="local.presente == 1" class="col">\n\
-                            <p class="p-titulo-local">{{local.localNome}}</p>\n\
+                            <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
+                            <p ng-if="local.localNome" class="p-titulo-local">{{local.localNome}}</p>\n\
                             <div class="row remove-padding">\n\
                                 <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual - {{local.cidade}}</span>\n\
                             </div>\n\
                         </div>\n\
                         <div ng-if="local.presente != 1" class="col">\n\
-                            <p class="p-titulo-local">{{local.localNome}}</p>\n\
+                            <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
+                            <p ng-if="local.localNome" class="p-titulo-local">{{local.localNome}}</p>\n\
                             <div class="row remove-padding" style="padding-top:3px !important">\n\
                                 <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia >= 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia >= 1">{{local.distancia.split(\'.\')[0]}} km de distância - {{local.cidade}}</span>\n\
-                                <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia < 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia < 1">{{(1000 * local.distancia).split(\'.\')[0]}} m de distância - {{local.cidade}}</span>\n\
+                                <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia < 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia < 1">{{converteKmM(local.distancia)}} m de distância - {{local.cidade}}</span>\n\
                             </div>\n\
                         </div>\n\
                         <div class="text-right">\n\
@@ -102,12 +107,12 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                                     <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                                 </md-button>\n\
                                 <md-menu-content width="4">\n\
-                                    <md-menu-item>\n\
+                                    <md-menu-item ng-if="local.checkIn == 1">\n\
                                         <md-button ng-click="ctrl.redial($event)">\n\
                                             Alterar localização\n\
                                         </md-button>\n\
                                     </md-menu-item>\n\
-                                    <md-menu-item>\n\
+                                    <md-menu-item ng-if="local.checkIn == 1">\n\
                                         <md-button ng-click="ctrl.redial($event)">\n\
                                             Alterar privacidade\n\
                                         </md-button>\n\

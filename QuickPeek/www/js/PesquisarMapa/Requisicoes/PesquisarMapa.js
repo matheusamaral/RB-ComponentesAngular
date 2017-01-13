@@ -34,17 +34,18 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
         function successPesquisarLocais(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
-            alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true){
 //                for(var i = 0; i < objRetorno.dados.length;i++){
 //                    scope.locais.push(objRetorno.dados[i]);
 //                }
                 scope.locais = objRetorno.dados;
+                console.log(scope.locais);
             }
         };
         
         function successPesquisarLocaisScroll(objRetorno){
             RBLoadingMobile.hide();
+            scope.pesquisou = true;
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 for(var i = 0; i < objRetorno.dados.length;i++){

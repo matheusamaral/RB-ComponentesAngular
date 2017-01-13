@@ -10,6 +10,8 @@ angular.module('QuickPeek.LoadingInicial', [
     function ($scope,LoadingInicialEstrutura,LoadingInicialAcoes) {        
         LoadingInicialEstrutura.setScope($scope).popular();
         LoadingInicialAcoes.setScope($scope).inicializar();
+        
+        $scope.onDeviceReady = LoadingInicialAcoes.onDeviceReady;
     }
 ])
 

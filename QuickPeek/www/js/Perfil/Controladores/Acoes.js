@@ -74,6 +74,26 @@ angular.module('QuickPeek.Acoes.Perfil', [
         }
     }
     
+    function seguir(id){
+        var obj = {usuarioSeguirId:id};
+        PerfilRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PerfilRequisicoes.successSeguir}).seguir();
+    }
+    
+    function deixarSeguir(id){
+        var obj = {usuarioSeguirId:id};
+        PerfilRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PerfilRequisicoes.successDeixarDeSeguir}).deixarDeSeguir();
+    }
+    
+    function retornaDistancia(dist){
+        if(dist < 1)return String((1000 * dist)).split('.')[0]+'m';
+        else return dist+'km';
+    }
+    
+    function converteTempo(min){
+        if(min < 60)return min+' minutos';
+        else return String((min/60)).split('.')[0]+' horas';
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -83,7 +103,11 @@ angular.module('QuickPeek.Acoes.Perfil', [
         irSeguidores:irSeguidores,
         irSeguindo:irSeguindo,
         irMapa:irMapa,
-        voltar:voltar
+        voltar:voltar,
+        seguir:seguir,
+        deixarSeguir:deixarSeguir,
+        retornaDistancia:retornaDistancia,
+        converteTempo:converteTempo
     };
     
  }]);

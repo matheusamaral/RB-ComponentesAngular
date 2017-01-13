@@ -18,6 +18,9 @@ angular.module('QuickPeek.Perfil', [
         $scope.irSeguidores = PerfilAcoes.irSeguidores;
         $scope.irMapa = PerfilAcoes.irMapa;
         $scope.voltar = PerfilAcoes.voltar;
+        $scope.seguir = PerfilAcoes.seguir;
+        $scope.retornaDistancia = PerfilAcoes.retornaDistancia;
+        $scope.converteTempo = PerfilAcoes.converteTempo;
     }
 ])
 

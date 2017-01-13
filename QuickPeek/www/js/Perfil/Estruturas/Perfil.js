@@ -37,10 +37,13 @@ angular.module('QuickPeek.HTML.Perfil', [
                             </button>\n\
                         </div>\n\
                         <div class="col" ng-if="outraPessoa" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
-                            <button ng-click="seguir(pessoa.usuarioId)" ng-if="dados.seguindo == 0" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
+                            <button ng-click="seguir(dados.usuarioId)" ng-if="dados.seguindo == 0" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
                                 <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                             </button>\n\
-                            <button ng-click="deixarSeguir(pessoa.usuarioId)" ng-if="dados.seguindo == 1" class="btn-perfil-geral btn-seguidores button button button-balanced">\n\
+                            <button ng-click="seguir(dados.usuarioId)" ng-if="dados.seguindo == 2" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
+                                Solicitado\n\
+                            </button>\n\
+                            <button ng-click="deixarSeguir(dados.usuarioId)" ng-if="dados.seguindo == 1" class="btn-perfil-geral btn-seguidores button button button-balanced">\n\
                                 <i class="icon ion-checkmark"></i>Seguindo\n\
                             </button>\n\
                             <button ng-click="irConfiguracoes()" class="btn-perfil-geral btn-perfil button button-outline button-stable">\n\
@@ -80,7 +83,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                         <div class="row text-center">\n\
                             <p class="p-local-grande">Cais do Chopp</p>\n\
                         </div>\n\
-                        <div class="row text-center remove-padding" style="padding-top: 25px !important;">\n\
+                        <div ng-if="!outraPessoa" class="row text-center remove-padding" style="padding-top: 25px !important;">\n\
                             <div class="col remove-padding">\n\
                                 <button class="btn-perfil-clear button button-clear button-positive">\n\
                                     <i style="margin-right: 10px;" class="icon ion-android-globe"></i>Alterar privacidade\n\
@@ -99,24 +102,12 @@ angular.module('QuickPeek.HTML.Perfil', [
     function sessaoUltimosLocais(){
         return'<div class="row box-ultimos remove-padding">\n\
                     <div class="col remove-padding">\n\
-                        <div class="row padding-pequeno-ultimo">\n\
+                        <div ng-if="ultimosLocais.length" class="row padding-pequeno-ultimo">\n\
                             <p class="p-ultimos-locais"> ÚLTIMOS LOCAIS</p>\n\
                         </div>\n\
-                        <div class="col box-ultimo-local rb-padding-padrao">\n\
-                            <p class="titulo-local">Bar do Broa</p>\n\
-                            <p class="descricao-local">19 km. há 2 minutos</p>\n\
-                        </div>\n\
-                        <div class="col box-ultimo-local rb-padding-padrao">\n\
-                            <p class="titulo-local">Deck</p>\n\
-                            <p class="descricao-local">19 km. há 10 horas</p>\n\
-                        </div>\n\
-                        <div class="col box-ultimo-local rb-padding-padrao">\n\
-                            <p class="titulo-local">Bar do Broa</p>\n\
-                            <p class="descricao-local">19 km. há 15 horas</p>\n\
-                        </div>\n\
-                        <div class="col box-ultimo-local rb-padding-padrao">\n\
-                            <p class="titulo-local">Reduto</p>\n\
-                            <p class="descricao-local">19 km. há 17 horas</p>\n\
+                        <div ng-repeat="local in ultimosLocais" class="col box-ultimo-local rb-padding-padrao">\n\
+                            <p class="titulo-local">{{local.localNome}}</p>\n\
+                            <p class="descricao-local">{{retornaDistancia(local.distancia)}}. há {{converteTempo(local.minutos)}}</p>\n\
                         </div>\n\
                     </div>\n\
                 </div>';

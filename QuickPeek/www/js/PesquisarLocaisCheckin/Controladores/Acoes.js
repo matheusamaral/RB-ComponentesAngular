@@ -31,11 +31,18 @@ angular.module('QuickPeek.Acoes.PesquisarLocaisCheckin', [
         },1500);
     }
     
+    function irLocal(local){
+        DGlobal.checkIn = {local:local};
+        DGlobal.paginaAnterior = 31;
+        Pagina.navegar({idPage:30});
+    }
+    
     return {
         setScope:setScope,
         pesquisarLocalScroll:pesquisarLocalScroll,
         voltarCheckin:voltarCheckin,
-        pesquisarLocal:pesquisarLocal
+        pesquisarLocal:pesquisarLocal,
+        irLocal:irLocal
     };
     
  }]);

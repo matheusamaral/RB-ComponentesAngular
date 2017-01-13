@@ -51,7 +51,7 @@ angular.module('QuickPeek.Acoes.Locais', [
             Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
         }else{
             var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-            navigator.geolocation.getCurrentPosition(onSuccess,onError);
+            navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
         }
     }
     

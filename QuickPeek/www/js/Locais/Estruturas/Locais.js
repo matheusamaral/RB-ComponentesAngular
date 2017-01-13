@@ -36,12 +36,12 @@ angular.module('QuickPeek.HTML.Locais', [
                                             <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                                         </md-button>\n\
                                         <md-menu-content width="4">\n\
-                                            <md-menu-item>\n\
+                                            <md-menu-item ng-if="local.dados.checkIn == 1">\n\
                                                 <md-button ng-click="irCheckin(true)">\n\
                                                     Alterar localização\n\
                                                 </md-button>\n\
                                             </md-menu-item>\n\
-                                            <md-menu-item>\n\
+                                            <md-menu-item ng-if="local.dados.checkIn == 1">\n\
                                                 <md-button ng-click="checkInLocal(local)">\n\
                                                     Alterar privacidade\n\
                                                 </md-button>\n\

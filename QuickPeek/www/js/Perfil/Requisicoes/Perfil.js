@@ -32,7 +32,6 @@ angular.module('QuickPeek.Requisicao.Perfil', [
             GCS.conectar(obj);
         };
         
-        
         function successCadastrar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
@@ -44,6 +43,57 @@ angular.module('QuickPeek.Requisicao.Perfil', [
             }
         };
         
+        function seguir(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/seguir",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successSeguir(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                scope.dados.seguindo = 2;
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
+        function deixarDeSeguir(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/deixarSeguir",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successDeixarDeSeguir(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true) {
+                scope.dados.seguindo = 0;
+                if(scope.dados.qtdSeguidores > 0)scope.dados.qtdSeguidores--;
+                else scope.dados.qtdSeguidores = 0;
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -58,7 +108,11 @@ angular.module('QuickPeek.Requisicao.Perfil', [
         return {
             set: set,
             cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            successCadastrar: successCadastrar,
+            seguir:seguir,
+            successSeguir:successSeguir,
+            successDeixarDeSeguir:successDeixarDeSeguir,
+            deixarDeSeguir:deixarDeSeguir
         };
                            
 }]);     

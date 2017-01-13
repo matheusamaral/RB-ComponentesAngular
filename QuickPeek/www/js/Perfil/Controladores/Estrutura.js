@@ -32,6 +32,9 @@ angular.module('QuickPeek.Estrutura.Perfil', [
         
         if(DGlobal.perfilOutros)
             scope.outraPessoa = true;
+        
+        if(DGlobal.ultimosLocais && DGlobal.ultimosLocais.success)
+            scope.ultimosLocais = DGlobal.ultimosLocais.dados;
     };
     
     function montaAvatar(){

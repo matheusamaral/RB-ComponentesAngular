@@ -22,7 +22,7 @@ angular.module('QuickPeek.Acoes.CheckIn', [
     
     function voltarMapa(){
         if(DGlobal.voltarLocais){
-            Pagina.navegar({idPage:24,paramAdd:'?localId='+DGlobal.localAtual+'&atualizando=0'});
+            Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
         }else{
             if(DGlobal.coordenadasAtual){
                 Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
@@ -49,7 +49,12 @@ angular.module('QuickPeek.Acoes.CheckIn', [
     }
     
     function attLocais(){
-        navigator.geolocation.getCurrentPosition(onSuccessGetNovaCoord,onErrorNovaCoord);
+        if(DGlobal.coordenadasAtual){
+            var obj = {latitude:DGlobal.coordenadasAtual.latitude,longitude:DGlobal.coordenadasAtual.longitude}
+            CheckInRequisicoes.set({dados:obj,scope:scope,acaoSuccess:CheckInRequisicoes.successVerificarLocaisProximos}).verificarLocaisProximos();
+        }else{
+            navigator.geolocation.getCurrentPosition(onSuccessGetNovaCoord,onErrorNovaCoord);
+        }
     }
     
     var onSuccessGetNovaCoord = function(position){

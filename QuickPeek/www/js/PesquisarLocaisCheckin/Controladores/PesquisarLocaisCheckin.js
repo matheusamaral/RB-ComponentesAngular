@@ -13,6 +13,7 @@ angular.module('QuickPeek.PesquisarLocaisCheckin', [
         
         $scope.pesquisarLocal = PesquisarLocaisCheckinAcoes.pesquisarLocal;
         $scope.voltarCheckin = PesquisarLocaisCheckinAcoes.voltarCheckin;
+        $scope.irLocal = PesquisarLocaisCheckinAcoes.irLocal;
     }
 ])
 

@@ -24,6 +24,7 @@
     height: 250px;
     border-radius: 147px;
     top: -12px;
+    z-index: 81;
 }
 
 .onda.tres{
@@ -40,6 +41,7 @@
     border-radius: 250px;
     top: -112px;
     opacity: 0.5;
+    z-index: 80;
 }
 
 .onda.cinco{

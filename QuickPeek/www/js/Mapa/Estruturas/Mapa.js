@@ -29,7 +29,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}?</p>\n\
                     </div>\n\
                     <div class="col text-right alinha-vertical">\n\
-                        <button ng-click="irCheckin()" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
+                        <button ng-click="irCheckin($event)" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
                             Não\n\
                         </button>\n\
                         <button ng-click="checkInLocal(dadosbarra)" class="config-btn-mapa button button-positive">\n\
@@ -83,7 +83,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <a class="tab-item" href="#">\n\
                             <i class="icon ion-android-notifications"></i>\n\
                         </a>\n\
-                        <a class="tab-item" href="#" ng-click="irPerfil()">\n\
+                        <a class="tab-item" href="#" ng-click="irPerfil(dadosUser.dados.usuarioId)">\n\
                             <i class="icon ion-person"></i>\n\
                         </a>\n\
                     </div>\n\

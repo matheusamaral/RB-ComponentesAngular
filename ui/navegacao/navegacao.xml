@@ -59,6 +59,7 @@
             <classe name="Listar">
                 <metodo name="listarPerfilUsuario" objeto='dadosUsuario'></metodo>
                 <metodo name="listarAvatares" objeto='dadosAvatares'></metodo>
+                <metodo name="listarUltimosLocais" objeto='ultimosLocais'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-perfil" acao="PerfilCtrl" title="QuickPeek"/>
