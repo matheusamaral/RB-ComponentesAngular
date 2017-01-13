@@ -161,6 +161,12 @@ CREATE TABLE `mensagens`(
          FOREIGN KEY (`visibilidade_mensagens_id`) REFERENCES `visibilidade_mensagens` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `visibilidade_usuario_id` INT   ,
+    INDEX `mensagens_fk_visibilidade_usuario_id_idx`(`visibilidade_usuario_id` ASC),
+    CONSTRAINT `mensagens_fk_visibilidade_usuario_id` 
+         FOREIGN KEY (`visibilidade_usuario_id`) REFERENCES `visibilidade_mensagens` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `visualizado` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `mensagens_excluidas`( 

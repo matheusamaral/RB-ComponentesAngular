@@ -14,6 +14,7 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->add('case when c.visibilidade_id = 1 then u.endereco'
                         . ' when c.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . ' else a.endereco end', 'endereco')
+                ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.local_id', 'localId')
                 ->add('ifnull(s.ativo, 0) + ((count(distinct cu.id) + consulta.soma) * 0.8)'
                         . ' + (count(distinct ci.id) * 0.7)', 'count')

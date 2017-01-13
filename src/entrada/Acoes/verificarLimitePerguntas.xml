@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="verificarLimitePerguntas" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Local::id" nome="localId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="verificar-limite-perguntas" tipo="tarefa">
+            <entidade nome="VerificarLimitePerguntas" metodo="verificarLimitePerguntas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
