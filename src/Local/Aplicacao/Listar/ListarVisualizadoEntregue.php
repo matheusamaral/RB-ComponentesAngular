@@ -17,7 +17,7 @@ class ListarVisualizadoEntregue {
         $dados['entregue'] = $entregue;
         $dados['visualizado'] = $visualizado;
         
-        if($dados){
+        if($dados['entregue'] && $dados['visualizado']){
             $msg->setResultadoEtapa(true, false, ['dados'=>$dados]);
         }else{
             $msg->setResultadoEtapa(false);

@@ -22,5 +22,6 @@
     "ConsultaListarNaoVisualizadas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarNaoVisualizadas",
     "ConsultaUsuariosConfirmarSeguir": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaUsuariosConfirmarSeguir",
     "ConsultaListarNotificacoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Listar\\ConsultaListarNotificacoes",
-    "ConsultaApagarConta": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaApagarConta"
+    "ConsultaApagarConta": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaApagarConta",
+    "ConsultaSessaoBanco": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\SessaoBanco\\ConsultaSessaoBanco"
 }

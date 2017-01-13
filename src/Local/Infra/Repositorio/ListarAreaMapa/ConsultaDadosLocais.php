@@ -19,7 +19,8 @@ class ConsultaDadosLocais {
 		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
     end)', 'relevancia')
                 ->add('cin.contagem', 'relevancia2')
-                ->add('ifnull(chec.ativo, 0)', 'checkIn');
+                ->add('ifnull(chec.ativo, 0)', 'checkIn')
+                ->add('case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) < 0.03 then 1 else 0 end', 'publicar');
         $query->from('local', 'l');
         $query->join('check_in', 'c')->on('c.local_id = l.id')
                 ->on('c.presente = 1')
@@ -46,6 +47,7 @@ class ConsultaDadosLocais {
             $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $latitudeLocal, $longitudeLocal, $latitudeLocal,
+            $latitude, $longitude, $latitude,
             $tempoMidia, $tempoHashtag, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }

@@ -3,7 +3,7 @@
 <processo codigo="excluirMidia" modulo="Acoes">
     
     <entrada>
-        <campo regra="Opcional" chave="Curtir::midiaId" nome="midiaId"/>
+        <campo regra="Obrigatorio" chave="Midia::id" nome="midiaId"/>
     </entrada>
     
     <atividades>

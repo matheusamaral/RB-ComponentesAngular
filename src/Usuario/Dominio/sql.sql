@@ -161,6 +161,12 @@ CREATE TABLE `mensagens`(
          FOREIGN KEY (`visibilidade_mensagens_id`) REFERENCES `visibilidade_mensagens` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `visibilidade_usuario_id` INT   ,
+    INDEX `mensagens_fk_visibilidade_usuario_id_idx`(`visibilidade_usuario_id` ASC),
+    CONSTRAINT `mensagens_fk_visibilidade_usuario_id` 
+         FOREIGN KEY (`visibilidade_usuario_id`) REFERENCES `visibilidade_mensagens` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `visualizado` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `mensagens_excluidas`( 
@@ -210,19 +216,6 @@ CREATE TABLE `status_sms`(
     `momento` datetime   ,
     `codigo_mobi` varchar(45)   ,
     `titulo` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        
-CREATE TABLE `numerounico_usuario`( 
-    `id` int  AUTO_INCREMENT ,
-     PRIMARY KEY (`id`),
-    `ativo` tinyint   ,
-    `momento` datetime   ,
-    `numerounico` varchar(45)   ,
-    `usuario_id` INT   ,
-    INDEX `numerounico_usuario_fk_usuario_id_idx`(`usuario_id` ASC),
-    CONSTRAINT `numerounico_usuario_fk_usuario_id` 
-         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-     ON DELETE NO ACTION
-     ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
 CREATE TABLE `ddi_paises`( 
     `id` int  AUTO_INCREMENT ,

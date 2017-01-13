@@ -1,7 +1,6 @@
 <?php
 namespace Quickpeek\Usuario\Aplicacao\Editar;
 use Rubeus\ContenerDependencia\Conteiner;
-use Rubeus\ManipulacaoEntidade\Dominio\ConteinerEntidade;
 
 class VerificarCodigoSmsEditar {
     
@@ -16,6 +15,12 @@ class VerificarCodigoSmsEditar {
         $msg->setCampoSessao('smsCodigoId', $smsCodigo['id']);
         
         if($smsCodigo){
+            $sessao = Conteiner::get('ConsultaSessaoBanco')->consultar($smsCodigo['usuarioId']);
+            $entidade = ConteinerEntidade::getInstancia('SessaoBanco');
+            $entidade->setId($sessao['id']);
+            $entidade->setDadosSessao('{"codSess":"' . $sessao['codigo'] . '"}');
+            $entidade->salvar();
+                
             $cadastro = Conteiner::get('Cadastro');
             
             $msg->setCampo('entidade', 'SmsCodigo');
@@ -27,16 +32,6 @@ class VerificarCodigoSmsEditar {
             $msg->setCampo('Usuario::id', $smsCodigo['usuarioId']);
             $msg->setCampo('Usuario::telefone', $smsCodigo['telefone']);
             $cadastro->cadastrar($msg);
-            
-            $numId = Conteiner::get('ConsultaVerificarNumero')->consultarNumerounico($smsCodigo['usuarioId']);
-            $entidade = ConteinerEntidade::getInstancia('NumerounicoUsuario');
-            $entidade->setId($numId);
-            $entidade->deletar();
-            
-            $msg->setCampo('entidade', 'NumerounicoUsuario');
-            $msg->setCampo('NumerounicoUsuario::usuarioId', $smsCodigo['usuarioId']);
-            $msg->setCampo('NumerounicoUsuario::numerounico', $msg->getCampoSessao('numerounico'));
-            Conteiner::get('Cadastro')->cadastrar($msg);
                 
             $msg->setCampoSessao('dadosUsuarioLogado,id', $smsCodigo['usuarioId']);
             

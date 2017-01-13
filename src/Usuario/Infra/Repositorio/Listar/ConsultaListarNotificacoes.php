@@ -8,6 +8,7 @@ class ConsultaListarNotificacoes {
         
         $query = Conteiner::get('Query', false);
         $query->select('n.id', 'id')
+                ->add('u.id', 'usuarioId')
                 ->add('case when n.resposta_id is null then u.nome'
                         . ' when r.visibilidade_id = 1 then u.nome'
                         . ' when r.visibilidade_id = 2 and s.id is not null then u.nome'
@@ -18,7 +19,9 @@ class ConsultaListarNotificacoes {
                         . ' when r.visibilidade_id = 1 then u.endereco'
                         . ' when r.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . ' else a.endereco end', 'endereco')
-                ->add('timestampdiff(minute, n.momento, now())', 'minutos');
+                ->add('timestampdiff(minute, n.momento, now())', 'minutos')
+                ->add('p.id', 'perguntasId')
+                ->add('l.id', 'localId');
         $query->from('notificacoes', 'n');
         $query->join('tipo_notificacoes', 'tn')
                 ->on('tn.id = n.tipo_id')
@@ -35,7 +38,7 @@ class ConsultaListarNotificacoes {
         $query->join('midia', 'm', 'left')
                 ->on('m.id = n.midia_id');
         $query->join('local', 'l', 'left')
-                ->on('l.id = ifnull(p.local_id, ifnull(hl.local_id, m.local_id))');
+                ->on('l.id = ifnull(hl.local_id, m.local_id)');
         $query->join('seguir', 's', 'left')
                 ->on('s.usuario_id = n.usuario_id')
                 ->on('s.usuario_seguir_id = n.usuario_acao_id')

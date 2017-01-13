@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="excluirPerguntas" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Perguntas::id" nome="perguntasId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="excluir-perguntas" tipo="tarefa">
+            <entidade nome="ExcluirPerguntas" metodo="excluirPerguntas"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

@@ -4,9 +4,8 @@
     
     <entrada>
         <campo regra="Obrigatorio" chave="Usuario::nome" nome="nome"/>
-        <campo regra="Obrigatorio;Data" chave="Usuario::nascimento" nome="nascimento"/>
         <campo regra="Obrigatorio" chave="Usuario::generoId" nome="generoId"/>
-        <campo chave="Arquivo" nome="arquivo" type="file"/>
+        <campo regra="Obrigatorio;Data" chave="Usuario::nascimento" nome="nascimento"/>
     </entrada>
     
     <atividades>

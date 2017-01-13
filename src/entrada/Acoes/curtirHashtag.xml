@@ -3,7 +3,8 @@
 <processo codigo="curtirHashtag" modulo="Acoes">
     
     <entrada>
-        <campo regra="Opcional" chave="HashtagLocal::hashtagId" nome="hashtagId"/>
+        <campo regra="Obrigatorio" chave="HashtagLocal::hashtagId" nome="hashtagId"/>
+        <campo regra="Obrigatorio" chave="Local::id" nome="localId"/>
     </entrada>
     
     <atividades>

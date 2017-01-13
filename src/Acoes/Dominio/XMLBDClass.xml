@@ -53,6 +53,15 @@
         <propriedades coluna="retorno" atributo="retorno" type="varchar(45)"/>
     </classe>
     
+    <classe nome="PerguntaExcluida" tabela="pergunta_excluida" namespace="Quickpeek\Acoes\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
+        <propriedades coluna="perguntas_id" atributo="perguntasId" classe="Perguntas" tabela="perguntas"/>
+        <propriedades coluna="respostas_id" atributo="respostasId" classe="Respostas" tabela="respostas"/>
+    </classe>
+    
     <classe nome="Curtir" tabela="curtir" namespace="Quickpeek\Acoes\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>

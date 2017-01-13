@@ -7,34 +7,20 @@ class Perguntas {
     public function perguntas($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $localId = $msg->getCampo('Perguntas::localId')->get('valor');
         
-        $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
-        $perguntas = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId, $tempo['limitePerguntas']);
-        
-        if(count($perguntas) < 3){
-            
-            $cadastro = Conteiner::get('Cadastro');
-            
-            $msg->setCampo('entidade', 'Perguntas');
-            
-            if(!$msg->getCampo('Perguntas::visibilidadeId')->get('valor')){
-                $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
-                $msg->setCampo('Perguntas::visibilidadeId', $visibilidadeId);
-            }
-            
-            $msg->setCampo('Perguntas::usuarioId', $usuarioId);
-            $cad = $cadastro->cadastrar($msg);
-            if($cad){
-                $this->conexaoSocket($msg);
-            }
-        }else{
-            $datetime1 = new \DateTime(date('Y-m-d H:i:s'));
-            $datetime2 = new \DateTime($perguntas[0]['momento']);
-            
-            $intervalo = $datetime1->diff($datetime2);
-            $minutos = ($intervalo->h * 60) + $intervalo->i;
-            $msg->setResultadoEtapa(false, false, ['dados'=>$minutos]);
+        $cadastro = Conteiner::get('Cadastro');
+
+        $msg->setCampo('entidade', 'Perguntas');
+
+        if(!$msg->getCampo('Perguntas::visibilidadeId')->get('valor')){
+            $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+            $msg->setCampo('Perguntas::visibilidadeId', $visibilidadeId);
+        }
+
+        $msg->setCampo('Perguntas::usuarioId', $usuarioId);
+        $cad = $cadastro->cadastrar($msg);
+        if($cad){
+            $this->conexaoSocket($msg);
         }
     }
     
@@ -51,26 +37,30 @@ class Perguntas {
             if($dadosBanco[$i]['usuario'] == $usuarioId){
                 $fromConexao = $dadosBanco[$i]['conexao'];
             }
-            if(in_array($pagina, $dadosBanco[$i]['pagina'])){
-                $toConexao[] = $dadosBanco[$i]['conexao'];
-                $usuarioId[] = $dadosBanco[$i]['usuarioId'];
+            foreach($dadosBanco[$i] as $k=>$v){
+                if($k == 'pagina' && $v == $pagina){
+                    $toConexao[] = $dadosBanco[$i]['conexao'];
+                    $usuarios[] = $dadosBanco[$i]['usuario'];
+                }
             }
         }
         
-        foreach($usuarioId as $v){
-            $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
-        }
-        
-        $cmd = Conteiner::get('Socket');
-        for($i = 0; $i < count($toConexao); $i++){
-            $mensagem[$i]['to'] = $toConexao[$i];
-            $mensagem[$i]['from'] = $fromConexao;
-            $mensagem[$i]['nome'] = $dadosUsuario[$i]['usuarioNome'];
-            $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
-            $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
-            $mensagem[$i]['pergunta'] = $msg->getCampo('Perguntas::titulo');
-            
-            $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+        if($usuarios){
+            foreach($usuarios as $v){
+                $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
+            }
+
+            $cmd = Conteiner::get('Socket');
+            for($i = 0; $i < count($toConexao); $i++){
+                $mensagem[$i]['to'] = $toConexao[$i];
+                $mensagem[$i]['from'] = $fromConexao;
+                $mensagem[$i]['nome'] = $dadosUsuario[$i]['usuarioNome'];
+                $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
+                $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
+                $mensagem[$i]['pergunta'] = $msg->getCampo('Perguntas::titulo')->get('valor');
+
+                $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+            }
         }
     }
 }

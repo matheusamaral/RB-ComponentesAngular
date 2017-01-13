@@ -8,8 +8,8 @@ class CurtirHashtag {
     public function curtirHashtag($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $localId = $msg->getCampoSessao('dadosUsuarioLogado,local');
         $hashtagId = $msg->getCampo('HashtagLocal::hashtagId')->get('valor');
+        $localId = $msg->getCampo('Local::id')->get('valor');
         
         $descurtir = Conteiner::get('ConsultaDescurtirHashtag')->consultar($usuarioId, $hashtagId, $localId);
         
