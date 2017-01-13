@@ -21,7 +21,7 @@ angular.module('QuickPeek.Acoes.ComeceAgora', [
         $('ion-side-menu-content').addClass('background-img');
     }
     
-    function navegar(){ 
+    function navegar(){
         Pagina.navegar({idPage:3});
     };
 
