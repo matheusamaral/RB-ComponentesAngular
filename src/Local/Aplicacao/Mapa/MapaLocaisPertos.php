@@ -8,7 +8,9 @@ class MapaLocaisPertos {
         
         $latitude = $msg->getCampo('Latitude')->get('valor');
         $longitude = $msg->getCampo('Longitude')->get('valor');
-        $query = Conteiner::get('ConsultaMapaLocaisPertos')->consultar($latitude, $longitude);
+        $usuarioId = $msg->getCampo('dadosUsuarioLogado,id')->get('valor');
+        
+        $query = Conteiner::get('ConsultaMapaLocaisPertos')->consultar($latitude, $longitude, $usuarioId);
         
         if($query){
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);

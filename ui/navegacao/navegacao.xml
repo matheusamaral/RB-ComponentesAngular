@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <root>  
-    <pagina id="1" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="iniciar">
+    <pagina id="1" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="iniciar">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-loading-inicial" acao="LoadingInicialCtrl" title="QuickPeek"/>
     </pagina>   
  
-    <pagina id="2" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="comece-agora">
+    <pagina id="2" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="comece-agora">
         <dadosSolicitados>
         </dadosSolicitados>
         <acaoCliente classe="pag-comece-agora" acao="ComeceAgoraCtrl" title="QuickPeek"/>
     </pagina>  
      
-    <pagina id="3" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="confirmar-numero">
+    <pagina id="3" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="confirmar-numero">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-confirma-numero" acao="ConfirmaNumeroCtrl" title="QuickPeek"/>
     </pagina>   
     
-    <pagina id="4" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="confirmar-sms">
+    <pagina id="4" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="confirmar-sms">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -28,13 +28,13 @@
         <acaoCliente classe="pag-confirma-sms" acao="ConfirmaSmsCtrl" title="QuickPeek"/>
     </pagina>   
     
-    <pagina id="5" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="tirar-selfie">
+    <pagina id="5" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="tirar-selfie">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-tira-selfie" acao="TiraSelfieCtrl" title="QuickPeek"/>
     </pagina>  
     
-    <pagina id="6" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="cadastro-dados">
+    <pagina id="6" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="cadastro-dados">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarPerfilUsuario" objeto='dadosUsuario'></metodo>
@@ -44,7 +44,7 @@
         <acaoCliente classe="pag-cadastro-dados" acao="CadastroDadosCtrl" title="QuickPeek"/>
     </pagina>   
     
-    <pagina id="7" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="avatares">
+    <pagina id="7" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="avatares">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarAvatares" objeto='avatares'></metodo>
@@ -54,7 +54,7 @@
         <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
     </pagina>   
     
-    <pagina id="8" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perfil">
+    <pagina id="8" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="perfil">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarPerfilUsuario" objeto='dadosUsuario'></metodo>
@@ -64,13 +64,13 @@
         <acaoCliente classe="pag-perfil" acao="PerfilCtrl" title="QuickPeek"/>
     </pagina>   
     
-    <pagina id="9" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes">
+    <pagina id="9" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="configuracoes">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-configuracoes" acao="ConfiguracoesCtrl" title="Configurações"/>
     </pagina>   
     
-    <pagina id="10" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="configuracoes-conta">
+    <pagina id="10" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="configuracoes-conta">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -79,7 +79,7 @@
         <acaoCliente classe="pag-config-conta" acao="ConfigContaCtrl" title="ConfigContaCtrl"/>
     </pagina>   
     
-    <pagina id="11" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pessoas-bloqueadas">
+    <pagina id="11" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="pessoas-bloqueadas">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarBloqueados" objeto='pessoasBloqueadas'></metodo>
@@ -88,25 +88,25 @@
         <acaoCliente classe="pag-pessoas-bloqueadas" acao="PessoasBloqueadasCtrl" title="Pessoas bloqueadas"/>
     </pagina>   
     
-    <pagina id="12" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mudar-numero">
+    <pagina id="12" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mudar-numero">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-mudar-numero" acao="MudarNumeroCtrl" title="Mude seu número"/>
     </pagina>   
     
-    <pagina id="13" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mudar-numero-final">
+    <pagina id="13" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mudar-numero-final">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-mudar-numero-final" acao="MudarNumeroFinalCtrl" title="Mude seu número"/>
     </pagina>   
     
-    <pagina id="14" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="apagar-conta">
+    <pagina id="14" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="apagar-conta">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-apagar-conta" acao="ApagarContaCtrl" title="Apague  sua conta"/>
     </pagina>   
     
-    <pagina id="15" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguidores">
+    <pagina id="15" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="seguidores">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarSeguidores" objeto='seguidores'></metodo>
@@ -115,7 +115,7 @@
         <acaoCliente classe="pag-seguidores" acao="SeguidoresCtrl" title="Seus seguidores"/>
     </pagina>   
     
-    <pagina id="16" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="seguindo">
+    <pagina id="16" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="seguindo">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarSeguidos" objeto='seguindos'></metodo>
@@ -124,38 +124,38 @@
         <acaoCliente classe="pag-seguindo" acao="SeguindoCtrl" title="Seus seguidores"/>
     </pagina>   
     
-    <pagina id="17" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="notificacoes-config">
+    <pagina id="17" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="notificacoes-config">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-config-notificacoes" acao="ConfigNotificacoesCtrl" title="Seus seguidores"/>
     </pagina>   
     
-    <pagina id="18" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="contatos-config">
+    <pagina id="18" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="contatos-config">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-config-contatos" acao="ConfigContatosCtrl" title="Seus seguidores"/>
     </pagina>   
     
-    <pagina id="19" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="sobre-config">
+    <pagina id="19" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="sobre-config">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-config-sobre" acao="ConfigSobreCtrl" title="Seus seguidores"/>
     </pagina>   
     
-    <pagina id="20" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="sobre">
+    <pagina id="20" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="sobre">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-sobre" acao="SobreCtrl" title="Seus seguidores"/>
     </pagina>   
     
-    <pagina id="21" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="termos-politicas">
+    <pagina id="21" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="termos-politicas">
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"/>
     </pagina>
     
     <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina-->
-    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
+    <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="locaisPertos" objeto='teste'></metodo>
@@ -169,7 +169,7 @@
         <acaoCliente classe="pag-mapa" acao="MapaCtrl" title="Mapa"/>
     </pagina>   
     
-    <pagina id="23" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="filtro-mapa">
+    <pagina id="23" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="filtro-mapa">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarCategoriasFiltroMapa" objeto='categorias'></metodo>
@@ -178,7 +178,7 @@
         <acaoCliente classe="pag-filtro-mapa" acao="FiltroMapaCtrl" title="Filtrar no mapa"/>
     </pagina>   
     
-    <pagina id="24" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="locais">
+    <pagina id="24" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="locais">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -188,7 +188,7 @@
         <acaoCliente classe="pag-locais" acao="LocaisCtrl" title="Locais e proximidades"/>
     </pagina>   
     
-    <pagina id="25" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="midias">
+    <pagina id="25" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="midias">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -197,7 +197,7 @@
         <acaoCliente classe="pag-exibir-midia" acao="ExibirMidiaCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="26" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Pessoas no local">
+    <pagina id="26" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Pessoas no local">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -207,7 +207,7 @@
         <acaoCliente classe="pag-pessoas-local" acao="PessoasLocalCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="27" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Pessoas no local">
+    <pagina id="27" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Pessoas no local">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -217,7 +217,7 @@
         <acaoCliente classe="pag-perguntas-local" acao="PerguntasLocalCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="28" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pesquisar">
+    <pagina id="28" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="pesquisar">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -227,7 +227,7 @@
         <acaoCliente classe="pag-pesquisar-mapa" acao="PesquisarMapaCtrl" title="Pesquisar"/>
     </pagina>   
     
-    <pagina id="29" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="CheckIn">
+    <pagina id="29" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="CheckIn">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="mapaLocaisPertos" objeto='locais'></metodo>
@@ -239,7 +239,7 @@
         <acaoCliente classe="pag-check-in" acao="CheckInCtrl" title="Efetue Check in"/>
     </pagina>   
     
-    <pagina id="30" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Privacidade">
+    <pagina id="30" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Privacidade">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -248,7 +248,7 @@
         <acaoCliente classe="pag-privacidade" acao="PrivacidadeCtrl" title="Privacidade"/>
     </pagina>   
     
-    <pagina id="31" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pesquisar-locais">
+    <pagina id="31" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="pesquisar-locais">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>

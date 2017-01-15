@@ -63,6 +63,17 @@
     <propriedades coluna="retorno" atributo="retorno" /> 
 </classe>
         
+<classe nome="PerguntaExcluida" tabela="pergunta_excluida"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
+    <nparaum coluna="respostas_id"  atributo="respostasId" />  
+</classe>
+        
 <classe nome="Curtir" tabela="curtir"> 
     <id coluna="id" atributo="id">
         <gerador classe="sequence"/>

@@ -14,6 +14,7 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->add('case when c.visibilidade_id = 1 then u.endereco'
                         . ' when c.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . ' else a.endereco end', 'endereco')
+                ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.local_id', 'localId')
                 ->add('ifnull(s.ativo, 0) + ((count(distinct cu.id) + consulta.soma) * 0.8)'
                         . ' + (count(distinct ci.id) * 0.7)', 'count')
@@ -21,7 +22,8 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->add('timestampdiff(minute, c.momento, now())', 'minutos')
                 ->add('case when s.ativo is not null and s.confirmar_seguir = 1 then 1'
                         . ' when s.ativo is not null and s.confirmar_seguir = 0 then 2'
-                        . ' else 0 end', 'seguindo');
+                        . ' else 0 end', 'seguindo')
+                ->add('s.id', 'seguirId');
         $query->from('usuario', 'u');
         $query->join('local', 'l')->on('l.ativo = 1');
         $query->join('check_in', 'c')->on('c.usuario_id = u.id')
@@ -29,8 +31,8 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->on('c.presente = 1')
                 ->on('c.ativo = 1');
         $query->join('seguir', 's', 'left')->on('s.usuario_id = ?')
-                ->on('s.ativo = 1')
-                ->on('s.usuario_seguir_id = u.id');
+                ->on('s.usuario_seguir_id = u.id')
+                ->on('s.ativo = 1');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
         $query->join('midia', 'm', 'left')->on('m.usuario_id = u.id')

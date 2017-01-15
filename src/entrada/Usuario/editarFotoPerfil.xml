@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="editarFotoPerfil" modulo="Usuario">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="ArquivoBase64" nome="arquivoBase64"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="editar-foto-perfil" tipo="tarefa">
+            <entidade nome="EditarFotoPerfil" metodo="editarFotoPerfil"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

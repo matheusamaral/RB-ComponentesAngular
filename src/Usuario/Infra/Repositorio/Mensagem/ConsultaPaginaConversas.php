@@ -20,8 +20,11 @@ class ConsultaPaginaConversas {
                 ->add('men.titulo', 'mensagem')
                 ->add('men.endereco', 'mensagemEndereco')
                 ->add("case when men.usuario_mensagem_id = ? then concat(men.usuario_mensagem_id, '-', men.usuario_id, "
-                . "'-', men.visibilidade_mensagens_id) else concat(men.usuario_id, '-', men.usuario_mensagem_id, '-', "
-                . "men.visibilidade_mensagens_id) end", 'agrupamento');
+                . "'-', men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id) else concat(men.usuario_id, '-', "
+                        . "men.usuario_mensagem_id, '-', "
+                . "men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id) end", 'agrupamento')
+                ->add('case when men.usuario_id = ? then men.visibilidade_mensagens_id '
+                        . 'else men.visibilidade_usuario_id end', 'visibilidadeMensagem');
         $query->from('usuario', 'u');
         $query->join($this->subConsulta(), 'm')
                 ->on('1');
@@ -46,7 +49,7 @@ class ConsultaPaginaConversas {
         $query->having('agrupamento not in ('. $notIn .')');
         $query->order('men.id desc');
         $query->limit(15);
-        $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
+        $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }
     
