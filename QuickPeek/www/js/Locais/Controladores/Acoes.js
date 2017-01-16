@@ -113,6 +113,11 @@ angular.module('QuickPeek.Acoes.Locais', [
         return String((1000 * (parseFloat(km)))).split('.')[0];
     }
     
+    function irPublicar(local){
+        DGlobal.localPublicar = local;
+        Pagina.navegar({idPage:32});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -125,7 +130,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         irCheckin:irCheckin,
         checkInLocal:checkInLocal,
         curtirHashtag:curtirHashtag,
-        converteKmM:converteKmM
+        converteKmM:converteKmM,
+        irPublicar:irPublicar
     };
     
  }]);

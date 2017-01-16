@@ -24,13 +24,12 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
                 if(scope.objCategorias[i][j].indice == indice){
                     if(scope.objCategorias[i][j].selecionado){
                         scope.objCategorias[i][j].selecionado = false;
-                        if(scope.objCategorias[i][j].tipo == 0)removeCategoria(scope.objCategorias[i][j].id);
-                        else removeTipo(scope.objCategorias[i][j].id);
+                        removeCategoria(scope.objCategorias[i][j].id,scope.objCategorias[i][j].tipo);
                     }
                     else{
                         scope.objCategorias[i][j].selecionado = true;
-                        if(scope.objCategorias[i][j].tipo == 0)addCategoria(scope.objCategorias[i][j].id);
-                        else addTipo(scope.objCategorias[i][j].id);
+                        addCategoria(scope.objCategorias[i][j].id);
+                        addTipo(scope.objCategorias[i][j].tipo);
                     }
                 }
             }
@@ -39,12 +38,13 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
     
     function addCategoria(id){
         scope.dados.categorias.push(id);
+        alert(JSON.stringify(scope.dados.categorias));
     }
     
-    function removeCategoria(id){
+    function removeCategoria(id,tipo){
         var achou = false, indiceAchado;
         for(var i = 0; i < scope.dados.categorias.length;i++){
-            if(id == scope.dados.categorias[i]){
+            if(id == scope.dados.categorias[i] && tipo == scope.dados.tipos[i]){
                 achou = true;
                 indiceAchado = i;
             }
@@ -52,25 +52,14 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
         
         if(achou){
             scope.dados.categorias.splice(indiceAchado,1);
+            scope.dados.tipos.splice(indiceAchado,1);
         }
+        
     }
     
     function addTipo(id){
         scope.dados.tipos.push(id);
-    }
-    
-    function removeTipo(id){
-        var achou = false, indiceAchado;
-        for(var i = 0; i < scope.dados.tipos.length;i++){
-            if(id == scope.dados.tipos[i]){
-                achou = true;
-                indiceAchado = i;
-            }
-        }
-        
-        if(achou){
-            scope.dados.tipos.splice(indiceAchado,1);
-        }
+                alert(JSON.stringify(scope.dados.tipos));
     }
     
     function redefinir(){

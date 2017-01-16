@@ -35,6 +35,10 @@ angular.module('QuickPeek.Estrutura.CadastroDados', [
             if(DGlobal.dadosUsuario.dados.usuarioNascimento)scope.dados.nascimentoVisao = VP.organizaDataVisao(DGlobal.dadosUsuario.dados.usuarioNascimento);
             if(DGlobal.dadosUsuario.dados.usuarioGeneroId)scope.dados.generoId = DGlobal.dadosUsuario.dados.usuarioGeneroId;
             if(DGlobal.dadosUsuario.dados.usuarioEndereco)scope.dados.urlImg = DGlobal.dadosUsuario.dados.usuarioEndereco;
+            if(DGlobal.dadosUser && DGlobal.dadosUser.success){
+                scope.dados.nascimentoVisao = VP.organizaDataVisao(DGlobal.dadosUser.dados.usuarioNascimento);
+                scope.dados.nascimento = DGlobal.dadosUser.dados.usuarioNascimento;
+            }
         }
         
         if(DGlobal.dadosSelfie){

@@ -87,7 +87,8 @@ angular.module('QuickPeek.HTML.Locais', [
                         </div>\n\
                         <div class="col text-center">\n\
                             '+tutorial6()+'\n\
-                            <button ng-class="{\'z-index-locais\' : dadosUser.tutorial == 6}" ng-click="voltarMapa()" class="btn-txt-direita button button-positive">\n\
+                            <button ng-click="irPublicar(local)" ng-class="{\'z-index-locais\' : dadosUser.tutorial == 6}"\n\
+                            class="btn-txt-direita button button-positive">\n\
                                 <i class="icon ion-edit seta-barra"></i>Publicar\n\
                             </button>\n\
                         </div>\n\

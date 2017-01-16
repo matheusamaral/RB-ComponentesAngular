@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.PessoasLocal', [
+angular.module('QuickPeek.Estrutura.Publicacoes', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('PessoasLocalEstrutura', ['GCS','Config','Pagina','VP',
-    function(GCS,Config,Pagina,VP) {
+.factory('PublicacoesEstrutura', ['GCS','$timeout','Pagina','VP',
+    function(GCS,$timeout,Pagina,VP) {
     var scope;  
     
     function setScope(obj){
@@ -17,16 +17,15 @@ angular.module('QuickPeek.Estrutura.PessoasLocal', [
     }
     
     function popular(){
-        scope.dados = {pessoas:new Array()};
-    
-        if(DGlobal.pessoas && DGlobal.pessoas.success){
-            scope.dados.pessoas = DGlobal.pessoas.dados.pessoas;
-            scope.dados.qtd = DGlobal.pessoas.dados.qtd;
-            //alert(JSON.stringify(scope.dados.pessoas));
-        }
+        scope.dados = {};
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados;
+        }
+        
+        if(DGlobal.localPublicar){
+            scope.local = DGlobal.localPublicar;
+            console.log(scope.local);
         }
     };
   

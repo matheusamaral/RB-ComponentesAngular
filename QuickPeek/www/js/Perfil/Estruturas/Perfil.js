@@ -81,16 +81,16 @@ angular.module('QuickPeek.HTML.Perfil', [
                             <p ng-if="outraPessoa" class="p-local-pequeno">ONDE ESTÁ AGORA</p>\n\
                         </div>\n\
                         <div class="row text-center">\n\
-                            <p class="p-local-grande">Cais do Chopp</p>\n\
+                            <p class="p-local-grande">{{dadosLocalAtual.localTitulo}}</p>\n\
                         </div>\n\
                         <div ng-if="!outraPessoa" class="row text-center remove-padding" style="padding-top: 25px !important;">\n\
                             <div class="col remove-padding">\n\
-                                <button class="btn-perfil-clear button button-clear button-positive">\n\
+                                <button ng-click="checkInLocal(dadosLocalAtual)" class="btn-perfil-clear button button-clear button-positive">\n\
                                     <i style="margin-right: 10px;" class="icon ion-android-globe"></i>Alterar privacidade\n\
                                 </button>\n\
                             </div>\n\
                             <div class="col remove-padding">\n\
-                                <button class="btn-perfil-clear button button-clear button-positive">\n\
+                                <button ng-click="irCheckin()" class="btn-perfil-clear button button-clear button-positive">\n\
                                     <i style="margin-right: 10px;" class="icon ion-location"></i>Alterar localização\n\
                                 </button>\n\
                             </div>\n\

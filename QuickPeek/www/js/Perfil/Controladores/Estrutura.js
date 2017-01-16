@@ -35,6 +35,10 @@ angular.module('QuickPeek.Estrutura.Perfil', [
         
         if(DGlobal.ultimosLocais && DGlobal.ultimosLocais.success)
             scope.ultimosLocais = DGlobal.ultimosLocais.dados;
+        
+        if(DGlobal.localBarra && DGlobal.localBarra.success){
+            scope.dadosLocalAtual = DGlobal.localBarra.dados;
+        }
     };
     
     function montaAvatar(){

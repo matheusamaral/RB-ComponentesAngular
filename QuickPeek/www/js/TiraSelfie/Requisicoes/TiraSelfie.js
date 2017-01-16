@@ -48,7 +48,7 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
             RBLoadingMobile.show();
             console.log(dados);
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/salvarFoto",
+                url: Config.getRefAmbienteReq()+"/Usuario/editarFotoPerfil",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -59,7 +59,7 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
             GCS.conectar(obj);
         };
         
-        function successSalvar(objRetorno){
+        function successEditar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
@@ -82,7 +82,9 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         return {
             set: set,
             salvarImg: salvarImg,
-            successSalvar: successSalvar
+            successSalvar: successSalvar,
+            editarImg:editarImg,
+            successEditar:successEditar
         };
                            
 }]);     

@@ -69,8 +69,12 @@ angular.module('QuickPeek.Acoes.Perfil', [
     function voltar(){
         if(DGlobal.perfilOutros)delete DGlobal.perfilOutros;
         if(DGlobal.paginaVoltar){
-            Pagina.navegar({idPage:DGlobal.paginaVoltar});
-            delete DGlobal.paginaVoltar;
+            if(DGlobal.idLocal){
+                Pagina.navegar({idPage:DGlobal.paginaVoltar,paramAdd:'?id='+DGlobal.idLocal+'&atualizando=0'});
+            }else{
+                Pagina.navegar({idPage:DGlobal.paginaVoltar});
+                delete DGlobal.paginaVoltar;
+            }
         }
     }
     
@@ -94,6 +98,33 @@ angular.module('QuickPeek.Acoes.Perfil', [
         else return String((min/60)).split('.')[0]+' horas';
     }
     
+    function irCheckin(){
+        var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
+        if(DGlobal.coordenadasAtual){
+            Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        }else{
+            navigator.geolocation.getCurrentPosition(onCheckin,onChekinError,options);
+        }
+        DGlobal.paginaAnterior = 8;
+    }
+    
+    var onCheckin = function(position){
+        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+        Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+    };
+    
+    function onChekinError(error){
+        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
+        Pagina.navegar({idPage:29,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+    }
+    
+    function checkInLocal(local){
+        DGlobal.paginaAnterior = 8;
+        DGlobal.checkIn = {local:local};
+        if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
+        Pagina.navegar({idPage:30});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -107,7 +138,9 @@ angular.module('QuickPeek.Acoes.Perfil', [
         seguir:seguir,
         deixarSeguir:deixarSeguir,
         retornaDistancia:retornaDistancia,
-        converteTempo:converteTempo
+        converteTempo:converteTempo,
+        irCheckin:irCheckin,
+        checkInLocal:checkInLocal
     };
     
  }]);

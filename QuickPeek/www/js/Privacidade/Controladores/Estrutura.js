@@ -37,6 +37,7 @@ angular.module('QuickPeek.Estrutura.Privacidade', [
             scope.dados.localId = DGlobal.checkIn.local.localId;
             if(DGlobal.checkIn.local.id)scope.dados.localId = DGlobal.checkIn.local.id;
             if(DGlobal.checkIn.local.titulo)scope.dados.local.nome = DGlobal.checkIn.local.titulo;
+            if(DGlobal.checkIn.local.localTitulo)scope.dados.local.nome = DGlobal.checkIn.local.localTitulo;
         }
     };
   

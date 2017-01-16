@@ -21,6 +21,8 @@ angular.module('QuickPeek.Perfil', [
         $scope.seguir = PerfilAcoes.seguir;
         $scope.retornaDistancia = PerfilAcoes.retornaDistancia;
         $scope.converteTempo = PerfilAcoes.converteTempo;
+        $scope.irCheckin = PerfilAcoes.irCheckin;
+        $scope.checkInLocal = PerfilAcoes.checkInLocal;
     }
 ])
 

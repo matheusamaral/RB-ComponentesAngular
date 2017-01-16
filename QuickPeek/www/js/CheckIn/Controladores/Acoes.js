@@ -20,15 +20,20 @@ angular.module('QuickPeek.Acoes.CheckIn', [
         $('ion-side-menu-content').addClass('background-chekin');
     };
     
-    function voltarMapa(){
-        if(DGlobal.voltarLocais){
-            Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+    function voltarMapa(id){
+        if(DGlobal.paginaAnterior){
+            Pagina.navegar({idPage:DGlobal.paginaAnterior,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            delete DGlobal.paginaAnterior;
         }else{
-            if(DGlobal.coordenadasAtual){
-                Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            if(DGlobal.voltarLocais){
+                Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
             }else{
-                var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-                navigator.geolocation.getCurrentPosition(onSuccess,onError);
+                if(DGlobal.coordenadasAtual){
+                    Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+                }else{
+                    var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
+                    navigator.geolocation.getCurrentPosition(onSuccess,onError);
+                }
             }
         }
     }

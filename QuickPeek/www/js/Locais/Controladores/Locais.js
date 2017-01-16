@@ -22,6 +22,7 @@ angular.module('QuickPeek.Locais', [
         $scope.checkInLocal = LocaisAcoes.checkInLocal;
         $scope.curtirHashtag = LocaisAcoes.curtirHashtag;
         $scope.converteKmM = LocaisAcoes.converteKmM;
+        $scope.irPublicar = LocaisAcoes.irPublicar;
     }
 ])
 

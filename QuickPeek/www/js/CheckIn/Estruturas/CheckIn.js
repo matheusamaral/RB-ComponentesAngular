@@ -8,7 +8,7 @@ angular.module('QuickPeek.HTML.CheckIn', [
     function montar(){
         return '<div style="z-index:100;box-shadow: 0px -2px 8px black !important;" class="row bar bar-header bar-positive">\n\
                     <div class="col remove-padding">\n\
-                        <button ng-click="voltarMapa()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="voltarMapa(dadosUser.dados.usuarioId)" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>Onde você está?\n\
                         </button>\n\
                     </div>\n\

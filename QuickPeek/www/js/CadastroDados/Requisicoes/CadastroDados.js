@@ -32,8 +32,32 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             GCS.conectar(obj);
         };
         
-        
         function successCadastrar(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true) {
+                Pagina.navegar({idPage : 8});
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
+        function editar(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Usuario/editarPerfil",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successEditar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
@@ -58,7 +82,9 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
         return {
             set: set,
             cadastrar: cadastrar,
-            successCadastrar: successCadastrar
+            successCadastrar: successCadastrar,
+            editar:editar,
+            successEditar:successEditar
         };
                            
 }]);     
