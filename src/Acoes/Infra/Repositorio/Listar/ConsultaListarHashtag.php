@@ -12,20 +12,31 @@ class ConsultaListarHashtag {
                 ->add('ch.endereco', 'categoriaEndereco')
                 ->add('h.id', 'hashtagId')
                 ->add('h.titulo', 'hashtagTitulo');
-        $query->from('hashtag_categoria', 'hc');
-        $query->join('hashtag', 'h')
-                ->on('h.id = hc.hashtag_id');
+        $query->from('hashtag', 'h');
+        $query->join('hashtag_categoria', 'hc')
+                ->on('hc.hashtag_id = h.id')
+                ->on('hc.visivel = 1')
+                ->on('hc.ativo = 1');
         $query->join('categoria_hashtag', 'ch')
                 ->on('ch.id = hc.categoria_hashtag_id')
-                ->on('hc.ativo = 1');
-        $query->join('hashtag_local', 'hl', 'left')
-                ->on('hl.hashtag_id = h.id')
-                ->on('hl.ativo = 1');
+                ->on('ch.ativo = 1');
+        $query->join($this->hashtagLocal(), 'hl', 'left')
+                ->on('hl.hashtag_id = h.id');
         $query->where('h.ativo = 1')
                 ->add('h.visivel = 1');
         $query->group('h.id');
-        $query->order('count(distinct hl.id) desc');
+        $query->order('hl.contagem desc');
         return $query->executar('EA', false, $this->structure());
+    }
+    
+    private function hashtagLocal(){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('count(distinct id)', 'contagem')
+                ->add('hashtag_id');
+        $query->from('hashtag_local');
+        $query->where('ativo = 1');
+        return $query;
     }
     
     private function structure(){

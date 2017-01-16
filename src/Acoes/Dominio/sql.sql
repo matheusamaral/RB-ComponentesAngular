@@ -243,6 +243,7 @@ CREATE TABLE `hashtag_categoria`(
          FOREIGN KEY (`hashtag_id`) REFERENCES `hashtag` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `visivel` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         

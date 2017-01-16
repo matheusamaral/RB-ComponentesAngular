@@ -103,6 +103,7 @@
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="categoria_hashtag_id" atributo="categoriaHashtagId" classe="CategoriaHashtag" tabela="categoria_hashtag"/>
         <propriedades coluna="hashtag_id" atributo="hashtagId" classe="Hashtag" tabela="hashtag"/>
+        <propriedades coluna="visivel" atributo="visivel" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>
