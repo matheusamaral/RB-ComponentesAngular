@@ -101,6 +101,7 @@
     "ListarBloqueados": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarBloqueados",
     "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarUltimosLocais": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarUltimosLocais",
+    "ListarLocaisRecentes": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarLocaisRecentes",
     "ListarPerfilUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPerfilUsuario",
     "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarAvatares": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarAvatares",

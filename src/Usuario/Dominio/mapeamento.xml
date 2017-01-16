@@ -170,4 +170,19 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
+        
+<classe nome="CasaTrabalho" tabela="casa_trabalho"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="latitude_casa" atributo="latitudeCasa" /> 
+    <propriedades coluna="longitude_casa" atributo="longitudeCasa" /> 
+    <propriedades coluna="latitude_trabalho" atributo="latitudeTrabalho" /> 
+    <propriedades coluna="longitude_trabalho" atributo="longitudeTrabalho" /> 
+    <propriedades coluna="casa" atributo="casa" /> 
+    <propriedades coluna="trabalho" atributo="trabalho" /> 
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
 </root>

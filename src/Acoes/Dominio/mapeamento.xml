@@ -125,6 +125,7 @@
     </id>  
     <nparaum coluna="categoria_hashtag_id"  atributo="categoriaHashtagId" />  
     <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
+    <propriedades coluna="visivel" atributo="visivel" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

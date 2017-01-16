@@ -239,3 +239,21 @@ CREATE TABLE `lista_contatos`(
      ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `casa_trabalho`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `latitude_casa` varchar(45)   ,
+    `longitude_casa` varchar(45)   ,
+    `latitude_trabalho` varchar(45)   ,
+    `longitude_trabalho` varchar(45)   ,
+    `casa` varchar(45)   ,
+    `trabalho` varchar(45)   ,
+    `usuario_id` INT   ,
+    INDEX `casa_trabalho_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `casa_trabalho_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
