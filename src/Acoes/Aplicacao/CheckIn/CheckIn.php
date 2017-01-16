@@ -8,20 +8,32 @@ class CheckIn {
     public function checkIn($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $query = Conteiner::get('ConsultaExcluirCheckIn')->consultar($usuarioId);
+        $consulta = Conteiner::get('ConsultaExcluirCheckIn');
+        $checkIn = $consulta->consultar($usuarioId);
+        $casaTrabalho = $consulta->consultarCasaTrabalho($usuarioId);
         
-        if($query){
+        if($checkIn){
             $entidade = ConteinerEntidade::getInstancia('CheckIn');
-            $entidade->setId($query['id']);
+            $entidade->setId($checkIn);
             $entidade->setPresente(0);
+            $entidade->salvar();
+        }
+        
+        if($casaTrabalho){
+            $entidade = ConteinerEntidade::getInstancia('CasaTrabalho');
+            $entidade->setId($casaTrabalho);
+            $entidade->setCasa(0);
+            $entidade->setTrabalho(0);
             $entidade->salvar();
         }
         
         $sugestaoCheckIn = $msg->getCampoSessao('sugestaoCheckIn');
         if($sugestaoCheckIn){
+            echo 'entrou';
             $msg->setCampo('CheckIn::id', $sugestaoCheckIn);
             $msg->setCampo('CheckIn::momento', $msg->getCampoSessao('sugestaoCheckInMomento'));
             $msg->setCampo('CheckIn::presente', 1);
+            $msg->setCampo('CheckIn::confirmado', 1);
         }
         
         $msg->setCampo('entidade', 'CheckIn');

@@ -12,6 +12,7 @@ class MapaLocaisPertos {
         
         $query = Conteiner::get('ConsultaMapaLocaisPertos')->consultar($latitude, $longitude, $usuarioId);
         
+        $msg->setCampoSessao('sugestaoCheckIn', false);
         if($query){
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
         }else{

@@ -55,4 +55,34 @@ class ConsultaListarNotificacoes {
         $query->addVariaveis($usuarioId);
         return $query->executar();
     }
+    
+    public function consultarContagemSolicitacoes($usuarioId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('count(distinct id)', 'contagem');
+        $query->from('seguir');
+        $query->where('usuario_seguir_id = ?')
+                ->add('confirmar_seguir = 0')
+                ->add('ativo = 1');
+        $query->addVariaveis($usuarioId);
+        return $query->executar('{contagem}');
+    }
+    
+    public function consultarSolicitacoesSeguir($usuarioId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('u.id', 'usuarioId')
+                ->add('u.nome', 'usuarioNome')
+                ->add('u.endereco', 'usuarioEndereco');
+        $query->from('usuario', 'u');
+        $query->join('seguir', 's')
+                ->on('s.usuario_id = u.id')
+                ->on('s.usuario_seguir_id = ?')
+                ->on('s.confirmar_seguir = 0')
+                ->on('s.ativo = 1');
+        $query->order('s.momento desc');
+        $query->limit(1);
+        $query->addVariaveis($usuarioId);
+        return $query->executar('A');
+    }
 }

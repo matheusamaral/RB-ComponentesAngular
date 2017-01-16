@@ -21,6 +21,7 @@ class ConsultaListarDadosUsuario {
                 ->add('a.id', 'avatarId')
                 ->add('a.nome', 'avatarNome')
                 ->add('a.endereco', 'avatarEndereco')
+                ->add('ifnull(ci.visibilidade_id, c.visibilidade_id)', 'visibilidadeCheckInId')
                 ->add('count(distinct b.id)', 'bloqueados');
         $query->from('usuario', 'u');
         $query->join('configuracoes', 'c')
@@ -35,6 +36,10 @@ class ConsultaListarDadosUsuario {
         $query->join('avatares', 'a', 'left')
                 ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
+        $query->join('check_in', 'ci', 'left')
+                ->on('ci.usuario_id = u.id')
+                ->on('ci.presente = 1')
+                ->on('ci.ativo = 1');
         $query->where('u.id = ?')
                 ->add('u.ativo = 1');
         $query->addVariaveis($usuarioId);
