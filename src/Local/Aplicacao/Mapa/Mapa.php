@@ -33,20 +33,20 @@ class Mapa {
             }
             $msg->setCampoSessao('locaisMapaNotIn', $locaisId);
             
-            $query = $this->fotoLocais($query, $tempo['hashtag']);
+            $query = $this->fotoLocais($query, $tempo['hashtag'], $usuarioId);
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
         }else{
             $msg->setResultadoEtapa(false);
         }
     }
     
-    private function fotoLocais($query, $tempoHashtag){
+    private function fotoLocais($query, $tempoHashtag, $usuarioId){
         
         foreach($query as $v){
             $locaisId[] = $v['localId'];
         }
         $locaisId = implode(', ', $locaisId);
-        $queryMapa = Conteiner::get('ConsultaMapa')->consultaFoto($locaisId, $tempoHashtag);
+        $queryMapa = Conteiner::get('ConsultaMapa')->consultaFoto($locaisId, $tempoHashtag, $usuarioId);
         
         foreach($queryMapa as $v){
             foreach($query as $k=>$value){

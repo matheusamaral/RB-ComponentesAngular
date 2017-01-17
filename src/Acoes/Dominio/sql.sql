@@ -225,6 +225,18 @@ CREATE TABLE `hashtag_local`(
          FOREIGN KEY (`hashtag_id`) REFERENCES `hashtag` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `categoria_hashtag_id` INT   ,
+    INDEX `hashtag_local_fk_categoria_hashtag_id_idx`(`categoria_hashtag_id` ASC),
+    CONSTRAINT `hashtag_local_fk_categoria_hashtag_id` 
+         FOREIGN KEY (`categoria_hashtag_id`) REFERENCES `categoria_hashtag` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `visibilidade_id` INT   ,
+    INDEX `hashtag_local_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `hashtag_local_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         

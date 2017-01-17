@@ -77,6 +77,8 @@
     
     "AlterarVisibilidade": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\AlterarVisibilidade",
     "CheckIn": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\CheckIn",
+    "EstouEmCasa": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\EstouEmCasa",
+    "EstouNoTrabalho": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\EstouNoTrabalho",
     "Publicar": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Publicar",
     "Seguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\Seguir",
     "DeixarSeguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\DeixarSeguir",

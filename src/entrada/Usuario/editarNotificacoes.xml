@@ -3,7 +3,6 @@
 <processo codigo="editarNotificacoes" modulo="Usuario">
     
     <entrada>
-        <campo regra="Opcional" chave="Configuracoes::notificacaoPresenca" nome="notificacaoPresenca"/>
         <campo regra="Opcional" chave="Configuracoes::notificacaoPublicacao" nome="notificacaoPublicacao"/>
     </entrada>
     

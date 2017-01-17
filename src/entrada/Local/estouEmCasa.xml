@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="estouEmCasa" modulo="Local">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="Latitude" nome="latitude"/> 
+        <campo regra="Obrigatorio" chave="Longitude" nome="longitude"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="estou-em-casa" tipo="tarefa">
+            <entidade nome="EstouEmCasa" metodo="estouEmCasa"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

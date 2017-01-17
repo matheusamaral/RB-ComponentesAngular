@@ -10,7 +10,9 @@ class ListarNotificacoes {
         
         $notIn = $this->atualizando($msg);
         
-        $notificacoes = Conteiner::get('ConsultaListarNotificacoes')->consultar($usuarioId, $notIn);
+        $consulta = Conteiner::get('ConsultaListarNotificacoes');
+        
+        $notificacoes = $consulta->consultar($usuarioId, $notIn);
         if($notificacoes){
             foreach($notificacoes as $v){
                 $notificacaoId[] = $v['id'];
@@ -19,7 +21,16 @@ class ListarNotificacoes {
                 $notificacaoId = array_merge($notificacaoId, $msg->getCampoSessao('notificacoesNotIn'));
             }
             $msg->setCampoSessao('notificacoesNotIn', $notificacaoId);
-            $msg->setResultadoEtapa(true, false, ['dados'=>$notificacoes]);
+            
+            $contagemSeguir = $consulta->consultarContagemSolicitacoes($usuarioId);
+            if($contagemSeguir){
+                $usuarioSeguir = $consulta->consultarSolicitacoesSeguir($usuarioId);
+                $seguir['contagem'] = $contagemSeguir;
+                $seguir['usuario'] = $usuarioSeguir;
+                $dados['seguir'] = $seguir;
+            }
+            $dados['notificacoes'] = $notificacoes;
+            $msg->setResultadoEtapa(true, false, ['dados'=>$dados]);
         }else{
             $msg->setResultadoEtapa(false);
         }

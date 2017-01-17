@@ -9,6 +9,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $localId = false;
         private $visibilidadeId = false;
         private $presente = false;
+        private $automatico = false;
+        private $confirmado = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -62,6 +64,22 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setPresente($presente) {
             $this->presente = $presente;
+        } 
+                
+        public function getAutomatico() {
+            return $this->automatico;
+        }
+
+        public function setAutomatico($automatico) {
+            $this->automatico = $automatico;
+        } 
+                
+        public function getConfirmado() {
+            return $this->confirmado;
+        }
+
+        public function setConfirmado($confirmado) {
+            $this->confirmado = $confirmado;
         } 
                 
         public function getAtivo() {

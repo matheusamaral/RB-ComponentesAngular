@@ -69,6 +69,8 @@ CREATE TABLE `check_in`(
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
     `presente` varchar(45)   ,
+    `automatico` varchar(45)   ,
+    `confirmado` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         

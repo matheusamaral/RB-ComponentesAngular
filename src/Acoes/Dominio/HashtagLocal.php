@@ -8,6 +8,8 @@ use Rubeus\ORM\Persistente as Persistente;
         private $usuarioId = false;
         private $localId = false;
         private $hashtagId = false;
+        private $categoriaHashtagId = false;
+        private $visibilidadeId = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -53,6 +55,30 @@ use Rubeus\ORM\Persistente as Persistente;
             if($hashtagId instanceof Hashtag)
                 $this->hashtagId = $hashtagId;
             else $this->getHashtagId()->setId($hashtagId);
+        } 
+            
+        public function getCategoriaHashtagId() {
+            if(!$this->categoriaHashtagId)
+                    $this->categoriaHashtagId = new CategoriaHashtag(); 
+            return $this->categoriaHashtagId;
+        }
+
+        public function setCategoriaHashtagId($categoriaHashtagId) {
+            if($categoriaHashtagId instanceof CategoriaHashtag)
+                $this->categoriaHashtagId = $categoriaHashtagId;
+            else $this->getCategoriaHashtagId()->setId($categoriaHashtagId);
+        } 
+            
+        public function getVisibilidadeId() {
+            if(!$this->visibilidadeId)
+                    $this->visibilidadeId = new \Quickpeek\Usuario\Dominio\Visibilidade(); 
+            return $this->visibilidadeId;
+        }
+
+        public function setVisibilidadeId($visibilidadeId) {
+            if($visibilidadeId instanceof \Quickpeek\Usuario\Dominio\Visibilidade)
+                $this->visibilidadeId = $visibilidadeId;
+            else $this->getVisibilidadeId()->setId($visibilidadeId);
         } 
                 
         public function getAtivo() {
