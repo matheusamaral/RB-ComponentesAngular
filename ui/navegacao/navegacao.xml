@@ -130,12 +130,18 @@
     
     <pagina id="17" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="notificacoes-config">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUser'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-config-notificacoes" acao="ConfigNotificacoesCtrl" title="Seus seguidores"/>
     </pagina>   
     
     <pagina id="18" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="contatos-config">
         <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUser'></metodo>
+            </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-config-contatos" acao="ConfigContatosCtrl" title="Seus seguidores"/>
     </pagina>   
@@ -265,8 +271,19 @@
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarHashtag" objeto='hashtags'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-publicacoes" acao="PublicacoesCtrl" title="Publique"/>
+    </pagina>   
+    
+    <pagina id="33" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="publicar">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarHashtag" objeto='hashtags'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-mudar-numero-s-m-s" acao="MudarNumeroSMSCtrl" title="Publique"/>
     </pagina>   
 </root>

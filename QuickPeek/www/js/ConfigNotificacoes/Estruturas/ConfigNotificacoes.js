@@ -20,8 +20,8 @@ angular.module('QuickPeek.HTML.ConfigNotificacoes', [
                             <md-switch\n\
                             ng-click="attNotificacoes(1)"\n\
                             ng-model="dados.notificacaoPublicacao" class="md-primary md-raised"\n\
-                            ng-true-value="1"\n\
-                            ng-false-value="0"\n\
+                            ng-true-value="\'1\'"\n\
+                            ng-false-value="\'0\'"\n\
                             ng-class="{\'switch-verde\' : dados.notificacaoPublicacao == 1}">\n\
                             </md-switch>\n\
                         </div>\n\

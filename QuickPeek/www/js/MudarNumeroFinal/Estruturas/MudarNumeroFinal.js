@@ -31,6 +31,7 @@ angular.module('QuickPeek.HTML.MudarNumeroFinal', [
                                 class="input-padrao font-media"\n\
                                 ng-model="dados.ddiAntigo"\n\
                                 type="number"\n\
+                                maxlength="2"\n\
                                 ng-required="true">\n\
                                 <div ng-if="formTel.ddiAntigo.$touched && formTel.ddiAntigo.$invalid" ng-messages="formTel.ddiAntigo.$error">\n\
                                     <div ng-if="!formTel.ddiAntigo.$error.mask" ng-message="required">Este campo é obrigatório.</div>\n\
@@ -59,6 +60,7 @@ angular.module('QuickPeek.HTML.MudarNumeroFinal', [
                             <md-input-container md-no-float class="rb-input" style="width: 100px;">\n\
                                 <input\n\
                                 name="ddiNovo"\n\
+                                maxlength="2"\n\
                                 class="input-padrao font-media"\n\
                                 ng-model="dados.ddiNovo"\n\
                                 type="number"\n\

@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.MudarNumeroFinal', [
+angular.module('QuickPeek.Requisicao.MudarNumeroSMS', [
     'RB.pagina'
 ])
  
-.factory('MudarNumeroFinalRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('MudarNumeroSMSRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
@@ -21,7 +21,7 @@ angular.module('QuickPeek.Requisicao.MudarNumeroFinal', [
         function editarNumero(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Usuario/editarNumero",
+                url: Config.getRefAmbienteReq()+"/Usuario/verificarCodigoSmsEditar",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -36,11 +36,7 @@ angular.module('QuickPeek.Requisicao.MudarNumeroFinal', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                DGlobal.dadosTel = dados;
-                Pagina.navegar({idPage : 33});
             }else{
-                DGlobal.dadosTel = dados;
-                Pagina.navegar({idPage : 33});
                 if(objRetorno.errors) OpenToast(objRetorno.errors)
                 else OpenToast('Não foi possível realizar esta ação, tente novamente mais tarde');
             }

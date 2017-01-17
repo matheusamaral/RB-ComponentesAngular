@@ -22,43 +22,65 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                     <p class="p-normal-publicacoes">Como está <span class="font-dourada">{{local.dados.localNome}}</span> agora?</p>\n\
                     <p class="p-sublinhado">Alterar localização</p>\n\
                 </div>\n\
-                <div class="row">\n\
-                    <div class="col">\n\
-                        <div ng-class="{\'marcado\' : dados.visibilidadeId == 1}"\n\
-                        ng-click="dados.visibilidadeId = 1"\n\
-                        class="container-categorias-pub icone-redondo-privacidade">\n\
-                            <md-icon class="stilo-icones-privacidade ion-earth"></md-icon>\n\
+                <div ng-init="$index == objHash.length - 1 ? importancia = \'!important\' : important = \'\'" style="margin-bottom:{{alturaChatPub+120}}px {{importancia}}"\n\
+                ng-if="!hashClicada" \n\
+                class="margin-top-pub row"\n\
+                ng-repeat="categorias in objHash"\n\
+                ng-class="{\'margin-bottom-comum-pub\' : $index != objHash.length - 1}">\n\
+                    <div ng-repeat="categoria in categorias" class="col">\n\
+                        <div ng-click="escolherHash(categoria)"\n\
+                        style="background-image:url({{categoria.endereco}})"\n\
+                        class="container-categorias-pub">\n\
                         </div>\n\
-                        <p ng-class="{\'font-dourada\' : dados.visibilidadeId == 1}" class="p-nome-visibilidade">Qualquer pessoa</p>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div ng-class="{\'marcado\' : dados.visibilidadeId == 2}"\n\
-                        ng-click="dados.visibilidadeId = 2"\n\
-                        class="container-categorias-pub icone-redondo-privacidade">\n\
-                            <md-icon style="padding-left: 2px;" class="stilo-icones-privacidade ion-person"></md-icon>\n\
-                        </div>\n\
-                        <p ng-class="{\'font-dourada\' : dados.visibilidadeId == 2}" class="p-nome-visibilidade">Meus seguidores</p>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div ng-class="{\'marcado\' : dados.visibilidadeId == 3}"\n\
-                        ng-click="dados.visibilidadeId = 3"\n\
-                        class="container-categorias-pub icone-redondo-privacidade">\n\
-                            <md-icon class="stilo-icones-privacidade img-anonimo-privacidade"></md-icon>\n\
-                        </div>\n\
-                        <p ng-class="{\'font-dourada\' : dados.visibilidadeId == 3}" class="p-nome-visibilidade">Ninguém</p>\n\
+                        <p class="p-nome-visibilidade">{{categoria.titulo}}</p>\n\
                     </div>\n\
                 </div>\n\
-                <div class="container-chat-pub">\n\
-                    <div class="row chat-pub">\n\
-                        <div class="remove-padding col container-hashtags-pub">\n\
-                            <p class="titulo-chat-pub">Insira sua hastags</p>\n\
+                <div ng-if="hashClicada" style="margin-bottom:{{alturaChatPub+20}}px !important" class="margin-top-pub row container-painel-hashtags">\n\
+                    <div class="col remove-padding painel-hashtags">\n\
+                        <div class="row">\n\
+                            <div class="col">\n\
+                                <button ng-click="voltarCategorias()" class="btn-painel-pub row ion-android-arrow-back button button-clear button-positive">\n\
+                                    {{categoriaSelecionada.titulo}}\n\
+                                </button>\n\
+                            </div>\n\
+                            <div class="">\n\
+                                <div\n\
+                                style="box-shadow: 1px 2px 8px #EDECEC;background-image:url({{categoriaSelecionada.endereco}})"\n\
+                                class="container-hash-pubs-img">\n\
+                                </div>\n\
+                            </div>\n\
                         </div>\n\
-                        <div class="remove-padding">\n\
+                        <div class="row" id="chips-iniciais">\n\
+                            <md-chips ng-model="categoriaHashtags" readonly="true"\n\
+                            md-removable="false">\n\
+                                <md-chip-template ng-class="{\'fundo-dourado\' : $chip.selecionado}" ng-click="addHash($chip)">\n\
+                                    <strong>#{{$chip.titulo}}</strong>\n\
+                                </md-chip-template>\n\
+                            </md-chips>\n\
+                        </div>\n\
+                    </div>\n\
+                </div>\n\
+                <div class="container-chat-pub" id="container-chat">\n\
+                    <div class="row chat-pub">\n\
+                        <div class="col container-chips-txt">\n\
+                            <md-chips id="chips-finais" \n\
+                            placeholder="Insira suas hashtags" \n\
+                            ng-model="dados.tituloChip" \n\
+                            readonly="false"\n\
+                            md-removable="true"\n\
+                            md-on-remove="removerChip($chip)"\n\
+                            md-on-add="addHashDigitando($chip)">\n\
+                                <md-chip-template>\n\
+                                    <strong>#{{$chip.titulo}}</strong>\n\
+                                </md-chip-template>\n\
+                            </md-chips>\n\
+                        </div>\n\
+                        <div class="col-bottom remove-padding">\n\
                             <button class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
-                        <div class="remove-padding">\n\
-                            <button class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
+                        <div class="col-bottom remove-padding">\n\
+                            <button ng-click="publicar()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\

@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
+angular.module('QuickPeek.Estrutura.MudarNumeroSMS', [
     'RB.gcs',
     'RB.config',
     'RB.pagina',
     'RB.validacoesPadroes'
 ])
 
-.factory('PessoasBloqueadasEstrutura', ['GCS','Config','Pagina','VP',
+.factory('MudarNumeroSMSEstrutura', ['GCS','Config','Pagina','VP',
     function(GCS,Config,Pagina,VP) {
     var scope;  
     
@@ -18,12 +18,12 @@ angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
     
     function popular(){
         scope.dados = {
-            pessoas:new Array()
         };
         
-        if(DGlobal.pessoasBloqueadas && DGlobal.pessoasBloqueadas.success){
-            scope.dados.pessoas = DGlobal.pessoasBloqueadas.dados;
-        }
+        if(DGlobal.dadosTel)
+            scope.dados = DGlobal.dadosTel;
+        console.log('scope.dados');
+        console.log(scope.dados);
     };
   
     return {

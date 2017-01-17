@@ -12,6 +12,13 @@ angular.module('QuickPeek.Publicacoes', [
         PublicacoesAcoes.setScope($scope).inicializar();
         
         $scope.voltar = PublicacoesAcoes.voltar;
+        $scope.escolherHash = PublicacoesAcoes.escolherHash;
+        $scope.addHash = PublicacoesAcoes.addHash;
+        $scope.calcularAlturaChat = PublicacoesAcoes.calcularAlturaChat;
+        $scope.voltarCategorias = PublicacoesAcoes.voltarCategorias;
+        $scope.removerChip = PublicacoesAcoes.removerChip;
+        $scope.addHashDigitando = PublicacoesAcoes.addHashDigitando;
+        $scope.publicar = PublicacoesAcoes.publicar;
     }
 ])
 
