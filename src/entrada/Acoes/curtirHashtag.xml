@@ -4,7 +4,7 @@
     
     <entrada>
         <campo regra="Obrigatorio" chave="HashtagLocal::hashtagId" nome="hashtagId"/>
-        <campo regra="Obrigatorio" chave="HashtagCategoria::categoriaHashtagId" nome="categoriaHashtagId"/>
+        <campo regra="Obrigatorio" chave="HashtagLocal::categoriaHashtagId" nome="categoriaHashtagId"/>
         <campo regra="Obrigatorio" chave="Local::id" nome="localId"/>
     </entrada>
     

@@ -8,7 +8,7 @@ class ConsultaPaginaConversas {
         
         $query = Conteiner::get('Query', false);
         $query->select('u.id', 'usuarioId')
-                ->add('case when u.ativo = 0 or b.id is not null then ' . "'FotoPadrao'" . 
+                ->add('case when u.ativo = 0 or b.id is not null then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg'" . 
                         ' when men.visibilidade_mensagens_id = 2 then a.endereco' . 
                         ' else u.endereco end', 'endereco')
                 ->add('case when u.ativo = 0 or b.id is not null then ' . "'Usuário do Quickpeek'" . 

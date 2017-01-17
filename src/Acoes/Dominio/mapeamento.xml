@@ -116,6 +116,7 @@
     <nparaum coluna="local_id"  atributo="localId" />  
     <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
     <nparaum coluna="categoria_hashtag_id"  atributo="categoriaHashtagId" />  
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

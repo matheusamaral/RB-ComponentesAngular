@@ -100,21 +100,23 @@ class ConsultaMapa {
         return $query;
     }
     
-    public function consultaFoto($locaisId, $tempoHashtag){
+    public function consultaFoto($locaisId, $tempoHashtag, $usuarioId){
         
         $query = Conteiner::get('Query', false);
         $query->select('sub.*')
                 ->add('l.id', 'localId')
-                ->add('ch.endereco', 'categoriaHashtagFoto')
+                ->add('case when ch.id != 10 then ch.endereco '
+                        . 'when sub.visibilidade_id = 1 then u.endereco '
+                        . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
+                        . 'when sub.usuario_id = ? then u.endereco '
+                        . 'when u.ativo = 0 then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
+                        . 'else a.endereco end', 'categoriaHashtagFoto')
                 ->add('cl.endereco', 'categoriaLocalFoto');
         $query->from('local', 'l');
         $query->join($this->subHashtagLocal($locaisId), 'sub', 'left')
                 ->on('sub.local_id = l.id');
-        $query->join('hashtag_categoria', 'hc', 'left')
-                ->on('hc.hashtag_id = sub.hashtag_id')
-                ->on('hc.ativo = 1');
         $query->join('categoria_hashtag', 'ch', 'left')
-                ->on('ch.id = hc.categoria_hashtag_id')
+                ->on('ch.id = sub.categoria_hashtag_id')
                 ->on('ch.ativo = 1');
         $query->join('local_categoria', 'lc', 'left')
                 ->on('lc.local_id = l.id')
@@ -122,10 +124,20 @@ class ConsultaMapa {
         $query->join('categoria_local', 'cl', 'left')
                 ->on('cl.id = lc.categoria_id')
                 ->on('cl.ativo = 1');
+        $query->join('usuario', 'u', 'left')
+                ->on('u.id = sub.usuario_id');
+        $query->join('avatares', 'a', 'left')
+                ->on('a.id = u.avatares_id')
+                ->on('a.ativo = 1');
+        $query->join('seguir', 's', 'left')
+                ->on('s.usuario_id = ?')
+                ->on('s.usuario_seguir_id = u.id')
+                ->on('s.confirmar_seguir = 1')
+                ->on('s.ativo = 1');
         $query->where('l.ativo = 1')
                 ->add('l.id in(' . $locaisId . ')');
         $query->group('l.id');
-        $query->addVariaveis($tempoHashtag);
+        $query->addVariaveis([$usuarioId, $tempoHashtag, $usuarioId]);
         return $query->executar();
     }
     
@@ -134,6 +146,9 @@ class ConsultaMapa {
         $query = Conteiner::get('Query', false);
         $query->select('hashtag_id')
                 ->add('local_id')
+                ->add('visibilidade_id')
+                ->add('usuario_id')
+                ->add('categoria_hashtag_id')
                 ->add('count(distinct id)', 'countHash');
         $query->from('hashtag_local');
         $query->where('momento > date_add(now(), interval -? hour)')
