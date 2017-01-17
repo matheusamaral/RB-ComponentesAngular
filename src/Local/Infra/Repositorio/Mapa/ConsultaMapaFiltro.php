@@ -11,6 +11,7 @@ class ConsultaMapaFiltro {
                 ->add('l.titulo', 'localNome')
                 ->add('l.endereco', 'localEndereco')
                 ->add('ifnull(chec.ativo, 0)', 'checkIn')
+                ->add('chec.visibilidade_id', 'visibilidadeCheckIn')
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')

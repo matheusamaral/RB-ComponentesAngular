@@ -115,6 +115,7 @@
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="local_id"  atributo="localId" />  
     <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
+    <nparaum coluna="categoria_hashtag_id"  atributo="categoriaHashtagId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

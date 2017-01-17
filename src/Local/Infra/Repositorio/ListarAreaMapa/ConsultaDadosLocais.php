@@ -21,6 +21,7 @@ class ConsultaDadosLocais {
     end)', 'relevancia')
                 ->add('cin.contagem', 'relevancia2')
                 ->add('ifnull(chec.ativo, 0)', 'checkIn')
+                ->add('chec.visibilidade_id', 'visibilidadeCheckIn')
                 ->add('case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) < 0.03 then 1 else 0 end', 'publicar');
         $query->from('local', 'l');
         $query->join('check_in', 'c')->on('c.local_id = l.id')

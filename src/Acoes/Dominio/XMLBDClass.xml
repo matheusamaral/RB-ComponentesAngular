@@ -95,6 +95,7 @@
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="local_id" atributo="localId" classe="\Quickpeek\Local\Dominio\Local" tabela="local"/>
         <propriedades coluna="hashtag_id" atributo="hashtagId" classe="Hashtag" tabela="hashtag"/>
+        <propriedades coluna="categoria_hashtag_id" atributo="categoriaHashtagId" classe="CategoriaHashtag" tabela="categoria_hashtag"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>

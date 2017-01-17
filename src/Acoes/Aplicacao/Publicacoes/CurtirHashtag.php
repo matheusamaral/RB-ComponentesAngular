@@ -9,14 +9,17 @@ class CurtirHashtag {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $hashtagId = $msg->getCampo('HashtagLocal::hashtagId')->get('valor');
+        $categoriaId = $msg->getCampo('HashtagCategoria::categoriaHashtagId')->get('valor');
         $localId = $msg->getCampo('Local::id')->get('valor');
+        $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         
-        $descurtir = Conteiner::get('ConsultaDescurtirHashtag')->consultar($usuarioId, $hashtagId, $localId);
+        $descurtir = Conteiner::get('ConsultaDescurtirHashtag')->consultar($usuarioId, $hashtagId, $localId, $tempo['hashtag']);
         
         if(!$descurtir){
             $msg->setCampo('entidade', 'HashtagLocal');
             $msg->setCampo('HashtagLocal::usuarioId', $usuarioId);
             $msg->setCampo('HashtagLocal::localId', $localId);
+            $msg->setCampo('HashtagLocal::categoriaId', $categoriaId);
             Conteiner::get('Cadastro')->cadastrar($msg);
         }else{
             $entidade = ConteinerEntidade::getInstancia('HashtagLocal');

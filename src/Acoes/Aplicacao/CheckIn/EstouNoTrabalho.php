@@ -15,8 +15,8 @@ class EstouNoTrabalho {
             $msg->setCampo('CasaTrabalho::id', $casaTrabalhoId);
         }
         $msg->setCampo('entidade', 'CasaTrabalho');
-        $msg->setCampo('CasaTrabalho::latitudeCasa', $latitude);
-        $msg->setCampo('CasaTrabalho::longitudeCasa', $longitude);
+        $msg->setCampo('CasaTrabalho::latitudeTrabalho', $latitude);
+        $msg->setCampo('CasaTrabalho::longitudeTrabalho', $longitude);
         $msg->setCampo('CasaTrabalho::casa', 0);
         $msg->setCampo('CasaTrabalho::trabalho', 1);
         $msg->setCampo('CasaTrabalho::usuarioId', $usuarioId);

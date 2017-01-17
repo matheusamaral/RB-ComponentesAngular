@@ -10,6 +10,7 @@ class ConsultaHashtag {
         $query->select('h.id', 'hashtagId')
                 ->add('h.titulo', 'hashtagTitulo')
                 ->add('count(distinct hl.id)', 'hashtagQtd')
+                ->add('ch.id', 'categoriaId')
                 ->add('ch.titulo', 'categoriaTitulo')
                 ->add('ch.endereco', 'categoriaEndereco')
                 ->add('case when hlo.id is null then 0 else 1 end', 'jaCurtiu');
