@@ -6,49 +6,31 @@ class Respostas {
     
     public function respostas($msg){
         
-        $titulo = $msg->getCampo('Respostas::titulo')->get('valor');
-        $arquivo = $msg->getCampo('Arquivo')->get('valor');
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+
+        $bloqueado = $this->checarBloqueado($msg);
+
+        if($bloqueado){
+            $msg->setCampo('Respostas::bloqueado', 1);
+        }
+        $checkIn = Conteiner::get('ConsultaCheckIn')->consultar($usuarioId, $perguntaId);
+
+        if($checkIn){
+            $msg->setCampo('Respostas::checkIn', 1);
+        }else{
+            $msg->setCampo('Respostas::checkIn', 0);
+        }
         
-        if(!(!$titulo && !$arquivo)){
-            $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-            $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
-            
-            $bloqueado = $this->checarBloqueado($msg);
-            
-            if($bloqueado){
-                $msg->setCampo('Respostas::bloqueado', 1);
-            }
-            $checkIn = Conteiner::get('ConsultaCheckIn')->consultar($usuarioId, $perguntaId);
-            
-            if($checkIn){
-                $msg->setCampo('Respostas::checkIn', 1);
-            }else{
-                $msg->setCampo('Respostas::checkIn', 0);
-            }
-
-            $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
-
-            if(!$caminho && $arquivo){
-                $erro = Conteiner::get('Upload')->getErro();
-                $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);
-            }else{
-                $cadastro = Conteiner::get('Cadastro');
-                $msg->setCampo('entidade', 'Respostas');
-                $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
-                $msg->setCampo('Respostas::visibilidadeId', $visibilidadeId);
-                $msg->setCampo('Respostas::endereco', $caminho[0]['url']);
-                $msg->setCampo('Respostas::usuarioId', $usuarioId);
-                $cad = $cadastro->cadastrar($msg);
-            }
-            if($cad){
-                $this->enviarNotificacao($msg);
-                $msg->setCampo('entidade', 'Perguntas');
-                $msg->setCampo('Perguntas::id', $perguntaId);
-                $msg->setCampo('Perguntas::respondida', 1);
-                $cadastro->cadastrar($msg);
-            }else{
-                $msg->setResultadoEtapa(false);
-            }
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+        $msg->setCampo('entidade', 'Respostas');
+        $msg->setCampo('Respostas::visibilidadeId', $visibilidadeId);
+        $msg->setCampo('Respostas::usuarioId', $usuarioId);
+        $cad = Conteiner::get('Cadastro')->cadastrar($msg);
+        
+        if($cad){
+            $this->enviarNotificacao($msg);
+            $this->conexaoSocket($msg);
         }else{
             $msg->setResultadoEtapa(false);
         }
@@ -89,6 +71,52 @@ class Respostas {
             $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioId);
             $msg->setCampo('Notificacoes::tipoId', 3);
             $cadastro->cadastrar($msg);
+        }
+    }
+    
+     private function conexaoSocket($msg){
+        
+        $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        $visibilidadeId = $msg->getCampo('Perguntas::visibilidadeId')->get('valor');
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        
+        $localId = Conteiner::get('ConsultaLocalId')->consultar($perguntaId);
+        
+        $dadosBanco = Conteiner::get('DadosBanco');
+        $pagina[] = '34' . '-' . $perguntaId;
+        $pagina[] = '27' . '-' . $localId;
+
+        for($i = 0; $i < count($dadosBanco); $i++){
+            if($dadosBanco[$i]['usuario'] == $usuarioId){
+                $fromConexao = $dadosBanco[$i]['conexao'];
+            }
+            foreach($dadosBanco[$i] as $k=>$v){
+                if($k == 'pagina' && in_array($v, $pagina)){
+                    $toConexao[] = $dadosBanco[$i]['conexao'];
+                    $usuarios[] = $dadosBanco[$i]['usuario'];
+                }
+            }
+        }
+        
+        if($usuarios){
+            foreach($usuarios as $v){
+                $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
+            }
+            
+            $cmd = Conteiner::get('Socket');
+            for($i = 0; $i < count($toConexao); $i++){
+                $mensagem[$i]['to'] = $toConexao[$i];
+                $mensagem[$i]['from'] = $fromConexao;
+                $mensagem[$i]['id'] = $msg->getCampo('Perguntas::id')->get('valor');
+                $mensagem[$i]['titulo'] = $msg->getCampo('Perguntas::titulo')->get('valor');
+                $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
+                $mensagem[$i]['respostas'] = 0;
+                $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
+                $mensagem[$i]['nome'] = $dadosUsuario[$i]['usuarioNome'];
+                $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
+
+                $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+            }
         }
     }
 }

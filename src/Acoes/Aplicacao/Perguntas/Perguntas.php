@@ -54,10 +54,13 @@ class Perguntas {
             for($i = 0; $i < count($toConexao); $i++){
                 $mensagem[$i]['to'] = $toConexao[$i];
                 $mensagem[$i]['from'] = $fromConexao;
-                $mensagem[$i]['nome'] = $dadosUsuario[$i]['usuarioNome'];
+                $mensagem[$i]['id'] = $msg->getCampo('Perguntas::id')->get('valor');
+                $mensagem[$i]['titulo'] = $msg->getCampo('Perguntas::titulo')->get('valor');
+                $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
+                $mensagem[$i]['respostas'] = 0;
                 $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
+                $mensagem[$i]['nome'] = $dadosUsuario[$i]['usuarioNome'];
                 $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
-                $mensagem[$i]['pergunta'] = $msg->getCampo('Perguntas::titulo')->get('valor');
 
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }

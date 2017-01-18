@@ -49,7 +49,8 @@ class ConsultaListarDadosUsuario {
     public function consultarDadosVisibilidade($usuarioId, $visibilidadeId, $usuario2 = 0){
         
         $query = Conteiner::get('Query', false);
-        $query->select("case when $visibilidadeId = 1 then u.nome "
+        $query->select('u.id', 'usuarioId')
+                ->add("case when $visibilidadeId = 1 then u.nome "
                 . "when $visibilidadeId = 2 and s.id is not null then u.nome "
                 . "else a.nome end", 'usuarioNome')
                 ->add("case when $visibilidadeId = 1 then u.endereco "

@@ -6,7 +6,6 @@ use Rubeus\ORM\Persistente as Persistente;
     class Perguntas extends Persistente{
         private $id = false;
         private $titulo = false;
-        private $respondida = false;
         private $usuarioId = false;
         private $localId = false;
         private $visibilidadeId = false;
@@ -27,14 +26,6 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setTitulo($titulo) {
             $this->titulo = $titulo;
-        } 
-                
-        public function getRespondida() {
-            return $this->respondida;
-        }
-
-        public function setRespondida($respondida) {
-            $this->respondida = $respondida;
         } 
             
         public function getUsuarioId() {
