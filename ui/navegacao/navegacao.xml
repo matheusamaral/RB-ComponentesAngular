@@ -217,7 +217,7 @@
         <acaoCliente classe="pag-pessoas-local" acao="PessoasLocalCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="27" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Pessoas no local">
+    <pagina id="27" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="perguntas">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>

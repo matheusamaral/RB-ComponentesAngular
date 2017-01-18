@@ -8,8 +8,8 @@ angular.module('QuickPeek.HTML.PerguntasLocal', [
     function montar() {
         return '<div class="row bar bar-header bar-positive">\n\
                     <div>\n\
-                        <button ng-click="voltarLocais()" class="btn-txt-direita button button-clear">\n\
-                            <i class="icon ion-android-arrow-back seta-barra"></i>49 Perguntas\n\
+                        <button ng-click="perguntar()" class="btn-txt-direita button button-clear">\n\
+                            <i class="icon ion-android-arrow-back seta-barra"></i>{{dados.perguntas.length}} Perguntas\n\
                         </button>\n\
                     </div>\n\
                 </div>\n\

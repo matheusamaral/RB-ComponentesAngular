@@ -42,6 +42,7 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function irPerguntas(id){
+        DGlobal.idLocal = id;
         Pagina.navegar({idPage:27,paramAdd:'?localId='+id});
     }
     

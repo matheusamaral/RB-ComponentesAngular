@@ -9,9 +9,10 @@ angular.module('QuickPeek.PerguntasLocal', [
 .controller('PerguntasLocalCtrl', ['$scope','PerguntasLocalEstrutura','PerguntasLocalAcoes',
     function ($scope,PerguntasLocalEstrutura,PerguntasLocalAcoes){        
         PerguntasLocalEstrutura.setScope($scope).popular();
-        PerguntasLocalAcoes.setScope($scope);
+        PerguntasLocalAcoes.setScope($scope).configConexao();
         
         $scope.voltarLocais = PerguntasLocalAcoes.voltarLocais;
+        $scope.perguntar = PerguntasLocalAcoes.perguntar;
     }
 ])
 
