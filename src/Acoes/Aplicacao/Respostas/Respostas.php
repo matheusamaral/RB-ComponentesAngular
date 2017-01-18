@@ -102,7 +102,7 @@ class Respostas {
             foreach($usuarios as $v){
                 $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
             }
-
+            
             $cmd = Conteiner::get('Socket');
             for($i = 0; $i < count($toConexao); $i++){
                 $mensagem[$i]['to'] = $toConexao[$i];
