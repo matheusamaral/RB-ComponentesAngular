@@ -33,19 +33,17 @@ and open the template in the editor.
             enviar = function(){
             console.log("enviar");
 
-            conn.send(JSON.stringify({codsessrt:'PG1EcZFcD3tCvULXGCQpCJJVM1UycaU62rTSBMu3vMDCg3PZED5Nz3suvP99UFwwYw7p8ZbveWe8I8lC5awlMl7pLQ0xqIIE5B7M',
-                processo:'Acoes', etapa:'perguntas',
-            'Perguntas::titulo':'pergunta teste', 'Perguntas::localId':'1', 
-            'Mensagens::visibilidadeId':'2'}));
+            conn.send(JSON.stringify({codsessrt:'SsLCci6gghT1vrK50YmIRNgetOp7lgrLEumtxPsx28P3sA0nvUHjaI6EQdfKkTCVfBMGK00BMIKOloil1QCYEE0mRmuyzhtjYvkk',
+                processo:'Acoes', etapa:'respostas',
+            'Respostas::titulo':'pergunta teste', 'Respostas::perguntasId':'1'}));
             };
             
         iniciar = function(){
         console.log("iniciar");
         
-        conn.send(JSON.stringify({codsessrt:'SsLCci6gghT1vrK50YmIRNgetOp7lgrLEumtxPsx28P3sA0nvUHjaI6EQdfKkTCVfBMGK00BMIKOloil1QCYEE0mRmuyzhtjYvkk'
-            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'27-1'}));
+        conn.send(JSON.stringify({codsessrt:'SZB3FSPOSyYwN5WIz4l3nRtNUOlZYpoe1PN1uEva5GEXCjfO5fRS9ya3WoZLeZ43kib4z2BRW42u3GVVffYcwHdWYUdHF3SoQm94'
+            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'34-1'}));
         };
-        
         setTimeout(
             iniciar,
             300

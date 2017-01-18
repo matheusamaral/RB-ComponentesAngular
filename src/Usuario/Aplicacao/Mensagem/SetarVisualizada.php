@@ -8,9 +8,10 @@ class SetarVisualizada {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioMensagemId = $msg->getCampo('UsuarioMensagemId')->get('valor');
-        $visibilidadeId = $msg->getCampo('VisibilidadeId')->get('valor');
+        $visibilidadeMensagemId = $msg->getCampo('VisibilidadeMensagemId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('VisibilidadeUsuarioId')->get('valor');
         
-        $query = Conteiner::get('ConsultaSetarVisualizada')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeId);
+        $query = Conteiner::get('ConsultaSetarVisualizada')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagemId, $visibilidadeUsuarioId);
         
         if($query){
             foreach($query as $v){

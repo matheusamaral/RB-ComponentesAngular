@@ -4,7 +4,8 @@
     
     <entrada>
         <campo regra="Obrigatorio" chave="UsuarioMensagemId" nome="usuarioMensagemId"/>
-        <campo regra="Obrigatorio" chave="VisibilidadeId" nome="visibilidadeId"/>
+        <campo regra="Obrigatorio" chave="VisibilidadeMensagemId" nome="visibilidadeMensagemId"/>
+        <campo regra="Obrigatorio" chave="VisibilidadeUsuarioId" nome="visibilidadeUsuarioId"/>
     </entrada>
     
     <atividades>
