@@ -9,7 +9,7 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
         return '<div class="row bar bar-header bar-positive">\n\
                     <div>\n\
                         <button ng-click="voltarLocais()" class="btn-txt-direita button button-clear">\n\
-                            <i class="icon ion-android-arrow-back seta-barra"></i>49 Pessoas\n\
+                            <i class="icon ion-android-arrow-back seta-barra"></i>{{dados.qtd}} Pessoas\n\
                         </button>\n\
                     </div>\n\
                 </div>\n\
@@ -30,8 +30,11 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
                                 <button ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
                                     <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                                 </button>\n\
+                                <button ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 2" class="btn-seguidores button button-outline button-positive">\n\
+                                    Solicitado\n\
+                                </button>\n\
                                 <button ng-disabled="dadosUser.usuarioId == pessoa.usuarioId" ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId == pessoa.usuarioId" class="btn-voce btn-seguidores button button-outline button-positive">\n\
-                                    <i class="icon ion-ios-plus-empty"></i>Seguir\n\
+                                    Vocẽ\n\
                                 </button>\n\
                                 <button ng-click="deixarSeguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
                                     <i class="icon ion-checkmark"></i>Seguindo\n\

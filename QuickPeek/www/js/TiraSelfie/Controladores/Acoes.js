@@ -65,9 +65,12 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
             window.plugins.Base64.encodeFile(path, function(base64){
                 obj = {arquivoBase64:base64};
             });
-
+            
             $timeout(function(){
-                TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successSalvar}).salvarImg();
+                if(!DGlobal.dadosCadastro)
+                    TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successSalvar}).salvarImg();
+                else
+                    TiraSelfieRequisicoes.set({dados:obj, scope:scope,acaoSuccess:TiraSelfieRequisicoes.successEditar}).editarImg();
             },0);
         },0);
     }

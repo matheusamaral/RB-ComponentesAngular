@@ -28,6 +28,7 @@ angular.module('QuickPeek.Estrutura.FiltroMapa', [
             for(var i = 0; i < scope.categorias.length;i++){
                 scope.categorias[i].indice = i;
             }
+            alert(JSON.stringify(scope.categorias));
         }
         
         if(DGlobal.filtro){

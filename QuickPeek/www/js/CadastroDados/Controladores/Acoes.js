@@ -25,8 +25,13 @@ angular.module('QuickPeek.Acoes.CadastroDados', [
     }
     
     function cadastrar(){
-        scope.dados.nascimento = VP.organizaDataString(scope.dados.nascimentoVisao);
-        CadastroDadosRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:CadastroDadosRequisicoes.successCadastrar}).cadastrar();
+        if(!scope.dados.editando){
+            scope.dados.nascimento = VP.organizaDataString(scope.dados.nascimentoVisao);
+            CadastroDadosRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:CadastroDadosRequisicoes.successCadastrar}).cadastrar();
+        }else{
+            scope.dados.nascimento = VP.organizaDataString(scope.dados.nascimentoVisao);
+            CadastroDadosRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:CadastroDadosRequisicoes.successEditar}).editar();
+        }
     }  
     
     function showAlert(){

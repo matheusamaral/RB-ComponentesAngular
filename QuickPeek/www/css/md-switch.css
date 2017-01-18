@@ -4,6 +4,14 @@ md-switch{
     background-color: #c7cbcc;
 }
 
+md-switch.md-checked{
+    background-color: #7ccf00;
+}
+
+md-switch.md-checked .md-bar{
+    background-color: #7ccf00 !important;
+}
+
 md-switch .md-bar{
     background-color: #c7cbcc;
 }

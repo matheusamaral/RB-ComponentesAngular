@@ -23,6 +23,7 @@ angular.module('QuickPeek.Estrutura.PesquisarMapa', [
         
         if(DGlobal.ultimosLocais && DGlobal.ultimosLocais.success){
             scope.locais = DGlobal.ultimosLocais.dados;
+            console.log(scope.locais);
         }
     };
   
