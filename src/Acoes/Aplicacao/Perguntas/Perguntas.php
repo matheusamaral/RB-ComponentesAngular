@@ -34,6 +34,8 @@ class Perguntas {
         $pagina = '27' . '-' . $localId;
 
         for($i = 0; $i < count($dadosBanco); $i++){
+            var_dump($usuarioId);
+            var_dump($dadosBanco[$i]);
             if($dadosBanco[$i]['usuario'] == $usuarioId){
                 $fromConexao = $dadosBanco[$i]['conexao'];
             }
