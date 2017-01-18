@@ -84,7 +84,6 @@ class Respostas {
         $dadosBanco = Conteiner::get('DadosBanco');
         $pagina[] = '34' . '-' . $perguntaId;
         $pagina[] = '27' . '-' . $localId;
-        var_dump($localId);
 
         for($i = 0; $i < count($dadosBanco); $i++){
             if($dadosBanco[$i]['usuario'] == $usuarioId){
@@ -125,7 +124,7 @@ class Respostas {
         }
         
         if($usuariosLocal){
-            for($i = 0; $i > count($toConexaoLocal); $i++){
+            for($i = 0; $i < count($toConexaoLocal); $i++){
                 $mensagem2[$i]['to'] = $toConexaoLocal[$i];
                 $mensagem2[$i]['from'] = $fromConexao;
                 $mensagem2[$i]['resposta'] = 1;
