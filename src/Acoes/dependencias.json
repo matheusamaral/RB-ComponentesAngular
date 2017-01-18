@@ -18,5 +18,6 @@
     
     "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag",
-    "ConsultaCasaTrabalho": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaCasaTrabalho"
+    "ConsultaCasaTrabalho": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaCasaTrabalho",
+    "ConsultaLocalId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLocalId"
 }

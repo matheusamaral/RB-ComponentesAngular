@@ -10,7 +10,6 @@ class ConsultaListarPerguntas {
         $query->select('distinct p.id', 'id')
                 ->add('p.titulo', 'titulo')
                 ->add('p.usuario_id', 'usuarioId')
-                ->add('p.respondida', 'respondida')
                 ->add('count(distinct r.id) - count(distinct rv.id)', 'respostas')
                 ->add('case when u.ativo = 0 then ' . "'FotoPadrão'"
                         . ' when p.visibilidade_id = 1 then u.endereco'

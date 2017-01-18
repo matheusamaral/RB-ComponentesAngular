@@ -6,7 +6,6 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="titulo" atributo="titulo" /> 
-    <propriedades coluna="respondida" atributo="respondida" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="local_id"  atributo="localId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  

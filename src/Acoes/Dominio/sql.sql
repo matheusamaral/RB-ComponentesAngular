@@ -4,7 +4,6 @@ CREATE TABLE `perguntas`(
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `titulo` varchar(45)   ,
-    `respondida` varchar(45)   ,
     `usuario_id` INT   ,
     INDEX `perguntas_fk_usuario_id_idx`(`usuario_id` ASC),
     CONSTRAINT `perguntas_fk_usuario_id` 

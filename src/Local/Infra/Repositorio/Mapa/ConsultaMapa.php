@@ -137,6 +137,7 @@ class ConsultaMapa {
         $query->where('l.ativo = 1')
                 ->add('l.id in(' . $locaisId . ')');
         $query->group('l.id');
+        $query->order('sub.countHash');
         $query->addVariaveis([$usuarioId, $tempoHashtag, $usuarioId]);
         return $query->executar();
     }

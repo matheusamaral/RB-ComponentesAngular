@@ -4,7 +4,6 @@
     <classe nome="Perguntas" tabela="perguntas" namespace="Quickpeek\Acoes\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
         <propriedades coluna="titulo" atributo="titulo" type="varchar(45)"/>
-        <propriedades coluna="respondida" atributo="respondida" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="local_id" atributo="localId" classe="\Quickpeek\Local\Dominio\Local" tabela="local"/>
         <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="\Quickpeek\Usuario\Dominio\Visibilidade" tabela="visibilidade"/>
