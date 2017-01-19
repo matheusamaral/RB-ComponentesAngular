@@ -39,6 +39,8 @@
         <propriedades coluna="local_id" atributo="localId" classe="Local" tabela="local"/>
         <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="\Quickpeek\Usuario\Dominio\Visibilidade" tabela="visibilidade"/>
         <propriedades coluna="presente" atributo="presente" type="varchar(45)"/>
+        <propriedades coluna="automatico" atributo="automatico" type="varchar(45)"/>
+        <propriedades coluna="confirmado" atributo="confirmado" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>

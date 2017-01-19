@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
     'QuickPeek.Requisicao.ConfigConta'
 ])
 
-.factory('ConfigContaAcoes', ['Pagina','$ionicPopup','popupUltimoHtml','contaPrivadaHtml','ConfigContaRequisicoes',
-    function(Pagina,$ionicPopup,popupUltimoHtml,contaPrivadaHtml,ConfigContaRequisicoes){
+.factory('ConfigContaAcoes', ['Pagina','$ionicPopup','popupUltimoHtml','contaPrivadaHtml','ConfigContaRequisicoes','$timeout',
+    function(Pagina,$ionicPopup,popupUltimoHtml,contaPrivadaHtml,ConfigContaRequisicoes,$timeout){
     var scope;  
     
     function setScope(obj){
@@ -52,9 +52,10 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
     }
     
     function alterarPrivacidade(){
-        var obj = {contaPrivada : scope.dados.contaPrivada};
-        ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successEditarCPrivada}).editarCPrivada();
-        //scope.contaPrivadaPopup.close();
+        $timeout(function(){
+            var obj = {contaPrivada : scope.dados.contaPrivada};
+            ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successEditarCPrivada}).editarCPrivada();
+        },0);
     }
     
     function listarPessoasBloqueadas(){

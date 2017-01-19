@@ -19,23 +19,8 @@ angular.module('QuickPeek.Acoes.PesquisarLocaisCheckin', [
         
     }
     
-    function voltarMapa(){
-        if(DGlobal.coordenadasAtual){
-            Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-        }else{
-            var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-            navigator.geolocation.getCurrentPosition(onSuccess,onError);
-        }
-    }
-    
-    var onSuccess = function(position){
-        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-    };
-
-    function onError(error){
-        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+    function voltarCheckin(){
+        Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     }
     
     function pesquisarLocal(){
@@ -43,14 +28,21 @@ angular.module('QuickPeek.Acoes.PesquisarLocaisCheckin', [
         scope.timeOut = $timeout(function(){
             var obj = {nome:scope.dados.nome,latitude:DGlobal.coordenadasAtual.latitude,longitude:DGlobal.coordenadasAtual.longitude};
             PesquisarLocaisCheckinRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PesquisarLocaisCheckinRequisicoes.successPesquisarLocais}).pesquisarLocais();
-        },1.500);
+        },1500);
+    }
+    
+    function irLocal(local){
+        DGlobal.checkIn = {local:local};
+        DGlobal.paginaAnterior = 31;
+        Pagina.navegar({idPage:30});
     }
     
     return {
         setScope:setScope,
         pesquisarLocalScroll:pesquisarLocalScroll,
-        voltarMapa:voltarMapa,
-        pesquisarLocal:pesquisarLocal
+        voltarCheckin:voltarCheckin,
+        pesquisarLocal:pesquisarLocal,
+        irLocal:irLocal
     };
     
  }]);

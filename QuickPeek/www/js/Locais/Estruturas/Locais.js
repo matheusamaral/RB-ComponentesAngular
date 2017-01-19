@@ -23,11 +23,11 @@ angular.module('QuickPeek.HTML.Locais', [
                                     <div ng-if="local.dados.checkIn == 1" class="row remove-padding">\n\
                                         <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
                                     </div>\n\
-                                    <div ng-if="local.dados.distancia >=1" style="padding-top:3px !important" ng-if="local.dados.checkIn != 1" class="row remove-padding">\n\
+                                    <div ng-if="local.dados.distancia >=1 && local.dados.checkIn != 1" style="padding-top:3px !important" ng-if="local.dados.checkIn != 1" class="row remove-padding">\n\
                                         <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{local.dados.distancia.split(\'.\')[0]}}km de distância</span>\n\
                                     </div>\n\
-                                    <div ng-if="local.dados.distancia < 1" style="padding-top:3px !important" ng-if="local.dados.checkIn != 1" class="row remove-padding">\n\
-                                        <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{String((1000 * (parseFloat(0.01154544)))).split(\'.\')[0]}}m de distância</span>\n\
+                                    <div ng-if="local.dados.distancia < 1 && local.dados.checkIn != 1" style="padding-top:3px !important" ng-if="local.dados.checkIn != 1" class="row remove-padding">\n\
+                                        <i class="icon ion-ios-location p-titulo-hastag"></i><span class="p-titulo-hastag">a {{converteKmM(local.dados.distancia)}}m de distância</span>\n\
                                     </div>\n\
                                 </div>\n\
                                 <div class="text-right">\n\
@@ -36,12 +36,12 @@ angular.module('QuickPeek.HTML.Locais', [
                                             <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                                         </md-button>\n\
                                         <md-menu-content width="4">\n\
-                                            <md-menu-item>\n\
+                                            <md-menu-item ng-if="local.dados.checkIn == 1">\n\
                                                 <md-button ng-click="irCheckin(true)">\n\
                                                     Alterar localização\n\
                                                 </md-button>\n\
                                             </md-menu-item>\n\
-                                            <md-menu-item>\n\
+                                            <md-menu-item ng-if="local.dados.checkIn == 1">\n\
                                                 <md-button ng-click="checkInLocal(local)">\n\
                                                     Alterar privacidade\n\
                                                 </md-button>\n\
@@ -87,7 +87,8 @@ angular.module('QuickPeek.HTML.Locais', [
                         </div>\n\
                         <div class="col text-center">\n\
                             '+tutorial6()+'\n\
-                            <button ng-class="{\'z-index-locais\' : dadosUser.tutorial == 6}" ng-click="voltarMapa()" class="btn-txt-direita button button-positive">\n\
+                            <button ng-click="irPublicar(local)" ng-class="{\'z-index-locais\' : dadosUser.tutorial == 6}"\n\
+                            class="btn-txt-direita button button-positive">\n\
                                 <i class="icon ion-edit seta-barra"></i>Publicar\n\
                             </button>\n\
                         </div>\n\

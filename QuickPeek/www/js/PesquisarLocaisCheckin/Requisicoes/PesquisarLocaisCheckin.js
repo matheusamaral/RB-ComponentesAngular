@@ -36,6 +36,7 @@ angular.module('QuickPeek.Requisicao.PesquisarLocaisCheckin', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             console.log(objRetorno);
+            alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true){
 //                for(var i = 0; i < objRetorno.dados.length;i++){
 //                    scope.locais.push(objRetorno.dados[i]);

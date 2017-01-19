@@ -7,6 +7,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $id = false;
         private $categoriaHashtagId = false;
         private $hashtagId = false;
+        private $visivel = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -40,6 +41,14 @@ use Rubeus\ORM\Persistente as Persistente;
             if($hashtagId instanceof Hashtag)
                 $this->hashtagId = $hashtagId;
             else $this->getHashtagId()->setId($hashtagId);
+        } 
+                
+        public function getVisivel() {
+            return $this->visivel;
+        }
+
+        public function setVisivel($visivel) {
+            $this->visivel = $visivel;
         } 
                 
         public function getAtivo() {

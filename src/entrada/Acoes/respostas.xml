@@ -3,9 +3,9 @@
 <processo codigo="respostas" modulo="Acoes">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Respostas::perguntasId" nome="perguntasId"/>
-        <campo regra="Opcional" chave="Respostas::titulo" nome="titulo"/>
-        <campo regra="Opcional" chave="Respostas::endereco" nome="endereco"/>
+        <campo regra="Obrigatorio" chave="Respostas::perguntasId" nome="Respostas::perguntasId"/>
+        <campo regra="Opcional" chave="Respostas::titulo" nome="Respostas::titulo"/>
+        <campo regra="Opcional" chave="Respostas::endereco" nome="Respostas::endereco"/>
         <campo chave="Arquivo" nome="arquivo" type="file"/>
     </entrada>
     

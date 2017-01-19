@@ -59,8 +59,6 @@
     "ExcluirConversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\ExcluirConversa",
     "Conversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\Conversa",
     "PaginaConversas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\PaginaConversas",
-    "SetarEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarEntregue",
-    "SetarVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarVisualizada",
     "SetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagensVisualizadas",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
@@ -77,6 +75,8 @@
     
     "AlterarVisibilidade": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\AlterarVisibilidade",
     "CheckIn": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\CheckIn",
+    "EstouEmCasa": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\EstouEmCasa",
+    "EstouNoTrabalho": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\EstouNoTrabalho",
     "Publicar": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\Publicar",
     "Seguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\Seguir",
     "DeixarSeguir": "\\Quickpeek\\Acoes\\Aplicacao\\Seguir\\DeixarSeguir",
@@ -94,6 +94,7 @@
     "Trending": "\\Quickpeek\\Acoes\\Aplicacao\\Gif\\Trending",
     "Search": "\\Quickpeek\\Acoes\\Aplicacao\\Gif\\Search",
     "ListarHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarHashtag",
+    "Digitando": "\\Quickpeek\\Acoes\\Aplicacao\\Digitando\\Digitando",
     
     
     "ListarSeguidores": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarSeguidores",
@@ -101,6 +102,7 @@
     "ListarBloqueados": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarBloqueados",
     "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarUltimosLocais": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarUltimosLocais",
+    "ListarLocaisRecentes": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarLocaisRecentes",
     "ListarPerfilUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPerfilUsuario",
     "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarAvatares": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarAvatares",

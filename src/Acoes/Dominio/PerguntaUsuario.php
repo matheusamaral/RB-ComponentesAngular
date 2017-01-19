@@ -6,6 +6,7 @@ use Rubeus\ORM\Persistente as Persistente;
     class PerguntaUsuario extends Persistente{
         private $id = false;
         private $visualizado = false;
+        private $entregue = false;
         private $ativo = false;
         private $momento = false;
         private $usuarioId = false;
@@ -27,6 +28,14 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setVisualizado($visualizado) {
             $this->visualizado = $visualizado;
+        } 
+                
+        public function getEntregue() {
+            return $this->entregue;
+        }
+
+        public function setEntregue($entregue) {
+            $this->entregue = $entregue;
         } 
                 
         public function getAtivo() {

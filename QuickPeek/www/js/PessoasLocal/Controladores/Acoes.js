@@ -29,9 +29,13 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
     }
     
     function irPerfil(id){
-        Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id});
-        DGlobal.perfilOutros = true;
-        DGlobal.paginaVoltar = 26;
+        if(id == DGlobal.dadosUser.dados.usuarioId){
+            Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        }else{
+            Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            DGlobal.perfilOutros = true;
+        }
+            DGlobal.paginaVoltar = 26;
     }
     
     return {

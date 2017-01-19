@@ -12,6 +12,7 @@ angular.module('QuickPeek.Estrutura.ComeceAgora', [
     
     function setScope(obj){
         scope = obj;
+        scope.mudarBtn = false;
         return this;
     }
     

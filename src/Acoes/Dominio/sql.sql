@@ -4,7 +4,6 @@ CREATE TABLE `perguntas`(
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `titulo` varchar(45)   ,
-    `respondida` varchar(45)   ,
     `usuario_id` INT   ,
     INDEX `perguntas_fk_usuario_id_idx`(`usuario_id` ASC),
     CONSTRAINT `perguntas_fk_usuario_id` 
@@ -76,6 +75,7 @@ CREATE TABLE `pergunta_usuario`(
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `visualizado` varchar(45)   ,
+    `entregue` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ,
     `usuario_id` INT   ,
@@ -225,6 +225,18 @@ CREATE TABLE `hashtag_local`(
          FOREIGN KEY (`hashtag_id`) REFERENCES `hashtag` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `categoria_hashtag_id` INT   ,
+    INDEX `hashtag_local_fk_categoria_hashtag_id_idx`(`categoria_hashtag_id` ASC),
+    CONSTRAINT `hashtag_local_fk_categoria_hashtag_id` 
+         FOREIGN KEY (`categoria_hashtag_id`) REFERENCES `categoria_hashtag` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `visibilidade_id` INT   ,
+    INDEX `hashtag_local_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `hashtag_local_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
@@ -243,6 +255,7 @@ CREATE TABLE `hashtag_categoria`(
          FOREIGN KEY (`hashtag_id`) REFERENCES `hashtag` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `visivel` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         

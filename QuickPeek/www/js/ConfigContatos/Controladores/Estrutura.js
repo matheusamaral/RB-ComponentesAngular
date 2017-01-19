@@ -20,6 +20,10 @@ angular.module('QuickPeek.Estrutura.ConfigContatos', [
         scope.dados = {
             contato:0
         };
+        
+        if(DGlobal.dadosUser && DGlobal.dadosUser.success){
+            scope.dados.contato = DGlobal.dadosUser.dados.contato;
+        }
     };
   
     return {

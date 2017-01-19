@@ -40,7 +40,7 @@ angular.module('QuickPeek.Requisicao.Privacidade', [
             //alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true){
                 DGlobal.localAtual = dados.localId;
-                Pagina.navegar({idPage:24,paramAdd:'?localId='+dados.localId+'&atualizando=0'})
+                Pagina.navegar({idPage:24,paramAdd:'?longitude='+DGlobal.coordenadasAtual.longitude+'&latitude='+DGlobal.coordenadasAtual.latitude+'&localId='+dados.localId+'&atualizando=0'})
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);

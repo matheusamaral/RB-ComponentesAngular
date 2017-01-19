@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaConversa {
     
-    public function consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $notIn){
+    public function consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $visibilidadeUsuarioId, $notIn){
         
         $query = Conteiner::get('Query', false);
         $query->select('m.id', 'id')
@@ -12,7 +12,7 @@ class ConsultaConversa {
                 ->add('m.endereco', 'enderecoMensagem')
                 ->add('m.momento', 'momento')
                 ->add('m.status_mensagem_id', 'statusMensagem')
-                ->add('case when u.ativo = 0 or b.id is not null then ' . "'FotoPadrao'" 
+                ->add('case when u.ativo = 0 or b.id is not null then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg'" 
                         . ' when m.visibilidade_mensagens_id = 2 then a.endereco '
                         . ' else u.endereco end', 'endereco')
                 ->add('case when u.ativo = 0 or b.id is not null then ' . "'Usuário do Quickpeek'" 
@@ -36,15 +36,19 @@ class ConsultaConversa {
         $query->where('((m.usuario_id = ? and m.usuario_mensagem_id = ?)')
                 ->add('or', '(m.usuario_id = ? and m.usuario_mensagem_id = ?))')
                 ->add('me.id is null')
-                ->add('m.visibilidade_mensagens_id = ?')
+                ->add('case when m.usuario_id = ? then m.visibilidade_mensagens_id = ? else '
+                        . 'm.visibilidade_usuario_id = ? end')
+                ->add('case when m.usuario_id = ? then m.visibilidade_usuario_id = ? else '
+                        . 'm.visibilidade_mensagens_id = ? end')
                 ->add('case when b.usuario_bloqueado_id = ? then m.status_mensagem_id in(1,2,3,4)'
                         . ' else m.status_mensagem_id != 4 end')
                 ->add('m.id not in (' . $notIn . ')')
                 ->add('m.ativo = 1');
         $query->order('m.momento');
         $query->limit(50);
-        $query->addVariaveis([$usuarioId, $usuarioMensagemId, $usuarioId, $visibilidadeMensagensId, 
-            $usuarioMensagemId, $usuarioId, $usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $usuarioId]);
+        $query->addVariaveis([$usuarioId, $usuarioMensagemId, $usuarioId, $visibilidadeMensagensId, $usuarioMensagemId, 
+            $usuarioId, $usuarioId, $usuarioMensagemId, $usuarioId, $visibilidadeMensagensId, $visibilidadeMensagensId, 
+            $usuarioId, $visibilidadeUsuarioId, $visibilidadeUsuarioId, $usuarioId]);
         return $query->executar();
     }
 }

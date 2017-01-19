@@ -102,15 +102,23 @@ angular.module('QuickPeek.Requisicao.Locais', [
                     if(scope.locais[i].dados.localId == dados.localId){
                         for(var j = 0; j < scope.locais[i].hashtags.length;j++){
                             if(scope.locais[i].hashtags[j].hashtagId == dados.hashtagId){
-                                if(scope.locais[i].hashtags[j].jaCurtiu == 1)scope.locais[i].hashtags[j].jaCurtiu = 0;
-                                else scope.locais[i].hashtags[j].jaCurtiu = 1;
+                                if(scope.locais[i].hashtags[j].jaCurtiu == 1){
+                                    scope.locais[i].hashtags[j].jaCurtiu = 0;
+                                    if(scope.locais[i].hashtags[j].hashtagQtd > 0)
+                                        scope.locais[i].hashtags[j].hashtagQtd--;
+                                    else
+                                        scope.locais[i].hashtags.splice(j,1);
+                                }
+                                else{
+                                    scope.locais[i].hashtags[j].jaCurtiu = 1;
+                                    scope.locais[i].hashtags[j].hashtagQtd ++;
+                                }
                             }
                         }
                     }
                 }
                 
                 if(acaoPosterior)acaoPosterior();
-                console.log(scope.locais);
             }
             else{
                 OpenToast('Não foi possível curtir esta hashtag');

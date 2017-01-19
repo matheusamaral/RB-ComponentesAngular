@@ -11,7 +11,7 @@ class ConsultaListarMensagensPerguntas {
                 ->add('r.titulo', 'respostaTitulo')
                 ->add('r.endereco', 'enderecoMidia')
                 ->add('r.usuario_id', 'usuarioId')
-                ->add('case when u.ativo = 0 then ' . "'FotoPadrao'"
+                ->add('case when u.ativo = 0 then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg'"
                         . ' when r.visibilidade_id = 1 then u.nome '
                         . ' when r.visibilidade_id = 2 and s.id is not null then u.nome'
                         . ' else a.nome end', 'nomeUsuario')
@@ -38,6 +38,7 @@ class ConsultaListarMensagensPerguntas {
                 ->add('r.id not in(' . $notIn . ')')
                 ->add('(r.usuario_id = ? or bloqueado = 0)')
                 ->add('r.ativo = 1');
+        $query->order('r.momento desc');
         $query->limit(15);
         $query->addVariaveis([$usuarioId, $usuarioId, $perguntaId, $tempo, $usuarioId]);
         return $query->executar();

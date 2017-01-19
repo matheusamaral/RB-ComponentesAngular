@@ -24,8 +24,6 @@ angular.module('QuickPeek.Estrutura.PessoasBloqueadas', [
         if(DGlobal.pessoasBloqueadas && DGlobal.pessoasBloqueadas.success){
             scope.dados.pessoas = DGlobal.pessoasBloqueadas.dados;
         }
-        
-        scope.dados.pessoas.push({usuarioId:1,nome:'Coelho neurótico',endereco:'img/rabbit.svg'});
     };
   
     return {

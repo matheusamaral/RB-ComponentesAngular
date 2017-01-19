@@ -18,6 +18,7 @@ class SugestaoLocal {
                 $msg->setCampo('CheckIn::usuarioId', $usuarioId);
                 $msg->setCampo('CheckIn::localId', $sugestao['localId']);
                 $msg->setCampo('CheckIn::visibilidadeId', 3);
+                $msg->setCampo('CheckIn::automatico', 1);
                 Conteiner::get('Cadastro')->cadastrar($msg);
                 $msg->setCampoSessao('sugestaoCheckIn', $msg->getCampo('CheckIn::id')->get('valor'));
                 $msg->setCampoSessao('sugestaoCheckInMomento', $msg->getCampo('CheckIn::momento')->get('valor'));

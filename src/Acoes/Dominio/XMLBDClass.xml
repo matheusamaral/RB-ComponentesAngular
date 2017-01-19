@@ -4,7 +4,6 @@
     <classe nome="Perguntas" tabela="perguntas" namespace="Quickpeek\Acoes\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
         <propriedades coluna="titulo" atributo="titulo" type="varchar(45)"/>
-        <propriedades coluna="respondida" atributo="respondida" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="local_id" atributo="localId" classe="\Quickpeek\Local\Dominio\Local" tabela="local"/>
         <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="\Quickpeek\Usuario\Dominio\Visibilidade" tabela="visibilidade"/>
@@ -36,6 +35,7 @@
     <classe nome="PerguntaUsuario" tabela="pergunta_usuario" namespace="Quickpeek\Acoes\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="visualizado" atributo="visualizado" type="varchar(45)"/>
+        <propriedades coluna="entregue" atributo="entregue" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
@@ -95,6 +95,8 @@
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario"/>
         <propriedades coluna="local_id" atributo="localId" classe="\Quickpeek\Local\Dominio\Local" tabela="local"/>
         <propriedades coluna="hashtag_id" atributo="hashtagId" classe="Hashtag" tabela="hashtag"/>
+        <propriedades coluna="categoria_hashtag_id" atributo="categoriaHashtagId" classe="CategoriaHashtag" tabela="categoria_hashtag"/>
+        <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="\Quickpeek\Usuario\Dominio\Visibilidade" tabela="visibilidade"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>
@@ -103,6 +105,7 @@
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="categoria_hashtag_id" atributo="categoriaHashtagId" classe="CategoriaHashtag" tabela="categoria_hashtag"/>
         <propriedades coluna="hashtag_id" atributo="hashtagId" classe="Hashtag" tabela="hashtag"/>
+        <propriedades coluna="visivel" atributo="visivel" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>

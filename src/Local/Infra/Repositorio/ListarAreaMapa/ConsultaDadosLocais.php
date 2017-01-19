@@ -11,6 +11,7 @@ class ConsultaDadosLocais {
                 ->add('l.endereco', 'localEndereco')
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
+                ->add('l.cidade', 'cidade')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
                 ->add('((count(distinct c.id) * 1) + ((ifnull(m.contagem, 0) + ifnull(hl.contagem, 0)) * 0.9) + (count(distinct ci.id) * 0.8)) * 
                     (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + 
@@ -20,6 +21,7 @@ class ConsultaDadosLocais {
     end)', 'relevancia')
                 ->add('cin.contagem', 'relevancia2')
                 ->add('ifnull(chec.ativo, 0)', 'checkIn')
+                ->add('chec.visibilidade_id', 'visibilidadeCheckIn')
                 ->add('case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) < 0.03 then 1 else 0 end', 'publicar');
         $query->from('local', 'l');
         $query->join('check_in', 'c')->on('c.local_id = l.id')

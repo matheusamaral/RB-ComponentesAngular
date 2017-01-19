@@ -8,14 +8,13 @@ class ConsultaPaginaConversas {
         
         $query = Conteiner::get('Query', false);
         $query->select('u.id', 'usuarioId')
-                ->add('case when u.ativo = 0 or b.id is not null then ' . "'FotoPadrao'" . 
+                ->add('case when u.ativo = 0 or b.id is not null then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg'" . 
                         ' when men.visibilidade_mensagens_id = 2 then a.endereco' . 
                         ' else u.endereco end', 'endereco')
                 ->add('case when u.ativo = 0 or b.id is not null then ' . "'Usuário do Quickpeek'" . 
                         ' when men.visibilidade_mensagens_id = 2 then a.nome' . 
                         ' else u.nome end', 'nome')
                 ->add('count(distinct me.id)', 'naoVisualizadas')
-                ->add('men.visibilidade_mensagens_id', 'visibilidadeId')
                 ->add('men.id', 'mensagemId')
                 ->add('men.titulo', 'mensagem')
                 ->add('men.endereco', 'mensagemEndereco')
@@ -24,7 +23,9 @@ class ConsultaPaginaConversas {
                         . "men.usuario_mensagem_id, '-', "
                 . "men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id) end", 'agrupamento')
                 ->add('case when men.usuario_id = ? then men.visibilidade_mensagens_id '
-                        . 'else men.visibilidade_usuario_id end', 'visibilidadeMensagem');
+                        . 'else men.visibilidade_usuario_id end', 'visibilidadeMensagensId')
+                ->add('case when men.usuario_id = ? then men.visibilidade_usuario_id '
+                        . 'else men.visibilidade_mensagens_id end', 'visibilidadeUsuarioId');
         $query->from('usuario', 'u');
         $query->join($this->subConsulta(), 'm')
                 ->on('1');
@@ -49,7 +50,7 @@ class ConsultaPaginaConversas {
         $query->having('agrupamento not in ('. $notIn .')');
         $query->order('men.id desc');
         $query->limit(15);
-        $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
+        $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }
     
@@ -60,8 +61,8 @@ class ConsultaPaginaConversas {
         $query->from('mensagens');
         $query->where('usuario_id = ?')
                 ->add('or', 'usuario_mensagem_id = ?');
-        $query->group("case when usuario_mensagem_id = ? then concat(usuario_mensagem_id, '-', usuario_id, '-', "
-                . "visibilidade_mensagens_id) else concat(usuario_id, '-', usuario_mensagem_id, '-', visibilidade_mensagens_id) end");
+        $query->group("case when usuario_mensagem_id = ? then concat(usuario_mensagem_id, '-', usuario_id, '-', visibilidade_mensagens_id, '-', "
+                . "visibilidade_usuario_id)else concat(usuario_id, '-', usuario_mensagem_id, '-', visibilidade_mensagens_id, '-' ,visibilidade_usuario_id) end");
         return $query;
     }
 }

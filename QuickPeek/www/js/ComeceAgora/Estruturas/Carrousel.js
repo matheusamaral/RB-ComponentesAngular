@@ -30,8 +30,11 @@ return '<ion-slide-box on-slide-changed="slideHasChanged($index)">\n\
         </ion-slide-box>\n\
         <div class="row">\n\
             <div class="margin-auto col col-75 responsive text-center">\n\
-                <button ng-click="navegar()" class="col button button-positive">\n\
+                <button ng-if="!mudarBtn" ng-click="navegar()" class="col button button-positive">\n\
                     COMEÇAR AGORA\n\
+                </button>\n\
+                <button ng-if="mudarBtn" ng-click="onDeviceReady()" class="col button button-positive">\n\
+                    TENTAR NOVAMENTE\n\
                 </button>\n\
             </div>\n\
         </div>';

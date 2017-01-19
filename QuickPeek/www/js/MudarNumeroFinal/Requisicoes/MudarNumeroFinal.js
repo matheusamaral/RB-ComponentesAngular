@@ -36,9 +36,11 @@ angular.module('QuickPeek.Requisicao.MudarNumeroFinal', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 10});
-                OpenToast('Número editado com sucesso!');
+                DGlobal.dadosTel = dados;
+                Pagina.navegar({idPage : 33});
             }else{
+                DGlobal.dadosTel = dados;
+                Pagina.navegar({idPage : 33});
                 if(objRetorno.errors) OpenToast(objRetorno.errors)
                 else OpenToast('Não foi possível realizar esta ação, tente novamente mais tarde');
             }

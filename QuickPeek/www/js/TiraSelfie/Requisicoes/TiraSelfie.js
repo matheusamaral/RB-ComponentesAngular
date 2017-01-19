@@ -33,8 +33,33 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
             GCS.conectar(obj);
         };
         
-        
         function successSalvar(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                DGlobal.dadosSelfie = objRetorno.endereco;
+                Pagina.navegar({idPage:6});
+            }else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
+        function editarImg(){
+            RBLoadingMobile.show();
+            console.log(dados);
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Usuario/editarFotoPerfil",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successEditar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
@@ -57,7 +82,9 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         return {
             set: set,
             salvarImg: salvarImg,
-            successSalvar: successSalvar
+            successSalvar: successSalvar,
+            editarImg:editarImg,
+            successEditar:successEditar
         };
                            
 }]);     

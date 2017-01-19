@@ -45,7 +45,7 @@ class Chat implements MessageComponentInterface {
         
         $resultado = $processo->executar($msg, true);
         
-        $this->enviarMensagem($resultado, $from->resourceId);
+//        $this->enviarMensagem($resultado, $from->resourceId);
     }
     
     public function enviarMensagem($mensagem, $conexao){

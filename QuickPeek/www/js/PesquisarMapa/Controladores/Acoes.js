@@ -12,6 +12,7 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     
     function setScope(obj){
         scope = obj;
+        scope.busca = {buscandoPessoa : false};
         return this;
     };
     
@@ -62,6 +63,7 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     }
     
     function pesquisarPessoaScroll(){
+        RBLoadingMobile.show();
         scope.dados.atualizando = true,
         PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarPessoasScroll}).pesquisarPessoas();
     }
@@ -77,6 +79,29 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         Pagina.navegar({idPage:30});
     }
     
+    function converteKmM(km){
+        return String((1000 * (parseFloat(km)))).split('.')[0];
+    }
+    
+    function irLocal(id){
+        DGlobal.localAtual = id;
+        if(DGlobal.coordenadasAtual){
+            Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+id+'&atualizando=0'});
+        }else{
+            navigator.geolocation.getCurrentPosition(onPesquisaLocal,onPesquisaLocalError);
+        }
+    }
+    
+    var onPesquisaLocal = function(position){
+        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+    };
+
+    function onPesquisaLocalError(error){
+        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
+        Pagina.navegar({idPage:24,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+    }
+    
     return {
         setScope:setScope,
         voltarMapa:voltarMapa,
@@ -85,7 +110,9 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         pesquisarPessoa:pesquisarPessoa,
         pesquisarPessoaScroll:pesquisarPessoaScroll,
         irPerfil:irPerfil,
-        checkInLocal:checkInLocal
+        checkInLocal:checkInLocal,
+        converteKmM:converteKmM,
+        irLocal:irLocal
     };
     
  }]);

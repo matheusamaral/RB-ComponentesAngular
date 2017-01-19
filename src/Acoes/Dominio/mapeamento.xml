@@ -6,7 +6,6 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="titulo" atributo="titulo" /> 
-    <propriedades coluna="respondida" atributo="respondida" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="local_id"  atributo="localId" />  
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
@@ -44,6 +43,7 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="visualizado" atributo="visualizado" /> 
+    <propriedades coluna="entregue" atributo="entregue" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
@@ -115,6 +115,8 @@
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
     <nparaum coluna="local_id"  atributo="localId" />  
     <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
+    <nparaum coluna="categoria_hashtag_id"  atributo="categoriaHashtagId" />  
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
@@ -125,6 +127,7 @@
     </id>  
     <nparaum coluna="categoria_hashtag_id"  atributo="categoriaHashtagId" />  
     <nparaum coluna="hashtag_id"  atributo="hashtagId" />  
+    <propriedades coluna="visivel" atributo="visivel" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
