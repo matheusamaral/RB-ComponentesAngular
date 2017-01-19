@@ -12,7 +12,7 @@ angular.module('QuickPeek.PerguntasLocal', [
         PerguntasLocalAcoes.setScope($scope).configConexao();
         
         $scope.voltarLocais = PerguntasLocalAcoes.voltarLocais;
-        $scope.perguntar = PerguntasLocalAcoes.perguntar;
+        $scope.responder = PerguntasLocalAcoes.responder;
     }
 ])
 

@@ -18,14 +18,14 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
     function configConexao(){
         conn = new WebSocket('ws://192.168.0.121:8801');
         var cont = 0;
+        
         conn.onopen = function(e) {
-            alert(JSON.stringify(e));
             console.log("Connection established!");
         };
 
         //método disparado quando alguem da conexão fazer pergunta
         conn.onmessage = function(e){
-            console.log(e);
+            adicionaPergunta(JSON.parse(e.data));
         };
         
         $timeout(function(){
@@ -47,8 +47,6 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
             pagina: idPagina+'-'+idLocal
         };
         
-        console.log(obj);
-        
         conn.send(JSON.stringify(obj));
     };
     
@@ -56,25 +54,21 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
         Pagina.navegar({idPage:24});
     }
     
-    function perguntar(){
-        if(DGlobal.idLocal)
-            var idLocal = DGlobal.idLocal;
-        
-        conn.send(JSON.stringify({
-            codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
-            processo:'Acoes',
-            etapa:'perguntas',
-            'Perguntas::titulo':'pergunta teste', 
-            'Perguntas::localId':idLocal, 
-            'Mensagens::visibilidadeId':'2'
-        }));
+    function adicionaPergunta(pergunta){
+        console.log(pergunta);
+        scope.dados.perguntas.push(pergunta);
+    }
+    
+    function responder(id){
+        DGlobal.idPergunta = id;
+        Pagina.navegar({idPage:34,paramAdd:'?perguntasId='+id});
     }
     
     return {
         setScope:setScope,
         voltarLocais:voltarLocais,
         configConexao:configConexao,
-        perguntar:perguntar
+        responder:responder
     };
     
  }]);

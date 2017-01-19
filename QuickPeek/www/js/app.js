@@ -43,7 +43,8 @@ angular.module('QuickPeek', [
     'QuickPeek.Privacidade',
     'QuickPeek.PesquisarLocaisCheckin',
     'QuickPeek.Publicacoes',
-    'QuickPeek.MudarNumeroSMS'
+    'QuickPeek.MudarNumeroSMS',
+    'QuickPeek.Respostas'
 ])
 
 .run(function($ionicPlatform) {
