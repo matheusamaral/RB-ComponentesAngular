@@ -24,7 +24,7 @@ class Digitando {
                 $fromConexao = $dadosBanco[$i]['conexao'];
             }
             foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina && $dadosBanco[$i]['usuario'] != $usuarioId){
+                if($k == 'pagina' && $v == $pagina){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
                 }

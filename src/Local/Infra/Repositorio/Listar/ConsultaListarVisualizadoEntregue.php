@@ -14,7 +14,7 @@ class ConsultaListarVisualizadoEntregue {
                 ->add('case when pu.visibilidade_id = 1 then u.endereco'
                         . ' when pu.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . ' else a.endereco end', 'endereco')
-                ->add('pa.momento', 'momento');
+                ->add('pu.momento', 'momento');
         $query->from('pergunta_usuario', 'pu');
         $query->join('usuario', 'u')->on('u.id = pu.usuario_id')
                 ->on('u.ativo = 1');
@@ -24,10 +24,8 @@ class ConsultaListarVisualizadoEntregue {
                 ->on('s.ativo = 1');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
-        $query->join('pergunta_alerta', 'pa', 'left')->on('pa.usuario_id = pu.usuario_id')
-                ->on('pa.perguntas_id = pu.perguntas_id')
-                ->on('pa.ativo = 1');
-        $query->where('pu.visualizado = 0')->add('pu.perguntas_id = ?')
+        $query->where('pu.entregue = 1')
+                ->add('pu.perguntas_id = ?')
                 ->add('pu.ativo = 1');
         $query->order('momento desc');
         $query->addVariaveis([$usuarioId, $perguntaId]);
@@ -54,7 +52,8 @@ class ConsultaListarVisualizadoEntregue {
                 ->on('s.ativo = 1');
         $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
-        $query->where('pu.visualizado = 1')->add('pu.perguntas_id = ?')
+        $query->where('pu.visualizado = 1')
+                ->add('pu.perguntas_id = ?')
                 ->add('pu.ativo = 1');
         $query->order('momento desc');
         $query->addVariaveis([$usuarioId, $perguntaId]);

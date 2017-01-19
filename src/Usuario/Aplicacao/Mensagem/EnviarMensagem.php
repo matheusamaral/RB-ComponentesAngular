@@ -11,34 +11,26 @@ class EnviarMensagem {
         $visibilidadeId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
         $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
-        $bloqueoou = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeId);
+        $bloqueoou = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeUsuarioId);
         
-        if($bloqueoou){
-            $bloqueado = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeId);
+        if(!$bloqueoou){
+            $bloqueado = Conteiner::get('ConsultaBloqueado')->consultar($usuarioMensagemId, $usuarioId, $visibilidadeId);
             if($bloqueado){
                 $msg->setCampo('Mensagens::statusMensagemId', 4);
             }
-
-            $arquivo = $msg->getCampo('Arquivo')->get('valor');
-            if($arquivo){
-                $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
-                if(!$caminho && $arquivo){
-                    $erro = Conteiner::get('Upload')->getErro();
-                    $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);
-                }else{
-                    $msg->setCampo('Mensagens::endereco', $caminho[0]['url']);
-                }
-            }
             $cadastro = Conteiner::get('Cadastro');
-            $msg->setCampo('Mensagens::usuarioId', $usuarioId);
             $msg->setCampo('entidade', 'Mensagens');
+            $msg->setCampo('Mensagens::usuarioId', $usuarioId);
             $cad = $cadastro->cadastrar($msg);
             if($cad){
-                $dados = $this->conexaoSocket($msg);
-                $msg->setResultadoEtapa(true, false, $dados);
+                $this->conexaoSocket($msg);
+                $msg->setResultadoEtapa(true);
             }else{
                 $msg->setResultadoEtapa(false);
             }
+        }else{
+            $bloqueado = 1;
+            $msg->setResultadoEtapa(false, false, ['dados'=>$bloqueado]);
         }
     }
     
@@ -65,7 +57,5 @@ class EnviarMensagem {
         $dados['usuarioNome'] = $dadosUsuario['usuarioNome'];
         $dados['usuarioEndereco'] = $dadosUsuario['usuarioEndereco'];
         $dados['to'] = [$usuarioMensagemId];
-        
-        return $dados;
     }
 }

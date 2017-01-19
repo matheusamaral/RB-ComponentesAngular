@@ -82,19 +82,26 @@ class ListarMensagensPerguntas {
         $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         $perguntaId = $msg->getCampo('Perguntas::id')->get('valor');
         
-        $perguntaUsuario = Conteiner::get('ConsultaPerguntaUsuario')->consultar($usuarioId, $perguntaId);
-        
-        if($perguntaUsuario['visualizado'] == 0){
-            $msg->setCampo('PerguntaUsuario::id', $id);
-        }else{
-            $cadastro = 1;
-            $msg->setCampo('PerguntaUsuario::usuarioId', $usuarioId);
-            $msg->setCampo('PerguntaUsuario::perguntasId', $perguntaId);
-            $msg->setCampo('PerguntaUsuario::visibilidadeId', $visibilidadeId);
-        }
+        $criadorPergunta = COnteiner::get('ConsultaPerguntaUsuario')->consultarCriador($perguntaId);
+        if($criadorPergunta != $usuarioId){
+            $perguntaUsuario = Conteiner::get('ConsultaPerguntaUsuario')->consultar($usuarioId, $perguntaId);
+
+            if($perguntaUsuario['visualizado'] == 0){
+                $cadastrar = 1;
+                $msg->setCampo('PerguntaUsuario::id', $perguntaUsuario['id']);
+            }
+            if(!$perguntaUsuario){
+                $cadastrar = 1;
+                $msg->setCampo('PerguntaUsuario::usuarioId', $usuarioId);
+                $msg->setCampo('PerguntaUsuario::perguntasId', $perguntaId);
+            }
+            if($cadastrar){
                 $msg->setCampo('entidade', 'PerguntaUsuario');
-            $msg->setCampo('PerguntaUsuario::momentoVisualizado', date('Y-m-d H:i:s'));
-            $msg->setCampo('PerguntaUsuario::visualizado', 1);
-            Conteiner::get('Cadastro')->cadastrar($msg);
+                $msg->setCampo('PerguntaUsuario::visibilidadeId', $visibilidadeId);
+                $msg->setCampo('PerguntaUsuario::momentoVisualizado', date('Y-m-d H:i:s'));
+                $msg->setCampo('PerguntaUsuario::visualizado', 1);
+                Conteiner::get('Cadastro')->cadastrar($msg);
+            }
+        }
     }
 }

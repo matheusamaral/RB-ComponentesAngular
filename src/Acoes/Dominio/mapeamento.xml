@@ -43,6 +43,7 @@
         <gerador classe="sequence"/>
     </id>  
     <propriedades coluna="visualizado" atributo="visualizado" /> 
+    <propriedades coluna="entregue" atributo="entregue" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
