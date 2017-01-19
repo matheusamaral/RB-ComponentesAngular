@@ -75,6 +75,7 @@ CREATE TABLE `pergunta_usuario`(
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),
     `visualizado` varchar(45)   ,
+    `entregue` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ,
     `usuario_id` INT   ,

@@ -15,7 +15,6 @@ class ConsultaPaginaConversas {
                         ' when men.visibilidade_mensagens_id = 2 then a.nome' . 
                         ' else u.nome end', 'nome')
                 ->add('count(distinct me.id)', 'naoVisualizadas')
-                ->add('men.visibilidade_mensagens_id', 'visibilidadeId')
                 ->add('men.id', 'mensagemId')
                 ->add('men.titulo', 'mensagem')
                 ->add('men.endereco', 'mensagemEndereco')
@@ -24,7 +23,9 @@ class ConsultaPaginaConversas {
                         . "men.usuario_mensagem_id, '-', "
                 . "men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id) end", 'agrupamento')
                 ->add('case when men.usuario_id = ? then men.visibilidade_mensagens_id '
-                        . 'else men.visibilidade_usuario_id end', 'visibilidadeMensagem');
+                        . 'else men.visibilidade_usuario_id end', 'visibilidadeMensagensId')
+                ->add('case when men.usuario_id = ? then men.visibilidade_usuario_id '
+                        . 'else men.visibilidade_mensagens_id end', 'visibilidadeUsuarioId');
         $query->from('usuario', 'u');
         $query->join($this->subConsulta(), 'm')
                 ->on('1');
@@ -60,8 +61,7 @@ class ConsultaPaginaConversas {
         $query->from('mensagens');
         $query->where('usuario_id = ?')
                 ->add('or', 'usuario_mensagem_id = ?');
-        $query->group("case when usuario_mensagem_id = ? then concat(usuario_mensagem_id, '-', usuario_id, '-', "
-                . "visibilidade_mensagens_id) else concat(usuario_id, '-', usuario_mensagem_id, '-', visibilidade_mensagens_id) end");
+        $query->group("case when usuario_mensagem_id = ? then concat(usuario_mensagem_id, '-', usuario_id, '-', visibilidade_mensagens_id, '-', visibilidade_usuario_id)else concat(usuario_id, '-', usuario_mensagem_id, '-', visibilidade_mensagens_id, '-' ,visibilidade_usuario_id) end");
         return $query;
     }
 }

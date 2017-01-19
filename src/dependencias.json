@@ -59,8 +59,6 @@
     "ExcluirConversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\ExcluirConversa",
     "Conversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\Conversa",
     "PaginaConversas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\PaginaConversas",
-    "SetarEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarEntregue",
-    "SetarVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarVisualizada",
     "SetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagensVisualizadas",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",

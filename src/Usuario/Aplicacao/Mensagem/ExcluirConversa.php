@@ -7,10 +7,11 @@ class ExcluirConversa {
     public function excluirConversa($msg){
         
         $usuarioMensagemId = $msg->getCampo('Usuario::id')->get('valor');
-        $visibilidadeId = $msg->getCampo('VisibilidadeId')->get('valor');
+        $visibilidadeMensagensId = $msg->getCampo('VisibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('VisibilidadeUsuarioId')->get('valor');
         
         $sessaoId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $query = Conteiner::get('ConsultaExcluirConversa')->consultar($sessaoId, $usuarioMensagemId, $visibilidadeId);
+        $query = Conteiner::get('ConsultaExcluirConversa')->consultar($sessaoId, $usuarioMensagemId, $visibilidadeMensagensId, $visibilidadeUsuarioId);
         
         foreach($query as $v){
             $usuarioId[] = $sessaoId;

@@ -94,10 +94,12 @@ class Respostas {
                 if($k == 'pagina' && $v == $pagina[0]){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
+                    $paginas[] = $pagina[0];
                 }
                 if($k == 'pagina' && $v == $pagina[1]){
                     $toConexaoLocal[] = $dadosBanco[$i]['conexao'];
                     $usuariosLocal[] = $dadosBanco[$i]['usuario'];
+                    $paginasLocal[] = $pagina[1];
                 }
             }
         }
@@ -111,6 +113,7 @@ class Respostas {
             for($i = 0; $i < count($toConexao); $i++){
                 $mensagem[$i]['to'] = $toConexao[$i];
                 $mensagem[$i]['from'] = $fromConexao;
+                $mensagem[$i]['pagina'] = $paginas[$i];
                 $mensagem[$i]['respostaId'] = $msg->getCampo('Respostas::id')->get('valor');
                 $mensagem[$i]['respostaTitulo'] = $msg->getCampo('Respostas::titulo')->get('valor');
                 $mensagem[$i]['enderecoMidia'] = $msg->getCampo('Respostas::endereco')->get('valor');
@@ -127,6 +130,7 @@ class Respostas {
             for($i = 0; $i < count($toConexaoLocal); $i++){
                 $mensagem2[$i]['to'] = $toConexaoLocal[$i];
                 $mensagem2[$i]['from'] = $fromConexao;
+                $mensagem2[$i]['pagina'] = $paginasLocal[$i];
                 $mensagem2[$i]['pergunta'] = 0;
                 $mensagem2[$i]['perguntaId'] = $msg->getCampo('Respostas::perguntasId')->get('valor');
                 

@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaBloqueado {
     
-    public function consultar($usuarioId, $usuarioMensagemId, $visibilidadeId){
+    public function consultar($usuarioId, $usuarioBloqueadoId, $visibilidadeId){
         
         $query = Conteiner::get('Query', false);
         $query->select('id');
@@ -13,8 +13,7 @@ class ConsultaBloqueado {
                 ->add('usuario_bloqueado_id = ?')
                 ->add('visibilidade_id = ?')
                 ->add('ativo = 1');
-        $query->addVariaveis([$usuarioMensagemId, $usuarioId, $visibilidadeId]);
-        
+        $query->addVariaveis([$usuarioId, $usuarioBloqueadoId, $visibilidadeId]);
         return $query->executar('{id}');
     }
 }

@@ -79,16 +79,29 @@ class ListarMensagensPerguntas {
     private function setarPerguntaVisualizada($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         $perguntaId = $msg->getCampo('Perguntas::id')->get('valor');
         
-        $id = Conteiner::get('ConsultaPerguntaUsuario')->consultar($usuarioId, $perguntaId);
-        
-        if($id){
-            $msg->setCampo('entidade', 'PerguntaUsuario');
-            $msg->setCampo('PerguntaUsuario::id', $id);
-            $msg->setCampo('PerguntaUsuario::visualizado', 1);
-            $msg->setCampo('PerguntaUsuario::momentoVisualizado', date('Y-m-d H:i:s'));
-            Conteiner::get('Cadastro')->cadastrar($msg);
+        $criadorPergunta = COnteiner::get('ConsultaPerguntaUsuario')->consultarCriador($perguntaId);
+        if($criadorPergunta != $usuarioId){
+            $perguntaUsuario = Conteiner::get('ConsultaPerguntaUsuario')->consultar($usuarioId, $perguntaId);
+
+            if($perguntaUsuario['visualizado'] == 0){
+                $cadastrar = 1;
+                $msg->setCampo('PerguntaUsuario::id', $perguntaUsuario['id']);
+            }
+            if(!$perguntaUsuario){
+                $cadastrar = 1;
+                $msg->setCampo('PerguntaUsuario::usuarioId', $usuarioId);
+                $msg->setCampo('PerguntaUsuario::perguntasId', $perguntaId);
+            }
+            if($cadastrar){
+                $msg->setCampo('entidade', 'PerguntaUsuario');
+                $msg->setCampo('PerguntaUsuario::visibilidadeId', $visibilidadeId);
+                $msg->setCampo('PerguntaUsuario::momentoVisualizado', date('Y-m-d H:i:s'));
+                $msg->setCampo('PerguntaUsuario::visualizado', 1);
+                Conteiner::get('Cadastro')->cadastrar($msg);
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ class Perguntas {
             $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
             $msg->setCampo('Perguntas::visibilidadeId', $visibilidadeId);
         }
-
+        
         $msg->setCampo('Perguntas::usuarioId', $usuarioId);
         $cad = $cadastro->cadastrar($msg);
         if($cad){
@@ -38,9 +38,10 @@ class Perguntas {
                 $fromConexao = $dadosBanco[$i]['conexao'];
             }
             foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina && $dadosBanco[$i]['usuario'] != $usuarioId){
+                if($k == 'pagina' && $v == $pagina){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
+                    $paginas[] = $pagina;
                 }
             }
         }
@@ -54,6 +55,7 @@ class Perguntas {
             for($i = 0; $i < count($toConexao); $i++){
                 $mensagem[$i]['to'] = $toConexao[$i];
                 $mensagem[$i]['from'] = $fromConexao;
+                $mensagem[$i]['pagina'] = $paginas[$i];
                 $mensagem[$i]['pergunta'] = 1;
                 $mensagem[$i]['id'] = $msg->getCampo('Perguntas::id')->get('valor');
                 $mensagem[$i]['titulo'] = $msg->getCampo('Perguntas::titulo')->get('valor');
