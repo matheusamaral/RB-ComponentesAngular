@@ -12,11 +12,11 @@ angular.module('QuickPeek.HTML.Respostas', [
                             <i class="icon ion-android-arrow-back seta-barra"></i>\n\
                         </button>\n\
                         <div class="img-circular-grande margin-img"\n\
-                        style="background-image:url({{dados.respostas.pergunta.enderecoUsuario}})"></div>\n\
+                        style="background-image:url({{dados.pergunta.enderecoUsuario}})"></div>\n\
                         <div class="col remove-padding" style="margin-left: 10px;">\n\
-                            <p ng-if="dadosUser.usuarioId != dados.respostas.pergunta.usuarioId" class="negrito ptitular-pergunta">{{dados.respostas.pergunta.nomeUsuario}}</p>\n\
-                            <p ng-if="dadosUser.usuarioId == dados.respostas.pergunta.usuarioId" class="negrito ptitular-pergunta">Você</p>\n\
-                            <p class="ptitulo-pergunta">{{dados.respostas.pergunta.perguntaTitulo}}?</p>\n\
+                            <p ng-if="dadosUser.usuarioId != dados.pergunta.usuarioId" class="negrito ptitular-pergunta">{{dados.pergunta.nomeUsuario}}</p>\n\
+                            <p ng-if="dadosUser.usuarioId == dados.pergunta.usuarioId" class="negrito ptitular-pergunta">Você</p>\n\
+                            <p class="ptitulo-pergunta">{{dados.pergunta.perguntaTitulo}}</p>\n\
                         </div>\n\
                     </div>\n\
                 </div>\n\
@@ -38,32 +38,53 @@ angular.module('QuickPeek.HTML.Respostas', [
                                 <div class="container-textos">\n\
                                     <div class="row remove-padding">\n\
                                         <div class="col resp-momento remove-padding">12:30</div>\n\
-                                        <div class="col remetente remove-padding">Suamãe</div>\n\
+                                        <div class="col remetente remove-padding">{{dados.pergunta.nomeUsuario}}</div>\n\
                                     </div>\n\
                                     <div class="container-resposta">\n\
-                                        Como sua mãe está?\n\
+                                        {{dados.pergunta.perguntaTitulo}}\n\
                                     </div>\n\
                                 </div>\n\
                                 <div class="container-img-resposta text-right remove-padding">\n\
                                     <div class="chat img-circular-grande margin-img"\n\
-                                    style="background-image:url(https://scontent-grt2-1.xx.fbcdn.net/v/t1.0-9/14721744_878452505622443_4877487745632870256_n.jpg?oh=2235b44e1f04e735036274b43b6f2056&oe=58D60A46)"></div>\n\
+                                    style="background-image:url({{dados.pergunta.enderecoUsuario}})"></div>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\
-                        <div class="remove-padding container-dialogo row" style="margin-bottom: 20px !important;">\n\
-                            <div class="balao-esquerda">\n\
+                        <div ng-repeat="resposta in dados.respostas" class="remove-padding container-dialogo row" style="margin-bottom: 20px !important;">\n\
+                            <div ng-if="dadosUser.usuarioId != resposta.usuarioId" class="balao-esquerda">\n\
                                 <div class="container-img-resposta text-right remove-padding">\n\
                                     <div class="chat img-circular-grande margin-img"\n\
-                                    style="background-image:url(https://scontent-grt2-1.xx.fbcdn.net/v/t1.0-9/14721744_878452505622443_4877487745632870256_n.jpg?oh=2235b44e1f04e735036274b43b6f2056&oe=58D60A46)"></div>\n\
+                                    style="background-image:url({{resposta.enderecoUsuario}})"></div>\n\
                                 </div>\n\
                                 <div class="container-textos-esquerda">\n\
                                     <div class="row remove-padding">\n\
-                                        <div class="col remetente-esquerda remove-padding">Suamãe</div>\n\
-                                        <div class="col resp-momento-esquerda remove-padding">12:30</div>\n\
+                                        <div class="col remetente-esquerda remove-padding">{{resposta.nomeUsuario}}</div>\n\
+                                        <div class="col resp-momento-esquerda remove-padding">\n\
+                                            {{resposta.momento.split(\' \')[1].split(\':\')[0]}}:\n\
+                                            {{resposta.momento.split(\' \')[1].split(\':\')[1]}}\n\
+                                        </div>\n\
                                     </div>\n\
                                     <div class="container-resposta">\n\
-                                        Como sua mãe está?\n\
+                                        {{resposta.respostaTitulo}}\n\
                                     </div>\n\
+                                </div>\n\
+                            </div>\n\
+                            <div ng-if="dadosUser.usuarioId == resposta.usuarioId" class="balao-direita">\n\
+                                <div class="container-textos">\n\
+                                    <div class="row remove-padding">\n\
+                                        <div class="col resp-momento remove-padding">\n\
+                                            {{resposta.momento.split(\' \')[1].split(\':\')[0]}}:\n\
+                                            {{resposta.momento.split(\' \')[1].split(\':\')[1]}}\n\
+                                        </div>\n\
+                                        <div class="col remetente remove-padding">Você</div>\n\
+                                    </div>\n\
+                                    <div class="container-resposta">\n\
+                                        {{resposta.respostaTitulo}}\n\
+                                    </div>\n\
+                                </div>\n\
+                                <div class="container-img-resposta text-right remove-padding">\n\
+                                    <div class="chat img-circular-grande margin-img"\n\
+                                    style="background-image:url({{resposta.enderecoUsuario}})"></div>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\

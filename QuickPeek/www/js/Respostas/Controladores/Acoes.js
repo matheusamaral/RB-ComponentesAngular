@@ -6,9 +6,9 @@ angular.module('QuickPeek.Acoes.Respostas', [
     'RB.validacoesPadroes'
 ])
 
-.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout',
-    function(Pagina,RespostasRequisicoes,VP,$timeout){
-    var scope,conn;  
+.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout','Websocket',
+    function(Pagina,RespostasRequisicoes,VP,$timeout,Websocket){
+    var scope;  
     
     function setScope(obj){
         scope = obj;
@@ -34,50 +34,29 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function configConexao(){
-        conn = new WebSocket('ws://192.168.0.121:8801');
-        var cont = 0;
-        conn.onopen = function(e) {
-            console.log("Connection established!");
-        };
-
-        //método disparado quando alguem da conexão fazer pergunta
-        conn.onmessage = function(e){
-            adicionarResposta(JSON.parse(e.data));
-        };
+        addCss();
         
-        $timeout(function(){
-            preparaPagina();
-            addCss();
-        },300);
-    }
-    
-    function preparaPagina(){
         if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
             var idPagina = DGlobal.acaoCliente.idPagina;
         
-        var obj = {
-            codsessrt: JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
-            processo: 'Usuario',
-            etapa: 'setarDadosBanco',
-            pagina: idPagina+'-'+scope.dados.idPergunta
-        };
-        
-        conn.send(JSON.stringify(obj));
-    };
+        scope.conn = Websocket.setarPagina(idPagina,scope.dados.idPergunta,adicionarResposta);
+    }
     
     function responder(){
-        console.log(scope.dados);
-        conn.send(JSON.stringify({
+        scope.conn.send(JSON.stringify({
             codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
             processo:'Acoes',
-            etapa:'perguntas',
-            'Perguntas::titulo':scope.dados.resposta, 
-            'Perguntas::perguntasId':scope.dados.idPergunta
+            etapa:'respostas',
+            'Respostas::titulo':scope.dados.resposta, 
+            'Respostas::perguntasId':scope.dados.idPergunta
         }));
     }
     
     function adicionarResposta(resposta){
+        console.log('resposta');
         console.log(resposta);
+        if(resposta && resposta.respostaId)
+            scope.dados.respostas.push(resposta);
     }
     
     return {

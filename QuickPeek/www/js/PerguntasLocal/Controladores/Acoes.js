@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
     'RB.validacoesPadroes'
 ])
 
-.factory('PerguntasLocalAcoes', ['Pagina','PerguntasLocalRequisicoes','VP','$timeout',
-    function(Pagina,PessoasLocalRequisicoes,VP,$timeout){
+.factory('PerguntasLocalAcoes', ['Pagina','PerguntasLocalRequisicoes','VP','Websocket',
+    function(Pagina,PessoasLocalRequisicoes,VP,Websocket){
     var scope,conn;  
     
     function setScope(obj){
@@ -16,39 +16,14 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
     };
     
     function configConexao(){
-        conn = new WebSocket('ws://192.168.0.121:8801');
-        var cont = 0;
-        
-        conn.onopen = function(e) {
-            console.log("Connection established!");
-        };
-
-        //método disparado quando alguem da conexão fazer pergunta
-        conn.onmessage = function(e){
-            adicionaPergunta(JSON.parse(e.data));
-        };
-        
-        $timeout(function(){
-            preparaPagina();
-        },300);
-    }
-    
-    function preparaPagina(){
         if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
             var idPagina = DGlobal.acaoCliente.idPagina;
         
         if(DGlobal.idLocal)
             var idLocal = DGlobal.idLocal;
         
-        var obj = {
-            codsessrt: JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
-            processo: 'Usuario',
-            etapa: 'setarDadosBanco',
-            pagina: idPagina+'-'+idLocal
-        };
-        
-        conn.send(JSON.stringify(obj));
-    };
+        Websocket.setarPagina(idPagina,idLocal,adicionaPergunta);
+    }
     
     function voltarLocais(){
         Pagina.navegar({idPage:24});

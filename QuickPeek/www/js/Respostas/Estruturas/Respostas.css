@@ -65,6 +65,7 @@ textarea {
     font-size: 13px;
     padding-bottom: 5px !important;
     color: #544e50;
+    white-space: nowrap;
 }
 
 .remetente-esquerda{
@@ -72,6 +73,7 @@ textarea {
     font-size: 13px;
     padding-bottom: 5px !important;
     color: #544e50;
+    white-space: nowrap;
 }
 
 .resp-momento{
@@ -123,7 +125,8 @@ textarea {
 }
 
 .container-chat-geral{
-    display: table;
+    display: block;
+    overflow: auto;
 }
 
 .container-centro{

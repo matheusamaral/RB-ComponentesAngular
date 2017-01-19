@@ -91,11 +91,11 @@ class Respostas {
                 $fromConexao = $dadosBanco[$i]['conexao'];
             }
             foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina[0] && $dadosBanco[$i]['usuario'] != $usuarioId){
+                if($k == 'pagina' && $v == $pagina[0]){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
                 }
-                if($k == 'pagina' && $v == $pagina[1] && $dadosBanco[$i]['usuario'] != $usuarioId){
+                if($k == 'pagina' && $v == $pagina[1]){
                     $toConexaoLocal[] = $dadosBanco[$i]['conexao'];
                     $usuariosLocal[] = $dadosBanco[$i]['usuario'];
                 }

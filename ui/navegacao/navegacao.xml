@@ -286,4 +286,15 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-mudar-numero-s-m-s" acao="MudarNumeroSMSCtrl" title="Publique"/>
     </pagina>   
+    
+    <pagina id="34" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="respostas">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarMensagensPerguntas" objeto='respostas'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-respostas" acao="RespostasCtrl" title="Responda"/>
+    </pagina>   
+    
 </root>
