@@ -53,10 +53,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function adicionarResposta(resposta){
-        console.log('resposta');
         console.log(resposta);
-        if(resposta && resposta.respostaId)
-            scope.dados.respostas.push(resposta);
+        scope.dados.respostas.push(resposta);
     }
     
     return {
