@@ -9,9 +9,15 @@ class Digitando {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         $perguntaId = $msg->getCampo('PerguntaId')->get('valor');
+        $agrupamento = $msg->getCampo('Agrupamento')->get('valor');
         
         $dadosBanco = Conteiner::get('DadosBanco');
-        $pagina = '34' . '-' . $perguntaId;
+        
+        if($perguntaId){
+            $pagina = '34' . '-' . $perguntaId;
+        }elseif($agrupamento){
+            $pagina = '40' . '-' . $agrupamento;
+        }
         
         for($i = 0; $i < count($dadosBanco); $i++){
             if($dadosBanco[$i]['usuario'] == $usuarioId){
