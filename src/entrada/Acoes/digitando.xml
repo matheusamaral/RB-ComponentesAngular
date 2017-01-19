@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="digitando" modulo="Acoes">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="PerguntaId" nome="PerguntaId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="digitando" tipo="tarefa">
+            <entidade nome="Digitando" metodo="digitando"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
