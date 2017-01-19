@@ -11,14 +11,14 @@ class EnviarMensagem {
         $visibilidadeId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
         $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
-        $bloqueoou = Conteiner::get('ConsultaBloqueado')->consultar($usuarioMensagemId, $usuarioId, $visibilidadeId);
+        $bloqueoou = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeId);
         
-        if(!$bloqueoou){
+        if($bloqueoou){
             $bloqueado = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeId);
             if($bloqueado){
                 $msg->setCampo('Mensagens::statusMensagemId', 4);
             }
-            
+
             $arquivo = $msg->getCampo('Arquivo')->get('valor');
             if($arquivo){
                 $caminho = Conteiner::get('Upload')->upar($arquivo, 'imagem', 'img');
@@ -39,8 +39,6 @@ class EnviarMensagem {
             }else{
                 $msg->setResultadoEtapa(false);
             }
-        }else{
-            $msg->setResultadoEtapa(false, 'bloqueado');
         }
     }
     
