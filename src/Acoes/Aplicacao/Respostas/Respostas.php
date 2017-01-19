@@ -75,27 +75,27 @@ class Respostas {
     }
     
      private function conexaoSocket($msg){
-        
-        $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+        $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
         
         $localId = Conteiner::get('ConsultaLocalId')->consultar($perguntaId);
         
         $dadosBanco = Conteiner::get('DadosBanco');
         $pagina[] = '34' . '-' . $perguntaId;
         $pagina[] = '27' . '-' . $localId;
-        var_dump($localId);
 
         for($i = 0; $i < count($dadosBanco); $i++){
             if($dadosBanco[$i]['usuario'] == $usuarioId){
                 $fromConexao = $dadosBanco[$i]['conexao'];
             }
             foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina[0]){
+                if($k == 'pagina' && $v == $pagina[0] && $dadosBanco[$i]['usuario'] != $usuarioId){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
                 }
-                if($k == 'pagina' && $v == $pagina[1]){
+                if($k == 'pagina' && $v == $pagina[1] && $dadosBanco[$i]['usuario'] != $usuarioId){
                     $toConexaoLocal[] = $dadosBanco[$i]['conexao'];
                     $usuariosLocal[] = $dadosBanco[$i]['usuario'];
                 }
@@ -103,7 +103,6 @@ class Respostas {
         }
         
         $cmd = Conteiner::get('Socket');
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         if($usuarios){
             foreach($usuarios as $v){
                 $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
@@ -125,10 +124,11 @@ class Respostas {
         }
         
         if($usuariosLocal){
-            for($i = 0; $i > count($toConexaoLocal); $i++){
+            for($i = 0; $i < count($toConexaoLocal); $i++){
                 $mensagem2[$i]['to'] = $toConexaoLocal[$i];
                 $mensagem2[$i]['from'] = $fromConexao;
-                $mensagem2[$i]['resposta'] = 1;
+                $mensagem2[$i]['pergunta'] = 0;
+                $mensagem2[$i]['perguntaId'] = $msg->getCampo('Respostas::perguntasId')->get('valor');
                 
                 $cmd->enviarMensagem($mensagem2[$i], $mensagem2[$i]['to']);
             }

@@ -26,21 +26,19 @@ class Perguntas {
     
     private function conexaoSocket($msg){
         
-        $localId = $msg->getCampo('Perguntas::localId')->get('valor');
-        $visibilidadeId = $msg->getCampo('Perguntas::visibilidadeId')->get('valor');
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $visibilidadeId = $msg->getCampo('Perguntas::visibilidadeId')->get('valor');
+        $localId = $msg->getCampo('Perguntas::localId')->get('valor');
         
         $dadosBanco = Conteiner::get('DadosBanco');
         $pagina = '27' . '-' . $localId;
 
         for($i = 0; $i < count($dadosBanco); $i++){
-            var_dump($usuarioId);
-            var_dump($dadosBanco[$i]);
             if($dadosBanco[$i]['usuario'] == $usuarioId){
                 $fromConexao = $dadosBanco[$i]['conexao'];
             }
             foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina){
+                if($k == 'pagina' && $v == $pagina && $dadosBanco[$i]['usuario'] != $usuarioId){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
                 }
@@ -56,6 +54,7 @@ class Perguntas {
             for($i = 0; $i < count($toConexao); $i++){
                 $mensagem[$i]['to'] = $toConexao[$i];
                 $mensagem[$i]['from'] = $fromConexao;
+                $mensagem[$i]['pergunta'] = 1;
                 $mensagem[$i]['id'] = $msg->getCampo('Perguntas::id')->get('valor');
                 $mensagem[$i]['titulo'] = $msg->getCampo('Perguntas::titulo')->get('valor');
                 $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
