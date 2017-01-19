@@ -9,6 +9,7 @@ class Conversa {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
         $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
         $atualizando = $msg->getCampo('Atualizando')->get('valor');
         $mensagensNotIn = $msg->getCampoSessao('mensagensId');
@@ -19,7 +20,7 @@ class Conversa {
             $notIn = 0;
         }
         
-        $query = Conteiner::get('ConsultaConversa')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $notIn);
+        $query = Conteiner::get('ConsultaConversa')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $visibilidadeUsuarioId, $notIn);
         
         if($query){
             foreach($query as $v){

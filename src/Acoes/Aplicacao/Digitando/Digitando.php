@@ -27,6 +27,7 @@ class Digitando {
                 if($k == 'pagina' && $v == $pagina){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
+                    $paginas[] = $pagina;
                 }
             }
         }
@@ -40,10 +41,11 @@ class Digitando {
             for($i = 0; $i < count($toConexao); $i++){
                 $mensagem[$i]['to'] = $toConexao[$i];
                 $mensagem[$i]['from'] = $fromConexao;
+                $mensagem[$i]['pagina'] = $paginas[$i];
                 $mensagem[$i]['digitando'] = 1;
                 $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
                 $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
-
+                
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }

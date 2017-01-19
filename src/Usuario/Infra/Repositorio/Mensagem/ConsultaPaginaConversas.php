@@ -50,7 +50,7 @@ class ConsultaPaginaConversas {
         $query->having('agrupamento not in ('. $notIn .')');
         $query->order('men.id desc');
         $query->limit(15);
-        $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
+        $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId, $usuarioId]);
         return $query->executar();
     }
     
@@ -61,7 +61,8 @@ class ConsultaPaginaConversas {
         $query->from('mensagens');
         $query->where('usuario_id = ?')
                 ->add('or', 'usuario_mensagem_id = ?');
-        $query->group("case when usuario_mensagem_id = ? then concat(usuario_mensagem_id, '-', usuario_id, '-', visibilidade_mensagens_id, '-', visibilidade_usuario_id)else concat(usuario_id, '-', usuario_mensagem_id, '-', visibilidade_mensagens_id, '-' ,visibilidade_usuario_id) end");
+        $query->group("case when usuario_mensagem_id = ? then concat(usuario_mensagem_id, '-', usuario_id, '-', visibilidade_mensagens_id, '-', "
+                . "visibilidade_usuario_id)else concat(usuario_id, '-', usuario_mensagem_id, '-', visibilidade_mensagens_id, '-' ,visibilidade_usuario_id) end");
         return $query;
     }
 }
