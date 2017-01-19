@@ -38,7 +38,7 @@ class ConsultaListarMensagensPerguntas {
                 ->add('r.id not in(' . $notIn . ')')
                 ->add('(r.usuario_id = ? or bloqueado = 0)')
                 ->add('r.ativo = 1');
-        $query->order('r.momento');
+        $query->order('r.momento desc');
         $query->limit(15);
         $query->addVariaveis([$usuarioId, $usuarioId, $perguntaId, $tempo, $usuarioId]);
         return $query->executar();
