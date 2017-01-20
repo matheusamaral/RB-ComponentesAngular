@@ -12,6 +12,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
     
     function setScope(obj){
         scope = obj;
+        scope.dados.moredata = false;
+        scope.digitandoObj = false;
         return this;
     };
     
@@ -21,16 +23,12 @@ angular.module('QuickPeek.Acoes.Respostas', [
             scope.alturaChat = $('#container-input').height();
             scope.alturaBody = $('body').height();
             scope.larguraBody = $('body').width();
-        },0);
+            $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+        },1000);
     }
     
     function setarCursorInicio(){
-        var begin=0;
-        var end=0;
-        if(scope.dados.resposta != ''){
-            $('#txtChat').focus();
-            $('#txtChat').setSelectionRange(begin,end);
-        }
+        $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
     }
     
     function configConexao(){
@@ -39,7 +37,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
         if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
             var idPagina = DGlobal.acaoCliente.idPagina;
         
-        scope.conn = Websocket.setarPagina(idPagina,scope.dados.idPergunta,adicionarResposta);
+        scope.conn = Websocket.setarPagina(idPagina,scope.dados.idPergunta,acaoReal);
     }
     
     function responder(){
@@ -52,16 +50,81 @@ angular.module('QuickPeek.Acoes.Respostas', [
         }));
     }
     
-    function adicionarResposta(resposta){
-        console.log(resposta);
-        scope.dados.respostas.push(resposta);
+    function digitando(){
+        scope.conn.send(JSON.stringify({
+            codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
+            processo:'Acoes',
+            etapa:'digitando',
+            PerguntaId:scope.dados.idPergunta
+        }));
+    }
+    
+    function acaoReal(resposta){
+        if(resposta && resposta.respostaId)
+            addResp(resposta);
+        
+        if(resposta && resposta.digitando == 1)
+            confirmaDigitando(resposta);
+    }
+    
+    function confirmaDigitando(resposta){
+        scope.$apply();
+        scope.digitandoObj = {
+            idDigitando:resposta.usuarioId,
+            endereco:resposta.endereco
+        };
+        
+        $timeout.cancel(scope.timeDigitando);
+        scope.timeDigitando = $timeout(function(){
+            scope.digitandoObj = false;
+            //
+        },1000);
+    }
+    
+    function addResp(resposta){
+        scope.dados.respostas.unshift(resposta);
+        scope.dados.resposta = '';
+        $timeout(function(){
+            $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+        },0);
+        scope.$apply();
+    }
+    
+    function carregarRespostas(){
+        var obj = {
+            atualizando:true,
+            perguntasId:scope.dados.idPergunta
+        };
+        if(!scope.dados.moredata){
+            scope.dados.moredata = true;
+            RespostasRequisicoes.set({dados:obj,scope:scope,acaoSuccess:RespostasRequisicoes.successListarRespostas}).listarRespostas();
+        }
+    }
+    
+    function addMarginTeclado(){
+        //alert('focus');
+        //scope.divBranco = true;
+        addCss();
+    }
+    
+    function removeMarginTeclado(){
+        addCss();
+    }
+    
+    function voltarPerguntas(){
+        Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
     }
     
     return {
         setScope:setScope,
         configConexao:configConexao,
         responder:responder,
-        setarCursorInicio:setarCursorInicio
+        setarCursorInicio:setarCursorInicio,
+        carregarRespostas:carregarRespostas,
+        digitando:digitando,
+        addMarginTeclado:addMarginTeclado,
+        removeMarginTeclado:removeMarginTeclado,
+        voltarPerguntas:voltarPerguntas
     };
     
  }]);

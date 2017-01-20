@@ -1,0 +1,33 @@
+.select-privacidade md-select-value{
+    border: none !important;
+    color: #ffb800 !important;
+}
+
+.container-select{
+    border: 1px solid #ffb800;
+    padding: 4px !important;
+    border-radius: 10px;
+    width: 203px;
+}
+
+.titular-pergunta-preto{
+    color:black;
+    margin-bottom: 5px !important;
+}
+
+.img-circular-grande-perguntar{
+    width: 65px;
+    height: 65px;
+    border-radius: 69px;
+    margin-left: 10px;
+    border: 3px solid #ffb800;
+    background-size: contain;
+    margin-right: 10px;
+}
+
+textarea.sem-borda{
+    color: #909090;
+    width: 100%;
+    font-size: 17px;
+    margin: 14px;
+}

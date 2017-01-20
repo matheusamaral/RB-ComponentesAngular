@@ -14,6 +14,11 @@ angular.module('QuickPeek.Respostas', [
         $scope.voltarLocais = RespostasAcoes.voltarLocais;
         $scope.setarCursorInicio = RespostasAcoes.setarCursorInicio;
         $scope.responder = RespostasAcoes.responder;
+        $scope.carregarRespostas = RespostasAcoes.carregarRespostas;
+        $scope.digitando = RespostasAcoes.digitando;
+        $scope.removeMarginTeclado = RespostasAcoes.removeMarginTeclado;
+        $scope.addMarginTeclado = RespostasAcoes.addMarginTeclado;
+        $scope.voltarPerguntas = RespostasAcoes.voltarPerguntas;
     }
 ])
 

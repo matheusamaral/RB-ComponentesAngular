@@ -22,16 +22,37 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
         if(DGlobal.idLocal)
             var idLocal = DGlobal.idLocal;
         
-        Websocket.setarPagina(idPagina,idLocal,adicionaPergunta);
+        scope.conn = Websocket.setarPagina(idPagina,idLocal,executarResposta);
     }
     
     function voltarLocais(){
-        Pagina.navegar({idPage:24});
+        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
     }
     
-    function adicionaPergunta(pergunta){
-        console.log(pergunta);
-        scope.dados.perguntas.push(pergunta);
+    function executarResposta(resposta){
+        console.log('resposta');
+        console.log(resposta);
+        if(resposta && resposta.pergunta == 0){
+            editarPergunta(resposta);
+        }
+        
+        if(resposta && resposta.pergunta == 1){
+            addPergunta(resposta);
+        }
+    }
+    
+    function addPergunta(pergunta){
+        scope.dados.perguntas.unshift(pergunta);
+        scope.$apply();
+    }
+    
+    function editarPergunta(resposta){
+        for(var i = 0; i < scope.dados.perguntas.length; i++){
+            if(scope.dados.perguntas[i].id == resposta.perguntaId){
+                scope.dados.perguntas[i].respostas++;
+            }
+        }
+        scope.$apply();
     }
     
     function responder(id){

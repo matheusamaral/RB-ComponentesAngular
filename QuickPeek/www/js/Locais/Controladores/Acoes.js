@@ -46,6 +46,11 @@ angular.module('QuickPeek.Acoes.Locais', [
         Pagina.navegar({idPage:27,paramAdd:'?localId='+id});
     }
     
+    function perguntar(id){
+        DGlobal.idLocal = id;
+        Pagina.navegar({idPage:35});
+    }
+    
     function voltarMapa(){
         if(DGlobal.voltarLocais)delete DGlobal.voltarLocais;
         if(DGlobal.coordenadasAtual){
@@ -132,7 +137,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         checkInLocal:checkInLocal,
         curtirHashtag:curtirHashtag,
         converteKmM:converteKmM,
-        irPublicar:irPublicar
+        irPublicar:irPublicar,
+        perguntar:perguntar
     };
     
  }]);

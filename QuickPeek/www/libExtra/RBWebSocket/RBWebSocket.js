@@ -23,18 +23,12 @@ angular.module('Cmp.Websocket',[
             //método disparado quando alguem da conexão fazer pergunta
             if(conn === false){
                 iniciarConexao();
-                alert('asdaas');
             }
             
             $timeout(function(){
                 conn.onmessage = function(e){
-                    success(JSON.parse(e.data));
+                    success(angular.fromJson(e.data));
                 };
-                
-                console.log('id pagina');
-                console.log(idPagina);
-                console.log('id');
-                console.log(id);
 
                 var obj = {
                     codsessrt: JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,

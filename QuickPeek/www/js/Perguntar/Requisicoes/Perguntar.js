@@ -1,11 +1,11 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.Respostas', [
+angular.module('QuickPeek.Requisicao.Perguntar', [
     'RB.pagina'
 ])
  
-.factory('RespostasRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout',
-      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout) {
+.factory('PerguntarRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
@@ -18,9 +18,9 @@ angular.module('QuickPeek.Requisicao.Respostas', [
             return this;
         };
 
-        function listarRespostas(){
+        function listar(){
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Listar/listarMensagensPerguntas",
+                url: Config.getRefAmbienteReq()+"/Listar/listarPessoas",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -31,24 +31,14 @@ angular.module('QuickPeek.Requisicao.Respostas', [
             GCS.conectar(obj);
         };
         
-        function successListarRespostas(objRetorno){
+        function successListar(objRetorno){
             RBLoadingMobile.hide();
+            alert(JSON.stringify(objRetorno));
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                console.log('deu certo');
-                if(objRetorno.dados.respostas)
-                    adicionaRespostas(objRetorno.dados.respostas);
+                
             }
-            $timeout(function(){
-                scope.dados.moredata = false;
-            },2000);
         };
-        
-        function adicionaRespostas(array){
-            for(var i = 0; i < array.length;i++){
-                scope.dados.respostas.push(array[i]);
-            }
-        }
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -62,7 +52,7 @@ angular.module('QuickPeek.Requisicao.Respostas', [
         
         return {
             set: set,
-            listarRespostas: listarRespostas,
-            successListarRespostas: successListarRespostas
+            listar: listar,
+            successListar: successListar
         };       
 }]);

@@ -34,7 +34,9 @@ angular.module('QuickPeek.Estrutura.Respostas', [
         if(DGlobal.idPergunta)
             scope.dados.idPergunta = DGlobal.idPergunta;
         
-        console.log(scope.dados.respostas);
+//        for(var i = 0; i< 20; i++){
+//            scope.dados.respostas.push(i);
+//        }
     };
   
     return {

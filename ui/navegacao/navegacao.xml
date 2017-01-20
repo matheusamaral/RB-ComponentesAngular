@@ -297,4 +297,13 @@
         <acaoCliente classe="pag-respostas" acao="RespostasCtrl" title="Responda"/>
     </pagina>   
     
+    <pagina id="35" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perguntar">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-perguntar" acao="PerguntarCtrl" title="Faça um pergunta"/>
+    </pagina>   
+    
 </root>
