@@ -91,7 +91,7 @@
         <propriedades coluna="usuario_mensagem_id" atributo="usuarioMensagemId" classe="Usuario" tabela="usuario"/>
         <propriedades coluna="status_mensagem_id" atributo="statusMensagemId" classe="StatusMensagem" tabela="status_mensagem"/>
         <propriedades coluna="visibilidade_mensagens_id" atributo="visibilidadeMensagensId" classe="VisibilidadeMensagens" tabela="visibilidade_mensagens"/>
-        <propriedades coluna="visibilidade_usuario_id" atributo="visibilidadeUsuario" classe="VisibilidadeMensagens" tabela="visibilidade_mensagens"/>
+        <propriedades coluna="visibilidade_usuario_id" atributo="visibilidadeUsuarioId" classe="VisibilidadeMensagens" tabela="visibilidade_mensagens"/>
         <propriedades coluna="visualizado" atributo="visualizado" type="varchar(45)"/>
     </classe>
       

@@ -14,7 +14,8 @@ class ConsultaListarUltimosLocais {
                 ->add('timestampdiff(minute, ci.momento, now())', 'minutos')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) 
                     * cos(radians(?) - radians(l.longitude)) 
-                    + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia');
+                    + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
+                ->add('ci.visibilidade_id', 'visibilidadeCheckInId');
         $query->from('local', 'l');
         $query->join('check_in', 'ci')
                 ->on('ci.local_id = l.id')
@@ -39,7 +40,8 @@ class ConsultaListarUltimosLocais {
                 ->add('timestampdiff(minute, ci.momento, now())', 'minutos')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) 
                     * cos(radians(?) - radians(l.longitude)) 
-                    + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia');
+                    + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
+                ->add('ci.visibilidade_id', 'visibilidadeCheckInId');
         $query->from('local', 'l');
         $query->join('check_in', 'ci')
                 ->on('ci.local_id = l.id')
