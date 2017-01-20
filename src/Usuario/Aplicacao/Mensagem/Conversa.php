@@ -20,10 +20,10 @@ class Conversa {
             $notIn = 0;
         }
         
-        $query = Conteiner::get('ConsultaConversa')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $visibilidadeUsuarioId, $notIn);
+        $mensagens = Conteiner::get('ConsultaConversa')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $visibilidadeUsuarioId, $notIn);
         
-        if($query){
-            foreach($query as $v){
+        if($mensagens){
+            foreach($mensagens as $v){
                 $mensagensId[] = $v['id'];
             }
             if($atualizando){
@@ -32,32 +32,33 @@ class Conversa {
             $msg->setCampoSessao('mensagensId', $mensagensId);
         }
         
-        if($query){
-            $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
+        if($mensagens){
+            $this->setarVisualizada($msg);
+            $msg->setResultadoEtapa(true, false, ['dados'=>$mensagens]);
         }else{
             $msg->setResultadoEtapa(false);
         }
     }
     
-    public function setarVisualizada($msg){
+    private function setarVisualizada($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $usuarioMensagemId = $msg->getCampo('UsuarioMensagemId')->get('valor');
-        $visibilidadeMensagemId = $msg->getCampo('VisibilidadeMensagemId')->get('valor');
-        $visibilidadeUsuarioId = $msg->getCampo('VisibilidadeUsuarioId')->get('valor');
+        $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
-        $query = Conteiner::get('ConsultaSetarVisualizada')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagemId, $visibilidadeUsuarioId);
+        $mensagensId = Conteiner::get('ConsultaSetarVisualizada')->consultar($usuarioId, $usuarioMensagemId, 
+                $visibilidadeMensagensId, $visibilidadeUsuarioId);
         
-        if($query){
-            foreach($query as $v){
-                $momento[] = date('Y-m-d H:i:s');
-                $msgId[] = $v['id'];
+        if($mensagensId){
+            foreach($mensagensId as $v){
                 $status[] = 3;
+                $momento[] = date('Y-m-d H:i:s');
             }
             $msg->setCampo('entidade', 'Mensagens');
-            $msg->setCampo('Mensagens::id', $msgId);
-            $msg->setCampo('Mensagens::momentoVisualizado', $momento);
+            $msg->setCampo('Mensagens::id', $mensagensId);
             $msg->setCampo('Mensagens::statusMensagemId', $status);
+            $msg->setCampo('Mensagens::momentoVisualizado', $momento);
             Conteiner::get('Cadastro')->cadastrar($msg);
         }else{
             $msg->setResultadoEtapa(false);

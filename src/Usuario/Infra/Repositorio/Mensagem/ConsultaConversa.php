@@ -7,17 +7,18 @@ class ConsultaConversa {
     public function consultar($usuarioId, $usuarioMensagemId, $visibilidadeMensagensId, $visibilidadeUsuarioId, $notIn){
         
         $query = Conteiner::get('Query', false);
-        $query->select('m.id', 'id')
+        $query->select('u.id', 'usuarioId')
+                ->add('m.id', 'id')
                 ->add('m.titulo', 'mensagem')
                 ->add('m.endereco', 'enderecoMensagem')
                 ->add('m.momento', 'momento')
                 ->add('m.status_mensagem_id', 'statusMensagem')
-                ->add('case when u.ativo = 0 or b.id is not null then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg'" 
-                        . ' when m.visibilidade_mensagens_id = 2 then a.endereco '
-                        . ' else u.endereco end', 'endereco')
-                ->add('case when u.ativo = 0 or b.id is not null then ' . "'Usuário do Quickpeek'" 
-                        . ' when m.visibilidade_mensagens_id = 2 then a.nome'
-                        . ' else u.nome end', 'nome');
+                ->add("case when u.ativo = 0 or b.id is not null then 'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
+                        . 'when m.visibilidade_mensagens_id = 1 then u.endereco '
+                        . 'else a.endereco end', 'endereco')
+                ->add("case when u.ativo = 0 or b.id is not null then 'Usuário do Quickpeek' "
+                        . 'when m.visibilidade_mensagens_id = 1 then u.nome '
+                        . 'else a.nome end', 'nome');
         $query->from('mensagens', 'm');
         $query->join('mensagens_excluidas', 'me', 'left')
                 ->on('me.mensagens_id = m.id')
@@ -31,7 +32,7 @@ class ConsultaConversa {
         $query->join('bloqueado', 'b', 'left')
                 ->on('b.usuario_id = ?')
                 ->on('b.usuario_bloqueado_id = ?')
-                ->on('b.visibilidade_id = ?')
+                ->on('b.visibilidade_id = case when m.usuario_id = ? then m.visibilidade_mensagens_id else m.visibilidade_usuario_id end')
                 ->on('b.ativo = 1');
         $query->where('((m.usuario_id = ? and m.usuario_mensagem_id = ?)')
                 ->add('or', '(m.usuario_id = ? and m.usuario_mensagem_id = ?))')
@@ -44,11 +45,11 @@ class ConsultaConversa {
                         . ' else m.status_mensagem_id != 4 end')
                 ->add('m.id not in (' . $notIn . ')')
                 ->add('m.ativo = 1');
-        $query->order('m.momento');
+        $query->order('m.id desc');
         $query->limit(50);
-        $query->addVariaveis([$usuarioId, $usuarioMensagemId, $usuarioId, $visibilidadeMensagensId, $usuarioMensagemId, 
-            $usuarioId, $usuarioId, $usuarioMensagemId, $usuarioId, $visibilidadeMensagensId, $visibilidadeMensagensId, 
-            $usuarioId, $visibilidadeUsuarioId, $visibilidadeUsuarioId, $usuarioId]);
+        $query->addVariaveis([$usuarioId, $usuarioMensagemId, $usuarioId, $usuarioId, $usuarioId, $usuarioMensagemId, 
+            $usuarioMensagemId, $usuarioId, $usuarioId, $visibilidadeMensagensId, $visibilidadeMensagensId, $usuarioId, 
+            $visibilidadeUsuarioId, $visibilidadeUsuarioId, $usuarioId]);
         return $query->executar();
     }
 }

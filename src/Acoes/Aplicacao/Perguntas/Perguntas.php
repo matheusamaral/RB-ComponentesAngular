@@ -68,5 +68,6 @@ class Perguntas {
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }
+        $msg->setResultadoEtapa(true);
     }
 }

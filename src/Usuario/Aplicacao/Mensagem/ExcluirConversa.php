@@ -10,16 +10,21 @@ class ExcluirConversa {
         $visibilidadeMensagensId = $msg->getCampo('VisibilidadeMensagensId')->get('valor');
         $visibilidadeUsuarioId = $msg->getCampo('VisibilidadeUsuarioId')->get('valor');
         
-        $sessaoId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $query = Conteiner::get('ConsultaExcluirConversa')->consultar($sessaoId, $usuarioMensagemId, $visibilidadeMensagensId, $visibilidadeUsuarioId);
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $mensagensId = Conteiner::get('ConsultaExcluirConversa')->consultar($usuarioId, $usuarioMensagemId, 
+                $visibilidadeMensagensId, $visibilidadeUsuarioId);
         
-        foreach($query as $v){
-            $usuarioId[] = $sessaoId;
-            $mensagensId[] = $v['id'];
+        if($mensagensId){
+            foreach($mensagensId as $v){
+                $usuariosId[] = $usuarioId;
+            }
+                    
+            $msg->setCampo('entidade', 'MensagensExcluidas');
+            $msg->setCampo('MensagensExcluidas::mensagensId', $mensagensId);
+            $msg->setCampo('MensagensExcluidas::usuarioId', $usuariosId); 
+            Conteiner::get('Cadastro')->cadastrar($msg);
+        }else{
+            $msg->setResultadoEtapa(false);
         }
-        $msg->setCampo('entidade', 'MensagensExcluidas');
-        $msg->setCampo('MensagensExcluidas::mensagensId', $mensagensId);
-        $msg->setCampo('MensagensExcluidas::usuarioId', $usuarioId); 
-        Conteiner::get('Cadastro')->cadastrar($msg);
     }
 }

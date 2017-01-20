@@ -16,7 +16,7 @@ class Digitando {
         if($perguntaId){
             $pagina = '34' . '-' . $perguntaId;
         }elseif($agrupamento){
-            $pagina = '40' . '-' . $agrupamento;
+            $pagina = '37' . '-' . $agrupamento;
         }
         
         for($i = 0; $i < count($dadosBanco); $i++){
@@ -49,8 +49,6 @@ class Digitando {
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }
-        if($fromConexao){
-            $msg->setResultadoEtapa(true);
-        }
+        $msg->setResultadoEtapa(true);
     }
 }

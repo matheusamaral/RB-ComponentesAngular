@@ -137,5 +137,6 @@ class Respostas {
                 $cmd->enviarMensagem($mensagem2[$i], $mensagem2[$i]['to']);
             }
         }
+        $msg->setResultadoEtapa(true);
     }
 }
