@@ -11,6 +11,7 @@ class ConsultaListarPerguntas {
                 ->add('p.titulo', 'titulo')
                 ->add('p.usuario_id', 'usuarioId')
                 ->add('count(distinct r.id) - count(distinct rv.id)', 'respostas')
+                ->add('ifnull(r.ativo, 0)', 'respondida')
                 ->add('case when u.ativo = 0 then ' . "'FotoPadrão'"
                         . ' when p.visibilidade_id = 1 then u.endereco'
                         . ' when p.visibilidade_id = 2 and s.id is not null then u.endereco'
