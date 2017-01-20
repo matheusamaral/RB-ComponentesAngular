@@ -82,6 +82,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function addResp(resposta){
+        console.log('resposta');
+        console.log(resposta);
         scope.dados.respostas.unshift(resposta);
         scope.dados.resposta = '';
         $timeout(function(){
