@@ -14,7 +14,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $usuarioMensagemId = false;
         private $statusMensagemId = false;
         private $visibilidadeMensagensId = false;
-        private $visibilidadeUsuario = false;
+        private $visibilidadeUsuarioId = false;
         private $visualizado = false; 
                 
         public function getId() {
@@ -113,16 +113,16 @@ use Rubeus\ORM\Persistente as Persistente;
             else $this->getVisibilidadeMensagensId()->setId($visibilidadeMensagensId);
         } 
             
-        public function getVisibilidadeUsuario() {
-            if(!$this->visibilidadeUsuario)
-                    $this->visibilidadeUsuario = new VisibilidadeMensagens(); 
-            return $this->visibilidadeUsuario;
+        public function getVisibilidadeUsuarioId() {
+            if(!$this->visibilidadeUsuarioId)
+                    $this->visibilidadeUsuarioId = new VisibilidadeMensagens(); 
+            return $this->visibilidadeUsuarioId;
         }
 
-        public function setVisibilidadeUsuario($visibilidadeUsuario) {
-            if($visibilidadeUsuario instanceof VisibilidadeMensagens)
-                $this->visibilidadeUsuario = $visibilidadeUsuario;
-            else $this->getVisibilidadeUsuario()->setId($visibilidadeUsuario);
+        public function setVisibilidadeUsuarioId($visibilidadeUsuarioId) {
+            if($visibilidadeUsuarioId instanceof VisibilidadeMensagens)
+                $this->visibilidadeUsuarioId = $visibilidadeUsuarioId;
+            else $this->getVisibilidadeUsuarioId()->setId($visibilidadeUsuarioId);
         } 
                 
         public function getVisualizado() {

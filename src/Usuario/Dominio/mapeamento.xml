@@ -111,7 +111,7 @@
     <nparaum coluna="usuario_mensagem_id"  atributo="usuarioMensagemId" />  
     <nparaum coluna="status_mensagem_id"  atributo="statusMensagemId" />  
     <nparaum coluna="visibilidade_mensagens_id"  atributo="visibilidadeMensagensId" />  
-    <nparaum coluna="visibilidade_usuario_id"  atributo="visibilidadeUsuario" />  
+    <nparaum coluna="visibilidade_usuario_id"  atributo="visibilidadeUsuarioId" />  
     <propriedades coluna="visualizado" atributo="visualizado" /> 
 </classe>
         

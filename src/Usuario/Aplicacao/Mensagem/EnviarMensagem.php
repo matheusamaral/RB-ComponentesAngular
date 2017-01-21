@@ -8,13 +8,13 @@ class EnviarMensagem {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
-        $visibilidadeId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
         $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
         $bloqueoou = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeUsuarioId);
         
         if(!$bloqueoou){
-            $bloqueado = Conteiner::get('ConsultaBloqueado')->consultar($usuarioMensagemId, $usuarioId, $visibilidadeId);
+            $bloqueado = Conteiner::get('ConsultaBloqueado')->consultar($usuarioMensagemId, $usuarioId, $visibilidadeMensagensId);
             if($bloqueado){
                 $msg->setCampo('Mensagens::statusMensagemId', 4);
             }
@@ -29,8 +29,7 @@ class EnviarMensagem {
                 $msg->setResultadoEtapa(false);
             }
         }else{
-            $bloqueado = 1;
-            $msg->setResultadoEtapa(false, false, ['dados'=>$bloqueado]);
+            $msg->setResultadoEtapa(false, false, ['bloqueoou'=>1]);
         }
     }
     

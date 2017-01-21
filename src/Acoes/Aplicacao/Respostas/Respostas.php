@@ -29,11 +29,23 @@ class Respostas {
         $cad = Conteiner::get('Cadastro')->cadastrar($msg);
         
         if($cad){
+            $this->setarVisualizada($msg);
             $this->enviarNotificacao($msg);
             $this->conexaoSocket($msg);
         }else{
             $msg->setResultadoEtapa(false);
         }
+    }
+    
+    private function setarVisualizada($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $respostasId = $msg->getCampo('Respostas::id')->get('valor');
+        
+        $msg->setCampo('entidade', 'RespostasVisualizadas');
+        $msg->setCampo('RespostasVisualizadas::usuarioId', $usuarioId);
+        $msg->setCampo('RespostasVisualizadas::respostasId', $respostasId);
+        Conteiner::get('Cadastro')->cadastrar($msg);
     }
     
     private function checarBloqueado($msg){
@@ -137,5 +149,6 @@ class Respostas {
                 $cmd->enviarMensagem($mensagem2[$i], $mensagem2[$i]['to']);
             }
         }
+        $msg->setResultadoEtapa(true);
     }
 }
