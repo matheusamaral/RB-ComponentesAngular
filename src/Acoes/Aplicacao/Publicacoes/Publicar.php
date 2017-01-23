@@ -1,6 +1,7 @@
 <?php
 namespace Quickpeek\Acoes\Aplicacao\Publicacoes;
 use Rubeus\ContenerDependencia\Conteiner;
+use Rubeus\Servicos\Entrada\Sessao;
 
 class Publicar {
     
@@ -15,7 +16,6 @@ class Publicar {
         }
         
         $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
-        var_dump($arquivo);
         if($arquivo){
             $this->midia($msg);
         }
@@ -65,11 +65,11 @@ class Publicar {
         
         $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
         foreach($arquivo as $v){
+            
             $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
             $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
-            Conteiner::get('Base64')->upload($msg->getCampo('ArquivoBase64')->get('valor'), DIR_BASE.$enderecoFoto);
+            Conteiner::get('Base64')->upload($v, DIR_BASE.$enderecoFoto);
             $url = $this->imagemUpada('imagem', 'midia', 0, 2);
-            
             $usuariosId[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
             $locaisId[] = $msg->getCampoSessao('dadosUsuarioLogado,local');
             $urls[] = $url;
