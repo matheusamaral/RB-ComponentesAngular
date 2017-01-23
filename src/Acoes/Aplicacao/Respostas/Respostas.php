@@ -97,7 +97,7 @@ class Respostas {
         $dadosBanco = Conteiner::get('DadosBanco');
         $pagina[] = '34' . '-' . $perguntaId;
         $pagina[] = '27' . '-' . $localId;
-
+        
         for($i = 0; $i < count($dadosBanco); $i++){
             if($dadosBanco[$i]['usuario'] == $usuarioId){
                 $fromConexao = $dadosBanco[$i]['conexao'];

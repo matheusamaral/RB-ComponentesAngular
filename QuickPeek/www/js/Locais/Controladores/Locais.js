@@ -23,6 +23,7 @@ angular.module('QuickPeek.Locais', [
         $scope.curtirHashtag = LocaisAcoes.curtirHashtag;
         $scope.converteKmM = LocaisAcoes.converteKmM;
         $scope.irPublicar = LocaisAcoes.irPublicar;
+        $scope.perguntar = LocaisAcoes.perguntar;
     }
 ])
 

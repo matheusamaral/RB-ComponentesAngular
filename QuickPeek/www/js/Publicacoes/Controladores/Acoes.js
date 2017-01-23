@@ -31,6 +31,7 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     }
     
     function addHash(chip){
+        console.log(scope.categoriaSelecionada);
         var achou = false, indiceAchado;
         for(var i = 0;i < scope.dados.tituloChip.length;i++){
             if(chip.titulo == scope.dados.tituloChip[i].titulo && scope.categoriaSelecionada.id == scope.dados.categoriaId[i]){
@@ -47,7 +48,7 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
             scope.dados.idHashs.splice(indiceAchado,1);
             chip.selecionado = false;
         }else{
-            scope.dados.tituloChip.push({titulo:chip.titulo,id:chip.id});
+            scope.dados.tituloChip.push({endereco:scope.categoriaSelecionada.endereco,titulo:chip.titulo,id:chip.id});
             scope.dados.titulo.push(chip.titulo);
             scope.dados.categoriaId.push(scope.categoriaSelecionada.id);
             scope.dados.idHashs.push(chip.id);
@@ -80,7 +81,11 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     }
     
     function addHashDigitando(chip){
-        var obj= {titulo:chip,id:scope.dados.tituloChip.length - 1};
+        if(scope.dadosUser && scope.dadosUser.usuarioEndereco)
+            var img = scope.dadosUser.usuarioEndereco;
+        else
+            var img = 'img/bat.svg';
+        var obj= {bordaDourada:true,endereco:img,titulo:chip,id:scope.dados.tituloChip.length - 1};
         scope.dados.tituloChip.splice(scope.dados.tituloChip.length - 1 , 1);
         scope.dados.tituloChip.push(obj);
         scope.dados.categoriaId.push(10);
@@ -99,6 +104,12 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         console.log(scope.dados.titulo);
     }
     
+    
+    
+    function verfificaTecla(evento){
+        console.log(evento);
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -109,7 +120,8 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         voltarCategorias:voltarCategorias,
         removerChip:removerChip,
         addHashDigitando:addHashDigitando,
-        publicar:publicar
+        publicar:publicar,
+        verfificaTecla:verfificaTecla
     };
     
  }]);

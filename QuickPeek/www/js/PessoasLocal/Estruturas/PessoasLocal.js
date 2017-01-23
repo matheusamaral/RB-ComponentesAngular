@@ -24,19 +24,19 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
                                 <div ng-class="{\'borda-dourada\' : dadosUser.usuarioId == pessoa.usuarioId}" style="background-image:url({{pessoa.endereco}})" class="btn-redondo-medio"></div>\n\
                             </div>\n\
                             <div class="col remove-padding col-center">\n\
-                                <p class="font-preta negrito text-left">{{pessoa.nome}}</p>\n\
+                                <p class="font-preta negrito text-left">{{pessoa.usuarioNome}}</p>\n\
                             </div>\n\
                             <div class="remove-padding col-center">\n\
-                                <button ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
+                                <button ng-click="seguir(pessoa.usuarioId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
                                     <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                                 </button>\n\
-                                <button ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 2" class="btn-seguidores button button-outline button-positive">\n\
+                                <button ng-click="cancelarSolicitacao(pessoa.usuarioId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 2" class="btn-seguidores button button-outline button-positive">\n\
                                     Solicitado\n\
                                 </button>\n\
                                 <button ng-disabled="dadosUser.usuarioId == pessoa.usuarioId" ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId == pessoa.usuarioId" class="btn-voce btn-seguidores button button-outline button-positive">\n\
                                     Vocẽ\n\
                                 </button>\n\
-                                <button ng-click="deixarSeguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
+                                <button ng-click="deixarSeguir(pessoa.usuarioId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
                                     <i class="icon ion-checkmark"></i>Seguindo\n\
                                 </button>\n\
                             </div>\n\

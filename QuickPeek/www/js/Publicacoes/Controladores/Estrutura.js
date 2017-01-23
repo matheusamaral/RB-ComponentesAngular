@@ -24,6 +24,8 @@ angular.module('QuickPeek.Estrutura.Publicacoes', [
             idHashs: new Array()
         };
         
+        scope.keyCodes = [32];
+        
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados;
         }

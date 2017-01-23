@@ -23,6 +23,7 @@ angular.module('QuickPeek.Perfil', [
         $scope.converteTempo = PerfilAcoes.converteTempo;
         $scope.irCheckin = PerfilAcoes.irCheckin;
         $scope.checkInLocal = PerfilAcoes.checkInLocal;
+        $scope.irNotificacoes = PerfilAcoes.irNotificacoes;
     }
 ])
 

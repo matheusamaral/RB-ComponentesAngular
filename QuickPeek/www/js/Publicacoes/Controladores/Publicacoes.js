@@ -19,6 +19,7 @@ angular.module('QuickPeek.Publicacoes', [
         $scope.removerChip = PublicacoesAcoes.removerChip;
         $scope.addHashDigitando = PublicacoesAcoes.addHashDigitando;
         $scope.publicar = PublicacoesAcoes.publicar;
+        $scope.verfificaTecla = PublicacoesAcoes.verfificaTecla;
     }
 ])
 

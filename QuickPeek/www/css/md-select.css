@@ -17,3 +17,7 @@ md-select.linha-comum:not([disabled]):focus .md-select-value{
 md-content{
     background-color: #FFFFFF;
 }
+
+md-select-menu md-option:focus:not([disabled]):not([selected]) {
+    background: #fbfbfb !important;
+}

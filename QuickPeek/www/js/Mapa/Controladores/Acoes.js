@@ -134,6 +134,10 @@ angular.module('QuickPeek.Acoes.Mapa', [
         Pagina.navegar({idPage:24,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
     }
     
+    function irNotificacoes(){
+        Pagina.navegar({idPage:36});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -144,7 +148,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
         attTutorial:attTutorial,
         irPerfil:irPerfil,
         checkInLocal:checkInLocal,
-        irLocal:irLocal
+        irLocal:irLocal,
+        irNotificacoes:irNotificacoes
     };
     
  }]);
