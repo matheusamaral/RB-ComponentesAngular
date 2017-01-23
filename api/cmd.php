@@ -43,6 +43,26 @@ class Chat implements MessageComponentInterface {
         Conteiner::registrar('DadosBanco', $this->dadosBanco);
     }
     
+    public function getConexao($usuarioId, $pagina){
+        
+        $dadosBanco = Conteiner::get('DadosBanco');
+        
+        for($i = 0; $i < count($dadosBanco); $i++){
+            if($dadosBanco[$i]['usuario'] == $usuarioId){
+                $fromConexao = $dadosBanco[$i]['conexao'];
+        }
+            foreach($dadosBanco[$i] as $k=>$v){
+                if($k == 'pagina' && $v == $pagina){
+                    $toConexao[] = $dadosBanco[$i]['conexao'];
+                    $usuarios[] = $dadosBanco[$i]['usuario'];
+                    $paginas[] = $pagina;
+                }
+            }
+        }
+        
+        return ['fromConexao'=>$fromConexao, 'toConexao'=>$toConexao, 'usuarios'=>$usuarios, 'paginas'=>$paginas];
+    }
+    
     public function onMessage(ConnectionInterface $from, $mensagem){
         Sessao::setSessionPhp(1);
         $obj = json_decode($mensagem);

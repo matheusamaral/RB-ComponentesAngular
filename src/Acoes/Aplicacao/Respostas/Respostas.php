@@ -94,38 +94,40 @@ class Respostas {
         
         $localId = Conteiner::get('ConsultaLocalId')->consultar($perguntaId);
         
-        $dadosBanco = Conteiner::get('DadosBanco');
-        $pagina[] = '34' . '-' . $perguntaId;
-        $pagina[] = '27' . '-' . $localId;
-        
-        for($i = 0; $i < count($dadosBanco); $i++){
-            if($dadosBanco[$i]['usuario'] == $usuarioId){
-                $fromConexao = $dadosBanco[$i]['conexao'];
-            }
-            foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina[0]){
-                    $toConexao[] = $dadosBanco[$i]['conexao'];
-                    $usuarios[] = $dadosBanco[$i]['usuario'];
-                    $paginas[] = $pagina[0];
-                }
-                if($k == 'pagina' && $v == $pagina[1]){
-                    $toConexaoLocal[] = $dadosBanco[$i]['conexao'];
-                    $usuariosLocal[] = $dadosBanco[$i]['usuario'];
-                    $paginasLocal[] = $pagina[1];
-                }
-            }
-        }
-        
         $cmd = Conteiner::get('Socket');
-        if($usuarios){
-            foreach($usuarios as $v){
+        $paginaPergunta = '34' . '-' . $perguntaId;
+        $paginaLocal = '27' . '-' . $localId;
+        
+        $dadosPergunta = $cmd->getConexao($usuarioId, $paginaPergunta);
+        $dadosLocal = $cmd->getConexao($usuarioId, $paginaLocal);
+        
+//        for($i = 0; $i < count($dadosBanco); $i++){
+//            if($dadosBanco[$i]['usuario'] == $usuarioId){
+//                $fromConexao = $dadosBanco[$i]['conexao'];
+//            }
+//            foreach($dadosBanco[$i] as $k=>$v){
+//                if($k == 'pagina' && $v == $pagina[0]){
+//                    $toConexao[] = $dadosBanco[$i]['conexao'];
+//                    $usuarios[] = $dadosBanco[$i]['usuario'];
+//                    $paginas[] = $pagina[0];
+//                }
+//                if($k == 'pagina' && $v == $pagina[1]){
+//                    $toConexaoLocal[] = $dadosBanco[$i]['conexao'];
+//                    $usuariosLocal[] = $dadosBanco[$i]['usuario'];
+//                    $paginasLocal[] = $pagina[1];
+//                }
+//            }
+//        }
+        
+        if($dadosPergunta['usuarios']){
+            foreach($dadosPergunta['usuarios'] as $v){
                 $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
             }
             
-            for($i = 0; $i < count($toConexao); $i++){
-                $mensagem[$i]['to'] = $toConexao[$i];
-                $mensagem[$i]['from'] = $fromConexao;
-                $mensagem[$i]['pagina'] = $paginas[$i];
+            for($i = 0; $i < count($dadosPergunta['toConexao']); $i++){
+                $mensagem[$i]['to'] = $dadosPergunta['toConexao'][$i];
+                $mensagem[$i]['from'] = $dadosPergunta['fromConexao'];
+                $mensagem[$i]['pagina'] = $dadosPergunta['paginas'][$i];
                 $mensagem[$i]['respostaId'] = $msg->getCampo('Respostas::id')->get('valor');
                 $mensagem[$i]['respostaTitulo'] = $msg->getCampo('Respostas::titulo')->get('valor');
                 $mensagem[$i]['enderecoMidia'] = $msg->getCampo('Respostas::endereco')->get('valor');
@@ -138,11 +140,11 @@ class Respostas {
             }
         }
         
-        if($usuariosLocal){
-            for($i = 0; $i < count($toConexaoLocal); $i++){
-                $mensagem2[$i]['to'] = $toConexaoLocal[$i];
-                $mensagem2[$i]['from'] = $fromConexao;
-                $mensagem2[$i]['pagina'] = $paginasLocal[$i];
+        if($dadosLocal['usuarios']){
+            for($i = 0; $i < count($dadosLocal['toConexao']); $i++){
+                $mensagem2[$i]['to'] = $dadosLocal['toConexao'][$i];
+                $mensagem2[$i]['from'] = $dadosLocal['fromConexao'];
+                $mensagem2[$i]['pagina'] = $dadosLocal['paginas'][$i];
                 $mensagem2[$i]['pergunta'] = 0;
                 $mensagem2[$i]['perguntaId'] = $msg->getCampo('Respostas::perguntasId')->get('valor');
                 

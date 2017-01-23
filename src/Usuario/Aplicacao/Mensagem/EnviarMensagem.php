@@ -35,6 +35,8 @@ class EnviarMensagem {
     
     private function conexaoSocket($msg){
         
+        $paginaConversas[] = 36;
+        $paginaMensagem[] = 37;
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
         $visibilidadeId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
@@ -43,9 +45,14 @@ class EnviarMensagem {
         $mensagemId = $msg->getCampo('Mensagens::id')->get('valor');
         $mensagem = $msg->getCampo('Mensagens::titulo')->get('valor');
         $mensagemEndereco = $msg->getCampo('Mensagens::endereco')->get('valor');
-        $agrupamento = $usuarioId . "-" . $usuarioMensagemId . "-" . $visibilidadeId . "-" . $visibilidadeUsuarioId;
+        $agrupamento = $usuarioId . "-" . $usuarioMensagemId . "-" . $visibilidadeUsuarioId . "-" . $visibilidadeId;
+        var_dump($agrupamento);
         $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId);
-
+        
+        quando o usuario que enviou a mensagem for achado para ser enviado a mensagem instantanea inverter o agrupamento;
+        'usuario que enviou a mensagem'=15-1-1-2;
+        
+        1-15-2-1
         $dados['mensagemId'] = $mensagemId;
         $dados['mensagem'] = $mensagem;
         $dados['mensagemEndereco'] = $mensagemEndereco;
