@@ -11,12 +11,6 @@ class Perguntas {
         $cadastro = Conteiner::get('Cadastro');
 
         $msg->setCampo('entidade', 'Perguntas');
-
-        if(!$msg->getCampo('Perguntas::visibilidadeId')->get('valor')){
-            $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
-            $msg->setCampo('Perguntas::visibilidadeId', $visibilidadeId);
-        }
-        
         $msg->setCampo('Perguntas::usuarioId', $usuarioId);
         $cad = $cadastro->cadastrar($msg);
         if($cad){
@@ -30,32 +24,20 @@ class Perguntas {
         $visibilidadeId = $msg->getCampo('Perguntas::visibilidadeId')->get('valor');
         $localId = $msg->getCampo('Perguntas::localId')->get('valor');
         
-        $dadosBanco = Conteiner::get('DadosBanco');
+        $cmd = Conteiner::get('Socket');
         $pagina = '27' . '-' . $localId;
-
-        for($i = 0; $i < count($dadosBanco); $i++){
-            if($dadosBanco[$i]['usuario'] == $usuarioId){
-                $fromConexao = $dadosBanco[$i]['conexao'];
-            }
-            foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina){
-                    $toConexao[] = $dadosBanco[$i]['conexao'];
-                    $usuarios[] = $dadosBanco[$i]['usuario'];
-                    $paginas[] = $pagina;
-                }
-            }
-        }
         
-        if($usuarios){
-            foreach($usuarios as $v){
+        $dados = $cmd->getConexao($usuarioId, $pagina);
+        
+        if($dados['usuarios']){
+            foreach($dados['usuarios'] as $v){
                 $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
             }
-
-            $cmd = Conteiner::get('Socket');
-            for($i = 0; $i < count($toConexao); $i++){
-                $mensagem[$i]['to'] = $toConexao[$i];
-                $mensagem[$i]['from'] = $fromConexao;
-                $mensagem[$i]['pagina'] = $paginas[$i];
+            
+            for($i = 0; $i < count($dados['toConexao']); $i++){
+                $mensagem[$i]['to'] = $dados['toConexao'][$i];
+                $mensagem[$i]['from'] = $dados['fromConexao'];
+                $mensagem[$i]['pagina'] = $dados['paginas'][$i];
                 $mensagem[$i]['pergunta'] = 1;
                 $mensagem[$i]['id'] = $msg->getCampo('Perguntas::id')->get('valor');
                 $mensagem[$i]['titulo'] = $msg->getCampo('Perguntas::titulo')->get('valor');

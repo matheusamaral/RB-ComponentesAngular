@@ -23,13 +23,44 @@ class Chat implements MessageComponentInterface {
             $this->maiorQtd = count($this->clients);
         }
         $this->clients->attach($conn);
-        echo "New connection! ({$conn->resourceId})" . "   " . $this->maiorQtd . "\n";
+        echo "New connection! ({$conn->resourceId})" . " - connections:   " . $this->maiorQtd . "\n";
     }
     
     public function setarDadosBanco($resourceId, $usuarioId, $pagina){
         
-        $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
+        foreach($this->dadosBanco as $k=>$v){
+            if($v['usuario'] == $usuarioId){
+                $position = $k;
+            }
+        }
+        
+        if(!isset($position)){
+            $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
+        }else{
+            $this->dadosBanco[$position] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
+        }
+        
         Conteiner::registrar('DadosBanco', $this->dadosBanco);
+    }
+    
+    public function getConexao($usuarioId, $pagina){
+        
+        $dadosBanco = Conteiner::get('DadosBanco');
+        
+        for($i = 0; $i < count($dadosBanco); $i++){
+            if($dadosBanco[$i]['usuario'] == $usuarioId){
+                $fromConexao = $dadosBanco[$i]['conexao'];
+        }
+            foreach($dadosBanco[$i] as $k=>$v){
+                if($k == 'pagina' && $v == $pagina){
+                    $toConexao[] = $dadosBanco[$i]['conexao'];
+                    $usuarios[] = $dadosBanco[$i]['usuario'];
+                    $paginas[] = $pagina;
+                }
+            }
+        }
+        
+        return ['fromConexao'=>$fromConexao, 'toConexao'=>$toConexao, 'usuarios'=>$usuarios, 'paginas'=>$paginas];
     }
     
     public function onMessage(ConnectionInterface $from, $mensagem){

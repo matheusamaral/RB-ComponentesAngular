@@ -24,6 +24,15 @@
         <propriedades coluna="bloqueado" atributo="bloqueado" type="varchar(45)"/>
     </classe>
     
+    <classe nome="RespostasVisibilidade" tabela="respostas_visibilidade" namespace="Quickpeek\Acoes\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="\Quickpeek\Usuario\Dominio\Usuario" tabela="usuario_id"/>
+        <propriedades coluna="perguntas_id" atributo="perguntasId" classe="Perguntas" tabela="perguntas"/>
+        <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="\Quickpeek\Usuario\Dominio\VisibilidadeMensagens" tabela="visibilidade_mensagens"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
     <classe nome="RespostasVisualizadas" tabela="respostas_visualizadas" namespace="Quickpeek\Acoes\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
@@ -42,7 +51,7 @@
         <propriedades coluna="perguntas_id" atributo="perguntasId" classe="Perguntas" tabela="perguntas"/>
         <propriedades coluna="momento_visualizado" atributo="momentoVisualizado" type="varchar(45)"/>
         <propriedades coluna="visibilidade_id" atributo="visibilidadeId" classe="\Quickpeek\Usuario\Dominio\Visibilidade" tabela="visibilidade"/>
-    </classe>    
+    </classe>
     
     <classe nome="PerguntaAlerta" tabela="pergunta_alerta" namespace="Quickpeek\Acoes\Dominio" id="">
         <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>

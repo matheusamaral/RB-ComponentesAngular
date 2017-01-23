@@ -1,6 +1,7 @@
 <?php
 namespace Quickpeek\Acoes\Aplicacao\Respostas;
 use Rubeus\ContenerDependencia\Conteiner;
+use Rubeus\Servicos\Entrada\Sessao;
 
 class Respostas {
     
@@ -8,7 +9,12 @@ class Respostas {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
-
+        $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
+        
+        if($arquivo){
+            $this->salvarFoto($msg);
+        }
+        
         $bloqueado = $this->checarBloqueado($msg);
 
         if($bloqueado){
@@ -22,7 +28,7 @@ class Respostas {
             $msg->setCampo('Respostas::checkIn', 0);
         }
         
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
         $msg->setCampo('entidade', 'Respostas');
         $msg->setCampo('Respostas::visibilidadeId', $visibilidadeId);
         $msg->setCampo('Respostas::usuarioId', $usuarioId);
@@ -34,6 +40,25 @@ class Respostas {
             $this->conexaoSocket($msg);
         }else{
             $msg->setResultadoEtapa(false);
+        }
+    }
+    
+    private function salvarFoto($msg){
+        
+        $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
+        $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
+        Conteiner::get('Base64')->upload($msg->getCampo('ArquivoBase64')->get('valor'), DIR_BASE.$enderecoFoto);
+        $url = $this->imagemUpada('imagem', 'respostas', 0, 1);
+        $msg->setCampo('Respostas::endereco', $url);
+    }
+    
+    private function imagemUpada($atributo, $pasta, $id=false, $tipo=false){
+        if(Sessao::get('ultimasImagens,'.$id)){
+            $dados = array( 'h-0' => false,'hr-0' => false,
+                        'w-0' => false,'wr-0' => false,
+                        'y-0' => false,'x-0' => false);
+            
+            return Conteiner::get('Imagem')->ImagemUpada($atributo, $pasta, $dados, $id, $tipo);
         }
     }
     
@@ -89,60 +114,42 @@ class Respostas {
      private function conexaoSocket($msg){
          
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
         
         $localId = Conteiner::get('ConsultaLocalId')->consultar($perguntaId);
         
-        $dadosBanco = Conteiner::get('DadosBanco');
-        $pagina[] = '34' . '-' . $perguntaId;
-        $pagina[] = '27' . '-' . $localId;
-        
-        for($i = 0; $i < count($dadosBanco); $i++){
-            if($dadosBanco[$i]['usuario'] == $usuarioId){
-                $fromConexao = $dadosBanco[$i]['conexao'];
-            }
-            foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina[0]){
-                    $toConexao[] = $dadosBanco[$i]['conexao'];
-                    $usuarios[] = $dadosBanco[$i]['usuario'];
-                    $paginas[] = $pagina[0];
-                }
-                if($k == 'pagina' && $v == $pagina[1]){
-                    $toConexaoLocal[] = $dadosBanco[$i]['conexao'];
-                    $usuariosLocal[] = $dadosBanco[$i]['usuario'];
-                    $paginasLocal[] = $pagina[1];
-                }
-            }
-        }
-        
         $cmd = Conteiner::get('Socket');
-        if($usuarios){
-            foreach($usuarios as $v){
-                $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
-            }
+        $paginaPergunta = '34' . '-' . $perguntaId;
+        $paginaLocal = '27' . '-' . $localId;
+        
+        $dadosPergunta = $cmd->getConexao($usuarioId, $paginaPergunta);
+        $dadosLocal = $cmd->getConexao($usuarioId, $paginaLocal);
+        
+        if($dadosPergunta['usuarios']){
+            $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeId);
             
-            for($i = 0; $i < count($toConexao); $i++){
-                $mensagem[$i]['to'] = $toConexao[$i];
-                $mensagem[$i]['from'] = $fromConexao;
-                $mensagem[$i]['pagina'] = $paginas[$i];
+            for($i = 0; $i < count($dadosPergunta['toConexao']); $i++){
+                $mensagem[$i]['to'] = $dadosPergunta['toConexao'][$i];
+                $mensagem[$i]['from'] = $dadosPergunta['fromConexao'];
+                $mensagem[$i]['pagina'] = $dadosPergunta['paginas'][$i];
                 $mensagem[$i]['respostaId'] = $msg->getCampo('Respostas::id')->get('valor');
                 $mensagem[$i]['respostaTitulo'] = $msg->getCampo('Respostas::titulo')->get('valor');
                 $mensagem[$i]['enderecoMidia'] = $msg->getCampo('Respostas::endereco')->get('valor');
-                $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
-                $mensagem[$i]['nomeUsuario'] = $dadosUsuario[$i]['usuarioNome'];
-                $mensagem[$i]['enderecoUsuario'] = $dadosUsuario[$i]['usuarioEndereco'];
+                $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
+                $mensagem[$i]['nomeUsuario'] = $dadosUsuario['usuarioNome'];
+                $mensagem[$i]['enderecoUsuario'] = $dadosUsuario['usuarioEndereco'];
                 $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
                 
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }
         
-        if($usuariosLocal){
-            for($i = 0; $i < count($toConexaoLocal); $i++){
-                $mensagem2[$i]['to'] = $toConexaoLocal[$i];
-                $mensagem2[$i]['from'] = $fromConexao;
-                $mensagem2[$i]['pagina'] = $paginasLocal[$i];
+        if($dadosLocal['usuarios']){
+            for($i = 0; $i < count($dadosLocal['toConexao']); $i++){
+                $mensagem2[$i]['to'] = $dadosLocal['toConexao'][$i];
+                $mensagem2[$i]['from'] = $dadosLocal['fromConexao'];
+                $mensagem2[$i]['pagina'] = $dadosLocal['paginas'][$i];
                 $mensagem2[$i]['pergunta'] = 0;
                 $mensagem2[$i]['perguntaId'] = $msg->getCampo('Respostas::perguntasId')->get('valor');
                 

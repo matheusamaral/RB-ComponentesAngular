@@ -8,7 +8,7 @@
         <campo regra="Obrigatorio" chave="Mensagens::visibilidadeMensagensId" nome="Mensagens::visibilidadeMensagensId"/>
         <campo regra="Obrigatorio" chave="Mensagens::visibilidadeUsuarioId" nome="Mensagens::visibilidadeUsuarioId"/>
         <campo regra="Opcional" chave="Mensagens::endereco" nome="Mensagens::endereco"/>
-        <campo chave="Arquivo" nome="arquivo" type="file"/>
+        <campo regra="Opcional" chave="ArquivoBase64" nome="arquivoBase64"/>
     </entrada>
     
     <atividades>
