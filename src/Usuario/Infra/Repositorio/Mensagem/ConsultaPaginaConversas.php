@@ -9,6 +9,7 @@ class ConsultaPaginaConversas {
         $query = Conteiner::get('Query', false);
         $query->select('u.id', 'usuarioId')
                 ->add('men.usuario_id', 'usuarioMensagemId')
+                ->add('men.momento', 'momento')
                 ->add("case when u.ativo = 0 or b.id is not null then 'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
                         . 'when men.usuario_id = ? and men.visibilidade_usuario_id = 2 then a.endereco '
                         . 'when men.usuario_id != ? and men.visibilidade_mensagens_id = 2 then a.endereco '
@@ -24,8 +25,6 @@ class ConsultaPaginaConversas {
                 ->add("case when men.usuario_mensagem_id = ? then concat(men.usuario_mensagem_id, '-', men.usuario_id, '-', 
                     men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id) else concat(men.usuario_id, '-', 
                     men.usuario_mensagem_id, '-', men.visibilidade_usuario_id, '-', men.visibilidade_mensagens_id) end", 'agrupamento')
-                ->add("concat(men.usuario_mensagem_id, '-', men.usuario_id, '-', 
-                    men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id)", 'agrupamentoSocket')
                 ->add('case when men.usuario_id = ? then men.visibilidade_mensagens_id else men.visibilidade_usuario_id end', 'visibilidadeMensagensId')
                 ->add('case when men.usuario_id = ? then men.visibilidade_usuario_id else men.visibilidade_mensagens_id end', 'visibilidadeUsuarioId');
         $query->from('usuario', 'u');

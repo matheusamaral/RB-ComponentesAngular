@@ -7,9 +7,9 @@ class Digitando {
     public function digitando($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         $perguntaId = $msg->getCampo('PerguntaId')->get('valor');
         $agrupamento = $msg->getCampo('Agrupamento')->get('valor');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
         
         $cmd = Conteiner::get('Socket');
         if($perguntaId){
@@ -21,17 +21,17 @@ class Digitando {
         $dados = $cmd->getConexao($usuarioId, $pagina);
         
         if($dados['usuarios']){
-            foreach($dados['usuarios'] as $v){
-                $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
-            }
+            
+            $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeId);
             
             for($i = 0; $i < count($dados['toConexao']); $i++){
                 $mensagem[$i]['to'] = $dados['toConexao'][$i];
                 $mensagem[$i]['from'] = $dados['fromConexao'];
                 $mensagem[$i]['pagina'] = $dados['paginas'][$i];
                 $mensagem[$i]['digitando'] = 1;
-                $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
-                $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
+                $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
+                $mensagem[$i]['usuarioNome'] = $dadosUsuario['usuarioNome'];
+                $mensagem[$i]['endereco'] = $dadosUsuario['usuarioEndereco'];
                 
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }

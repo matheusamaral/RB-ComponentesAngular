@@ -127,9 +127,7 @@ class Respostas {
         $dadosLocal = $cmd->getConexao($usuarioId, $paginaLocal);
         
         if($dadosPergunta['usuarios']){
-            foreach($dadosPergunta['usuarios'] as $v){
-                $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
-            }
+            $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeId);
             
             for($i = 0; $i < count($dadosPergunta['toConexao']); $i++){
                 $mensagem[$i]['to'] = $dadosPergunta['toConexao'][$i];
@@ -138,9 +136,9 @@ class Respostas {
                 $mensagem[$i]['respostaId'] = $msg->getCampo('Respostas::id')->get('valor');
                 $mensagem[$i]['respostaTitulo'] = $msg->getCampo('Respostas::titulo')->get('valor');
                 $mensagem[$i]['enderecoMidia'] = $msg->getCampo('Respostas::endereco')->get('valor');
-                $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
-                $mensagem[$i]['nomeUsuario'] = $dadosUsuario[$i]['usuarioNome'];
-                $mensagem[$i]['enderecoUsuario'] = $dadosUsuario[$i]['usuarioEndereco'];
+                $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
+                $mensagem[$i]['nomeUsuario'] = $dadosUsuario['usuarioNome'];
+                $mensagem[$i]['enderecoUsuario'] = $dadosUsuario['usuarioEndereco'];
                 $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
                 
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
