@@ -8,12 +8,13 @@ class SetarVisibilidadeResposta {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $perguntasId = $msg->getCampo('RespostasVisibilidade::perguntasId')->get('valor');
+        $editando = $msg->getCampo('Editando')->get('valor');
         
-        $id = Conteiner::get('ConsultaRespostasVisibilidade')->consultar($usuarioId, $perguntasId);
-        
-        if($id){
+        if($editando){
+            $id = Conteiner::get('ConsultaRespostasVisibilidade')->consultar($usuarioId, $perguntasId);
             $msg->setCampo('RespostasVisibilidade::id', $id);
         }
+        
         $msg->setCampo('entidade', 'RespostasVisibilidade');
         $msg->setCampo('RespostasVisibilidade::usuarioId', $usuarioId);
         Conteiner::get('Cadastro')->cadastrar($msg);
