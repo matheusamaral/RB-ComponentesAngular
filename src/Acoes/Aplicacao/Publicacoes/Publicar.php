@@ -14,7 +14,11 @@ class Publicar {
             $publicacoes = $publicacao->consultarMidia($usuarioIdSessao, $localIdSessao);
         }
         
-        $this->midia($msg);
+        $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
+        var_dump($arquivo);
+        if($arquivo){
+            $this->midia($msg);
+        }
         
         $hashtags = $msg->getCampo('Hashtag::titulo')->get('valor');
         if($hashtags){
@@ -58,19 +62,33 @@ class Publicar {
     }
     
     private function midia($msg){
-        $arquivo = $msg->getCampo('Arquivo')->get('valor');
-        if($arquivo){
-            $caminho = Conteiner::get('Upload')->upar($arquivo, 'midia', 'mda');    
-            if(!$caminho){
-                $erro = Conteiner::get('Upload')->getErro();
-                $msg->setResultadoEtapa(false, $erro['cod'], ['arquivo' => $erro['arquivo']]);
-            }else{
-                $msg->setCampo('entidade', 'Midia');
-                $msg->setCampo('Midia::endereco', $caminho[0]['url']);
-                $msg->setCampo('Midia::localId', $msg->getCampoSessao('dadosUsuarioLogado,local'));
-                $msg->setCampo('Midia::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
-                Conteiner::get('Cadastro')->cadastrar($msg);
-            }
+        
+        $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
+        foreach($arquivo as $v){
+            $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
+            $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
+            Conteiner::get('Base64')->upload($msg->getCampo('ArquivoBase64')->get('valor'), DIR_BASE.$enderecoFoto);
+            $url = $this->imagemUpada('imagem', 'midia', 0, 2);
+            
+            $usuariosId[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
+            $locaisId[] = $msg->getCampoSessao('dadosUsuarioLogado,local');
+            $urls[] = $url;
+        }
+        
+        $msg->setCampo('entidade', 'Midia');
+        $msg->setCampo('Midia::endereco', $urls);
+        $msg->setCampo('Midia::usuarioId', $usuariosId);
+        $msg->setCampo('Midia::localId', $locaisId);
+        Conteiner::get('Cadastro')->cadastrar($msg);
+    }
+    
+    private function imagemUpada($atributo, $pasta, $id=false, $tipo=false){
+        if(Sessao::get('ultimasImagens,'.$id)){
+            $dados = array( 'h-0' => false,'hr-0' => false,
+                        'w-0' => false,'wr-0' => false,
+                        'y-0' => false,'x-0' => false);
+            
+            return Conteiner::get('Imagem')->ImagemUpada($atributo, $pasta, $dados, $id, $tipo);
         }
     }
     

@@ -1,6 +1,7 @@
 <?php
 namespace Quickpeek\Usuario\Aplicacao\Mensagem;
 use Rubeus\ContenerDependencia\Conteiner;
+use Rubeus\Servicos\Entrada\Sessao;
 
 class EnviarMensagem {
     
@@ -10,6 +11,11 @@ class EnviarMensagem {
         $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
         $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
         $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
+        $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
+        
+        if($arquivo){
+            $this->salvarFoto($msg);
+        }
         
         $bloqueoou = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $usuarioMensagemId, $visibilidadeUsuarioId);
         
@@ -33,6 +39,25 @@ class EnviarMensagem {
         }
     }
     
+    private function salvarFoto($msg){
+        
+        $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
+        $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
+        Conteiner::get('Base64')->upload($msg->getCampo('ArquivoBase64')->get('valor'), DIR_BASE.$enderecoFoto);
+        $url = $this->imagemUpada('imagem', 'perfil', 0, 1);
+        $msg->setCampo('Mensagens::endereco', $url);
+    }
+    
+    private function imagemUpada($atributo, $pasta, $id=false, $tipo=false){
+        if(Sessao::get('ultimasImagens,'.$id)){
+            $dados = array( 'h-0' => false,'hr-0' => false,
+                        'w-0' => false,'wr-0' => false,
+                        'y-0' => false,'x-0' => false);
+            
+            return Conteiner::get('Imagem')->ImagemUpada($atributo, $pasta, $dados, $id, $tipo);
+        }
+    }
+    
     private function conexaoSocket($msg){
         
         $paginaConversas[] = 36;
@@ -49,10 +74,7 @@ class EnviarMensagem {
         var_dump($agrupamento);
         $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId);
         
-        quando o usuario que enviou a mensagem for achado para ser enviado a mensagem instantanea inverter o agrupamento;
-        'usuario que enviou a mensagem'=15-1-1-2;
-        
-        1-15-2-1
+        'verificar pelo agrupamentoSocket para pagina conversas';
         $dados['mensagemId'] = $mensagemId;
         $dados['mensagem'] = $mensagem;
         $dados['mensagemEndereco'] = $mensagemEndereco;

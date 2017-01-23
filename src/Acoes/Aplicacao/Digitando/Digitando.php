@@ -20,19 +20,6 @@ class Digitando {
         
         $dados = $cmd->getConexao($usuarioId, $pagina);
         
-//        for($i = 0; $i < count($dadosBanco); $i++){
-//            if($dadosBanco[$i]['usuario'] == $usuarioId){
-//                $fromConexao = $dadosBanco[$i]['conexao'];
-//            }
-//            foreach($dadosBanco[$i] as $k=>$v){
-//                if($k == 'pagina' && $v == $pagina){
-//                    $toConexao[] = $dadosBanco[$i]['conexao'];
-//                    $usuarios[] = $dadosBanco[$i]['usuario'];
-//                    $paginas[] = $pagina;
-//                }
-//            }
-//        }
-        
         if($dados['usuarios']){
             foreach($dados['usuarios'] as $v){
                 $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);

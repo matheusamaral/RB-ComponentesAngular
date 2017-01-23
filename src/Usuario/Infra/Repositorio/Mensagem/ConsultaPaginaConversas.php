@@ -25,7 +25,7 @@ class ConsultaPaginaConversas {
                     men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id) else concat(men.usuario_id, '-', 
                     men.usuario_mensagem_id, '-', men.visibilidade_usuario_id, '-', men.visibilidade_mensagens_id) end", 'agrupamento')
                 ->add("concat(men.usuario_mensagem_id, '-', men.usuario_id, '-', 
-                    men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id)", 'agrupamentoDois')
+                    men.visibilidade_mensagens_id, '-', men.visibilidade_usuario_id)", 'agrupamentoSocket')
                 ->add('case when men.usuario_id = ? then men.visibilidade_mensagens_id else men.visibilidade_usuario_id end', 'visibilidadeMensagensId')
                 ->add('case when men.usuario_id = ? then men.visibilidade_usuario_id else men.visibilidade_mensagens_id end', 'visibilidadeUsuarioId');
         $query->from('usuario', 'u');

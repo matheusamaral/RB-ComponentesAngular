@@ -14,5 +14,16 @@
                 "suf": "-origem"
             }
         ]
+    },
+    {
+        "tipo": 2,
+        "dimensoes": 
+        [
+            {
+                "altura": "100%",
+                "largura": "100%",
+                "suf:": "-origem"
+            }
+        ]
     }
 ]

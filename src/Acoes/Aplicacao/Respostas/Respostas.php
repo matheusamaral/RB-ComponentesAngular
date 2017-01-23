@@ -1,6 +1,7 @@
 <?php
 namespace Quickpeek\Acoes\Aplicacao\Respostas;
 use Rubeus\ContenerDependencia\Conteiner;
+use Rubeus\Servicos\Entrada\Sessao;
 
 class Respostas {
     
@@ -8,6 +9,11 @@ class Respostas {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
+        
+        if($arquivo){
+            $this->salvarFoto($msg);
+        }
         
         $bloqueado = $this->checarBloqueado($msg);
 
@@ -34,6 +40,25 @@ class Respostas {
             $this->conexaoSocket($msg);
         }else{
             $msg->setResultadoEtapa(false);
+        }
+    }
+    
+    private function salvarFoto($msg){
+        
+        $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
+        $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
+        Conteiner::get('Base64')->upload($msg->getCampo('ArquivoBase64')->get('valor'), DIR_BASE.$enderecoFoto);
+        $url = $this->imagemUpada('imagem', 'midia', 0, 1);
+        $msg->setCampo('Respostas::endereco', $url);
+    }
+    
+    private function imagemUpada($atributo, $pasta, $id=false, $tipo=false){
+        if(Sessao::get('ultimasImagens,'.$id)){
+            $dados = array( 'h-0' => false,'hr-0' => false,
+                        'w-0' => false,'wr-0' => false,
+                        'y-0' => false,'x-0' => false);
+            
+            return Conteiner::get('Imagem')->ImagemUpada($atributo, $pasta, $dados, $id, $tipo);
         }
     }
     
@@ -100,24 +125,6 @@ class Respostas {
         
         $dadosPergunta = $cmd->getConexao($usuarioId, $paginaPergunta);
         $dadosLocal = $cmd->getConexao($usuarioId, $paginaLocal);
-        
-//        for($i = 0; $i < count($dadosBanco); $i++){
-//            if($dadosBanco[$i]['usuario'] == $usuarioId){
-//                $fromConexao = $dadosBanco[$i]['conexao'];
-//            }
-//            foreach($dadosBanco[$i] as $k=>$v){
-//                if($k == 'pagina' && $v == $pagina[0]){
-//                    $toConexao[] = $dadosBanco[$i]['conexao'];
-//                    $usuarios[] = $dadosBanco[$i]['usuario'];
-//                    $paginas[] = $pagina[0];
-//                }
-//                if($k == 'pagina' && $v == $pagina[1]){
-//                    $toConexaoLocal[] = $dadosBanco[$i]['conexao'];
-//                    $usuariosLocal[] = $dadosBanco[$i]['usuario'];
-//                    $paginasLocal[] = $pagina[1];
-//                }
-//            }
-//        }
         
         if($dadosPergunta['usuarios']){
             foreach($dadosPergunta['usuarios'] as $v){
