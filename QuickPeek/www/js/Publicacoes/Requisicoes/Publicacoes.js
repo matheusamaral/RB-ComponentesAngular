@@ -20,10 +20,10 @@ angular.module('QuickPeek.Requisicao.Publicacoes', [
             return this;
         };
 
-        function fazerCheckIn(){
+        function publicar(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Local/checkIn",
+                url: Config.getRefAmbienteReq()+"/Acoes/publicar",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -34,16 +34,15 @@ angular.module('QuickPeek.Requisicao.Publicacoes', [
             GCS.conectar(obj);
         };
         
-        
-        function successFazerCheckIn(objRetorno){
+        function successPublicar(objRetorno){
             RBLoadingMobile.hide();
             //alert(JSON.stringify(objRetorno));
             if(objRetorno.success === true){
-                DGlobal.localAtual = dados.localId;
-                Pagina.navegar({idPage:24,paramAdd:'?longitude='+DGlobal.coordenadasAtual.longitude+'&latitude='+DGlobal.coordenadasAtual.latitude+'&localId='+dados.localId+'&atualizando=0'})
+                Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
+                else OpenToast('Não foi possível realizar esta publicação');
             }
         };
         
@@ -60,8 +59,8 @@ angular.module('QuickPeek.Requisicao.Publicacoes', [
         
         return {
             set: set,
-            fazerCheckIn: fazerCheckIn,
-            successFazerCheckIn: successFazerCheckIn
+            publicar: publicar,
+            successPublicar: successPublicar
         };
                            
 }]);     

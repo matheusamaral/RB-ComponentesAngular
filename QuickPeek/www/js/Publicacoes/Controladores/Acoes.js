@@ -21,7 +21,7 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     };
     
     function voltar(){
-        Pagina.navegar({idPage:24,paramAdd:'?localId='+DGlobal.localAtual+'&atualizando=0'});
+        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
     }
     
     function escolherHash(hash){
@@ -101,8 +101,13 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     }
     
     function publicar(){
-        console.log(scope.dados.categoriaId);
-        console.log(scope.dados.titulo);
+        var obj = {
+            titulo:scope.dados.titulo,
+            categoriaId:scope.dados.categoriaId,
+            arquivoBase64:scope.dados.arquivoBase64
+        };
+        
+        PublicacoesRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PublicacoesRequisicoes.successPublicar}).publicar();
     }
     
     function verfificaTecla(evento){
@@ -201,8 +206,8 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         var linhaImg = new Array();
         for(var i = 0; i < scope.dados.midia.length; i++){
             contImg++;
-            for(var j = 0; j < scope.dados.midiasSelecionadas.length; j++){
-                if(scope.dados.midiasSelecionadas[j].id == scope.dados.midia[i].id){
+            for(var j = 0; j < scope.dados.arquivoBase64.length; j++){
+                if(scope.dados.arquivoBase64[j].id == scope.dados.midia[i].id){
                     scope.dados.midia[i].selecionado = true;
                 }
             }
@@ -218,9 +223,9 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         }
     }
     
-    function addMidia(midia,$event,indice){
+    function addMidia(midia,$event){
         VP.pararEvento($event);
-        if(indice == 0){
+        if(midia.exibirCamera){
             abrircamera();
         }else{
             if(midia.selecionado){
@@ -239,7 +244,7 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     
     function abrircamera(){
         var options = {
-            quality: 50,
+            quality: 100,
             destinationType: Camera.DestinationType.FILE_URI,
             sourceType: Camera.PictureSourceType.CAMERA,
             allowEdit: false,
@@ -247,7 +252,7 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
             mediaType:2,
             targetWidth: 100,
             targetHeight: 100,
-            saveToPhotoAlbum: false,
+            saveToPhotoAlbum: true,
             correctOrientation:true
         };
 
@@ -266,11 +271,14 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     }
     
     function selecionarImgs(){
+        var arrayFiles = new Array;
         for(var i = 0; i < scope.dados.midiasSelecionadas.length;i++){
-            window.plugins.Base64.encodeFile(path, function(base64){
-                obj = {arquivoBase64:base64};
+            window.plugins.Base64.encodeFile(scope.dados.midiasSelecionadas[i].photoURL, function(base64){
+                arrayFiles.push(base64);
             });
         }
+        scope.dados.arquivoBase64 = arrayFiles;
+        fecharGaleria();
     }
     
     return {

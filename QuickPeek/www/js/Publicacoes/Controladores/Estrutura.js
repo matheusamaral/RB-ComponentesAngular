@@ -23,7 +23,8 @@ angular.module('QuickPeek.Estrutura.Publicacoes', [
             categoriaId:new Array(),
             idHashs: new Array(),
             midia: new Array(),
-            midiasSelecionadas: new Array()
+            midiasSelecionadas: new Array(),
+            arquivoBase64: new Array()
         };
         
         scope.keyCodes = [32];

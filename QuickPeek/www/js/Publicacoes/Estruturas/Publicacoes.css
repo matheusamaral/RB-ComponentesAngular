@@ -234,3 +234,16 @@ md-chip md-icon{
 .btn-deselecionar md-icon::before{
     margin-left: 5px;
 }
+
+.cont-midias{
+    background-color: red;
+    position: absolute;
+    height: 17px;
+    top: -4px;
+    font-size: 12px;
+    min-width: 18px;
+    border-radius: 10px;
+    right: 4px;
+    color: #FFFFFF;
+    line-height: 18px;
+}

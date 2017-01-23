@@ -84,6 +84,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
                             <button ng-click="getImgs()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                                <span ng-if="dados.arquivoBase64.length > 0" class="cont-midias">{{dados.arquivoBase64.length}}</span>\n\
                             </button>\n\
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
@@ -104,7 +105,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             </button>\n\
                         </div>\n\
                         <div class="col remove-padding text-right">\n\
-                            <button ng-disabled="dados.midiasSelecionadas.length > 0" ng-click="selecionarImgs()" class="btn-txt-direita button button-clear">\n\
+                            <button ng-disabled="dados.midiasSelecionadas.length < 1" ng-click="selecionarImgs()" class="btn-txt-direita button button-clear">\n\
                                 Concluir\n\
                             </button>\n\
                         </div>\n\
