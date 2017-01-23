@@ -80,7 +80,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <a class="tab-item" href="#" ng-click="mapaGeral.mapaAtivo(true)">\n\
                             <i class="icon ion-chatbox-working"></i>\n\
                         </a>\n\
-                        <a class="tab-item" href="#">\n\
+                        <a class="tab-item" ng-click="irNotificacoes()" href="#">\n\
                             <i class="icon ion-android-notifications"></i>\n\
                         </a>\n\
                         <a class="tab-item" href="#" ng-click="irPerfil(dadosUser.dados.usuarioId)">\n\

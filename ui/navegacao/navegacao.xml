@@ -207,7 +207,7 @@
         <acaoCliente classe="pag-exibir-midia" acao="ExibirMidiaCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="26" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Pessoas no local">
+    <pagina id="26" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="pessoas-local">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -305,5 +305,15 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-perguntar" acao="PerguntarCtrl" title="Faça um pergunta"/>
     </pagina>   
+    
+    <pagina id="36" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="notificacoes">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarNotificacoes" objeto='notificacoes'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-notificacoes" acao="NotificacoesCtrl" title="Midias"/>
+    </pagina> 
     
 </root>

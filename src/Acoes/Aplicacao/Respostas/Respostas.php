@@ -97,7 +97,7 @@ class Respostas {
         $dadosBanco = Conteiner::get('DadosBanco');
         $pagina[] = '34' . '-' . $perguntaId;
         $pagina[] = '27' . '-' . $localId;
-
+        
         for($i = 0; $i < count($dadosBanco); $i++){
             if($dadosBanco[$i]['usuario'] == $usuarioId){
                 $fromConexao = $dadosBanco[$i]['conexao'];
@@ -133,7 +133,7 @@ class Respostas {
                 $mensagem[$i]['nomeUsuario'] = $dadosUsuario[$i]['usuarioNome'];
                 $mensagem[$i]['enderecoUsuario'] = $dadosUsuario[$i]['usuarioEndereco'];
                 $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
-
+                
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }

@@ -122,7 +122,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                         <a class="tab-item" href="#">\n\
                             <i class="icon ion-chatbox-working"></i>\n\
                         </a>\n\
-                        <a class="tab-item" href="#">\n\
+                        <a class="tab-item" href="#" ng-click="irNotificacoes()">\n\
                             <i class="icon ion-android-notifications"></i>\n\
                         </a>\n\
                         <a class="tab-item active" href="#">\n\

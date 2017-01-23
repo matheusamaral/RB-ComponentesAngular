@@ -125,6 +125,10 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:30});
     }
     
+    function irNotificacoes(){
+        Pagina.navegar({idPage:36});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -140,7 +144,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
         retornaDistancia:retornaDistancia,
         converteTempo:converteTempo,
         irCheckin:irCheckin,
-        checkInLocal:checkInLocal
+        checkInLocal:checkInLocal,
+        irNotificacoes:irNotificacoes
     };
     
  }]);

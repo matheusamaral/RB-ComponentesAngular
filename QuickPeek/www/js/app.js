@@ -45,7 +45,8 @@ angular.module('QuickPeek', [
     'QuickPeek.MudarNumeroSMS',
     'QuickPeek.Respostas',
     'Cmp.Websocket',
-    'QuickPeek.Perguntar'
+    'QuickPeek.Perguntar',
+    'QuickPeek.Notificacoes'
 ])
 
 .run(function($ionicPlatform) {
