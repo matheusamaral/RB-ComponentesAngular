@@ -18,7 +18,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div class="col altura-barra-padding remove-padding">\n\
+                <div class="col altura-barra-padding remove-padding" style="padding-top:65px !important">\n\
                     <p class="p-normal-publicacoes">Como está <span class="font-dourada">{{local.dados.localNome}}</span> agora?</p>\n\
                     <p class="p-sublinhado">Alterar localização</p>\n\
                 </div>\n\
@@ -83,7 +83,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             </md-chips>\n\
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
-                            <button class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                            <button ng-click="getImgs()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
@@ -91,8 +91,42 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             </button>\n\
                         </div>\n\
                     </div>\n\
-                </div>';
+                </div>'+galeria();
     };
+    
+    function galeria(){
+         return'<div ng-if="mostrarGaleria"\n\
+                style="height:{{alturaTela}}px" class="tela-galeria">\n\
+                    <div style="box-shadow: 0px -2px 8px black !important;" class="row bar bar-header bar-positive">\n\
+                        <div class="col remove-padding">\n\
+                            <button ng-click="fecharGaleria()" class="btn-txt-direita button button-clear">\n\
+                                <i class="icon ion-android-arrow-back seta-barra"></i>Galeria\n\
+                            </button>\n\
+                        </div>\n\
+                        <div class="col remove-padding text-right">\n\
+                            <button ng-disabled="dados.midiasSelecionadas.length > 0" ng-click="selecionarImgs()" class="btn-txt-direita button button-clear">\n\
+                                Concluir\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div class="container-glr" style="height:{{alturaTela}}px">\n\
+                        <div ng-class="{\'padding-top-midias\' : $index == 0}"\n\
+                        ng-repeat="linha in objimg" class="row">\n\
+                            <div ng-repeat="img in linha" class="col box-img-glr"\n\
+                            ng-click="addMidia(img,$event,$index)"\n\
+                            ng-class="{\'addFt\' : img.exibirCamera,\n\
+                            \'borda-dourada-glr\' : img.selecionado}"\n\
+                            style="background-image:url({{img.photoURL}})">\n\
+                                <div\n\
+                                ng-if="img.selecionado" class="btn-deselecionar">\n\
+                                    <md-icon class="ion-android-close"></md-icon>\n\
+                                </div>\n\
+                                <md-icon ng-if="img.exibirCamera"  class="ion-android-camera"></md-icon>\n\
+                            </div>\n\
+                        </div>\n\
+                    </div>\n\
+                </div>';
+    }
   
     return {
         montar: montar

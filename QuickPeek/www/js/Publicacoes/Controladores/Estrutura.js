@@ -21,7 +21,9 @@ angular.module('QuickPeek.Estrutura.Publicacoes', [
             titulo:new Array(),
             tituloChip:new Array(),
             categoriaId:new Array(),
-            idHashs: new Array()
+            idHashs: new Array(),
+            midia: new Array(),
+            midiasSelecionadas: new Array()
         };
         
         scope.keyCodes = [32];

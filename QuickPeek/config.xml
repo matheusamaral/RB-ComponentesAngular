@@ -41,4 +41,7 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <plugin name="cordova.plugins.diagnostic" spec="~3.3.2" />
+    <plugin name="cordova-plugin-photo-library" spec="~1.2.2">
+        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="To choose photos" />
+    </plugin>
 </widget>

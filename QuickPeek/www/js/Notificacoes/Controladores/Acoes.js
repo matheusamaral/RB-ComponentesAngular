@@ -45,11 +45,16 @@ angular.module('QuickPeek.Acoes.Notificacoes', [
         Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
     
+    function irNotSeguir(){
+        Pagina.navegar({idPage:37});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
         irMapa:irMapa,
-        irPerfil:irPerfil
+        irPerfil:irPerfil,
+        irNotSeguir:irNotSeguir
     };
     
  }]);

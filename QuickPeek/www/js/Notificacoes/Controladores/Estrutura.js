@@ -17,15 +17,14 @@ angular.module('QuickPeek.Estrutura.Notificacoes', [
     }
     
     function popular(){
-        scope.dados = {
-        };
+        scope.dados = {};
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados; 
         }
         
-        if(DGlobal.notificacoes && DGlobal.notificacoes.success){
-            scope.dados.seguir = DGlobal.notificacoes.dados; 
+        if(DGlobal.notificacoes && DGlobal.notificacoes.success && DGlobal.notificacoes.dados.seguir){
+            scope.dados.seguir = DGlobal.notificacoes.dados.seguir; 
         }
     };
   

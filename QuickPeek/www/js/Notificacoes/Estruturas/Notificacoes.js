@@ -8,13 +8,15 @@ angular.module('QuickPeek.HTML.Notificacoes', [
     function montar() {
         return tabs()+'\n\
                 <div class="row" style="padding:0;padding-top:90px !important">\n\
-                    <div ng-click="responder(pergunta.id)"\n\
+                    <div ng-click="irNotSeguir()"\n\
                     class="position-relative row remove-padding-row">\n\
                         <div class="display-table-vertical col-20 remove-padding">\n\
-                            <div style="background-image:url({{dados.seguir.usuario.usuarioEndereco}})" class="btn-redondo-medio"></div>\n\
+                            <div style="background-image:url({{dados.seguir.usuario.usuarioEndereco}})" class="btn-redondo-medio">\n\
+                                <div class="container-notificacoes">{{dados.seguir.contagem}}</div>\n\
+                            </div>\n\
                         </div>\n\
-                        <div style="padding-left:10px !important;padding-right:10px !important;" class="col-50 remove-padding col-center">\n\
-                            <p style="padding-bottom:7px;padding-top:4px;" class="font-preta">Solicitaçôes para seguir</p>\n\
+                        <div style="padding-left:10px !important;padding-right:10px !important;" class="remove-padding col-center">\n\
+                            <p style="text-align:start !important;padding-bottom:7px;padding-top:4px;" class="font-preta">Solicitaçôes para seguir</p>\n\
                             <p class="font-cinza text-left">Aprove ou ignore solicitações</p>\n\
                         </div>\n\
                     </div>\n\

@@ -20,6 +20,11 @@ angular.module('QuickPeek.Publicacoes', [
         $scope.addHashDigitando = PublicacoesAcoes.addHashDigitando;
         $scope.publicar = PublicacoesAcoes.publicar;
         $scope.verfificaTecla = PublicacoesAcoes.verfificaTecla;
+        $scope.getImgs = PublicacoesAcoes.getImgs;
+        $scope.abrirGaleria = PublicacoesAcoes.abrirGaleria;
+        $scope.fecharGaleria = PublicacoesAcoes.fecharGaleria;
+        $scope.addMidia = PublicacoesAcoes.addMidia;
+        $scope.selecionarImgs = PublicacoesAcoes.selecionarImgs;
     }
 ])
 

@@ -40,7 +40,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                             <button ng-click="seguir(dados.usuarioId)" ng-if="dados.seguindo == 0" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
                                 <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                             </button>\n\
-                            <button ng-click="seguir(dados.usuarioId)" ng-if="dados.seguindo == 2" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
+                            <button ng-click="cancelarSolicitacao(dados.usuarioId)" ng-if="dados.seguindo == 2" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
                                 Solicitado\n\
                             </button>\n\
                             <button ng-click="deixarSeguir(dados.usuarioId)" ng-if="dados.seguindo == 1" class="btn-perfil-geral btn-seguidores button button button-balanced">\n\
