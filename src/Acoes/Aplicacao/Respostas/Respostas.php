@@ -8,7 +8,7 @@ class Respostas {
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
-
+        
         $bloqueado = $this->checarBloqueado($msg);
 
         if($bloqueado){
@@ -22,7 +22,7 @@ class Respostas {
             $msg->setCampo('Respostas::checkIn', 0);
         }
         
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
         $msg->setCampo('entidade', 'Respostas');
         $msg->setCampo('Respostas::visibilidadeId', $visibilidadeId);
         $msg->setCampo('Respostas::usuarioId', $usuarioId);
@@ -89,8 +89,8 @@ class Respostas {
      private function conexaoSocket($msg){
          
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
         
         $localId = Conteiner::get('ConsultaLocalId')->consultar($perguntaId);
         
@@ -133,7 +133,7 @@ class Respostas {
                 $mensagem[$i]['nomeUsuario'] = $dadosUsuario[$i]['usuarioNome'];
                 $mensagem[$i]['enderecoUsuario'] = $dadosUsuario[$i]['usuarioEndereco'];
                 $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
-
+                
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }

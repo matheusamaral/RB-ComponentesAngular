@@ -53,6 +53,30 @@ CREATE TABLE `respostas`(
      ON UPDATE NO ACTION,
     `bloqueado` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
+CREATE TABLE `respostas_visibilidade`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `usuario_id` INT   ,
+    INDEX `respostas_visibilidade_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `respostas_visibilidade_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario_id` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `perguntas_id` INT   ,
+    INDEX `respostas_visibilidade_fk_perguntas_id_idx`(`perguntas_id` ASC),
+    CONSTRAINT `respostas_visibilidade_fk_perguntas_id` 
+         FOREIGN KEY (`perguntas_id`) REFERENCES `perguntas` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `visibilidade_id` INT   ,
+    INDEX `respostas_visibilidade_fk_visibilidade_id_idx`(`visibilidade_id` ASC),
+    CONSTRAINT `respostas_visibilidade_fk_visibilidade_id` 
+         FOREIGN KEY (`visibilidade_id`) REFERENCES `visibilidade_mensagens` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
 CREATE TABLE `respostas_visualizadas`( 
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),

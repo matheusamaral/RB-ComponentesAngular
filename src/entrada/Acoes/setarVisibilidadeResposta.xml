@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="setarVisibilidadeResposta" modulo="Acoes">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="RespostasVisibilidade::perguntasId" nome="perguntasId"/>
+        <campo regra="Obrigatorio" chave="RespostasVisibilidade::visibilidadeId" nome="visibilidadeId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="setar-visibilidade-resposta" tipo="tarefa">
+            <entidade nome="SetarVisibilidadeResposta" metodo="setarVisibilidadeResposta"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

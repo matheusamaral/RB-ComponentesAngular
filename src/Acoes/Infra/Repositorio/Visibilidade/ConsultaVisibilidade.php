@@ -18,4 +18,16 @@ class ConsultaVisibilidade {
         $query->addVariaveis($usuarioId);
         return $query->executar('{visibilidade}');
     }
+    
+    public function consultarRespostasVisibilidade($usuarioId, $perguntasId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('visibilidade_id', 'visibilidadeId');
+        $query->from('respostas_visibilidade');
+        $query->where('usuario_id = ?')
+                ->add('perguntas_id = ?')
+                ->add('ativo = 1');
+        $query->addVariaveis([$usuarioId, $perguntasId]);
+        return $query->executar('{visibilidadeId}');
+    }
 }

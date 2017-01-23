@@ -88,6 +88,8 @@
     "Perguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\Perguntas",
     "VerificarLimitePerguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\VerificarLimitePerguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\Respostas",
+    "SetarVisibilidadeResposta": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\SetarVisibilidadeResposta",
+    "VerificarVisibilidadeResposta": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\VerificarVisibilidadeResposta",
     "ExcluirPerguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\ExcluirPerguntas",
     "ExcluirRespostas": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\ExcluirRespostas",
     "VisualizarNotificacoes": "\\Quickpeek\\Acoes\\Aplicacao\\Notificacoes\\VisualizarNotificacoes",

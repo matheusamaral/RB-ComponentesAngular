@@ -11,12 +11,6 @@ class Perguntas {
         $cadastro = Conteiner::get('Cadastro');
 
         $msg->setCampo('entidade', 'Perguntas');
-
-        if(!$msg->getCampo('Perguntas::visibilidadeId')->get('valor')){
-            $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
-            $msg->setCampo('Perguntas::visibilidadeId', $visibilidadeId);
-        }
-        
         $msg->setCampo('Perguntas::usuarioId', $usuarioId);
         $cad = $cadastro->cadastrar($msg);
         if($cad){

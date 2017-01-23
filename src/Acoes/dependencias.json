@@ -15,6 +15,7 @@
     "ConsultaVisualizarNotificacoes": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaVisualizarNotificacoes",
     "ConsultaSeguidoresId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguidoresId",
     "ConsultaBloqueado": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaBloqueado",
+    "ConsultaRespostasVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaRespostasVisibilidade",
     
     "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag",

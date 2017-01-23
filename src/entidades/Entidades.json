@@ -34,6 +34,7 @@
     "PerguntaExcluida": "\\Quickpeek\\Acoes\\Dominio\\PerguntaExcluida",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",
+    "RespostasVisibilidade": "\\Quickpeek\\Acoes\\Dominio\\RespostasVisibilidade",
     "RespostasVisualizadas": "\\Quickpeek\\Acoes\\Dominio\\RespostasVisualizadas",
     "Notificacoes": "\\Quickpeek\\Acoes\\Dominio\\Notificacoes",
     "TipoNotificacoes": "\\Quickpeek\\Acoes\\Dominio\\TipoNotificacoes",
