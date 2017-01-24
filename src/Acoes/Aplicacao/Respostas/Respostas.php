@@ -133,6 +133,7 @@ class Respostas {
                 $mensagem[$i]['to'] = $dadosPergunta['toConexao'][$i];
                 $mensagem[$i]['from'] = $dadosPergunta['fromConexao'];
                 $mensagem[$i]['pagina'] = $dadosPergunta['paginas'][$i];
+                $mensagem[$i]['remetente'] = $dadosPergunta['remetente'][$i];
                 $mensagem[$i]['respostaId'] = $msg->getCampo('Respostas::id')->get('valor');
                 $mensagem[$i]['respostaTitulo'] = $msg->getCampo('Respostas::titulo')->get('valor');
                 $mensagem[$i]['enderecoMidia'] = $msg->getCampo('Respostas::endereco')->get('valor');
@@ -150,6 +151,7 @@ class Respostas {
                 $mensagem2[$i]['to'] = $dadosLocal['toConexao'][$i];
                 $mensagem2[$i]['from'] = $dadosLocal['fromConexao'];
                 $mensagem2[$i]['pagina'] = $dadosLocal['paginas'][$i];
+                $mensagem2[$i]['remetente'] = $dadosLocal['remetente'][$i];
                 $mensagem2[$i]['pergunta'] = 0;
                 $mensagem2[$i]['perguntaId'] = $msg->getCampo('Respostas::perguntasId')->get('valor');
                 

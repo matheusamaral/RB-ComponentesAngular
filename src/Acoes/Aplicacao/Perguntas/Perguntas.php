@@ -38,6 +38,7 @@ class Perguntas {
                 $mensagem[$i]['to'] = $dados['toConexao'][$i];
                 $mensagem[$i]['from'] = $dados['fromConexao'];
                 $mensagem[$i]['pagina'] = $dados['paginas'][$i];
+                $mensagem[$i]['remetente'] = $dados['remetente'][$i];
                 $mensagem[$i]['pergunta'] = 1;
                 $mensagem[$i]['id'] = $msg->getCampo('Perguntas::id')->get('valor');
                 $mensagem[$i]['titulo'] = $msg->getCampo('Perguntas::titulo')->get('valor');
@@ -50,6 +51,6 @@ class Perguntas {
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }
-        $msg->setResultadoEtapa(true);
+        $msg->setResultadoEtapa(true, false, ['remetente'=>1]);
     }
 }

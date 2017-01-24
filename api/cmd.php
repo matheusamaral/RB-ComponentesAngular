@@ -48,21 +48,24 @@ class Chat implements MessageComponentInterface {
         
         $dadosBanco = Conteiner::get('DadosBanco');
         
-        for($i = 0; $i < count($dadosBanco); $i++){
-            if($dadosBanco[$i]['usuario'] == $usuarioId){
-                $fromConexao = $dadosBanco[$i]['conexao'];
-        }
-            foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina){
-                    $toConexao[] = $dadosBanco[$i]['conexao'];
-                    $usuarios[] = $dadosBanco[$i]['usuario'];
-                    $paginas[] = $pagina;
+        foreach($dadosBanco as $v){
+            if($v['usuario'] == $usuarioId){
+                $fromConexao = $v['conexao'];
+            }
+            if($v['pagina'] == $pagina){
+                $toConexao[] = $v['conexao'];
+                $usuarios[] = $v['usuario'];
+                $paginas[] = $pagina;
+                if($v['usuario'] == $usuarioId){
+                    $remetente[] = 1;
+                }else{
+                    $remetente[] = 0;
                 }
             }
         }
         
         if(isset($toConexao)){
-            return ['fromConexao'=>$fromConexao, 'toConexao'=>$toConexao, 'usuarios'=>$usuarios, 'paginas'=>$paginas];
+            return ['fromConexao'=>$fromConexao, 'toConexao'=>$toConexao, 'usuarios'=>$usuarios, 'paginas'=>$paginas, 'remetente'=>$remetente];
         }else{
             return false;
         }
@@ -81,7 +84,7 @@ class Chat implements MessageComponentInterface {
         
         $resultado = $processo->executar($msg, true);
         
-//        $this->enviarMensagem($resultado, $from->resourceId);
+        $this->enviarMensagem($resultado, $from->resourceId);
     }
     
     public function enviarMensagem($mensagem, $conexao){

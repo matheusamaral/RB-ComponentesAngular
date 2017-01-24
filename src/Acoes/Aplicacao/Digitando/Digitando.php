@@ -28,6 +28,7 @@ class Digitando {
                 $mensagem[$i]['to'] = $dados['toConexao'][$i];
                 $mensagem[$i]['from'] = $dados['fromConexao'];
                 $mensagem[$i]['pagina'] = $dados['paginas'][$i];
+                $mensagem[$i]['remetente'] = $dados['remetente'][$i];
                 $mensagem[$i]['digitando'] = 1;
                 $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
                 $mensagem[$i]['usuarioNome'] = $dadosUsuario['usuarioNome'];
