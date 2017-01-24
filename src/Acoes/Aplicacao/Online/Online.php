@@ -6,9 +6,8 @@ class Online {
     
     public function online($usuarioId){
         
-        $msg = Conteiner::get('Mensagem')->get('valor');
+        $msg = Conteiner::get('Mensagem');
         $pagina = 37 . '-' . $usuarioId;
-        
         $dadosBanco = Conteiner::get('DadosBanco');
         
         for($i = 0; $i < count($dadosBanco); $i++){
@@ -21,12 +20,24 @@ class Online {
                     $paginas[0] = $valor[0] . '-' . $valor[1];
                     $paginas[1] = $valor[0] . '-' . $valor[2];
                 }
-                if($valor == $pagina){
+                if(in_array($pagina, $paginas)){
                     $toConexao[] = $dadosBanco[$i]['conexao'];
                     $usuarios[] = $dadosBanco[$i]['usuario'];
-                    $paginas[] = $pagina;
                 }
             }
         }
+        
+        if(isset($toConexao)){
+            for($i = 0; $i < count($toConexao);$i++){
+                $mensagem[$i]['online'] = 1;
+                $mensagem[$i]['to'] = $toConexao[$i];
+                $mensagem[$i]['from'] = $fromConexao;
+                $mensagem[$i]['usuario'] = $usuarioId;
+                $mensagem[$i]['usuarioMensagemId'] = $usuarios[$i];
+                
+                Conteiner::get('Socket')->enviarMensagem($mensagem, $mensagem[$i]['to']);
+            }
+        }
+        $msg->setResultadoEtapa(true);
     }
 }
