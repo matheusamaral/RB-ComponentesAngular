@@ -25,6 +25,8 @@ angular.module('QuickPeek.Publicacoes', [
         $scope.fecharGaleria = PublicacoesAcoes.fecharGaleria;
         $scope.addMidia = PublicacoesAcoes.addMidia;
         $scope.selecionarImgs = PublicacoesAcoes.selecionarImgs;
+        $scope.fazerCheckin = PublicacoesAcoes.fazerCheckin;
+        $scope.gerarHashtag = PublicacoesAcoes.gerarHashtag;
     }
 ])
 

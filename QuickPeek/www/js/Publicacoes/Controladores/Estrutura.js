@@ -27,7 +27,7 @@ angular.module('QuickPeek.Estrutura.Publicacoes', [
             arquivoBase64: new Array()
         };
         
-        scope.keyCodes = [32];
+        scope.keyCodes = [32,62,13];
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados;
@@ -36,6 +36,10 @@ angular.module('QuickPeek.Estrutura.Publicacoes', [
         if(DGlobal.localPublicar){
             scope.local = DGlobal.localPublicar;
             console.log(scope.local);
+            if(scope.local.nome){
+                scope.local.dados = {};
+                scope.local.dados.localNome = scope.local.nome;
+            }
         }
         
         if(DGlobal.hashtags && DGlobal.hashtags.success){

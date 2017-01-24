@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     'RB.validacoesPadroes'
 ])
 
-.factory('PublicacoesAcoes', ['Pagina','PublicacoesRequisicoes','$timeout','VP','$cordovaCamera',
-    function(Pagina,PublicacoesRequisicoes,$timeout,VP,$cordovaCamera){
+.factory('PublicacoesAcoes', ['Pagina','PublicacoesRequisicoes','$timeout','VP','$cordovaCamera','$ionicPopup',
+    function(Pagina,PublicacoesRequisicoes,$timeout,VP,$cordovaCamera,$ionicPopup){
     var scope;  
     
     function setScope(obj){
@@ -17,7 +17,10 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     
     function inicializar(){
         $('ion-side-menu-content').addClass('background-chekin');
-        scope.alturaTela = $('body').height();
+        $timeout(function(){
+            $('#chips-finais .md-chip-input-container input').attr('id', 'input-chip');
+            scope.alturaTela = $('body').height();
+        },0);
     };
     
     function voltar(){
@@ -81,13 +84,18 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         },0);
     }
     
-    function addHashDigitando(chip){
-        if(scope.dadosUser && scope.dadosUser.usuarioEndereco)
-            var img = scope.dadosUser.usuarioEndereco;
-        else
-            var img = 'img/bat.svg';
+    function addHashDigitando(chip,nRemover){
+        var img;
+        if(scope.dadosUser && scope.dadosUser.usuarioEndereco){
+            if(scope.dadosUser.visibilidadeCheckInId == 3){
+                img = scope.dadosUser.avatarEndereco;
+            }else{
+                img = scope.dadosUser.usuarioEndereco;
+            }
+        }else
+            img = 'img/bat.svg';
         var obj= {bordaDourada:true,endereco:img,titulo:chip,id:scope.dados.tituloChip.length - 1};
-        scope.dados.tituloChip.splice(scope.dados.tituloChip.length - 1 , 1);
+        if(!nRemover)scope.dados.tituloChip.splice(scope.dados.tituloChip.length - 1 , 1);
         scope.dados.tituloChip.push(obj);
         scope.dados.categoriaId.push(10);
         scope.dados.titulo.push(chip);
@@ -106,6 +114,9 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
             categoriaId:scope.dados.categoriaId,
             arquivoBase64:scope.dados.arquivoBase64
         };
+        
+        console.log('OBJ');
+        console.log(obj);
         
         PublicacoesRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PublicacoesRequisicoes.successPublicar}).publicar();
     }
@@ -140,12 +151,13 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
                     //console.log(libraryItem);
                     if(i < 20){
                         scope.dados.midia.push(libraryItem);
-                        abrirGaleria();
-                        estruturaLinhas();
                     }
                     i++;
                 });
-
+                $timeout(function(){
+                    abrirGaleria();
+                    estruturaLinhas();
+                },0);
             },
             function (err) {
               console.log('Error occured');
@@ -188,11 +200,11 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         $('ion-side-menu-content').addClass('remove-overflow-galeria');
         $timeout(function(){
             $('.tela-galeria').addClass('mostrar');
-        },100);
+        },1000);
     }
     
-    function fecharGaleria(){
-        scope.dados.midiasSelecionadas = new Array();
+    function fecharGaleria(nApagar){
+        if(!nApagar && scope.dados.arquivoBase64.length == 0)scope.dados.midiasSelecionadas = new Array();
         $('.tela-galeria').removeClass('mostrar');
         $('ion-side-menu-content').removeClass('remove-overflow-galeria');
         $timeout(function(){
@@ -202,12 +214,14 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     
     function estruturaLinhas(){
         var contImg = 0;
+        console.log('scope.dados.midia');
+        console.log(scope.dados.midia);
         scope.objimg = new Array();
         var linhaImg = new Array();
         for(var i = 0; i < scope.dados.midia.length; i++){
             contImg++;
-            for(var j = 0; j < scope.dados.arquivoBase64.length; j++){
-                if(scope.dados.arquivoBase64[j].id == scope.dados.midia[i].id){
+            for(var j = 0; j < scope.dados.midiasSelecionadas.length; j++){
+                if(scope.dados.midiasSelecionadas[j].id == scope.dados.midia[i].id){
                     scope.dados.midia[i].selecionado = true;
                 }
             }
@@ -225,19 +239,23 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     
     function addMidia(midia,$event){
         VP.pararEvento($event);
-        if(midia.exibirCamera){
-            abrircamera();
+        if(scope.dados.midiasSelecionadas.length >= 10){
+            popupLimite();
         }else{
-            if(midia.selecionado){
-                midia.selecionado = false;
-                for(var i = 0; i < scope.dados.midiasSelecionadas.length;i++){
-                    if(midia.id == scope.dados.midiasSelecionadas[i].id){
-                        scope.dados.midiasSelecionadas.splice(i,1);
-                    }
-                }
+            if(midia.exibirCamera){
+                abrircamera();
             }else{
-                midia.selecionado = true;
-                scope.dados.midiasSelecionadas.push(midia);
+                if(midia.selecionado){
+                    midia.selecionado = false;
+                    for(var i = 0; i < scope.dados.midiasSelecionadas.length;i++){
+                        if(midia.id == scope.dados.midiasSelecionadas[i].id){
+                            scope.dados.midiasSelecionadas.splice(i,1);
+                        }
+                    }
+                }else{
+                    midia.selecionado = true;
+                    scope.dados.midiasSelecionadas.push(midia);
+                }
             }
         }
     }
@@ -278,7 +296,34 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
             });
         }
         scope.dados.arquivoBase64 = arrayFiles;
-        fecharGaleria();
+        fecharGaleria(true);
+    }
+    
+    function fazerCheckin(){
+        DGlobal.publicando = true;
+        Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+    }
+    
+    function gerarHashtag(){
+        var input = $("#input-chip").val();
+        if(input.split(' ').length > 1){
+            addHashDigitando(input.split(' ')[0],true);
+            $("#input-chip").val('');
+        }
+    }
+    
+    function popupLimite(){
+        scope.popupVisibilidade = $ionicPopup.alert({
+            scope:scope,
+            title: 'Limite atingido',
+            template:'<p style="color: black;">Você atingiu o limite máximo de <span class="negrito">10 mídias</span> por publicação</p>',
+            buttons:[
+                {
+                    text:'OK',
+                    type:['button-positive','button-clear'],
+                }
+            ]
+        });
     }
     
     return {
@@ -297,7 +342,9 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         abrirGaleria:abrirGaleria,
         fecharGaleria:fecharGaleria,
         addMidia:addMidia,
-        selecionarImgs:selecionarImgs
+        selecionarImgs:selecionarImgs,
+        fazerCheckin:fazerCheckin,
+        gerarHashtag:gerarHashtag
     };
     
  }]);
