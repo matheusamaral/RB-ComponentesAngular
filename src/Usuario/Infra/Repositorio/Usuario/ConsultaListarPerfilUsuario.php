@@ -19,7 +19,8 @@ class ConsultaListarPerfilUsuario {
                 ->add('l.titulo', 'local')
                 ->add('case when seg.ativo is not null and seg.confirmar_seguir = 1 then 1'
                         . ' when seg.ativo is not null and seg.confirmar_seguir = 0 then 2'
-                        . ' else 0 end', 'seguindo');
+                        . ' else 0 end', 'seguindo')
+                ->add('seg.id', 'seguirId');
         $query->from('usuario', 'u');
         $query->join('hashtag_local', 'hl', 'left')
                 ->on('hl.usuario_id = u.id')
