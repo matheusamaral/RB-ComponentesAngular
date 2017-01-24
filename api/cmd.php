@@ -36,7 +36,7 @@ class Chat implements MessageComponentInterface {
         
         if(!isset($position)){
             $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
-            Conteiner::get('Online')->online($usuarioId);
+//            Conteiner::get('Online')->online($usuarioId);
         }else{
             $this->dadosBanco[$position] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
         }

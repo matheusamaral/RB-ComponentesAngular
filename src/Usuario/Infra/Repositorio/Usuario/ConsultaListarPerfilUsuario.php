@@ -17,8 +17,8 @@ class ConsultaListarPerfilUsuario {
                 ->add('a.nome', 'avatarNome')
                 ->add('a.endereco', 'avatarEndereco')
                 ->add('l.titulo', 'local')
-                ->add('case when seg.ativo is not null and seg.confirmar_seguir = 1 then 1'
-                        . ' when seg.ativo is not null and seg.confirmar_seguir = 0 then 2'
+                ->add('case when seg.confirmar_seguir = 1 then 1'
+                        . ' when seg.confirmar_seguir = 0 then 2'
                         . ' else 0 end', 'seguindo')
                 ->add('seg.id', 'seguirId');
         $query->from('usuario', 'u');

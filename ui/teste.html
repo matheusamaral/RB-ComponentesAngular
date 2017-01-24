@@ -34,15 +34,15 @@ and open the template in the editor.
             console.log("enviar");
 
             conn.send(JSON.stringify({codsessrt:'xiqxMn3uCFmfmbWCG5pxhlHDMOE9JwWvNGF6tne5j9ShELEhKb4Hhn5VWBQ7vz8n2P7QuQqmkvMdVwDOeKsoigjWf7mQTGcam76g',
-                processo:'Mensagens', etapa:'enviarMensagem', 'Mensagens::titulo':'ola tudo bem', 'Mensagens::usuarioMensagemId':'3', 
-                'Mensagens::visibilidadeMensagensId':'2', 'Mensagens::visibilidadeUsuarioId':1}));
+                processo:'Acoes', etapa:'perguntas', 'Perguntas::localId':'6', 'Perguntas::titulo':'teste socket', 
+                'Perguntas::visibilidadeId':'2'}));
             };
             
         iniciar = function(){
         console.log("iniciar");
         
         conn.send(JSON.stringify({codsessrt:'SZB3FSPOSyYwN5WIz4l3nRtNUOlZYpoe1PN1uEva5GEXCjfO5fRS9ya3WoZLeZ43kib4z2BRW42u3GVVffYcwHdWYUdHF3SoQm94'
-            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'37-2-3-2-1'}));
+            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'27-6'}));
         };
         setTimeout(
             iniciar,
