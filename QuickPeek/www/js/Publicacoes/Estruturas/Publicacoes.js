@@ -20,7 +20,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                 </div>\n\
                 <div class="col altura-barra-padding remove-padding" style="padding-top:65px !important">\n\
                     <p class="p-normal-publicacoes">Como está <span class="font-dourada">{{local.dados.localNome}}</span> agora?</p>\n\
-                    <p class="p-sublinhado">Alterar localização</p>\n\
+                    <p ng-click="fazerCheckin()" class="p-sublinhado">Alterar localização</p>\n\
                 </div>\n\
                 <div ng-init="$index == objHash.length - 1 ? importancia = \'!important\' : important = \'\'" style="margin-bottom:{{alturaChatPub+120}}px {{importancia}}"\n\
                 ng-if="!hashClicada" \n\
@@ -67,8 +67,8 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             placeholder="Insira suas hashtags" \n\
                             ng-model="dados.tituloChip" \n\
                             readonly="false"\n\
-                            ng-keypress="verfificaTecla($event)"\n\
                             md-separator-keys="keyCodes"\n\
+                            ng-keyup="gerarHashtag($chip)"\n\
                             md-removable="true"\n\
                             md-on-remove="removerChip($chip)"\n\
                             md-on-add="addHashDigitando($chip)">\n\
@@ -112,7 +112,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                     </div>\n\
                     <div class="container-glr" style="height:{{alturaTela}}px">\n\
                         <div ng-class="{\'padding-top-midias\' : $index == 0}"\n\
-                        ng-repeat="linha in objimg" class="row">\n\
+                        ng-repeat="linha in objimg" class="row" style="padding-bottom:0 !important">\n\
                             <div ng-repeat="img in linha" class="col box-img-glr"\n\
                             ng-click="addMidia(img,$event,$index)"\n\
                             ng-class="{\'addFt\' : img.exibirCamera,\n\

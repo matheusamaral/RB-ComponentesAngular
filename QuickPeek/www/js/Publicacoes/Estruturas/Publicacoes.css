@@ -163,7 +163,7 @@ md-chip md-icon{
 }
 
 .tela-galeria{
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: -1000px;
     width: 100%;
@@ -198,6 +198,7 @@ md-chip md-icon{
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
+    border:3px solid transparent;
 }
 
 .box-img-glr.addFt{
