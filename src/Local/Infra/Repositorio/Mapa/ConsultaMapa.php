@@ -108,7 +108,6 @@ class ConsultaMapa {
                 ->add('case when ch.id != 10 then ch.endereco '
                         . 'when sub.visibilidade_id = 1 then u.endereco '
                         . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
-                        . 'when sub.usuario_id = ? then u.endereco '
                         . 'when u.ativo = 0 then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
                         . 'else a.endereco end', 'categoriaHashtagFoto')
                 ->add('cl.endereco', 'categoriaLocalFoto');
@@ -138,7 +137,7 @@ class ConsultaMapa {
                 ->add('l.id in(' . $locaisId . ')');
         $query->group('l.id');
         $query->order('sub.countHash');
-        $query->addVariaveis([$usuarioId, $tempoHashtag, $usuarioId]);
+        $query->addVariaveis([$tempoHashtag, $usuarioId]);
         return $query->executar();
     }
     

@@ -29,7 +29,7 @@
     
     
     "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Infra\\Repositorio\\ConfiguracoesQuickpeek\\Consultar",
-    "Online": "\\Quickpeek\\Local\\Infra\\Repositorio\\Online\\Online",
+    "Online": "\\Quickpeek\\Local\\Aplicacao\\Online\\Online",
     "ConsultaVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Visibilidade\\ConsultaVisibilidade",
     
     
