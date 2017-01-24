@@ -68,10 +68,10 @@ class EnviarMensagem {
         $agrupamento = $usuarioMensagemId . '-' . $usuarioId . '-' . $visibilidadeMensagensId . '-' . $visibilidadeUsuarioId;
         $agrupamentoUsuario = $usuarioId . '-' . $usuarioMensagemId . '-' . $visibilidadeUsuarioId . '-' . $visibilidadeMensagensId;
         
-        $paginaConversas = 36 . '-' . $usuarioMensagemId;
-        $paginaMensagem[] = 37 . '-' . $agrupamento;
-        $paginaMensagem[] = 37 . '-' . $agrupamentoUsuario;
-        
+        $paginaConversas = 38 . '-' . $usuarioMensagemId;
+        $paginaMensagem[] = 39 . '-' . $agrupamento;
+        $paginaMensagem[] = 39 . '-' . $agrupamentoUsuario;
+
         $cmd = Conteiner::get('Socket');
         
         $dados1 = $cmd->getConexao($usuarioId, $paginaConversas);
@@ -89,6 +89,9 @@ class EnviarMensagem {
         $mensagem['statusMensagem'] = 1;
         $mensagem['endereco'] = $dadosUsuario['usuarioEndereco'];
         $mensagem['nome'] = $dadosUsuario['usuarioNome'];
+        $mensagem['notificacao'] = 0;
+        
+        $this->enviarNotificacaoAlerta($msg);
         
         if($dados1){
             $mensagem['to'] = $dados1['toConexao'][0];
@@ -96,16 +99,42 @@ class EnviarMensagem {
             $cmd->enviarMensagem($mensagem, $mensagem['to']);
         }
         if($dados2){
-            $mensagem2['to'] = $dados2['toConexao'][0];
+            $mensagem['to'] = $dados2['toConexao'][0];
             $mensagem['remetente'] = $dados2['remetente'][0];
-            $cmd->enviarMensagem($mensagem, $mensagem2['to']);
+            $cmd->enviarMensagem($mensagem, $mensagem['to']);
         }
         if($dados3){
-            $mensagem3['to'] = $dados3['toConexao'][0];
+            $mensagem['to'] = $dados3['toConexao'][0];
             $mensagem['remetente'] = $dados3['remetente'][0];
-            $cmd->enviarMensagem($mensagem, $mensagem3['to']);
+            $cmd->enviarMensagem($mensagem, $mensagem['to']);
         }
         
         $msg->setResultadoEtapa(true);
+    }
+    
+    private function enviarNotificacaoAlerta($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        
+        $paginasAlerta[] = 22 . '-' . $usuarioMensagemId;
+        $paginasAlerta[] = 36 . '-' . $usuarioMensagemId;
+        $paginasAlerta[] = 8 . '-' . $usuarioMensagemId;
+        
+        $cmd = Conteiner::get('Socket');
+        for($i = 0; $i < count($paginasAlerta); $i++){
+            $dados[] = $cmd->getConexao($usuarioId, $paginasAlerta[$i]);
+        }
+        
+        if($dados){
+            foreach($dados as $v){
+                $mensagem['to'] = $v['toConexao'][0];
+                $mensagem['from'] = $v['fromConexao'];
+                $mensagem['remetente'] = $v['remetente'][0];
+                $mensagem['notificacao'] = 1;
+                
+                $cmd->enviarMensagem($mensagem, $mensagem['to']);
+            }
+        }
     }
 }

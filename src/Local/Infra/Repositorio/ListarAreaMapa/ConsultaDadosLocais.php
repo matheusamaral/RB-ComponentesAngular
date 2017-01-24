@@ -13,12 +13,13 @@ class ConsultaDadosLocais {
                 ->add('l.longitude', 'longitude')
                 ->add('l.cidade', 'cidade')
                 ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
-                ->add('((count(distinct c.id) * 1) + ((ifnull(m.contagem, 0) + ifnull(hl.contagem, 0)) * 0.9) + (count(distinct ci.id) * 0.8)) * 
-                    (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + 
-                    sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 21/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * 
-                    cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
-		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
-    end)', 'relevancia')
+                 ->add('((count(distinct c.id) * 1) + ((ifnull(m.contagem, 0) + ifnull(hl.contagem, 0)) * 0.9) + (count(distinct ci.id) * 0.8)) 
+                    * (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) 
+                    * sin(radians(l.latitude)))) <= 40 then 21/case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - 
+                    radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) = 0 then 0.01 else 
+                    (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
+                    end else 7/(6371 * acos(cos(radians(?)) * cos(radians(
+                    l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) end)', 'relevancia')
                 ->add('cin.contagem', 'relevancia2')
                 ->add('ifnull(chec.ativo, 0)', 'checkIn')
                 ->add('chec.visibilidade_id', 'visibilidadeCheckIn')
@@ -55,6 +56,7 @@ class ConsultaDadosLocais {
         $query->order('l.id = ' . $localId . ' desc, relevancia desc , relevancia2 desc');
         $query->limit(15);
         $query->addVariaveis([$latitude, $longitude, $latitude,
+            $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $latitudeLocal, $longitudeLocal, $latitudeLocal,
             $latitudeLocal, $longitudeLocal, $latitudeLocal,
