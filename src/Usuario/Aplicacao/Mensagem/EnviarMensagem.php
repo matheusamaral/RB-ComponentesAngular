@@ -92,14 +92,17 @@ class EnviarMensagem {
         
         if($dados1){
             $mensagem['to'] = $dados1['toConexao'][0];
+            $mensagem['remetente'] = $dados1['remetente'][0];
             $cmd->enviarMensagem($mensagem, $mensagem['to']);
         }
         if($dados2){
             $mensagem2['to'] = $dados2['toConexao'][0];
+            $mensagem['remetente'] = $dados2['remetente'][0];
             $cmd->enviarMensagem($mensagem, $mensagem2['to']);
         }
         if($dados3){
             $mensagem3['to'] = $dados3['toConexao'][0];
+            $mensagem['remetente'] = $dados3['remetente'][0];
             $cmd->enviarMensagem($mensagem, $mensagem3['to']);
         }
         
