@@ -29,7 +29,7 @@
     
     
     "ConfiguracoesQuickpeek": "\\Quickpeek\\Local\\Infra\\Repositorio\\ConfiguracoesQuickpeek\\Consultar",
-    "Online": "\\Quickpeek\\Local\\Aplicacao\\Online\\Online",
+    "StatusChat": "\\Quickpeek\\Acoes\\Aplicacao\\StatusChat\\StatusChat",
     "ConsultaVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Visibilidade\\ConsultaVisibilidade",
     
     

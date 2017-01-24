@@ -36,12 +36,12 @@ class Chat implements MessageComponentInterface {
         
         if(!isset($position)){
             $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
-//            Conteiner::get('Online')->online($usuarioId);
         }else{
             $this->dadosBanco[$position] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
         }
         
         Conteiner::registrar('DadosBanco', $this->dadosBanco);
+        Conteiner::get('StatusChat')->setarStatus($usuarioId, 1);
     }
     
     public function getConexao($usuarioId, $pagina){
@@ -95,12 +95,13 @@ class Chat implements MessageComponentInterface {
     
     public function onClose(ConnectionInterface $conn){
         
-//        foreach($this->dadosBanco as $k=>$v){
-//            if($v['conexao'] == $conn->resourceId){
-//                unset($this->dadosBanco[$k]);
-//                $this->dadosBanco = array_values($this->dadosBanco);
-//            }
-//        }
+        foreach($this->dadosBanco as $k=>$v){
+            if($v['conexao'] == $conn->resourceId){
+                Conteiner::get('StatusChat')->setarStatus($v['usuario'], 0);
+                unset($this->dadosBanco[$k]);
+                $this->dadosBanco = array_values($this->dadosBanco);
+            }
+        }
         
         $this->clients->detach($conn);
         echo "Connection {$conn->resourceId} has disconnected\n";

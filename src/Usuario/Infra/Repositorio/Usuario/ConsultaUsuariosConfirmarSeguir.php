@@ -19,7 +19,7 @@ class ConsultaUsuariosConfirmarSeguir {
                 ->on('s.confirmar_seguir = 0')
                 ->on('s.ativo = 1');
         $query->where('u.ativo = 1');
-        $query->order('s.momento', 'desc');
+        $query->order('s.id', 'desc');
         $query->addVariaveis($usuarioId);
         return $query->executar();
     }
