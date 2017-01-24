@@ -1,34 +1,34 @@
 <?php
 namespace Quickpeek\Acoes\Aplicacao\Seguir;
 use Rubeus\ContenerDependencia\Conteiner;
-use Rubeus\ManipulacaoEntidade\Dominio\ConteinerEntidade;
 
 class Seguir {
     
     public function seguir($msg){
         
-        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioSeguirId = $msg->getCampo('Seguir::usuarioSeguirId')->get('valor');
-        
-        $entidade = ConteinerEntidade::getInstancia('Seguir');
-        $entidade->setUsuarioId($usuarioId);
-        $entidade->setUsuarioSeguirId($usuarioSeguirId);
-        $entidade->carregar();
         
         $contaPrivada = Conteiner::get('ConsultaContaPrivada')->consultar($usuarioSeguirId);
         
         if($contaPrivada == 0){
-            $entidade->setConfirmarSeguir(1);
-            $entidade->setMomentoConfirmarSeguir(date('Y-m-d H:i:s'));
+            $msg->setCampo('Seguir::confirmarSeguir', 1);
+            $msg->setCampo('Seguir::momentoConfirmarSeguir', date('Y-m-d H:i:s'));
             
-            $this->enviarNotificacaoSeguindo($msg);
+            if($this->cadastrar($msg)){
+                $this->enviarNotificacaoSeguindo($msg);
+            }
         }else{
-            $this->enviarNotificacao($msg);
+            if($this->cadastrar($msg)){
+                $this->enviarNotificacao($msg);
+            }
         }
+    }
+    
+    private function cadastrar($msg){
         
-        $entidade->setAtivo(1);
-        $entidade->setMomento(date('Y-m-d H:i:s'));
-        $entidade->salvar();
+        $msg->setCampo('entidade', 'Seguir');
+        $msg->setCampo('Seguir::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
+        return Conteiner::get('Cadastro')->cadastrar($msg);
     }
     
     private function enviarNotificacaoSeguindo($msg){
