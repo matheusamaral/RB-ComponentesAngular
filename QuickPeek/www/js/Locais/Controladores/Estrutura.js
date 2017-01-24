@@ -45,9 +45,10 @@ angular.module('QuickPeek.Estrutura.Locais', [
 //    } 
     
     function montaHashtags(){
-        if(scope.locais  && scope.locais.length)
-        for(var i = 0; i < scope.locais.length;i++){
-            scope.locais[i].linhasHashs = montaLinhasHashs(scope.locais[i].hashtags);
+        if(scope.locais  && scope.locais.length){
+            for(var i = 0; i < scope.locais.length;i++){
+                scope.locais[i].linhasHashs = montaLinhasHashs(scope.locais[i].hashtags);
+            }
         }
     }
     
