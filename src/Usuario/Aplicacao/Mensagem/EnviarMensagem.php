@@ -73,59 +73,36 @@ class EnviarMensagem {
         $paginaMensagem[] = 37 . '-' . $agrupamentoUsuario;
         
         $cmd = Conteiner::get('Socket');
+        
         $dados1 = $cmd->getConexao($usuarioId, $paginaConversas);
         $dados2 = $cmd->getConexao($usuarioId, $paginaMensagem[0]);
         $dados3 = $cmd->getConexao($usuarioId, $paginaMensagem[1]);
         
-        $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeMensagensId);
-
-        for($i = 0; $i < count($dados1['toConexao']); $i++){
-            $mensagem[$i]['to'] = $dados1['toConexao'][$i];
-            $mensagem[$i]['from'] = $dados1['fromConexao'];
-            $mensagem[$i]['pagina'] = $dados1['paginas'][$i];
-            $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
-            $mensagem[$i]['id'] = $msg->getCampo('Mensagens::id')->get('valor');
-            $mensagem[$i]['mensagem'] = $msg->getCampo('Mensagens::titulo')->get('valor');
-            $mensagem[$i]['enderecoMensagem'] = $msg->getCampo('Mensagens::endereco')->get('valor');
-            $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
-            $mensagem[$i]['statusMensagem'] = 1;
-            $mensagem[$i]['endereco'] = $dadosUsuario['usuarioEndereco'];
-            $mensagem[$i]['nome'] = $dadosUsuario['usuarioNome'];
-
-            $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+        $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeMensagensId);
+        
+        $mensagem['from'] = $dados3['fromConexao'];
+        $mensagem['usuarioId'] = $dadosUsuario['usuarioId'];
+        $mensagem['id'] = $msg->getCampo('Mensagens::id')->get('valor');
+        $mensagem['mensagem'] = $msg->getCampo('Mensagens::titulo')->get('valor');
+        $mensagem['enderecoMensagem'] = $msg->getCampo('Mensagens::endereco')->get('valor');
+        $mensagem['momento'] = date('Y-m-d H:i:s');
+        $mensagem['statusMensagem'] = 1;
+        $mensagem['endereco'] = $dadosUsuario['usuarioEndereco'];
+        $mensagem['nome'] = $dadosUsuario['usuarioNome'];
+        
+        if($dados1){
+            $mensagem['to'] = $dados1['toConexao'][0];
+            $cmd->enviarMensagem($mensagem, $mensagem['to']);
+        }
+        if($dados2){
+            $mensagem2['to'] = $dados2['toConexao'][0];
+            $cmd->enviarMensagem($mensagem, $mensagem2['to']);
+        }
+        if($dados3){
+            $mensagem3['to'] = $dados3['toConexao'][0];
+            $cmd->enviarMensagem($mensagem, $mensagem3['to']);
         }
         
-        for($i = 0; $i < count($dados2['toConexao']); $i++){
-            $mensagem[$i]['to'] = $dados2['toConexao'][$i];
-            $mensagem[$i]['from'] = $dados2['fromConexao'];
-            $mensagem[$i]['pagina'] = $dados2['paginas'][$i];
-            $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
-            $mensagem[$i]['id'] = $msg->getCampo('Mensagens::id')->get('valor');
-            $mensagem[$i]['mensagem'] = $msg->getCampo('Mensagens::titulo')->get('valor');
-            $mensagem[$i]['enderecoMensagem'] = $msg->getCampo('Mensagens::endereco')->get('valor');
-            $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
-            $mensagem[$i]['statusMensagem'] = 1;
-            $mensagem[$i]['endereco'] = $dadosUsuario['usuarioEndereco'];
-            $mensagem[$i]['nome'] = $dadosUsuario['usuarioNome'];
-
-            $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
-        }
-        
-        for($i = 0; $i < count($dados3['toConexao']); $i++){
-            $mensagem[$i]['to'] = $dados3['toConexao'][$i];
-            $mensagem[$i]['from'] = $dados3['fromConexao'];
-            $mensagem[$i]['pagina'] = $dados3['paginas'][$i];
-            $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
-            $mensagem[$i]['id'] = $msg->getCampo('Mensagens::id')->get('valor');
-            $mensagem[$i]['mensagem'] = $msg->getCampo('Mensagens::titulo')->get('valor');
-            $mensagem[$i]['enderecoMensagem'] = $msg->getCampo('Mensagens::endereco')->get('valor');
-            $mensagem[$i]['momento'] = date('Y-m-d H:i:s');
-            $mensagem[$i]['statusMensagem'] = 1;
-            $mensagem[$i]['endereco'] = $dadosUsuario['usuarioEndereco'];
-            $mensagem[$i]['nome'] = $dadosUsuario['usuarioNome'];
-            
-            $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
-        }
         $msg->setResultadoEtapa(true);
     }
 }

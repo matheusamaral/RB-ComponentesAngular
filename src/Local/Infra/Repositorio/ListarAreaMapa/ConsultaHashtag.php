@@ -46,7 +46,7 @@ class ConsultaHashtag {
                 ->add('l.id = ?')
                 ->add('hl.momento > date_add(now(), INTERVAL -? HOUR)');
         $query->group('h.id');
-        $query->order('hashtagQtd desc hl.momento');
+        $query->order('hashtagQtd desc, hl.id');
         $query->addVariaveis([$usuarioId, $usuarioId, $usuarioId, $localId, $tempo]);
         return $query->executar();
     }
