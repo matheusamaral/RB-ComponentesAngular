@@ -248,3 +248,13 @@ md-chip md-icon{
     color: #FFFFFF;
     line-height: 18px;
 }
+
+.md-chips .md-chip-input-container{
+    padding: 0 !important;
+}
+
+#chips-finais md-chip-template strong{
+    max-width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -53,11 +53,15 @@ angular.module('QuickPeek.Acoes.Locais', [
     
     function voltarMapa(){
         if(DGlobal.voltarLocais)delete DGlobal.voltarLocais;
-        if(DGlobal.coordenadasAtual){
-            Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        if(DGlobal.voltarPesquisa){
+            Pagina.navegar({idPage:28,paramAdd:'?usuarioId='+scope.dadosUser.usuarioId+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
         }else{
-            var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-            navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+            if(DGlobal.coordenadasAtual){
+                Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            }else{
+                var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
+                navigator.geolocation.getCurrentPosition(onSuccess,onError,options);
+            }
         }
     }
     

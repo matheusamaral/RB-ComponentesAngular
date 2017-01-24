@@ -20,7 +20,7 @@ angular.module('QuickPeek.HTML.Notificacoes', [
                             <p class="font-cinza text-left">Aprove ou ignore solicitações</p>\n\
                         </div>\n\
                     </div>\n\
-                    <div style="padding-top:80px !important;" ng-if="dados.seguir.contagem == 0" class="altura-barra row padding-padrao-contas">\n\
+                    <div style="padding-top:80px !important;" ng-if="dados.seguir.contagem < 1" class="altura-barra row padding-padrao-contas">\n\
                         <div class="col text-center">\n\
                             <i class="icone-padrao icon ion-alert-circled"></i>\n\
                             <p style="color:#b0b0b0">Nenhum pedido pendente</p>\n\

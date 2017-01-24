@@ -61,7 +61,7 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 8});
+                Pagina.navegar({idPage:8,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);

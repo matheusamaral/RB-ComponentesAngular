@@ -38,7 +38,7 @@ angular.module('QuickPeek.HTML.NotificacoesSeguir', [
                 <div style="padding-top:80px !important;" ng-if="dados.pessoas.length == 0" class="altura-barra row padding-padrao-contas">\n\
                     <div class="col text-center">\n\
                         <i class="icone-padrao icon ion-alert-circled"></i>\n\
-                        <p style="color:#b0b0b0">Nenhuma pessoa bloqueada</p>\n\
+                        <p style="color:#b0b0b0">Nenhuma nova solicitação</p>\n\
                     </div>\n\
                 </div>';
     };        

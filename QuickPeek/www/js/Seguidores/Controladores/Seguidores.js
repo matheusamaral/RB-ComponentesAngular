@@ -14,6 +14,8 @@ angular.module('QuickPeek.Seguidores', [
         $scope.voltarPerfil = SeguidoresAcoes.voltarPerfil;
         $scope.seguir = SeguidoresAcoes.seguir;
         $scope.deixarSeguir = SeguidoresAcoes.deixarSeguir;
+        $scope.cancelarSolicitacao = SeguidoresAcoes.cancelarSolicitacao;
+        $scope.irPerfil = SeguidoresAcoes.irPerfil;
     }
 ])
 

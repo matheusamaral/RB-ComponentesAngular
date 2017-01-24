@@ -53,22 +53,22 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                     class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
                     ng-repeat="pessoa in pessoas">\n\
                         <div class="col-25 remove-padding">\n\
-                            <div ng-class="{\'borda-dourada\' : dadosUser.usuarioId == pessoa.usuarioId}" style="background-image:url({{pessoa}})" class="btn-redondo-medio"></div>\n\
+                            <div ng-class="{\'borda-dourada\' : dadosUser.usuarioId == pessoa.usuarioId}" style="background-image:url({{pessoa.endereco}})" class="btn-redondo-medio"></div>\n\
                         </div>\n\
                         <div class="col remove-padding col-center">\n\
                             <p class="font-preta negrito text-left">{{pessoa.nome}}</p>\n\
                         </div>\n\
                         <div class="remove-padding col-center">\n\
-                            <button ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
+                            <button ng-click="seguir(pessoa.usuarioId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
                                 <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                             </button>\n\
-                            <button ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 2" class="btn-seguidores button button-outline button-positive">\n\
+                            <button ng-click="cancelarSolicitacao(pessoa.seguirId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 2" class="btn-seguidores button button-outline button-positive">\n\
                                 Solicitado\n\
                             </button>\n\
                             <button ng-disabled="dadosUser.usuarioId == pessoa.usuarioId" ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId == pessoa.usuarioId" class="btn-voce btn-seguidores button button-outline button-positive">\n\
-                                <i class="icon ion-ios-plus-empty"></i>Voce\n\
+                                Voce\n\
                             </button>\n\
-                            <button ng-click="deixarSeguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
+                            <button ng-click="deixarSeguir(pessoa.usuarioId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
                                 <i class="icon ion-checkmark"></i>Seguindo\n\
                             </button>\n\
                         </div>\n\
@@ -85,7 +85,7 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                     </div>\n\
                 </div>\n\
                 <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
-                    <div ng-click="irLocal(local.localId)" ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
+                    <div ng-click="irLocal(local.localId)" ng-repeat="local in locais.ultimosLocais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
                         <div ng-if="local.presente == 1" class="col">\n\
                             <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
                             <p ng-if="local.localNome" class="p-titulo-local">{{local.localNome}}</p>\n\
@@ -94,7 +94,6 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                             </div>\n\
                         </div>\n\
                         <div ng-if="local.presente != 1" class="col">\n\
-                            <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
                             <p ng-if="local.localNome" class="p-titulo-local">{{local.localNome}}</p>\n\
                             <div class="row remove-padding" style="padding-top:3px !important">\n\
                                 <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia >= 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia >= 1">{{local.distancia.split(\'.\')[0]}} km de distância - {{local.cidade}}</span>\n\
