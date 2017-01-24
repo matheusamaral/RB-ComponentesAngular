@@ -32,7 +32,7 @@ angular.module('QuickPeek.Acoes.Perguntar', [
     function executarResposta(resposta){
         console.log('resposta');
         console.log(resposta);
-        if(resposta){
+        if(resposta.remetente == 1){
             voltarLocais(resposta);
         }
     }
