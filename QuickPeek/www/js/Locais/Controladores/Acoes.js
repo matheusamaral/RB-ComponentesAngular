@@ -111,7 +111,11 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function curtirHashtag(hash,localId){
-        var obj = {hashtagId:hash.hashtagId,localId:localId};
+        var obj = {
+            hashtagId:hash.hashtagId,
+            localId:localId,
+            categoriaHashtagId:hash.categoriaId
+        };
         LocaisRequisicoes.set({acaoPosterior:LocaisEstrutura.montaHashtags,dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successCurtirHashtag}).curtirHashTag();
     }
     
