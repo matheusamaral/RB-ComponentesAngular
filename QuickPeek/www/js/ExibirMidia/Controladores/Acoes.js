@@ -16,7 +16,7 @@ angular.module('QuickPeek.Acoes.ExibirMidia', [
     };
     
     function voltarLocais(){
-        Pagina.navegar({idPage:24,paramAdd:'?localId='+DGlobal.localAtual+'&atualizando=0'});
+        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
     }
     
     function inicializar(){

@@ -2,6 +2,7 @@
 <html ng-app="QuickPeek">
   <head>
     <meta charset="utf-8">
+
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     
     <title></title>
@@ -356,13 +357,21 @@
     <script src="js/Notificacoes/Estruturas/Notificacoes.js"></script>
     <script src="js/Notificacoes/Requisicoes/Notificacoes.js"></script>
     <link href="js/Notificacoes/Estruturas/Notificacoes.css" rel="stylesheet"> 
+    
+    <!--NOTIFICACOES SEGUIR-->
+    <script src="js/NotificacoesSeguir/Controladores/NotificacoesSeguir.js"></script>
+    <script src="js/NotificacoesSeguir/Controladores/Estrutura.js"></script>
+    <script src="js/NotificacoesSeguir/Controladores/Acoes.js"></script>
+    <script src="js/NotificacoesSeguir/Estruturas/NotificacoesSeguir.js"></script>
+    <script src="js/NotificacoesSeguir/Requisicoes/NotificacoesSeguir.js"></script>
+    <link href="js/NotificacoesSeguir/Estruturas/NotificacoesSeguir.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
         DGlobal.acaoCliente = {classe:"pag-loading-inicial", acao:"LoadingInicialCtrl"};
         //DGlobal.acaoCliente = {classe:"pag-filtro-mapa", acao:"FiltroMapaCtrl"};
         var refAmbienteG = 'localhost:8100/';
-        var refAmbienteReqG = 'http://192.168.0.104:8000/QuickPeek/quickpeek/api';
+        var refAmbienteReqG = 'http://192.168.0.121:8000/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
         var GDados = {};
         var GMenu = {};

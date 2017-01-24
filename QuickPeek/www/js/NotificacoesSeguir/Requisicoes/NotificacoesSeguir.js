@@ -1,29 +1,27 @@
 'use strict';
 
-angular.module('QuickPeek.Requisicao.Publicacoes', [
+angular.module('QuickPeek.Requisicao.NotificacoesSeguir', [
     'RB.pagina'
 ])
  
-.factory('PublicacoesRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+.factory('NotificacoesSeguirRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
         
         var dados;
         var scope;
         var acaoSuccess;
-        var acaoPosterior = false;
 
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
             acaoSuccess = obj.acaoSuccess;
-            if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
             return this;
         };
 
-        function publicar(){
+        function confirmar(){
             RBLoadingMobile.show();
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Acoes/publicar",
+                url: Config.getRefAmbienteReq()+"/Acoes/confirmarSeguir",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -34,15 +32,19 @@ angular.module('QuickPeek.Requisicao.Publicacoes', [
             GCS.conectar(obj);
         };
         
-        function successPublicar(objRetorno){
+        function successConfirmar(objRetorno){
             RBLoadingMobile.hide();
-            //alert(JSON.stringify(objRetorno));
-            if(objRetorno.success === true){
-                Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true) {
+                for(var i = 0; i < scope.dados.pessoas.length;i++){
+                    if(dados.seguirId == scope.dados.pessoas[i].seguirId){
+                        scope.dados.pessoas.splice(i,1);
+                    }
+                }
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
-                else OpenToast('Não foi possível realizar esta publicação');
+                else OpenToast('Não foi possível confirmar esta pessoa!');
             }
         };
         
@@ -59,8 +61,8 @@ angular.module('QuickPeek.Requisicao.Publicacoes', [
         
         return {
             set: set,
-            publicar: publicar,
-            successPublicar: successPublicar
+            confirmar: confirmar,
+            successConfirmar: successConfirmar
         };
                            
 }]);     

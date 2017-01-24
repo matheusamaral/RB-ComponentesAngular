@@ -306,7 +306,7 @@
         <acaoCliente classe="pag-perguntar" acao="PerguntarCtrl" title="Faça um pergunta"/>
     </pagina>   
     
-    <pagina id="36" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="notificacoes">
+    <pagina id="36" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="notificacoes">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -314,6 +314,16 @@
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-notificacoes" acao="NotificacoesCtrl" title="Midias"/>
+    </pagina> 
+    
+    <pagina id="37" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="notificacoes-seguir">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarUsuariosConfirmarSeguir" objeto='seguir'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-notificacoes-seguir" acao="NotificacoesSeguirCtrl" title="Seguir pendentes"/>
     </pagina> 
     
 </root>

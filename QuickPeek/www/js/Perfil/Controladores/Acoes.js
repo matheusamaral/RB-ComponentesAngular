@@ -129,6 +129,11 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:36});
     }
     
+    function cancelarSolicitacao(id){
+        var obj = {seguirId:id};
+        PerfilRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PerfilRequisicoes.successCancelarSeguir}).cancelarSeguir();
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -145,7 +150,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
         converteTempo:converteTempo,
         irCheckin:irCheckin,
         checkInLocal:checkInLocal,
-        irNotificacoes:irNotificacoes
+        irNotificacoes:irNotificacoes,
+        cancelarSolicitacao:cancelarSolicitacao
     };
     
  }]);
