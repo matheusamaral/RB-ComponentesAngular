@@ -14,13 +14,15 @@ class ConsultaMapa {
                 ->add('chec.visibilidade_id', 'visibilidadeCheckIn')
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
-                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))', 'distancia')
-                ->add('((count(distinct c.id) * 1) + ((ifnull(m.contagem, 0) + ifnull(hl.contagem, 0)) * 0.9) + (count(distinct ci.id) * 0.8)) * 
-                    (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + 
-                    sin(radians(?)) * sin(radians(l.latitude)))) <= 40 then 21/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * 
-                    cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
-		else 7/(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
-    end)', 'relevancia')
+                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) '
+                        . '* sin(radians(l.latitude))))', 'distancia')
+                ->add('((count(distinct c.id) * 1) + ((ifnull(m.contagem, 0) + ifnull(hl.contagem, 0)) * 0.9) + (count(distinct ci.id) * 0.8)) 
+                    * (case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) 
+                    * sin(radians(l.latitude)))) <= 40 then 21/case when (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - 
+                    radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) = 0 then 0.01 else 
+                    (6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude))))
+                    end else 7/(6371 * acos(cos(radians(?)) * cos(radians(
+                    l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) end)', 'relevancia')
                 ->add('(count(distinct cin.id))', 'relevancia2')
                 ->add('l.foto', 'fotoLocal');
         $query->from('local', 'l');
@@ -50,6 +52,7 @@ class ConsultaMapa {
         $query->order('distancia, relevancia desc, relevancia2 desc');
         $query->limit(50);
         $query->addVariaveis([ 
+            $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
             $latitude, $longitude, $latitude, 
@@ -108,6 +111,7 @@ class ConsultaMapa {
                 ->add('case when ch.id != 10 then ch.endereco '
                         . 'when sub.visibilidade_id = 1 then u.endereco '
                         . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
+                        . "when sub.usuario_id = $usuarioId and sub.visibilidade_id != 3 then u.endereco "
                         . 'when u.ativo = 0 then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
                         . 'else a.endereco end', 'categoriaHashtagFoto')
                 ->add('cl.endereco', 'categoriaLocalFoto');

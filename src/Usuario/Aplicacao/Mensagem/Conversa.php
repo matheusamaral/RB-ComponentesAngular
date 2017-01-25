@@ -34,25 +34,10 @@ class Conversa {
         
         if($mensagens){
             $this->setarVisualizada($msg);
-            $dados['online'] = $this->verificarOnline($msg);
-            $dados['mensagens'] = $mensagens;
-            $msg->setResultadoEtapa(true, false, ['dados'=>$dados]);
+            $msg->setResultadoEtapa(true, false, ['dados'=>$mensagens]);
         }else{
             $msg->setResultadoEtapa(false);
         }
-    }
-    
-    private function verificarOnline($msg){
-        
-        $usuarioConversaId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
-        $dadosBanco = Conteiner::get('DadosBanco');
-        
-        foreach($dadosBanco as $v){
-            if($v['usuario'] == $usuarioConversaId){
-                return 1;
-            }
-        }
-        return 0;
     }
     
     private function setarVisualizada($msg){

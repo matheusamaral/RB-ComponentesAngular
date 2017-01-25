@@ -7,7 +7,7 @@ class StatusChat {
     public function setarStatus($usuarioId, $status){
         
         $msg = Conteiner::get('Mensagem');
-        $pagina = 37 . '-' . $usuarioId;
+        $pagina = 39 . '-' . $usuarioId;
         $dadosBanco = Conteiner::get('DadosBanco');
         
         foreach($dadosBanco as $v){

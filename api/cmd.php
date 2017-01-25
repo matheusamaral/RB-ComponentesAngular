@@ -103,6 +103,7 @@ class Chat implements MessageComponentInterface {
                 Conteiner::get('StatusChat')->setarStatus($v['usuario'], 0);
                 unset($this->dadosBanco[$k]);
                 $this->dadosBanco = array_values($this->dadosBanco);
+                Conteiner::registrar('DadosBanco', $this->dadosBanco);
             }
         }
         

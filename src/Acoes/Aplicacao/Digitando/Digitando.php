@@ -13,9 +13,9 @@ class Digitando {
         
         $cmd = Conteiner::get('Socket');
         if($perguntaId){
-            $pagina = '34' . '-' . $perguntaId;
+            $pagina = 34 . '-' . $perguntaId;
         }elseif($agrupamento){
-            $pagina = '37' . '-' . $agrupamento;
+            $pagina = 39 . '-' . $agrupamento;
         }
         
         $dados = $cmd->getConexao($usuarioId, $pagina);

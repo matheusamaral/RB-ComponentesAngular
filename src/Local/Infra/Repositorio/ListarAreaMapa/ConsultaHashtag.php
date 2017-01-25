@@ -14,6 +14,7 @@ class ConsultaHashtag {
                 ->add('case when ch.id != 10 then ch.endereco '
                         . 'when hl.visibilidade_id = 1 then u.endereco '
                         . 'when hl.visibilidade_id = 2 and s.id is not null then u.endereco '
+                        . "when hl.usuario_id = $usuarioId and hl.visibilidade_id != 3 then u.endereco "
                         . 'when u.ativo = 0 then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
                         . 'else a.endereco end', 'categoriaEndereco')
                 ->add('case when hlo.id is null then 0 else 1 end', 'jaCurtiu');
