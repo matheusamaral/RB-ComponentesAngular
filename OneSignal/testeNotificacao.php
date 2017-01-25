@@ -54,10 +54,9 @@ $notificacao = new testeNotificacao();
 $response = $notificacao->enviar(array('a40228d5-05a8-4921-85a8-f1b74749ee8d'),null,"Sergio Lanches Seu pedido saiu para entrega.",1);
 var_dump("resposta=>",$response);
 
-	$return["allresponses"] = $response;
-	$return = json_encode( $return);
-	
-        var_dump("\n\nJSON received:\n");
-	var_dump($return);
-        var_dump("\n");
-       
+$return["allresponses"] = $response;
+$return = json_encode( $return);
+
+var_dump("\n\nJSON received:\n");
+var_dump($return);
+var_dump("\n");

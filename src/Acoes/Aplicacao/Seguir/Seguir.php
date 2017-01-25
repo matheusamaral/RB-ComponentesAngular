@@ -16,10 +16,12 @@ class Seguir {
             
             if($this->cadastrar($msg)){
                 $this->enviarNotificacaoSeguindo($msg);
+                $msg->setResultadoEtapa(true, false, ['aceite'=>1]);
             }
         }else{
             if($this->cadastrar($msg)){
                 $this->enviarNotificacao($msg);
+                $msg->setResultadoEtapa(true, false, ['aceite'=>0]);
             }
         }
     }

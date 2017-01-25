@@ -59,9 +59,53 @@ class Conversa {
             $msg->setCampo('Mensagens::id', $mensagensId);
             $msg->setCampo('Mensagens::statusMensagemId', $status);
             $msg->setCampo('Mensagens::momentoVisualizado', $momento);
-            Conteiner::get('Cadastro')->cadastrar($msg);
+            $cad = Conteiner::get('Cadastro')->cadastrar($msg);
+            if($cad){
+                $this->enviarVisualizada($msg, $mensagensId);
+            }
         }else{
             $msg->setResultadoEtapa(false);
         }
+    }
+    
+    private function enviarVisualizada($msg, $mensagensId){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
+        
+        
+        $paginas[] = 39 . '-' . $usuarioMensagemId . '-' . $usuarioId . '-' . $visibilidadeMensagensId . '-' . $visibilidadeUsuarioId;
+        $paginas[] = 39 . '-' . $usuarioId . '-' . $usuarioMensagemId . '-' . $visibilidadeUsuarioId . '-' . $visibilidadeMensagensId;
+        
+        $cmd = Conteiner::get('Socket');
+        
+        $dados1 = $cmd->getConexao($usuarioId, $paginas[0]);
+        $dados2 = $cmd->getConexao($usuarioId, $paginas[1]);
+        
+        for($i = 0; $i < count($dados1['toConexao']); $i++){
+            
+            $mensagem[$i]['to'] = $dados1['toConexao'][$i];
+            $mensagem[$i]['from'] = $dados1['fromConexao'];
+            $mensagem[$i]['remetente'] = $dados1['remetente'][$i];
+            $mensagem[$i]['visualizada'] = 1;
+            $mensagem[$i]['mensagensId'] = $mensagensId;
+            
+            $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+        }
+        
+        for($i = 0; $i < count($dados2['toConexao']); $i++){
+            
+            $mensagem2[$i]['to'] = $dados2['toConexao'][$i];
+            $mensagem2[$i]['from'] = $dados2['fromConexao'];
+            $mensagem2[$i]['remetente'] = $dados2['remetente'][$i];
+            $mensagem2[$i]['visualizada'] = 1;
+            $mensagem2[$i]['mensagensId'] = $mensagensId;
+            
+            $cmd->enviarMensagem($mensagem2[$i], $mensagem2[$i]['to']);
+        }
+        
+        $msg->setResultadoEtapa(true);
     }
 }
