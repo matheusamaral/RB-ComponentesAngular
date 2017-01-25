@@ -1,7 +1,10 @@
 <?php
-namespace OneSignal;
+namespace Quickpeek\OneSignal;
+ini_set('display_startup_errors',1);
+ini_set('display_errors',1);
+error_reporting(-1);
 
-class NotificacaoGeral{
+class testeNotificacao {
       
     public function enviar($idNuvem, $img, $msg, $id=1){
         $content = array(
@@ -47,7 +50,7 @@ class NotificacaoGeral{
 }
 
 var_dump("entrou");
-$notificacao = new NotificacaoGeral();
+$notificacao = new testeNotificacao();
 $response = $notificacao->enviar(array('a40228d5-05a8-4921-85a8-f1b74749ee8d'),null,"Sergio Lanches Seu pedido saiu para entrega.",1);
 var_dump("resposta=>",$response);
 
