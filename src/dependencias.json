@@ -99,6 +99,7 @@
     "Search": "\\Quickpeek\\Acoes\\Aplicacao\\Gif\\Search",
     "ListarHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarHashtag",
     "Digitando": "\\Quickpeek\\Acoes\\Aplicacao\\Digitando\\Digitando",
+    "DigitandoMensagens": "\\Quickpeek\\Acoes\\Aplicacao\\Digitando\\DigitandoMensagens",
     
     
     "ListarSeguidores": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarSeguidores",

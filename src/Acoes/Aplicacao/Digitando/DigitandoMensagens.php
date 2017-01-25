@@ -2,22 +2,21 @@
 namespace Quickpeek\Acoes\Aplicacao\Digitando;
 use Rubeus\ContenerDependencia\Conteiner;
 
-class Digitando {
+class DigitandoMensagens {
     
-    public function digitando($msg){
+    public function digitandoMensagens($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $perguntaId = $msg->getCampo('PerguntaId')->get('valor');
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
-        
+        $array = explode('-', $msg->getCampo('Agrupamento')->get('valor'));
+        $visibilidadeMensagensId = $msg->getCampo('VisibilidadeMensagensId')->get('valor');
         $cmd = Conteiner::get('Socket');
         
-        $pagina = 34 . '-' . $perguntaId;
+        $pagina = 39 . '-' . $array[1] . '-' . $array[0] . '-' . $array[3] . '-' . $array[2];
         
         $dados = $cmd->getConexao($usuarioId, $pagina);
         
         if($dados){
-            $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeId);
+            $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeMensagensId);
             
             for($i = 0; $i < count($dados['toConexao']); $i++){
                 $mensagem[$i]['to'] = $dados['toConexao'][$i];

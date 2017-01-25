@@ -65,10 +65,21 @@ class Respostas {
     private function setarVisualizada($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $respostasId = $msg->getCampo('Respostas::id')->get('valor');
+        $respostaId = $msg->getCampo('Respostas::id')->get('valor');
+        $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        
+        $pagina = 34 . '-' . $perguntaId;
+        
+        $cmd = Conteiner::get('Socket');
+        $dados = $cmd->getConexao($usuarioId, $pagina);
+        
+        foreach($dados['usuarios'] as $v){
+            $respostasId[] = $respostaId;
+            $usuarios[] = $dados['usuarios'];
+        }
         
         $msg->setCampo('entidade', 'RespostasVisualizadas');
-        $msg->setCampo('RespostasVisualizadas::usuarioId', $usuarioId);
+        $msg->setCampo('RespostasVisualizadas::usuarioId', $usuarios);
         $msg->setCampo('RespostasVisualizadas::respostasId', $respostasId);
         Conteiner::get('Cadastro')->cadastrar($msg);
     }
