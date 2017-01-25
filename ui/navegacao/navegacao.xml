@@ -326,4 +326,13 @@
         <acaoCliente classe="pag-notificacoes-seguir" acao="NotificacoesSeguirCtrl" title="Seguir pendentes"/>
     </pagina> 
     
+    <pagina id="38" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="privacidade-resposta">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-privacidade-respostas" acao="PrivacidadeRespostasCtrl" title="Seguir pendentes"/>
+    </pagina> 
+    
 </root>

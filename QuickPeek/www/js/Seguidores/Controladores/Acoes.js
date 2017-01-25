@@ -2,11 +2,12 @@
 
 angular.module('QuickPeek.Acoes.Seguidores', [ 
     'RB.pagina',
-    'QuickPeek.Requisicao.Seguidores'
+    'QuickPeek.Requisicao.Seguidores',
+    'RB.validacoesPadroes'
 ])
 
-.factory('SeguidoresAcoes', ['Pagina','SeguidoresRequisicoes',
-    function(Pagina,SeguidoresRequisicoes){
+.factory('SeguidoresAcoes', ['Pagina','SeguidoresRequisicoes','VP',
+    function(Pagina,SeguidoresRequisicoes,VP){
     var scope;  
     
     function setScope(obj){
@@ -15,24 +16,40 @@ angular.module('QuickPeek.Acoes.Seguidores', [
     };
     
     function voltarPerfil(){
-        Pagina.navegar({idPage:8});
+        Pagina.navegar({idPage:8,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     }
     
-    function seguir(id){
+    function seguir(id,evento){
+        VP.pararEvento(evento);
         var obj = {usuarioSeguirId:id};
         SeguidoresRequisicoes.set({dados:obj,scope:scope,acaoSuccess:SeguidoresRequisicoes.successSeguir}).seguir();
     }
     
-    function deixarSeguir(id){
+    function deixarSeguir(id,evento){
+        VP.pararEvento(evento);
         var obj = {usuarioSeguirId:id};
         SeguidoresRequisicoes.set({dados:obj,scope:scope,acaoSuccess:SeguidoresRequisicoes.successDeixarDeSeguir}).deixarDeSeguir();
+    }
+    
+    function cancelarSolicitacao(id,evento){
+        VP.pararEvento(evento);
+        var obj = {seguirId:id};
+        SeguidoresRequisicoes.set({dados:obj,scope:scope,acaoSuccess:SeguidoresRequisicoes.successCancelarSeguir}).cancelarSeguir();
+    }
+    
+    function irPerfil(id){
+        Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        DGlobal.perfilOutros = true;
+        DGlobal.paginaVoltar = 15;
     }
     
     return {
         setScope:setScope,
         voltarPerfil:voltarPerfil,
         seguir:seguir,
-        deixarSeguir:deixarSeguir
+        deixarSeguir:deixarSeguir,
+        cancelarSolicitacao:cancelarSolicitacao,
+        irPerfil:irPerfil
     };
     
  }]);

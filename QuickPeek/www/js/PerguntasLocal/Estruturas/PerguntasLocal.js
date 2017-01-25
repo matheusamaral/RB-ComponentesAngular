@@ -13,7 +13,7 @@ angular.module('QuickPeek.HTML.PerguntasLocal', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div ng-repeat="pergunta in dados.perguntas" ng-click="responder(pergunta.id)"\n\
+                <div ng-repeat="pergunta in dados.perguntas" ng-click="responder(pergunta.id,pergunta)"\n\
                 class="position-relative row remove-padding-row corpo-lista-config padding-padrao-contas"\n\
                 ng-class="{\'padding-top-bloqueados\' : $index == 0}"\n\
                 ng-if="dados.perguntas.length > 0">\n\
@@ -22,7 +22,7 @@ angular.module('QuickPeek.HTML.PerguntasLocal', [
                     </div>\n\
                     <div style="padding-left:10px !important;padding-right:10px !important;" class="col-50 remove-padding col-center">\n\
                         <p style="padding-bottom:7px;padding-top:4px;" ng-if="dadosUser.usuarioId != pergunta.usuarioId" class="font-preta negrito text-left">{{pergunta.nome}}</p>\n\
-                        <p ng-if="dadosUser.usuarioId == pergunta.usuarioId" class="font-preta negrito text-left">Vocẽ</p>\n\
+                        <p ng-if="dadosUser.usuarioId == pergunta.usuarioId" class="font-preta negrito text-left">Você</p>\n\
                         <p class="font-cinza text-left">{{pergunta.titulo}}</p>\n\
                     </div>\n\
                     <div ng-if="pergunta.respostas > 0" class="col remove-padding col-center">\n\
@@ -31,7 +31,7 @@ angular.module('QuickPeek.HTML.PerguntasLocal', [
                         <div ng-class="{\'font-verde-pequeno\' : dadosUser.usuarioId != pergunta.usuarioId,\n\
                         \'font-cinza-pequeno\' : dadosUser.usuarioId == pergunta.usuarioId}"><span class="redondo-verde">{{pergunta.respostas}}</span></div>\n\
                     </div>\n\
-                    <div style="padding-left:10px;" ng-if="pergunta.respostas == 0" class="col-25 remove-padding col-center">\n\
+                    <div style="padding-left:10px;" ng-if="pergunta.respondida != 1" class="col-25 remove-padding col-center">\n\
                         <p class="font-dourada-pequena">{{pergunta.momento.split(\' \')[1].split(\':\')[0]}}:{{pergunta.momento.split(\' \')[1].split(\':\')[1]}}</p>\n\
                         <div class=""><span class="redondo-dourado">Responda primeiro</span></div>\n\
                     </div>\n\

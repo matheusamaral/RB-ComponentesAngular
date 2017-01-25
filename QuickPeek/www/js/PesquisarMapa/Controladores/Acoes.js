@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     'RB.validacoesPadroes'
 ])
 
-.factory('PesquisarMapaAcoes', ['Pagina','PesquisarMapaRequisicoes','RBLoadingMobile','$timeout',
-    function(Pagina,PesquisarMapaRequisicoes,RBLoadingMobile,$timeout){
+.factory('PesquisarMapaAcoes', ['Pagina','PesquisarMapaRequisicoes','RBLoadingMobile','$timeout','VP',
+    function(Pagina,PesquisarMapaRequisicoes,RBLoadingMobile,$timeout,VP){
     var scope;  
     
     function setScope(obj){
@@ -43,7 +43,7 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
             scope.dados.longitude = DGlobal.coordenadasAtual.longitude,
             scope.dados.atualizando = 0,
             PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarLocais}).pesquisarLocais();
-        },1500);
+        },1000);
     }
     
     function pesquisarLocalScroll(){
@@ -59,7 +59,7 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
             RBLoadingMobile.show();
             scope.dados.atualizando = 0,
             PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarPessoas}).pesquisarPessoas();
-        },1500);
+        },1000);
     }
     
     function pesquisarPessoaScroll(){
@@ -69,9 +69,15 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     }
     
     function irPerfil(id){
-        Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id});
-        DGlobal.perfilOutros = true;
-        DGlobal.paginaVoltar = 28;
+        if(scope.dadosUser.usuarioId != id){
+            Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            DGlobal.perfilOutros = true;
+            DGlobal.paginaVoltar = 28;
+        }else{
+            Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            if(DGlobal.perfilOutros)delete DGlobal.perfilOutros;
+            DGlobal.paginaVoltar = 28;
+        }
     }
     
     function checkInLocal(local){
@@ -85,6 +91,7 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     
     function irLocal(id){
         DGlobal.localAtual = id;
+        DGlobal.voltarPesquisa = true;
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+id+'&atualizando=0'});
         }else{
@@ -102,6 +109,24 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         Pagina.navegar({idPage:24,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
     }
     
+    function seguir(id,evento){
+        VP.pararEvento(evento);
+        var obj = {usuarioSeguirId:id};
+        PesquisarMapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successSeguir}).seguir();
+    }
+    
+    function cancelarSolicitacao(id,evento){
+        VP.pararEvento(evento);
+        var obj = {seguirId:id};
+        PesquisarMapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successCancelarSeguir}).cancelarSeguir();
+    }
+    
+    function deixarSeguir(id,evento){
+        VP.pararEvento(evento);
+        var obj = {usuarioSeguirId:id};
+        PesquisarMapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successDeixarDeSeguir}).deixarDeSeguir();
+    }
+    
     return {
         setScope:setScope,
         voltarMapa:voltarMapa,
@@ -112,7 +137,10 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         irPerfil:irPerfil,
         checkInLocal:checkInLocal,
         converteKmM:converteKmM,
-        irLocal:irLocal
+        irLocal:irLocal,
+        seguir:seguir,
+        cancelarSolicitacao:cancelarSolicitacao,
+        deixarSeguir:deixarSeguir
     };
     
  }]);

@@ -47,7 +47,8 @@ angular.module('QuickPeek', [
     'Cmp.Websocket',
     'QuickPeek.Perguntar',
     'QuickPeek.Notificacoes',
-    'QuickPeek.NotificacoesSeguir'
+    'QuickPeek.NotificacoesSeguir',
+    'QuickPeek.PrivacidadeRespostas'
 ])
 
 .run(function($ionicPlatform) {

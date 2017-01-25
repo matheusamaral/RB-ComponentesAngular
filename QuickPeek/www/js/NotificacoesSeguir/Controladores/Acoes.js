@@ -18,7 +18,7 @@ angular.module('QuickPeek.Acoes.NotificacoesSeguir', [
     function confirmar(seguirId,aceite){
         var obj = {
             seguirId:seguirId,
-            aceite:aceite
+            aceitar:aceite
         };
         
         NotificacoesSeguirRequisicoes.set({dados:obj,scope:scope,acaoSuccess:NotificacoesSeguirRequisicoes.successConfirmar}).confirmar();

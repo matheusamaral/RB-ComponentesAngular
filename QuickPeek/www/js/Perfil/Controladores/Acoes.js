@@ -34,8 +34,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:9});
     }
     
-    function irSeguidores(){
-        Pagina.navegar({idPage:15});
+    function irSeguidores(id){
+        Pagina.navegar({idPage:15,paramAdd:'?usuarioId='+id});
     }
     
     function irSeguindo(){

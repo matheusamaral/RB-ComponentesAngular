@@ -83,12 +83,12 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             </md-chips>\n\
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
-                            <button ng-click="getImgs()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                            <button style="margin-bottom: 9px;" ng-click="getImgs()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
                                 <span ng-if="dados.arquivoBase64.length > 0" class="cont-midias">{{dados.arquivoBase64.length}}</span>\n\
                             </button>\n\
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
-                            <button ng-click="publicar()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
+                            <button style="margin-bottom: 9px;" ng-click="publicar()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\

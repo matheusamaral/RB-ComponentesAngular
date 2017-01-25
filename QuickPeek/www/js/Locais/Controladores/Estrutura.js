@@ -45,9 +45,12 @@ angular.module('QuickPeek.Estrutura.Locais', [
 //    } 
     
     function montaHashtags(){
-        if(scope.locais  && scope.locais.length)
-        for(var i = 0; i < scope.locais.length;i++){
-            scope.locais[i].linhasHashs = montaLinhasHashs(scope.locais[i].hashtags);
+        console.log('scope.locais.length');
+        console.log(scope.locais.length);
+        if(scope.locais  && scope.locais.length){
+            for(var i = 0; i < scope.locais.length;i++){
+                scope.locais[i].linhasHashs = montaLinhasHashs(scope.locais[i].hashtags);
+            }
         }
     }
     
@@ -70,6 +73,6 @@ angular.module('QuickPeek.Estrutura.Locais', [
     return {
         setScope:setScope,
         popular:popular,
-        montaLinhasHashs:montaLinhasHashs
+        montaHashtags:montaHashtags
     };
  }]);
