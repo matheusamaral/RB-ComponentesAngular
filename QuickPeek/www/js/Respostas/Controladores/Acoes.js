@@ -60,10 +60,11 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function acaoReal(resposta){
+        console.log(resposta);
         if(resposta && resposta.respostaId)
             addResp(resposta);
         
-        if(resposta && resposta.digitando == 1)
+        if(resposta && resposta.digitando == 1 && resposta.remetente != 1)
             confirmaDigitando(resposta);
     }
     
@@ -82,10 +83,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function addResp(resposta){
-        console.log('resposta');
-        console.log(resposta);
         scope.dados.respostas.unshift(resposta);
-        scope.dados.resposta = '';
+        if(resposta.remetente == 1)scope.dados.resposta = '';
         $timeout(function(){
             $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
         },0);

@@ -108,7 +108,6 @@ angular.module('QuickPeek.Requisicao.Locais', [
                                         scope.locais[i].hashtags[j].hashtagQtd--;
                                     else{
                                         scope.locais[i].hashtags.splice(j,1);
-                                        alert('sdsds');
                                     }
                                 }
                                 else{

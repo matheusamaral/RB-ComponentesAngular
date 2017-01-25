@@ -22,7 +22,7 @@ angular.module('QuickPeek.Acoes.Perguntar', [
         if(DGlobal.idLocal)
             var idLocal = DGlobal.idLocal;
         
-        scope.conn = Websocket.setarPagina(idPagina,idLocal,executarResposta);
+        scope.conn = Websocket.setarPagina(idPagina,false,executarResposta);
     }
     
     function voltarLocais(){

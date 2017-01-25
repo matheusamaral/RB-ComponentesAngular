@@ -18,9 +18,9 @@ angular.module('QuickPeek.Requisicao.PerguntasLocal', [
             return this;
         };
 
-        function listar(){
+        function verfificarResposta(){
             var obj = {
-                url: Config.getRefAmbienteReq()+"/Listar/listarPessoas",
+                url: Config.getRefAmbienteReq()+"/Acoes/verificarVisibilidadeResposta",
                 dados: $.param(dados),
                 tipo: 'POST',
                 acao: acaoSuccess,
@@ -31,12 +31,14 @@ angular.module('QuickPeek.Requisicao.PerguntasLocal', [
             GCS.conectar(obj);
         };
         
-        function successListar(objRetorno){
+        function successVerificar(objRetorno){
             RBLoadingMobile.hide();
-            alert(JSON.stringify(objRetorno));
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                
+                if(objRetorno.dados == 0)
+                    Pagina.navegar({idPage:38});
+                else
+                    Pagina.navegar({idPage:34,paramAdd:'?perguntasId='+dados.perguntasId});
             }
         };
         
@@ -52,7 +54,7 @@ angular.module('QuickPeek.Requisicao.PerguntasLocal', [
         
         return {
             set: set,
-            listar: listar,
-            successListar: successListar
+            verfificarResposta: verfificarResposta,
+            successVerificar: successVerificar
         };       
 }]);

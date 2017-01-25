@@ -15,7 +15,6 @@ class Perguntas {
         $cad = $cadastro->cadastrar($msg);
         if($cad){
             $this->conexaoSocket($msg);
-            $msg->setResultadoEtapa(true, false, ['resposta'=>1]);
         }
     }
     
