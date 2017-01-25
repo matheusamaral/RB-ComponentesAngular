@@ -90,9 +90,11 @@ class Conversa {
             $mensagem[$i]['from'] = $dados1['fromConexao'];
             $mensagem[$i]['remetente'] = $dados1['remetente'][$i];
             $mensagem[$i]['visualizada'] = 1;
-            $mensagem[$i]['mensagensId'] = $mensagensId;
+            $mensagem[$i]['mensagemId'] = $mensagensId;
             
-            $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+            if($mensagem[$i]['remetente'] != 1){
+                $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+            }
         }
         
         for($i = 0; $i < count($dados2['toConexao']); $i++){
@@ -103,7 +105,9 @@ class Conversa {
             $mensagem2[$i]['visualizada'] = 1;
             $mensagem2[$i]['mensagensId'] = $mensagensId;
             
-            $cmd->enviarMensagem($mensagem2[$i], $mensagem2[$i]['to']);
+            if($mensagem[$i]['remetente'] != 1){
+                $cmd->enviarMensagem($mensagem2[$i], $mensagem2[$i]['to']);
+            }
         }
         
         $msg->setResultadoEtapa(true);

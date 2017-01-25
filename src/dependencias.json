@@ -64,6 +64,7 @@
     "SetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagensVisualizadas",
     "SetarMensagemEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagemEntregue",
     "SetarMensagemVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagemVisualiada",
+    "SetarEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarEntregue",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
     "DetalhesLocais": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\DetalhesLocais",

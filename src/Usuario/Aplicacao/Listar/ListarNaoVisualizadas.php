@@ -10,17 +10,8 @@ class ListarNaoVisualizadas {
         $mensagens = Conteiner::get('ConsultaListarNaoVisualizadas')->consultar($usuarioId);
         $notificacoes = Conteiner::get('ConsultaListarNaoVisualizadas')->consultarNotificacoes($usuarioId);
         
-        if($mensagens){
-            $dados['mensagens'] = count($mensagens);
-        }else{
-            $dados['mensagens'] = 0;
-        }
-        
-        if($notificacoes){
-            $dados['notificacoes'] = count($notificacoes);
-        }else{
-            $dados['notificacoes'] = 0;
-        }
+        $dados['mensagens'] = $mensagens;
+        $dados['notificacoes'] = $notificacoes;
         
         if($dados){
             $msg->setResultadoEtapa(true, false, ['dados'=>$dados]);
