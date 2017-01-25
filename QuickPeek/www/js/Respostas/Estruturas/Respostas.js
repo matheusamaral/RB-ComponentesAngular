@@ -11,12 +11,26 @@ angular.module('QuickPeek.HTML.Respostas', [
                             <button ng-click="voltarPerguntas()" class="margin-img btn-respostas-voltar btn-txt-direita button button-clear">\n\
                                 <i class="icon ion-android-arrow-back seta-barra"></i>\n\
                             </button>\n\
-                            <div class="img-circular-grande margin-img"\n\
+                            <div class="img-circular-grande  margin-img"\n\
                             style="background-image:url({{dados.pergunta.enderecoUsuario}})"></div>\n\
                             <div class="col remove-padding" style="margin-left: 10px;">\n\
                                 <p ng-if="dadosUser.usuarioId != dados.pergunta.usuarioId" class="negrito ptitular-pergunta">{{dados.pergunta.nomeUsuario}}</p>\n\
                                 <p ng-if="dadosUser.usuarioId == dados.pergunta.usuarioId" class="negrito ptitular-pergunta">Você</p>\n\
                                 <p class="ptitulo-pergunta">{{dados.pergunta.perguntaTitulo}}</p>\n\
+                            </div>\n\
+                            <div class="text-right">\n\
+                                <md-menu>\n\
+                                    <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                        <md-icon style="color:#FFFFFF !important" class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
+                                    </md-button>\n\
+                                    <md-menu-content width="4">\n\
+                                        <md-menu-item>\n\
+                                            <md-button ng-click="attPrivacidade()">\n\
+                                                Alterar privacidade\n\
+                                            </md-button>\n\
+                                        </md-menu-item>\n\
+                                    </md-menu-content>\n\
+                                </md-menu>\n\
                             </div>\n\
                         </div>\n\
                     </div>\n\
@@ -31,7 +45,7 @@ angular.module('QuickPeek.HTML.Respostas', [
     
     function conversa(){
         return'<ion-content id="container-respostas" class="container-chat-geral" style="height:{{(alturaBody - alturaChat)}}px;padding-top:60px !important">\n\
-                    <ion-list class="container-centro" style="width:{{larguraBody}}px">\n\
+                    <div class="container-centro" style="width:{{larguraBody}}px">\n\
                         <div class="remove-padding container-dialogo row" style="margin-bottom: 20px !important;">\n\
                             <div class="balao-direita">\n\
                                 <div class="container-textos">\n\
@@ -88,12 +102,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                             </div>\n\
                         </div>\n\
                         <div ng-if="divBranco == true" style="height:{{alturaChat}}px;width:100%"></div>\n\
-                        <!--<ion-infinite-scroll \n\
-                            immediate-check="false"\n\
-                            on-infinite="carregarRespostas(true)" \n\
-                            distance="2%" ng-if="!dados.moredata">\n\
-                        </ion-infinite-scroll>-->\n\
-                    </ion-list>\n\
+                    </div>\n\
                 </ion-content>\n\
                 '+input();
     }

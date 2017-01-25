@@ -6,8 +6,8 @@ angular.module('QuickPeek.Respostas', [
     'QuickPeek.HTML.Respostas'
 ])
 
-.controller('RespostasCtrl', ['$scope','RespostasEstrutura','RespostasAcoes',
-    function ($scope,RespostasEstrutura,RespostasAcoes){        
+.controller('RespostasCtrl', ['$scope','RespostasEstrutura','RespostasAcoes','$timeout',
+    function ($scope,RespostasEstrutura,RespostasAcoes,$timeout){        
         RespostasEstrutura.setScope($scope).popular();
         RespostasAcoes.setScope($scope).configConexao();
         
@@ -19,6 +19,7 @@ angular.module('QuickPeek.Respostas', [
         $scope.removeMarginTeclado = RespostasAcoes.removeMarginTeclado;
         $scope.addMarginTeclado = RespostasAcoes.addMarginTeclado;
         $scope.voltarPerguntas = RespostasAcoes.voltarPerguntas;
+        $scope.attPrivacidade = RespostasAcoes.attPrivacidade;
     }
 ])
 

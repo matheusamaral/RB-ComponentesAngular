@@ -23,12 +23,23 @@ angular.module('QuickPeek.Acoes.Respostas', [
             scope.alturaChat = $('#container-input').height();
             scope.alturaBody = $('body').height();
             scope.larguraBody = $('body').width();
-            $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+            $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
+            addInfinit();
         },1000);
     }
     
+    function addInfinit(){
+        $('#container-respostas').endless({
+            direction:'up',
+            append:function(){},
+            prepend:function(){},
+            n_append:function(){},
+            n_prepend:function(){carregarRespostas()}
+        });
+    }
+    
     function setarCursorInicio(){
-        $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+        $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
     }
     
     function configConexao(){
@@ -41,13 +52,15 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function responder(){
-        scope.conn.send(JSON.stringify({
-            codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
-            processo:'Acoes',
-            etapa:'respostas',
-            'Respostas::titulo':scope.dados.resposta, 
-            'Respostas::perguntasId':scope.dados.idPergunta
-        }));
+        if(scope.dados.resposta != ''){
+            scope.conn.send(JSON.stringify({
+                codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
+                processo:'Acoes',
+                etapa:'respostas',
+                'Respostas::titulo':scope.dados.resposta, 
+                'Respostas::perguntasId':scope.dados.idPergunta
+            }));
+        }
     }
     
     function digitando(){
@@ -83,12 +96,16 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function addResp(resposta){
+        console.log('AAGYAGYAGY');
+        console.log(scope.dados.respostas);
         scope.dados.respostas.unshift(resposta);
+        console.log(scope.dados.respostas);
         if(resposta.remetente == 1)scope.dados.resposta = '';
         $timeout(function(){
-            $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+            $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
         },0);
         scope.$apply();
+        addInfinit();
     }
     
     function carregarRespostas(){
@@ -96,10 +113,10 @@ angular.module('QuickPeek.Acoes.Respostas', [
             atualizando:true,
             perguntasId:scope.dados.idPergunta
         };
-        if(!scope.dados.moredata){
-            scope.dados.moredata = true;
+        
+        $timeout(function(){
             RespostasRequisicoes.set({dados:obj,scope:scope,acaoSuccess:RespostasRequisicoes.successListarRespostas}).listarRespostas();
-        }
+        },0);
     }
     
     function addMarginTeclado(){
@@ -116,6 +133,10 @@ angular.module('QuickPeek.Acoes.Respostas', [
         Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
     }
     
+    function attPrivacidade(){
+        Pagina.navegar({idPage:38});
+    }
+    
     return {
         setScope:setScope,
         configConexao:configConexao,
@@ -125,7 +146,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
         digitando:digitando,
         addMarginTeclado:addMarginTeclado,
         removeMarginTeclado:removeMarginTeclado,
-        voltarPerguntas:voltarPerguntas
+        voltarPerguntas:voltarPerguntas,
+        attPrivacidade:attPrivacidade
     };
     
  }]);
