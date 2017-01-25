@@ -62,6 +62,8 @@
     "Conversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\Conversa",
     "PaginaConversas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\PaginaConversas",
     "SetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagensVisualizadas",
+    "SetarMensagemEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagemEntregue",
+    "SetarMensagemVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagemVisualiada",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
     "DetalhesLocais": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\DetalhesLocais",
@@ -99,6 +101,7 @@
     "Search": "\\Quickpeek\\Acoes\\Aplicacao\\Gif\\Search",
     "ListarHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarHashtag",
     "Digitando": "\\Quickpeek\\Acoes\\Aplicacao\\Digitando\\Digitando",
+    "DigitandoMensagens": "\\Quickpeek\\Acoes\\Aplicacao\\Digitando\\DigitandoMensagens",
     
     
     "ListarSeguidores": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarSeguidores",
