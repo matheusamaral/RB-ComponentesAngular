@@ -33,7 +33,7 @@ class StatusChat {
                 $mensagem[$i]['usuario'] = $usuarioId;
                 $mensagem[$i]['usuarioMensagemId'] = $usuarios[$i];
                 
-                Conteiner::get('Socket')->enviarMensagem($mensagem, $mensagem[$i]['to']);
+                Conteiner::get('Socket')->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }
         $msg->setResultadoEtapa(true);

@@ -41,6 +41,8 @@
     "Tutorial": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Tutorial",
     "ListaContatos": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\ListaContatos",
     
+    "VincularUsuarioOneSignal": "\\Quickpeek\\Usuario\\Aplicacao\\Notificacao\\VincularUsuarioOneSignal",
+    
     "Bloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Bloquear",
     "Desbloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Desbloquear",
     
@@ -61,9 +63,9 @@
     "ExcluirConversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\ExcluirConversa",
     "Conversa": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\Conversa",
     "PaginaConversas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\PaginaConversas",
-    "SetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagensVisualizadas",
     "SetarMensagemEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagemEntregue",
-    "SetarMensagemVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagemVisualiada",
+    "SetarMensagemVisualizada": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarMensagemVisualizada",
+    "SetarEntregue": "\\Quickpeek\\Usuario\\Aplicacao\\Mensagem\\SetarEntregue",
     
     "CadastroLocal": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\Cadastro",
     "DetalhesLocais": "\\Quickpeek\\Local\\Aplicacao\\Cadastro\\DetalhesLocais",
@@ -102,6 +104,7 @@
     "ListarHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Listar\\ListarHashtag",
     "Digitando": "\\Quickpeek\\Acoes\\Aplicacao\\Digitando\\Digitando",
     "DigitandoMensagens": "\\Quickpeek\\Acoes\\Aplicacao\\Digitando\\DigitandoMensagens",
+    "VerificarPosicao": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\VerificarPosicao",
     
     
     "ListarSeguidores": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarSeguidores",

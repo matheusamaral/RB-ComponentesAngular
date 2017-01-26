@@ -1,13 +1,19 @@
 {
+    "ConsultaVerificarUsuarioExistente": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Notificacao\\ConsultaVerificarUsuarioExistente",
+    
     "ConsultaDesbloquear": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaDesbloquear",
     "ConsultaListarBloqueados": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaListarBloqueados",
     "ConsultaBloqueado": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaBloqueado",
     "ConsultaVerificarConfiguracoes": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaVerificarConfiguracoes",
+    
     "ConsultaExcluirConversa": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaExcluirConversa",
     "ConsultaConversa": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaConversa",
     "ConsultaPaginaConversas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaPaginaConversas",
     "ConsultaSetarVisualizada": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarVisualizada",
     "ConsultaSetarMensagensVisualizadas": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarMensagensVisualizadas",
+    "ConsultaAgrupamento": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaAgrupamento",
+    "ConsultaSetarEntregue": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarEntregue",
+    
     "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "ConsultaListarUltimosLocais": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarUltimosLocais",
     "ConsultaListarPerfilUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPerfilUsuario",

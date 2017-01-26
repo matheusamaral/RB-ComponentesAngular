@@ -3,10 +3,10 @@
 <processo codigo="conversa" modulo="Mensagens">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="usuarioMensagemId"/>
-        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeMensagensId" nome="visibilidadeMensagensId"/>
-        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeUsuarioId" nome="visibilidadeUsuarioId"/>
-        <campo regra="Opcional" chave="Atualizando" nome="atualizando"/>
+        <campo regra="Obrigatorio" chave="Mensagens::usuarioMensagemId" nome="Mensagens::usuarioMensagemId"/>
+        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeMensagensId" nome="Mensagens::visibilidadeMensagensId"/>
+        <campo regra="Obrigatorio" chave="Mensagens::visibilidadeUsuarioId" nome="Mensagens::visibilidadeUsuarioId"/>
+        <campo regra="Opcional" chave="Atualizando" nome="Atualizando"/>
     </entrada>
     
     <atividades>

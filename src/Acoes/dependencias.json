@@ -1,24 +1,30 @@
 {
     "ConsultaContaPrivada": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaContaPrivada",
     "ConsultaDeixarSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaDeixarSeguir",
+    "ConsultaUsuarioSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaUsuarioSeguir",
+    "ConsultaSeguidoresId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguidoresId",
+    
     "ConsultaUsuariosPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaUsuarios",
-    "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn",
-    "ConsultaAlterarVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaAlterarVisibilidade",
-    "ConsultaHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaHashtag",
     "ConsultaLimitePerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLimitePerguntas",
+    "ConsultaLocalId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLocalId",
+    
     "ConsultaDescurtirMidia": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirMidia",
     "ConsultaDescurtirHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirHashtag",
+    "ConsultaHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaHashtag",
+    
     "ConsultaUsuarioPergunta": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaUsuarioPergunta",
     "ConsultaCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaCheckIn",
-    "ConsultaNotificacao": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaNotificacao",
-    "ConsultaUsuarioSeguir": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaUsuarioSeguir",
-    "ConsultaVisualizarNotificacoes": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaVisualizarNotificacoes",
-    "ConsultaSeguidoresId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Seguir\\ConsultaSeguidoresId",
     "ConsultaBloqueado": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaBloqueado",
     "ConsultaRespostasVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaRespostasVisibilidade",
     
-    "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
-    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag",
+    "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn",
+    "ConsultaAlterarVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaAlterarVisibilidade",
     "ConsultaCasaTrabalho": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaCasaTrabalho",
-    "ConsultaLocalId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLocalId"
+    "DistanciaLocalCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\DistanciaLocalCheckIn",
+    
+    "ConsultaNotificacao": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaNotificacao",
+    "ConsultaVisualizarNotificacoes": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaVisualizarNotificacoes",
+    
+    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag",
+    "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario"
 }

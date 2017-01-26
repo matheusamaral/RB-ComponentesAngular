@@ -30,6 +30,7 @@ class ListarNotificacoes {
                 $dados['seguir'] = $seguir;
             }
             $dados['notificacoes'] = $notificacoes;
+            $this->visualizarNotificacoes($msg);
             $msg->setResultadoEtapa(true, false, ['dados'=>$dados]);
         }else{
             $msg->setResultadoEtapa(false);
@@ -46,5 +47,28 @@ class ListarNotificacoes {
             $notIn = 0;
         }
         return $notIn;
+    }
+    
+    private function visualizarNotificacoes($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        
+        $notificacoesId = Conteiner::get('ConsultaVisualizarNotificacoes')->consultar($usuarioId);
+        
+        if($notificacoesId){
+            foreach($notificacoesId as $v){
+                $visualizado[] = 1;
+            }
+            $entidade = ConteinerEntidade::getInstancia('Notificacoes');
+            $entidade->set('id', $notificacoesId);
+            $entidade->set('visualizado', $visualizado);
+            $entidade->salvar();
+            
+            if(!$entidade->getErro()){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 }
