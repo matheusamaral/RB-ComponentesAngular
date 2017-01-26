@@ -202,6 +202,7 @@
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarMidias" objeto='midias'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-exibir-midia" acao="ExibirMidiaCtrl" title="Midias"/>

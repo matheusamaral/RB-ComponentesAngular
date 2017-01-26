@@ -20,6 +20,7 @@ angular.module('QuickPeek.Acoes.ExibirMidia', [
     }
     
     function inicializar(){
+        scope.larguraTela = $('body').width();
         $('ion-side-menu-content').addClass('background-preto');       
     };
     

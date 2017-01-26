@@ -6,7 +6,7 @@ angular.module('QuickPeek.HTML.Respostas', [
 .factory('RespostasHtml', [ function() {
        
     function montar() {
-        return '<div style="padding-top: 6px !important;" class="row bar bar-header bar-positive remove-padding">\n\
+        return '<div class="row bar bar-header bar-positive remove-padding">\n\
                         <div class="row remove-padding">\n\
                             <button ng-click="voltarPerguntas()" class="margin-img btn-respostas-voltar btn-txt-direita button button-clear">\n\
                                 <i class="icon ion-android-arrow-back seta-barra"></i>\n\
@@ -20,7 +20,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                             </div>\n\
                             <div class="text-right">\n\
                                 <md-menu>\n\
-                                    <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                    <md-button style="margin-top: 9px;" class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
                                         <md-icon style="color:#FFFFFF !important" class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                                     </md-button>\n\
                                     <md-menu-content width="4">\n\
@@ -44,7 +44,7 @@ angular.module('QuickPeek.HTML.Respostas', [
     };   
     
     function conversa(){
-        return'<ion-content id="container-respostas" class="container-chat-geral" style="height:{{(alturaBody - alturaChat)}}px;padding-top:60px !important">\n\
+        return'<ion-content id="container-respostas" class="container-chat-geral" style="position:relative;height:{{(alturaBody - alturaChat)}}px;padding-top:60px !important">\n\
                     <div class="container-centro" style="width:{{larguraBody}}px">\n\
                         <div class="remove-padding container-dialogo row" style="margin-bottom: 20px !important;">\n\
                             <div class="balao-direita">\n\
@@ -120,13 +120,12 @@ angular.module('QuickPeek.HTML.Respostas', [
                         </div>\n\
                     </div>\n\
                     <div class="row remove-padding container-componentes">\n\
-                        <div class="col-bottom remove-padding">\n\
+                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
                             <button ng-click="publicar()" class="btn-chat-pub ion-android-happy button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                         <div class="container-text-area">\n\
-                            <textarea ng-click="addMarginTeclado()"\n\
-                            ng-blur="removeMarginTeclado()"\n\
+                            <textarea\n\
                             class="text-area-chat"\n\
                             ng-model="dados.resposta"\n\
                             rows="1" id="txtChat"\n\
@@ -134,11 +133,11 @@ angular.module('QuickPeek.HTML.Respostas', [
                             placeholder="Digite alguma coisa">\n\
                             </textarea>\n\
                         </div>\n\
-                        <div class="col-bottom remove-padding">\n\
-                            <button class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                            <button ng-click="addInfinit()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
-                        <div class="col-bottom remove-padding">\n\
+                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
                             <button ng-click="responder()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\

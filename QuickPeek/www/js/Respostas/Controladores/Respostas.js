@@ -20,6 +20,7 @@ angular.module('QuickPeek.Respostas', [
         $scope.addMarginTeclado = RespostasAcoes.addMarginTeclado;
         $scope.voltarPerguntas = RespostasAcoes.voltarPerguntas;
         $scope.attPrivacidade = RespostasAcoes.attPrivacidade;
+        $scope.addInfinit = RespostasAcoes.addInfinit;
     }
 ])
 

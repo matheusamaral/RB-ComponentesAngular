@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
     'RB.validacoesPadroes'
 ])
 
-.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout','Websocket',
-    function(Pagina,RespostasRequisicoes,VP,$timeout,Websocket){
+.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout','Websocket','InfinitScroll',
+    function(Pagina,RespostasRequisicoes,VP,$timeout,Websocket,InfinitScroll){
     var scope;  
     
     function setScope(obj){
@@ -24,18 +24,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
             scope.alturaBody = $('body').height();
             scope.larguraBody = $('body').width();
             $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
-            addInfinit();
         },1000);
-    }
-    
-    function addInfinit(){
-        $('#container-respostas').endless({
-            direction:'up',
-            append:function(){},
-            prepend:function(){},
-            n_append:function(){},
-            n_prepend:function(){carregarRespostas()}
-        });
+        iniciarInfinitScroll();
     }
     
     function setarCursorInicio(){
@@ -64,6 +54,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function digitando(){
+        calcularTxtAreaAltura()
         scope.conn.send(JSON.stringify({
             codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
             processo:'Acoes',
@@ -96,16 +87,12 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function addResp(resposta){
-        console.log('AAGYAGYAGY');
-        console.log(scope.dados.respostas);
         scope.dados.respostas.unshift(resposta);
-        console.log(scope.dados.respostas);
         if(resposta.remetente == 1)scope.dados.resposta = '';
         $timeout(function(){
             $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
         },0);
         scope.$apply();
-        addInfinit();
     }
     
     function carregarRespostas(){
@@ -135,6 +122,39 @@ angular.module('QuickPeek.Acoes.Respostas', [
     
     function attPrivacidade(){
         Pagina.navegar({idPage:38});
+    }
+    
+    function iniciarInfinitScroll(){
+        InfinitScroll.iniciar({
+            top:true,
+            idSeletor:'container-respostas',
+            acaoTop:carregarRespostas
+        });
+    }
+    
+    function calcularTxtAreaAltura(){
+        $("#txtChat").bind("input", function(e) {
+            while( $(this).outerHeight() < this.scrollHeight +
+                                           parseFloat($(this).css("borderTopWidth")) +
+                                           parseFloat($(this).css("borderBottomWidth"))
+                   && $(this).height() < 100 // Altura máxima
+            ) {
+                $(this).height($(this).height()+1);
+            };
+        });
+    }
+    
+    window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+    function keyboardShowHandler(e){
+        //alert('Keyboard height is: ' + e.keyboardHeight);
+        addMarginTeclado();
+    }
+    
+    window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+    function keyboardHideHandler(e){
+        removeMarginTeclado();
     }
     
     return {

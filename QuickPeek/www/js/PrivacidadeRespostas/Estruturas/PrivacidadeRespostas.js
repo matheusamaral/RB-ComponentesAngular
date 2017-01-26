@@ -14,8 +14,8 @@ angular.module('QuickPeek.HTML.PrivacidadeRespostas', [
                         <div class="img-circular-grande"\n\
                         style="background-image:url({{dadosPergunta.endereco}})"></div>\n\
                         <div class="col remove-padding" style="margin-left: 10px;">\n\
-                            <p ng-if="dadosUser.usuarioId != dadosPergunta.usuarioId" class="negrito ptitular-pergunta">{{dadosPergunta.nome}}</p>\n\
-                            <p ng-if="dadosUser.usuarioId == dadosPergunta.usuarioId" class="negrito ptitular-pergunta">Você</p>\n\
+                            <p ng-if="dadosUser.usuarioId != dadosPergunta.usuarioId" class="negrito ptitular-verificar">{{dadosPergunta.nome}}</p>\n\
+                            <p ng-if="dadosUser.usuarioId == dadosPergunta.usuarioId" class="negrito ptitular-verificar">Você</p>\n\
                             <p class="ptitulo-pergunta">{{dadosPergunta.titulo}}</p>\n\
                         </div>\n\
                     </div>\n\
@@ -41,7 +41,7 @@ angular.module('QuickPeek.HTML.PrivacidadeRespostas', [
                         class="box-img-cad icone-redondo-resposta-privacidade">\n\
                             <md-icon class="stilo-icones-privacidade ion-earth"></md-icon>\n\
                         </div>\n\
-                        <p ng-class="{\'font-dourada\' : dados.visibilidadeId == 1}" class="p-nome-resposta">Qualquer pessoa</p>\n\
+                        <p ng-class="{\'font-dourada\' : dados.visibilidadeId == 1}" class="p-nome-resposta">Publicamente</p>\n\
                     </div>\n\
                     <div class="col">\n\
                         <div ng-class="{\'marcado\' : dados.visibilidadeId == 2}"\n\

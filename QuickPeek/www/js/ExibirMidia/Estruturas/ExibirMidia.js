@@ -11,7 +11,7 @@ angular.module('QuickPeek.HTML.ExibirMidia', [
                 </button>\n\
                 <ion-slide-box style="height:100%;" show-pager="false" on-slide-changed="slideHasChanged($index)">\n\
                     <ion-slide ng-repeat="midia in midias">\n\
-                        <img class="box-img" src="{{midia.endereco}}"></img>\n\
+                        <div class="box-img" style="height:{{larguraTela}}px;background-image:url({{midia.endereco}})"></div>\n\
                         <p ng-if="midia.jaCurtiu == 0 && midia.curtidas && midia.curtidas.length > 1" class="p-midia">{{midia.curtidas[0].nome}} e outras {{midia.curtidas.length - 1}} pessoas curtiram</p>\n\
                         <p ng-if="midia.jaCurtiu == 0 && midia.curtidas && midia.curtidas.length == 1" class="p-midia">{{midia.curtidas[0].nome}} curtiu isso</p>\n\
                         <p ng-if="midia.jaCurtiu == 1 && midia.curtidas && midia.curtidas.length > 1" class="p-midia">Você e outras {{midia.curtidas.length - 1}} pessoas curtiram</p>\n\

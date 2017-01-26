@@ -44,4 +44,5 @@
     <plugin name="cordova-plugin-photo-library" spec="~1.2.2">
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="To choose photos" />
     </plugin>
+    <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
 </widget>

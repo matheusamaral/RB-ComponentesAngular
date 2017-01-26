@@ -21,8 +21,9 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function exibirMidias(id){
-        var obj = {id:id};
-        LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarMidias}).listarMidias();
+        //var obj = {id:id};
+        Pagina.navegar({idPage:25,paramAdd:'?id='+id});
+        //LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarMidias}).listarMidias();
     }
     
     function carregarLocais(){

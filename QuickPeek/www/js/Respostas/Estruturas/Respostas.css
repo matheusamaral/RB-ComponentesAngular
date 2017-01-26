@@ -15,12 +15,11 @@
 }
 
 .btn-respostas-voltar{
-    margin-top: 6px;
     margin-left: 10px;
 }
 
 .ptitular-pergunta{
-    margin-top: 7px;
+    margin-top: 13px;
     font-size: 19px;
 }
 
@@ -32,7 +31,8 @@
     width: 100%;
     padding: 10px;
     color: #5a5a5a;
-    height: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .container-componentes{
@@ -157,6 +157,6 @@ textarea {
     display: table;
 }
 
-.endless .scroll{
-    width: 100%;
+.organiza-margin-chat{
+    margin-bottom: 10px;
 }
