@@ -21,7 +21,26 @@ class PaginaConversas {
             }
             $msg->setCampoSessao('conversasNotIn', $conversasNotIn);
             
+            $this->setarMensagensVisualizadas($msg);
             $msg->setResultadoEtapa(true, false, ['dados'=>$query]);
+        }else{
+            $msg->setResultadoEtapa(false);
+        }
+    }
+    
+    private function setarMensagensVisualizadas($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $id = Conteiner::get('ConsultaSetarMensagensVisualizadas')->consultar($usuarioId);
+        
+        if($id){
+            foreach($id as $v){
+                $visualizado[] = 1;
+            }
+            $msg->setCampo('entidade', 'Mensagens');
+            $msg->setCampo('Mensagens::id', $id);
+            $msg->setCampo('Mensagens::visualizado', $visualizado);
+            Conteiner::get('Cadastro')->cadastrar($msg);
         }else{
             $msg->setResultadoEtapa(false);
         }

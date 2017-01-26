@@ -1,4 +1,6 @@
 {
+    "ConsultaVerificarUsuarioExistente": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Notificacao\\ConsultaVerificarUsuarioExistente",
+    
     "ConsultaDesbloquear": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaDesbloquear",
     "ConsultaListarBloqueados": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaListarBloqueados",
     "ConsultaBloqueado": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Bloqueado\\ConsultaBloqueado",

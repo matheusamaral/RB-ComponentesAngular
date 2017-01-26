@@ -14,6 +14,7 @@
     "ListaContatos": "\\Quickpeek\\Usuario\\Dominio\\ListaContatos",
     "CasaTrabalho": "\\Quickpeek\\Usuario\\Dominio\\CasaTrabalho",
     "DdiPaises": "\\Quickpeek\\Usuario\\Dominio\\DdiPaises",
+    "UsuarioOneSignal": "\\Quickpeek\\Usuario\\Dominio\\UsuarioOneSignal",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
     "LocalCategoria": "\\Quickpeek\\Local\\Dominio\\LocalCategoria",

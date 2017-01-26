@@ -185,4 +185,14 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
+        
+<classe nome="UsuarioOneSignal" tabela="usuario_onesignal"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="player_id" atributo="playerId" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
 </root>

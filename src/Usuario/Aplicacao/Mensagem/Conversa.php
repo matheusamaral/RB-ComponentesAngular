@@ -84,13 +84,17 @@ class Conversa {
         $dados1 = $cmd->getConexao($usuarioId, $paginas[0]);
         $dados2 = $cmd->getConexao($usuarioId, $paginas[1]);
         
-        for($i = 0; $i < count($dados1['toConexao']); $i++){
-            
+        for($i = 0; $i < count($dados1['toConexao']); $i++){    
             $mensagem[$i]['to'] = $dados1['toConexao'][$i];
             $mensagem[$i]['from'] = $dados1['fromConexao'];
             $mensagem[$i]['remetente'] = $dados1['remetente'][$i];
+            $mensagem[$i]['usuarioId'] = $dados1['usuarios'][$i];
+            if(is_array($mensagensId)){
+                $mensagem[$i]['mensagemId'] = $mensagensId;
+            }else{
+                $mensagem[$i]['mensagemId'] = [$mensagensId];
+            }
             $mensagem[$i]['visualizada'] = 1;
-            $mensagem[$i]['mensagemId'] = $mensagensId;
             
             if($mensagem[$i]['remetente'] != 1){
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
@@ -102,14 +106,17 @@ class Conversa {
             $mensagem2[$i]['to'] = $dados2['toConexao'][$i];
             $mensagem2[$i]['from'] = $dados2['fromConexao'];
             $mensagem2[$i]['remetente'] = $dados2['remetente'][$i];
+            $mensagem2[$i]['usuarioId'] = $dados2['usuarios'][$i];
+            if(is_array($mensagensId)){
+                $mensagem[$i]['mensagemId'] = $mensagensId;
+            }else{
+                $mensagem[$i]['mensagemId'] = [$mensagensId];
+            }
             $mensagem2[$i]['visualizada'] = 1;
-            $mensagem2[$i]['mensagensId'] = $mensagensId;
-            
             if($mensagem[$i]['remetente'] != 1){
                 $cmd->enviarMensagem($mensagem2[$i], $mensagem2[$i]['to']);
             }
         }
-        
         $msg->setResultadoEtapa(true);
     }
 }

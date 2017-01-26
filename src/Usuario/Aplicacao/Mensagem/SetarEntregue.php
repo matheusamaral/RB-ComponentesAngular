@@ -12,7 +12,7 @@ class SetarEntregue {
         
         if($query){
             foreach($query as $v){
-                $paginas[] = 39 . $v['agrupamento'];
+                $paginas[] = 39 . '-' . $v['agrupamento'];
                 $mensagensId[] = $v['id'];
             }
             
@@ -33,28 +33,35 @@ class SetarEntregue {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         
         $cmd = Conteiner::get('Socket');
-        foreach($paginas as $v){
+        foreach($paginas as $k=>$v){
             $dados[] = $cmd->getConexao($usuarioId, $v);
         }
-        foreach($dados as $v){
-            for($i = 0; $i < count($v['toConexao']); $i++){
-                $mensagem[$i]['to'] = $v['toConexao'][$i];
-                $mensagem[$i]['from'] = $v['fromConexao'];
-                $mensagem[$i]['remetente'] = $v['remetente'][$i];
-                $mensagem[$i]['usuarioId'] = $v['usuarioId'][$i];
-                $mensagem[$i]['entregue'] = 1;
-                $mensagem[$i]['id'] = $mensagensId[$i];
-
-                $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+        
+        foreach($dados as $k=>$v){
+            if($v){
+                for($i = 0; $i < count($v['toConexao']); $i++){
+                    $mensagem[$i]['to'] = $v['toConexao'][$i];
+                    $mensagem[$i]['from'] = $v['fromConexao'];
+                    $mensagem[$i]['remetente'] = $v['remetente'][$i];
+                    $mensagem[$i]['usuarioId'] = $v['usuarios'][$i];
+                    $mensagem[$i]['mensagemId'] = $mensagensId[$k];
+                    $mensagem[$i]['entregue'] = 1;
+                    
+                    $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
+                }
             }
         }
     }
     
     private function cadastrar($msg, $mensagensId){
         
+        for($i = 0; $i < count($mensagensId); $i++){
+            $status[] = 2;
+        }
+        
         $msg->setCampo('entidade', 'Mensagens');
         $msg->setCampo('Mensagens::id', $mensagensId);
-        $msg->setCampo('Mensagens::statusMensagemId', 3);
+        $msg->setCampo('Mensagens::statusMensagemId', $status);
         return Conteiner::get('Cadastro')->cadastrar($msg);
     }
 }

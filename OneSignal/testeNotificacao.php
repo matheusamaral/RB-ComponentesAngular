@@ -28,7 +28,7 @@ class testeNotificacao {
                 'contents' => $content,
                 'headings' => array('en'=>"Quickpeek")
         );
-
+        
         $fields = json_encode($fields);
 
 

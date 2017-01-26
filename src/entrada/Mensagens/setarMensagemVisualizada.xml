@@ -3,7 +3,7 @@
 <processo codigo="setarMensagemVisualizada" modulo="Mensagens">
     
     <entrada>
-        <campo regra="Obrigatorio" chave="MensagensId" nome="MensagensId"/>
+        <campo regra="Obrigatorio" chave="MensagemId" nome="MensagemId"/>
     </entrada>
     
     <atividades>

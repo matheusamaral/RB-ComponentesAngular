@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<processo codigo="setar Entregue" modulo="Mensagens">
+<processo codigo="setarEntregue" modulo="Mensagens">
     
     <entrada> </entrada>
     
