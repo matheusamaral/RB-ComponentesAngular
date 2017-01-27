@@ -27,6 +27,9 @@ class EnviarMensagem {
             $cadastro = Conteiner::get('Cadastro');
             $msg->setCampo('entidade', 'Mensagens');
             $msg->setCampo('Mensagens::usuarioId', $usuarioId);
+            if($this->verificarPaginaUsuario($msg)){
+                $msg->setCampo('Mensagens::visualizado', 1);
+            }
             $cad = $cadastro->cadastrar($msg);
             if($cad){
                 $this->conexaoSocket($msg);
@@ -56,6 +59,14 @@ class EnviarMensagem {
             
             return Conteiner::get('Imagem')->ImagemUpada($atributo, $pasta, $dados, $id, $tipo);
         }
+    }
+    
+    private function verificarPaginaUsuario($msg){
+        
+        $usuario = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        
+        $paginaConversas = 38 . '-' . $usuarioMensagemId;
+        $cmd = Conteiner::get('Socket');
     }
     
     private function conexaoSocket($msg){
