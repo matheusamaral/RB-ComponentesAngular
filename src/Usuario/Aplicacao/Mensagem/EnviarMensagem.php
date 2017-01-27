@@ -27,9 +27,11 @@ class EnviarMensagem {
             $cadastro = Conteiner::get('Cadastro');
             $msg->setCampo('entidade', 'Mensagens');
             $msg->setCampo('Mensagens::usuarioId', $usuarioId);
+            
             if($this->verificarPaginaUsuario($msg)){
                 $msg->setCampo('Mensagens::visualizado', 1);
             }
+            
             $cad = $cadastro->cadastrar($msg);
             if($cad){
                 $this->conexaoSocket($msg);
@@ -63,10 +65,23 @@ class EnviarMensagem {
     
     private function verificarPaginaUsuario($msg){
         
-        $usuario = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         
-        $paginaConversas = 38 . '-' . $usuarioMensagemId;
         $cmd = Conteiner::get('Socket');
+        $paginaConversas = 38 . '-' . $usuarioMensagemId;
+        $paginaMensagem = 39 . '-' . $usuarioMensagemId . '-' . $usuarioId . '-' . $visibilidadeMensagensId . '-' . $visibilidadeUsuarioId;
+        
+        $dados1 = $cmd->getConexao($usuarioId, $paginaConversas);
+        $dados2 = $cmd->getConexao($usuarioId, $paginaMensagem);
+        
+        if($dados1 != false || $dados2 != false){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     private function conexaoSocket($msg){
