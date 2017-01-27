@@ -51,6 +51,7 @@ angular.module('QuickPeek.Requisicao.ExibirMidia', [
                 if(dados.midiaId == scope.midias[i].id){
                     if(scope.midias[i].jaCurtiu == 0){
                         scope.midias[i].jaCurtiu = 1;
+                        if(!scope.midias[i].curtidas.length)scope.midias[i].curtidas = new Array();
                         scope.midias[i].curtidas.push(
                             {usuarioId:scope.dadosUser.usuarioId,nome:scope.dadosUser.usuarioNome}
                         );

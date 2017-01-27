@@ -19,8 +19,8 @@ angular.module('QuickPeek.Estrutura.ExibirMidia', [
     function popular(){
         scope.dados= {};
         
-        if(DGlobal.midias){
-            scope.midias = DGlobal.midias;
+        if(DGlobal.midias && DGlobal.midias.success){
+            scope.midias = DGlobal.midias.dados;
         }
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){

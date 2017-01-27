@@ -32,7 +32,6 @@ angular.module('QuickPeek.Requisicao.Seguidores', [
             GCS.conectar(obj);
         };
         
-        
         function successSeguir(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);

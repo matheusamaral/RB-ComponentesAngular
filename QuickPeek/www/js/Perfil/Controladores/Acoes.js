@@ -38,9 +38,9 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:15,paramAdd:'?usuarioId='+id});
     }
     
-    function irSeguindo(){
+    function irSeguindo(id){
         DGlobal.seguindo = true;
-        Pagina.navegar({idPage:16});
+        Pagina.navegar({idPage:16,paramAdd:'?usuarioId='+id});
     }
     
     function irMapa(){
