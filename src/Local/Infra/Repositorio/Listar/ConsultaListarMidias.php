@@ -27,7 +27,7 @@ class ConsultaListarMidias{
         $query->select('u.id', 'usuarioId')
                 ->add('case when c.visibilidade_id = 1 then u.nome'
                         . ' when c.visibilidade_id = 2 and s.id is not null then u.nome'
-                        . " when c.usuario_id = $usuarioId and c..visibilidade_id != 3 then u.nome"
+                        . " when c.usuario_id = $usuarioId and c.visibilidade_id != 3 then u.nome"
                         . ' else a.nome end', 'nome')
                 ->add('c.momento', 'momento');
         $query->from('curtir', 'c');
