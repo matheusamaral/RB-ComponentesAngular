@@ -115,9 +115,6 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
             arquivoBase64:scope.dados.arquivoBase64
         };
         
-        console.log('OBJ');
-        console.log(obj);
-        
         PublicacoesRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PublicacoesRequisicoes.successPublicar}).publicar();
     }
     
@@ -125,82 +122,49 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         console.log(evento);
     }
     
-    function getImgs(){       
-//        // Image picker will load images according to these settings
-//        var options = {
-//            width: 800,
-//            height: 800,
-//            quality: 80            // Higher is better
-//        };
-//
-//        $cordovaImagePicker.getPictures(options).then(function (results) {
-//            // Loop through acquired images
-//            for (var i = 0; i < results.length; i++) {
-//                console.log('Image URI: ' + results[i]);   // Print image URI
-//            }
-//        }, function(error) {
-//            console.log('Error: ' + JSON.stringify(error));    // In case of error
-//        });
+    function verificaDataAtual(data){
+        var dataAtual = new Date();
+        var dataImg = data;
+        
+        var segundosDiferenca = Math.abs(dataAtual.getTime() - dataImg.getTime());
+        var diasDiferenca = Math.ceil(segundosDiferenca / (1000 * 3600 * 24)); 
+        
+        if(diasDiferenca < 11)
+            return true;
+        else
+            return false;
+    }
+    
+    function getImgs(nAbrirGaleria){
+        $timeout(function(){
+            cordova.plugins.photoLibrary.getLibrary(
+                function (library) {
+                    scope.dados.midia = new Array();
 
-        cordova.plugins.photoLibrary.getLibrary(
-            function (library) {
-                var i = 0;
-                scope.dados.midia = new Array();
-                // Here we have the library as array 
-                library.forEach(function(libraryItem) {
-                    //console.log(libraryItem);
-                    if(i < 20){
-                        scope.dados.midia.push(libraryItem);
-                    }
-                    i++;
-                });
-                $timeout(function(){
-                    abrirGaleria();
-                    estruturaLinhas();
-                },0);
-            },
-            function (err) {
-              console.log('Error occured');
-            },
-            { // optional options 
-              thumbnailWidth: 512,
-              thumbnailHeight: 384,
-              quality: 0.8
-            },
-            function partialCallback(partialLibrary) { // optional 
-              // If this callback provided and loading library takes time, it will be called each 0.5 seconds with 
-              // library that filled up to this time. You can start displaying photos to user right then.   
-            }
-        );
+                    library.forEach(function(libraryItem) {
+                        //console.log(libraryItem);
+                        if(verificaDataAtual(new Date(libraryItem.creationDate.split(' ')[0]))){
+                            scope.dados.midia.push(libraryItem);
+                        }
+                    });
 
-//var options = {
-//      quality: 50,
-//      destinationType: Camera.DestinationType.DATA_URL,
-//      sourceType: Camera.PictureSourceType.CAMERA,
-//      allowEdit: true,
-//      encodingType: Camera.EncodingType.JPEG,
-//      mediaType:2,
-//      targetWidth: 100,
-//      targetHeight: 100,
-//      saveToPhotoAlbum: false,
-//      correctOrientation:true
-//    };
-//
-//    $cordovaCamera.getPicture(options).then(function(imageData) {
-//      console.log(imageData);
-//      var image = document.getElementById('myImage');
-//      image.src = "data:image/jpeg;base64," + imageData;
-//    }, function(err) {
-//        // error
-//    });
+                    $timeout(function(){
+                        estruturaLinhas();
+                        if(!nAbrirGaleria)abrirGaleria();
+                    },0);
+                }
+            );
+        },0);
     };  
     
     function abrirGaleria(){
-        scope.mostrarGaleria = true;
-        $('ion-side-menu-content').addClass('remove-overflow-galeria');
         $timeout(function(){
-            $('.tela-galeria').addClass('mostrar');
-        },1000);
+            scope.mostrarGaleria = true;
+            $('ion-side-menu-content').addClass('remove-overflow-galeria');
+            $timeout(function(){
+                $('.tela-galeria').addClass('mostrar');
+            },1000);
+        },0);
     }
     
     function fecharGaleria(nApagar){
@@ -209,13 +173,11 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         $('ion-side-menu-content').removeClass('remove-overflow-galeria');
         $timeout(function(){
             scope.mostrarGaleria = false;
-        },0);
+        },500);
     }
     
     function estruturaLinhas(){
         var contImg = 0;
-        console.log('scope.dados.midia');
-        console.log(scope.dados.midia);
         scope.objimg = new Array();
         var linhaImg = new Array();
         for(var i = 0; i < scope.dados.midia.length; i++){
@@ -276,11 +238,12 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
 
         $cordovaCamera.getPicture(options).then(function(imageData) {
             console.log(imageData);
-            scope.dados.midia.unshift(
-                {photoURL:imageData,id:scope.dados.midiasSelecionadas.length+1}
-            );
+//            scope.dados.midia.unshift(
+//                {photoURL:imageData,id:scope.dados.midiasSelecionadas.length+1}
+//            );
+            getImgs(true);
     
-            estruturaLinhas();
+            //estruturaLinhas();
             //var image = document.getElementById('myImage');
             //image.src = "data:image/jpeg;base64," + imageData;
         }, function(err) {

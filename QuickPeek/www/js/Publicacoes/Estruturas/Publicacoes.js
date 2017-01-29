@@ -117,7 +117,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             ng-click="addMidia(img,$event,$index)"\n\
                             ng-class="{\'addFt\' : img.exibirCamera,\n\
                             \'borda-dourada-glr\' : img.selecionado}"\n\
-                            style="background-image:url({{img.photoURL}})">\n\
+                            style="background-image:url({{img.thumbnailURL}})">\n\
                                 <div\n\
                                 ng-if="img.selecionado" class="btn-deselecionar">\n\
                                     <md-icon class="ion-android-close"></md-icon>\n\
