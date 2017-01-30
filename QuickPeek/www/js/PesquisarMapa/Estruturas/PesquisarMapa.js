@@ -20,7 +20,7 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                         <input ng-keyup="pesquisarPessoa()" ng-model="dados.pesquisa" class="input-pesquisa" type="text" placeholder="Pesquisar pessoas...">\n\
                     </div>\n\
                 </div>'+tabs();
-    };     
+    };
     
     function tabs(){
         return'<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
@@ -76,8 +76,18 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                 </div>';
     }
     
+    function adicionarLocal(){
+        return'<div class="rb-padding-padrao" ng-if="dados.termoBuscado && locais.ultimosLocais.length > 0">\n\
+                <p class="p-preto rb-padding-padrao">O local <span class="negrito">"{{dados.termoBuscado}}"</span> não foi encontrado</p>\n\
+                <button ng-click="addLocal()" style="display: block;margin: auto;margin-top: 15px;" class="button button-positive">\n\
+                    CRIAR ESTE LOCAL\n\
+                </button>\n\
+            </div>';
+    }
+    
     function sessaoUltimosLocais(){
-         return'<div ng-if="!pesquisou" class="row box-ultimos remove-padding">\n\
+         return adicionarLocal()+'\n\
+                <div ng-if="!pesquisou" class="row box-ultimos remove-padding">\n\
                     <div class="col remove-padding">\n\
                         <div class="row padding-pequeno-ultimo">\n\
                             <p class="p-ultimos-locais"> Locais recentes</p>\n\

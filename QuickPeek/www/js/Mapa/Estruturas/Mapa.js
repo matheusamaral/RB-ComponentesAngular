@@ -22,13 +22,26 @@ angular.module('QuickPeek.HTML.Mapa', [
     function barraLocalizacaoAtual(){
          return'<div ng-click="irLocal(dadosbarra.localId)" id="barra-local-atual" ng-if="dadosbarra && dadosbarra.distancia" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
                 class="row barra-localizacao-atual">\n\
-                    <div class="col col-70" style="width: 190px;">\n\
+                    <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-popover-dourado"\n\
+                    style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
+                        <div class="container-privacidade-img">\n\
+                            <md-icon\n\
+                            ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
+                            \'ion-android-people\' : dadosUser.visibilidadeCheckInId == 2}">\n\
+                            </md-icon>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div ng-if="dadosUser.visibilidadeCheckInId == 3" class="icone-local-popover-dourado"\n\
+                    style="background-image:url({{dadosUser.avatarEndereco}})">\n\
+                        <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
+                    </div>\n\
+                    <div class="" style="width: 190px;">\n\
                         <div class="row remove-padding">\n\
                             <p class="p-subtitulo">Você está agora em</p>\n\
                         </div>\n\
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}?</p>\n\
                     </div>\n\
-                    <div class="col text-right alinha-vertical">\n\
+                    <div class="text-right alinha-vertical">\n\
                         <button ng-click="irCheckin($event)" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
                             Não\n\
                         </button>\n\
@@ -38,13 +51,26 @@ angular.module('QuickPeek.HTML.Mapa', [
                     </div>\n\
                 </div>\n\
                 <div ng-click="irLocal(dadosbarra.localId)" id="barra-local-atual" style="display:flex" class="row barra-localizacao-atual barra-local" ng-if="dadosbarra && dadosbarra.checkIn == 1">\n\
-                    <div class="col col-75">\n\
+                    <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-barra"\n\
+                    style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
+                        <div class="container-privacidade-img-barra">\n\
+                            <md-icon\n\
+                            ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
+                            \'ion-android-people\' : dadosUser.visibilidadeCheckInId == 2}">\n\
+                            </md-icon>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div ng-if="dadosUser.visibilidadeCheckInId == 3" class="icone-local-popover-dourado"\n\
+                    style="background-image:url({{dadosUser.avatarEndereco}})">\n\
+                        <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
+                    </div>\n\
+                    <div class="">\n\
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}</p>\n\
                         <div class="row remove-padding">\n\
                             <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
                         </div>\n\
                     </div>\n\
-                    <div class="text-right col">\n\
+                    <div class="text-right">\n\
                         <md-menu>\n\
                             <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
                                 <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\

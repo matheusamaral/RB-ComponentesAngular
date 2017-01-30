@@ -27,6 +27,7 @@ angular.module('QuickPeek.Estrutura.Privacidade', [
                 visibilidadeId:3
             };
         }
+            scope.dados.localId = DGlobal.checkIn.local.localId;
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados;
