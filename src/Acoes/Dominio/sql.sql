@@ -122,25 +122,6 @@ CREATE TABLE `pergunta_usuario`(
      ON DELETE NO ACTION
      ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         
-CREATE TABLE `pergunta_alerta`( 
-    `id` int  AUTO_INCREMENT ,
-     PRIMARY KEY (`id`),
-    `ativo` tinyint   ,
-    `momento` datetime   ,
-    `usuario_id` INT   ,
-    INDEX `pergunta_alerta_fk_usuario_id_idx`(`usuario_id` ASC),
-    CONSTRAINT `pergunta_alerta_fk_usuario_id` 
-         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-     ON DELETE NO ACTION
-     ON UPDATE NO ACTION,
-    `perguntas_id` INT   ,
-    INDEX `pergunta_alerta_fk_perguntas_id_idx`(`perguntas_id` ASC),
-    CONSTRAINT `pergunta_alerta_fk_perguntas_id` 
-         FOREIGN KEY (`perguntas_id`) REFERENCES `perguntas` (`id`)
-     ON DELETE NO ACTION
-     ON UPDATE NO ACTION,
-    `retorno` varchar(45)   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-        
 CREATE TABLE `pergunta_excluida`( 
     `id` int  AUTO_INCREMENT ,
      PRIMARY KEY (`id`),

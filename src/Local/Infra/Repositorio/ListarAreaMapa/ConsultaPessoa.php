@@ -16,7 +16,7 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                         . ' else a.endereco end', 'endereco')
                 ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.local_id', 'localId')
-                ->add('ifnull(s.ativo, 0) + ((count(distinct cu.id) + consulta.soma) * 0.8)'
+                ->add('ifnull(s.ativo, 0) + ((count(distinct m.id) + ifnull(consulta.soma, 0)) * 0.8)'
                         . ' + (count(distinct ci.id) * 0.7)', 'count')
                 ->add('count(distinct cur.id) * 0.2 + (count(distinct se.id) * 0.1)', 'count2')
                 ->add('timestampdiff(minute, c.momento, now())', 'minutos')
@@ -37,17 +37,14 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->on('s.usuario_id = ?')
                 ->on('s.usuario_seguir_id = u.id')
                 ->on('s.ativo = 1');
-        $query->join('avatares', 'a', 'left')
+        $query->join('avatares', 'a')
                 ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
         $query->join('midia', 'm', 'left')
                 ->on('m.usuario_id = u.id')
                 ->on('m.local_id = l.id')
-                ->on('m.ativo = 1')
-                ->on('m.momento > date_add(now(), INTERVAL -? HOUR)');
-        $query->join('curtir', 'cu', 'left')
-                ->on('cu.midia_id = m.id')
-                ->on('cu.ativo = 1');
+                ->on('m.momento > date_add(now(), INTERVAL -? HOUR)')
+                ->on('m.ativo = 1');
         $query->join('seguir', 'se', 'left')
                 ->on('se.usuario_seguir_id = u.id')
                 ->on('se.confirmar_seguir = 1')
@@ -56,12 +53,9 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->on('ci.usuario_id = u.id')
                 ->on('ci.local_id = l.id')
                 ->on('ci.ativo = 1');
-        $query->join('midia', 'mi', 'left')
-                ->on('mi.usuario_id = u.id')
-                ->on('mi.ativo = 1');
-        $query->join('curtir', 'cur',' left')
-                ->on('cur.midia_id = mi.id')
-                ->on('cur.ativo = 1');
+        $query->join($this->curtidas(), 'cur', 'left')
+                ->on('cur.usuario_id = u.id')
+                ->on('cur.local_id = ?');
         $query->join('hashtag_local', 'hl', 'left')
                 ->on('hl.usuario_id = u.id')
                 ->on('hl.ativo = 1');
@@ -71,7 +65,7 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
         $query->group('u.id');
         $query->order('count desc, count2 desc');
         $query->limit($limit);
-        $query->addVariaveis([$localId, $usuarioId, $midiaTempo, $localId, $hashtagTempo, $localId, $hashtagTempo]);
+        $query->addVariaveis([$localId, $usuarioId, $midiaTempo, $localId, $localId, $hashtagTempo, $localId, $hashtagTempo]);
         return $query->executar();
     }
     
@@ -122,5 +116,19 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->add('ativo = 1');
         $query->addVariaveis($localId);
         return $query->executar('{qtd}');
+    }
+    
+    private function curtidas(){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('c.id')
+                ->add('m.usuario_id')
+                ->add('m.local_id');
+        $query->from('curtir', 'c');
+        $query->join('midia', 'm')
+                ->on('m.ativo = 1');
+        $query->where('c.midia_id = m.id')
+                ->add('c.ativo = 1');
+        return $query;
     }
 }

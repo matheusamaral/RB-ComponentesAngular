@@ -14,7 +14,8 @@ class Perguntas {
         $msg->setCampo('Perguntas::usuarioId', $usuarioId);
         $cad = $cadastro->cadastrar($msg);
         if($cad){
-            $this->conexaoSocket($msg);
+//            $this->conexaoSocket($msg);
+            $this->enviarAlerta($msg);
         }
     }
     
@@ -52,5 +53,31 @@ class Perguntas {
             }
         }
         $msg->setResultadoEtapa(true, false, ['remetente'=>1]);
+    }
+    
+    private function enviarAlerta($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $perguntasId = $msg->getCampo('Perguntas::id')->get('valor');
+        $localId = $msg->getCampo('Perguntas::localId')->get('valor');
+        $visibilidadeId = $msg->getCampo('Perguntas::visibilidadeId')->get('valor');
+        
+        $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
+        $pessoas = Conteiner::get('PessoasAlerta')->consultar($usuarioId, $localId, $tempo['hashtag'], $tempo['midia']);
+        if($pessoas){
+            foreach($pessoas as $v){
+                $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v['usuarioId']);
+                $contents = ['en'=>$dadosUsuario['usuarioNome'] . ' fez uma pergunta no local em que você está! Clique para responder'];
+                $fields = [
+                    'include_player_ids'=>[$v['playerId']], 
+                    'data'=>['pagina'=>34, 'perguntasId'=>$perguntasId], 
+                    'contents'=>$contents, 
+                    'headings'=>['en'=>'Uma pergunta em seu local!']];
+                
+                $alertar = Conteiner::get('Alerta');
+//                $response = $alertar->enviar($fields);
+                file_get_contents('http://dev.codevip.com.br/OneSignal/TesteNotificacao.php?' . http_build_query($fields));
+            }
+        }
     }
 }
