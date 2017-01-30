@@ -15,6 +15,8 @@
     "CasaTrabalho": "\\Quickpeek\\Usuario\\Dominio\\CasaTrabalho",
     "DdiPaises": "\\Quickpeek\\Usuario\\Dominio\\DdiPaises",
     "UsuarioOneSignal": "\\Quickpeek\\Usuario\\Dominio\\UsuarioOneSignal",
+    "Alertas": "\\Quickpeek\\Usuario\\Dominio\\Alertas",
+    "TipoAlertas": "\\Quickpeek\\Usuario\\Dominio\\TipoAlertas",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
     "LocalCategoria": "\\Quickpeek\\Local\\Dominio\\LocalCategoria",
@@ -31,7 +33,6 @@
     "IconeHashtag": "\\Quickpeek\\Acoes\\Dominio\\IconeHashtag",
     "Midia": "\\Quickpeek\\Acoes\\Dominio\\Midia",
     "PerguntaUsuario": "\\Quickpeek\\Acoes\\Dominio\\PerguntaUsuario",
-    "PerguntaAlerta": "\\Quickpeek\\Acoes\\Dominio\\PerguntaAlerta",
     "PerguntaExcluida": "\\Quickpeek\\Acoes\\Dominio\\PerguntaExcluida",
     "Perguntas": "\\Quickpeek\\Acoes\\Dominio\\Perguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Dominio\\Respostas",

@@ -63,17 +63,6 @@
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
 </classe>
         
-<classe nome="PerguntaAlerta" tabela="pergunta_alerta"> 
-    <id coluna="id" atributo="id">
-        <gerador classe="sequence"/>
-    </id>  
-    <propriedades coluna="ativo" atributo="ativo" /> 
-    <propriedades coluna="momento" atributo="momento" /> 
-    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
-    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
-    <propriedades coluna="retorno" atributo="retorno" /> 
-</classe>
-        
 <classe nome="PerguntaExcluida" tabela="pergunta_excluida"> 
     <id coluna="id" atributo="id">
         <gerador classe="sequence"/>

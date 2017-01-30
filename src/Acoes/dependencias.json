@@ -7,6 +7,7 @@
     "ConsultaUsuariosPerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaUsuarios",
     "ConsultaLimitePerguntas": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLimitePerguntas",
     "ConsultaLocalId": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\ConsultaLocalId",
+    "PessoasAlerta": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Perguntas\\PessoasAlerta",
     
     "ConsultaDescurtirMidia": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirMidia",
     "ConsultaDescurtirHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Publicacoes\\ConsultaDescurtirHashtag",
