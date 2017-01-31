@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.Mapa', [
-    'RB.pagina'
+    'RB.pagina',
+    'Cmp.Geolocation'
 ])
  
-.factory('MapaRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
-      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
+.factory('MapaRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','GeolocationPopovers',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,GeolocationPopovers) {
         
         var dados;
         var scope;
@@ -68,6 +69,7 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         };
         
         function marcarNoMapa(array){
+            var gm = new google.maps;
             if(array){
                 for(var i = 0; i < array.length; i++){
                     var img = 'img/79.svg';
@@ -83,41 +85,20 @@ angular.module('QuickPeek.Requisicao.Mapa', [
                         }
                     }
                     
-                    scope.mapaGeral['marker'+i] = new google.maps.Marker({
-                        position: new google.maps.LatLng(array[i].latitude,array[i].longitude), // variável com as coordenadas Lat e Lng
+                    scope.mapaGeral['marker'+i] = gm.Marker({
+                        position: gm.LatLng(array[i].latitude,array[i].longitude), // variável com as coordenadas Lat e Lng
                         map: scope.mapaGeral.map,
                         title:array[i].localNome,
                         icon:img,
                         idMarcador:array[i].localId,
                         label:array[i].localNome
                     });
-                    
-                    //var id = array[i].localId;
 
                     scope.mapaGeral['marker'+i].addListener('click', function(){
-                        irLocal(this.idMarcador);
+                        GeolocationPopovers.setScope(scope,this);
                     });
                 }
             }
-        }
-        
-        function irLocal(id){
-            DGlobal.localAtual = id;
-            if(DGlobal.coordenadasAtual){
-                Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+id+'&atualizando=0'});
-            }else{
-                navigator.geolocation.getCurrentPosition(onPesquisa,onPesquisaError);
-            }
-        }
-        
-        var onPesquisa = function(position){
-            DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-            Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
-        };
-        
-        function onPesquisaError(error){
-            var coordenadas = {latitude:-21.135445,longitude:-42.365089};
-            Pagina.navegar({idPage:24,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
         }
         
         function attTutorial(){

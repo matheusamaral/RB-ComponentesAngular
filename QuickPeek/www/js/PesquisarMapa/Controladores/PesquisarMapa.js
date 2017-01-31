@@ -24,6 +24,7 @@ angular.module('QuickPeek.PesquisarMapa', [
         $scope.seguir = PesquisarMapaAcoes.seguir;
         $scope.cancelarSolicitacao = PesquisarMapaAcoes.cancelarSolicitacao;
         $scope.deixarSeguir = PesquisarMapaAcoes.deixarSeguir;
+        $scope.addLocal = PesquisarMapaAcoes.addLocal;
     }
 ])
 

@@ -127,6 +127,17 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         PesquisarMapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successDeixarDeSeguir}).deixarDeSeguir();
     }
     
+    function addLocal(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude,
+            titulo:scope.dados.termoBuscado
+        };
+        
+        DGlobal.dadosNovoLocal = obj;
+        Pagina.navegar({idPage:39});
+    }
+    
     return {
         setScope:setScope,
         voltarMapa:voltarMapa,
@@ -140,7 +151,8 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         irLocal:irLocal,
         seguir:seguir,
         cancelarSolicitacao:cancelarSolicitacao,
-        deixarSeguir:deixarSeguir
+        deixarSeguir:deixarSeguir,
+        addLocal:addLocal
     };
     
  }]);

@@ -35,12 +35,10 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-//                for(var i = 0; i < objRetorno.dados.length;i++){
-//                    scope.locais.push(objRetorno.dados[i]);
-//                }
                 scope.locais = objRetorno.dados;
-                console.log(scope.locais);
+                scope.dados.termoBuscado = false;
             }
+            scope.dados.termoBuscado = dados.nome;
         };
         
         function successPesquisarLocaisScroll(objRetorno){

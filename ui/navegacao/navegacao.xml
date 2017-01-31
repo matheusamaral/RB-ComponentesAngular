@@ -228,7 +228,7 @@
         <acaoCliente classe="pag-perguntas-local" acao="PerguntasLocalCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="28" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="pesquisar">
+    <pagina id="28" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pesquisar">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -334,6 +334,16 @@
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-privacidade-respostas" acao="PrivacidadeRespostasCtrl" title="Seguir pendentes"/>
+    </pagina> 
+    
+    <pagina id="39" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="selecionar-categorias">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarCategoriasFiltroMapa" objeto='categorias'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-categorias" acao="CategoriasCtrl" title="Seguir pendentes"/>
     </pagina> 
     
 </root>
