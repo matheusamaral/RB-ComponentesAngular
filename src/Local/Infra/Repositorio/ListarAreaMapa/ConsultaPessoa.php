@@ -36,6 +36,7 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
         $query->join('seguir', 's', 'left')
                 ->on('s.usuario_id = ?')
                 ->on('s.usuario_seguir_id = u.id')
+                ->on('s.confirmar_seguir = 1')
                 ->on('s.ativo = 1');
         $query->join('avatares', 'a')
                 ->on('a.id = u.avatares_id')

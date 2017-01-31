@@ -310,6 +310,7 @@ CREATE TABLE `alertas`(
          FOREIGN KEY (`tipo_id`) REFERENCES `tipo_alertas` (`id`)
      ON DELETE NO ACTION
      ON UPDATE NO ACTION,
+    `response` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
         

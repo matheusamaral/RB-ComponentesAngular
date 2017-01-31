@@ -313,7 +313,7 @@
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
                 <metodo name="listarNotificacoes" objeto='notificacoes'></metodo>
             </classe>
-        </dadosSolicitados>   
+        </dadosSolicitados>
         <acaoCliente classe="pag-notificacoes" acao="NotificacoesCtrl" title="Midias"/>
     </pagina> 
     

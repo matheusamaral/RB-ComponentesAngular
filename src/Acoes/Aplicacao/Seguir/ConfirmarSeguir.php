@@ -34,14 +34,32 @@ class ConfirmarSeguir {
         $seguirId = $msg->getCampo('Seguir::id')->get('valor');
         $dadosSeguir = Conteiner::get('ConsultaUsuarioSeguir')->consultar($seguirId);
         
-        $usuariosNotificacao = [$dadosSeguir['usuarioId'], $dadosSeguir['usuarioSeguirId']];
-        $usuariosAcao = [$dadosSeguir['usuarioSeguirId'], $dadosSeguir['usuarioId']];
-        $tipos = [2, 5];
-        
         $msg->setCampo('entidade', 'Notificacoes');
-        $msg->setCampo('Notificacoes::usuarioId', $usuariosNotificacao);
-        $msg->setCampo('Notificacoes::usuarioAcaoId', $usuariosAcao);
-        $msg->setCampo('Notificacoes::tipoId', $tipos);
+        $msg->setCampo('Notificacoes::usuarioId', $dadosSeguir['usuarioId']);
+        $msg->setCampo('Notificacoes::usuarioAcaoId', $dadosSeguir['usuarioSeguirId']);
+        $msg->setCampo('Notificacoes::tipoId', 2);
         Conteiner::get('Cadastro')->cadastrar($msg);
+        
+        $this->enviarAlerta($msg, $dadosSeguir['usuarioId']);
+    }
+    
+    private function enviarAlerta($msg, $usuarioAlertaId){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        
+        $dadosUsuarioLogado = Conteiner::get('ConsultaListarDadosUsuario')->consultar($usuarioId);
+        $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultar($usuarioAlertaId);
+        
+        $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' aceitou seu pedido de seguidor'];
+        $fields = [
+            'include_player_ids'=>[$dadosUsuario['playerId']], 
+            'data'=>['pagina'=>36], 
+            'contents'=>$contents, 
+            'headings'=>['en'=>'Aceitou seu pedido!']];
+        
+        $alerta = Conteiner::get('Alerta');
+        $response = $alerta->enviar($fields);
+        
+        $alerta->cadastrarAlerta($dadosUsuario['usuarioId'], 2, $response, false, $msg->getCampo('Notificacoes::id')->get('valor'));
     }
 }

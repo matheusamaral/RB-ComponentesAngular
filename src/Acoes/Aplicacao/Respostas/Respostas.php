@@ -86,19 +86,16 @@ class Respostas {
     
     private function checarBloqueado($msg){
         
-        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        $query = Conteiner::get('ConsultaBloqueado');
         
-        $bloqueado = Conteiner::get('ConsultaBloqueado')->consultar($usuarioId, $perguntaId);
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $perguntasId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntasId);
+        $criadorPergunta = $query->consultarCriadorPergunta($perguntasId);
+        
+        $bloqueado = $query->consultar($criadorPergunta, $usuarioId, $visibilidadeId);
         if($bloqueado){
-            $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
-            if($bloqueado['visibilidadeId'] == 1 && ($visibilidadeId == 1 || 
-                    ($visibilidadeId == 2 && $bloqueado['seguindo'])) || $bloqueado['visibilidadeId'] == 2
-                    && ($visibilidadeId == 3 || ($visibilidadeId == 2 && !$bloqueado['seguindo']))){
-                return true;
-            }else{
-                return false;
-            }
+            return true;
         }else{
             return false;
         }
@@ -119,7 +116,52 @@ class Respostas {
             $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioId);
             $msg->setCampo('Notificacoes::tipoId', 3);
             $cadastro->cadastrar($msg);
+            
+            $dados = Conteiner::get('DadosPergunta')->consultar($perguntaId);
+            if($this->verificarConexao($msg, $dados['usuarioId'], $perguntaId)){
+                $this->enviarAlerta($msg, $dados);
+            }
         }
+    }
+    
+    private function verificarConexao($msg, $usuarioId, $perguntaId){
+        
+        $usuarioSessao = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $pagina = 34 . '-' . $perguntaId;
+        
+        $cmd = Conteiner::get('Socket');
+        $dados = $cmd->getConexao($usuarioSessao, $pagina);
+        if($dados){
+            foreach($dados['usuarios'] as $v){
+                if($v == $usuarioId){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    private function enviarAlerta($msg, $dados){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $perguntaId = $msg->getCampo('Respostas::perguntasId')->get('valor');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
+        $query = Conteiner::get('ConsultaListarDadosUsuario');
+        
+        $dadosUsuarioLogado = $query->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeId);
+        $dadosUsuario = $query->consultar($dados['usuarioId']);
+        
+        $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' respondeu a sua pergunta em ' . $dados['localNome']];
+        $fields = [
+            'include_player_ids'=>[$dadosUsuario['playerId']], 
+            'data'=>['pagina'=>36], 
+            'contents'=>$contents, 
+            'headings'=>['en'=>'Pergunta respondida!']];
+        
+        $alerta = Conteiner::get('Alerta');
+        $response = $alerta->enviar($fields);
+        
+        $alerta->cadastrarAlerta($dadosUsuario['usuarioId'], 2, $response, false, $msg->getCampo('Notificacoes::id')->get('valor'));
     }
     
      private function conexaoSocket($msg){

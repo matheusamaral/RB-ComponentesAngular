@@ -14,7 +14,7 @@ class Perguntas {
         $msg->setCampo('Perguntas::usuarioId', $usuarioId);
         $cad = $cadastro->cadastrar($msg);
         if($cad){
-//            $this->conexaoSocket($msg);
+            $this->conexaoSocket($msg);
             $this->enviarAlerta($msg);
         }
     }
@@ -64,6 +64,7 @@ class Perguntas {
         
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         $pessoas = Conteiner::get('PessoasAlerta')->consultar($usuarioId, $localId, $tempo['hashtag'], $tempo['midia']);
+        
         if($pessoas){
             foreach($pessoas as $v){
                 $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v['usuarioId']);
@@ -74,10 +75,18 @@ class Perguntas {
                     'contents'=>$contents, 
                     'headings'=>['en'=>'Uma pergunta em seu local!']];
                 
-                $alertar = Conteiner::get('Alerta');
-//                $response = $alertar->enviar($fields);
-                file_get_contents('http://dev.codevip.com.br/OneSignal/TesteNotificacao.php?' . http_build_query($fields));
+                $alerta = Conteiner::get('Alerta');
+                $response[] = $alerta->enviar($fields);
             }
+            
+            foreach($pessoas as $v){
+                $usuarios[] = $v['usuarioId'];
+                $visibilidadeIds[] = $v['visibilidadeId'];
+                $perguntasIds[] = $perguntasId; 
+                $localIds[] = $localId;
+                $tipo[] = 1;
+            }
+            $alerta->cadastrarAlerta($usuarios, $tipo, $response, $perguntasIds, false, false, $localIds);
         }
     }
 }
