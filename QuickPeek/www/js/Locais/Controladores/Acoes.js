@@ -42,7 +42,13 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function irPerguntas(id){
+        DGlobal.idLocal = id;
         Pagina.navegar({idPage:27,paramAdd:'?localId='+id});
+    }
+    
+    function perguntar(id){
+        DGlobal.idLocal = id;
+        Pagina.navegar({idPage:35});
     }
     
     function voltarMapa(){
@@ -131,7 +137,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         checkInLocal:checkInLocal,
         curtirHashtag:curtirHashtag,
         converteKmM:converteKmM,
-        irPublicar:irPublicar
+        irPublicar:irPublicar,
+        perguntar:perguntar
     };
     
  }]);

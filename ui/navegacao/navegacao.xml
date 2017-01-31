@@ -207,7 +207,7 @@
         <acaoCliente classe="pag-exibir-midia" acao="ExibirMidiaCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="26" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Pessoas no local">
+    <pagina id="26" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="pessoas-local">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -217,7 +217,7 @@
         <acaoCliente classe="pag-pessoas-local" acao="PessoasLocalCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="27" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Pessoas no local">
+    <pagina id="27" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="perguntas">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -286,4 +286,34 @@
         </dadosSolicitados>   
         <acaoCliente classe="pag-mudar-numero-s-m-s" acao="MudarNumeroSMSCtrl" title="Publique"/>
     </pagina>   
+    
+    <pagina id="34" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="respostas">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarMensagensPerguntas" objeto='respostas'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-respostas" acao="RespostasCtrl" title="Responda"/>
+    </pagina>   
+    
+    <pagina id="35" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perguntar">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-perguntar" acao="PerguntarCtrl" title="Faça um pergunta"/>
+    </pagina>   
+    
+    <pagina id="36" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="notificacoes">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarNotificacoes" objeto='notificacoes'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-notificacoes" acao="NotificacoesCtrl" title="Midias"/>
+    </pagina> 
+    
 </root>

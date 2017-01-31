@@ -138,8 +138,26 @@ md-chip{
     background-color: #b7b7b7 !important;
     font-size: 12px;
     margin: 12px 12px 0 0 !important; 
+    padding-left: 0px !important;
 }
 
 md-chip md-icon{
     color: white !important;
+}
+
+.chip-strong{
+    line-height: 22px;
+    margin-right: 9px;
+    margin-left: 11px;
+}
+
+.img-chip{
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+}
+
+.img-chip.borda-dourada-pub{
+    border: 1px solid #ffc900;
+    border-radius: 15px;
 }

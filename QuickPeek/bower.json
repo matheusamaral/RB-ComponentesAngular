@@ -11,6 +11,7 @@
     "angular-ui-mask": "^1.8.7",
     "jquery": "^3.1.1",
     "ionic-toast": "^0.4.1",
-    "jquery-mask-plugin": "^1.14.8"
+    "jquery-mask-plugin": "^1.14.8",
+    "loaders.css": "^0.1.2"
   }
 }

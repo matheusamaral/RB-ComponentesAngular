@@ -16,7 +16,7 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
     };
     
     function voltarLocais(){
-        Pagina.navegar({idPage:24,paramAdd:'?localId='+DGlobal.localAtual+'&atualizando=0'});
+        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
     }
     
     function converteMinutoshoras(min){
@@ -38,12 +38,33 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
             DGlobal.paginaVoltar = 26;
     }
     
+    function seguir(id,evento){
+        VP.pararEvento(evento);
+        var obj = {usuarioSeguirId:id};
+        PessoasLocalRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PessoasLocalRequisicoes.successSeguir}).seguir();
+    }
+    
+    function cancelarSolicitacao(id,evento){
+        VP.pararEvento(evento);
+        var obj = {seguirId:id};
+        PessoasLocalRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PessoasLocalRequisicoes.successCancelarSeguir}).cancelarSeguir();
+    }
+    
+    function deixarSeguir(id,evento){
+        VP.pararEvento(evento);
+        var obj = {usuarioSeguirId:id};
+        PessoasLocalRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PessoasLocalRequisicoes.successDeixarDeSeguir}).deixarDeSeguir();
+    }
+    
     return {
         setScope:setScope,
         voltarLocais:voltarLocais,
         converteMinutoshoras:converteMinutoshoras,
         maisPessoas:maisPessoas,
-        irPerfil:irPerfil
+        irPerfil:irPerfil,
+        seguir:seguir,
+        cancelarSolicitacao:cancelarSolicitacao,
+        deixarSeguir:deixarSeguir
     };
     
  }]);

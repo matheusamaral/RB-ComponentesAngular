@@ -67,11 +67,18 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             placeholder="Insira suas hashtags" \n\
                             ng-model="dados.tituloChip" \n\
                             readonly="false"\n\
+                            ng-keypress="verfificaTecla($event)"\n\
+                            md-separator-keys="keyCodes"\n\
                             md-removable="true"\n\
                             md-on-remove="removerChip($chip)"\n\
                             md-on-add="addHashDigitando($chip)">\n\
-                                <md-chip-template>\n\
-                                    <strong>#{{$chip.titulo}}</strong>\n\
+                                <md-chip-template class="row">\n\
+                                    <div\n\
+                                    ng-class="{\'borda-dourada-pub\' : $chip.bordaDourada == true}"\n\
+                                    class="img-chip" \n\
+                                    style="background-image:url({{$chip.endereco}})">\n\
+                                    </div>\n\
+                                    <strong class="chip-strong">#{{$chip.titulo}}</strong>\n\
                                 </md-chip-template>\n\
                             </md-chips>\n\
                         </div>\n\
