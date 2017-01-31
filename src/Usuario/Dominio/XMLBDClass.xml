@@ -170,6 +170,7 @@
         <propriedades coluna="mensagens_id" atributo="mensagensId" classe="Mensagens" tabela="mensagens"/>
         <propriedades coluna="local_id" atributo="localId" classe="\Quickpeek\Local\Dominio\Local" tabela="local"/>
         <propriedades coluna="tipo_id" atributo="tipoId" classe="TipoAlertas" tabela="tipo_alertas"/>
+        <propriedades coluna="response" atributo="response" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>

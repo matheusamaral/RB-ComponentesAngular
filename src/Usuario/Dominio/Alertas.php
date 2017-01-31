@@ -11,6 +11,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $mensagensId = false;
         private $localId = false;
         private $tipoId = false;
+        private $response = false;
         private $ativo = false;
         private $momento = false; 
                 
@@ -92,6 +93,14 @@ use Rubeus\ORM\Persistente as Persistente;
             if($tipoId instanceof TipoAlertas)
                 $this->tipoId = $tipoId;
             else $this->getTipoId()->setId($tipoId);
+        } 
+                
+        public function getResponse() {
+            return $this->response;
+        }
+
+        public function setResponse($response) {
+            $this->response = $response;
         } 
                 
         public function getAtivo() {

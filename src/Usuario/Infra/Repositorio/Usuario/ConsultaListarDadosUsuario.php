@@ -13,6 +13,7 @@ class ConsultaListarDadosUsuario {
                 ->add('u.nascimento', 'usuarioNascimento')
                 ->add('u.telefone', 'usuarioTelefone')
                 ->add('u.genero_id', 'usuarioGeneroId')
+                ->add('uo.player_id', 'playerId')
                 ->add('u.tutorial', 'tutorial')
                 ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.conta_privada', 'contaPrivada')
@@ -40,6 +41,9 @@ class ConsultaListarDadosUsuario {
                 ->on('ci.usuario_id = u.id')
                 ->on('ci.presente = 1')
                 ->on('ci.ativo = 1');
+        $query->join('usuario_onesignal', 'uo', 'left')
+                ->on('uo.usuario_id = u.id')
+                ->on('uo.ativo = 1');
         $query->where('u.id = ?')
                 ->add('u.ativo = 1');
         $query->addVariaveis($usuarioId);
@@ -55,7 +59,8 @@ class ConsultaListarDadosUsuario {
                 . "else a.nome end", 'usuarioNome')
                 ->add("case when $visibilidadeId = 1 then u.endereco "
                         . "when $visibilidadeId = 2 and s.id is not null then u.endereco "
-                        . "else a.endereco end", 'usuarioEndereco');
+                        . "else a.endereco end", 'usuarioEndereco')
+                ->add('uo.player_id', 'playerId');
         $query->from('usuario', 'u');
         $query->join('avatares', 'a')
                 ->on('a.id = u.avatares_id')
@@ -65,6 +70,9 @@ class ConsultaListarDadosUsuario {
                 ->on('s.usuario_seguir_id = ?')
                 ->on('s.confirmar_seguir = 1')
                 ->on('s.ativo = 1');
+        $query->join('usuario_onesignal', 'uo', 'left')
+                ->on('uo.usuario_id = u.id')
+                ->on('uo.ativo = 1');
         $query->where('u.id = ?')
                 ->add('u.ativo = 1');
         $query->addVariaveis([$usuario2, $usuarioId, $usuarioId]);
@@ -78,11 +86,15 @@ class ConsultaListarDadosUsuario {
                 ->add("case when $visibilidadeId = 1 then u.nome "
                         . "else a.nome end", 'usuarioNome')
                 ->add("case when $visibilidadeId = 1 then u.endereco "
-                        . "else a.endereco end", 'usuarioEndereco');
+                        . "else a.endereco end", 'usuarioEndereco')
+                ->add('uo.player_id', 'playerId');
         $query->from('usuario', 'u');
         $query->join('avatares', 'a')
                 ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
+        $query->join('usuario_onesignal', 'uo', 'left')
+                ->on('uo.usuario_id = u.id')
+                ->on('uo.ativo = 1');
         $query->where('u.id = ?')
                 ->add('u.ativo = 1');
         $query->addVariaveis($usuarioId);

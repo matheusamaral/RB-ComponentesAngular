@@ -15,6 +15,7 @@ class PessoasAlerta {
                     IFNULL(consulta.soma, 0)) * 0.8) + (COUNT(DISTINCT ci.id) * 0.7)) * 0.5) END) + 
                     (CASE WHEN al.ativo IS NULL THEN 3 ELSE 0 END) + 
                     (CASE WHEN r.ativo IS NOT NULL THEN 2 ELSE 0 END)', 'relevancia')
+                ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.momento', 'momento');
         $query->from('usuario', 'u');
         $query->join('check_in', 'c')
@@ -36,7 +37,9 @@ class PessoasAlerta {
                 ->on('r.usuario_id = u.id');
         $query->join('seguir', 's', 'left')
                 ->on('s.usuario_id = ?')
-                ->on('s.usuario_seguir_id = u.id');
+                ->on('s.usuario_seguir_id = u.id')
+                ->on('s.confirmar_seguir = 1')
+                ->on('s.ativo = 1');
         $query->join('avatares', 'a')
                 ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
@@ -57,11 +60,21 @@ class PessoasAlerta {
         $query->join('usuario_onesignal', 'uo')
                 ->on('uo.usuario_id = u.id')
                 ->on('uo.ativo = 1');
+        $query->join('bloqueado', 'b', 'left')
+                ->on('b.usuario_id = ?')
+                ->on('b.usuario_bloqueado_id = u.id')
+                ->on('case when c.visibilidade_id = 1 then b.visibilidade_id = 1'
+                        . ' when c.visibilidade_id = 2 and s.id is not null then b.visibilidade_id = 1'
+                        . ' when c.visibilidade_id = 2 and s.id is null then b.visibilidade_id = 2'
+                        . ' when c.visibilidade_id = 3 then b.visibilidade_id = 2 end')
+                ->on('b.ativo = 1');
+        $query->where('u.id not in (' . $usuarioId . ')')
+                ->add('b.id is null');
         $query->group('u.id');
         $query->order('relevancia desc, momento desc');
         $query->limit(100);
         $query->addVariaveis([$localId, $localId, $localId, $localId, $usuarioId, $localId, $tempoMidia, $localId,
-                $localId, $tempoHashtag, $localId, $tempoHashtag]);
+                $localId, $tempoHashtag, $localId, $tempoHashtag, $usuarioId]);
         return $query->executar();
     }
     

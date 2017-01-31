@@ -33,16 +33,15 @@ and open the template in the editor.
             enviar = function(){
             console.log("enviar");
             
-            conn.send(JSON.stringify({codsessrt:'1lOuiSX34yGXey5UvQoC6hyGuXUI8JhA67QpXoABFHxCKwOtHfKaCdfEl22GH7ktqJDjvxgUh08CkITd330Yj5GblrGpfEqDFAAI',
-                processo:'Mensagens', etapa:'enviarMensagem', 'Mensagens::titulo':'olar', 'Mensagens::visibilidadeMensagensId':2, 
-                'Mensagens::visibilidadeUsuarioId':1, 'Mensagens::usuarioMensagemId':3}));
+            conn.send(JSON.stringify({codsessrt:'KVsJUX4NLj6qQU2gSP0SQDCjTz0xQNwezUobHmsgF08ZV0emwSawMrjuJpjZjMOkdZJE2qRF6YSKPsxsr11ljGobUNyc97c6nVgt',
+                processo:'Acoes', etapa:'respostas', 'Respostas::perguntasId':1, 'Respostas::titulo':'oi'}));
             };
             
         iniciar = function(){
         console.log("iniciar");
         
-        conn.send(JSON.stringify({codsessrt:'xiqxMn3uCFmfmbWCG5pxhlHDMOE9JwWvNGF6tne5j9ShELEhKb4Hhn5VWBQ7vz8n2P7QuQqmkvMdVwDOeKsoigjWf7mQTGcam76g'
-            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'39-3-1-2-1'}));
+        conn.send(JSON.stringify({codsessrt:'KVsJUX4NLj6qQU2gSP0SQDCjTz0xQNwezUobHmsgF08ZV0emwSawMrjuJpjZjMOkdZJE2qRF6YSKPsxsr11ljGobUNyc97c6nVgt'
+            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'34-1'}));
         };
         setTimeout(
             iniciar,
