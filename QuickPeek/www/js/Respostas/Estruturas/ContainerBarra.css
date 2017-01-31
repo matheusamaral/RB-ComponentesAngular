@@ -1,0 +1,47 @@
+.container-barra-sub-menu{
+    background-color: #ffb800;
+    padding-top: 8px !important;
+}
+
+.container-barra-sub-menu button{
+    color: #FFFFFF !important;
+    opacity: 0.5;
+}
+
+.container-barra-sub-menu button.selecionado{
+    opacity: 1;
+}
+
+.container-barra-sub-menu > div > div{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.espaco-camera{
+    background-color: transparent;
+}
+
+.fundo-transparente{
+    background-color: transparent !important;
+}
+
+.remove-overflow-preview{
+    overflow: hidden;
+}
+
+.btn-float-righ-preview{
+    position: absolute;
+    width: 35px !important;
+    min-width: 35px;
+    min-height: 35px;
+    height: 35px !important;
+    top: 29px;
+    right: 7px;
+}
+
+.btn-zoom{
+    position: absolute;
+    top: 13px;
+    right: 4px;
+    color: #FFFFFF !important;
+}

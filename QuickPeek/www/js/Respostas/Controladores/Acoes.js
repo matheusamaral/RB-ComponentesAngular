@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
     'RB.validacoesPadroes'
 ])
 
-.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout','Websocket','InfinitScroll',
-    function(Pagina,RespostasRequisicoes,VP,$timeout,Websocket,InfinitScroll){
+.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout','Websocket','InfinitScroll','RespostasAcoesCamera',
+    function(Pagina,RespostasRequisicoes,VP,$timeout,Websocket,InfinitScroll,RespostasAcoesCamera){
     var scope;  
     
     function setScope(obj){
@@ -18,7 +18,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
     };
     
     function addCss(){
-        $('ion-side-menu-content').addClass('background-cinza');
+        $('ion-side-menu-content ion-content').addClass('background-cinza');
         $timeout(function(){
             scope.alturaChat = $('#container-input').height();
             scope.alturaBody = $('body').height();
@@ -157,6 +157,14 @@ angular.module('QuickPeek.Acoes.Respostas', [
         removeMarginTeclado();
     }
     
+    function irDados(){
+        Pagina.navegar({idPage:40,paramAdd:'?perguntasId='+DGlobal.idPergunta});
+    }
+    
+    function abrirCamera(){
+        RespostasAcoesCamera.setScope(scope).iniciar();
+    }
+    
     return {
         setScope:setScope,
         configConexao:configConexao,
@@ -167,7 +175,96 @@ angular.module('QuickPeek.Acoes.Respostas', [
         addMarginTeclado:addMarginTeclado,
         removeMarginTeclado:removeMarginTeclado,
         voltarPerguntas:voltarPerguntas,
-        attPrivacidade:attPrivacidade
+        attPrivacidade:attPrivacidade,
+        irDados:irDados,
+        abrirCamera:abrirCamera
+    };
+    
+ }])
+ 
+.factory('RespostasAcoesCamera', ['VP','$timeout',
+    function(VP,$timeout){
+    var scope;  
+    var tapEnabled = false;
+    var dragEnabled = false;
+    var toBack = true;
+    
+    function setScope(obj){
+        scope = obj;
+        scope.cameraPrev = {};
+        scope.camera = cordova.plugins.camerapreview;
+        return this;
+    };
+    
+    function iniciar(){
+    
+        scope.cameraPrev.containerImgAltura = $('body').width();
+
+        scope.cameraPrev.instanciaCamera = function(){
+            scope.camera.setOnPictureTakenHandler(function(result) {
+                scope.cameraPrev.img = result[1];
+                //document.getElementById(cameraPrev).src = scope[.cameraPrev].img; //originalPicturePath;
+            });
+        };
+
+        scope.cameraPrev.iniciarCamera = function(){
+            scope.camera.startCamera({
+                x: 0,
+                y: ($('body').height() - scope.cameraPrev.containerImgAltura),
+                width: $('body').width(),
+                height: scope.cameraPrev.containerImgAltura
+            }, "rear", tapEnabled, dragEnabled, toBack);
+        };
+        
+        scope.cameraPrev.iniciarCameraFull = function(){
+            scope.camera.stopCamera();
+            $timeout(function(){
+                scope.cameraPrev.instanciaCamera();
+                $timeout(function(){
+                    scope.cameraPrev.containerImgAltura = $('body').height() -60;
+                    cordova.plugins.camerapreview.startCamera({
+                        x: 0,
+                        y: 60,
+                        width: $('body').width(),
+                        height: $('body').height() - 60
+                    }, "rear", tapEnabled, dragEnabled, toBack);
+                    rolarChat();
+                },0);
+            },0);
+        };
+        
+        scope.girarcamera = function (){
+            scope.camera.switchCamera();
+        };
+        
+        criaEpacoTransparente();
+        
+        scope.cameraPrev.instanciaCamera();
+        $timeout(function(){
+            scope.cameraPrev.iniciarCamera();
+        },0);
+    }
+    
+    function criaEpacoTransparente(){
+        scope.previewAberto = true;
+        addCss();
+    }
+    
+    function addCss(){
+        $('html,body,ion-side-menus.view,ion-side-menu-content').addClass('fundo-transparente');
+        rolarChat();
+    }
+    
+    function rolarChat(){
+        $timeout(function(){
+            $('ion-side-menu-content').animate({scrollTop:$('ion-side-menu-content').height()}, 'slow');
+            $('ion-side-menu-content').addClass('remove-overflow-preview');
+        },1000);
+    }
+    
+    return {
+        setScope:setScope,
+        iniciar:iniciar
     };
     
  }]);
