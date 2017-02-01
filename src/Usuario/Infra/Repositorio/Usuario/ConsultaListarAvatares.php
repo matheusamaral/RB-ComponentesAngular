@@ -9,7 +9,7 @@ class ConsultaListarAvatares {
         $query = Conteiner::get('Query', false);
         $query->select('id')
                 ->add('nome')
-                ->add("concat('".URL_PROJETO."',endereco)",'endereco');
+                ->add("concat('".DOMINIO_PROJETO."',endereco)",'endereco');
         $query->from('avatares');
         $query->where('ativo = 1');
         return $query->executar();
