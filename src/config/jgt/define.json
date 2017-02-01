@@ -1,16 +1,15 @@
 {
-    "PROJETO":"Quickpeek" ,
+    "PROJETO":"QuickPeek" ,
     "DIR_CONF" : "src/config/",
-    "URL_PROJETO":"192.168.0.121:8000/QuickPeek/quickpeek" ,
-    "DOMINIO_PROJETO":"http://192.168.0.121:8000/QuickPeek/quickpeek" ,
-    "DOMINIO":"http://192.168.0.121:8000/",    
-    "DOMINIO_REQ":"http://192.168.0.121:8000/QuickPeek/quickpeek/api", 
-    "ROTAS": "src/config/define_rotas_cale.json",   
-    "DEPENDENCIA": "src/config/define_dependencia.json",  
+    "URL_PROJETO":"172.17.0.3/Quickpeek/quickpeekAtual/" ,
+    "DOMINIO_PROJETO":"http://172.17.0.3/Quickpeek/quickpeekAtual/" ,
+    "DOMINIO":"http://172.17.0.3",
+    "DOMINIO_REQ":"http://172.17.0.3/Quickpeek/quickpeekAtual/api", 
+    "ROTAS": "src/config/jgt/define_rotas_jgt.json",   
+    "DEPENDENCIA": "src/config/define_dependencia.json",
     "DEFINE_APP": "src/config/define_app.json",
     "PERMITIR_COMMIT": 1,
     "PROTOCOLLO":"HTTP",
-    "CONFIG_IMAGEM":"src/config/define_imagem.json",
     
     "ARQ_CONFIG":{
         "ARQ_EMAIL": "src/config/define_email.json",

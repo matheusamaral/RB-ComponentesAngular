@@ -13,7 +13,7 @@ angular.module('QuickPeek.Acoes.ConfirmaSms', [
     
     function setScope(obj){
         scope = obj;
-        verificarSMS();
+        //verificarSMS();
        
         return this;
     };

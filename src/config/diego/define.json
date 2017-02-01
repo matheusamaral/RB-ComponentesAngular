@@ -5,7 +5,7 @@
     "DOMINIO_PROJETO":"http://172.17.0.2/Quickpeek/" ,
     "DOMINIO":"http://172.17.0.2",
     "DOMINIO_REQ":"http://172.17.0.2/Quickpeek/api", 
-    "ROTAS": "src/config/define_rotas_diego.json",   
+    "ROTAS": "src/config/diego/define_rotas_diego.json",   
     "DEPENDENCIA": "src/config/define_dependencia.json",
     "DEFINE_APP": "src/config/define_app.json",
     "PERMITIR_COMMIT": 1,
