@@ -19,7 +19,7 @@ abstract class Ambiente{
             return $_SERVER['SERVER_NAME'].'/define.json';
         }
         
-        if(isset($_SERVER['argv'])){
+        if(isset($_SERVER['argv'][1])){
             $parametro = $_SERVER['argv'][1];
         }else{
             $parametro = 'diego';
