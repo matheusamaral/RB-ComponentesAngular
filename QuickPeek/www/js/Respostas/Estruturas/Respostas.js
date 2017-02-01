@@ -50,11 +50,12 @@ angular.module('QuickPeek.HTML.Respostas', [
                         background-repeat: no-repeat;\n\
                         height:{{cameraPrev.containerImgAltura}}px;\n\
                         position:relative;\n\
+                        background-position: center;\n\
                         width:100%;\n\
                         background-image:url({{cameraPrev.urlImg}})">\n\
                         </div>\n\
                     </div>\n\
-                    <button ng-click="enviarMidia(cameraPrev.urlImg)" class="ion-android-send btn-rodape btn-redondo-dourado button button-positive">\n\
+                    <button ng-if="!sumirBtn" ng-click="enviarMidia(cameraPrev.urlImg)" class="ion-android-send btn-rodape btn-redondo-dourado button button-positive">\n\
                     </button>\n\
                 </div>';
     }
@@ -69,7 +70,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                         <i class="icon img-inverte-camera-preview"></i>\n\
                     </button>\n\
                 </div>\n\
-                <div class="row container-barra-sub-menu">\n\
+                <div ng-if="exibirBarra == true;" class="row container-barra-sub-menu">\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
                             <button ng-click="" class="btn-chat-pub ion-android-drafts button button-clear button-positive">\n\
@@ -147,6 +148,9 @@ angular.module('QuickPeek.HTML.Respostas', [
                                     </div>\n\
                                     <div class="container-resposta">\n\
                                         {{resposta.respostaTitulo}}\n\
+                                        <div ng-click="exibirMidiaChat(resposta.enderecoMidia)" ng-if="resposta.enderecoMidia" class="container-midia-resposta" \n\
+                                        style="background-image:url({{resposta.enderecoMidia}})">\n\
+                                        </div>\n\
                                     </div>\n\
                                 </div>\n\
                                 <div class="container-img-resposta text-right remove-padding">\n\
@@ -181,9 +185,9 @@ angular.module('QuickPeek.HTML.Respostas', [
                             <div class="bola-digitando"></div>\n\
                         </div>\n\
                     </div>\n\
-                    <div ng-if="!previewAberto" class="row remove-padding container-componentes">\n\
+                    <div ng-if="!previewAberto && !exibirBarra" class="row remove-padding container-componentes">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="abrirCamera()" class="btn-chat-pub ion-plus-round button button-clear button-positive">\n\
+                            <button ng-click="abrirBarraTools()" class="btn-chat-pub ion-plus-round button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                         <div class="container-text-area">\n\

@@ -57,13 +57,18 @@ angular.module('QuickPeek.Acoes.Respostas', [
         window.plugins.Base64.encodeFile(url, function(base64){
             scope.dados.base64 = base64;
         });
-        scope.conn.send(JSON.stringify({
-            codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
-            processo:'Acoes',
-            etapa:'respostas',
-            'Respostas::ArquivoBase64':scope.dados.base64, 
-            'Respostas::perguntasId':scope.dados.idPergunta
-        }));
+        
+        $timeout(function(){
+            var extensao = scope.dados.base64.split(';')[0].split('/')[1];
+            scope.conn.send(JSON.stringify({
+                codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
+                processo:'Acoes',
+                etapa:'respostas',
+                ArquivoBase64:scope.dados.base64,
+                'Respostas::perguntasId':scope.dados.idPergunta,
+                Extensao:extensao
+            }));
+        },0);
     }
     
     function digitando(){
@@ -101,7 +106,13 @@ angular.module('QuickPeek.Acoes.Respostas', [
     
     function addResp(resposta){
         scope.dados.respostas.unshift(resposta);
-        if(resposta.remetente == 1)scope.dados.resposta = '';
+        if(resposta.remetente == 1 && !resposta.enderecoMidia)scope.dados.resposta = '';
+        if(resposta.enderecoMidia){
+            scope.cameraPrev.tirouFoto = false;
+            scope.exibirBarra = false;
+            scope.camera.stopCamera();
+            scope.previewAberto = false;
+        }
         $timeout(function(){
             $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
         },0);
@@ -178,6 +189,18 @@ angular.module('QuickPeek.Acoes.Respostas', [
         RespostasAcoesCamera.setScope(scope).iniciar();
     }
     
+    function exibirMidiaChat(midia){
+        if(!scope.cameraPrev) scope.cameraPrev = {};
+        scope.cameraPrev.tirouFoto = true;
+        scope.cameraPrev.urlImg = midia;
+        scope.sumirBtn = true;
+    }
+    
+    function abrirBarraTools(){
+        scope.exibirBarra = true;
+        abrirCamera();
+    }
+    
     return {
         setScope:setScope,
         configConexao:configConexao,
@@ -191,7 +214,9 @@ angular.module('QuickPeek.Acoes.Respostas', [
         attPrivacidade:attPrivacidade,
         irDados:irDados,
         abrirCamera:abrirCamera,
-        enviarMidia:enviarMidia
+        enviarMidia:enviarMidia,
+        exibirMidiaChat:exibirMidiaChat,
+        abrirBarraTools:abrirBarraTools
     };
     
  }])
@@ -209,11 +234,6 @@ angular.module('QuickPeek.Acoes.Respostas', [
         scope.camera = cordova.plugins.camerapreview;
         return this;
     };
-    
-    function preparaImg(url){
-        //alert(url);
-        //scope.img = url;
-    }
     
     function iniciar(){
     
@@ -283,7 +303,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
             },0);
         };
         
-        scope.cameraPrev.tirarFoto = function(){          
+        scope.cameraPrev.tirarFoto = function(){  
+            scope.sumirBtn = false;
             scope.camera.takePicture();
         };
         
