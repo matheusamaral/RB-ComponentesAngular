@@ -17,7 +17,7 @@ class ConsultaListarMensagensPerguntas {
                         . ' else a.nome end', 'nomeUsuario')
                 ->add('case when u.ativo = 0 then ' . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg'"
                         . ' when r.visibilidade_id = 1 then u.endereco'
-                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco end", 'enderecoUsuario')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'enderecoUsuario')
                 ->add('r.momento', 'momento');
         $query->from('respostas', 'r');
         $query->join('usuario', 'u')
