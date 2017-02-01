@@ -172,3 +172,13 @@
     height: 23px;
     background-size: cover;
 }
+
+.img-inverte-camera-preview{
+    background-image: url(../img/07.svg);
+    width: 35px !important;
+    height: 35px !important;
+    background-size: cover;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+}

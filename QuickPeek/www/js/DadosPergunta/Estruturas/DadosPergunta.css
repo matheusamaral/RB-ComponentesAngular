@@ -1,0 +1,51 @@
+.p-dourado{
+    color: rgb(255, 184, 0);
+    font-size: 16px;
+}
+
+.box-lido{
+    background-color: #FFFFFF;
+    border-radius: 7px;
+    box-shadow: 1px 2px 8px #bfbfbf;
+}
+
+.borda-box{
+    padding: 10px;
+    border-bottom: 1px solid #EDECEC;
+}
+
+p.font-preta-dados{
+    color: black;
+    font-size: 16px;
+    position: relative;
+}
+
+.font-cinza-dados{
+    color: #898989;
+    font-size: 15px;
+}
+
+.p-cinza-entregues{
+    color: #adadad;
+} 
+
+.borda-box-top{
+    border-top: 1px solid #EDECEC;
+}
+
+.btn-redondo-medio-dados{
+    border-radius: 55px;
+    border: 4px #FFFFFF solid !important;
+    width: 50px !important;
+    height: 50px;
+    position: relative;
+    background-size: cover;
+}
+
+.hr-dados{
+    position: absolute !important;
+    right: 0;
+    bottom: -9px;
+    border-bottom: none !important;
+    border-top: 1px solid #EDECEC !important;
+}

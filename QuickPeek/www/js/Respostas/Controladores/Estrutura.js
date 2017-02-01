@@ -19,6 +19,8 @@ angular.module('QuickPeek.Estrutura.Respostas', [
     function popular(){
         scope.dados = {respostas:new Array()};
         
+        scope.previewAberto = false;
+        
         //scope.dados.perguntas = [{"id":"4","titulo":"2","usuarioId":"2","respondida":"1","respostas":"16","endereco":"img\/deOlhoAudacia.jpg","nome":"Teste2","momento":"2016-11-24 15:38:41"},{"id":"15","titulo":"1","usuarioId":"2","respondida":"0","respostas":"0","endereco":"img\/deOlhoAudacia.jpg","nome":"Teste2","momento":"2016-11-23 13:29:18"},{"id":"13","titulo":"dasdasdsa","usuarioId":"4","respondida":"1","respostas":"21","endereco":"https:\/\/scontent-gru2-1.xx.fbcdn.net\/v\/t1.0-9\/15095557_1322110414489661_8523253620421857301_n.jpg?oh=62b60d38f48b7c3c0461f6b2de841521&oe=591E29DE","nome":"editado","momento":"2016-11-23 12:51:55"}];
     
         if(DGlobal.respostas && DGlobal.respostas.success){
@@ -33,18 +35,6 @@ angular.module('QuickPeek.Estrutura.Respostas', [
         
         if(DGlobal.idPergunta)
             scope.dados.idPergunta = DGlobal.idPergunta;
-        
-//        scope.dadosUser = {usuarioId:'12'};
-//        
-//        for(var i = 0; i < 10; i++){
-//            scope.dados.respostas.unshift({
-//                nomeUsuario:'Cale',
-//                momento:'21:00',
-//                usuarioId:'12',
-//                respostaTitulo:'Estou aqui XUXU'+i,
-//                enderecoUsuario:'https://scontent.fgru3-2.fna.fbcdn.net/v/t1.0-9/14721744_878452505622443_4877487745632870256_n.jpg?oh=43026304019b5fede599d17e5e0e1fb7&oe=58FD9746'
-//            });
-//        }
         
     };
   

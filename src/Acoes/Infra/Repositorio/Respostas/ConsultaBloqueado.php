@@ -4,23 +4,26 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaBloqueado {
     
-    public function consultar($usuarioId, $perguntaId){
+    public function consultar($usuarioId, $usuarioBloqueadoId, $visibilidadeId){
         
         $query = Conteiner::get('Query', false);
-        $query->select('s.id', 'seguindo')
-                ->add('b.visibilidade_id', 'visibilidadeId');
-        $query->from('perguntas', 'p');
-        $query->join('bloqueado', 'b')
-                ->on('b.usuario_id = p.usuario_id')
-                ->on('b.usuario_bloqueado_id = ?')
-                ->on('b.ativo = 1');
-        $query->join('seguir', 's', 'left')
-                ->on('s.usuario_id = p.usuario_id')
-                ->on('s.usuario_seguir_id = b.usuario_bloqueado_id')
-                ->on('s.confirmar_seguir = 1')
-                ->on('s.ativo = 1');
-        $query->where('p.id = ?');
-        $query->addVariaveis([$usuarioId, $perguntaId]);
-        return $query->executar('A');
+        $query->select('id');
+        $query->from('bloqueado');
+        $query->where('usuario_id = ?')
+                ->add('usuario_bloqueado_id = ?')
+                ->add('visibilidade_id = ?')
+                ->add('ativo = 1');
+        $query->addVariaveis([$usuarioId, $usuarioBloqueadoId, $visibilidadeId]);
+        return $query->executar('{id}');
+    }
+    
+    public function consultarCriadorPergunta($perguntasId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('usuario_id');
+        $query->from('perguntas');
+        $query->where('id = ?');
+        $query->addVariaveis($perguntasId);
+        return $query->executar('{usuario_id}');
     }
 }

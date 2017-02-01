@@ -206,6 +206,7 @@
     <nparaum coluna="mensagens_id"  atributo="mensagensId" />  
     <nparaum coluna="local_id"  atributo="localId" />  
     <nparaum coluna="tipo_id"  atributo="tipoId" />  
+    <propriedades coluna="response" atributo="response" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>

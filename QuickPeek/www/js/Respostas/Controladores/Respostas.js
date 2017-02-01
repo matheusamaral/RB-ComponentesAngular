@@ -21,6 +21,8 @@ angular.module('QuickPeek.Respostas', [
         $scope.voltarPerguntas = RespostasAcoes.voltarPerguntas;
         $scope.attPrivacidade = RespostasAcoes.attPrivacidade;
         $scope.addInfinit = RespostasAcoes.addInfinit;
+        $scope.irDados = RespostasAcoes.irDados;
+        $scope.abrirCamera = RespostasAcoes.abrirCamera;
     }
 ])
 

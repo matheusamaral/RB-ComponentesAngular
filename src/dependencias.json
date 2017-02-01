@@ -32,6 +32,7 @@
     "StatusChat": "\\Quickpeek\\Acoes\\Aplicacao\\StatusChat\\StatusChat",
     "VerificarOnline": "\\Quickpeek\\Acoes\\Aplicacao\\StatusChat\\VerificarOnline",
     "ConsultaVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Visibilidade\\ConsultaVisibilidade",
+    "Alerta": "\\Quickpeek\\Usuario\\Aplicacao\\Alertas\\Alerta",
     
     
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",

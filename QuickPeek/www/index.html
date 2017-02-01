@@ -344,6 +344,7 @@
     <script src="js/Respostas/Estruturas/Respostas.js"></script>
     <script src="js/Respostas/Requisicoes/Respostas.js"></script>
     <link href="js/Respostas/Estruturas/Respostas.css" rel="stylesheet"> 
+    <link href="js/Respostas/Estruturas/ContainerBarra.css" rel="stylesheet"> 
     
     <!--PERGUNTAR-->
     <script src="js/Perguntar/Controladores/Perguntar.js"></script>
@@ -384,13 +385,20 @@
     <script src="js/Categorias/Estruturas/Categorias.js"></script>
     <script src="js/Categorias/Requisicoes/Categorias.js"></script>
     <link href="js/Categorias/Estruturas/Categorias.css" rel="stylesheet"> 
+    
+    <!--DADOS DA PERGUNTA-->
+    <script src="js/DadosPergunta/Controladores/DadosPergunta.js"></script>
+    <script src="js/DadosPergunta/Controladores/Estrutura.js"></script>
+    <script src="js/DadosPergunta/Controladores/Acoes.js"></script>
+    <script src="js/DadosPergunta/Estruturas/DadosPergunta.js"></script>
+    <link href="js/DadosPergunta/Estruturas/DadosPergunta.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
         DGlobal.acaoCliente = {classe:"pag-loading-inicial", acao:"LoadingInicialCtrl"};
         //DGlobal.acaoCliente = {classe:"pag-filtro-mapa", acao:"FiltroMapaCtrl"};
         var refAmbienteG = 'localhost:8100/';
-        var refAmbienteReqG = 'http://172.17.0.2/Quickpeek/quickpeekAtual/api';
+        var refAmbienteReqG = 'http://192.168.0.121:8000/QuickPeek/quickpeek/api';
         var refDominioG = 'localhost:8100/';
         var GDados = {};
         var GMenu = {};

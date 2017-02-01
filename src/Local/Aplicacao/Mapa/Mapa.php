@@ -86,11 +86,11 @@ class Mapa {
         
         $atualizando = $msg->getCampo('Atualizando')->get('valor');
         
-        if($atualizando){
-            $notIn = implode(', ', $msg->getCampoSessao('locaisMapaNotIn'));
-        }else{
-            $notIn = 0;
-        }
+       // if($atualizando){
+        //    $notIn = implode(', ', $msg->getCampoSessao('locaisMapaNotIn'));
+        //}else{
+           $notIn = 0;
+        //}
         return $notIn;
     }
 }

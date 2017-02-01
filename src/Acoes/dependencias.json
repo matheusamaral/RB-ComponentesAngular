@@ -17,6 +17,7 @@
     "ConsultaCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaCheckIn",
     "ConsultaBloqueado": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaBloqueado",
     "ConsultaRespostasVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\ConsultaRespostasVisibilidade",
+    "DadosPergunta": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\DadosPergunta",
     
     "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn",
     "ConsultaAlterarVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaAlterarVisibilidade",

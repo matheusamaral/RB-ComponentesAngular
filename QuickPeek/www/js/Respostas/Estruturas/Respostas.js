@@ -34,14 +34,44 @@ angular.module('QuickPeek.HTML.Respostas', [
                             </div>\n\
                         </div>\n\
                     </div>\n\
-                    '+conversa()+'\n\
-                    <div ng-if="dados.perguntas.length == 0" class="padding-top-bloqueados row padding-padrao-contas">\n\
-                        <div class="col text-center">\n\
-                            <i class="icone-padrao icon ion-alert-circled"></i>\n\
-                            <p style="color:#b0b0b0">Nenhuma pergunta no local, ainda...</p>\n\
+                    '+conversa();
+    };  
+    
+    function subMenu(){
+         return'<div ng-if="previewAberto" style="position:relative;background-color:transparent;text-align: center;padding: 15px;">\n\
+                    <button ng-click="tirarFoto($event)" class="btn-rodape btn-redondo button button-clear">\n\
+                    </button>\n\
+                    <button ng-click="girarcamera($event)" class="btn-float-righ-preview btn-rodape button-clear button button-positive">\n\
+                        <i class="icon img-inverte-camera-preview"></i>\n\
+                    </button>\n\
+                </div>\n\
+                <div class="row container-barra-sub-menu">\n\
+                    <div class="col">\n\
+                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                            <button ng-click="" class="btn-chat-pub ion-android-drafts button button-clear button-positive">\n\
+                            </button>\n\
                         </div>\n\
-                    </div>';
-    };   
+                    </div>\n\
+                    <div class="col">\n\
+                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                            <button ng-class="{selecionado:previewAberto}" ng-click="abrirCamera()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div class="col">\n\
+                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                            <button ng-click="" class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div class="col">\n\
+                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                            <button ng-click="" class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                </div>';
+    }
     
     function conversa(){
         return'<ion-content id="container-respostas" class="container-chat-geral" style="position:relative;height:{{(alturaBody - alturaChat)}}px;padding-top:60px !important">\n\
@@ -54,7 +84,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                                         <div class="col remetente remove-padding">{{dados.pergunta.nomeUsuario}}</div>\n\
                                     </div>\n\
                                     <div class="container-resposta">\n\
-                                        {{dados.pergunta.perguntaTitulo}}\n\
+                                        <span style="color: #ffb800;font-size: 21px;margin-right: 8px;" ng-if="dadosUser.usuarioId == dados.pergunta.usuarioId" ng-click="irDados()" class="ion-android-alert"></span>{{dados.pergunta.perguntaTitulo}}\n\
                                     </div>\n\
                                 </div>\n\
                                 <div class="container-img-resposta text-right remove-padding">\n\
@@ -104,6 +134,11 @@ angular.module('QuickPeek.HTML.Respostas', [
                         <div ng-if="divBranco == true" style="height:{{alturaChat}}px;width:100%"></div>\n\
                     </div>\n\
                 </ion-content>\n\
+                <div style="height:{{cameraPrev.containerImgAltura}}px;position:relative" ng-if="previewAberto" class="espaco-camera">\n\
+                    <button ng-click="cameraPrev.iniciarCameraFull($event)" class="btn-zoom button-clear button button-positive">\n\
+                        <i class="icon ion-android-expand"></i>\n\
+                    </button>\n\
+                </div>\n\
                 '+input();
     }
     
@@ -113,15 +148,15 @@ angular.module('QuickPeek.HTML.Respostas', [
                     ng-if="digitandoObj != false && dadosUser.usuarioId != digitandoObj.idDigitando">\n\
                         <div class="img-circular-digitando"\n\
                         style="background-image:url({{digitandoObj.endereco}})"></div>\n\
-                        <div class="container-digitando-bolas loader-inner ball-pulse">\n\
+                        <div class="container-digitando-bolas loader-inner ball-pulse-sync">\n\
                             <div class="bola-digitando"></div>\n\
                             <div class="bola-digitando"></div>\n\
                             <div class="bola-digitando"></div>\n\
                         </div>\n\
                     </div>\n\
-                    <div class="row remove-padding container-componentes">\n\
+                    <div ng-if="!previewAberto" class="row remove-padding container-componentes">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="publicar()" class="btn-chat-pub ion-android-happy button button-clear button-positive">\n\
+                            <button ng-click="abrirCamera()" class="btn-chat-pub ion-plus-round button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                         <div class="container-text-area">\n\
@@ -134,7 +169,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                             </textarea>\n\
                         </div>\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="addInfinit()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                            <button ng-click="addInfinit()" class="btn-chat-pub ion-android-happy button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
@@ -142,6 +177,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                             </button>\n\
                         </div>\n\
                     </div>\n\
+                    '+subMenu()+'\n\
                 </div>';
     }
   
