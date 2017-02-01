@@ -6,7 +6,7 @@ angular.module('QuickPeek.HTML.Respostas', [
 .factory('RespostasHtml', [ function() {
        
     function montar() {
-        return '<div class="row bar bar-header bar-positive remove-padding">\n\
+        return '<div class="row bar bar-header bar-positive remove-padding" ng-if="!cameraFull && !cameraPrev.tirouFoto">\n\
                         <div class="row remove-padding">\n\
                             <button ng-click="voltarPerguntas()" class="margin-img btn-respostas-voltar btn-txt-direita button button-clear">\n\
                                 <i class="icon ion-android-arrow-back seta-barra"></i>\n\
@@ -34,13 +34,37 @@ angular.module('QuickPeek.HTML.Respostas', [
                             </div>\n\
                         </div>\n\
                     </div>\n\
-                    '+conversa();
-    };  
+                    '+conversa()+exibirMidia();
+    };
+    
+    function exibirMidia(){
+        return'<div class="col remove-padding corpoExibirMidia" ng-if="cameraPrev.tirouFoto">\n\
+                    <div class="rb-padding-padrao" style="padding-left: 0;padding-top: 20px;">\n\
+                        <button ng-click="cameraPrev.tirouFoto = false" class="btn-zoom-tirou button-clear button button-positive">\n\
+                            <i class="icon ion-android-close"></i>\n\
+                        </button>\n\
+                    </div>\n\
+                    <div style="padding:10px">\n\
+                        <div class="container-img-prev"\n\
+                        style="background-size: contain;\n\
+                        background-repeat: no-repeat;\n\
+                        height:{{cameraPrev.containerImgAltura}}px;\n\
+                        position:relative;\n\
+                        width:100%;\n\
+                        background-image:url({{cameraPrev.urlImg}})">\n\
+                        </div>\n\
+                    </div>\n\
+                    <button ng-click="enviarMidia(cameraPrev.urlImg)" class="ion-android-send btn-rodape btn-redondo-dourado button button-positive">\n\
+                    </button>\n\
+                </div>';
+    }
     
     function subMenu(){
          return'<div ng-if="previewAberto" style="position:relative;background-color:transparent;text-align: center;padding: 15px;">\n\
-                    <button ng-click="tirarFoto($event)" class="btn-rodape btn-redondo button button-clear">\n\
+                    <button ng-if="!cameraPrev.tirouFoto" ng-click="cameraPrev.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
                     </button>\n\
+                    <!--<button ng-if="cameraPrev.tirouFoto" ng-click="cameraPrev.tirarDeNovo()" class="btn-rodape ion-android-send button button-clear">\n\
+                    </button>-->\n\
                     <button ng-click="girarcamera($event)" class="btn-float-righ-preview btn-rodape button-clear button button-positive">\n\
                         <i class="icon img-inverte-camera-preview"></i>\n\
                     </button>\n\
@@ -134,9 +158,12 @@ angular.module('QuickPeek.HTML.Respostas', [
                         <div ng-if="divBranco == true" style="height:{{alturaChat}}px;width:100%"></div>\n\
                     </div>\n\
                 </ion-content>\n\
-                <div style="height:{{cameraPrev.containerImgAltura}}px;position:relative" ng-if="previewAberto" class="espaco-camera">\n\
-                    <button ng-click="cameraPrev.iniciarCameraFull($event)" class="btn-zoom button-clear button button-positive">\n\
+                <div style="background-size: contain;height:{{cameraPrev.containerImgAltura}}px;position:relative" ng-if="previewAberto" class="espaco-camera">\n\
+                    <button ng-if="!cameraFull" ng-click="cameraPrev.iniciarCameraFull($event)" class="btn-zoom button-clear button button-positive">\n\
                         <i class="icon ion-android-expand"></i>\n\
+                    </button>\n\
+                    <button ng-if="cameraFull" ng-click="cameraPrev.resetarCamera()" class="btn-zoom button-clear button button-positive">\n\
+                        <i class="icon ion-android-close"></i>\n\
                     </button>\n\
                 </div>\n\
                 '+input();

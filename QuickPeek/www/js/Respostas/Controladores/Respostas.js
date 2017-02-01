@@ -23,6 +23,7 @@ angular.module('QuickPeek.Respostas', [
         $scope.addInfinit = RespostasAcoes.addInfinit;
         $scope.irDados = RespostasAcoes.irDados;
         $scope.abrirCamera = RespostasAcoes.abrirCamera;
+        $scope.enviarMidia = RespostasAcoes.enviarMidia;
     }
 ])
 

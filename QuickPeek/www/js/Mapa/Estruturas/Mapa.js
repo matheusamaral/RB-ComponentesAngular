@@ -24,7 +24,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                 class="row barra-localizacao-atual">\n\
                     <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-popover-dourado"\n\
                     style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
-                        <div class="container-privacidade-img">\n\
+                        <div class="container-privacidade-img" ng-if="dadosUser.visibilidadeCheckInId">\n\
                             <md-icon\n\
                             ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
                             \'ion-android-people\' : dadosUser.visibilidadeCheckInId == 2}">\n\
@@ -64,7 +64,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                     style="background-image:url({{dadosUser.avatarEndereco}})">\n\
                         <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
                     </div>\n\
-                    <div class="">\n\
+                    <div class="" style="width:100%">\n\
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}</p>\n\
                         <div class="row remove-padding">\n\
                             <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\

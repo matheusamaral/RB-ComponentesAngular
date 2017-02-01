@@ -53,6 +53,19 @@ angular.module('QuickPeek.Acoes.Respostas', [
         }
     }
     
+    function enviarMidia(url){
+        window.plugins.Base64.encodeFile(url, function(base64){
+            scope.dados.base64 = base64;
+        });
+        scope.conn.send(JSON.stringify({
+            codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
+            processo:'Acoes',
+            etapa:'respostas',
+            'Respostas::ArquivoBase64':scope.dados.base64, 
+            'Respostas::perguntasId':scope.dados.idPergunta
+        }));
+    }
+    
     function digitando(){
         calcularTxtAreaAltura()
         scope.conn.send(JSON.stringify({
@@ -177,7 +190,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
         voltarPerguntas:voltarPerguntas,
         attPrivacidade:attPrivacidade,
         irDados:irDados,
-        abrirCamera:abrirCamera
+        abrirCamera:abrirCamera,
+        enviarMidia:enviarMidia
     };
     
  }])
@@ -196,15 +210,35 @@ angular.module('QuickPeek.Acoes.Respostas', [
         return this;
     };
     
+    function preparaImg(url){
+        //alert(url);
+        //scope.img = url;
+    }
+    
     function iniciar(){
     
         scope.cameraPrev.containerImgAltura = $('body').width();
-
+        
+        scope.girarcamera = function (){
+            $timeout(function(){
+                scope.camera.switchCamera();
+            },1000);
+        };
+        
         scope.cameraPrev.instanciaCamera = function(){
-            scope.camera.setOnPictureTakenHandler(function(result) {
-                scope.cameraPrev.img = result[1];
-                //document.getElementById(cameraPrev).src = scope[.cameraPrev].img; //originalPicturePath;
+            scope.camera.setOnPictureTakenHandler(function(result){
+                //preparaImg(result[1]);
+                //document.getElementById(cameraPrev).src = result[1]; //originalPicturePath;
+                scope.tirouFoto(result[1]);
             });
+        };
+        
+        scope.tirouFoto = function(url){
+            scope.cameraPrev.tirouFoto = true;
+            scope.cameraPrev.urlImg = url;
+            $timeout(function(){
+                scope.$apply();
+            },0);
         };
 
         scope.cameraPrev.iniciarCamera = function(){
@@ -214,30 +248,44 @@ angular.module('QuickPeek.Acoes.Respostas', [
                 width: $('body').width(),
                 height: scope.cameraPrev.containerImgAltura
             }, "rear", tapEnabled, dragEnabled, toBack);
+            scope.girarcamera();
         };
         
         scope.cameraPrev.iniciarCameraFull = function(){
             scope.camera.stopCamera();
+            scope.cameraFull = true;
             $timeout(function(){
                 scope.cameraPrev.instanciaCamera();
                 $timeout(function(){
-                    scope.cameraPrev.containerImgAltura = $('body').height() -60;
+                    scope.cameraPrev.containerImgAltura = $('body').height();
                     cordova.plugins.camerapreview.startCamera({
                         x: 0,
-                        y: 60,
+                        y: 0,
                         width: $('body').width(),
-                        height: $('body').height() - 60
+                        height: $('body').height()
                     }, "rear", tapEnabled, dragEnabled, toBack);
                     rolarChat();
+                    scope.girarcamera();
                 },0);
             },0);
         };
         
-        scope.girarcamera = function (){
-            scope.camera.switchCamera();
+        criaEpacoTransparente();
+        
+        scope.cameraPrev.resetarCamera = function(){
+            scope.camera.stopCamera();
+            scope.cameraPrev.containerImgAltura = $('body').width();
+            scope.cameraFull = false;
+            scope.cameraPrev.instanciaCamera();
+            $timeout(function(){
+                scope.cameraPrev.iniciarCamera();
+                rolarChat();
+            },0);
         };
         
-        criaEpacoTransparente();
+        scope.cameraPrev.tirarFoto = function(){          
+            scope.camera.takePicture();
+        };
         
         scope.cameraPrev.instanciaCamera();
         $timeout(function(){
