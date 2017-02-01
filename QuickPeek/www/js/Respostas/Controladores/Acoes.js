@@ -108,15 +108,21 @@ angular.module('QuickPeek.Acoes.Respostas', [
         scope.dados.respostas.unshift(resposta);
         if(resposta.remetente == 1 && !resposta.enderecoMidia)scope.dados.resposta = '';
         if(resposta.enderecoMidia){
-            scope.cameraPrev.tirouFoto = false;
-            scope.exibirBarra = false;
-            scope.camera.stopCamera();
-            scope.previewAberto = false;
+            resetaEstrutura();
         }
         $timeout(function(){
             $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
         },0);
         scope.$apply();
+    }
+    
+    function resetaEstrutura(){
+        scope.cameraPrev.tirouFoto = false;
+        scope.exibirBarra = false;
+        scope.camera.stopCamera();
+        scope.previewAberto = false;
+        scope.cameraFull = false;
+        $('html,body,ion-side-menus.view,ion-side-menu-content').addClass('background-cinza');
     }
     
     function carregarRespostas(){

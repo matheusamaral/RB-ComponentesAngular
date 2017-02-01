@@ -67,6 +67,9 @@
 
 .btn-redondo-dourado{
     border-radius: 42px;
+    position: fixed;
+    bottom: 14px;
+    left: calc(50% - 40px);
     width: 80px !important;
     height: 80px;
     min-height: 60px !important;
