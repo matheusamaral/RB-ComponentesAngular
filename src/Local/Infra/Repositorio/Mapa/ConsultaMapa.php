@@ -114,7 +114,7 @@ class ConsultaMapa {
                         . 'when sub.visibilidade_id = 1 then u.endereco '
                         . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
                         . "when sub.usuario_id = $usuarioId and sub.visibilidade_id != 3 then u.endereco "
-                        . "else concat('" . DOMINIO_PROJETO . "',a.endereco end", 'categoriaHashtagFoto')
+                        . "else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'categoriaHashtagFoto')
                 ->add('cl.endereco', 'categoriaLocalFoto');
         $query->from('local', 'l');
         $query->join($this->subHashtagLocal($locaisId), 'sub', 'left')
