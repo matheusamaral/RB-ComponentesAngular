@@ -32,14 +32,13 @@ angular.module('QuickPeek.Requisicao.Seguidores', [
             GCS.conectar(obj);
         };
         
-        
         function successSeguir(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
                 for(var i = 0; i < scope.dados.seguidores.length; i++){
                     if(dados.usuarioSeguirId == scope.dados.seguidores[i].usuarioId){
-                        scope.dados.seguidores[i].seguindo = 1;
+                        scope.dados.seguidores[i].seguindo = 2;
                     }
                 }
             }
@@ -90,12 +89,44 @@ angular.module('QuickPeek.Requisicao.Seguidores', [
           ionicToast.show(message, 'bottom', false, 3000);
         }
         
+        function cancelarSeguir(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/cancelarSolicitacaoSeguir",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successCancelarSeguir(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                for(var i = 0;i < scope.dados.seguidores.length; i++){
+                    if(dados.seguirId == scope.dados.seguidores[i].seguirId){
+                        scope.dados.seguidores[i].seguindo = 0;
+                    }
+                }
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                else OpenToast('Não foi possível seguir este usuário');
+            }
+        };
+        
         return {
             set: set,
             seguir: seguir,
             successSeguir: successSeguir,
             deixarDeSeguir:deixarDeSeguir,
-            successDeixarDeSeguir:successDeixarDeSeguir
+            successDeixarDeSeguir:successDeixarDeSeguir,
+            cancelarSeguir:cancelarSeguir,
+            successCancelarSeguir:successCancelarSeguir
         };
                            
 }]);     

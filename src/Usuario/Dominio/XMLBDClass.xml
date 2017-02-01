@@ -133,7 +133,7 @@
     </classe>
     
     <classe nome="ListaContatos" tabela="lista_contatos" namespace="Quickpeek\Usuario\Dominio" id="">
-        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="nome" atributo="nome" type="varchar(45)"/>
         <propriedades coluna="telefone" atributo="telefone" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
@@ -142,7 +142,7 @@
     </classe>
     
     <classe nome="CasaTrabalho" tabela="casa_trabalho" namespace="Quickpeek\Usuario\Dominio" id="">
-        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>    
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
         <propriedades coluna="latitude_casa" atributo="latitudeCasa" type="varchar(45)"/>
         <propriedades coluna="longitude_casa" atributo="longitudeCasa" type="varchar(45)"/>
         <propriedades coluna="latitude_trabalho" atributo="latitudeTrabalho" type="varchar(45)"/>
@@ -150,6 +150,33 @@
         <propriedades coluna="casa" atributo="casa" type="varchar(45)"/>
         <propriedades coluna="trabalho" atributo="trabalho" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
+    <classe nome="UsuarioOneSignal" tabela="usuario_onesignal" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="player_id" atributo="playerId" type="varchar(45)"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
+    <classe nome="Alertas" tabela="alertas" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="perguntas_id" atributo="perguntasId" classe="\Quickpeek\Acoes\Dominio\Perguntas" tabela="perguntas"/>
+        <propriedades coluna="notificacoes_id" atributo="notificacoesId" classe="\Quickpeek\Acoes\Dominio\Notificacoes" tabela="notificacoes"/>
+        <propriedades coluna="mensagens_id" atributo="mensagensId" classe="Mensagens" tabela="mensagens"/>
+        <propriedades coluna="local_id" atributo="localId" classe="\Quickpeek\Local\Dominio\Local" tabela="local"/>
+        <propriedades coluna="tipo_id" atributo="tipoId" classe="TipoAlertas" tabela="tipo_alertas"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
+    <classe nome="TipoAlertas" tabela="tipo_alertas" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="nome" atributo="nome" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>

@@ -185,4 +185,37 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
+        
+<classe nome="UsuarioOneSignal" tabela="usuario_onesignal"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="player_id" atributo="playerId" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="Alertas" tabela="alertas"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
+    <nparaum coluna="notificacoes_id"  atributo="notificacoesId" />  
+    <nparaum coluna="mensagens_id"  atributo="mensagensId" />  
+    <nparaum coluna="local_id"  atributo="localId" />  
+    <nparaum coluna="tipo_id"  atributo="tipoId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="TipoAlertas" tabela="tipo_alertas"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <propriedades coluna="nome" atributo="nome" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
 </root>

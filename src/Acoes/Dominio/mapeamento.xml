@@ -28,6 +28,17 @@
     <propriedades coluna="bloqueado" atributo="bloqueado" /> 
 </classe>
         
+<classe nome="RespostasVisibilidade" tabela="respostas_visibilidade"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
+    <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
+    <propriedades coluna="ativo" atributo="ativo" /> 
+    <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
 <classe nome="RespostasVisualizadas" tabela="respostas_visualizadas"> 
     <id coluna="id" atributo="id">
         <gerador classe="sequence"/>
@@ -50,17 +61,6 @@
     <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
     <propriedades coluna="momento_visualizado" atributo="momentoVisualizado" /> 
     <nparaum coluna="visibilidade_id"  atributo="visibilidadeId" />  
-</classe>
-        
-<classe nome="PerguntaAlerta" tabela="pergunta_alerta"> 
-    <id coluna="id" atributo="id">
-        <gerador classe="sequence"/>
-    </id>  
-    <propriedades coluna="ativo" atributo="ativo" /> 
-    <propriedades coluna="momento" atributo="momento" /> 
-    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
-    <nparaum coluna="perguntas_id"  atributo="perguntasId" />  
-    <propriedades coluna="retorno" atributo="retorno" /> 
 </classe>
         
 <classe nome="PerguntaExcluida" tabela="pergunta_excluida"> 

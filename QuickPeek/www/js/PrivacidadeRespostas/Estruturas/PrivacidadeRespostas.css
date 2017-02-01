@@ -1,0 +1,37 @@
+.p-privacidade-pergunta{
+    text-align: center;
+    font-size: 19px;
+    margin: auto;
+    margin-top: 16px;
+    max-width: 212px;
+    margin-bottom: 27px;
+    color: #777777;
+}
+
+.ptitular-verificar{
+    margin-top: 3px;
+    font-size: 19px;
+}
+
+.p-nome-resposta{
+    text-align: center;
+    font-size: 14px;
+    margin: auto;
+    margin-top: 16px;
+    color: #777777;
+}
+
+.icone-redondo-resposta-privacidade{
+    border-radius: 55px;
+    border: 4px #FFFFFF solid !important;
+    width: 75px !important;
+    background-color: #e6e6e6;
+    height: 75px;
+    position: relative;
+    display: block;
+    box-shadow: 1px 1px 8px #8e8e8e;
+}
+
+.icone-redondo-resposta-privacidade.marcado{
+    background-color: #ffb800;
+}

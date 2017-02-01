@@ -33,7 +33,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function inicializar(){
-        var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
+        //var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
         $timeout(function(){
             scope.btnAltura = $('#barra-local-atual').height();
         },0);

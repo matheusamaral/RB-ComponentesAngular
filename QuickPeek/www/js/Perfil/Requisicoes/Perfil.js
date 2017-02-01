@@ -105,6 +105,32 @@ angular.module('QuickPeek.Requisicao.Perfil', [
           ionicToast.show(message, 'bottom', false, 3000);
         }
         
+        function cancelarSeguir(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/cancelarSolicitacaoSeguir",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successCancelarSeguir(objRetorno){
+            RBLoadingMobile.hide();
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                scope.dados.seguindo = 0;
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+                else OpenToast('Não foi possível cancelar esta solicitação');
+            }
+        };
+        
         return {
             set: set,
             cadastrar: cadastrar,
@@ -112,7 +138,9 @@ angular.module('QuickPeek.Requisicao.Perfil', [
             seguir:seguir,
             successSeguir:successSeguir,
             successDeixarDeSeguir:successDeixarDeSeguir,
-            deixarDeSeguir:deixarDeSeguir
+            deixarDeSeguir:deixarDeSeguir,
+            cancelarSeguir:cancelarSeguir,
+            successCancelarSeguir:successCancelarSeguir
         };
                            
 }]);     

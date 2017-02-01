@@ -22,7 +22,6 @@ angular.module('QuickPeek.Estrutura.PessoasLocal', [
         if(DGlobal.pessoas && DGlobal.pessoas.success){
             scope.dados.pessoas = DGlobal.pessoas.dados.pessoas;
             scope.dados.qtd = DGlobal.pessoas.dados.qtd;
-            //alert(JSON.stringify(scope.dados.pessoas));
         }
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){

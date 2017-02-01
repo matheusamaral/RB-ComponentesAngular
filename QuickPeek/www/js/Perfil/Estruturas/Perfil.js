@@ -19,11 +19,11 @@ angular.module('QuickPeek.HTML.Perfil', [
                                 <p class="remove-padding col font-preta-perfil negrito">{{dados.publicacoes}}</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">posts</p>\n\
                             </div>\n\
-                            <div ng-click="irSeguidores()" class="col text-center remove-padding">\n\
+                            <div ng-click="irSeguidores(dados.usuarioId)" class="col text-center remove-padding">\n\
                                 <p class="remove-padding col font-preta-perfil negrito">{{dados.qtdSeguidores}}</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">seguidores</p>\n\
                             </div>\n\
-                            <div ng-click="irSeguindo()" class="col text-center remove-padding">\n\
+                            <div ng-click="irSeguindo(dados.usuarioId)" class="col text-center remove-padding">\n\
                                 <p class="remove-padding col font-preta-perfil negrito">{{dados.qtdSeguindo}}</p>\n\
                                 <p class="remove-padding col p-cinza-perfil">seguindo</p>\n\
                             </div>\n\
@@ -40,10 +40,10 @@ angular.module('QuickPeek.HTML.Perfil', [
                             <button ng-click="seguir(dados.usuarioId)" ng-if="dados.seguindo == 0" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
                                 <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                             </button>\n\
-                            <button ng-click="seguir(dados.usuarioId)" ng-if="dados.seguindo == 2" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
+                            <button ng-click="cancelarSolicitacao(dados.seguirId)" ng-if="dados.seguindo == 2" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
                                 Solicitado\n\
                             </button>\n\
-                            <button ng-click="deixarSeguir(dados.usuarioId)" ng-if="dados.seguindo == 1" class="btn-perfil-geral btn-seguidores button button button-balanced">\n\
+                            <button ng-click="deixarSeguir(dados.usuarioId)" ng-if="dados.seguindo == 3" class="btn-perfil-geral btn-seguidores button button button-balanced">\n\
                                 <i class="icon ion-checkmark"></i>Seguindo\n\
                             </button>\n\
                             <button ng-click="irConfiguracoes()" class="btn-perfil-geral btn-perfil button button-outline button-stable">\n\
@@ -105,7 +105,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                         <div ng-if="ultimosLocais.length" class="row padding-pequeno-ultimo">\n\
                             <p class="p-ultimos-locais"> ÚLTIMOS LOCAIS</p>\n\
                         </div>\n\
-                        <div ng-repeat="local in ultimosLocais" class="col box-ultimo-local rb-padding-padrao">\n\
+                        <div ng-repeat="local in ultimosLocais.ultimosLocais" class="col box-ultimo-local rb-padding-padrao">\n\
                             <p class="titulo-local">{{local.localNome}}</p>\n\
                             <p class="descricao-local">{{retornaDistancia(local.distancia)}}. há {{converteTempo(local.minutos)}}</p>\n\
                         </div>\n\

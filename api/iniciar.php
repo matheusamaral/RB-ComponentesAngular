@@ -18,4 +18,7 @@ abstract class Ambiente{
 }
 
 require Ambiente::dir(__DIR__).'/../vendor/autoload.php';
+
+\Rubeus\Bd\Persistencia::setGuardar(1);
+
 ConfigurarAmbiente::configurar(str_replace('api', '', Ambiente::dir(__DIR__)),'/src/config/define'.Ambiente::amb().'.json');

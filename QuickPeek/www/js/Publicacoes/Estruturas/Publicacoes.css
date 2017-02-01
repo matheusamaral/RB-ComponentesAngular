@@ -161,3 +161,99 @@ md-chip md-icon{
     border: 1px solid #ffc900;
     border-radius: 15px;
 }
+
+.tela-galeria{
+    position: fixed;
+    left: 0;
+    bottom: -1000px;
+    width: 100%;
+    background-color: #FFFFFF;
+    z-index: 1000;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition: all 0.5s;
+    transform: scale(1);
+}
+
+.remove-overflow-galeria{ 
+    overflow: hidden !important;
+}
+
+.tela-galeria.mostrar{
+    bottom: 0px;
+}
+
+.tela-galeria .container-glr{
+    overflow: auto;
+}
+
+.padding-top-midias{
+    padding-top:65px !important
+}
+
+.box-img-glr{
+    margin: 3px;
+    height: 110px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border:3px solid transparent;
+}
+
+.box-img-glr.addFt{
+    background-color: #f6f6f6;
+}
+
+.box-img-glr.addFt md-icon{
+    display: block;
+    font-size: 28px;
+    margin-top: 22px;
+    color: #cecece;
+}
+
+.borda-dourada-glr{
+    border:3px solid rgb(255, 184, 0);
+    box-shadow: 1px 1px 8px #EDECEC;
+}
+
+.btn-deselecionar{
+    background-color: rgb(255, 184, 0);
+    color: #FFFFFF;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.btn-deselecionar md-icon{
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.btn-deselecionar md-icon::before{
+    margin-left: 5px;
+}
+
+.cont-midias{
+    background-color: red;
+    position: absolute;
+    height: 17px;
+    top: -4px;
+    font-size: 12px;
+    min-width: 18px;
+    border-radius: 10px;
+    right: 4px;
+    color: #FFFFFF;
+    line-height: 18px;
+}
+
+.md-chips .md-chip-input-container{
+    padding: 0 !important;
+}
+
+#chips-finais md-chip-template strong{
+    max-width: 115px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

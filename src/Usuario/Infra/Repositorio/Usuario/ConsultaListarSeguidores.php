@@ -10,7 +10,10 @@ class ConsultaListarSeguidores {
         $query->select('u.id', 'usuarioId')
                 ->add('u.nome', 'nome')
                 ->add('u.endereco', 'endereco')
-                ->add('ifnull(se.ativo, 0)', 'seguindo');
+                ->add('case when se.confirmar_seguir = 1 then 1'
+                        . ' when se.confirmar_seguir = 0 then 2'
+                        . ' else 0 end', 'seguindo', 'seguindo')
+                ->add('se.id', 'seguirId');
         $query->from('seguir', 's');
         $query->join('usuario', 'u')
                 ->on('u.id = s.usuario_id')
@@ -18,11 +21,11 @@ class ConsultaListarSeguidores {
         $query->join('seguir', 'se', 'left')
                 ->on('se.usuario_id = ?')
                 ->on('se.usuario_seguir_id = u.id')
-                ->on('se.confirmar_seguir = 1');
+                ->on('se.ativo = 1');
         $query->where('s.usuario_seguir_id = ?')
                 ->add('s.ativo = 1')
                 ->add('s.confirmar_seguir = 1');
-        $query->order('s.momento_confirmar_seguir', 'desc');
+        $query->order('s.id', 'desc');
         $query->addVariaveis([$usuarioSessao, $usuarioId]);
         return $query->executar();
     }

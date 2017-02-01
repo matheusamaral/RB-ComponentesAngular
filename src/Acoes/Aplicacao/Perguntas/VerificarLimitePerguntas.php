@@ -12,15 +12,16 @@ class VerificarLimitePerguntas {
         
         $perguntas = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId, $tempo['limitePerguntas']);
         
-        if(count($perguntas) < 3){
+        if($perguntas < 3){
             $msg->setResultadoEtapa(true);
         }else{
             $datetime1 = new \DateTime(date('Y-m-d H:i:s'));
-            $datetime2 = new \DateTime($perguntas[0]['momento']);
+            $datetime2 = new \DateTime($perguntas[0]);
             
             $intervalo = $datetime1->diff($datetime2);
             $minutos = ($intervalo->h * 60) + $intervalo->i;
-            $msg->setResultadoEtapa(false, false, ['dados'=>$minutos]);
+            $tempoRestante = $minutos - (60 * $tempo['limitePerguntas']);
+            $msg->setResultadoEtapa(false, false, ['dados'=>$tempoRestante]);
         }
     }
 }

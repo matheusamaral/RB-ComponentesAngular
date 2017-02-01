@@ -29,7 +29,6 @@ class CheckIn {
         
         $sugestaoCheckIn = $msg->getCampoSessao('sugestaoCheckIn');
         if($sugestaoCheckIn){
-            echo 'entrou';
             $msg->setCampo('CheckIn::id', $sugestaoCheckIn);
             $msg->setCampo('CheckIn::momento', $msg->getCampoSessao('sugestaoCheckInMomento'));
             $msg->setCampo('CheckIn::presente', 1);

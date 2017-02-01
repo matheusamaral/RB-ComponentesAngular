@@ -23,13 +23,52 @@ class Chat implements MessageComponentInterface {
             $this->maiorQtd = count($this->clients);
         }
         $this->clients->attach($conn);
-        echo "New connection! ({$conn->resourceId})" . "   " . $this->maiorQtd . "\n";
+        echo "New connection! ({$conn->resourceId})" . " - connections:   " . $this->maiorQtd . "\n";
     }
     
     public function setarDadosBanco($resourceId, $usuarioId, $pagina){
         
-        $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
+        foreach($this->dadosBanco as $k=>$v){
+            if($v['usuario'] == $usuarioId){
+                $position = $k;
+            }
+        }
+        
+        if(!isset($position)){
+            $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
+        }else{
+            $this->dadosBanco[$position] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
+        }
+        
         Conteiner::registrar('DadosBanco', $this->dadosBanco);
+        Conteiner::get('StatusChat')->setarStatus($usuarioId, 1);
+    }
+    
+    public function getConexao($usuarioId, $pagina){
+        
+        $dadosBanco = Conteiner::get('DadosBanco');
+        
+        foreach($dadosBanco as $v){
+            if($v['usuario'] == $usuarioId){
+                $fromConexao = $v['conexao'];
+            }
+            if($v['pagina'] == $pagina){
+                $toConexao[] = $v['conexao'];
+                $usuarios[] = $v['usuario'];
+                $paginas[] = $pagina;
+                if($v['usuario'] == $usuarioId){
+                    $remetente[] = 1;
+                }else{
+                    $remetente[] = 0;
+                }
+            }
+        }
+        
+        if(isset($toConexao)){
+            return ['fromConexao'=>$fromConexao, 'toConexao'=>$toConexao, 'usuarios'=>$usuarios, 'paginas'=>$paginas, 'remetente'=>$remetente];
+        }else{
+            return false;
+        }
     }
     
     public function onMessage(ConnectionInterface $from, $mensagem){
@@ -45,7 +84,7 @@ class Chat implements MessageComponentInterface {
         
         $resultado = $processo->executar($msg, true);
         
-//        $this->enviarMensagem($resultado, $from->resourceId);
+        $this->enviarMensagem($resultado, $from->resourceId);
     }
     
     public function enviarMensagem($mensagem, $conexao){
@@ -58,6 +97,16 @@ class Chat implements MessageComponentInterface {
     }
     
     public function onClose(ConnectionInterface $conn){
+        
+        foreach($this->dadosBanco as $k=>$v){
+            if($v['conexao'] == $conn->resourceId){
+                Conteiner::get('StatusChat')->setarStatus($v['usuario'], 0);
+                unset($this->dadosBanco[$k]);
+                $this->dadosBanco = array_values($this->dadosBanco);
+                Conteiner::registrar('DadosBanco', $this->dadosBanco);
+            }
+        }
+        
         $this->clients->detach($conn);
         echo "Connection {$conn->resourceId} has disconnected\n";
     }

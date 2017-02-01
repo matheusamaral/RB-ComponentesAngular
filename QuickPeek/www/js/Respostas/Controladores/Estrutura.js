@@ -34,9 +34,18 @@ angular.module('QuickPeek.Estrutura.Respostas', [
         if(DGlobal.idPergunta)
             scope.dados.idPergunta = DGlobal.idPergunta;
         
-//        for(var i = 0; i< 20; i++){
-//            scope.dados.respostas.push(i);
+//        scope.dadosUser = {usuarioId:'12'};
+//        
+//        for(var i = 0; i < 10; i++){
+//            scope.dados.respostas.unshift({
+//                nomeUsuario:'Cale',
+//                momento:'21:00',
+//                usuarioId:'12',
+//                respostaTitulo:'Estou aqui XUXU'+i,
+//                enderecoUsuario:'https://scontent.fgru3-2.fna.fbcdn.net/v/t1.0-9/14721744_878452505622443_4877487745632870256_n.jpg?oh=43026304019b5fede599d17e5e0e1fb7&oe=58FD9746'
+//            });
 //        }
+        
     };
   
     return {

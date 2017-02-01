@@ -6,14 +6,14 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Título bacaninha</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <script>
             
-            conn = new WebSocket('ws://192.168.0.121:8801');
+            conn = new WebSocket('ws://172.17.0.2:9876');
             var cont = 0;
 
             conn.onopen = function(e) {
@@ -21,10 +21,10 @@ and open the template in the editor.
             };
 
             conn.onmessage = function(e) {
-            //            var obj = JSON.parse(e.data);
+//            var obj = JSON.parse(e.data);
             console.log(e.data);
-//                        msgRecebidas.push(obj.nome+' : '+obj.msg);
-//                        console.log(obj.nome+' : '+obj.msg);
+//            msgRecebidas.push(obj.nome+' : '+obj.msg);
+//            console.log(obj.nome+' : '+obj.msg);
             };
             
         </script>
@@ -32,22 +32,23 @@ and open the template in the editor.
         <script>
             enviar = function(){
             console.log("enviar");
-
+            
             conn.send(JSON.stringify({codsessrt:'1lOuiSX34yGXey5UvQoC6hyGuXUI8JhA67QpXoABFHxCKwOtHfKaCdfEl22GH7ktqJDjvxgUh08CkITd330Yj5GblrGpfEqDFAAI',
-                processo:'Acoes', etapa:'digitando', PerguntaId:'1'}));
+                processo:'Mensagens', etapa:'enviarMensagem', 'Mensagens::titulo':'olar', 'Mensagens::visibilidadeMensagensId':2, 
+                'Mensagens::visibilidadeUsuarioId':1, 'Mensagens::usuarioMensagemId':3}));
             };
             
         iniciar = function(){
         console.log("iniciar");
         
-        conn.send(JSON.stringify({codsessrt:'1lOuiSX34yGXey5UvQoC6hyGuXUI8JhA67QpXoABFHxCKwOtHfKaCdfEl22GH7ktqJDjvxgUh08CkITd330Yj5GblrGpfEqDFAAI'
-            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'34-1'}));
+        conn.send(JSON.stringify({codsessrt:'xiqxMn3uCFmfmbWCG5pxhlHDMOE9JwWvNGF6tne5j9ShELEhKb4Hhn5VWBQ7vz8n2P7QuQqmkvMdVwDOeKsoigjWf7mQTGcam76g'
+            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'39-3-1-2-1'}));
         };
         setTimeout(
             iniciar,
             300
             );
         </script>
-        <div>TODO write content</div>
+        <div>Mestre em front</div>
     </body>
 </html>

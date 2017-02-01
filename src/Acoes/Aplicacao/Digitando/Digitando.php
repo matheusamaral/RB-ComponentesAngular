@@ -7,44 +7,27 @@ class Digitando {
     public function digitando($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultar($usuarioId);
         $perguntaId = $msg->getCampo('PerguntaId')->get('valor');
-        $agrupamento = $msg->getCampo('Agrupamento')->get('valor');
+        $visibilidadeId = Conteiner::get('ConsultaVisibilidade')->consultarRespostasVisibilidade($usuarioId, $perguntaId);
         
-        $dadosBanco = Conteiner::get('DadosBanco');
+        $cmd = Conteiner::get('Socket');
         
-        if($perguntaId){
-            $pagina = '34' . '-' . $perguntaId;
-        }elseif($agrupamento){
-            $pagina = '37' . '-' . $agrupamento;
-        }
+        $pagina = 34 . '-' . $perguntaId;
         
-        for($i = 0; $i < count($dadosBanco); $i++){
-            if($dadosBanco[$i]['usuario'] == $usuarioId){
-                $fromConexao = $dadosBanco[$i]['conexao'];
-            }
-            foreach($dadosBanco[$i] as $k=>$v){
-                if($k == 'pagina' && $v == $pagina){
-                    $toConexao[] = $dadosBanco[$i]['conexao'];
-                    $usuarios[] = $dadosBanco[$i]['usuario'];
-                    $paginas[] = $pagina;
-                }
-            }
-        }
+        $dados = $cmd->getConexao($usuarioId, $pagina);
         
-        if($usuarios){
-            foreach($usuarios as $v){
-                $dadosUsuario[] = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidade($usuarioId, $visibilidadeId, $v);
-            }
+        if($dados){
+            $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeId);
             
-            $cmd = Conteiner::get('Socket');
-            for($i = 0; $i < count($toConexao); $i++){
-                $mensagem[$i]['to'] = $toConexao[$i];
-                $mensagem[$i]['from'] = $fromConexao;
-                $mensagem[$i]['pagina'] = $paginas[$i];
+            for($i = 0; $i < count($dados['toConexao']); $i++){
+                $mensagem[$i]['to'] = $dados['toConexao'][$i];
+                $mensagem[$i]['from'] = $dados['fromConexao'];
+                $mensagem[$i]['pagina'] = $dados['paginas'][$i];
+                $mensagem[$i]['remetente'] = $dados['remetente'][$i];
                 $mensagem[$i]['digitando'] = 1;
-                $mensagem[$i]['usuarioId'] = $dadosUsuario[$i]['usuarioId'];
-                $mensagem[$i]['endereco'] = $dadosUsuario[$i]['usuarioEndereco'];
+                $mensagem[$i]['usuarioId'] = $dadosUsuario['usuarioId'];
+                $mensagem[$i]['usuarioNome'] = $dadosUsuario['usuarioNome'];
+                $mensagem[$i]['endereco'] = $dadosUsuario['usuarioEndereco'];
                 
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }

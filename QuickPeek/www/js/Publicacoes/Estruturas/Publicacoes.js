@@ -18,9 +18,9 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div class="col altura-barra-padding remove-padding">\n\
+                <div class="col altura-barra-padding remove-padding" style="padding-top:65px !important">\n\
                     <p class="p-normal-publicacoes">Como está <span class="font-dourada">{{local.dados.localNome}}</span> agora?</p>\n\
-                    <p class="p-sublinhado">Alterar localização</p>\n\
+                    <p ng-click="fazerCheckin()" class="p-sublinhado">Alterar localização</p>\n\
                 </div>\n\
                 <div ng-init="$index == objHash.length - 1 ? importancia = \'!important\' : important = \'\'" style="margin-bottom:{{alturaChatPub+120}}px {{importancia}}"\n\
                 ng-if="!hashClicada" \n\
@@ -67,8 +67,8 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             placeholder="Insira suas hashtags" \n\
                             ng-model="dados.tituloChip" \n\
                             readonly="false"\n\
-                            ng-keypress="verfificaTecla($event)"\n\
                             md-separator-keys="keyCodes"\n\
+                            ng-keyup="gerarHashtag($chip)"\n\
                             md-removable="true"\n\
                             md-on-remove="removerChip($chip)"\n\
                             md-on-add="addHashDigitando($chip)">\n\
@@ -83,16 +83,51 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             </md-chips>\n\
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
-                            <button class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                            <button style="margin-bottom: 9px;" ng-click="getImgs()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                                <span ng-if="dados.arquivoBase64.length > 0" class="cont-midias">{{dados.arquivoBase64.length}}</span>\n\
                             </button>\n\
                         </div>\n\
                         <div class="col-bottom remove-padding">\n\
-                            <button ng-click="publicar()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
+                            <button style="margin-bottom: 9px;" ng-click="publicar()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
-                </div>';
+                </div>'+galeria();
     };
+    
+    function galeria(){
+         return'<div ng-if="mostrarGaleria"\n\
+                style="height:{{alturaTela}}px" class="tela-galeria">\n\
+                    <div style="box-shadow: 0px -2px 8px black !important;" class="row bar bar-header bar-positive">\n\
+                        <div class="col remove-padding">\n\
+                            <button ng-click="fecharGaleria()" class="btn-txt-direita button button-clear">\n\
+                                <i class="icon ion-android-arrow-back seta-barra"></i>Galeria\n\
+                            </button>\n\
+                        </div>\n\
+                        <div class="col remove-padding text-right">\n\
+                            <button ng-disabled="dados.midiasSelecionadas.length < 1" ng-click="selecionarImgs()" class="btn-txt-direita button button-clear">\n\
+                                Concluir\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div class="container-glr" style="height:{{alturaTela}}px">\n\
+                        <div ng-class="{\'padding-top-midias\' : $index == 0}"\n\
+                        ng-repeat="linha in objimg" class="row" style="padding-bottom:0 !important">\n\
+                            <div ng-repeat="img in linha" class="col box-img-glr"\n\
+                            ng-click="addMidia(img,$event,$index)"\n\
+                            ng-class="{\'addFt\' : img.exibirCamera,\n\
+                            \'borda-dourada-glr\' : img.selecionado}"\n\
+                            style="background-image:url({{img.thumbnailURL}})">\n\
+                                <div\n\
+                                ng-if="img.selecionado" class="btn-deselecionar">\n\
+                                    <md-icon class="ion-android-close"></md-icon>\n\
+                                </div>\n\
+                                <md-icon ng-if="img.exibirCamera"  class="ion-android-camera"></md-icon>\n\
+                            </div>\n\
+                        </div>\n\
+                    </div>\n\
+                </div>';
+    }
   
     return {
         montar: montar

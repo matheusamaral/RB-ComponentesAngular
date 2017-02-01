@@ -4,8 +4,8 @@ angular.module('QuickPeek.Requisicao.Respostas', [
     'RB.pagina'
 ])
  
-.factory('RespostasRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout',
-      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout) {
+.factory('RespostasRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout','InfinitScroll',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout,InfinitScroll) {
         
         var dados;
         var scope;
@@ -32,7 +32,6 @@ angular.module('QuickPeek.Requisicao.Respostas', [
         };
         
         function successListarRespostas(objRetorno){
-            RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 console.log('deu certo');
@@ -40,8 +39,8 @@ angular.module('QuickPeek.Requisicao.Respostas', [
                     adicionaRespostas(objRetorno.dados.respostas);
             }
             $timeout(function(){
-                scope.dados.moredata = false;
-            },2000);
+                InfinitScroll.fechaLoader();
+            },500);
         };
         
         function adicionaRespostas(array){

@@ -21,18 +21,23 @@ angular.module('QuickPeek.Acoes.CheckIn', [
     };
     
     function voltarMapa(id){
-        if(DGlobal.paginaAnterior){
-            Pagina.navegar({idPage:DGlobal.paginaAnterior,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-            delete DGlobal.paginaAnterior;
+        if(DGlobal.publicando){
+            Pagina.navegar({idPage:32});
+            delete DGlobal.publicando;
         }else{
-            if(DGlobal.voltarLocais){
-                Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+            if(DGlobal.paginaAnterior){
+                Pagina.navegar({idPage:DGlobal.paginaAnterior,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+                delete DGlobal.paginaAnterior;
             }else{
-                if(DGlobal.coordenadasAtual){
-                    Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+                if(DGlobal.voltarLocais){
+                    Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
                 }else{
-                    var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-                    navigator.geolocation.getCurrentPosition(onSuccess,onError);
+                    if(DGlobal.coordenadasAtual){
+                        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+                    }else{
+                        var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
+                        navigator.geolocation.getCurrentPosition(onSuccess,onError);
+                    }
                 }
             }
         }

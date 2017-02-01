@@ -3,8 +3,7 @@
 <processo codigo="digitando" modulo="Acoes">
     
     <entrada> 
-        <campo regra="Opcional" chave="PerguntaId" nome="PerguntaId"/>
-        <campo regra="Opcional" chave="Agrupamento" nome="Agrupamento"/>
+        <campo regra="Obrigatorio" chave="PerguntaId" nome="PerguntaId"/>
     </entrada>
     
     <atividades>

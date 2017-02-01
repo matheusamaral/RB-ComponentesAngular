@@ -34,13 +34,13 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:9});
     }
     
-    function irSeguidores(){
-        Pagina.navegar({idPage:15});
+    function irSeguidores(id){
+        Pagina.navegar({idPage:15,paramAdd:'?usuarioId='+id});
     }
     
-    function irSeguindo(){
+    function irSeguindo(id){
         DGlobal.seguindo = true;
-        Pagina.navegar({idPage:16});
+        Pagina.navegar({idPage:16,paramAdd:'?usuarioId='+id});
     }
     
     function irMapa(){
@@ -129,6 +129,11 @@ angular.module('QuickPeek.Acoes.Perfil', [
         Pagina.navegar({idPage:36});
     }
     
+    function cancelarSolicitacao(id){
+        var obj = {seguirId:id};
+        PerfilRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PerfilRequisicoes.successCancelarSeguir}).cancelarSeguir();
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -145,7 +150,8 @@ angular.module('QuickPeek.Acoes.Perfil', [
         converteTempo:converteTempo,
         irCheckin:irCheckin,
         checkInLocal:checkInLocal,
-        irNotificacoes:irNotificacoes
+        irNotificacoes:irNotificacoes,
+        cancelarSolicitacao:cancelarSolicitacao
     };
     
  }]);

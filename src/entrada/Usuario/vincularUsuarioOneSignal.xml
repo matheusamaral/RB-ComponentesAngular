@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="vincularUsuarioOneSignal" modulo="Usuario">
+    
+    <entrada>
+        <campo regra="Obrigatorio" chave="PlayerId" nome="playerId"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="vincular-usuario-one-signal" tipo="tarefa">
+            <entidade nome="VincularUsuarioOneSignal" metodo="vincularUsuarioOneSignal"/>
+        </atividade>        
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

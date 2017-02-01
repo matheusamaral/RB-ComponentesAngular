@@ -7,7 +7,7 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
 ])
 
 .factory('PerguntasLocalAcoes', ['Pagina','PerguntasLocalRequisicoes','VP','Websocket',
-    function(Pagina,PessoasLocalRequisicoes,VP,Websocket){
+    function(Pagina,PerguntasLocalRequisicoes,VP,Websocket){
     var scope,conn;  
     
     function setScope(obj){
@@ -55,9 +55,11 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
         scope.$apply();
     }
     
-    function responder(id){
+    function responder(id,perg){
         DGlobal.idPergunta = id;
-        Pagina.navegar({idPage:34,paramAdd:'?perguntasId='+id});
+        DGlobal.pergunta = perg;
+        var obj = {perguntasId:id};
+        PerguntasLocalRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PerguntasLocalRequisicoes.successVerificar}).verfificarResposta();
     }
     
     return {

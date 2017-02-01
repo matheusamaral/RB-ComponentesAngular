@@ -165,7 +165,7 @@
     </pagina>
     
     <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina-->
-    <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
+    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="locaisPertos" objeto='teste'></metodo>
@@ -202,6 +202,7 @@
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarMidias" objeto='midias'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-exibir-midia" acao="ExibirMidiaCtrl" title="Midias"/>
@@ -227,7 +228,7 @@
         <acaoCliente classe="pag-perguntas-local" acao="PerguntasLocalCtrl" title="Midias"/>
     </pagina>   
     
-    <pagina id="28" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="pesquisar">
+    <pagina id="28" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="pesquisar">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -306,7 +307,7 @@
         <acaoCliente classe="pag-perguntar" acao="PerguntarCtrl" title="Faça um pergunta"/>
     </pagina>   
     
-    <pagina id="36" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="notificacoes">
+    <pagina id="36" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="notificacoes">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -314,6 +315,35 @@
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-notificacoes" acao="NotificacoesCtrl" title="Midias"/>
+    </pagina> 
+    
+    <pagina id="37" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="notificacoes-seguir">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarUsuariosConfirmarSeguir" objeto='seguir'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-notificacoes-seguir" acao="NotificacoesSeguirCtrl" title="Seguir pendentes"/>
+    </pagina> 
+    
+    <pagina id="38" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="privacidade-resposta">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-privacidade-respostas" acao="PrivacidadeRespostasCtrl" title="Seguir pendentes"/>
+    </pagina> 
+    
+    <pagina id="39" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="selecionar-categorias">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+                <metodo name="listarCategoriasFiltroMapa" objeto='categorias'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-categorias" acao="CategoriasCtrl" title="Seguir pendentes"/>
     </pagina> 
     
 </root>

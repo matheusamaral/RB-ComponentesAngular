@@ -13,6 +13,7 @@ angular.module('QuickPeek.Notificacoes', [
         
         $scope.irMapa = NotificacoesAcoes.irMapa;
         $scope.irPerfil = NotificacoesAcoes.irPerfil;
+        $scope.irNotSeguir = NotificacoesAcoes.irNotSeguir;
     }
 ])
 

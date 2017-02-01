@@ -104,10 +104,11 @@ angular.module('QuickPeek.Requisicao.Locais', [
                             if(scope.locais[i].hashtags[j].hashtagId == dados.hashtagId){
                                 if(scope.locais[i].hashtags[j].jaCurtiu == 1){
                                     scope.locais[i].hashtags[j].jaCurtiu = 0;
-                                    if(scope.locais[i].hashtags[j].hashtagQtd > 0)
+                                    if(scope.locais[i].hashtags[j].hashtagQtd > 1)
                                         scope.locais[i].hashtags[j].hashtagQtd--;
-                                    else
+                                    else{
                                         scope.locais[i].hashtags.splice(j,1);
+                                    }
                                 }
                                 else{
                                     scope.locais[i].hashtags[j].jaCurtiu = 1;

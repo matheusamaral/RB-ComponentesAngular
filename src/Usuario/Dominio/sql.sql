@@ -257,3 +257,65 @@ CREATE TABLE `casa_trabalho`(
      ON UPDATE NO ACTION,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `usuario_onesignal`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `usuario_id` INT   ,
+    INDEX `usuario_onesignal_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `usuario_onesignal_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `player_id` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `alertas`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `usuario_id` INT   ,
+    INDEX `alertas_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `alertas_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `perguntas_id` INT   ,
+    INDEX `alertas_fk_perguntas_id_idx`(`perguntas_id` ASC),
+    CONSTRAINT `alertas_fk_perguntas_id` 
+         FOREIGN KEY (`perguntas_id`) REFERENCES `perguntas` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `notificacoes_id` INT   ,
+    INDEX `alertas_fk_notificacoes_id_idx`(`notificacoes_id` ASC),
+    CONSTRAINT `alertas_fk_notificacoes_id` 
+         FOREIGN KEY (`notificacoes_id`) REFERENCES `notificacoes` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `mensagens_id` INT   ,
+    INDEX `alertas_fk_mensagens_id_idx`(`mensagens_id` ASC),
+    CONSTRAINT `alertas_fk_mensagens_id` 
+         FOREIGN KEY (`mensagens_id`) REFERENCES `mensagens` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `local_id` INT   ,
+    INDEX `alertas_fk_local_id_idx`(`local_id` ASC),
+    CONSTRAINT `alertas_fk_local_id` 
+         FOREIGN KEY (`local_id`) REFERENCES `local` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `tipo_id` INT   ,
+    INDEX `alertas_fk_tipo_id_idx`(`tipo_id` ASC),
+    CONSTRAINT `alertas_fk_tipo_id` 
+         FOREIGN KEY (`tipo_id`) REFERENCES `tipo_alertas` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `tipo_alertas`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `nome` varchar(45)   ,
+    `ativo` tinyint   ,
+    `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

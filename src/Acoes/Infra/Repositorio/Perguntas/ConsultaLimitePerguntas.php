@@ -4,17 +4,17 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaLimitePerguntas {
     
-    public function consultar($usuarioId, $localId, $tempo){
+    public function consultar($usuarioId, $localId, $tempoLimitePerguntas){
         
         $query = Conteiner::get('Query', false);
         $query->select('momento');
         $query->from('perguntas');
-        $query->where('date_add(now(), INTERVAL -? HOUR) < momento')
-                ->add('usuario_id = ?')
+        $query->where('usuario_id = ?')
                 ->add('local_id = ?')
+                ->add('date_add(now(), INTERVAL -? HOUR) < momento')
                 ->add('ativo = 1');
-        $query->order('momento');
-        $query->addVariaveis([$tempo, $usuarioId, $localId]);
-        return $query->executar();
+        $query->order('id');
+        $query->addVariaveis([$usuarioId, $localId, $tempoLimitePerguntas]);
+        return $query->executar('AA1', false, 'momento');
     }
 }

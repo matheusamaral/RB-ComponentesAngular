@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
     'RB.validacoesPadroes'
 ])
 
-.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout','Websocket',
-    function(Pagina,RespostasRequisicoes,VP,$timeout,Websocket){
+.factory('RespostasAcoes', ['Pagina','RespostasRequisicoes','VP','$timeout','Websocket','InfinitScroll',
+    function(Pagina,RespostasRequisicoes,VP,$timeout,Websocket,InfinitScroll){
     var scope;  
     
     function setScope(obj){
@@ -23,12 +23,13 @@ angular.module('QuickPeek.Acoes.Respostas', [
             scope.alturaChat = $('#container-input').height();
             scope.alturaBody = $('body').height();
             scope.larguraBody = $('body').width();
-            $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+            $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
         },1000);
+        iniciarInfinitScroll();
     }
     
     function setarCursorInicio(){
-        $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+        $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
     }
     
     function configConexao(){
@@ -41,16 +42,19 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function responder(){
-        scope.conn.send(JSON.stringify({
-            codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
-            processo:'Acoes',
-            etapa:'respostas',
-            'Respostas::titulo':scope.dados.resposta, 
-            'Respostas::perguntasId':scope.dados.idPergunta
-        }));
+        if(scope.dados.resposta != ''){
+            scope.conn.send(JSON.stringify({
+                codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
+                processo:'Acoes',
+                etapa:'respostas',
+                'Respostas::titulo':scope.dados.resposta, 
+                'Respostas::perguntasId':scope.dados.idPergunta
+            }));
+        }
     }
     
     function digitando(){
+        calcularTxtAreaAltura()
         scope.conn.send(JSON.stringify({
             codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
             processo:'Acoes',
@@ -60,10 +64,11 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function acaoReal(resposta){
+        console.log(resposta);
         if(resposta && resposta.respostaId)
             addResp(resposta);
         
-        if(resposta && resposta.digitando == 1)
+        if(resposta && resposta.digitando == 1 && resposta.remetente != 1)
             confirmaDigitando(resposta);
     }
     
@@ -82,12 +87,10 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function addResp(resposta){
-        console.log('resposta');
-        console.log(resposta);
         scope.dados.respostas.unshift(resposta);
-        scope.dados.resposta = '';
+        if(resposta.remetente == 1)scope.dados.resposta = '';
         $timeout(function(){
-            $('#container-respostas').animate({scrollTop:$('#container-respostas ion-list .list').height()}, 'slow');
+            $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
         },0);
         scope.$apply();
     }
@@ -97,10 +100,10 @@ angular.module('QuickPeek.Acoes.Respostas', [
             atualizando:true,
             perguntasId:scope.dados.idPergunta
         };
-        if(!scope.dados.moredata){
-            scope.dados.moredata = true;
+        
+        $timeout(function(){
             RespostasRequisicoes.set({dados:obj,scope:scope,acaoSuccess:RespostasRequisicoes.successListarRespostas}).listarRespostas();
-        }
+        },0);
     }
     
     function addMarginTeclado(){
@@ -117,6 +120,43 @@ angular.module('QuickPeek.Acoes.Respostas', [
         Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
     }
     
+    function attPrivacidade(){
+        Pagina.navegar({idPage:38});
+    }
+    
+    function iniciarInfinitScroll(){
+        InfinitScroll.iniciar({
+            top:true,
+            idSeletor:'container-respostas',
+            acaoTop:carregarRespostas
+        });
+    }
+    
+    function calcularTxtAreaAltura(){
+        $("#txtChat").bind("input", function(e) {
+            while( $(this).outerHeight() < this.scrollHeight +
+                                           parseFloat($(this).css("borderTopWidth")) +
+                                           parseFloat($(this).css("borderBottomWidth"))
+                   && $(this).height() < 100 // Altura máxima
+            ) {
+                $(this).height($(this).height()+1);
+            };
+        });
+    }
+    
+    window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+    function keyboardShowHandler(e){
+        //alert('Keyboard height is: ' + e.keyboardHeight);
+        addMarginTeclado();
+    }
+    
+    window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+    function keyboardHideHandler(e){
+        removeMarginTeclado();
+    }
+    
     return {
         setScope:setScope,
         configConexao:configConexao,
@@ -126,7 +166,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
         digitando:digitando,
         addMarginTeclado:addMarginTeclado,
         removeMarginTeclado:removeMarginTeclado,
-        voltarPerguntas:voltarPerguntas
+        voltarPerguntas:voltarPerguntas,
+        attPrivacidade:attPrivacidade
     };
     
  }]);

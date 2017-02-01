@@ -24,6 +24,7 @@ angular.module('QuickPeek.Perfil', [
         $scope.irCheckin = PerfilAcoes.irCheckin;
         $scope.checkInLocal = PerfilAcoes.checkInLocal;
         $scope.irNotificacoes = PerfilAcoes.irNotificacoes;
+        $scope.cancelarSolicitacao = PerfilAcoes.cancelarSolicitacao;
     }
 ])
 

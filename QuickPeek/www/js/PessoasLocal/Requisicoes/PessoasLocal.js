@@ -61,7 +61,7 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 for(var i = 0;i < scope.dados.pessoas.length; i++){
-                    if(dados.usuarioSeguirId = scope.dados.pessoas[i].usuarioId){
+                    if(dados.usuarioSeguirId == scope.dados.pessoas[i].usuarioId){
                         scope.dados.pessoas[i].seguindo = 2;
                     }
                 }
@@ -91,7 +91,7 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 for(var i = 0;i < scope.dados.pessoas.length; i++){
-                    if(dados.seguirId = scope.dados.pessoas[i].usuarioId){
+                    if(dados.seguirId == scope.dados.pessoas[i].seguirId){
                         scope.dados.pessoas[i].seguindo = 0;
                     }
                 }
@@ -121,7 +121,7 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
                 for(var i = 0;i < scope.dados.pessoas.length; i++){
-                    if(dados.usuarioSeguirId = scope.dados.pessoas[i].usuarioId){
+                    if(dados.usuarioSeguirId == scope.dados.pessoas[i].usuarioId){
                         scope.dados.pessoas[i].seguindo = 0;
                     }
                 }

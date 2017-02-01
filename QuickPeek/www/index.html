@@ -2,6 +2,7 @@
 <html ng-app="QuickPeek">
   <head>
     <meta charset="utf-8">
+
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     
     <title></title>
@@ -38,6 +39,7 @@
     <link href="css/ionic-footer.css" rel="stylesheet">
     <link href="css/ionic-popup.css" rel="stylesheet">
     <link href="css/md-switch.css" rel="stylesheet">
+    <link href="libExtra/RBInfinitScroll/RBInfinitScroll.css" rel="stylesheet">
     <link href="css/md-menu.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBCordovaImagePicker/RBImagePicker.css" rel="stylesheet">
     <link href="lib/RB-ComponentesAngular/src/RBAutocomplete/RBAutocomplete.css" rel="stylesheet">
@@ -63,7 +65,8 @@
     <script src="lib/ionic-toast/dist/ionic-toast.bundle.min.js"></script>
     <script src="lib/loaders.css/loaders.css.js"></script>
     <script src="libExtra/RBWebSocket/RBWebSocket.js"></script>
-    
+    <script src="libExtra/RBInfinitScroll/RBInfinitScroll.js"></script>
+    <script src="libExtra/js-marker-clusterers/src/markerclusterer.js"></script>
     <script src="lib/RB-ComponentesAngular/src/GCS.js"></script>
     <script src="lib/RB-ComponentesAngular/src/Pagina.js"></script>
     <script src="lib/RB-ComponentesAngular/src/Navegacao.js"></script>
@@ -79,6 +82,7 @@
     <script src="lib/RB-ComponentesAngular/src/RBAutocomplete/RBAutocomplete.js"></script>
     <script src="lib/RB-ComponentesAngular/src/RBGerenciaSMS/RBGerenciaSMS.js"></script>
     <script src="lib/RB-ComponentesAngular/src/RBGeoBackGround/RBGeoBackGround.js"></script>
+    <script src="lib/OverlappingMarkerSpiderfier/build/om.js"></script>
     <script src="js/Base/LayoutPadrao.js"></script>
     
     <!--Loading Inicial-->
@@ -356,6 +360,30 @@
     <script src="js/Notificacoes/Estruturas/Notificacoes.js"></script>
     <script src="js/Notificacoes/Requisicoes/Notificacoes.js"></script>
     <link href="js/Notificacoes/Estruturas/Notificacoes.css" rel="stylesheet"> 
+    
+    <!--NOTIFICACOES SEGUIR-->
+    <script src="js/NotificacoesSeguir/Controladores/NotificacoesSeguir.js"></script>
+    <script src="js/NotificacoesSeguir/Controladores/Estrutura.js"></script>
+    <script src="js/NotificacoesSeguir/Controladores/Acoes.js"></script>
+    <script src="js/NotificacoesSeguir/Estruturas/NotificacoesSeguir.js"></script>
+    <script src="js/NotificacoesSeguir/Requisicoes/NotificacoesSeguir.js"></script>
+    <link href="js/NotificacoesSeguir/Estruturas/NotificacoesSeguir.css" rel="stylesheet"> 
+    
+    <!--PROVACIDADE RESPOSTAS-->
+    <script src="js/PrivacidadeRespostas/Controladores/PrivacidadeRespostas.js"></script>
+    <script src="js/PrivacidadeRespostas/Controladores/Estrutura.js"></script>
+    <script src="js/PrivacidadeRespostas/Controladores/Acoes.js"></script>
+    <script src="js/PrivacidadeRespostas/Estruturas/PrivacidadeRespostas.js"></script>
+    <script src="js/PrivacidadeRespostas/Requisicoes/PrivacidadeRespostas.js"></script>
+    <link href="js/PrivacidadeRespostas/Estruturas/PrivacidadeRespostas.css" rel="stylesheet"> 
+    
+    <!--SELECIONAR CATEGORIAS-->
+    <script src="js/Categorias/Controladores/Categorias.js"></script>
+    <script src="js/Categorias/Controladores/Estrutura.js"></script>
+    <script src="js/Categorias/Controladores/Acoes.js"></script>
+    <script src="js/Categorias/Estruturas/Categorias.js"></script>
+    <script src="js/Categorias/Requisicoes/Categorias.js"></script>
+    <link href="js/Categorias/Estruturas/Categorias.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};

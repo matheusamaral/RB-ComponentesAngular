@@ -21,7 +21,7 @@ class ListarAreaMapa {
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         
         $dadosLocais = Conteiner::get('ConsultaDadosLocais')->consultar($usuarioId, 
-                $latitude, $longitude, $latitudeLocal, $longitudeLocal, $tempo['midia'], $tempo['hashtag'], $notIn, $localId);
+                $latitude, $longitude, $latitudeLocal, $longitudeLocal, $tempo['midia'], $tempo['hashtag'], $tempo['limitePerguntas'], $notIn, $localId);
         
         if($dadosLocais){
             foreach($dadosLocais as $v){

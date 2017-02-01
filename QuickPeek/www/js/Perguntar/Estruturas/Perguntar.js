@@ -19,10 +19,13 @@ angular.module('QuickPeek.HTML.Perguntar', [
                     </div>\n\
                 </div>\n\
                 <div class="row" style="padding-top:70px !important">\n\
-                    <div class="img-circular-grande-perguntar margin-img"\n\
+                    <div ng-if="dados.privacidade != 3" class="img-circular-grande-perguntar margin-img"\n\
                     style="background-image:url({{dadosUser.usuarioEndereco}})"></div>\n\
+                    <div ng-if="dados.privacidade == 3" class="img-circular-grande-perguntar margin-img"\n\
+                    style="background-image:url({{dadosUser.avatarEndereco}})"></div>\n\
                     <div class="col remove-padding" style="margin-left: 10px;">\n\
-                        <p class="negrito titular-pergunta-preto">{{dadosUser.usuarioNome}}</p>\n\
+                        <p ng-if="dados.privacidade != 3" class="negrito titular-pergunta-preto">{{dadosUser.usuarioNome}}</p>\n\
+                        <p ng-if="dados.privacidade == 3" class="negrito titular-pergunta-preto">{{dadosUser.avatarNome}}</p>\n\
                         <div class="container-select row remove-padding">\n\
                             <md-icon style="margin-top:7px !important;margin-left:10px !important;margin: 0;margin-right: 10px;color:#ffb800;font-size:22px !important" class="ion-earth"></md-icon>\n\
                             <md-select style="margin-bottom: 4px !important;margin:0" placeholder="Alterar privacidade" style="width:100%" class="select-privacidade" ng-model="dados.privacidade">\n\
