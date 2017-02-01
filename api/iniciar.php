@@ -18,8 +18,13 @@ abstract class Ambiente{
         if(isset($_SERVER['AmbExec']) && $_SERVER['AmbExec'] == 'server' ){
             return $_SERVER['SERVER_NAME'].'/define.json';
         }
-        $parametro = $_SERVER['argv'];
-        return isset($_SERVER['AmbExec']) ? $_SERVER['AmbExec'].'/define.json': $parametro[1].'/define.json';
+        
+        if(isset($_SERVER['argv'][1])){
+            $parametro = $_SERVER['argv'][1];
+        }else{
+            $parametro = 'diego';
+        }
+        return isset($_SERVER['AmbExec']) ? $_SERVER['AmbExec'].'/define.json': $parametro.'/define.json';
     }
 }
 
