@@ -129,6 +129,7 @@
     "ListarMensagensPerguntas": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarMensagensPerguntas",
     "ListarVisualizadoEntregue": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarVisualizadoEntregue",
     "ListarCategoriasFiltroMapa": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarCategoriasFiltroMapa",
+    "ListarCategoriasLocal": "\\Quickpeek\\Local\\Aplicacao\\Listar\\ListarCategoriasLocal",
     
     "SetarDadosBanco": "\\Quickpeek\\Usuario\\Aplicacao\\DadosBanco\\SetarDadosBanco",
     "LoginTeste": "\\Quickpeek\\LoginTeste",

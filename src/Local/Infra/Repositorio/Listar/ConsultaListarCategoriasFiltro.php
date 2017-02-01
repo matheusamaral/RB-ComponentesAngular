@@ -9,7 +9,7 @@ class ConsultaListarCategoriasFiltro {
         $query = Conteiner::get('Query', false);
         $query->select('id')
                 ->add('titulo')
-                ->add('endereco')
+                ->add("concat('".DOMINIO_PROJETO."',endereco)", 'endereco')
                 ->add('0', "'tipo'");
         $query->from('categoria_local');
         $query->where('ativo = 1');
@@ -21,7 +21,7 @@ class ConsultaListarCategoriasFiltro {
         $query = Conteiner::get('Query', false);
         $query->select('id')
                 ->add('titulo')
-                ->add('endereco')
+                ->add("concat('".DOMINIO_PROJETO."',endereco)", 'endereco')
                 ->add('1', "'tipo'");
         $query->from('categoria_hashtag');
         $query->where('ativo = 1');
