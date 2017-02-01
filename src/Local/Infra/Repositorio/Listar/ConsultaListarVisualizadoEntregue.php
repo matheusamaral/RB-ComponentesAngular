@@ -13,7 +13,7 @@ class ConsultaListarVisualizadoEntregue {
                         . ' else a.nome end', 'nome')
                 ->add('case when pu.visibilidade_id = 1 then u.endereco'
                         . ' when pu.visibilidade_id = 2 and s.id is not null then u.endereco'
-                        . ' else a.endereco end', 'endereco')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
                 ->add('pu.momento', 'momento');
         $query->from('pergunta_usuario', 'pu');
         $query->join('usuario', 'u')->on('u.id = pu.usuario_id')
@@ -41,7 +41,7 @@ class ConsultaListarVisualizadoEntregue {
                         . ' else a.nome end', 'nome')
                 ->add('case when pu.visibilidade_id = 1 then u.endereco'
                         . ' when pu.visibilidade_id = 2 and s.id is not null then u.endereco'
-                        . ' else a.endereco end', 'endereco')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
                 ->add('pu.momento_visualizado', 'momento');
         $query->from('pergunta_usuario', 'pu');
         $query->join('usuario', 'u')->on('u.id = pu.usuario_id')

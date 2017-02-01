@@ -66,7 +66,7 @@ class Publicar {
         $arquivo = $msg->getCampo('ArquivoBase64')->get('valor');
         foreach($arquivo as $v){
             
-            $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
+            $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.'.$msg->getCampo('Extensao')->get('valor');
             $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
             Conteiner::get('Base64')->upload($v, DIR_BASE.$enderecoFoto);
             $url = $this->imagemUpada('imagem', 'midia', 0, 2);

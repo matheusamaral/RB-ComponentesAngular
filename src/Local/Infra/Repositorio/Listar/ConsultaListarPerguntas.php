@@ -16,7 +16,7 @@ class ConsultaListarPerguntas {
                         . ' when p.visibilidade_id = 1 then u.endereco'
                         . ' when p.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . " when p.usuario_id = $usuarioId and p.visibilidade_id != 3 then u.endereco"
-                        . ' else a.endereco end', 'endereco')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco end end", 'endereco')
                 ->add('case when u.ativo = 0 then ' . "'Usuário do Quickpeek'"
                         . ' when p.visibilidade_id = 1 then u.nome'
                         . ' when p.visibilidade_id = 2 and s.id is not null then u.nome'

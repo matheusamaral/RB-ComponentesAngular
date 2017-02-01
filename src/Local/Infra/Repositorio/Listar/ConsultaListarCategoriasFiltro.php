@@ -24,7 +24,8 @@ class ConsultaListarCategoriasFiltro {
                 ->add("concat('".DOMINIO_PROJETO."',endereco)", 'endereco')
                 ->add('1', "'tipo'");
         $query->from('categoria_hashtag');
-        $query->where('ativo = 1');
+        $query->where('id != 10')
+                ->add('ativo = 1');
         return $query->executar();
     }
 }

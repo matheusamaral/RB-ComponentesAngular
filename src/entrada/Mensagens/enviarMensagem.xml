@@ -9,6 +9,7 @@
         <campo regra="Obrigatorio" chave="Mensagens::visibilidadeUsuarioId" nome="Mensagens::visibilidadeUsuarioId"/>
         <campo regra="Opcional" chave="Mensagens::endereco" nome="Mensagens::endereco"/>
         <campo regra="Opcional" chave="ArquivoBase64" nome="ArquivoBase64"/>
+        <campo regra="Opcional" chave="Extensao" nome="Extensao"/>
     </entrada>
     
     <atividades>

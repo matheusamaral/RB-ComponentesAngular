@@ -4,6 +4,7 @@
     
     <entrada>
         <campo regra="Obrigatorio" chave="ArquivoBase64" nome="arquivoBase64"/>
+        <campo regra="Opcional" chave="Extensao" nome="extensao"/>
     </entrada>
     
     <atividades>
