@@ -15,7 +15,7 @@ class ConsultaListarPerfilUsuario {
                 ->add('count(distinct se.id)', 'qtdSeguindo')
                 ->add('a.id', 'avatarId')
                 ->add('a.nome', 'avatarNome')
-                ->add('a.endereco', 'avatarEndereco')
+                ->add("concat('" . DOMINIO_PROJETO . "',a.endereco end", 'avatarEndereco')
                 ->add('l.titulo', 'local')
                 ->add('case when seg.confirmar_seguir = 1 then 1'
                         . ' when seg.confirmar_seguir = 0 then 2'

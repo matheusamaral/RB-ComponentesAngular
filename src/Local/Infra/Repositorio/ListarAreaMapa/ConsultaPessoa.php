@@ -13,7 +13,7 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
                 ->add('c.visibilidade_id', 'visibilidade')
                 ->add('case when c.visibilidade_id = 1 then u.endereco'
                         . ' when c.visibilidade_id = 2 and s.id is not null then u.endereco'
-                        . ' else a.endereco end', 'endereco')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
                 ->add('c.visibilidade_id', 'visibilidadeId')
                 ->add('c.local_id', 'localId')
                 ->add('ifnull(s.ativo, 0) + ((count(distinct m.id) + ifnull(consulta.soma, 0)) * 0.8)'
@@ -87,7 +87,8 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
         $query2->select('u.id')
                 ->add('hl.hashtag_id');
         $query2->from('usuario', 'u');
-        $query2->join('hashtag_local', 'hl', 'left')->on('hl.usuario_id = u.id')
+        $query2->join('hashtag_local', 'hl', 'left')
+                ->on('hl.usuario_id = u.id')
                 ->on('hl.local_id = ?')
                 ->on('hl.momento > date_add(now(), INTERVAL -? HOUR)')
                 ->on('hl.ativo = 1');

@@ -16,7 +16,7 @@ class ConsultaHashtag {
                         . 'when hl.visibilidade_id = 1 then u.endereco '
                         . 'when hl.visibilidade_id = 2 and s.id is not null then u.endereco '
                         . "when hl.usuario_id = $usuarioId and hl.visibilidade_id != 3 then u.endereco "
-                        . 'else a.endereco end', 'categoriaEndereco')
+                        . "else concat('" . DOMINIO_PROJETO . "',a.endereco end", 'categoriaEndereco')
                 ->add('case when hlo.id is null then 0 else 1 end', 'jaCurtiu');
         $query->from('hashtag', 'h');
         $query->join('local', 'l')
