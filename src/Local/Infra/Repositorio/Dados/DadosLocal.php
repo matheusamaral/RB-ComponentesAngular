@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class DadosLocal {
     
-    public function dadosLocal($localId){
+    public function consultar($localId){
         
         $query = Conteiner::get('Query', false);
         $query->select('*');

@@ -178,12 +178,16 @@ class Publicar {
             $msg->setCampo('Notificacoes::tipoId', $tipoId);
             if(isset($hashtagsId)){
                 $msg->setCampo('Notificacoes::hashtagLocalId', $hashtagsId);
-                $this->enviarAlerta($msg, $seguidores, $hashtagsId[0]);
             }elseif(isset($midiasId)){
                 $msg->setCampo('Notificacoes::midiaId', $midiasId);
+            }
+            
+            Conteiner::get('Cadastro')->cadastrar($msg);
+            if(isset($hashtagsId)){
+                $this->enviarAlerta($msg, $seguidores, $hashtagsId[0]);
+            }elseif(isset($midiasId)){
                 $this->enviarAlerta($msg, $seguidores, false, $midiasId[0]);
             }
-            Conteiner::get('Cadastro')->cadastrar($msg);
         }
     }
     
@@ -198,7 +202,7 @@ class Publicar {
         
         foreach($seguidoresId as $v){
             $dadosUsuario = $query->consultar($v);
-            $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' fez a primeira publicação em ' . $dadosLocal['titulo']];
+            $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' fez sua primeira publicação em ' . $dadosLocal['titulo']];
             $fields = [
                 'include_player_ids'=>[$dadosUsuario['playerId']], 
                 'data'=>['pagina'=>36], 
