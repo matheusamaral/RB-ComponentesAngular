@@ -23,7 +23,7 @@ abstract class Ambiente{
     }
 }
 
-require Ambiente::dir(__DIR__).'/../../vendor/autoload.php';
+require Ambiente::dir(__DIR__).'/../vendor/autoload.php';
 
 //var_dump(str_replace('api', '', Ambiente::dir(__DIR__)),'/src/config/'.Ambiente::amb().'');
 //exit();
