@@ -21,7 +21,7 @@ class Respostas {
             $msg->setCampo('Respostas::bloqueado', 1);
         }
         $checkIn = Conteiner::get('ConsultaCheckIn')->consultar($usuarioId, $perguntaId);
-
+        
         if($checkIn){
             $msg->setCampo('Respostas::checkIn', 1);
         }else{
