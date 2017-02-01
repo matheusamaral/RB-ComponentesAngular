@@ -151,7 +151,7 @@ class Publicar {
         
         if($visibilidadeId != 3 && $seguidores){
             $hashtagLocalId = $msg->getCampo('HashtagLocal::id')->get('valor');
-            $midiaId = $msg->getCampo('Midia::id')->get('valor');
+            $midiaLocalId = $msg->getCampo('Midia::id')->get('valor');
             
             foreach($seguidores as $v){
                 $usuarioAcaoId[] = $usuarioId;
@@ -163,8 +163,13 @@ class Publicar {
                         $hashtagId = $hashtagLocalId;
                     }
                     $hashtagsId[] = $hashtagId[0];
-                }elseif($midiaId){
-                    $midiasId[] = $midiaId;
+                }elseif($midiaLocalId){
+                    if(!is_array($midiaLocalId)){
+                        $midiaId[] = $midiaLocalId;
+                    }else{
+                        $midiaId = $midiaLocalId;
+                    }
+                    $midiasId[] = $midiaId[0];
                 }
             }
             $msg->setCampo('entidade', 'Notificacoes');
@@ -173,38 +178,36 @@ class Publicar {
             $msg->setCampo('Notificacoes::tipoId', $tipoId);
             if(isset($hashtagsId)){
                 $msg->setCampo('Notificacoes::hashtagLocalId', $hashtagsId);
+                $this->enviarAlerta($msg, $seguidores, $hashtagsId[0]);
             }elseif(isset($midiasId)){
                 $msg->setCampo('Notificacoes::midiaId', $midiasId);
+                $this->enviarAlerta($msg, $seguidores, false, $midiasId[0]);
             }
             Conteiner::get('Cadastro')->cadastrar($msg);
-            
-            $this->enviarAlerta($msg, $seguidores, $hashtagsId);
         }
     }
     
-    private function enviarAlerta($msg, $seguidoresId, $hashtagsId){
+    private function enviarAlerta($msg, $seguidoresId){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $localId = $msg->getCampo('HashtagLocal::localId')->get('valor');
+        $query = Conteiner::get('ConsultaListarDadosUsuario');
         
+        $dadosLocal = Conteiner::get('DadosLocal')->consultar($localId);
+        $dadosUsuarioLogado = $query->consultar($usuarioId);
         
         foreach($seguidoresId as $v){
-            $dadosSeguidores[] = $query->consultar();
+            $dadosUsuario = $query->consultar($v);
+            $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' fez a primeira publicação em ' . $dadosLocal['titulo']];
+            $fields = [
+                'include_player_ids'=>[$dadosUsuario['playerId']], 
+                'data'=>['pagina'=>36], 
+                'contents'=>$contents, 
+                'headings'=>['en'=>'Primeira publicação!']];
+
+            $alerta = Conteiner::get('Alerta');
+            $response = $alerta->enviar($fields);
         }
-        $query = Conteiner::get('ConsultaListarDadosUsuario');
-        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $dadosUsuarioLogado = $query->consultar($usuarioId);
-        $dadosUsuario = $query->consultar($msg->getCampo('Seguir::usuarioSeguirId')->get('valor'));
-        
-        $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . $frase];
-        $fields = [
-            'include_player_ids'=>[$dadosUsuario['playerId']], 
-            'data'=>['pagina'=>36], 
-            'contents'=>$contents, 
-            'headings'=>['en'=>'Seguidor!']];
-        
-        $alerta = Conteiner::get('Alerta');
-        $response = $alerta->enviar($fields);
-        
         $alerta->cadastrarAlerta($dadosUsuario['usuarioId'], 2, $response, false, $msg->getCampo('Notificacoes::id')->get('valor'));
     }
 }
