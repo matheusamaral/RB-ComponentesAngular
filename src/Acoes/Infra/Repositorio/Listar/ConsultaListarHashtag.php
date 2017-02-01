@@ -9,7 +9,7 @@ class ConsultaListarHashtag {
         $query = Conteiner::get('Query', false);
         $query->select('ch.id', 'categoriaId')
                 ->add('ch.titulo', 'categoriaTitulo')
-                ->add('ch.endereco', 'categoriaEndereco')
+                ->add("concat('".DOMINIO_PROJETO."',ch.endereco)", 'categoriaEndereco')
                 ->add('h.id', 'hashtagId')
                 ->add('h.titulo', 'hashtagTitulo');
         $query->from('hashtag', 'h');

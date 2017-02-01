@@ -109,10 +109,10 @@ class ConsultaMapa {
         $query->select('sub.*')
                 ->add('l.id', 'localId')
                 ->add('case when ch.id != 10 then ch.endereco '
+                        . 'when u.ativo = 0 then ' . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg' "
                         . 'when sub.visibilidade_id = 1 then u.endereco '
                         . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
                         . "when sub.usuario_id = $usuarioId and sub.visibilidade_id != 3 then u.endereco "
-                        . 'when u.ativo = 0 then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
                         . 'else a.endereco end', 'categoriaHashtagFoto')
                 ->add('cl.endereco', 'categoriaLocalFoto');
         $query->from('local', 'l');

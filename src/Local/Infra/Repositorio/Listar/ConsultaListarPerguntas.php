@@ -12,7 +12,7 @@ class ConsultaListarPerguntas {
                 ->add('p.usuario_id', 'usuarioId')
                 ->add('count(distinct r.id) - count(distinct rv.id)', 'respostas')
                 ->add('ifnull(r.ativo, 0)', 'respondida')
-                ->add('case when u.ativo = 0 then ' . "'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg'"
+                ->add('case when u.ativo = 0 then ' . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg'"
                         . ' when p.visibilidade_id = 1 then u.endereco'
                         . ' when p.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . " when p.usuario_id = $usuarioId and p.visibilidade_id != 3 then u.endereco"

@@ -1,0 +1,22 @@
+{
+    "/QuickPeek/quickpeek/api/Navegacao/Tela/{{id}}/{{opc}}/{{app}}":{
+        "classe":"\\Rubeus\\FrontController\\Pagina",
+        "metodo":"getDados",
+        "parametros":["id","opc","app"]
+    },
+    "/QuickPeek/quickpeek/api/Navegacao/Tela/{{id}}/{{opc}}":{
+        "classe":"\\Rubeus\\FrontController\\Pagina",
+        "metodo":"getDados",
+        "parametros":["id","opc"]
+    },
+    "/QuickPeek/quickpeek/api/Teste/{{processo}}/{{etapa}}":{
+        "classe":"\\Rubeus\\Processo\\Aplicacao\\EntradaTeste",
+        "metodo":"iniciar",
+        "parametros":["processo","etapa"]
+    },
+    "/QuickPeek/quickpeek/api/{{processo}}/{{etapa}}":{
+        "classe":"\\Rubeus\\Processo\\Aplicacao\\Entrada",
+        "metodo":"iniciar",
+        "parametros":["processo","etapa"]
+    }
+}

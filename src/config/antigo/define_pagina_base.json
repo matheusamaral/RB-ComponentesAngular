@@ -1,0 +1,13 @@
+{
+    "root" : {
+        "PAGINA_BASE" :{
+            "contrato": {
+                "titulo":"contrato",
+                "processo":[{
+                    "processo":"Aluno",  
+                    "etapa":"dadosContrato"  
+                }]
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "PROJETO":"QuickPeek" ,
+    "DIR_CONF" : "src/config/",
+    "URL_PROJETO":"quickpeek.rubeus.com.br/" ,
+    "DOMINIO_PROJETO":"http://quickpeek.rubeus.com.br/" ,
+    "DOMINIO":"http://quickpeek.rubeus.com.br",
+    "DOMINIO_REQ":"http://quickpeek.rubeus.com.br/api", 
+    "ROTAS": "src/config/quickpeek.rubeus.com.br/define_rotas.json",   
+    "DEPENDENCIA": "src/config/define_dependencia.json",
+    "DEFINE_APP": "src/config/define_app.json",
+    "PERMITIR_COMMIT": 1,
+    "PROTOCOLLO":"HTTP",
+    
+    "ARQ_CONFIG":{
+        "ARQ_EMAIL": "src/config/define_email.json",
+        "PAGINA_BASE": "src/config/define_pagina_base.json",
+        "ARQ_NAV": "src/config/define_nav.json",
+        "ARQ_MSG": "src/config/define_msg.json",
+        "ARQ_BASE": "src/config/quickpeek.rubeus.com.br/define_base.json",
+        "ARQ_ORM": "src/config/define_orm.json",
+        "PROCESSO": "src/config/define_processo.json",
+        "UPLOAD": "src/config/define_upload.json",
+        "INTEGRACAOTOVS": "src/config/define_integracao.json"
+    }
+}
