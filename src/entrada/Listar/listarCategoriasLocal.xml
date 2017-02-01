@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="listarCategoriasLocal" modulo="Listar">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="listar-categorias-local" tipo="tarefa">
+            <entidade nome="ListarCategoriasLocal" metodo="listarCategoriasLocal"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

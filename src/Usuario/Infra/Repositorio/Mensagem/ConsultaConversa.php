@@ -13,7 +13,7 @@ class ConsultaConversa {
                 ->add('m.endereco', 'enderecoMensagem')
                 ->add('m.momento', 'momento')
                 ->add('m.status_mensagem_id', 'statusMensagem')
-                ->add("case when u.ativo = 0 or b.id is not null then 'http://192.168.0.121:8000/QuickPeek/quickpeek/QuickPeek/www/img/96.svg' "
+                ->add("case when u.ativo = 0 or b.id is not null then " .  "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg' "
                         . 'when m.visibilidade_mensagens_id = 1 then u.endereco '
                         . 'else a.endereco end', 'endereco')
                 ->add("case when u.ativo = 0 or b.id is not null then 'Usuário do Quickpeek' "
