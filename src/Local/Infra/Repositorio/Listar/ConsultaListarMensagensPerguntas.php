@@ -56,7 +56,7 @@ class ConsultaListarMensagensPerguntas {
                         . ' when p.visibilidade_id = 1 then u.endereco'
                         . ' when p.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . " when p.usuario_id = $usuarioId and p.visibilidade_id != 3 then u.endereco"
-                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco end", 'enderecoUsuario')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'enderecoUsuario')
                 ->add('p.momento', 'momento');
         $query->from('perguntas', 'p');
         $query->join('usuario', 'u')
