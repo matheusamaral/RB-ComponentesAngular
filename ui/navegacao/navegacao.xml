@@ -52,7 +52,7 @@
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-avatares" acao="AvataresCtrl" title="QuickPeek"/>
-    </pagina>   
+    </pagina>
     
     <pagina id="8" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="perfil">
         <dadosSolicitados>
