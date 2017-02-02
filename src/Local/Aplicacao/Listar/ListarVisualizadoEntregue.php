@@ -12,12 +12,14 @@ class ListarVisualizadoEntregue {
         $query = Conteiner::get('ConsultaListarVisualizadoEntregue');
         
         $entregue = $query->consultarEntregue($usuarioId, $perguntaId);
+        $alertaEntregue = $query->consultarAlertaEntregue($perguntaId);
         $visualizado = $query->consultarVisualizado($usuarioId, $perguntaId);
+        $dados[0]['entregue'] = $entregue;
+        $dados[0]['restantes'] = $alertaEntregue - count($entregue);
+        $dados[1]['visualizado'] = $visualizado;
+        $dados[1]['restantes'] = count($entregue) - count($visualizado);
         
-        $dados['entregue'] = $entregue;
-        $dados['visualizado'] = $visualizado;
-        
-        if($dados['entregue'] && $dados['visualizado']){
+        if($dados){
             $msg->setResultadoEtapa(true, false, ['dados'=>$dados]);
         }else{
             $msg->setResultadoEtapa(false);
