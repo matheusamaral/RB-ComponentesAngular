@@ -52,7 +52,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <button ng-click="irCheckin($event)" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
                             Não\n\
                         </button>\n\
-                        <button ng-click="checkInLocal(dadosbarra)" class="config-btn-mapa button button-positive">\n\
+                        <button ng-click="checkInLocal(dadosbarra,$event)" class="config-btn-mapa button button-positive">\n\
                             Sim\n\
                         </button>\n\
                     </div>\n\

@@ -109,7 +109,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
         Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
     
-    function checkInLocal(local){
+    function checkInLocal(local,evento){
+        VP.pararEvento(evento);
         DGlobal.checkIn = {local:local};
         if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
         Pagina.navegar({idPage:30});

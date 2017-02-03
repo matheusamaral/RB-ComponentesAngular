@@ -54,7 +54,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             <md-chips ng-model="categoriaHashtags" readonly="true"\n\
                             md-removable="false">\n\
                                 <md-chip-template ng-class="{\'fundo-dourado\' : $chip.selecionado}" ng-click="addHash($chip)">\n\
-                                    <strong>#{{$chip.titulo}}</strong>\n\
+                                    <strong>{{$chip.titulo}}</strong>\n\
                                 </md-chip-template>\n\
                             </md-chips>\n\
                         </div>\n\
@@ -67,6 +67,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                             placeholder="Insira suas hashtags" \n\
                             ng-model="dados.tituloChip" \n\
                             readonly="false"\n\
+                            ng-maxlength="30"\n\
                             md-separator-keys="keyCodes"\n\
                             ng-keyup="gerarHashtag($chip)"\n\
                             md-removable="true"\n\
@@ -78,7 +79,7 @@ angular.module('QuickPeek.HTML.Publicacoes', [
                                     class="img-chip" \n\
                                     style="background-image:url({{$chip.endereco}})">\n\
                                     </div>\n\
-                                    <strong class="chip-strong">#{{$chip.titulo}}</strong>\n\
+                                    <strong class="chip-strong">{{$chip.titulo}}</strong>\n\
                                 </md-chip-template>\n\
                             </md-chips>\n\
                         </div>\n\

@@ -35,9 +35,9 @@ class Respostas {
         $cad = Conteiner::get('Cadastro')->cadastrar($msg);
         
         if($cad){
-//            $this->setarVisualizada($msg);
-//            $this->enviarNotificacao($msg);
-//            $this->conexaoSocket($msg);
+            $this->setarVisualizada($msg);
+            $this->enviarNotificacao($msg);
+            $this->conexaoSocket($msg);
         }else{
             $msg->setResultadoEtapa(false);
         }
