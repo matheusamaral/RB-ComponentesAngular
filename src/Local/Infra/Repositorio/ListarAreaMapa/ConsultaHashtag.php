@@ -11,7 +11,7 @@ class ConsultaHashtag {
                 ->add('h.titulo', 'hashtagTitulo')
                 ->add('count(distinct hl.id)', 'hashtagQtd')
                 ->add('ch.id', 'categoriaId')
-                ->add('case when ch.id != 10 then ch.endereco '
+                ->add("case when ch.id != 10 then concat('" . DOMINIO_PROJETO . "', ch.endereco) "
                         . 'when u.ativo = 0 then ' . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg' "
                         . 'when hl.visibilidade_id = 1 then u.endereco '
                         . 'when hl.visibilidade_id = 2 and s.id is not null then u.endereco '
