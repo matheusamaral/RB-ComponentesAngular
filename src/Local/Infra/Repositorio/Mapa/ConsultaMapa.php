@@ -35,9 +35,9 @@ class ConsultaMapa {
                 ->on('chec.local_id = l.id')
                 ->on('chec.ativo = 1')
                 ->on('chec.presente = 1');
-        $query->join($this->subHashtag(), 'm', 'left')
+        $query->join($this->subMidia(), 'm', 'left')
                 ->on('m.local_id = l.id');
-        $query->join($this->subMidia(), 'hl', 'left')
+        $query->join($this->subHashtag(), 'hl', 'left')
                 ->on('hl.local_id = l.id');
         $query->join('check_in', 'ci', 'left')
                 ->on('ci.usuario_id = ?')
@@ -110,7 +110,7 @@ class ConsultaMapa {
         $query = Conteiner::get('Query', false);
         $query->select('sub.*')
                 ->add('l.id', 'localId')
-                ->add('case when ch.id != 10 then ch.endereco '
+                ->add("case when ch.id != 10 then concat('" . DOMINIO_PROJETO . "',ch.endereco) "
                         . 'when u.ativo = 0 then ' . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg' "
                         . 'when sub.visibilidade_id = 1 then u.endereco '
                         . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
@@ -161,6 +161,7 @@ class ConsultaMapa {
                 ->add('local_id in (' . $locaisId . ')');
         $query->group('local_id, hashtag_id');
         $query->order('count(distinct id) desc');
+        $query->limit(1);
         return $query;
     }
 }
