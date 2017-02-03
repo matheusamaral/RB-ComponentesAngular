@@ -73,7 +73,7 @@ angular.module('QuickPeek', [
     permissions.hasPermission(permissions.ACCESS_COARSE_LOCATION, checkPermissionCallbackPrincipalLocation, null);
     permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkPermissionCallbackLocation, null);
     permissions.hasPermission(permissions.ACCESS_LOCATION_EXTRA_COMMANDS, checkPermissionCallbackExtraLocation, null);
-
+    
     function checkPermissionCAMERA(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {

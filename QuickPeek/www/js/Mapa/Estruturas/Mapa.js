@@ -20,28 +20,35 @@ angular.module('QuickPeek.HTML.Mapa', [
     };  
     
     function barraLocalizacaoAtual(){
-         return'<div ng-click="irLocal(dadosbarra.localId)" id="barra-local-atual" ng-if="dadosbarra && dadosbarra.distancia" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
-                class="row barra-localizacao-atual">\n\
-                    <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-popover-dourado"\n\
-                    style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
-                        <div class="container-privacidade-img" ng-if="dadosUser.visibilidadeCheckInId">\n\
-                            <md-icon\n\
-                            ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
-                            \'ion-android-people\' : dadosUser.visibilidadeCheckInId == 2}">\n\
-                            </md-icon>\n\
+         return'<div ng-click="irLocal(dadosbarra.localId)" \n\
+                id="barra-local-atual" \n\
+                ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
+                class="row barra-localizacao-atual"\n\
+                ng-if="dadosbarra && dadosbarra.distancia">\n\
+                    <div class="">\n\
+                        <div ng-if="dadosUser.visibilidadeCheckInId != 3"\n\
+                        class="col remove-paddingicone-local-popover-dourado"\n\
+                        style="margin-top: 10px;background-image:url({{dadosUser.usuarioEndereco}})">\n\
+                            <div class="container-privacidade-img" ng-if="dadosUser.visibilidadeCheckInId">\n\
+                                <md-icon\n\
+                                ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
+                                \'ion-android-people\' : dadosUser.visibilidadeCheckInId == 2}">\n\
+                                </md-icon>\n\
+                            </div>\n\
+                        </div>\n\
+                        <div ng-if="dadosUser.visibilidadeCheckInId == 3"\n\
+                        class="col remove-padding icone-local-popover-dourado"\n\
+                        style="margin-top: 10px;background-image:url({{dadosUser.avatarEndereco}})">\n\
+                            <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
                         </div>\n\
                     </div>\n\
-                    <div ng-if="dadosUser.visibilidadeCheckInId == 3" class="icone-local-popover-dourado"\n\
-                    style="background-image:url({{dadosUser.avatarEndereco}})">\n\
-                        <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
-                    </div>\n\
-                    <div class="" style="width: 190px;">\n\
+                    <div class="col remove-padding">\n\
                         <div class="row remove-padding">\n\
                             <p class="p-subtitulo">Você está agora em</p>\n\
                         </div>\n\
                         <p class="p-titulo-local">{{dadosbarra.localTitulo}}?</p>\n\
                     </div>\n\
-                    <div class="text-right alinha-vertical">\n\
+                    <div class="text-right col">\n\
                         <button ng-click="irCheckin($event)" style="margin-right: 13px;" class="config-btn-mapa button button-outline button-positive">\n\
                             Não\n\
                         </button>\n\

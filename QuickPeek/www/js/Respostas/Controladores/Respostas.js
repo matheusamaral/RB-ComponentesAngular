@@ -26,6 +26,16 @@ angular.module('QuickPeek.Respostas', [
         $scope.enviarMidia = RespostasAcoes.enviarMidia;
         $scope.exibirMidiaChat = RespostasAcoes.exibirMidiaChat;
         $scope.abrirBarraTools = RespostasAcoes.abrirBarraTools;
+        $scope.abrirGaleria = RespostasAcoes.abrirGaleria;
+        $scope.getImgs = RespostasAcoes.getImgs;
+        $scope.minimizaGaleria = RespostasAcoes.minimizaGaleria;
+        $scope.selecionarMidia = RespostasAcoes.selecionarMidia;
+        $scope.abrirGifs = RespostasAcoes.abrirGifs;
+        $scope.selecionarTecladoGif = RespostasAcoes.selecionarTecladoGif;
+        $scope.enviarGif = RespostasAcoes.enviarGif;
+        $scope.buscarGif = RespostasAcoes.buscarGif;
+        $scope.voltarTeclado = RespostasAcoes.voltarTeclado;
+        $scope.showEmoticons = RespostasAcoes.showEmoticons;
     }
 ])
 

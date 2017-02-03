@@ -6,7 +6,7 @@ angular.module('QuickPeek.HTML.Respostas', [
 .factory('RespostasHtml', [ function() {
        
     function montar() {
-        return '<div class="row bar bar-header bar-positive remove-padding" ng-if="!cameraFull && !cameraPrev.tirouFoto">\n\
+            return '<div style="position:absolute !important" class="row bar bar-header bar-positive remove-padding" ng-if="!cameraFull && !cameraPrev.tirouFoto">\n\
                         <div class="row remove-padding">\n\
                             <button ng-click="voltarPerguntas()" class="margin-img btn-respostas-voltar btn-txt-direita button button-clear">\n\
                                 <i class="icon ion-android-arrow-back seta-barra"></i>\n\
@@ -62,46 +62,48 @@ angular.module('QuickPeek.HTML.Respostas', [
     
     function subMenu(){
          return'<div ng-if="previewAberto" style="position:relative;background-color:transparent;text-align: center;padding: 15px;">\n\
-                    <button ng-if="!cameraPrev.tirouFoto" ng-click="cameraPrev.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
+                    <button style="z-index: -3;" ng-if="!cameraPrev.tirouFoto" ng-click="cameraPrev.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
                     </button>\n\
                     <!--<button ng-if="cameraPrev.tirouFoto" ng-click="cameraPrev.tirarDeNovo()" class="btn-rodape ion-android-send button button-clear">\n\
                     </button>-->\n\
-                    <button ng-click="girarcamera($event)" class="btn-float-righ-preview btn-rodape button-clear button button-positive">\n\
+                    <button style="z-index: -3;" ng-click="girarcamera($event)" class="btn-float-righ-preview btn-rodape button-clear button button-positive">\n\
                         <i class="icon img-inverte-camera-preview"></i>\n\
                     </button>\n\
                 </div>\n\
-                <div ng-if="exibirBarra == true;" class="row container-barra-sub-menu">\n\
+                <div ng-if="exibirBarra == true && !exibirGifs" class="row container-barra-sub-menu">\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="" class="btn-chat-pub ion-android-drafts button button-clear button-positive">\n\
+                            <button ng-click="voltarTeclado()" class="btn-chat-pub button button-clear button-positive">\n\
+                                <md-icon class="img-teclado"></md-icon>\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-class="{selecionado:previewAberto}" ng-click="abrirCamera()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                            <button ng-class="{selecionado:previewAberto && !mostrarGaleria}" ng-click="abrirCamera()" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="" class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
+                            <button ng-class="{selecionado: mostrarGaleria}" ng-click="getImgs()" class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="" class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
+                            <button ng-click="abrirGifs();" class="btn-chat-pub button button-clear button-positive">\n\
+                                <md-icon class="img-gif"></md-icon>\n\
                             </button>\n\
                         </div>\n\
-                    </div>\n\
+                    </div>'+galeria()+'\n\
                 </div>';
     }
     
     function conversa(){
         return'<ion-content id="container-respostas" class="container-chat-geral" style="position:relative;height:{{(alturaBody - alturaChat)}}px;padding-top:60px !important">\n\
                     <div class="container-centro" style="width:{{larguraBody}}px">\n\
-                        <div class="remove-padding container-dialogo row" style="margin-bottom: 20px !important;">\n\
+                        <div class="remove-padding container-dialogo row" style="margin-bottom: 20px;">\n\
                             <div class="balao-direita">\n\
                                 <div class="container-textos">\n\
                                     <div class="row remove-padding">\n\
@@ -170,7 +172,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                         <i class="icon ion-android-close"></i>\n\
                     </button>\n\
                 </div>\n\
-                '+input();
+                '+input()+containerGif();
     }
     
     function input(){
@@ -195,7 +197,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                             class="text-area-chat"\n\
                             ng-model="dados.resposta"\n\
                             rows="1" id="txtChat"\n\
-                            ng-keyup="digitando()"\n\
+                            ng-keyup="digitando();showEmoticons($event)"\n\
                             placeholder="Digite alguma coisa">\n\
                             </textarea>\n\
                         </div>\n\
@@ -209,6 +211,54 @@ angular.module('QuickPeek.HTML.Respostas', [
                         </div>\n\
                     </div>\n\
                     '+subMenu()+'\n\
+                </div>';
+    }
+    
+    function galeria(){
+         return'<div ng-if="mostrarGaleria" ng-class="{\'z-index-alto\' : galeriaFull}"\n\
+                style="z-index:-1;height:{{alturaTela}}px" class="tela-galeria">\n\
+                    <div ng-if="galeriaFull" style="padding-top: 8px !important;box-shadow: 0px -2px 8px black !important;" class="row bar bar-header bar-positive">\n\
+                        <div class="col remove-padding" style="text-align: left">\n\
+                            <button style="margin-top: 8px;" ng-click="minimizaGaleria()" class="btnbarra-galeria btn-txt-direita button button-clear">\n\
+                                <i class="icon ion-android-close seta-barra"></i>Galeria\n\
+                            </button>\n\
+                        </div>\n\
+                    </div>\n\
+                    <div class="container-glr" style="height:{{alturaGaleria}}px">\n\
+                        <div ng-class="{\'padding-top-midias\' : $index == 0 && galeriaFull}"\n\
+                        ng-repeat="linha in objimg" class="row" style="padding-bottom:0 !important">\n\
+                            <div ng-repeat="img in linha" class="col box-img-glr"\n\
+                            ng-click="selecionarMidia(img.photoURL)"\n\
+                            ng-class="{\'addFt\' : img.exibirCamera,\n\
+                            \'borda-dourada-glr\' : img.selecionado}"\n\
+                            style="background-image:url({{img.thumbnailURL}})">\n\
+                            </div>\n\
+                        </div>\n\
+                    </div>\n\
+                </div>';
+    }
+    
+    function containerGif(){
+         return'<div class="pai-gifs" ng-if="exibirGifs">\n\
+                    <div style="width:{{larguraBody}}px;overflow:auto">\n\
+                        <div class="linha-gifs row">\n\
+                            <div ng-click="enviarGif(gif)" ng-repeat="gif in gifs" class="container-gif" style="background-image:url({{gif}})"></div>\n\
+                       </div>\n\
+                    </div>\n\
+                    <div>\n\
+                        <div class="container-input-gif">\n\
+                            <div class="box-input-gif row remove-padding">\n\
+                                <button style="margin-top: 6px;color: #949292;" ng-click="selecionarTecladoGif()" class="btn-txt-direita button button-clear">\n\
+                                    <i class="icon ion-android-arrow-back seta-barra"></i>\n\
+                                </button>\n\
+                                <input style="border:none"\n\
+                                ng-keyup="buscarGif()"\n\
+                                class="text-area-chat"\n\
+                                ng-model="dados.gifSearch"\n\
+                                placeholder="Pesquisar gif...">\n\
+                            </div>\n\
+                        </div>\n\
+                    </div>\n\
                 </div>';
     }
   

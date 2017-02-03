@@ -12,7 +12,8 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         var scope;
         var acaoSuccess;
         var acaoPosterior = false;
-
+        var gm = google.maps;
+        
         function set(obj){
             dados = obj.dados;
             scope = obj.scope;
@@ -69,7 +70,7 @@ angular.module('QuickPeek.Requisicao.Mapa', [
         };
         
         function marcarNoMapa(array){
-            var gm = new google.maps;
+            
             if(array){
                 for(var i = 0; i < array.length; i++){
                     var img = 'img/79.svg';

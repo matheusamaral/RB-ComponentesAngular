@@ -13,7 +13,7 @@ angular.module('QuickPeek.HTML.Privacidade', [
                         </button>\n\
                     </div>\n\
                     <div class="col remove-padding text-right">\n\
-                        <button style="font-size: 8px !important;" ng-click="voltarConfig()" class="btn-txt-direita button button-clear">\n\
+                        <button style="font-size: 8px !important;" ng-click="compartilharFB(dados.local)" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-social-facebook seta-barra"></i>Compartilhar no facebook\n\
                         </button>\n\
                     </div>\n\

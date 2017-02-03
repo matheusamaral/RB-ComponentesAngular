@@ -250,7 +250,7 @@
         <acaoCliente classe="pag-check-in" acao="CheckInCtrl" title="Efetue Check in"/>
     </pagina>   
     
-    <pagina id="30" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="Privacidade">
+    <pagina id="30" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Privacidade">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
@@ -293,6 +293,9 @@
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
                 <metodo name="listarMensagensPerguntas" objeto='respostas'></metodo>
+            </classe>
+            <classe name="Acoes">
+                <metodo name="gifTrending" objeto='gifs'></metodo>
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-respostas" acao="RespostasCtrl" title="Responda"/>

@@ -1,6 +1,7 @@
 .container-barra-sub-menu{
     background-color: #ffb800;
-    padding-top: 8px !important;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .container-barra-sub-menu button{
@@ -19,6 +20,7 @@
 
 .espaco-camera{
     background-color: transparent;
+    border-top: 1px solid #bbbbbb;
 }
 
 .fundo-transparente{
@@ -85,4 +87,42 @@
 .btn-redondo-dourado::before{
     margin-left: 7px;
     margin-top: 7px;
+}
+
+.z-index-alto{
+    z-index: 800 !important;
+}
+
+.container-gif{
+    width: 100px;
+    min-width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-right: 3px;
+}
+
+.container-input-gif{
+    padding: 10px;
+}
+
+.box-input-gif{
+    background-color: #FFFFFF;
+    box-shadow: 1px 2px 8px #b3b3b3;
+}
+
+.linha-gifs{
+    padding-left: 10px;
+    padding-bottom: 0;
+}
+
+.pai-gifs{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.btnbarra-galeria{
+    opacity: 1 !important;
 }
