@@ -22,7 +22,7 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     };
     
     function addCss(){
-        //Pagina.navegar({idPage:34});
+        //Pagina.navegar({idPage:30});
         $('ion-side-menu-content').addClass('background-img');
     }
     

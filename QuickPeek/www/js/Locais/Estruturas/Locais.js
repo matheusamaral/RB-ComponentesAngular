@@ -47,7 +47,7 @@ angular.module('QuickPeek.HTML.Locais', [
                                                 </md-button>\n\
                                             </md-menu-item>\n\
                                             <md-menu-item>\n\
-                                                <md-button ng-click="ctrl.redial($event)">\n\
+                                                <md-button ng-click="irAteLocal(local);">\n\
                                                     Navegar até o local\n\
                                                 </md-button>\n\
                                             </md-menu-item>\n\

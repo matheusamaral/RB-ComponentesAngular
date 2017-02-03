@@ -5,8 +5,8 @@ angular.module('QuickPeek.Acoes.Privacidade', [
     'QuickPeek.Requisicao.Privacidade'
 ])
 
-.factory('PrivacidadeAcoes', ['Pagina','PrivacidadeRequisicoes','$timeout',
-    function(Pagina,PrivacidadeRequisicoes,$timeout){
+.factory('PrivacidadeAcoes', ['Pagina','PrivacidadeRequisicoes',
+    function(Pagina,PrivacidadeRequisicoes){
     var scope;  
     
     function setScope(obj){
@@ -50,17 +50,19 @@ angular.module('QuickPeek.Acoes.Privacidade', [
         console.log(local);
         
         var accessToken;
-        FB.getLoginStatus(function (response) {
+        
+        facebookConnectPlugin.getLoginStatus(function (response){
             console.log(response);
             if (response.status === 'connected') {
                 accessToken = response.authResponse.accessToken;
                 pesquisarLocalFB();
             }
-        });
+        },function(e){console.log('e')});
+
         
         function pesquisarLocalFB(){
             var urlCall = "/search?q=Sesc&type=page&center=&"+lat+","+long+"access_token="+accessToken;
-            FB.api(urlCall, function(response) {
+            facebookConnectPlugin.api(urlCall, function(response) {
                 console.log('response');   
                 console.log(response);   
             });

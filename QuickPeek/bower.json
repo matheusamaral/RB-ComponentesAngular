@@ -15,6 +15,7 @@
     "loaders.css": "^0.1.2",
     "endless.js": "https://github.com/totodunet/endless.js.git#^2.2.0",
     "OverlappingMarkerSpiderfier": "https://github.com/jawj/OverlappingMarkerSpiderfier.git",
-    "openfb": "https://github.com/ccoenraets/OpenFB.git#^0.5.0"
+    "openfb": "https://github.com/ccoenraets/OpenFB.git#^0.5.0",
+    "cordova-waze-navigator": "https://github.com/adaltojunior86/cordova-waze-navigator.git"
   }
 }

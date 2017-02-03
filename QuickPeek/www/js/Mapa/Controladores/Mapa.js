@@ -21,6 +21,7 @@ angular.module('QuickPeek.Mapa', [
         $scope.irPerfil = MapaAcoes.irPerfil;
         $scope.checkInLocal = MapaAcoes.checkInLocal;
         $scope.irNotificacoes = MapaAcoes.irNotificacoes;
+        $scope.irAteLocal = MapaAcoes.irAteLocal;
     }
 ])
 

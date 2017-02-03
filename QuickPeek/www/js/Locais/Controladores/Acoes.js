@@ -133,6 +133,14 @@ angular.module('QuickPeek.Acoes.Locais', [
         Pagina.navegar({idPage:32});
     }
     
+    function irAteLocal(local){
+        console.log(local);
+        var coord = new Array();
+        coord.push(local.dados.latitude);
+        coord.push(local.dados.longitude);
+        launchnavigator.navigate(coord);
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -147,7 +155,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         curtirHashtag:curtirHashtag,
         converteKmM:converteKmM,
         irPublicar:irPublicar,
-        perguntar:perguntar
+        perguntar:perguntar,
+        irAteLocal:irAteLocal
     };
     
  }]);
