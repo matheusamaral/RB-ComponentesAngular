@@ -56,6 +56,8 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     }
     
     function removerChip(chip){
+        console.log('scope.categoriaHashtags');
+        console.log(scope.categoriaHashtags);
         for(var i = 0; i < scope.categoriaHashtags.length;i++){
             if(scope.categoriaHashtags[i].id == chip.id)
                scope.categoriaHashtags[i].selecionado = false; 
@@ -88,7 +90,9 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         var img;
         if(scope.hashClicada){
             img = scope.categoriaSelecionada.endereco;
+            scope.dados.categoriaId.push(scope.categoriaSelecionada.id);
         }else{
+            scope.dados.categoriaId.push(10);
             if(scope.dadosUser && scope.dadosUser.usuarioEndereco){
                 if(scope.dadosUser.visibilidadeCheckInId == 3){
                     img = scope.dadosUser.avatarEndereco;
@@ -101,7 +105,6 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         var obj= {bordaDourada:true,endereco:img,titulo:chip,id:scope.dados.tituloChip.length - 1};
         if(!nRemover)scope.dados.tituloChip.splice(scope.dados.tituloChip.length - 1 , 1);
         scope.dados.tituloChip.push(obj);
-        scope.dados.categoriaId.push(10);
         scope.dados.titulo.push(chip);
         scope.dados.idHashs.push(obj.id);
         calcularAlturaChat();
@@ -114,15 +117,16 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     
     function publicar(){
         var ext;
-        if(scope.dados.arquivoBase64){
-            ext = scope.dados.arquivoBase64.split(';')[0].split('/')[1];
+        if(scope.dados.arquivoBase64[0]){
+            ext = scope.dados.arquivoBase64[0].split(';')[0].split('/')[1];
         }
         
         var obj = {
             titulo:scope.dados.titulo,
             categoriaId:scope.dados.categoriaId,
             arquivoBase64:scope.dados.arquivoBase64,
-            extensao:ext
+            extensao:ext,
+            localId:scope.local.dados.localId
         };
         
         PublicacoesRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PublicacoesRequisicoes.successPublicar}).publicar();
