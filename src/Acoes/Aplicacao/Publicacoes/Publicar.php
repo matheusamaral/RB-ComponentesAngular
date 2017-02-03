@@ -36,7 +36,7 @@ class Publicar {
             $hashtagsId = [];
             foreach($hashtags as $v){
                 $usuarioId[] = $msg->getCampoSessao('dadosUsuarioLogado,id');
-                $localId[] = Conteiner::get('ConsultaCheckIn')->consultar($usuarioId)['localId'];
+                $localId[] = $msg->getCampo('LocalId')->get('valor');
                 $query = $consultaHash->consultar($v);
                 $hashtagsId[] = $query;
                 if(!$query){
