@@ -58,6 +58,7 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     function removerChip(chip){
         console.log('scope.categoriaHashtags');
         console.log(scope.categoriaHashtags);
+        if(!scope.categoriaHashtags)scope.categoriaHashtags = new Array();
         for(var i = 0; i < scope.categoriaHashtags.length;i++){
             if(scope.categoriaHashtags[i].id == chip.id)
                scope.categoriaHashtags[i].selecionado = false; 

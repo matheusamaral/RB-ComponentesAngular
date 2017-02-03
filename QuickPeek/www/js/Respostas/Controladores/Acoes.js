@@ -75,6 +75,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
         });
         
         $timeout(function(){
+            console.log(scope.dados.base64);
             var extensao = scope.dados.base64.split(';')[0].split('/')[1];
             scope.conn.send(JSON.stringify({
                 codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
