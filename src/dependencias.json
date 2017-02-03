@@ -75,6 +75,7 @@
     "Mapa": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\Mapa",
     "MapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\MapaLocaisPertos",
     "SugestaoLocal": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\SugestaoLocal",
+    "AlertaSugestaoLocal": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\AlertaSugestaoLocal",
     "PesquisarMapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarMapaLocaisPertos",
     "PesquisarPessoas": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarPessoas",
     "PesquisarLocais": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarLocais",

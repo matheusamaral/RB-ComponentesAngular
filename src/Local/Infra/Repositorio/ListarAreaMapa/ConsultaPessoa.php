@@ -9,8 +9,10 @@ public function consultar($usuarioId, $localId, $midiaTempo, $hashtagTempo, $lim
         $query = Conteiner::get('Query', false);
         
         $query->select('distinct u.id', 'usuarioId')
-                ->add('u.nome', 'usuarioNome')
                 ->add('c.visibilidade_id', 'visibilidade')
+                ->add('case when c.visibilidade_id = 1 then u.nome'
+                        . ' when c.visibilidade_id = 2 and s.id is not null then u.nome'
+                        . ' else a.nome end', 'usuarioNome')
                 ->add('case when c.visibilidade_id = 1 then u.endereco'
                         . ' when c.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
