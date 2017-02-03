@@ -71,21 +71,19 @@ class Perguntas {
                 $contents = ['en'=>$dadosUsuario['usuarioNome'] . ' fez uma pergunta no local em que você está! Clique para responder'];
                 $fields = [
                     'include_player_ids'=>[$v['playerId']], 
-                    'data'=>['pagina'=>34, 'perguntasId'=>$perguntasId], 
+                    'data'=>['pagina'=>34, 'perguntasId'=>$perguntasId, 'usuarioId'=>$v['usuarioId'], 'visibilidadeId'=>$v['visibilidadeId']], 
                     'contents'=>$contents, 
                     'headings'=>['en'=>'Uma pergunta em seu local!']];
                 
                 $alerta = Conteiner::get('Alerta');
                 $response[] = $alerta->enviar($fields);
-            }
-            
-            foreach($pessoas as $v){
+                
                 $usuarios[] = $v['usuarioId'];
-                $visibilidadeIds[] = $v['visibilidadeId'];
-                $perguntasIds[] = $perguntasId; 
+                $perguntasIds[] = $perguntasId;
                 $localIds[] = $localId;
                 $tipo[] = 1;
             }
+            
             $alerta->cadastrarAlerta($usuarios, $tipo, $response, $perguntasIds, false, false, $localIds);
         }
     }

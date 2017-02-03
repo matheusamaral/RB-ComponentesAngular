@@ -93,7 +93,9 @@
     "CurtirMidia": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\CurtirMidia",
     "CurtirHashtag": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\CurtirHashtag",
     "ExcluirMidia": "\\Quickpeek\\Acoes\\Aplicacao\\Publicacoes\\ExcluirMidia",
+    
     "Perguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\Perguntas",
+    "SetarPerguntaEntregue": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\SetarPerguntaEntregue",
     "VerificarLimitePerguntas": "\\Quickpeek\\Acoes\\Aplicacao\\Perguntas\\VerificarLimitePerguntas",
     "Respostas": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\Respostas",
     "SetarVisibilidadeResposta": "\\Quickpeek\\Acoes\\Aplicacao\\Respostas\\SetarVisibilidadeResposta",

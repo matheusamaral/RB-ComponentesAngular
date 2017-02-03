@@ -30,7 +30,6 @@ class CheckIn {
         $sugestaoCheckIn = $msg->getCampoSessao('sugestaoCheckIn');
         if($sugestaoCheckIn){
             $msg->setCampo('CheckIn::id', $sugestaoCheckIn);
-            $msg->setCampo('CheckIn::momento', $msg->getCampoSessao('sugestaoCheckInMomento'));
             $msg->setCampo('CheckIn::presente', 1);
             $msg->setCampo('CheckIn::confirmado', 1);
         }
