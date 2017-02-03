@@ -7,12 +7,15 @@ class AlterarVisibilidade {
     public function alterarVisibilidade($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        $localId = $msg->getCampoSessao('dadosUsuarioLogado,local');
+        $checkIn = Conteiner::get('ConsultaCheckIn')->consultar($usuarioId);
         
-        $checkInId = Conteiner::get('ConsultaAlterarVisibilidade')->consultar($usuarioId, $localId);
-        if($checkInId){
+        if($checkIn['automatico'] == 1 && $checkIn['confirmado'] == 0){
+            $msg->setCampo('CheckIn::confirmado', 1);
+        }
+        
+        if($checkIn){
             $msg->setCampo('entidade', 'CheckIn');
-            $msg->setCampo('CheckIn::id', $checkInId);
+            $msg->setCampo('CheckIn::id', $checkIn['id']);
             Conteiner::get('Cadastro')->cadastrar($msg);
         }
     }

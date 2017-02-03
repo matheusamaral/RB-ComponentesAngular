@@ -38,7 +38,8 @@ class ConsultaMapaFiltro {
                 ->on('m.local_id = l.id');
         $query->join($this->subMidia(), 'hl', 'left')
                 ->on('hl.local_id = l.id');
-        $query->join('check_in', 'ci', 'left')->on('ci.usuario_id = ?')
+        $query->join('check_in', 'ci', 'left')
+                ->on('ci.usuario_id = ?')
                 ->on('ci.local_id = l.id')
                 ->on('ci.presente = 0')
                 ->on('ci.ativo = 1');
@@ -52,7 +53,9 @@ class ConsultaMapaFiltro {
                 ->on('filtro.local_id = l.id');
         $query->where('l.ativo = 1')
                 ->add('l.id not in(' . $notIn . ')')
-                ->add('(lc.id is not null or filtro.id is not null)');
+                ->add('(lc.id is not null or filtro.id is not null)')
+                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) '
+                        . '+ sin(radians(?)) * sin(radians(l.latitude)))) <= 5');
         $query->group('l.id');
         $query->order('distancia, relevancia desc, relevancia2 desc');
         $query->limit(50);
@@ -63,21 +66,9 @@ class ConsultaMapaFiltro {
             $latitude, $longitude, $latitude,
             $latitude, $longitude, $latitude,
             $usuarioId, $tempoHashtag, $tempoMidia, 
-            $usuarioId, $usuarioId, $tempoHashtag]);
+            $usuarioId, $usuarioId, $tempoHashtag,
+            $latitude, $longitude, $latitude]);
         return $query->executar();
-    }
-    
-    private function subHashtagCategoria($categoriasHashtag){
-        
-        $query = Conteiner::get('Query', false);
-        $query->select('hlo.local_id')
-                ->add('hc.id');
-        $query->from('hashtag_local', 'hlo');
-        $query->join('hashtag_categoria', 'hc')
-                ->on('hc.hashtag_id = hlo.id')
-                ->on('hc.categoria_hashtag_id in (' . $categoriasHashtag . ')');
-        $query->where('hlo.momento > date_add(now(), interval -? hour)');
-        return $query;
     }
     
     private function subHashtag(){
@@ -91,6 +82,7 @@ class ConsultaMapaFiltro {
         $query->group('local_id');
         return $query;
     }
+    
     private function subMidia(){
         
         $query = Conteiner::get('Query', false);
@@ -116,6 +108,19 @@ class ConsultaMapaFiltro {
         $query->where('s.usuario_id = ?')
                 ->add('s.confirmar_seguir = 1')
                 ->add('s.ativo = 1');
+        return $query;
+    }
+    
+    private function subHashtagCategoria($categoriasHashtag){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('hlo.local_id')
+                ->add('hc.id');
+        $query->from('hashtag_local', 'hlo');
+        $query->join('hashtag_categoria', 'hc')
+                ->on('hc.hashtag_id = hlo.id')
+                ->on('hc.categoria_hashtag_id in (' . $categoriasHashtag . ')');
+        $query->where('hlo.momento > date_add(now(), interval -? hour)');
         return $query;
     }
 }

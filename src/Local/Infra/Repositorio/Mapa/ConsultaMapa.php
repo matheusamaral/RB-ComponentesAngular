@@ -48,7 +48,8 @@ class ConsultaMapa {
                 ->on('cin.local_id = l.id');
         $query->where('l.ativo = 1')
                 ->add('l.id not in(' . $notIn . ')')
-                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 5');
+                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) '
+                        . '+ sin(radians(?)) * sin(radians(l.latitude)))) <= 5');
         $query->group('l.id');
         $query->order('distancia, relevancia desc, relevancia2 desc');
         $query->limit(50);
@@ -115,7 +116,7 @@ class ConsultaMapa {
                         . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
                         . "when sub.usuario_id = $usuarioId and sub.visibilidade_id != 3 then u.endereco "
                         . "else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'categoriaHashtagFoto')
-                ->add('cl.endereco', 'categoriaLocalFoto');
+                ->add("concat('" . DOMINIO_PROJETO . "',cl.endereco)", 'categoriaLocalFoto');
         $query->from('local', 'l');
         $query->join($this->subHashtagLocal($locaisId), 'sub', 'left')
                 ->on('sub.local_id = l.id');
