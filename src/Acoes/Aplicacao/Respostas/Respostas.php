@@ -109,16 +109,22 @@ class Respostas {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         
         if($usuarioNotificacaoId && $usuarioNotificacaoId != $usuarioId){
+            
+            $dados = Conteiner::get('DadosPergunta')->consultar($perguntaId);
+            $conexao = $this->verificarConexao($msg, $dados['usuarioId'], $perguntaId);
+            
             $respostaId = $msg->getCampo('Respostas::id')->get('valor');
             $msg->setCampo('entidade', 'Notificacoes');
             $msg->setCampo('Notificacoes::respostaId', $respostaId);
             $msg->setCampo('Notificacoes::usuarioId', $usuarioNotificacaoId);
             $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioId);
             $msg->setCampo('Notificacoes::tipoId', 3);
+            if($conexao){
+                $msg->setCampo('Notificacoes::visualizado', 1);
+            }
             $cadastro->cadastrar($msg);
             
-            $dados = Conteiner::get('DadosPergunta')->consultar($perguntaId);
-            if($this->verificarConexao($msg, $dados['usuarioId'], $perguntaId)){
+            if($conexao){
                 $this->enviarAlerta($msg, $dados);
             }
         }

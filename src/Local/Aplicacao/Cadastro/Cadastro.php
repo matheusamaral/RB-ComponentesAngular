@@ -17,7 +17,12 @@ class Cadastro {
         if($json->status == 'OK'){
             $status = $this->cadastrarLocal($msg, $json, $latitude, $longitude);
             if($status){
-                $this->cadastrarLocalCategoria($msg);
+                $cad = $this->cadastrarLocalCategoria($msg);
+                if($cad){
+                    $msg->setResultadoEtapa(true, false, ['dados'=>$msg->getCampo('Local::id')->get('valor')]);
+                }else{
+                    $msg->setResultadoEtapa(false);
+                }
             }
         }else{
             $msg->setResultadoEtapa(false);
@@ -65,6 +70,6 @@ class Cadastro {
         }
         $msg->setCampo('entidade', 'LocalCategoria');
         $msg->setCampo('LocalCategoria::localId', $locaisId);
-        Conteiner::get('Cadastro')->cadastrar($msg);
+        return Conteiner::get('Cadastro')->cadastrar($msg);
     }
 }
