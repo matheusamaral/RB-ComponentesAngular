@@ -17,6 +17,7 @@
     "UsuarioOneSignal": "\\Quickpeek\\Usuario\\Dominio\\UsuarioOneSignal",
     "Alertas": "\\Quickpeek\\Usuario\\Dominio\\Alertas",
     "TipoAlertas": "\\Quickpeek\\Usuario\\Dominio\\TipoAlertas",
+    "UsuarioOnline": "\\Quickpeek\\Usuario\\Dominio\\UsuarioOnline",
     
     "CategoriaLocal": "\\Quickpeek\\Local\\Dominio\\CategoriaLocal",
     "LocalCategoria": "\\Quickpeek\\Local\\Dominio\\LocalCategoria",
