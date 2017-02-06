@@ -182,4 +182,11 @@
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
     </classe>
     
+    <classe nome="UsuarioOnline" tabela="usuario_online" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+    </classe>
+    
 </configuracao>

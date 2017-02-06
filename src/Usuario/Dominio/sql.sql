@@ -320,3 +320,15 @@ CREATE TABLE `tipo_alertas`(
     `nome` varchar(45)   ,
     `ativo` tinyint   ,
     `momento` datetime   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `usuario_online`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `usuario_id` INT   ,
+    INDEX `usuario_online_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `usuario_online_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `momento` datetime   ,
+    `ativo` tinyint   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

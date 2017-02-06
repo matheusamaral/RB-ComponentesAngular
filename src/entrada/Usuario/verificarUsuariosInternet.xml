@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="verificarUsuariosInternet" modulo="Usuario">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="verificar-usuarios-internet" tipo="tarefa">
+            <entidade nome="VerificarUsuariosInternet" metodo="verificarUsuariosInternet"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

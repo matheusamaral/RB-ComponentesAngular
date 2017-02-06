@@ -4,7 +4,7 @@ use Rubeus\ContenerDependencia\Conteiner;
 
 class ConsultaDadosLocais {
     
-    public function consultar($usuarioId,  $latitude, $longitude, $latitudeLocal, $longitudeLocal, $tempoMidia, $tempoHashtag, $tempoLimitePerguntas, $notIn, $localId){
+    public function consultar($usuarioId, $latitude, $longitude, $latitudeLocal, $longitudeLocal, $tempoMidia, $tempoHashtag, $tempoLimitePerguntas, $notIn, $localId){
         $query = Conteiner::get('Query', false);
         $query->select('l.id', 'localId')
                 ->add('l.titulo', 'localNome')

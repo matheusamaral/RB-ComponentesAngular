@@ -32,6 +32,7 @@
     "StatusChat": "\\Quickpeek\\Acoes\\Aplicacao\\StatusChat\\StatusChat",
     "VerificarOnline": "\\Quickpeek\\Acoes\\Aplicacao\\StatusChat\\VerificarOnline",
     "ConsultaVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Visibilidade\\ConsultaVisibilidade",
+    "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "DadosLocal": "\\Quickpeek\\Local\\Infra\\Repositorio\\Dados\\DadosLocal",
     "Alerta": "\\Quickpeek\\Usuario\\Aplicacao\\Alertas\\Alerta",
     
@@ -42,6 +43,8 @@
     "VerificarCodigoSms": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\VerificarCodigoSms",
     "Tutorial": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Tutorial",
     "ListaContatos": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\ListaContatos",
+    "VerificarInternet": "\\Quickpeek\\Usuario\\Aplicacao\\Internet\\VerificarInternet",
+    "VerificarUsuariosInternet": "\\Quickpeek\\Usuario\\Aplicacao\\Internet\\VerificarUsuariosInternet",
     
     "VincularUsuarioOneSignal": "\\Quickpeek\\Usuario\\Aplicacao\\Notificacao\\VincularUsuarioOneSignal",
     
@@ -75,6 +78,7 @@
     "Mapa": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\Mapa",
     "MapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\MapaLocaisPertos",
     "SugestaoLocal": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\SugestaoLocal",
+    "AlertaSugestaoLocal": "\\Quickpeek\\Local\\Aplicacao\\Mapa\\AlertaSugestaoLocal",
     "PesquisarMapaLocaisPertos": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarMapaLocaisPertos",
     "PesquisarPessoas": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarPessoas",
     "PesquisarLocais": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarLocais",
@@ -118,7 +122,6 @@
     "ListarUltimosLocais": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarUltimosLocais",
     "ListarLocaisRecentes": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarLocaisRecentes",
     "ListarPerfilUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPerfilUsuario",
-    "ListarDadosUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarDadosUsuario",
     "ListarAvatares": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarAvatares",
     "ListarPaisesCobertura": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarPaisesCobertura",
     "ListarNaoVisualizadas": "\\Quickpeek\\Usuario\\Aplicacao\\Listar\\ListarNaoVisualizadas",

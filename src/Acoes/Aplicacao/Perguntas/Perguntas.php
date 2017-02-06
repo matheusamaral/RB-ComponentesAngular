@@ -15,7 +15,8 @@ class Perguntas {
         $cad = $cadastro->cadastrar($msg);
         if($cad){
             $this->conexaoSocket($msg);
-            $this->enviarAlerta($msg);
+            $pessoas = $this->enviarAlerta($msg);
+            $msg->setResultadoEtapa(true, false, ['dados'=>$pessoas]);
         }
     }
     
@@ -86,5 +87,6 @@ class Perguntas {
             
             $alerta->cadastrarAlerta($usuarios, $tipo, $response, $perguntasIds, false, false, $localIds);
         }
+        return count($pessoas);
     }
 }

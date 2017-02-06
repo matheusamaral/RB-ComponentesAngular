@@ -219,4 +219,13 @@
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
 </classe>
+        
+<classe nome="UsuarioOnline" tabela="usuario_online"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+</classe>
 </root>
