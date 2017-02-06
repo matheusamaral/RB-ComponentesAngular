@@ -68,8 +68,9 @@ angular.module('QuickPeek.Acoes.Categorias', [
     }
     
     function addLocal(){
+        console.log('sdsd');
+        console.log(scope.dadosNovoLocal);
         CategoriasRequisicoes.set({dados:scope.dadosNovoLocal,scope:scope,acaoSuccess:CategoriasRequisicoes.successAddlocal}).addLocal();
-        
     }
     
     return {

@@ -20,7 +20,7 @@ angular.module('QuickPeek.HTML.Mapa', [
     };  
     
     function barraLocalizacaoAtual(){
-         return'<div ng-click="irLocal(dadosbarra.localId)" \n\
+         return'<div ng-click="irLocal(dadosbarra.localId,$event)" \n\
                 id="barra-local-atual" \n\
                 ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
                 class="row barra-localizacao-atual"\n\
@@ -57,7 +57,9 @@ angular.module('QuickPeek.HTML.Mapa', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div ng-click="irLocal(dadosbarra.localId)" id="barra-local-atual" style="display:flex" class="row barra-localizacao-atual barra-local" ng-if="dadosbarra && dadosbarra.checkIn == 1">\n\
+                <div ng-click="irLocal(dadosbarra.localId,$event)"\n\
+                id="barra-local-atual" style="display:flex" class="row barra-localizacao-atual barra-local" \n\
+                ng-if="dadosbarra == 1 || dadosbarra == 2 || (dadosbarra && dadosbarra.checkIn == 1)">\n\
                     <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-barra"\n\
                     style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
                         <div class="container-privacidade-img-barra">\n\
@@ -72,7 +74,9 @@ angular.module('QuickPeek.HTML.Mapa', [
                         <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
                     </div>\n\
                     <div class="" style="width:100%">\n\
-                        <p class="p-titulo-local">{{dadosbarra.localTitulo}}</p>\n\
+                        <p ng-if="dadosbarra != 1 && dadosbarra != 2" class="p-titulo-local">{{dadosbarra.localTitulo}}</p>\n\
+                        <p ng-if="dadosbarra == 1" class="p-titulo-local">Em casa</p>\n\
+                        <p ng-if="dadosbarra == 2" class="p-titulo-local">No trabalho</p>\n\
                         <div class="row remove-padding">\n\
                             <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual</span>\n\
                         </div>\n\
@@ -88,8 +92,8 @@ angular.module('QuickPeek.HTML.Mapa', [
                                         Alterar localização\n\
                                     </md-button>\n\
                                 </md-menu-item>\n\
-                                <md-menu-item>\n\
-                                    <md-button ng-click="checkInLocal(dadosbarra)">\n\
+                                <md-menu-item ng-if="dadosbarra != 1 && dadosbarra != 2">\n\
+                                    <md-button ng-click="checkInLocal(dadosbarra,$event)">\n\
                                         Alterar privacidade\n\
                                     </md-button>\n\
                                 </md-menu-item>\n\
@@ -100,6 +104,22 @@ angular.module('QuickPeek.HTML.Mapa', [
                                 </md-menu-item>\n\
                             </md-menu-content>\n\
                         </md-menu>\n\
+                    </div>\n\
+                </div>\n\
+                <div class="barra-localizacao-atual barra-local" ng-if="!dadosbarra" id="barra-local-atual">\n\
+                    <div>\n\
+                        <p class="p-titulo-local">Onde você está agora?</p>\n\
+                    </div>\n\
+                    <div class="row" style="padding-left: 0;padding-top: 10px;">\n\
+                        <button ng-click="estouEmCasa()" style="margin-right: 13px;" class="btn-barra-casa config-btn-mapa button button-outline button-positive">\n\
+                            <md-icon class="ion-android-home"></md-icon>Em casa\n\
+                        </button>\n\
+                        <button ng-click="estounoTrabalho()" style="margin-right: 13px;" class="btn-barra-casa config-btn-mapa button button-outline button-positive">\n\
+                            <md-icon class="ion-briefcase"></md-icon>No trabalho\n\
+                        </button>\n\
+                        <button ng-click="cadLocal()" class="btn-barra-casa config-btn-mapa button button-positive">\n\
+                            Criar meu local\n\
+                        </button>\n\
                     </div>\n\
                 </div>';
     }

@@ -164,7 +164,7 @@
         <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"/>
     </pagina>
     
-    <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina-->
+    <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina//\Rubeus\Navegacao\ClassePagina-->
     <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
@@ -357,6 +357,15 @@
             </classe>
         </dadosSolicitados>   
         <acaoCliente classe="pag-dados-pergunta" acao="DadosPerguntaCtrl" title="Seguir pendentes"/>
+    </pagina> 
+    
+    <pagina id="41" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="novo-local">
+        <dadosSolicitados>
+            <classe name="Listar">
+                <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
+            </classe>
+        </dadosSolicitados>   
+        <acaoCliente classe="pag-criar-local" acao="CriarLocalCtrl" title="Cadastre um novo local"/>
     </pagina> 
     
 </root>

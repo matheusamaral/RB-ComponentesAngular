@@ -46,7 +46,7 @@
     </plugin>
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-facebook4" spec="https://github.com/jeduan/cordova-plugin-facebook4">
-        <variable name="APP_ID" value="223191511422958" />
+        <variable name="APP_ID" value="223191511422598" />
         <variable name="APP_NAME" value="Quickpeek" />
     </plugin>
 </widget>

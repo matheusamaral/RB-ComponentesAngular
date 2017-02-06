@@ -130,6 +130,56 @@ angular.module('QuickPeek.Requisicao.Mapa', [
             }
         };
         
+        function estouEmCasa(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/estouEmCasa",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 1
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successEstouEmCasa(objRetorno){
+            RBLoadingMobile.hide();
+            if(objRetorno.success === true) {
+                scope.dadosbarra = 1;
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
+        function estouNoTrabalho(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/estouNoTrabalho",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 1
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successEstouNoTrabalho(objRetorno){
+            RBLoadingMobile.hide();
+            //alert(JSON.stringify(objRetorno));
+            if(objRetorno.success === true) {
+                scope.dadosbarra = 2;
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -141,14 +191,18 @@ angular.module('QuickPeek.Requisicao.Mapa', [
           ionicToast.show(message, 'bottom', false, 3000);
         }
         
-        return {
+        return{
             set: set,
             verificarLocaisProximos: verificarLocaisProximos,
             successVerificarLocaisProximos: successVerificarLocaisProximos,
             attTutorial:attTutorial,
             successAttTutorial:successAttTutorial,
             successCadastrarLocaisProximo:successCadastrarLocaisProximo,
-            cadastrarLocaisProximo:cadastrarLocaisProximo
+            cadastrarLocaisProximo:cadastrarLocaisProximo,
+            estouEmCasa:estouEmCasa,
+            successEstouEmCasa:successEstouEmCasa,
+            successEstouNoTrabalho:successEstouNoTrabalho,
+            estouNoTrabalho:estouNoTrabalho
         };
                            
 }]);     

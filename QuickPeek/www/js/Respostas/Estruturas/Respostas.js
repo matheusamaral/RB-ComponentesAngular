@@ -48,7 +48,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                         <div class="container-img-prev"\n\
                         style="background-size: contain;\n\
                         background-repeat: no-repeat;\n\
-                        height:{{cameraPrev.containerImgAltura}}px;\n\
+                        height:{{larguraBody}}px;\n\
                         position:relative;\n\
                         background-position: center;\n\
                         width:100%;\n\
@@ -161,7 +161,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                                 </div>\n\
                             </div>\n\
                         </div>\n\
-                        <div ng-if="divBranco == true" style="height:{{alturaChat}}px;width:100%"></div>\n\
+                        <div ng-if="divBranco == true" style="height:{{alturaEspacoGif}}px;width:100%"></div>\n\
                     </div>\n\
                 </ion-content>\n\
                 <div style="background-size: contain;height:{{cameraPrev.containerImgAltura}}px;position:relative" ng-if="previewAberto" class="espaco-camera">\n\

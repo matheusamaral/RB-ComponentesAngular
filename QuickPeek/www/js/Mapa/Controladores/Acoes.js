@@ -16,22 +16,6 @@ angular.module('QuickPeek.Acoes.Mapa', [
         return this;
     };
     
-    function checkin(){
-        FB.api('/me/checkins', 'post', 
-        { message: 'MESSAGE_HERE',
-           place: 165122993538708,
-           coordinates: {
-               'latitude': 1.3019399200902,
-               'longitude': 103.84067653695
-           }
-        },
-            function (response) {
-                console.log(response);
-                alert("Checked in!");
-            }
-        );
-    }
-    
     function inicializar(){
         //var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
         $timeout(function(){
@@ -140,11 +124,30 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function irAteLocal(local){
-        console.log(local);
         var coord = new Array();
         coord.push(local.latitude);
         coord.push(local.longitude);
         launchnavigator.navigate(coord);
+    }
+    
+    function estouEmCasa(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude
+        };
+        MapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successEstouEmCasa}).estouEmCasa();
+    }
+    
+    function estounoTrabalho(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude
+        };
+        MapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successEstouNoTrabalho}).estouNoTrabalho();
+    }
+    
+    function cadLocal(){
+        Pagina.navegar({idPage:41});
     }
     
     return {
@@ -153,13 +156,15 @@ angular.module('QuickPeek.Acoes.Mapa', [
         irFiltro:irFiltro,
         irPesquisa:irPesquisa,
         irCheckin:irCheckin,
-        checkin:checkin,
         attTutorial:attTutorial,
         irPerfil:irPerfil,
         checkInLocal:checkInLocal,
         irLocal:irLocal,
         irNotificacoes:irNotificacoes,
-        irAteLocal:irAteLocal
+        irAteLocal:irAteLocal,
+        estouEmCasa:estouEmCasa,
+        estounoTrabalho:estounoTrabalho,
+        cadLocal:cadLocal
     };
     
  }]);

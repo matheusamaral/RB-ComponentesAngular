@@ -22,6 +22,9 @@ angular.module('QuickPeek.Mapa', [
         $scope.checkInLocal = MapaAcoes.checkInLocal;
         $scope.irNotificacoes = MapaAcoes.irNotificacoes;
         $scope.irAteLocal = MapaAcoes.irAteLocal;
+        $scope.estounoTrabalho = MapaAcoes.estounoTrabalho;
+        $scope.estouEmCasa = MapaAcoes.estouEmCasa;
+        $scope.cadLocal = MapaAcoes.cadLocal;
     }
 ])
 

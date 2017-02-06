@@ -25,12 +25,17 @@ angular.module('QuickPeek.Acoes.Respostas', [
     
     function selecionarTecladoGif(){
         resetaEstrutura();
-        $('.container-dialogo').css('margin-bottom','20px');
+        addCss();
+        //$('.container-dialogo').css('margin-bottom','20px');
     }
     
     function addMarginChat(){
-        addCss();
-        $('.container-dialogo').css('margin-bottom','145px');
+        $timeout(function(){
+            scope.alturaEspacoGif = $('.pai-gifs > div').height();
+            scope.divBranco = true;
+            addCss();
+        },0);
+        //$('.container-dialogo').css('margin-bottom','145px');
     }
     
     function addCss(){
@@ -145,6 +150,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
         $timeout(function(){
             $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
         },0);
+        scope.divBranco = false;
         scope.$apply();
     }
     

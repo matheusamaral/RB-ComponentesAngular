@@ -51,7 +51,8 @@ angular.module('QuickPeek', [
     'QuickPeek.PrivacidadeRespostas',
     'Cmp.InfinitScroll',
     'QuickPeek.Categorias',
-    'QuickPeek.DadosPergunta'
+    'QuickPeek.DadosPergunta',
+    'QuickPeek.CriarLocal'
 ])
 
 .run(function($ionicPlatform) {
