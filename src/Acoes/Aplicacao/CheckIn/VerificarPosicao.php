@@ -18,11 +18,10 @@ class VerificarPosicao {
             $entidade->setId($id);
             $entidade->setPresente(0);
             $entidade->salvar();
-        }else{
-            $casaTrabalho = $query->consultarCasaTrabalho($usuarioId, $latitude, $longitude);
-            if($casaTrabalho){
-                $this->cancelarCasaTrabalho($casaTrabalho);
-            }
+        }
+        $casaTrabalho = $query->consultarCasaTrabalho($usuarioId, $latitude, $longitude);
+        if($casaTrabalho){
+            $this->cancelarCasaTrabalho($casaTrabalho);
         }
         $msg->setResultadoEtapa(true);
     }

@@ -14,7 +14,6 @@
     "ConsultaAgrupamento": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaAgrupamento",
     "ConsultaSetarEntregue": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Mensagem\\ConsultaSetarEntregue",
     
-    "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "ConsultaListarUltimosLocais": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarUltimosLocais",
     "ConsultaListarPerfilUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarPerfilUsuario",
     "ConsultaListarSeguidores": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarSeguidores",

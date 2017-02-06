@@ -7,7 +7,8 @@ class DadosLocal {
     public function consultar($localId){
         
         $query = Conteiner::get('Query', false);
-        $query->select('*');
+        $query->select('id')
+                ->add('titulo');
         $query->from('local');
         $query->where('id = ?');
         $query->addVariaveis($localId);

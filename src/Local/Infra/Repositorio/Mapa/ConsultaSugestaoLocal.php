@@ -58,6 +58,7 @@ class ConsultaSugestaoLocal {
                 ->on('c.local_id = l.id')
                 ->on('c.usuario_id = ?')
                 ->on('c.presente = 0')
+                ->on('case when c.automatico = 1 then c.confirmado = 1 end')
                 ->on('c.ativo = 1');
         $query->where('(6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(l.latitude)) * COS(RADIANS(?) '
                 . '- RADIANS(l.longitude)) + SIN(RADIANS(?)) * SIN(RADIANS(l.latitude)))) <= 0.03');
@@ -66,5 +67,21 @@ class ConsultaSugestaoLocal {
         $query->limit('1');
         $query->addVariaveis([$latitude, $longitude, $latitude, $usuarioId, $latitude, $longitude, $latitude]);
         return $query->executar('A');
+    }
+    
+    public function consultarDistancia($usuarioId, $latitude, $longitude){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('id');
+        $query->from('casa_trabalho');
+        $query->where('((6371 * ACOS(COS(RADIANS(?)) * COS(RADIANS(latitude_casa)) * COS(RADIANS(?) '
+                . '- RADIANS(longitude_casa)) + SIN(RADIANS(?)) * SIN(RADIANS(latitude_casa)))) <= 0.03) or ((6371 * ACOS(COS(RADIANS(?)) '
+                . '* COS(RADIANS(latitude_trabalho)) * COS(RADIANS(?) - RADIANS(longitude_trabalho)) + SIN(RADIANS(?)) * SIN(RADIANS'
+                . '(latitude_trabalho)))) <= 0.03)')
+                ->add('usuario_id = ?')
+                ->add('ativo = 1');
+        $query->addVariaveis([$latitude, $longitude, $latitude,
+                $latitude, $longitude, $latitude, $usuarioId]);
+        return $query->executar('{id}');
     }
 }
