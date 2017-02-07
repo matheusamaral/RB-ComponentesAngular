@@ -332,3 +332,22 @@ CREATE TABLE `usuario_online`(
      ON UPDATE NO ACTION,
     `momento` datetime   ,
     `ativo` tinyint   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        
+CREATE TABLE `sms`( 
+    `id` int  AUTO_INCREMENT ,
+     PRIMARY KEY (`id`),
+    `usuario_id` INT   ,
+    INDEX `sms_fk_usuario_id_idx`(`usuario_id` ASC),
+    CONSTRAINT `sms_fk_usuario_id` 
+         FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `telefone` varchar(45)   ,
+    `status_sms_id` INT   ,
+    INDEX `sms_fk_status_sms_id_idx`(`status_sms_id` ASC),
+    CONSTRAINT `sms_fk_status_sms_id` 
+         FOREIGN KEY (`status_sms_id`) REFERENCES `status_sms` (`id`)
+     ON DELETE NO ACTION
+     ON UPDATE NO ACTION,
+    `momento` datetime   ,
+    `ativo` tinyint   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

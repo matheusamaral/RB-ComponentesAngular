@@ -189,4 +189,13 @@
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
     </classe>
     
+    <classe nome="Sms" tabela="sms" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="telefone" atributo="telefone" type="varchar(45)"/>
+        <propriedades coluna="status_sms_id" atributo="statusSmsId" classe="StatusSms" tabela="status_sms"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+    </classe>
+    
 </configuracao>
