@@ -84,6 +84,7 @@
     "PesquisarLocais": "\\Quickpeek\\Local\\Aplicacao\\Pesquisar\\PesquisarLocais",
     "TempoViagem": "\\Quickpeek\\Local\\Aplicacao\\Locais\\TempoViagem",
     "ExcluirLocais": "\\Quickpeek\\Local\\Aplicacao\\Locais\\ExcluirLocais",
+    "RenovarDadosLocais": "\\Quickpeek\\Local\\Aplicacao\\Locais\\RenovarDadosLocais",
     
     "AlterarVisibilidade": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\AlterarVisibilidade",
     "CheckIn": "\\Quickpeek\\Acoes\\Aplicacao\\CheckIn\\CheckIn",

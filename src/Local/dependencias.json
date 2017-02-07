@@ -17,6 +17,7 @@
     
     "ConsultaLocalGoogle": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaLocalGoogle",
     "ConsultaExcluirLocais": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaExcluirLocais",
+    "ConsultaRenovarDadosLocais": "\\Quickpeek\\Local\\Infra\\Repositorio\\Locais\\ConsultaRenovarDadosLocais",
     
     "ConsultaMapa": "\\Quickpeek\\Local\\Infra\\Repositorio\\Mapa\\ConsultaMapa",
     "ConsultaMapaFiltro": "\\Quickpeek\\Local\\Infra\\Repositorio\\Mapa\\ConsultaMapaFiltro",
