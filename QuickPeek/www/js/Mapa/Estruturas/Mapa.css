@@ -15,6 +15,10 @@
     background-color: #FFFFFF !important;
 }
 
+.background-mapa{
+    background-color: #212121 !important;
+}
+
 .barra-localizacao-atual{
     position: fixed;
     bottom: 0px;

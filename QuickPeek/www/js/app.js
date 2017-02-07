@@ -59,11 +59,13 @@ angular.module('QuickPeek', [
   // runtime dependencies for the service can be injected here, at the provider.$get() function.
     this.$get = function() { // for example
         return { 
-            addState: function(){
-                $stateProvider.state(DGlobal.acaoCliente.acao, {
-                    acaoCliente:DGlobal.acaoCliente,
+            addState: function(DG){
+                console.log('DG');
+                console.log(DG);
+                $stateProvider.state(DG.acaoCliente.acao, {
+                    DGlobal:DG,
                     templateProvider: function (){
-                        return '<div class="'+DGlobal.acaoCliente.classe+'" '+DGlobal.acaoCliente.classe+' ng-controller="'+DGlobal.acaoCliente.acao+'"></div>';
+                        return '<div class="'+DG.acaoCliente.classe+'" '+DG.acaoCliente.classe+' ng-controller="'+DG.acaoCliente.acao+'"></div>';
                     }
                 });
             }
@@ -75,12 +77,13 @@ angular.module('QuickPeek', [
     
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
         from.params = fromParams;
-        var previows = from;
-        
+        var prev = from;
+        console.log('from');
+        console.log(from);
         if(!$rootScope.regraNavegacao)
             $rootScope.regraNavegacao = new Array();
         
-        $rootScope.regraNavegacao.push(previows);
+        $rootScope.regraNavegacao.push(prev);
     });
     
     $ionicPlatform.ready(function() {
