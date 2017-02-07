@@ -34,10 +34,15 @@ angular.module('QuickPeek.Acoes.ConfirmaNumero', [
         ConfirmaNumeroRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfirmaNumeroRequisicoes.successEnviarSms}).enviarSms();
     }
     
+    function teste(){
+        Pagina.prevNavegar();
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
-        cadastrarNumero:cadastrarNumero
+        cadastrarNumero:cadastrarNumero,
+        teste:teste
     };
     
  }]);

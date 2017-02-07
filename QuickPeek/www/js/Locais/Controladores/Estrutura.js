@@ -71,8 +71,6 @@ angular.module('QuickPeek.Estrutura.Locais', [
         objHashs.push(arrays['1']);
         objHashs.push(arrays['2']);
         objHashs.push(arrays['3']);
-        
-        console.log(objHashs);
         return objHashs;
     }
   

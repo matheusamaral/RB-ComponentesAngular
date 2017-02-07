@@ -55,8 +55,35 @@ angular.module('QuickPeek', [
     'QuickPeek.CriarLocal'
 ])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+.provider('runtimeStates', function runtimeStates($stateProvider) {
+  // runtime dependencies for the service can be injected here, at the provider.$get() function.
+    this.$get = function() { // for example
+        return { 
+            addState: function(){
+                $stateProvider.state(DGlobal.acaoCliente.acao, {
+                    acaoCliente:DGlobal.acaoCliente,
+                    templateProvider: function (){
+                        return '<div class="'+DGlobal.acaoCliente.classe+'" '+DGlobal.acaoCliente.classe+' ng-controller="'+DGlobal.acaoCliente.acao+'"></div>';
+                    }
+                });
+            }
+        };
+    };
+})
+
+.run(function($ionicPlatform,$rootScope,$state) {
+    
+    $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+        from.params = fromParams;
+        var previows = from;
+        
+        if(!$rootScope.regraNavegacao)
+            $rootScope.regraNavegacao = new Array();
+        
+        $rootScope.regraNavegacao.push(previows);
+    });
+    
+    $ionicPlatform.ready(function() {
     
     if(window.cordova && window.cordova.plugins.Keyboard) {
 

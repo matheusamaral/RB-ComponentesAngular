@@ -12,6 +12,7 @@ angular.module('QuickPeek.ConfirmaNumero', [
         ConfirmaNumeroAcoes.setScope($scope).inicializar();
         
         $scope.cadastrarNumero = ConfirmaNumeroAcoes.cadastrarNumero;
+        $scope.teste = ConfirmaNumeroAcoes.teste;
     }
 ])
 

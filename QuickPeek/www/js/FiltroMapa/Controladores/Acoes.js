@@ -96,22 +96,7 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
     };
     
     function voltarMapa(){
-        if(DGlobal.coordenadasAtual){
-            Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-        }else{
-            var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-            navigator.geolocation.getCurrentPosition(onSuccess,onError);
-        }
-    }
-    
-    var onSuccess = function(position){
-        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-    };
-
-    function onError(error){
-        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+        Pagina.rollBack();
     }
     
     return {

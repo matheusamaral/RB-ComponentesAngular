@@ -6,8 +6,8 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
     'RB.validacoesPadroes'
 ])
 
-.factory('PessoasLocalAcoes', ['Pagina','PessoasLocalRequisicoes','VP',
-    function(Pagina,PessoasLocalRequisicoes,VP){
+.factory('PessoasLocalAcoes', ['Pagina','PessoasLocalRequisicoes','VP','$window','$state',
+    function(Pagina,PessoasLocalRequisicoes,VP,$window,$state){
     var scope;  
     
     function setScope(obj){
@@ -56,6 +56,10 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
         PessoasLocalRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PessoasLocalRequisicoes.successDeixarDeSeguir}).deixarDeSeguir();
     }
     
+    function voltar(){
+        Pagina.rollBack();
+    }
+    
     return {
         setScope:setScope,
         voltarLocais:voltarLocais,
@@ -64,7 +68,8 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
         irPerfil:irPerfil,
         seguir:seguir,
         cancelarSolicitacao:cancelarSolicitacao,
-        deixarSeguir:deixarSeguir
+        deixarSeguir:deixarSeguir,
+        voltar:voltar
     };
     
  }]);

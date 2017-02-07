@@ -24,6 +24,9 @@ angular.module('QuickPeek.Acoes.Mapa', [
     };
     
     function irFiltro(){
+        
+        if(DGlobal.locais)delete DGlobal.locais;
+        
         var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:23});
@@ -33,6 +36,9 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function irPesquisa(){
+        
+        if(DGlobal.locais)delete DGlobal.locais;
+        
         var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:28,paramAdd:'?usuarioId='+scope.dadosUser.usuarioId+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
@@ -43,6 +49,9 @@ angular.module('QuickPeek.Acoes.Mapa', [
     
     function irCheckin(evento){
         VP.pararEvento(evento);
+        
+        if(DGlobal.locais)delete DGlobal.locais;
+        
         var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
@@ -85,15 +94,17 @@ angular.module('QuickPeek.Acoes.Mapa', [
         MapaRequisicoes.set({dados:false,scope:scope,acaoSuccess:MapaRequisicoes.successAttTutorial}).attTutorial();
     }
     
-    function geolocationSuccess(position){
-        //alert('Alterour posicao'+JSON.stringify(position));
-    };
-    
     function irPerfil(id){
+        
+        if(DGlobal.locais)delete DGlobal.locais;
+        
         Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
     
     function checkInLocal(local,evento){
+        
+        if(DGlobal.locais)delete DGlobal.locais;
+        
         VP.pararEvento(evento);
         DGlobal.checkIn = {local:local};
         if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
@@ -101,6 +112,9 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function irLocal(id){
+        
+        if(DGlobal.locais)delete DGlobal.locais;
+        
         DGlobal.localAtual = id;
         if(DGlobal.coordenadasAtual){
             Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+id+'&atualizando=0'});
@@ -147,6 +161,9 @@ angular.module('QuickPeek.Acoes.Mapa', [
     }
     
     function cadLocal(){
+        
+        if(DGlobal.locais)delete DGlobal.locais;
+        
         Pagina.navegar({idPage:41});
     }
     
