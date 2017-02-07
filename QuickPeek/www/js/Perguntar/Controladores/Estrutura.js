@@ -22,10 +22,12 @@ angular.module('QuickPeek.Estrutura.Perguntar', [
         };
         
         scope.privacidades =[
-            {id:1,titulo:'Qualquer pessoa'},
+            {id:1,titulo:'Publicamente'},
             {id:2,titulo:'Meus Seguidores'},
             {id:3,titulo:'Anônimamente'}
         ];
+        
+        scope.dados.privacidade = 1;
         
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados;

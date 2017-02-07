@@ -16,22 +16,6 @@ angular.module('QuickPeek.Acoes.Mapa', [
         return this;
     };
     
-    function checkin(){
-        FB.api('/me/checkins', 'post', 
-        { message: 'MESSAGE_HERE',
-           place: 165122993538708,
-           coordinates: {
-               'latitude': 1.3019399200902,
-               'longitude': 103.84067653695
-           }
-        },
-            function (response) {
-                console.log(response);
-                alert("Checked in!");
-            }
-        );
-    }
-    
     function inicializar(){
         //var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
         $timeout(function(){
@@ -109,7 +93,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
         Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
     
-    function checkInLocal(local){
+    function checkInLocal(local,evento){
+        VP.pararEvento(evento);
         DGlobal.checkIn = {local:local};
         if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
         Pagina.navegar({idPage:30});
@@ -138,18 +123,48 @@ angular.module('QuickPeek.Acoes.Mapa', [
         Pagina.navegar({idPage:36});
     }
     
+    function irAteLocal(local){
+        var coord = new Array();
+        coord.push(local.latitude);
+        coord.push(local.longitude);
+        launchnavigator.navigate(coord);
+    }
+    
+    function estouEmCasa(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude
+        };
+        MapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successEstouEmCasa}).estouEmCasa();
+    }
+    
+    function estounoTrabalho(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude
+        };
+        MapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successEstouNoTrabalho}).estouNoTrabalho();
+    }
+    
+    function cadLocal(){
+        Pagina.navegar({idPage:41});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
         irFiltro:irFiltro,
         irPesquisa:irPesquisa,
         irCheckin:irCheckin,
-        checkin:checkin,
         attTutorial:attTutorial,
         irPerfil:irPerfil,
         checkInLocal:checkInLocal,
         irLocal:irLocal,
-        irNotificacoes:irNotificacoes
+        irNotificacoes:irNotificacoes,
+        irAteLocal:irAteLocal,
+        estouEmCasa:estouEmCasa,
+        estounoTrabalho:estounoTrabalho,
+        cadLocal:cadLocal
     };
     
  }]);

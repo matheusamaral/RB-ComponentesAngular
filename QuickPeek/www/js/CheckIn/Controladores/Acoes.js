@@ -98,13 +98,31 @@ angular.module('QuickPeek.Acoes.CheckIn', [
         Pagina.navegar({idPage:31});
     }
     
+    function estouEmCasa(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude
+        };
+        CheckInRequisicoes.set({dados:obj,scope:scope,acaoSuccess:CheckInRequisicoes.successEstouEmCasa}).estouEmCasa();
+    }
+    
+    function estounoTrabalho(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude
+        };
+        CheckInRequisicoes.set({dados:obj,scope:scope,acaoSuccess:CheckInRequisicoes.successEstouNoTrabalho}).estouNoTrabalho();
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
         checkInLocal:checkInLocal,
         voltarMapa:voltarMapa,
         attLocais:attLocais,
-        irPesquisa:irPesquisa
+        irPesquisa:irPesquisa,
+        estouEmCasa:estouEmCasa,
+        estounoTrabalho:estounoTrabalho
     };
     
  }]);

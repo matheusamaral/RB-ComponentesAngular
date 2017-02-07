@@ -17,7 +17,11 @@ angular.module('QuickPeek.Estrutura.Respostas', [
     }
     
     function popular(){
-        scope.dados = {respostas:new Array()};
+        scope.dados = {
+            respostas:new Array(),
+            midia: new Array(),
+            midiasSelecionadas: new Array()
+        };
         
         scope.previewAberto = false;
         
@@ -35,6 +39,10 @@ angular.module('QuickPeek.Estrutura.Respostas', [
         
         if(DGlobal.idPergunta)
             scope.dados.idPergunta = DGlobal.idPergunta;
+        
+        if(DGlobal.gifs && DGlobal.gifs.success){
+            scope.gifs = DGlobal.gifs.dados;
+        }
         
     };
   

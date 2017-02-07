@@ -38,7 +38,6 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
     
     function addCategoria(id){
         scope.dados.categorias.push(id);
-        alert(JSON.stringify(scope.dados.categorias));
     }
     
     function removeCategoria(id,tipo){
@@ -59,7 +58,6 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
     
     function addTipo(id){
         scope.dados.tipos.push(id);
-                alert(JSON.stringify(scope.dados.tipos));
     }
     
     function redefinir(){
@@ -76,8 +74,11 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
     
     function aplicarFiltro(){
         DGlobal.filtro = scope.dados;
+        var param = decodeURIComponent($.param(scope.dados));
+        console.log('param');
+        console.log(param);
         if(DGlobal.coordenadasAtual){
-            Pagina.navegar({idPage:22,paramAdd:'?categorias='+scope.dados.categorias+'&tipos='+scope.dados.tipos+'&atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            Pagina.navegar({idPage:22,paramAdd:'?'+param+'&atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
         }else{
             var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
             navigator.geolocation.getCurrentPosition(onSuccessPar,onErrorPar);

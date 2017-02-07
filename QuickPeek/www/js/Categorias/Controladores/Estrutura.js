@@ -17,6 +17,13 @@ angular.module('QuickPeek.Estrutura.Categorias', [
             categorias:new Array(),
             tipos:new Array
         };
+        
+        scope.dadosNovoLocal = {
+            categoriaId:new Array(),
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude
+        };
+        
         scope.objCategorias = new Array();
         
         if(DGlobal.categorias && DGlobal.categorias.success){
@@ -24,6 +31,11 @@ angular.module('QuickPeek.Estrutura.Categorias', [
             for(var i = 0; i < scope.categorias.length;i++){
                 scope.categorias[i].indice = i;
             }
+        }
+        
+        if(DGlobal.tituloNovoLocal){
+            scope.novoLocal = true;
+            scope.dadosNovoLocal.titulo = DGlobal.tituloNovoLocal;
         }
         
         $timeout(function(){

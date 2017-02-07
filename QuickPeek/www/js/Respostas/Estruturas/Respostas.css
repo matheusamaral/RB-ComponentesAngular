@@ -160,3 +160,12 @@ textarea {
 .organiza-margin-chat{
     margin-bottom: 10px;
 }
+
+.container-midia-resposta{
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100px;
+    margin: auto;
+    height: 100px;
+    border-radius: 10px;
+}
