@@ -72,7 +72,10 @@ angular.module('QuickPeek.HTML.ConfirmaNumero', [
        
     function montar() {
         return '<div class="bar bar-footer bar-positive" layout="row" layout-align="end center">\n\
-                    <button ng-disabled="formCadTel.$invalid" ng-click="cadastrarNumero()" class="col btn-txt-direita button button-clear">\n\
+                    <!--<button ng-disabled="formCadTel.$invalid" ng-click="cadastrarNumero()" class="col btn-txt-direita button button-clear">\n\
+                        PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
+                    </button>-->\n\
+                    <button ng-click="teste()" class="col btn-txt-direita button button-clear">\n\
                         PRÓXIMA <i class="icon ion-android-arrow-forward"></i>\n\
                     </button>\n\
                 </div>';

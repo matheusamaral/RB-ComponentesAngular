@@ -18,6 +18,7 @@ angular.module('QuickPeek.PessoasLocal', [
         $scope.seguir = PessoasLocalAcoes.seguir;
         $scope.cancelarSolicitacao = PessoasLocalAcoes.cancelarSolicitacao;
         $scope.deixarSeguir = PessoasLocalAcoes.deixarSeguir;
+        $scope.voltar = PessoasLocalAcoes.voltar;
     }
 ])
 

@@ -88,7 +88,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                             </md-button>\n\
                             <md-menu-content width="4">\n\
                                 <md-menu-item>\n\
-                                    <md-button ng-click="irCheckin()">\n\
+                                    <md-button ng-click="irCheckin($event)">\n\
                                         Alterar localização\n\
                                     </md-button>\n\
                                 </md-menu-item>\n\

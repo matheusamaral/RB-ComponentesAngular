@@ -20,6 +20,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
         //var watchId = navigator.geolocation.watchPosition(geolocationSuccess);
         $timeout(function(){
             scope.btnAltura = $('#barra-local-atual').height();
+            $('ion-side-menu-content').addClass('background-mapa');
         },0);
     };
     
@@ -84,10 +85,6 @@ angular.module('QuickPeek.Acoes.Mapa', [
     function attTutorial(){
         MapaRequisicoes.set({dados:false,scope:scope,acaoSuccess:MapaRequisicoes.successAttTutorial}).attTutorial();
     }
-    
-    function geolocationSuccess(position){
-        //alert('Alterour posicao'+JSON.stringify(position));
-    };
     
     function irPerfil(id){
         Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
