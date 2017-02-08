@@ -247,6 +247,7 @@ CREATE TABLE `casa_trabalho`(
     `longitude_casa` varchar(45)   ,
     `latitude_trabalho` varchar(45)   ,
     `longitude_trabalho` varchar(45)   ,
+    `desconectado` varchar(45)   ,
     `casa` varchar(45)   ,
     `trabalho` varchar(45)   ,
     `usuario_id` INT   ,

@@ -147,6 +147,7 @@
         <propriedades coluna="longitude_casa" atributo="longitudeCasa" type="varchar(45)"/>
         <propriedades coluna="latitude_trabalho" atributo="latitudeTrabalho" type="varchar(45)"/>
         <propriedades coluna="longitude_trabalho" atributo="longitudeTrabalho" type="varchar(45)"/>
+        <propriedades coluna="desconectado" atributo="desconectado" type="varchar(45)"/>
         <propriedades coluna="casa" atributo="casa" type="varchar(45)"/>
         <propriedades coluna="trabalho" atributo="trabalho" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>

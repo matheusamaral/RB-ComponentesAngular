@@ -9,6 +9,7 @@ use Rubeus\ORM\Persistente as Persistente;
         private $longitudeCasa = false;
         private $latitudeTrabalho = false;
         private $longitudeTrabalho = false;
+        private $desconectado = false;
         private $casa = false;
         private $trabalho = false;
         private $usuarioId = false;
@@ -53,6 +54,14 @@ use Rubeus\ORM\Persistente as Persistente;
 
         public function setLongitudeTrabalho($longitudeTrabalho) {
             $this->longitudeTrabalho = $longitudeTrabalho;
+        } 
+                
+        public function getDesconectado() {
+            return $this->desconectado;
+        }
+
+        public function setDesconectado($desconectado) {
+            $this->desconectado = $desconectado;
         } 
                 
         public function getCasa() {

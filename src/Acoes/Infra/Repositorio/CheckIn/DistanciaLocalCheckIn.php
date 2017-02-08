@@ -32,6 +32,7 @@ class DistanciaLocalCheckIn {
                         . 'radians(longitude_trabalho)) + sin(radians(?)) * sin(radians(latitude_trabalho))))', 'distanciaTrabalho');
         $query->from('casa_trabalho');
         $query->where('usuario_id = ?')
+                ->add('ativo = 1')
                 ->add('(casa = 1 or trabalho = 1)');
         $query->addVariaveis([$latitude, $longitude, $latitude,
             $latitude, $longitude, $latitude, $usuarioId]);

@@ -34,5 +34,6 @@
     "ConsultaVisualizarNotificacoes": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaVisualizarNotificacoes",
     
     "ConsultaVerificarInternet": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Internet\\VerificarInternet",
-    "ConsultaVerificarUsuariosInternet": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Internet\\VerificarUsuariosInternet"
+    "ConsultaVerificarUsuariosInternet": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Internet\\VerificarUsuariosInternet",
+    "ConsultaDesligarGps": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\DesligarGps\\ConsultaDesligarGps"
 }
