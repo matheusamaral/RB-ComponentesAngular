@@ -1,8 +1,9 @@
 <?php
 namespace Quickpeek\Acoes\Aplicacao\CheckIn;
 use Rubeus\ContenerDependencia\Conteiner;
+use Rubeus\ManipulacaoEntidade\Dominio\ConteinerEntidade;
 
-class EstouEmCasa{
+class EstouEmCasa {
     
     public function estouEmCasa($msg){
         
@@ -12,7 +13,9 @@ class EstouEmCasa{
         
         $casaTrabalhoId = Conteiner::get('ConsultaCasaTrabalho')->consultarId($usuarioId);
         if($casaTrabalhoId){
-            $msg->setCampo('CasaTrabalho::id', $casaTrabalhoId);
+            $entidade = ConteinerEntidade::getInstancia('CasaTrabalho');
+            $entidade->setId($casaTrabalhoId);
+            $entidade->deletar();
         }
         $msg->setCampo('entidade', 'CasaTrabalho');
         $msg->setCampo('CasaTrabalho::latitudeCasa', $latitude);

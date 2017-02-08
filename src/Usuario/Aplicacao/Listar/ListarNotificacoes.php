@@ -1,6 +1,7 @@
 <?php
 namespace Quickpeek\Usuario\Aplicacao\Listar;
 use Rubeus\ContenerDependencia\Conteiner;
+use Rubeus\ManipulacaoEntidade\Dominio\ConteinerEntidade;
 
 class ListarNotificacoes {
     
