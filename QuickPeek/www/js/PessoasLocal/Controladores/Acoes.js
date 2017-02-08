@@ -16,7 +16,7 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
     };
     
     function voltarLocais(){
-        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+        Pagina.rollBack();
     }
     
     function converteMinutoshoras(min){

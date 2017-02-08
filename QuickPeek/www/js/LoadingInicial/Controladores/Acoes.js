@@ -29,6 +29,7 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     document.addEventListener('deviceready', onDeviceReady, false);
     
     function onDeviceReady(){
+            document.addEventListener("backbutton", function(e){Pagina.rollBack()});
             cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
             if(!available){
                checkAuthorization();

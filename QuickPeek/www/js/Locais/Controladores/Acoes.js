@@ -54,25 +54,6 @@ angular.module('QuickPeek.Acoes.Locais', [
         Pagina.rollBack();
     }
     
-    var onSuccess = function(position){
-        DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-    };
-    
-    var onSuccessScroll = function(position){
-        //DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
-        
-    };
-
-    function onErrorScroll(error){
-        
-    }
-    
-    function onError(error){
-        var coordenadas = {latitude:-21.135445,longitude:-42.365089};
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
-    }
-    
     function attTutorial(){
         LocaisRequisicoes.set({dados:false,scope:scope,acaoSuccess:LocaisRequisicoes.successAttTutorial}).attTutorial();
     }

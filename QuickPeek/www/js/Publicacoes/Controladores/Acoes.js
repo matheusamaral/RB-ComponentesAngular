@@ -24,11 +24,10 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     };
     
     function voltar(){
-        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
+        Pagina.rollBack();
     }
     
     function addHash(chip){
-        console.log(scope.categoriaSelecionada);
         var achou = false, indiceAchado;
         for(var i = 0;i < scope.dados.tituloChip.length;i++){
             if(chip.titulo == scope.dados.tituloChip[i].titulo && scope.categoriaSelecionada.id == scope.dados.categoriaId[i]){
