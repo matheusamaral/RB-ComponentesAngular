@@ -20,7 +20,7 @@ angular.module('QuickPeek.Acoes.PesquisarLocaisCheckin', [
     }
     
     function voltarCheckin(){
-        Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        Pagina.rollBack();
     }
     
     function pesquisarLocal(){

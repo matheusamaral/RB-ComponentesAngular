@@ -142,7 +142,7 @@ angular.module('QuickPeek.HTML.Locais', [
                             <div style="background-image:url({{hash.categoriaEndereco}})" class="box-img-hashtag"></div>\n\
                             <p class="p-titulo-hastag"\n\
                             ng-class="{\'selecionado\' : hash.jaCurtiu == 1}">\n\
-                                #{{hash.hashtagTitulo}}</br>\n\
+                                {{hash.hashtagTitulo}}</br>\n\
                                 <span style="font-weight:normal !important;">\n\
                                     {{hash.hashtagQtd}}\n\
                                 </span>\n\

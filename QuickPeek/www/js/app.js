@@ -8,6 +8,7 @@ angular.module('QuickPeek', [
     'ui.mask',
     'RB.navegacao',
     'RB.gcs',
+    'RB.pagina',
     'RB.loading',
     'QuickPeek.layoutPadrao',
     'QuickPeek.LoadingInicial',
@@ -60,12 +61,10 @@ angular.module('QuickPeek', [
     this.$get = function() { // for example
         return { 
             addState: function(DG){
-                console.log('DG');
-                console.log(DG);
                 $stateProvider.state(DG.acaoCliente.acao, {
                     DGlobal:DG,
                     templateProvider: function (){
-                        return '<div class="'+DG.acaoCliente.classe+'" '+DG.acaoCliente.classe+' ng-controller="'+DG.acaoCliente.acao+'"></div>';
+                        return '<div class="'+DGlobal.acaoCliente.classe+'" '+DGlobal.acaoCliente.classe+' ng-controller="'+DGlobal.acaoCliente.acao+'"></div>';
                     }
                 });
             }
@@ -73,17 +72,19 @@ angular.module('QuickPeek', [
     };
 })
 
-.run(function($ionicPlatform,$rootScope,$state) {
+.run(function($ionicPlatform,$rootScope,$state){
     
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
         from.params = fromParams;
-        var prev = from;
-        console.log('from');
-        console.log(from);
+        
         if(!$rootScope.regraNavegacao)
             $rootScope.regraNavegacao = new Array();
         
-        $rootScope.regraNavegacao.push(prev);
+        if(!DGlobal.rollback)
+            $rootScope.regraNavegacao.push(from);
+        else
+            delete DGlobal.rollback;
+        
     });
     
     $ionicPlatform.ready(function() {
