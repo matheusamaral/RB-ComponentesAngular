@@ -47,6 +47,7 @@
     "VerificarUsuariosInternet": "\\Quickpeek\\Usuario\\Aplicacao\\Internet\\VerificarUsuariosInternet",
     
     "VincularUsuarioOneSignal": "\\Quickpeek\\Usuario\\Aplicacao\\Notificacao\\VincularUsuarioOneSignal",
+    "ConvidarAmigos": "\\Quickpeek\\Usuario\\Aplicacao\\ConvidarAmigos\\ConvidarAmigos",
     
     "Bloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Bloquear",
     "Desbloquear": "\\Quickpeek\\Usuario\\Aplicacao\\Bloqueado\\Desbloquear",

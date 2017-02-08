@@ -228,4 +228,15 @@
     <propriedades coluna="momento" atributo="momento" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
 </classe>
+        
+<classe nome="Sms" tabela="sms"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="telefone" atributo="telefone" /> 
+    <nparaum coluna="status_sms_id"  atributo="statusSmsId" />  
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+</classe>
 </root>

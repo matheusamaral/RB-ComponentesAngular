@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="convidarAmigos" modulo="Usuario">
+    
+    <entrada> 
+        <campo regra="Obrigatorio" chave="Telefones" nome="telefones" json="1"/>
+    </entrada>
+    
+    <atividades>
+        <atividade codigo="convidar-amigos" tipo="tarefa">
+            <entidade nome="ConvidarAmigos" metodo="convidarAmigos"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
