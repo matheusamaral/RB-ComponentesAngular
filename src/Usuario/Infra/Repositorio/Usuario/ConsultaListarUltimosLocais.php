@@ -70,8 +70,8 @@ class ConsultaListarUltimosLocais {
                 . 'when trabalho = 1 then 2 end', 'local');
         $query->from('casa_trabalho');
         $query->where('usuario_id = ?')
-                ->add('(casa = 1 or trabalho = 1)')
-                ->add('ativo = 1');
+                ->add('ativo = 1')
+                ->add('(casa = 1 or trabalho = 1)');
         $query->addVariaveis($usuarioId);
         return $query->executar('local');
     }

@@ -22,9 +22,7 @@ class CheckIn {
         if($casaTrabalho){
             $entidade = ConteinerEntidade::getInstancia('CasaTrabalho');
             $entidade->setId($casaTrabalho);
-            $entidade->setCasa(0);
-            $entidade->setTrabalho(0);
-            $entidade->salvar();
+            $entidade->deletar();
         }
         
         $sugestaoCheckIn = $msg->getCampoSessao('sugestaoCheckIn');

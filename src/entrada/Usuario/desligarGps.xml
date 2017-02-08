@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="desligarGps" modulo="Usuario">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="desligar-gps" tipo="tarefa">
+            <entidade nome="DesligarGps" metodo="desligarGps"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>

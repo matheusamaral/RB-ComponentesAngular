@@ -49,13 +49,8 @@ class SugestaoLocal {
         
         $entidade = ConteinerEntidade::getInstancia('CasaTrabalho');
         $entidade->setId($casaTrabalho['id']);
-        if($casaTrabalho['casa'] == 1){
-            $entidade->setCasa(0);
-        }
-        if($casaTrabalho['trabalho'] == 1){
-            $entidade->setTrabalho(0);
-        }
-        $entidade->salvar();
+        $entidade->deletar();
+        
         if(!$entidade->getErro()){
             $this->sugerirLocal($msg);
         }
@@ -63,40 +58,77 @@ class SugestaoLocal {
     
     private function sugerirLocal($msg){
         
+        $casa = $this->cadastrarCasaTrabalho($msg);
+        if(!$casa){
+            $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+            $latitude = $msg->getCampo('Latitude')->get('valor');
+            $longitude = $msg->getCampo('Longitude')->get('valor');
+
+            $query = Conteiner::get('ConsultaSugestaoLocal');
+            $alerta = $msg->getCampo('Alertar')->get('valor');
+            if($alerta == 1){            
+                $casaTrabalho = $query->consultarDistancia($usuarioId, $latitude, $longitude);
+            }
+
+            if($alerta == 0 || (!$casaTrabalho && $alerta == 1)){
+
+                $sugestao = $query->consultarSugestao($usuarioId, $latitude, $longitude);
+
+                if($sugestao){
+                    $msg->setCampo('entidade', 'CheckIn');
+                    $msg->setCampo('CheckIn::usuarioId', $usuarioId);
+                    $msg->setCampo('CheckIn::localId', $sugestao['localId']);
+                    $msg->setCampo('CheckIn::visibilidadeId', 3);
+                    $msg->setCampo('CheckIn::automatico', 1);
+                    Conteiner::get('Cadastro')->cadastrar($msg);
+                    $msg->setCampoSessao('sugestaoCheckIn', $msg->getCampo('CheckIn::id')->get('valor'));
+                }
+
+                if($alerta == 1 && $sugestao){
+                    $this->enviarAlerta($msg);
+                }
+            }
+
+            if(!isset($sugestao)){
+                $sugestao = false;
+            }
+
+            $msg->setResultadoEtapa(true, false, ['dados'=>$sugestao]);
+        }else{
+            $msg->setResultadoEtapa(true, false, ['dados'=>$casa]);
+        }
+    }
+    
+    private function cadastrarCasaTrabalho($msg){
+        
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $latitude = $msg->getCampo('Latitude')->get('valor');
         $longitude = $msg->getCampo('Longitude')->get('valor');
         
-        $query = Conteiner::get('ConsultaSugestaoLocal');
-        $alerta = $msg->getCampo('Alertar')->get('valor');
-        if($alerta == 1){            
-            $casaTrabalho = $query->consultarDistancia($usuarioId, $latitude, $longitude);
-        }
+        $casa = Conteiner::get('ConsultaSugestaoLocal')->consultarDistanciaCasaTrabalho($usuarioId, $latitude, $longitude);
         
-        if($alerta == 0 || (!$casaTrabalho && $alerta == 1)){
-            
-            $sugestao = $query->consultarSugestao($usuarioId, $latitude, $longitude);
-
-            if($sugestao){
-                $msg->setCampo('entidade', 'CheckIn');
-                $msg->setCampo('CheckIn::usuarioId', $usuarioId);
-                $msg->setCampo('CheckIn::localId', $sugestao['localId']);
-                $msg->setCampo('CheckIn::visibilidadeId', 3);
-                $msg->setCampo('CheckIn::automatico', 1);
-                Conteiner::get('Cadastro')->cadastrar($msg);
-                $msg->setCampoSessao('sugestaoCheckIn', $msg->getCampo('CheckIn::id')->get('valor'));
+        if($casa){
+            if($casa['local'] == 1){
+                $msg->setCampo('CasaTrabalho::casa', 1);
+                $msg->setCampo('CasaTrabalho::trabalho', 0);
+                $var = 1;
+            }elseif($casa['local'] == 2){
+                $msg->setCampo('CasaTrabalho::trabalho', 1);
+                $msg->setCampo('CasaTrabalho::casa', 0);
+                $var = 2;
             }
-
-            if($alerta == 1){
-                $this->enviarAlerta($msg);
+            $msg->setCampo('entidade', 'CasaTrabalho');
+            $msg->setCampo('CasaTrabalho::usuarioId', $usuarioId);
+            $msg->setCampo('CasaTrabalho::latitudeCasa', $casa['latitudeCasa']);
+            $msg->setCampo('CasaTrabalho::longitudeCasa', $casa['longitudeCasa']);
+            $msg->setCampo('CasaTrabalho::latitudeTrabalho', $casa['latitudeTrabalho']);
+            $msg->setCampo('CasaTrabalho::longitudeTrabalho', $casa['longitudeTrabalho']);
+            if(Conteiner::get('Cadastro')->cadastrar($msg)){
+                return $var;
             }
+        }else{
+            return false;
         }
-        
-        if(!isset($sugestao)){
-            $sugestao = false;
-        }
-        
-        $msg->setResultadoEtapa(true, false, ['dados'=>$sugestao]);
     }
     
     private function enviarAlerta($msg){

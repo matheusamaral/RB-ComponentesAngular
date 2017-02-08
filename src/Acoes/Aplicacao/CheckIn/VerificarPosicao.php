@@ -30,13 +30,9 @@ class VerificarPosicao {
         
         $entidade = ConteinerEntidade::getInstancia('CasaTrabalho');
         
-        if($casaTrabalho['casa'] == 1 && $casaTrabalho['distanciaCasa'] > 0.03){
-            $entidade->setCasa(0);
-        }
-        if($casaTrabalho['trabalho'] == 1 && $casaTrabalho['distanciaTrabalho'] > 0.03){
-            $entidade->setTrabalho(0);
-        }
         $entidade->setId($casaTrabalho['id']);
-        $entidade->salvar();
+        if(($casaTrabalho['casa'] == 1 && $casaTrabalho['distanciaCasa'] > 0.03) || ($casaTrabalho['trabalho'] == 1 && $casaTrabalho['distanciaTrabalho'] > 0.03)){
+            $entidade->deletar(0);
+        }
     }
 }

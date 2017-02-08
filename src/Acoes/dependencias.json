@@ -25,7 +25,6 @@
     "ConsultaCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaCheckIn",
     
     "ConsultaNotificacao": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaNotificacao",
-    "ConsultaVisualizarNotificacoes": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaVisualizarNotificacoes",
     
     "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

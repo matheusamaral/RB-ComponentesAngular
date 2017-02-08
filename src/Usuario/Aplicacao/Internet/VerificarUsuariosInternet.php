@@ -21,8 +21,8 @@ class VerificarUsuariosInternet {
             
             if($id['casaTrabalhoId']){
                 $casaTrabalho->setId($id['casaTrabalhoId']);
-                $casaTrabalho->setCasa(0);
-                $casaTrabalho->setTrabalho(0);
+                $casaTrabalho->setDesconectado(1);
+                $casaTrabalho->setAtivo(0);
                 $casaTrabalho->salvar();
             }
         }

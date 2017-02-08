@@ -179,6 +179,7 @@
     <propriedades coluna="longitude_casa" atributo="longitudeCasa" /> 
     <propriedades coluna="latitude_trabalho" atributo="latitudeTrabalho" /> 
     <propriedades coluna="longitude_trabalho" atributo="longitudeTrabalho" /> 
+    <propriedades coluna="desconectado" atributo="desconectado" /> 
     <propriedades coluna="casa" atributo="casa" /> 
     <propriedades coluna="trabalho" atributo="trabalho" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
