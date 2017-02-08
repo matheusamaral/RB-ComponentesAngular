@@ -180,6 +180,10 @@ angular.module('QuickPeek', [
             errorCallback);
         }
     }
+    
+    $ionicPlatform.onHardwareBackButton(function() {
+        alert('EUEUEUEU');
+    });
   });
 })
 

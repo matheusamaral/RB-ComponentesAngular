@@ -23,17 +23,7 @@ angular.module('QuickPeek.Acoes.Avatares', [
     }  
     
     function voltarCad(){
-        if(DGlobal.veioCadastro && !DGlobal.veioCadastro.executarReq && !DGlobal.veioCadastro.executarReqPrivacidade){
-            Pagina.navegar({idPage:6});
-        }
-        
-        if(DGlobal.veioCadastro && DGlobal.veioCadastro.executarReq){
-            Pagina.navegar({idPage:8});
-        }
-        
-        if(DGlobal.veioCadastro && DGlobal.veioCadastro.executarReqPrivacidade){
-            Pagina.navegar({idPage:30});
-        }
+        Pagina.rollBack();
     }
     
     function mudarAvatar(){

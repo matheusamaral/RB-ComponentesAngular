@@ -14,9 +14,7 @@ angular.module('QuickPeek.Acoes.ConfigSobre', [
     };
     
     function voltarConfiguracoes(){
-        Pagina.navegar({idPage:9});
-        var bala = JSON.parse(JSON.stringify(localStorage.getItem("dadosSessao")));
-        console.log(bala);
+        Pagina.rollBack();
     }
     
     function irSobre(){

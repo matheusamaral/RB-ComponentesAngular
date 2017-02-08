@@ -16,7 +16,7 @@ angular.module('QuickPeek.Acoes.ConfigContatos', [
     };
     
     function voltarConfig(){
-        Pagina.navegar({idPage:9});
+        Pagina.rollBack();
     }
     
     function attNotificacoes(){

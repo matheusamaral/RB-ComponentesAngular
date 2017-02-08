@@ -30,9 +30,11 @@ angular.module('QuickPeek.Acoes.MudarNumeroSMS', [
     
     function confirmarSms(){
         console.log(scope.dados);
-        var obj = {telefone:scope.dados.telefoneNovo,codigo:scope.dados.codigo};
-        console.log(obj);
-        MudarNumeroSMSRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MudarNumeroSMSRequisicoes.successEditarNumero}).editarNumero();
+        if(scope.dados.codigo.split('').length == 6){
+            var obj = {telefone:scope.dados.telefoneNovo,codigo:scope.dados.codigo};
+            console.log(obj);
+            MudarNumeroSMSRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MudarNumeroSMSRequisicoes.successEditarNumero}).editarNumero();
+        }
     }
     
     function inicializarSMS(nome,acao){
@@ -170,7 +172,7 @@ angular.module('QuickPeek.Acoes.MudarNumeroSMS', [
         setScope:setScope,
         voltar:voltar,
         inicializar:inicializar,
-        confirmarSms:confirmarSms
+        confirmarSms:confirmarSms,
     };
     
  }]);

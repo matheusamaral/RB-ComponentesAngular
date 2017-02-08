@@ -15,7 +15,7 @@ angular.module('QuickPeek.Acoes.ApagarConta', [
     };
     
     function voltarConfig(){
-        Pagina.navegar({idPage:10});
+        Pagina.rollBack();
     }
     
     function voltarInicio(){

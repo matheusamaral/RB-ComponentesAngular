@@ -22,7 +22,7 @@ angular.module('QuickPeek.Acoes.MudarNumeroFinal', [
     }
     
     function voltarNumero(){
-        Pagina.navegar({idPage:12});
+        Pagina.rollBack();
     }
     
     function alterarNumero(){
