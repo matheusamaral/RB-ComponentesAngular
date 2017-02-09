@@ -16,7 +16,7 @@ class Perguntas {
         if($cad){
             $this->conexaoSocket($msg);
             $pessoas = $this->enviarAlerta($msg);
-            $msg->setResultadoEtapa(true, false, ['dados'=>$pessoas]);
+            //$msg->setResultadoEtapa(true, false, ['dados'=>$pessoas]);
         }
     }
     
