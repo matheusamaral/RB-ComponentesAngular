@@ -30,7 +30,11 @@ abstract class Ambiente{
 }
 
 require Ambiente::dir(__DIR__).'/../vendor/autoload.php';
-Sessao::setSessionPhp(1);
+if($_GET['ambTeste'] == 1){
+    Sessao::setSessionPhp(0);
+}else{
+    Sessao::setSessionPhp(1);
+}
 //var_dump(str_replace('api', '', Ambiente::dir(__DIR__)),'/src/config/'.Ambiente::amb().'');
 //exit();
 

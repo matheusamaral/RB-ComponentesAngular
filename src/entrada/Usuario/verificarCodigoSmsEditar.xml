@@ -5,6 +5,7 @@
     <entrada>
         <campo regra="Obrigatorio" chave="Usuario::telefone" nome="telefone"/>
         <campo regra="Obrigatorio" chave="Codigo" nome="codigo"/>
+        <campo regra="Opcional" chave="LimparSessao" nome="limparSessao"/>
     </entrada>
     
     <atividades>

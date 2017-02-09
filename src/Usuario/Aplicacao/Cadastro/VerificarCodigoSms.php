@@ -8,8 +8,8 @@ class VerificarCodigoSms {
     public function verificarCodigoSms($msg){
         
         $telefone = $msg->getCampo('Usuario::telefone')->get('valor');
-        
         $codigo = $msg->getCampo('Codigo')->get('valor');
+        
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         $smsCodigo = Conteiner::get('ConsultaVerificarCodigoSms')->consultar($telefone, $codigo, 0, $tempo['sms']);
         

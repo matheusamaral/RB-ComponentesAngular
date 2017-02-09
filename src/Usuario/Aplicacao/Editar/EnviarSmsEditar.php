@@ -84,9 +84,9 @@ class EnviarSmsEditar {
     private function setarSmsCodigo($msg, $statusId, $codigo){
         
         $telefone = $msg->getCampo('Usuario::telefone')->get('valor');
+        $msg->setCampo('entidade', 'SmsCodigo');
         $msg->setCampo('SmsCodigo::editando', 1);
         $msg->setCampo('SmsCodigo::usuarioId', $msg->getCampoSessao('dadosUsuarioLogado,id'));
-        $msg->setCampo('entidade', 'SmsCodigo');
         $msg->setCampo('SmsCodigo::telefone', $telefone);
         $msg->setCampo('SmsCodigo::statusSmsId', $statusId);
         $msg->setCampo('SmsCodigo::codigo', $codigo);
