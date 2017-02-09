@@ -58,13 +58,11 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function perguntar(id){
-//        LocaisRequisicoes.set({
-//            dados:{localId:id},
-//            scope:scope,
-//            acaoSuccess:LocaisRequisicoes.successVerificarLimitePerguntas
-//        }).verificarLimitePerguntas();
-        DGlobal.idLocal = id;
-        Pagina.navegar({idPage:35});
+        LocaisRequisicoes.set({
+            dados:{localId:id},
+            scope:scope,
+            acaoSuccess:LocaisRequisicoes.successVerificarLimitePerguntas
+        }).verificarLimitePerguntas();
     }
     
     function voltarMapa(){
