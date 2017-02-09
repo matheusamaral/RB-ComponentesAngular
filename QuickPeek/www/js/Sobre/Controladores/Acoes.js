@@ -23,7 +23,7 @@ angular.module('QuickPeek.Acoes.Sobre', [
     }
     
     function navegar(){ 
-        Pagina.navegar({idPage:19});
+        Pagina.rollBack();
     };
 
     function irTermos(){

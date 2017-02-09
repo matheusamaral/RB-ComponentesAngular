@@ -12,6 +12,9 @@ angular.module('QuickPeek.Acoes.Perguntar', [
     
     function setScope(obj){
         scope = obj;
+        if($('ion-side-menu-content').hasClass('background-cinza')){
+            $('ion-side-menu-content').removeClass('background-cinza');
+        }
         return this;
     };
     
@@ -26,7 +29,7 @@ angular.module('QuickPeek.Acoes.Perguntar', [
     }
     
     function voltarLocais(){
-        Pagina.rollBack();
+        Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
     }
     
     function executarResposta(resposta){

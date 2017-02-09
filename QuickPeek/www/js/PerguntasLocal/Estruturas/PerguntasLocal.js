@@ -31,7 +31,7 @@ angular.module('QuickPeek.HTML.PerguntasLocal', [
                         <div ng-class="{\'font-verde-pequeno\' : dadosUser.usuarioId != pergunta.usuarioId,\n\
                         \'font-cinza-pequeno\' : dadosUser.usuarioId == pergunta.usuarioId}"><span class="redondo-verde">{{pergunta.respostas}}</span></div>\n\
                     </div>\n\
-                    <div style="padding-left:10px;" ng-if="pergunta.respondida != 1" class="col-25 remove-padding col-center">\n\
+                    <div style="padding-left:10px;" ng-if="pergunta.respondida < 1" class="col-25 remove-padding col-center">\n\
                         <p class="font-dourada-pequena">{{pergunta.momento.split(\' \')[1].split(\':\')[0]}}:{{pergunta.momento.split(\' \')[1].split(\':\')[1]}}</p>\n\
                         <div class=""><span class="redondo-dourado">Responda primeiro</span></div>\n\
                     </div>\n\
