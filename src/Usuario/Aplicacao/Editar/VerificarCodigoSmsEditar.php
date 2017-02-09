@@ -13,15 +13,7 @@ class VerificarCodigoSmsEditar {
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         $smsCodigo = Conteiner::get('ConsultaVerificarCodigoSms')->consultar($telefone, $codigo, 1, $tempo['sms']);
         
-        $msg->setCampoSessao('smsCodigoId', $smsCodigo['id']);
-        
         if($smsCodigo){
-            $sessao = Conteiner::get('ConsultaSessaoBanco')->consultar($smsCodigo['usuarioId']);
-            $entidade = ConteinerEntidade::getInstancia('SessaoBanco');
-            $entidade->setId($sessao['id']);
-            $entidade->setDadosSessao('{"codSess":"' . $sessao['codigo'] . '"}');
-            $entidade->salvar();
-                
             $cadastro = Conteiner::get('Cadastro');
             
             $msg->setCampo('entidade', 'SmsCodigo');
@@ -33,12 +25,20 @@ class VerificarCodigoSmsEditar {
             $msg->setCampo('Usuario::id', $smsCodigo['usuarioId']);
             $msg->setCampo('Usuario::telefone', $smsCodigo['telefone']);
             $cadastro->cadastrar($msg);
-                
+            
             $msg->setCampoSessao('dadosUsuarioLogado,id', $smsCodigo['usuarioId']);
             
             $msg->setResultadoEtapa(true);
         }else{
             $msg->setResultadoEtapa(false);
+        }
+        
+        if($msg->getCampo('LimparSessao')->get('valor') == 1){
+            $sessao = Conteiner::get('ConsultaSessaoBanco')->consultar($smsCodigo['usuarioId']);
+            $entidade = ConteinerEntidade::getInstancia('SessaoBanco');
+            $entidade->setId($sessao['id']);
+            $entidade->setDadosSessao('{"codSess":"' . $sessao['codigo'] . '"}');
+            $entidade->salvar();
         }
     }
 }
