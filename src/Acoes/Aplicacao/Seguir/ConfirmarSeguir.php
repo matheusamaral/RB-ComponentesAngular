@@ -50,12 +50,15 @@ class ConfirmarSeguir {
         $dadosUsuarioLogado = Conteiner::get('ConsultaListarDadosUsuario')->consultar($usuarioId);
         $dadosUsuario = Conteiner::get('ConsultaListarDadosUsuario')->consultar($usuarioAlertaId);
         
-        $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' aceitou seu pedido de seguidor'];
+        $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' aceitou seu pedido para segui-lo'];
         $fields = [
             'include_player_ids'=>[$dadosUsuario['playerId']], 
             'data'=>['pagina'=>36], 
             'contents'=>$contents, 
-            'headings'=>['en'=>'Aceitou seu pedido!']];
+            'large_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'chrome_web_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'firefox_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'headings'=>['en'=>'Nova notificação!']];
         
         $alerta = Conteiner::get('Alerta');
         $response = $alerta->enviar($fields);
