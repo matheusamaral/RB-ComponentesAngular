@@ -2,8 +2,8 @@
 
 angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toaster','RB.loadingMobile'])
 
-.factory('Pagina', ['RBLoading','VP', 'GCS', 'Config', 'toaster','$timeout','RBLoadingMobile','ionicToast',
-    function(RBLoading,VP, GCS, Config, toaster,$timeout,RBLoadingMobile,ionicToast) {
+.factory('Pagina', ['RBLoading','VP', 'GCS', 'Config', '$rootScope','$state','RBLoadingMobile','ionicToast','$timeout',
+    function(RBLoading,VP, GCS, Config, $rootScope,$state,RBLoadingMobile,ionicToast,$timeout){
    
     var timeNavegar = 0;
     var appAtual = '';
@@ -39,13 +39,15 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
     };
     
     function navegar(dados){
+        var dg = VP.removeReferencia(DGlobal);
+        if(dg.prevDGlobal)delete dg.prevDGlobal;
+        DGlobal.prevDGlobal = VP.removeReferencia(dg);
         RBLoadingMobile.show('Carregando...');
         if(funcaoPreNavegacao.length){
             for(var i=0; i<funcaoPreNavegacao.length; i++){
                 funcaoPreNavegacao[i](i);
             }
         }
-        //if(parseInt(timeNavegar) === 0){
             var dadosPadrao = {
                 idPage:'',
                 opc: 2,// não vem os dados opcionais
@@ -60,11 +62,7 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
             if(parseInt(dados.href) !== 1 && parseInt(dados.href) !== 2){
                 timeNavegar = 1;
                 
-                //AbasGerenc.gerarIdAba();
-//                dadosPadrao.dados.idAba = DGlobal.acaoCliente.aba;
-                
                 var dadosRequisicao = {
-//                    url:Config.getRefAmbienteReq()+'?c=Navegacao&o=getDados&idPage='+dadosPadrao.idPage+'&opc='+dadosPadrao.opc+dadosPadrao.paramAdd,
                     url:Config.getRefAmbienteReq()+'/Navegacao/Tela/'+dadosPadrao.idPage+'/'+dadosPadrao.opc+'/'+appAtual+dadosPadrao.paramAdd,
                     tipo:'GET',
                     dados:dadosPadrao.dados,
@@ -74,43 +72,34 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
                     exibeMSG:0,
                     exibeMSGCarregando:1
                 };
-//                console.log("dados requsicao navegar",dadosRequisicao);
                 GCS.conectar(dadosRequisicao);
                 return false;
             }
-//            else if(parseInt(dados.href) === 1){
-//                return Config.getRefAmbiente()+'../index.php?nvp=1&idPage='+dados.idPage+'&opc=1'+dados.paramAdd;
-//            }else if(parseInt(dados.href) === 2){
-//                return Config.getRefAmbienteReq()+'?c=Navegacao&o=getDados&idPage='+dados.idPage+'&opc='+dados.opc+dados.paramAdd;
-//            }
-        //}else toaster.error({title: "Aguarde...", body: 'O servidor ainda não respondeu sua solicitação.'});
     };
     
+    function rollBack(){
+        var length = $rootScope.regraNavegacao.length - 1;
+        
+        $timeout(function(){
+            DGlobal = VP.removeReferencia($rootScope.regraNavegacao[length].DGlobal);
+            DGlobal.rollback = true;
+            $state.go($rootScope.regraNavegacao[length].name);
+            $rootScope.regraNavegacao.splice(length,1);
+        },0);
+    }
+    
     function acaoErroNavegar(){
-//        RBLoading.changeStatus(false);
         RBLoadingMobile.hide();
         timeNavegar = 0;
-        //MSG.abirMesagemAcao('Servidor não responde! Tente novamente.');
-//        toaster.error({title: "Servidor não responde!", body: 'Tente novamente.'});
         OpenToast("Servidor não responde, por favor, tente novamente!");
     };
     
     function acaoNavegar(dados){
-//        RBLoading.changeStatus(false);
         RBLoadingMobile.hide();
         timeNavegar = 0;
         if(dados.success){
 
-            GCS.executarAcaoServidor(dados); 
-//            $timeout(function(){
-////                DGlobal.configNavegacao();
-//            },0);
-//            
-//            $timeout(function(){
-//                $('html, body').animate({
-//                           scrollTop:0
-//                        }, 1000);
-//            },1000);
+            GCS.executarAcaoServidor(dados);
         }
     };
     
@@ -139,7 +128,8 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
         acaoErroNavegar: acaoErroNavegar,
         addPreNavegar:addPreNavegar,
         limpaAcaoPreNavegarIndice:limpaAcaoPreNavegarIndice,
-        limpaAcaoPreNavegar:limpaAcaoPreNavegar
+        limpaAcaoPreNavegar:limpaAcaoPreNavegar,
+        rollBack:rollBack
     };
     
     return instancia;

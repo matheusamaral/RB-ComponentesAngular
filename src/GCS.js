@@ -3,7 +3,6 @@
 angular.module('RB.gcs', ['ui.router', 'RB.loading','RB.validacoesPadroes', 'RB.mensagem', 'RB.config', 'ngCookies'])
 
 .config(['$httpProvider', function($httpProvider) {
-    //$httpProvider.defaults.withCredentials = true;
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }])
@@ -12,15 +11,14 @@ angular.module('RB.gcs', ['ui.router', 'RB.loading','RB.validacoesPadroes', 'RB.
     $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken;
 }])
 
-.factory('GCS', ['RBLoading','VP', 'MSG', '$http', '$location','$state',
-    function(RBLoading, VP, MSG, $http, $location,$state) {
+.factory('GCS', ['RBLoading','VP', 'MSG', '$http', '$timeout','$state','runtimeStates','$rootScope',
+    function(RBLoading, VP, MSG, $http, $timeout,$state,runtimeStates,$rootScope){
         
     var codsessrt = '';
         
     if(DGlobal && !DGlobal.codsessrt){
         var rbDadosSessao = JSON.parse(localStorage.getItem("dadosSessao"));
         if(!VP.ehValido(rbDadosSessao)){
-//            console.log("Não existe essa variável.");
         }else{
             codsessrt = rbDadosSessao.codsessrt;
         }
@@ -54,37 +52,24 @@ angular.module('RB.gcs', ['ui.router', 'RB.loading','RB.validacoesPadroes', 'RB.
         
         if(!DGlobal.countReq && DGlobal.countReq!=0) DGlobal.countReq=0;
         else DGlobal.countReq++;
-//        console.log("dados",dados.dados);
         
         if(typeof dados.dados === 'object') {
             if(dados.dados){ 
-//                dados.dados.idAba = DGlobal.acaoCliente.aba;
                 dados.dados.conteudoCliente = conteudosJaNoCliente();
                 dados.dados = $.param(dados.dados);
             }
-        } 
-//        else if(String(dados.dados) === 'null')
-////            dados.dados = {idAba: DGlobal.acaoCliente.aba, conteudoCliente: conteudosJaNoCliente()};
-//        
-//        else
-////            dados.dados += '&idAba=' + DGlobal.acaoCliente.aba
-////                        + '&conteudoCliente='+$.param(conteudosJaNoCliente());
+        }
         var concatUrl = '&codsessrt=';
         if(!verfificaParametroGet(dados.url))
                 concatUrl = '?codsessrt=';
                 
         var objEnviar = {
-            method: dados.tipo, 
-//            method: 'GET', 
-            //url: dados.url+'&callback=JSON_CALLBACK&app=multi&call='+DGlobal.countReq, 
+            method: dados.tipo,
             url: dados.url+concatUrl+codsessrt, 
             data: dados.dados,
-            //cache: $templateCache, 
             cache: dados.cache, 
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
         };
-        
-//        console.log('===> url', objEnviar.url);
         
         $http(objEnviar).
             success(function(data, status){
@@ -140,16 +125,15 @@ angular.module('RB.gcs', ['ui.router', 'RB.loading','RB.validacoesPadroes', 'RB.
             direcionamento = dados.acaoCliente.nomeURL;
         }
         
-//        if(String($location.path()) === '/'+direcionamento || direcionamento==='inicio') $route.reload();        
-//        //$location.url(direcionamento);
-//        $location.path(direcionamento, false);
-        console.log('ola00#########################');
-//        $state.go(direcionamento);
-        $state.reload();
+        if(!$state.get(DGlobal.acaoCliente.acao))
+            runtimeStates.addState(VP.removeReferencia(DGlobal));
+        
+        $timeout(function(){
+            $state.go(DGlobal.acaoCliente.acao);
+        },0);
     };
     
     function popularDadosLocais(dados) {
-        
         $.each(dados, function(idx, obj) {
             if (String(DGlobal[idx]) !== 'undefined') {
                 delete DGlobal[idx];
@@ -202,7 +186,6 @@ angular.module('RB.gcs', ['ui.router', 'RB.loading','RB.validacoesPadroes', 'RB.
           return {
             'request': function(config) {
               if(allowedMethods.indexOf(config.method) === -1) {
-                // do something on success
                 config.headers[headerName] = $cookies[cookieName];
               }
               return config;

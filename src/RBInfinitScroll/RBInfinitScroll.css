@@ -1,0 +1,87 @@
+.container-rb-loader .ball-clip-rotate>div{
+    border: 2px solid #ffb800;
+    border-bottom-color: transparent;
+}
+
+.container-rb-loader-bottom .ball-clip-rotate>div{
+    border: 2px solid #ffb800;
+    border-bottom-color: transparent;
+}
+
+.container-rb-loader .loader{
+    display: table-cell;
+    padding-top: 6px !important;
+}
+
+.container-rb-loader-bottom .loader{
+    display: table-cell;
+    padding-top: 6px !important;
+}
+
+.container-rb-loader > div > div > div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.container-rb-loader-bottom > div > div > div{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.container-rb-loader p{
+    color: #ffb800;
+}
+
+.container-rb-loader-bottom p{
+    color: #ffb800;
+}
+
+.container-rb-loader{
+    position: fixed;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 8;
+    display: block;
+    padding: 5px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition: all 0.5s;
+    transform: scale(1);
+}
+
+.container-rb-loader-bottom{
+    position: fixed;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 1000;
+    display: block;
+    padding: 5px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transition: all 0.5s;
+    transform: scale(1);
+}
+
+.container-rb-loader.aberto{
+    top: 60px;
+}
+
+.container-rb-loader-bottom.aberto{
+    bottom: 30px;
+}
+
+.corpo-rb-loader{
+    background-color: #FFFFFF;
+    height: 100%;
+    box-shadow: 1px 1px 8px #d4d4d4;
+}
+
+.corpo-rb-loader > div{
+    display: table;
+    margin: auto;
+    padding-top: 6px !important;
+}
