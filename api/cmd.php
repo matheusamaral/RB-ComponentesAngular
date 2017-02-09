@@ -72,9 +72,13 @@ class Chat implements MessageComponentInterface {
     }
     
     public function onMessage(ConnectionInterface $from, $mensagem){
-//        Sessao::setSessionPhp(1);
+        Sessao::limparSessao();
         $obj = json_decode($mensagem);
+        //var_dump($obj->codsessrt,'=======');
         Sessao::iniciar($obj->codsessrt);
+        
+//        var_dump( Sessao::getSessao());
+        
         $msg = Conteiner::get('Mensagem', false);
         foreach($obj as $k=>$v){
             $msg->setCampo($k, $v);
@@ -83,7 +87,7 @@ class Chat implements MessageComponentInterface {
         $processo = RepositorioProcesso::get($obj->processo, $obj->etapa);
         
         $resultado = $processo->executar($msg, true);
-        
+        //var_dump($resultado);
         $this->enviarMensagem($resultado, $from->resourceId);
     }
     

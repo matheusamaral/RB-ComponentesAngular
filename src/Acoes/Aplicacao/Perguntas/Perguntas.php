@@ -16,7 +16,7 @@ class Perguntas {
         if($cad){
             $this->conexaoSocket($msg);
             $pessoas = $this->enviarAlerta($msg);
-            $msg->setResultadoEtapa(true, false, ['dados'=>$pessoas]);
+            $msg->setResultadoEtapa(true, false, ['pessoasAlertadas'=>$pessoas,'remetente'=>1]);
         }
     }
     
@@ -53,7 +53,7 @@ class Perguntas {
                 $cmd->enviarMensagem($mensagem[$i], $mensagem[$i]['to']);
             }
         }
-        $msg->setResultadoEtapa(true, false, ['remetente'=>1]);
+//        $msg->setResultadoEtapa(true, false, ['remetente'=>1]);
     }
     
     private function enviarAlerta($msg){
