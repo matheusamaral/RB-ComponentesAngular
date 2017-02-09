@@ -20,7 +20,7 @@ class VerificarLimitePerguntas {
             
             $intervalo = $datetime1->diff($datetime2);
             $minutos = ($intervalo->h * 60) + $intervalo->i;
-            $tempoRestante = $minutos - (60 * $tempo['limitePerguntas']);
+            $tempoRestante = (60 * $tempo['limitePerguntas']) - $minutos;
             $msg->setResultadoEtapa(false, false, ['dados'=>$tempoRestante]);
         }
     }
