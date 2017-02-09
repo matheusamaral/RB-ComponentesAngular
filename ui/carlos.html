@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Título bacaninha</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+            
+            conn = new WebSocket('ws://172.17.0.2:9876');
+            var cont = 0;
+
+            conn.onopen = function(e) {
+            console.log("Connection established!");
+            };
+
+            conn.onmessage = function(e) {
+//            var obj = JSON.parse(e.data);
+            console.log(e.data);
+//            msgRecebidas.push(obj.nome+' : '+obj.msg);
+//            console.log(obj.nome+' : '+obj.msg);
+            };
+            
+        </script>
+            <button onclick="enviar()">Enviar pergunta</button> 
+        <script>
+            enviar = function(){
+            console.log("enviar");
+            
+            conn.send(JSON.stringify({codsessrt:'Xdobxmy1waiKwFOK3zAq71x0BGK2RwMeJYd26e9dtFm7N6RlfqICDShrLsEijOAchRfvnNhXWw10asupHJOIqGQpW1xykO5kehrv',
+                processo:'Mensagens', etapa:'enviarMensagem', 'Mensagens::titulo':'oi tudo bom', 'Mensagens::usuarioMensagemId':'2', 
+            'Mensagens::visibilidadeMensagensId':1, 'Mensagens::visibilidadeUsuarioId':2}));
+            };
+            
+        iniciar = function(){
+        console.log("iniciar");
+        
+        conn.send(JSON.stringify({codsessrt:'Xdobxmy1waiKwFOK3zAq71x0BGK2RwMeJYd26e9dtFm7N6RlfqICDShrLsEijOAchRfvnNhXWw10asupHJOIqGQpW1xykO5kehrv'
+            ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'40-'}));
+        };
+        setTimeout(
+            iniciar,
+            300
+            );
+        </script>
+        <div>Mestre em front</div>
+    </body>
+</html>
