@@ -23,6 +23,9 @@ angular.module('Cmp.Websocket',[
             //método disparado quando alguem da conexão fazer pergunta
             if(conn === false){
                 iniciarConexao();
+                console.log('JSON.parse(localStorage.getItem("dadosSessao")).codsessrt');
+                console.log(JSON.parse(localStorage.getItem("dadosSessao")).codsessrt);
+                console.log(idPagina+'-'+id);
             }
             
             $timeout(function(){

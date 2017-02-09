@@ -10,6 +10,14 @@
     width: 203px;
 }
 
+
+.img-anonimo-privacidade-dourado{
+    background-image: url(../img/22_1.svg);
+    width: 29px;
+    height: 19px;
+    background-size: contain;
+}
+
 .titular-pergunta-preto{
     color:black;
     margin-top: 11px !important;
