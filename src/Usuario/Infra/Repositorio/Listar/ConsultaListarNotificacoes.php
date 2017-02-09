@@ -21,6 +21,8 @@ class ConsultaListarNotificacoes {
                         . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
                 ->add('timestampdiff(minute, n.momento, now())', 'minutos')
                 ->add('p.id', 'perguntasId')
+                ->add('case when p.id is not null and r.id is not null then r.visibilidade_id else 1 end', 'visibilidadeId')
+                ->add('n.tipo_id', 'tipoId')
                 ->add('l.id', 'localId');
         $query->from('notificacoes', 'n');
         $query->join('tipo_notificacoes', 'tn')
