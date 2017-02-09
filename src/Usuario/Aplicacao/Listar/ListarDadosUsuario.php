@@ -7,7 +7,6 @@ class ListarDadosUsuario {
     public function listarDadosUsuario($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
-        
         $query = Conteiner::get('ConsultaListarDadosUsuario')->consultar($usuarioId);
         
         if($query){

@@ -12,7 +12,7 @@ class VerificarLimitePerguntas {
         
         $perguntas = Conteiner::get('ConsultaLimitePerguntas')->consultar($usuarioId, $localId, $tempo['limitePerguntas']);
         
-        if($perguntas < 3){
+        if(count($perguntas) < 3){
             $msg->setResultadoEtapa(true);
         }else{
             $datetime1 = new \DateTime(date('Y-m-d H:i:s'));
