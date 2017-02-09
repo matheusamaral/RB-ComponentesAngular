@@ -178,11 +178,12 @@ angular.module('QuickPeek.Requisicao.Locais', [
             console.log('objRetorno');
             console.log(objRetorno);
             if(objRetorno.success === true) {
-                DGlobal.idLocal = id;
+                DGlobal.idLocal = dados.localId;
                 Pagina.navegar({idPage:35});
             }
             else{
                 if(objRetorno.dados){
+                    scope.hora = calculaHora(objRetorno.dados);
                     scope.contaPrivadaPopup = $ionicPopup.alert({
                         scope:scope,
                         title: 'Limite atingido',
@@ -197,10 +198,35 @@ angular.module('QuickPeek.Requisicao.Locais', [
             }
         };
         
+        function calculaHora(tempo){
+            var hora='', minutos='';
+            if(tempo > 60){
+                if(tempo%60 > 0){
+                    hora = Math.floor(tempo/60);
+                    minutos = tempo%60;
+                    if(hora == 1){
+                        return hora+' hora e '+minutos+' min.';
+                    }else{
+                        return hora+' horas e '+minutos+' min.';
+                    }
+                }else{
+                    hora = tempo/60;
+                    if(hora == 1){
+                        return hora+' hora.';
+                    }else{
+                        return hora+' horas.';
+                    }
+                }
+            }else{
+                if(tempo == 1)return tempo +' minuto.';
+                else return tempo +' minutos.';
+            }
+        }
+        
         function montarPopup(){
             return'<div class="col">\n\
                         <p style="color:black">Você só pode fazer 3 perguntas a cada 3 horas.</p>\n\
-                        <p style="color:black">Você poderá fazer uma nova pergunta em 23 minutos.</p>\n\
+                        <p style="color:black;margin-top:10px">Você poderá fazer uma nova pergunta em {{hora}}</p>\n\
                     </div>';
         }
         

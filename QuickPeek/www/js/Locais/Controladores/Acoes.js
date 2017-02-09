@@ -8,8 +8,8 @@ angular.module('QuickPeek.Acoes.Locais', [
     'Cmp.InfinitScroll'
 ])
 
-.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','InfinitScroll',
-    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,InfinitScroll){
+.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','InfinitScroll','$ionicPopup',
+    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,InfinitScroll,$ionicPopup){
     var scope;  
     
     function setScope(obj){
@@ -114,12 +114,28 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function irPublicar(local){
-        DGlobal.localPublicar = local;
-        Pagina.navegar({idPage:32});
+        if(local.localId == DGlobal.localAtual){
+            DGlobal.localPublicar = local;
+            Pagina.navegar({idPage:32});
+        }else{
+            scope.contaPrivadaPopup = $ionicPopup.alert({
+                scope:scope,
+                title: 'Ops!',
+                template: montarPopup(),
+                buttons:[
+                    {text:'ALTERAR LOCALIZAÇÃO',type:['button-positive','button-outline'],onTap:irCheckin}
+                ]
+            });
+        }
     }
     
+    function montarPopup(){
+            return'<div class="col">\n\
+                        <p style="color:black">Você só pode publicar quando estiver neste local.</p>\n\
+                    </div>';
+        }
+    
     function irAteLocal(local){
-        console.log(local);
         var coord = new Array();
         coord.push(local.dados.latitude);
         coord.push(local.dados.longitude);
