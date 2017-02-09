@@ -159,6 +159,31 @@ angular.module('QuickPeek.Requisicao.Locais', [
             }
         };
         
+        function verificarLimitePerguntas(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/verificarLimitePerguntas",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successVerificarLimitePerguntas(objRetorno){
+            RBLoadingMobile.hide();
+            console.log('objRetorno');
+            console.log(objRetorno);
+            if(objRetorno.success === true) {
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
         return {
             set: set,
             successListarAreas: successListarAreas,
@@ -168,7 +193,9 @@ angular.module('QuickPeek.Requisicao.Locais', [
             attTutorial:attTutorial,
             successAttTutorial:successAttTutorial,
             successCurtirHashtag:successCurtirHashtag,
-            curtirHashTag:curtirHashTag
+            curtirHashTag:curtirHashTag,
+            verificarLimitePerguntas:verificarLimitePerguntas,
+            successVerificarLimitePerguntas:successVerificarLimitePerguntas
         };
                            
 }]);     

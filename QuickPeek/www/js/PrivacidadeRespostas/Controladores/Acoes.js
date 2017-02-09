@@ -19,7 +19,7 @@ angular.module('QuickPeek.Acoes.PrivacidadeRespostas', [
     };
     
     function voltarPerguntas(){
-        Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
+        Pagina.rollBack();
     }
     
     function irResposta(id){
