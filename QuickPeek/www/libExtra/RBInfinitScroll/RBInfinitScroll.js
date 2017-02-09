@@ -13,8 +13,10 @@ angular.module('Cmp.InfinitScroll',[
             top:false,
             bottom:false,
             idSeletor:'',
+            idSeletorBottom:'',
             distancia:'',
-            acaoTop:''
+            acaoTop:'',
+            acaoBottom:''
         };
         
         function setScope(obj){
@@ -35,8 +37,14 @@ angular.module('Cmp.InfinitScroll',[
         }
         
         function scrollBottom(){
-            $("#"+options.idSeletor).scroll(function(){
-                console.log($('#container-respostas').scrollTop());
+            $("#"+options.idSeletorBottom).scroll(function(){
+                if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight){
+                    if(!ativo){
+                        ativo = true;
+                        montarLoaderBottom();
+                        options.acaoBottom();
+                    }
+                }
             });
         }
         
@@ -53,7 +61,7 @@ angular.module('Cmp.InfinitScroll',[
         }
         
         function montarLoader(){
-            var template = getTemplate();;
+            var template = getTemplate();
             
             $("#"+options.idSeletor).append(template);
             
@@ -67,6 +75,25 @@ angular.module('Cmp.InfinitScroll',[
             
             $timeout(function(){
                 $("#"+options.idSeletor+' .container-rb-loader').remove();
+                ativo = false;
+            },500);
+        }
+        
+        function montarLoaderBottom(){
+            var template = getTemplateBottom();
+            
+            $("#"+options.idSeletorBottom).append(template);
+            
+            $timeout(function(){
+                $("#"+options.idSeletorBottom+' .container-rb-loader-bottom').addClass('aberto');
+            },0);
+        }
+        
+        function fechaLoaderBottom(){
+            $("#"+options.idSeletorBottom+' .container-rb-loader-bottom').removeClass('aberto');
+            
+            $timeout(function(){
+                $("#"+options.idSeletorBottom+' .container-rb-loader-bottom').remove();
                 ativo = false;
             },500);
         }
@@ -86,9 +113,25 @@ angular.module('Cmp.InfinitScroll',[
                     </div>';
         }
         
+        function getTemplateBottom(){
+            return'<div class="container-rb-loader-bottom">\n\
+                        <div class="corpo-rb-loader">\n\
+                            <div class="remove-padding">\n\
+                                <div class="loader">\n\
+                                    <div class="loader-inner ball-clip-rotate">\n\
+                                      <div></div>\n\
+                                    </div>\n\
+                                </div>\n\
+                                <div><p>Carregando...</p></div>\n\
+                            </div>\n\
+                        </div>\n\
+                    </div>';
+        }
+        
         return {
             iniciar:iniciar,
             setScope:setScope,
-            fechaLoader:fechaLoader
+            fechaLoader:fechaLoader,
+            fechaLoaderBottom:fechaLoaderBottom
         };
  }]);

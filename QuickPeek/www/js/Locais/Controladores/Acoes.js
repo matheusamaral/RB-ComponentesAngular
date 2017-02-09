@@ -4,11 +4,12 @@ angular.module('QuickPeek.Acoes.Locais', [
     'RB.pagina',
     'QuickPeek.Requisicao.Locais',
     'RB.validacoesPadroes',
-    'QuickPeek.Estrutura.Locais'
+    'QuickPeek.Estrutura.Locais',
+    'Cmp.InfinitScroll'
 ])
 
-.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','RBLoadingMobile',
-    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,RBLoadingMobile){
+.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','InfinitScroll',
+    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,InfinitScroll){
     var scope;  
     
     function setScope(obj){
@@ -16,8 +17,20 @@ angular.module('QuickPeek.Acoes.Locais', [
         return this;
     };
     
+    function iniciarInfinitScroll(){
+        InfinitScroll.iniciar({
+            bottom:true,
+            idSeletorBottom:'paiContainerScrol',
+            acaoBottom:carregarLocais
+        });
+    }
+    
     function inicializar(){
         $('ion-side-menu-content').addClass('background-cinza-claro');
+        scope.alturaTela = $('ion-side-menu-content').height();
+        $timeout(function(){
+            iniciarInfinitScroll();
+        },0);
     }
     
     function exibirMidias(id){
@@ -79,9 +92,9 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function checkInLocal(local){
-        DGlobal.checkIn = {local:local};
+        DGlobal.checkIn = {local:local.dados};
         if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
-        Pagina.navegar({idPage:30});
+        Pagina.navegar({idPage:30,paramAdd:'?localId='+local.localId});
     }
     
     function curtirHashtag(hash,localId){

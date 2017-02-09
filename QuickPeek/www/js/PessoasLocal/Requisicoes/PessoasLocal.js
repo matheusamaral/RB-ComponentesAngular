@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.PessoasLocal', [
-    'RB.pagina'
+    'RB.pagina',
+    'Cmp.InfinitScroll'
 ])
  
-.factory('PessoasLocalRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
-      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
+.factory('PessoasLocalRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','InfinitScroll',
+      function (RBLoadingMobile,GCS, Config,ionicToast,InfinitScroll) {
         
         var dados;
         var scope;
@@ -40,6 +41,9 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
                     scope.dados.pessoas.push(objRetorno.dados[i]);
                 }
             }
+            $timeout(function(){
+                InfinitScroll.fechaLoaderBottom();
+            },500);
         };
         
         function seguir(){

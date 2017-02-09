@@ -4,6 +4,11 @@
     box-shadow: 0px 1px 8px #EDECEC;
 }
 
+.btn-simetricos{
+    width: 130px;
+    text-align: start;
+}
+
 .font-branca{
     color: #FFFFFF !important;
 }

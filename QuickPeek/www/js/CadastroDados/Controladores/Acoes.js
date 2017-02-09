@@ -55,8 +55,8 @@ angular.module('QuickPeek.Acoes.CadastroDados', [
     }
     
     function voltarPerfil(){
-        Pagina.navegar({idPage:8});
         DGlobal.dadosCadastro = scope.dados;
+        Pagina.rollBack();
     }
     
     return {

@@ -22,14 +22,21 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     };
     
     function addCss(){
-        //Pagina.navegar({idPage:3});
+        //Pagina.navegar({idPage:24});
         $('ion-side-menu-content').addClass('background-img');
     }
     
     document.addEventListener('deviceready', onDeviceReady, false);
     
     function onDeviceReady(){
-            document.addEventListener("backbutton", function(e){Pagina.rollBack()});
+            document.addEventListener("backbutton", overridingBackButton,false);
+            
+            function overridingBackButton(e){
+                e.preventDefault();
+                console.log(e);
+                alert('sdsd');
+            }
+            
             cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
             if(!available){
                checkAuthorization();

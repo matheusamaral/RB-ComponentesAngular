@@ -27,7 +27,9 @@ angular.module('QuickPeek.HTML.Perguntar', [
                         <p ng-if="dados.privacidade != 3" class="negrito titular-pergunta-preto">{{dadosUser.usuarioNome}}</p>\n\
                         <p ng-if="dados.privacidade == 3" class="negrito titular-pergunta-preto">{{dadosUser.avatarNome}}</p>\n\
                         <div class="container-select row remove-padding">\n\
-                            <md-icon style="margin-top:7px !important;margin-left:10px !important;margin: 0;margin-right: 10px;color:#ffb800;font-size:22px !important" class="ion-earth"></md-icon>\n\
+                            <md-icon ng-if="dados.privacidade == 1" style="margin-top:7px !important;margin-left:10px !important;margin: 0;margin-right: 10px;color:#ffb800;font-size:22px !important" class="ion-earth"></md-icon>\n\
+                            <md-icon ng-if="dados.privacidade == 2" style="margin-top:7px !important;margin-left:10px !important;margin: 0;margin-right: 10px;color:#ffb800;font-size:22px !important" class="ion-person-stalker"></md-icon>\n\
+                            <md-icon ng-if="dados.privacidade == 3" style="margin-top:7px !important;margin-left:10px !important;margin: 0;margin-right: 10px;color:#ffb800;font-size:22px !important" class="img-anonimo-privacidade-dourado"></md-icon>\n\
                             <md-select style="margin-bottom: 4px !important;margin:0" placeholder="Alterar privacidade" style="width:100%" class="select-privacidade" ng-model="dados.privacidade">\n\
                                 <md-option ng-repeat="privacidade in privacidades" ng-value="privacidade.id">\n\
                                     {{privacidade.titulo}}\n\

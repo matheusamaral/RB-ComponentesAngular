@@ -63,7 +63,7 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
     }
     
     function voltarConfiguracoes(){
-        Pagina.navegar({idPage:9});
+        Pagina.rollBack();
     }
     
     function mudarNumero(){

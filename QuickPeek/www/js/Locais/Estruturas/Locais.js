@@ -13,8 +13,8 @@ angular.module('QuickPeek.HTML.Locais', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div id="container-infinite-scrol">\n\
-                    <div infinite-scroll="carregarLocais()" infinite-scroll-distance="1" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
+                <div id="paiContainerScrol" style="overflow: auto;height:{{alturaTela}}px">\n\
+                    <div id="containerScrol">\n\
                         <div ng-repeat="local in locais">\n\
                             <div ng-class="{\'padding-top-barra\' : $index == 0}"\n\
                             class="row barra-local">\n\
@@ -81,14 +81,14 @@ angular.module('QuickPeek.HTML.Locais', [
                     <div class="row" style="padding-bottom: 10px !important;">\n\
                         <div class="col text-center" style="position:relative">\n\
                             '+tutorial5()+'\n\
-                            <button ng-click="perguntar(local.dados.localId)" ng-class="{\'z-index-locais\' : dadosUser.tutorial == 5}" class="btn-txt-direita button button-positive">\n\
+                            <button ng-click="perguntar(local.dados.localId)" ng-class="{\'z-index-locais\' : dadosUser.tutorial == 5}" class="btn-simetricos btn-txt-direita button button-positive">\n\
                                 <i class="icon ion-help-circled seta-barra"></i>Perguntar\n\
                             </button>\n\
                         </div>\n\
                         <div class="col text-center">\n\
                             '+tutorial6()+'\n\
                             <button ng-click="irPublicar(local)" ng-class="{\'z-index-locais\' : dadosUser.tutorial == 6}"\n\
-                            class="btn-txt-direita button button-positive">\n\
+                            class="btn-simetricos btn-txt-direita button button-positive">\n\
                                 <i class="icon ion-edit seta-barra"></i>Publicar\n\
                             </button>\n\
                         </div>\n\

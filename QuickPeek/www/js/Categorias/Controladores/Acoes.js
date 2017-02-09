@@ -64,7 +64,7 @@ angular.module('QuickPeek.Acoes.Categorias', [
     }
     
     function voltar(){
-         Pagina.navegar({idPage:28,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+         Pagina.rollBack();
     }
     
     function addLocal(){

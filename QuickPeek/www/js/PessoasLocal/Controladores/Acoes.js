@@ -3,20 +3,31 @@
 angular.module('QuickPeek.Acoes.PessoasLocal', [ 
     'RB.pagina',
     'QuickPeek.Requisicao.PessoasLocal',
-    'RB.validacoesPadroes'
+    'RB.validacoesPadroes',
+    'Cmp.InfinitScroll'
 ])
 
-.factory('PessoasLocalAcoes', ['Pagina','PessoasLocalRequisicoes','VP','$window','$state',
-    function(Pagina,PessoasLocalRequisicoes,VP,$window,$state){
+.factory('PessoasLocalAcoes', ['Pagina','PessoasLocalRequisicoes','VP','$window','$state','InfinitScroll',
+    function(Pagina,PessoasLocalRequisicoes,VP,$window,$state,InfinitScroll){
     var scope;  
     
     function setScope(obj){
         scope = obj;
+        scope.alturaTela = $('ion-side-menu-content').height();
+        iniciarInfinitScroll();
         return this;
     };
     
     function voltarLocais(){
         Pagina.rollBack();
+    }
+    
+    function iniciarInfinitScroll(){
+        InfinitScroll.iniciar({
+            bottom:true,
+            idSeletorBottom:'paiContainerScrol',
+            acaoBottom:maisPessoas
+        });
     }
     
     function converteMinutoshoras(min){

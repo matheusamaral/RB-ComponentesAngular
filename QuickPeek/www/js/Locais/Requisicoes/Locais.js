@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.Locais', [
-    'RB.pagina'
+    'RB.pagina',
+    'Cmp.InfinitScroll'
 ])
  
-.factory('LocaisRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout',
-      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout) {
+.factory('LocaisRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout','InfinitScroll',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout,InfinitScroll) {
         
         var dados;
         var scope;
@@ -21,10 +22,6 @@ angular.module('QuickPeek.Requisicao.Locais', [
         };
         
         function listarAreas(){
-            console.log('atençãaaaaaoo');
-            if (scope.busy) return;
-            scope.busy = true;
-            RBLoadingMobile.show();
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Listar/listarAreaMapa",
                 dados: $.param(dados),
@@ -38,16 +35,14 @@ angular.module('QuickPeek.Requisicao.Locais', [
         };
         
         function successListarAreas(objRetorno){
-            
-            console.log("objRetorno",objRetorno);
+            console.log("objRetornssso",objRetorno);
             if(objRetorno.success === true){
+                for(var i = 0; i < objRetorno.dados.length;i++){
+                    scope.locais.push(objRetorno.dados[i]);
+                }
                 $timeout(function(){
-                    for(var i = 0; i < objRetorno.dados.length;i++){
-                        scope.locais.push(objRetorno.dados[i]);
-                    }
-                    scope.busy = false;
-                    RBLoadingMobile.hide();
-                },0);
+                    InfinitScroll.fechaLoaderBottom();
+                },500);
             }
             else{
                 RBLoadingMobile.hide();
