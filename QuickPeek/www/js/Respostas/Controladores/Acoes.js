@@ -63,6 +63,15 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function responder(){
+        console.log('respondi');
+        console.log(JSON.stringify({
+                codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
+                processo:'Acoes',
+                etapa:'respostas',
+                'Respostas::titulo':scope.dados.resposta, 
+                'Respostas::perguntasId':scope.dados.idPergunta
+            }));
+            
         if(scope.dados.resposta != ''){
             scope.conn.send(JSON.stringify({
                 codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
@@ -191,7 +200,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function voltarPerguntas(){
-        Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
+        Pagina.rollBack();
     }
     
     function attPrivacidade(){
