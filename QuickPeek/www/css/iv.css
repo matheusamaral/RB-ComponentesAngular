@@ -80,7 +80,7 @@
 }
 
 .background-cinza{
-    background-color: #eeeeee;
+    background-color: #eeeeee !important;
 }
 
 .circulo{
@@ -138,9 +138,6 @@
 
 .color-amarelo{
     color:#ffb800
-}
-.row{
-    margin: 0 !important;
 }
 
 .bar-header{

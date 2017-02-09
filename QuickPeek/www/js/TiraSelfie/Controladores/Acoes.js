@@ -64,6 +64,7 @@ angular.module('QuickPeek.Acoes.TiraSelfie', [
         $timeout(function(){
             window.plugins.Base64.encodeFile(path, function(base64){
                 obj = {arquivoBase64:base64};
+                obj.extensao = base64.split(';')[0].split('/')[1];
             });
             
             $timeout(function(){

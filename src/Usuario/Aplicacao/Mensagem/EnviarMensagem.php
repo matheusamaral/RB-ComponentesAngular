@@ -35,6 +35,7 @@ class EnviarMensagem {
             $cad = $cadastro->cadastrar($msg);
             if($cad){
                 $this->conexaoSocket($msg);
+                $this->alertar($msg);
                 $msg->setResultadoEtapa(true);
             }else{
                 $msg->setResultadoEtapa(false);
@@ -46,7 +47,7 @@ class EnviarMensagem {
     
     private function salvarFoto($msg){
         
-        $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
+        $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.'.$msg->getCampo('Extensao')->get('valor');
         $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
         Conteiner::get('Base64')->upload($msg->getCampo('ArquivoBase64')->get('valor'), DIR_BASE.$enderecoFoto);
         $url = $this->imagemUpada('imagem', 'mensagens', 0, 1);
@@ -117,7 +118,7 @@ class EnviarMensagem {
         $mensagem['nome'] = $dadosUsuario['usuarioNome'];
         $mensagem['notificacao'] = 0;
         
-        $this->enviarNotificacaoAlerta($msg);
+        $this->enviarNotificacaoSocket($msg);
         
         if($dados1){
             $mensagem['to'] = $dados1['toConexao'][0];
@@ -138,7 +139,52 @@ class EnviarMensagem {
         $msg->setResultadoEtapa(true);
     }
     
-    private function enviarNotificacaoAlerta($msg){
+    private function alertar($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
+        
+        $pagina = 39 . '-' . $usuarioMensagemId . '-' . $usuarioId . '-' . $visibilidadeMensagensId . '-' . $visibilidadeUsuarioId;
+        
+        $cmd = Conteiner::get('Socket');
+        $dados = $cmd->getConexao($usuarioId, $pagina);
+        
+        foreach($dados['usuarios'] as $v){
+            if($v == $usuarioMensagemId){
+                return false;
+            }
+        }
+        $this->enviarAlerta($msg);
+    }
+    
+    private function enviarAlerta($msg){
+        
+        $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
+        $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');
+        $visibilidadeMensagensId = $msg->getCampo('Mensagens::visibilidadeMensagensId')->get('valor');
+        $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
+        $query = Conteiner::get('ConsultaListarDadosUsuario');
+        
+        $dadosUsuarioLogado = $query->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeMensagensId);
+        $dadosUsuario = $query->consultar($usuarioMensagemId);
+        
+        $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' enviou uma mensagem para você'];
+        $fields = [
+            'include_player_ids'=>[$dadosUsuario['playerId']], 
+            'data'=>['pagina'=>39, 'usuarioMensagemId'=>$usuarioMensagemId, 'visibilidadeMensagensId'=>$visibilidadeUsuarioId, 
+                'visibilidadeUsuarioId'=>$visibilidadeMensagensId],
+            'contents'=>$contents, 
+            'headings'=>['en'=>'Nova mensagem!']];
+        
+        $alerta = Conteiner::get('Alerta');
+        $response = $alerta->enviar($fields);
+        
+        $alerta->cadastrarAlerta($dadosUsuario['usuarioId'], 3, $response, false, false, $msg->getCampo('Mensagens::id')->get('valor'));
+    }
+    
+    private function enviarNotificacaoSocket($msg){
         
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         $usuarioMensagemId = $msg->getCampo('Mensagens::usuarioMensagemId')->get('valor');

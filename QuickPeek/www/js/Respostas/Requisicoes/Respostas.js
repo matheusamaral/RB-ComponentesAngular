@@ -43,6 +43,29 @@ angular.module('QuickPeek.Requisicao.Respostas', [
             },500);
         };
         
+        function buscarGif(){
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/gifSearch",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successBuscarGif(objRetorno){
+            console.log("objRetorno",objRetorno);
+            if(objRetorno.success === true){
+                if(objRetorno.dados.length)
+                    for(var i = 0; i < objRetorno.dados.length;i++){
+                        scope.gifs.unshift(objRetorno.dados[i]);
+                    }
+            }
+        };
+        
         function adicionaRespostas(array){
             for(var i = 0; i < array.length;i++){
                 scope.dados.respostas.push(array[i]);
@@ -62,6 +85,8 @@ angular.module('QuickPeek.Requisicao.Respostas', [
         return {
             set: set,
             listarRespostas: listarRespostas,
-            successListarRespostas: successListarRespostas
+            successListarRespostas: successListarRespostas,
+            buscarGif:buscarGif,
+            successBuscarGif:successBuscarGif
         };       
 }]);

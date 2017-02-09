@@ -8,6 +8,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 
 use Rubeus\FrontController\ConfigurarAmbiente;
+use Rubeus\Servicos\Entrada\Sessao;
 
 abstract class Ambiente{
     public static function dir($dir){
@@ -29,7 +30,7 @@ abstract class Ambiente{
 }
 
 require Ambiente::dir(__DIR__).'/../vendor/autoload.php';
-
+Sessao::setSessionPhp(1);
 //var_dump(str_replace('api', '', Ambiente::dir(__DIR__)),'/src/config/'.Ambiente::amb().'');
 //exit();
 

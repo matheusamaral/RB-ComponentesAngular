@@ -24,6 +24,7 @@ angular.module('QuickPeek.Locais', [
         $scope.converteKmM = LocaisAcoes.converteKmM;
         $scope.irPublicar = LocaisAcoes.irPublicar;
         $scope.perguntar = LocaisAcoes.perguntar;
+        $scope.irAteLocal = LocaisAcoes.irAteLocal;
     }
 ])
 

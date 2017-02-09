@@ -11,8 +11,8 @@ class ConsultaPaginaConversas {
                 ->add('men.usuario_id', 'usuarioMensagemId')
                 ->add('men.momento', 'momento')
                 ->add("case when u.ativo = 0 or b.id is not null then " . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg' "
-                        . 'when men.usuario_id = ? and men.visibilidade_usuario_id = 2 then a.endereco '
-                        . 'when men.usuario_id != ? and men.visibilidade_mensagens_id = 2 then a.endereco '
+                        . 'when men.usuario_id = ? and men.visibilidade_usuario_id = 2 then ' . "concat('" . DOMINIO_PROJETO . "',a.endereco) "
+                        . 'when men.usuario_id != ? and men.visibilidade_mensagens_id = 2 then ' . "concat('" . DOMINIO_PROJETO . "',a.endereco) "
                         . 'else u.endereco end', 'endereco')
                 ->add("case when u.ativo = 0 or b.id is not null then 'Usuário do Quickpeek' "
                         . 'when men.usuario_id = ? and men.visibilidade_usuario_id = 2 then a.nome '

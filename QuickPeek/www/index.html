@@ -3,8 +3,6 @@
   <head>
     <meta charset="utf-8">
 
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    
     <title></title>
 
     <link rel="manifest" href="manifest.json">
@@ -392,6 +390,14 @@
     <script src="js/DadosPergunta/Controladores/Acoes.js"></script>
     <script src="js/DadosPergunta/Estruturas/DadosPergunta.js"></script>
     <link href="js/DadosPergunta/Estruturas/DadosPergunta.css" rel="stylesheet"> 
+    
+    <!--CRIAR LOCAL-->
+    <script src="js/CriarLocal/Controladores/CriarLocal.js"></script>
+    <script src="js/CriarLocal/Controladores/Estrutura.js"></script>
+    <script src="js/CriarLocal/Controladores/Acoes.js"></script>
+    <script src="js/CriarLocal/Estruturas/CriarLocal.js"></script>
+    <script src="js/CriarLocal/Requisicoes/CriarLocal.js"></script>
+    <link href="js/CriarLocal/Estruturas/CriarLocal.css" rel="stylesheet"> 
 
     <script>
         DGlobal = {};
@@ -411,23 +417,6 @@
     
   </head>
   <body>
-        <script>
-            window.fbAsyncInit = function() {
-              FB.init({
-                appId      : '223191511422958',
-                xfbml      : true,
-                version    : 'v2.8'
-              });
-            };
-
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-        </script>
         <div ui-view when-ready class="corpo-conteudo">
         </div>
   </body>

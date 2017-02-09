@@ -10,7 +10,7 @@ class Trending {
         $json = json_decode($file);
         
         foreach($json->data as $v){
-            $url[] = $v->embed_url;
+            $url[] = 'http://i.giphy.com/' . $v->id . '.gif';
         }
         
         if($url){

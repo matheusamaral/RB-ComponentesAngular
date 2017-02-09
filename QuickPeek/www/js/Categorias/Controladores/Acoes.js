@@ -64,12 +64,13 @@ angular.module('QuickPeek.Acoes.Categorias', [
     }
     
     function voltar(){
-         Pagina.navegar({idPage:28,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+         Pagina.rollBack();
     }
     
     function addLocal(){
+        console.log('sdsd');
+        console.log(scope.dadosNovoLocal);
         CategoriasRequisicoes.set({dados:scope.dadosNovoLocal,scope:scope,acaoSuccess:CategoriasRequisicoes.successAddlocal}).addLocal();
-        
     }
     
     return {

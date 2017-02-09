@@ -24,16 +24,8 @@ class ListarUltimosLocais {
         
         if(!$localAtual){
             $localAtual = $consulta->consultarCasaTrabalho($usuarioIdConsulta);
-            if($localAtual){
-                $dados['localAtual']['local'] = 0;
-            }
-        }else{
-            $dados['localAtual']['local'] = 1; 
         }
-        
-        if($localAtual){
-            $dados['localAtual']['dados'] = $localAtual;
-        }
+        $dados['localAtual']['dados'] = $localAtual;
         
         if($ultimosLocais){
             $dados['ultimosLocais'] = $ultimosLocais;

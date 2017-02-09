@@ -35,7 +35,6 @@ angular.module('QuickPeek.Requisicao.TiraSelfie', [
         
         function successSalvar(objRetorno){
             RBLoadingMobile.hide();
-            console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 DGlobal.dadosSelfie = objRetorno.endereco;
                 Pagina.navegar({idPage:6});

@@ -179,6 +179,7 @@
     <propriedades coluna="longitude_casa" atributo="longitudeCasa" /> 
     <propriedades coluna="latitude_trabalho" atributo="latitudeTrabalho" /> 
     <propriedades coluna="longitude_trabalho" atributo="longitudeTrabalho" /> 
+    <propriedades coluna="desconectado" atributo="desconectado" /> 
     <propriedades coluna="casa" atributo="casa" /> 
     <propriedades coluna="trabalho" atributo="trabalho" /> 
     <nparaum coluna="usuario_id"  atributo="usuarioId" />  
@@ -218,5 +219,25 @@
     <propriedades coluna="nome" atributo="nome" /> 
     <propriedades coluna="ativo" atributo="ativo" /> 
     <propriedades coluna="momento" atributo="momento" /> 
+</classe>
+        
+<classe nome="UsuarioOnline" tabela="usuario_online"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
+</classe>
+        
+<classe nome="Sms" tabela="sms"> 
+    <id coluna="id" atributo="id">
+        <gerador classe="sequence"/>
+    </id>  
+    <nparaum coluna="usuario_id"  atributo="usuarioId" />  
+    <propriedades coluna="telefone" atributo="telefone" /> 
+    <nparaum coluna="status_sms_id"  atributo="statusSmsId" />  
+    <propriedades coluna="momento" atributo="momento" /> 
+    <propriedades coluna="ativo" atributo="ativo" /> 
 </classe>
 </root>

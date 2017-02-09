@@ -21,7 +21,7 @@ class ConsultaListarDadosUsuario {
                 ->add('c.contato', 'contato')
                 ->add('a.id', 'avatarId')
                 ->add('a.nome', 'avatarNome')
-                ->add('a.endereco', 'avatarEndereco')
+                ->add("concat('" . DOMINIO_PROJETO . "',a.endereco)", 'avatarEndereco')
                 ->add('ifnull(ci.visibilidade_id, c.visibilidade_id)', 'visibilidadeCheckInId')
                 ->add('count(distinct b.id)', 'bloqueados');
         $query->from('usuario', 'u');
@@ -59,7 +59,7 @@ class ConsultaListarDadosUsuario {
                 . "else a.nome end", 'usuarioNome')
                 ->add("case when $visibilidadeId = 1 then u.endereco "
                         . "when $visibilidadeId = 2 and s.id is not null then u.endereco "
-                        . "else a.endereco end", 'usuarioEndereco')
+                        . "else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'usuarioEndereco')
                 ->add('uo.player_id', 'playerId');
         $query->from('usuario', 'u');
         $query->join('avatares', 'a')
@@ -86,7 +86,7 @@ class ConsultaListarDadosUsuario {
                 ->add("case when $visibilidadeId = 1 then u.nome "
                         . "else a.nome end", 'usuarioNome')
                 ->add("case when $visibilidadeId = 1 then u.endereco "
-                        . "else a.endereco end", 'usuarioEndereco')
+                        . "else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'usuarioEndereco')
                 ->add('uo.player_id', 'playerId');
         $query->from('usuario', 'u');
         $query->join('avatares', 'a')

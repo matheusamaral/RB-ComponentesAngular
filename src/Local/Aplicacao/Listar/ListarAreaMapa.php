@@ -8,12 +8,19 @@ class ListarAreaMapa {
         
         $localId = $msg->getCampo('Local::id')->get('valor');
         
-        $posicaoLocal = Conteiner::get('ConsultaPosicaoLocal')->consultar($localId);
-        $latitudeLocal = $posicaoLocal['latitude'];
-        $longitudeLocal = $posicaoLocal['longitude'];
+        if(!$localId){
+            $localId = 0;
+        }
         
         $latitude = $msg->getCampo('Latitude')->get('valor');
         $longitude = $msg->getCampo('Longitude')->get('valor');
+        
+        $posicaoLocal = Conteiner::get('ConsultaPosicaoLocal')->consultar($localId);
+        
+        if(!$posicaoLocal){
+            $posicaoLocal['latitude'] = $latitude;
+            $posicaoLocal['longitude'] = $longitude;
+        }
         
         $notIn = $this->atualizando($msg);
         
@@ -21,7 +28,7 @@ class ListarAreaMapa {
         $tempo = Conteiner::get('ConfiguracoesQuickpeek')->consultar();
         
         $dadosLocais = Conteiner::get('ConsultaDadosLocais')->consultar($usuarioId, 
-                $latitude, $longitude, $latitudeLocal, $longitudeLocal, $tempo['midia'], $tempo['hashtag'], $tempo['limitePerguntas'], $notIn, $localId);
+                $latitude, $longitude, $posicaoLocal['latitude'], $posicaoLocal['longitude'], $tempo['midia'], $tempo['hashtag'], $tempo['limitePerguntas'], $notIn, $localId);
         
         if($dadosLocais){
             foreach($dadosLocais as $v){

@@ -69,12 +69,12 @@ angular.module('QuickPeek.HTML.CheckIn', [
                 </div>\n\
                 <div align-title="left" class="row rodape-check-in bar-assertive">\n\
                     <div class="col buttons col-center">\n\
-                        <button class="button btn-rodape-check-in">\n\
+                        <button ng-click="estouEmCasa()" class="button btn-rodape-check-in">\n\
                             <i class="icon ion-home seta-barra"></i>Estou em casa\n\
                         </button>\n\
                     </div>\n\
                     <div class="col buttons col-center" ng-click="doSomething()">\n\
-                        <button class="button btn-rodape-check-in">\n\
+                        <button ng-click="estounoTrabalho()" class="button btn-rodape-check-in">\n\
                             <i class="icon ion-briefcase seta-barra"></i>Estou no trabalho\n\
                         </button>\n\
                     </div>\n\

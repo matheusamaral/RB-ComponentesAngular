@@ -8,6 +8,7 @@ angular.module('QuickPeek', [
     'ui.mask',
     'RB.navegacao',
     'RB.gcs',
+    'RB.pagina',
     'RB.loading',
     'QuickPeek.layoutPadrao',
     'QuickPeek.LoadingInicial',
@@ -51,11 +52,42 @@ angular.module('QuickPeek', [
     'QuickPeek.PrivacidadeRespostas',
     'Cmp.InfinitScroll',
     'QuickPeek.Categorias',
-    'QuickPeek.DadosPergunta'
+    'QuickPeek.DadosPergunta',
+    'QuickPeek.CriarLocal'
 ])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+.provider('runtimeStates', function runtimeStates($stateProvider) {
+  // runtime dependencies for the service can be injected here, at the provider.$get() function.
+    this.$get = function() { // for example
+        return { 
+            addState: function(DG){
+                $stateProvider.state(DG.acaoCliente.acao, {
+                    DGlobal:DG,
+                    templateProvider: function (){
+                        return '<div class="'+DGlobal.acaoCliente.classe+'" '+DGlobal.acaoCliente.classe+' ng-controller="'+DGlobal.acaoCliente.acao+'"></div>';
+                    }
+                });
+            }
+        };
+    };
+})
+
+.run(function($ionicPlatform,$rootScope,$state){
+    
+    $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
+        from.params = fromParams;
+        
+        if(!$rootScope.regraNavegacao)
+            $rootScope.regraNavegacao = new Array();
+        
+        if(!DGlobal.rollback)
+            $rootScope.regraNavegacao.push(from);
+        else
+            delete DGlobal.rollback;
+        
+    });
+    
+    $ionicPlatform.ready(function() {
     
     if(window.cordova && window.cordova.plugins.Keyboard) {
 
@@ -73,7 +105,7 @@ angular.module('QuickPeek', [
     permissions.hasPermission(permissions.ACCESS_COARSE_LOCATION, checkPermissionCallbackPrincipalLocation, null);
     permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkPermissionCallbackLocation, null);
     permissions.hasPermission(permissions.ACCESS_LOCATION_EXTRA_COMMANDS, checkPermissionCallbackExtraLocation, null);
-
+    
     function checkPermissionCAMERA(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {
@@ -148,6 +180,10 @@ angular.module('QuickPeek', [
             errorCallback);
         }
     }
+    
+    $ionicPlatform.onHardwareBackButton(function() {
+        alert('EUEUEUEU');
+    });
   });
 })
 

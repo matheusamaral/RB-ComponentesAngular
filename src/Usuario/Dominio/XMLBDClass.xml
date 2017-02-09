@@ -147,6 +147,7 @@
         <propriedades coluna="longitude_casa" atributo="longitudeCasa" type="varchar(45)"/>
         <propriedades coluna="latitude_trabalho" atributo="latitudeTrabalho" type="varchar(45)"/>
         <propriedades coluna="longitude_trabalho" atributo="longitudeTrabalho" type="varchar(45)"/>
+        <propriedades coluna="desconectado" atributo="desconectado" type="varchar(45)"/>
         <propriedades coluna="casa" atributo="casa" type="varchar(45)"/>
         <propriedades coluna="trabalho" atributo="trabalho" type="varchar(45)"/>
         <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
@@ -180,6 +181,22 @@
         <propriedades coluna="nome" atributo="nome" type="varchar(45)"/>
         <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
         <propriedades coluna="momento" atributo="momento" type="datetime"/>
+    </classe>
+    
+    <classe nome="UsuarioOnline" tabela="usuario_online" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
+    </classe>
+    
+    <classe nome="Sms" tabela="sms" namespace="Quickpeek\Usuario\Dominio" id="">
+        <propriedades coluna="id" atributo="id" primaryKey="true" type="int" isNotNull="true" autoIncrement="true"/>
+        <propriedades coluna="usuario_id" atributo="usuarioId" classe="Usuario" tabela="usuario"/>
+        <propriedades coluna="telefone" atributo="telefone" type="varchar(45)"/>
+        <propriedades coluna="status_sms_id" atributo="statusSmsId" classe="StatusSms" tabela="status_sms"/>
+        <propriedades coluna="momento" atributo="momento" type="datetime"/>
+        <propriedades coluna="ativo" atributo="ativo" type="tinyint"/>
     </classe>
     
 </configuracao>

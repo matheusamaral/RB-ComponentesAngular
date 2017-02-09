@@ -7,6 +7,7 @@
         <campo regra="Opcional" chave="Respostas::titulo" nome="Respostas::titulo"/>
         <campo regra="Opcional" chave="Respostas::endereco" nome="Respostas::endereco"/>
         <campo regra="Opcional" chave="ArquivoBase64" nome="ArquivoBase64"/>
+        <campo regra="Opcional" chave="Extensao" nome="Extensao"/>
     </entrada>
     
     <atividades>

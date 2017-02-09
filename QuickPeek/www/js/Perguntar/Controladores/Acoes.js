@@ -26,7 +26,7 @@ angular.module('QuickPeek.Acoes.Perguntar', [
     }
     
     function voltarLocais(){
-        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.idLocal+'&atualizando=0'});
+        Pagina.rollBack();
     }
     
     function executarResposta(resposta){

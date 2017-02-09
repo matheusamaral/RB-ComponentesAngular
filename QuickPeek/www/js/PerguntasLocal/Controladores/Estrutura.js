@@ -28,8 +28,6 @@ angular.module('QuickPeek.Estrutura.PerguntasLocal', [
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dadosUser = DGlobal.dadosUsuario.dados;
         }
-        
-        console.log(scope.dados.perguntas);
     };
   
     return {

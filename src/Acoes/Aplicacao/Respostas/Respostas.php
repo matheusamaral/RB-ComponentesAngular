@@ -21,7 +21,7 @@ class Respostas {
             $msg->setCampo('Respostas::bloqueado', 1);
         }
         $checkIn = Conteiner::get('ConsultaCheckIn')->consultar($usuarioId, $perguntaId);
-
+        
         if($checkIn){
             $msg->setCampo('Respostas::checkIn', 1);
         }else{
@@ -45,8 +45,9 @@ class Respostas {
     
     private function salvarFoto($msg){
         
-        $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.jpeg';
+        $enderecoFoto = '/file/imagem/'.date('Y_m_d_H_i_s_'). rand(90000, 9999999999).'.'.$msg->getCampo('Extensao')->get('valor');
         $msg->setCampoSessao('ultimasImagens,0', DIR_BASE . $enderecoFoto);
+        $msg->setCampoSessao('ultimasImagensId', [0]);
         Conteiner::get('Base64')->upload($msg->getCampo('ArquivoBase64')->get('valor'), DIR_BASE.$enderecoFoto);
         $url = $this->imagemUpada('imagem', 'respostas', 0, 1);
         $msg->setCampo('Respostas::endereco', $url);
@@ -109,16 +110,22 @@ class Respostas {
         $usuarioId = $msg->getCampoSessao('dadosUsuarioLogado,id');
         
         if($usuarioNotificacaoId && $usuarioNotificacaoId != $usuarioId){
+            
+            $dados = Conteiner::get('DadosPergunta')->consultar($perguntaId);
+            $conexao = $this->verificarConexao($msg, $dados['usuarioId'], $perguntaId);
+            
             $respostaId = $msg->getCampo('Respostas::id')->get('valor');
             $msg->setCampo('entidade', 'Notificacoes');
             $msg->setCampo('Notificacoes::respostaId', $respostaId);
             $msg->setCampo('Notificacoes::usuarioId', $usuarioNotificacaoId);
             $msg->setCampo('Notificacoes::usuarioAcaoId', $usuarioId);
             $msg->setCampo('Notificacoes::tipoId', 3);
+            if($conexao){
+                $msg->setCampo('Notificacoes::visualizado', 1);
+            }
             $cadastro->cadastrar($msg);
             
-            $dados = Conteiner::get('DadosPergunta')->consultar($perguntaId);
-            if($this->verificarConexao($msg, $dados['usuarioId'], $perguntaId)){
+            if($conexao){
                 $this->enviarAlerta($msg, $dados);
             }
         }

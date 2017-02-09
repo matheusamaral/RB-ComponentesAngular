@@ -8,7 +8,7 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
     function montar() {
         return '<div class="row bar bar-header bar-positive">\n\
                     <div>\n\
-                        <button ng-click="voltarLocais()" class="btn-txt-direita button button-clear">\n\
+                        <button ng-click="voltar()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>{{dados.qtd}} Pessoas\n\
                         </button>\n\
                     </div>\n\

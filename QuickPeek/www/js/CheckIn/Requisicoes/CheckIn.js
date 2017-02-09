@@ -46,6 +46,57 @@ angular.module('QuickPeek.Requisicao.CheckIn', [
             }
         };
         
+        function estouEmCasa(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/estouEmCasa",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 1
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successEstouEmCasa(objRetorno){
+            RBLoadingMobile.hide();
+            //alert(JSON.stringify(objRetorno));
+            if(objRetorno.success === true) {
+                
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
+        function estouNoTrabalho(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/estouNoTrabalho",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 1
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successEstouNoTrabalho(objRetorno){
+            RBLoadingMobile.hide();
+            //alert(JSON.stringify(objRetorno));
+            if(objRetorno.success === true) {
+                
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
         
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
@@ -60,7 +111,11 @@ angular.module('QuickPeek.Requisicao.CheckIn', [
         return {
             set: set,
             verificarLocaisProximos: verificarLocaisProximos,
-            successVerificarLocaisProximos: successVerificarLocaisProximos
+            successVerificarLocaisProximos: successVerificarLocaisProximos,
+            estouEmCasa:estouEmCasa,
+            successEstouEmCasa:successEstouEmCasa,
+            estouNoTrabalho:estouNoTrabalho,
+            successEstouNoTrabalho:successEstouNoTrabalho
         };
                            
 }]);     

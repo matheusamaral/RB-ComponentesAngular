@@ -5,8 +5,8 @@ angular.module('QuickPeek.Acoes.Privacidade', [
     'QuickPeek.Requisicao.Privacidade'
 ])
 
-.factory('PrivacidadeAcoes', ['Pagina','PrivacidadeRequisicoes','$timeout',
-    function(Pagina,PrivacidadeRequisicoes,$timeout){
+.factory('PrivacidadeAcoes', ['Pagina','PrivacidadeRequisicoes','$cordovaFacebook',
+    function(Pagina,PrivacidadeRequisicoes,$cordovaFacebook){
     var scope;  
     
     function setScope(obj){
@@ -19,17 +19,7 @@ angular.module('QuickPeek.Acoes.Privacidade', [
     };
     
     function voltar(){
-        if(DGlobal.paginaAnterior){
-            Pagina.navegar({idPage:DGlobal.paginaAnterior});
-            delete DGlobal.paginaAnterior;
-        }else{
-            if(DGlobal.voltarLocais){
-                Pagina.navegar({idPage:24,paramAdd:'?localId='+DGlobal.localAtual+'&atualizando=0'});
-            }else{
-                if(DGlobal.checkIn)
-                    Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-            }
-        }
+        Pagina.rollBack();
     }
     
     function editarAvatar(){
@@ -46,12 +36,71 @@ angular.module('QuickPeek.Acoes.Privacidade', [
         PrivacidadeRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PrivacidadeRequisicoes.successFazerCheckIn}).fazerCheckIn();
     }
     
+    function compartilharFB(local){
+        console.log(local);
+        
+        var accessToken;
+        
+//        $cordovaFacebook.login(["public_profile", "email", "user_friends"]
+//            ,function(success){
+//                console.log('success');
+//                console.log(success);
+//                StatusBar.hide();
+//                StatusBar.show();
+//                enviaDadosLogin(success.authResponse);
+//            }, function (error) {
+//                console.log('error');
+//                console.log(error);
+//                StatusBar.hide();
+//                StatusBar.show();
+//                $cordovaFacebook.logout();
+//                OpenToast("Não foi possível receber suas informações a partir do Facebook. Por favor, tente novamente.");
+//        });
+        
+        $cordovaFacebook.getLoginStatus(function (response){
+            console.log('response');
+            console.log(response);
+            if (response.status === 'connected') {
+                accessToken = response.authResponse.accessToken;
+                pesquisarLocalFB();
+            }
+        },function(e){console.log('e')});
+//
+//        
+//        function pesquisarLocalFB(){
+//            var urlCall = "/search?q=Sesc&type=page&center=&"+lat+","+long+"access_token="+accessToken;
+//            facebookConnectPlugin.api(urlCall, function(response) {
+//                console.log('response');   
+//                console.log(response);   
+//            });
+//        }
+//            
+//        function publicarFB(){
+//            FB.api(
+//                "/me/feed",
+//                "POST",
+//                {
+//                    "message": "This is a test message",
+//                    "place":259820197522765,
+//                    "access_token":"EAACEdEose0cBAGnReZALNAZARNzdKdleGPdGxYppkC8ZBAQtCIH8n6YjbDNraM2aoX5KZCSr2fZBIxgI6VRroNzy2ZB0faB1yIMaHMWz5l1kKzjAzUnrjvJJqZCghjMjH2vZCvL3dfBRzbobLzqaxZAPGnuyfp0x5nvfV6hDFcHFPIMkjxNjzWBu9bwMer3qXwMQZD"
+//                },
+//                function (response){
+//                    console.log(response);
+//                  if (response && !response.error) {
+//                    /* handle the result */
+//                  }
+//                }
+//            );
+//        }
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
         voltar:voltar,
         editarAvatar:editarAvatar,
-        fazerCheckin:fazerCheckin
+        fazerCheckin:fazerCheckin,
+        compartilharFB:compartilharFB
     };
     
  }]);

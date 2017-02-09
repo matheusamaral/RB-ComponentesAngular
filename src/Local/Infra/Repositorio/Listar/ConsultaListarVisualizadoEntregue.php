@@ -13,16 +13,19 @@ class ConsultaListarVisualizadoEntregue {
                         . ' else a.nome end', 'nome')
                 ->add('case when pu.visibilidade_id = 1 then u.endereco'
                         . ' when pu.visibilidade_id = 2 and s.id is not null then u.endereco'
-                        . ' else a.endereco end', 'endereco')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
                 ->add('pu.momento', 'momento');
         $query->from('pergunta_usuario', 'pu');
-        $query->join('usuario', 'u')->on('u.id = pu.usuario_id')
+        $query->join('usuario', 'u')
+                ->on('u.id = pu.usuario_id')
                 ->on('u.ativo = 1');
-        $query->join('seguir', 's', 'left')->on('s.usuario_id = ?')
+        $query->join('seguir', 's', 'left')
+                ->on('s.usuario_id = ?')
                 ->on('s.usuario_seguir_id = u.id')
                 ->on('s.confirmar_seguir = 1')
                 ->on('s.ativo = 1');
-        $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
+        $query->join('avatares', 'a', 'left')
+                ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
         $query->where('pu.entregue = 1')
                 ->add('pu.perguntas_id = ?')
@@ -41,16 +44,19 @@ class ConsultaListarVisualizadoEntregue {
                         . ' else a.nome end', 'nome')
                 ->add('case when pu.visibilidade_id = 1 then u.endereco'
                         . ' when pu.visibilidade_id = 2 and s.id is not null then u.endereco'
-                        . ' else a.endereco end', 'endereco')
+                        . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
                 ->add('pu.momento_visualizado', 'momento');
         $query->from('pergunta_usuario', 'pu');
-        $query->join('usuario', 'u')->on('u.id = pu.usuario_id')
+        $query->join('usuario', 'u')
+                ->on('u.id = pu.usuario_id')
                 ->on('u.ativo = 1');
-        $query->join('seguir', 's', 'left')->on('s.usuario_id = ?')
+        $query->join('seguir', 's', 'left')
+                ->on('s.usuario_id = ?')
                 ->on('s.usuario_seguir_id = u.id')
                 ->on('s.confirmar_seguir = 1')
                 ->on('s.ativo = 1');
-        $query->join('avatares', 'a', 'left')->on('a.id = u.avatares_id')
+        $query->join('avatares', 'a', 'left')
+                ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');
         $query->where('pu.visualizado = 1')
                 ->add('pu.perguntas_id = ?')
@@ -58,5 +64,17 @@ class ConsultaListarVisualizadoEntregue {
         $query->order('momento desc');
         $query->addVariaveis([$usuarioId, $perguntaId]);
         return $query->executar();
+    }
+    
+    public function consultarAlertaEntregue($perguntaId){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('count(distinct id)', 'contagem');
+        $query->from('alertas');
+        $query->where('perguntas_id = ?')
+                ->add('tipo_id = 1')
+                ->add('ativo = 1');
+        $query->addVariaveis($perguntaId);
+        return $query->executar('{contagem}');
     }
 }

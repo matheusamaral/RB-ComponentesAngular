@@ -35,11 +35,12 @@ class ConsultaMapa {
                 ->on('chec.local_id = l.id')
                 ->on('chec.ativo = 1')
                 ->on('chec.presente = 1');
-        $query->join($this->subHashtag(), 'm', 'left')
+        $query->join($this->subMidia(), 'm', 'left')
                 ->on('m.local_id = l.id');
-        $query->join($this->subMidia(), 'hl', 'left')
+        $query->join($this->subHashtag(), 'hl', 'left')
                 ->on('hl.local_id = l.id');
-        $query->join('check_in', 'ci', 'left')->on('ci.usuario_id = ?')
+        $query->join('check_in', 'ci', 'left')
+                ->on('ci.usuario_id = ?')
                 ->on('ci.local_id = l.id')
                 ->on('ci.presente = 0')
                 ->on('ci.ativo = 1');
@@ -47,7 +48,8 @@ class ConsultaMapa {
                 ->on('cin.local_id = l.id');
         $query->where('l.ativo = 1')
                 ->add('l.id not in(' . $notIn . ')')
-                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) + sin(radians(?)) * sin(radians(l.latitude)))) <= 5');
+                ->add('(6371 * acos(cos(radians(?)) * cos(radians(l.latitude)) * cos(radians(?) - radians(l.longitude)) '
+                        . '+ sin(radians(?)) * sin(radians(l.latitude)))) <= 5');
         $query->group('l.id');
         $query->order('distancia, relevancia desc, relevancia2 desc');
         $query->limit(50);
@@ -108,13 +110,13 @@ class ConsultaMapa {
         $query = Conteiner::get('Query', false);
         $query->select('sub.*')
                 ->add('l.id', 'localId')
-                ->add('case when ch.id != 10 then ch.endereco '
+                ->add("case when ch.id != 10 then concat('" . DOMINIO_PROJETO . "',ch.endereco) "
                         . 'when u.ativo = 0 then ' . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg' "
                         . 'when sub.visibilidade_id = 1 then u.endereco '
                         . 'when sub.visibilidade_id = 2 and s.id is not null then u.endereco '
                         . "when sub.usuario_id = $usuarioId and sub.visibilidade_id != 3 then u.endereco "
-                        . 'else a.endereco end', 'categoriaHashtagFoto')
-                ->add('cl.endereco', 'categoriaLocalFoto');
+                        . "else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'categoriaHashtagFoto')
+                ->add("concat('" . DOMINIO_PROJETO . "',cl.endereco)", 'categoriaLocalFoto');
         $query->from('local', 'l');
         $query->join($this->subHashtagLocal($locaisId), 'sub', 'left')
                 ->on('sub.local_id = l.id');
@@ -159,6 +161,7 @@ class ConsultaMapa {
                 ->add('local_id in (' . $locaisId . ')');
         $query->group('local_id, hashtag_id');
         $query->order('count(distinct id) desc');
+        $query->limit(1);
         return $query;
     }
 }

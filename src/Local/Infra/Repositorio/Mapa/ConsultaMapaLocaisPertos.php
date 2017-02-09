@@ -17,8 +17,8 @@ class ConsultaMapaLocaisPertos {
                 ->add('l.titulo', 'nome')
                 ->add('l.latitude', 'latitude')
                 ->add('l.longitude', 'longitude')
-                ->add('cl.endereco', 'categoriaEndereco')
-                ->add('cl.titulo', 'categoriaNome');
+                ->add('cl.titulo', 'categoriaNome')
+                ->add("concat('" . DOMINIO_PROJETO . "',cl.endereco)", 'categoriaEndereco');
         $query->from('local', 'l');
         $query->join('local_categoria', 'lc')
                 ->on('lc.local_id = l.id')

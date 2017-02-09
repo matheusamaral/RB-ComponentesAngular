@@ -26,7 +26,9 @@ angular.module('QuickPeek.HTML.MudarNumeroSMS', [
                                 name="ddiAntigo"\n\
                                 class="placeholder-sms input-padrao font-media"\n\
                                 ng-model="dados.codigo"\n\
-                                type="number"\n\
+                                type="text"\n\
+                                ng-keyup="confirmarSms()"\n\
+                                maxlength="6"\n\
                                 ng-required="true">\n\
                                 <div ng-if="formTel.ddiAntigo.$touched && formTel.ddiAntigo.$invalid" ng-messages="formTel.ddiAntigo.$error">\n\
                                     <div ng-if="!formTel.ddiAntigo.$error.mask" ng-message="required">Este campo é obrigatório.</div>\n\
@@ -36,7 +38,7 @@ angular.module('QuickPeek.HTML.MudarNumeroSMS', [
                         </div>\n\
                     </form>\n\
                     <div class="row">\n\
-                        <button ng-click="confirmarSms()" style="color: #909090;" class="button ion-chatbox button-clear button-light">\n\
+                        <button ng-click="" style="color: #909090;" class="button ion-chatbox button-clear button-light">\n\
                             Reenviar SMS\n\
                         </button>\n\
                     </div>\n\

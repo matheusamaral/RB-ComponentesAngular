@@ -22,15 +22,12 @@ class CheckIn {
         if($casaTrabalho){
             $entidade = ConteinerEntidade::getInstancia('CasaTrabalho');
             $entidade->setId($casaTrabalho);
-            $entidade->setCasa(0);
-            $entidade->setTrabalho(0);
-            $entidade->salvar();
+            $entidade->deletar();
         }
         
         $sugestaoCheckIn = $msg->getCampoSessao('sugestaoCheckIn');
         if($sugestaoCheckIn){
             $msg->setCampo('CheckIn::id', $sugestaoCheckIn);
-            $msg->setCampo('CheckIn::momento', $msg->getCampoSessao('sugestaoCheckInMomento'));
             $msg->setCampo('CheckIn::presente', 1);
             $msg->setCampo('CheckIn::confirmado', 1);
         }

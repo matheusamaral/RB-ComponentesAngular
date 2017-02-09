@@ -7,13 +7,16 @@ angular.module('QuickPeek.Privacidade', [
 ])
 
 .controller('PrivacidadeCtrl', ['$scope','PrivacidadeEstrutura','PrivacidadeAcoes',
-    function ($scope,PrivacidadeEstrutura,PrivacidadeAcoes){        
+    function ($scope,PrivacidadeEstrutura,PrivacidadeAcoes){  
+        
         PrivacidadeEstrutura.setScope($scope).popular();
         PrivacidadeAcoes.setScope($scope).inicializar();
         
         $scope.voltar = PrivacidadeAcoes.voltar;
         $scope.editarAvatar = PrivacidadeAcoes.editarAvatar;
         $scope.fazerCheckin = PrivacidadeAcoes.fazerCheckin;
+        $scope.compartilharFB = PrivacidadeAcoes.compartilharFB;
+        
     }
 ])
 

@@ -15,9 +15,12 @@
     background-color: #FFFFFF !important;
 }
 
+.background-mapa{
+    background-color: #212121 !important;
+}
+
 .barra-localizacao-atual{
     position: fixed;
-    display: table;
     bottom: 0px;
     left: 0px;
     width: 100%;
@@ -172,4 +175,16 @@
     height: 600px;
     bottom: -246px;
     left: -37px;
+}
+
+.btn-barra-casa{
+    line-height: 19px;
+    min-height: 36px;
+    font-size: 15px;
+    padding: 3px;
+}
+
+.btn-barra-casa md-icon{
+    color: #ffb800;
+    line-height: 22px;
 }

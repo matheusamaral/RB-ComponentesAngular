@@ -72,7 +72,7 @@ class Chat implements MessageComponentInterface {
     }
     
     public function onMessage(ConnectionInterface $from, $mensagem){
-        Sessao::setSessionPhp(1);
+//        Sessao::setSessionPhp(1);
         $obj = json_decode($mensagem);
         Sessao::iniciar($obj->codsessrt);
         $msg = Conteiner::get('Mensagem', false);

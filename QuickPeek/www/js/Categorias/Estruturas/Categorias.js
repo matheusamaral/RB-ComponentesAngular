@@ -6,7 +6,7 @@ angular.module('QuickPeek.HTML.Categorias', [
 .factory('CategoriasHtml', [function(){
        
     function montar(){
-        return '<div class="config-padding-top row bar bar-header bar-light">\n\
+        return '<div ng-if="!novoLocal" class="config-padding-top row bar bar-header bar-light">\n\
                     <div class="">\n\
                         <p class="p-titulo-barra-cinza">Selecione a categorias</p>\n\
                     </div>\n\
@@ -15,6 +15,13 @@ angular.module('QuickPeek.HTML.Categorias', [
                     <div class="col">\n\
                         <button ng-click="redefinir()" class="btn-txt-direita remove-borda-btn button button-outline button-positive">\n\
                             REDEFINIR\n\
+                        </button>\n\
+                    </div>\n\
+                </div>\n\
+                <div ng-if="novoLocal" style="padding-top:14px;" class="row bar bar-header bar-positive">\n\
+                    <div class="">\n\
+                        <button ng-click="voltarLocais()" class="btn-txt-direita button button-clear">\n\
+                            <i class="icon ion-android-arrow-back seta-barra"></i>{{dadosNovoLocal.titulo}}\n\
                         </button>\n\
                     </div>\n\
                 </div>\n\

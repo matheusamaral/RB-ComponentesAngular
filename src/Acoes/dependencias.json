@@ -20,13 +20,11 @@
     "DadosPergunta": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Respostas\\DadosPergunta",
     
     "ConsultaExcluirCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaExcluirCheckIn",
-    "ConsultaAlterarVisibilidade": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaAlterarVisibilidade",
     "ConsultaCasaTrabalho": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaCasaTrabalho",
     "DistanciaLocalCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\DistanciaLocalCheckIn",
+    "ConsultaCheckIn": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\CheckIn\\ConsultaCheckIn",
     
     "ConsultaNotificacao": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaNotificacao",
-    "ConsultaVisualizarNotificacoes": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Notificacao\\ConsultaVisualizarNotificacoes",
     
-    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag",
-    "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario"
+    "ConsultaListarHashtag": "\\Quickpeek\\Acoes\\Infra\\Repositorio\\Listar\\ConsultaListarHashtag"
 }

@@ -15,6 +15,8 @@ angular.module('QuickPeek.CheckIn', [
         $scope.voltarMapa = CheckInAcoes.voltarMapa;
         $scope.attLocais = CheckInAcoes.attLocais;
         $scope.irPesquisa = CheckInAcoes.irPesquisa;
+        $scope.estouEmCasa = CheckInAcoes.estouEmCasa;
+        $scope.estounoTrabalho = CheckInAcoes.estounoTrabalho;
     }
 ])
 

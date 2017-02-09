@@ -36,7 +36,6 @@ angular.module('QuickPeek.Estrutura.Mapa', [
         if(DGlobal.localBarra && DGlobal.localBarra.success){
             scope.dadosbarra = DGlobal.localBarra.dados;
         }
-        
     };
     
     function calculaDimensoesMapa(){

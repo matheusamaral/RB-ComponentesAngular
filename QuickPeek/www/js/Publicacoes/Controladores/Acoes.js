@@ -24,18 +24,10 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     };
     
     function voltar(){
-        Pagina.navegar({idPage:24,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude+'&localId='+DGlobal.localAtual+'&atualizando=0'});
-    }
-    
-    function escolherHash(hash){
-        scope.hashClicada = true;
-        scope.categoriaSelecionada = hash;
-        scope.categoriaHashtags = hash.hashtags;
-        calcularAlturaChat();
+        Pagina.rollBack();
     }
     
     function addHash(chip){
-        console.log(scope.categoriaSelecionada);
         var achou = false, indiceAchado;
         for(var i = 0;i < scope.dados.tituloChip.length;i++){
             if(chip.titulo == scope.dados.tituloChip[i].titulo && scope.categoriaSelecionada.id == scope.dados.categoriaId[i]){
@@ -63,6 +55,9 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     }
     
     function removerChip(chip){
+        console.log('scope.categoriaHashtags');
+        console.log(scope.categoriaHashtags);
+        if(!scope.categoriaHashtags)scope.categoriaHashtags = new Array();
         for(var i = 0; i < scope.categoriaHashtags.length;i++){
             if(scope.categoriaHashtags[i].id == chip.id)
                scope.categoriaHashtags[i].selecionado = false; 
@@ -84,20 +79,32 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
         },0);
     }
     
+    function escolherHash(hash){
+        scope.hashClicada = true;
+        scope.categoriaSelecionada = hash;
+        scope.categoriaHashtags = hash.hashtags;
+        calcularAlturaChat();
+    }
+    
     function addHashDigitando(chip,nRemover){
         var img;
-        if(scope.dadosUser && scope.dadosUser.usuarioEndereco){
-            if(scope.dadosUser.visibilidadeCheckInId == 3){
-                img = scope.dadosUser.avatarEndereco;
-            }else{
-                img = scope.dadosUser.usuarioEndereco;
-            }
-        }else
-            img = 'img/bat.svg';
+        if(scope.hashClicada){
+            img = scope.categoriaSelecionada.endereco;
+            scope.dados.categoriaId.push(scope.categoriaSelecionada.id);
+        }else{
+            scope.dados.categoriaId.push(10);
+            if(scope.dadosUser && scope.dadosUser.usuarioEndereco){
+                if(scope.dadosUser.visibilidadeCheckInId == 3){
+                    img = scope.dadosUser.avatarEndereco;
+                }else{
+                    img = scope.dadosUser.usuarioEndereco;
+                }
+            }else
+                img = 'img/bat.svg';
+        }
         var obj= {bordaDourada:true,endereco:img,titulo:chip,id:scope.dados.tituloChip.length - 1};
         if(!nRemover)scope.dados.tituloChip.splice(scope.dados.tituloChip.length - 1 , 1);
         scope.dados.tituloChip.push(obj);
-        scope.dados.categoriaId.push(10);
         scope.dados.titulo.push(chip);
         scope.dados.idHashs.push(obj.id);
         calcularAlturaChat();
@@ -109,10 +116,17 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     }
     
     function publicar(){
+        var ext;
+        if(scope.dados.arquivoBase64[0]){
+            ext = scope.dados.arquivoBase64[0].split(';')[0].split('/')[1];
+        }
+        
         var obj = {
             titulo:scope.dados.titulo,
             categoriaId:scope.dados.categoriaId,
-            arquivoBase64:scope.dados.arquivoBase64
+            arquivoBase64:scope.dados.arquivoBase64,
+            extensao:ext,
+            localId:scope.local.dados.localId
         };
         
         PublicacoesRequisicoes.set({dados:obj,scope:scope,acaoSuccess:PublicacoesRequisicoes.successPublicar}).publicar();
@@ -269,9 +283,12 @@ angular.module('QuickPeek.Acoes.Publicacoes', [
     
     function gerarHashtag(){
         var input = $("#input-chip").val();
-        if(input.split(' ').length > 1){
-            addHashDigitando(input.split(' ')[0],true);
-            $("#input-chip").val('');
+        var novaStr='';
+        if(input.split('').length > 30){
+            for(var i = 0; i < 31;i++){
+                novaStr = novaStr+input.split('')[i];
+            }
+            $("#input-chip").val(novaStr);
         }
     }
     

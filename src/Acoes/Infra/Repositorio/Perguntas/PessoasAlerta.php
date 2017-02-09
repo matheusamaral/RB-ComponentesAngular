@@ -40,9 +40,6 @@ class PessoasAlerta {
                 ->on('s.usuario_seguir_id = u.id')
                 ->on('s.confirmar_seguir = 1')
                 ->on('s.ativo = 1');
-        $query->join('avatares', 'a')
-                ->on('a.id = u.avatares_id')
-                ->on('a.ativo = 1');
         $query->join('midia', 'm', 'left')
                 ->on('m.usuario_id = u.id')
                 ->on('m.local_id = ?')
