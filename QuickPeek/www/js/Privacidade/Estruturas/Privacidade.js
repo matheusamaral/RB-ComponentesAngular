@@ -55,7 +55,7 @@ angular.module('QuickPeek.HTML.Privacidade', [
                         class="box-img-cad icone-redondo-privacidade">\n\
                             <md-icon class="stilo-icones-privacidade img-anonimo-privacidade"></md-icon>\n\
                         </div>\n\
-                        <p ng-class="{\'font-dourada\' : dados.visibilidadeId == 3}" class="p-nome-visibilidade">Ninguém</p>\n\
+                        <p ng-class="{\'font-dourada\' : dados.visibilidadeId == 3}" class="p-nome-visibilidade">Anônimo</p>\n\
                     </div>\n\
                 </div>\n\
                 <button ng-click="fazerCheckin()" class="btn-grande-privacidade col button button-positive">\n\

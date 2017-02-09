@@ -156,7 +156,7 @@
         <dadosSolicitados>
         </dadosSolicitados>   
         <acaoCliente classe="pag-sobre" acao="SobreCtrl" title="Seus seguidores"/>
-    </pagina>   
+    </pagina>
     
     <pagina id="21" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="termos-politicas">
         <dadosSolicitados>
@@ -188,7 +188,7 @@
         <acaoCliente classe="pag-filtro-mapa" acao="FiltroMapaCtrl" title="Filtrar no mapa"/>
     </pagina>   
     
-    <pagina id="24" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="locais">
+    <pagina id="24" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="locais">
         <dadosSolicitados>
             <classe name="Listar">
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
