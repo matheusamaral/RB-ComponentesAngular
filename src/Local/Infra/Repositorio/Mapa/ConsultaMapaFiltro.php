@@ -114,13 +114,11 @@ class ConsultaMapaFiltro {
     private function subHashtagCategoria($categoriasHashtag){
         
         $query = Conteiner::get('Query', false);
-        $query->select('hlo.local_id')
-                ->add('hc.id');
-        $query->from('hashtag_local', 'hlo');
-        $query->join('hashtag_categoria', 'hc')
-                ->on('hc.hashtag_id = hlo.id')
-                ->on('hc.categoria_hashtag_id in (' . $categoriasHashtag . ')');
-        $query->where('hlo.momento > date_add(now(), interval -? hour)');
+        $query->select('local_id')
+                ->add('categoria_hashtag_id', 'id');
+        $query->from('hashtag_local');
+        $query->where('categoria_hashtag_id in (' . $categoriasHashtag . ')')
+                ->add('momento > date_add(now(), interval -? hour)');
         return $query;
     }
 }

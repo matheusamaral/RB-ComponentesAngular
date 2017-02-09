@@ -9,7 +9,7 @@ class ConsultaHashtag {
         $query = Conteiner::get('Query', false);
         $query->select('h.id', 'hashtagId')
                 ->add('h.titulo', 'hashtagTitulo')
-                ->add('count(distinct hl.id)', 'hashtagQtd')
+                ->add('hl.countHash', 'hashtagQtd')
                 ->add('ch.id', 'categoriaId')
                 ->add("case when ch.id != 10 then concat('" . DOMINIO_PROJETO . "', ch.endereco) "
                         . 'when u.ativo = 0 then ' . "'" . DOMINIO_PROJETO . "/ui/imagens/avatares/96.svg' "
@@ -19,12 +19,8 @@ class ConsultaHashtag {
                         . "else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'categoriaEndereco')
                 ->add('case when hlo.id is null then 0 else 1 end', 'jaCurtiu');
         $query->from('hashtag', 'h');
-        $query->join('local', 'l')
-                ->on('l.ativo = 1');
-        $query->join('hashtag_local', 'hl')
-                ->on('hl.local_id = l.id')
-                ->on('hl.hashtag_id = h.id')
-                ->on('hl.ativo = 1');
+        $query->join($this->subHashtagLocal(), 'hl')
+                ->on('hl.hashtag_id = h.id');
         $query->join('hashtag_local', 'hlo', 'left')
                 ->on('hlo.usuario_id = ?')
                 ->on('hlo.hashtag_id = h.id')
@@ -42,12 +38,29 @@ class ConsultaHashtag {
                 ->on('s.usuario_seguir_id = u.id')
                 ->on('s.confirmar_seguir = 1')
                 ->on('s.ativo = 1');
-        $query->where('h.ativo = 1')
-                ->add('l.id = ?')
-                ->add('hl.momento > date_add(now(), INTERVAL -? HOUR)');
-        $query->group('h.id');
-        $query->order('hashtagQtd desc, hl.id');
-        $query->addVariaveis([$usuarioId, $usuarioId, $localId, $tempo]);
+        $query->where('h.ativo = 1');
+        $query->order('hl.countHash desc, hl.id');
+        $query->addVariaveis([$tempo, $localId, $localId, $usuarioId]);
         return $query->executar();
+    }
+    
+    private function subHashtagLocal(){
+        
+        $query = Conteiner::get('Query', false);
+        $query->select('id')
+                ->add('hashtag_id')
+                ->add('local_id')
+                ->add('visibilidade_id')
+                ->add('usuario_id')
+                ->add('categoria_hashtag_id')
+                ->add('ativo')
+                ->add('count(distinct id)', 'countHash');
+        $query->from('hashtag_local');
+        $query->where('momento > date_add(now(), interval -? hour)')
+                ->add('local_id = ?')
+                ->add('ativo = 1');
+        $query->group('hashtag_id');
+        $query->order('countHash desc, id');
+        return $query;
     }
 }

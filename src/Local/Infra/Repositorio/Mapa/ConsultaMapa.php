@@ -160,7 +160,7 @@ class ConsultaMapa {
         $query->where('momento > date_add(now(), interval -? hour)')
                 ->add('local_id in (' . $locaisId . ')');
         $query->group('local_id, hashtag_id');
-        $query->order('count(distinct id) desc');
+        $query->order('countHash desc');
         $query->limit(1);
         return $query;
     }
