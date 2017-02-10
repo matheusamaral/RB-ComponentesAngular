@@ -21,10 +21,11 @@ angular.module('QuickPeek.HTML.Mapa', [
     
     function barraLocalizacaoAtual(){
          return'<div ng-click="irLocal(dadosbarra.localId,$event)" \n\
-                id="barra-local-atual" \n\
+                id="barra-local-atual"\n\
                 ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
                 class="row barra-localizacao-atual"\n\
                 ng-if="dadosbarra && dadosbarra.distancia">\n\
+                    <md-icon ng-if="dadosUser.tutorial == 3" class="icone-tutorial-{{dadosUser.tutorial}} ion-android-arrow-down"></md-icon>\n\
                     <div class="">\n\
                         <div ng-if="dadosUser.visibilidadeCheckInId != 3"\n\
                         class="col remove-paddingicone-local-popover-dourado"\n\
@@ -58,8 +59,10 @@ angular.module('QuickPeek.HTML.Mapa', [
                     </div>\n\
                 </div>\n\
                 <div ng-click="irLocal(dadosbarra.localId,$event)"\n\
-                id="barra-local-atual" style="display:flex" class="row barra-localizacao-atual barra-local" \n\
-                ng-if="dadosbarra == 1 || dadosbarra == 2 || (dadosbarra && dadosbarra.checkIn == 1)">\n\
+                id="barra-local-atual" style="display:flex;" class="row barra-localizacao-atual barra-local" \n\
+                ng-if="dadosbarra == 1 || dadosbarra == 2 || (dadosbarra && dadosbarra.checkIn == 1)"\n\
+                ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}">\n\
+                    <md-icon ng-if="dadosUser.tutorial == 3" class="icone-tutorial-{{dadosUser.tutorial}} ion-android-arrow-down"></md-icon>\n\
                     <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-barra"\n\
                     style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
                         <div class="container-privacidade-img-barra">\n\
@@ -106,7 +109,8 @@ angular.module('QuickPeek.HTML.Mapa', [
                         </md-menu>\n\
                     </div>\n\
                 </div>\n\
-                <div class="barra-localizacao-atual barra-local" ng-if="!dadosbarra" id="barra-local-atual">\n\
+                <div ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\ style="z-index:30 !important" class="barra-localizacao-atual barra-local" ng-if="!dadosbarra" id="barra-local-atual">\n\
+                    <md-icon ng-if="dadosUser.tutorial == 3" class="icone-tutorial-{{dadosUser.tutorial}} ion-android-arrow-down"></md-icon>\n\
                     <div>\n\
                         <p class="p-titulo-local">Onde você está agora?</p>\n\
                     </div>\n\
@@ -156,7 +160,7 @@ angular.module('QuickPeek.HTML.Mapa', [
                     <button ng-click="attTutorial()" class="btn-mapa-tutorial-{{dadosUser.tutorial}} button button-clear button-positive">\n\
                         PULAR<i class="icon ion-chevron-right"></i>\n\
                     </button>\n\
-                    <md-icon ng-if="dadosUser.tutorial == 3 || dadosUser.tutorial == 2" class="icone-tutorial-{{dadosUser.tutorial}} ion-android-arrow-down"></md-icon>\n\
+                    <md-icon ng-if="dadosUser.tutorial == 2" class="icone-tutorial-{{dadosUser.tutorial}} ion-android-arrow-down"></md-icon>\n\
                 </div>';
     }
   

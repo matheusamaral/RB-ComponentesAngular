@@ -76,15 +76,6 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                 </div>';
     }
     
-    function adicionarLocal(){
-        return'<div class="rb-padding-padrao" ng-if="dados.termoBuscado && locais.ultimosLocais.length > 0">\n\
-                <p class="p-preto rb-padding-padrao">O local <span class="negrito">"{{dados.termoBuscado}}"</span> não foi encontrado</p>\n\
-                <button ng-click="addLocal()" style="display: block;margin: auto;margin-top: 15px;" class="button button-positive">\n\
-                    CRIAR ESTE LOCAL\n\
-                </button>\n\
-            </div>';
-    }
-    
     function sessaoUltimosLocais(){
          return adicionarLocal()+'\n\
                 <div ng-if="!pesquisou" class="row box-ultimos remove-padding">\n\
@@ -96,15 +87,14 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                 </div>\n\
                 <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
                     <div ng-click="irLocal(local.localId)" ng-repeat="local in locais.ultimosLocais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
-                        <div ng-if="local.presente == 1" class="col">\n\
+                        <!--<div ng-if="local.presente == 1" class="col">\n\
                             <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
-                            <p ng-if="local.localNome" class="p-titulo-local">{{local.localNome}}</p>\n\
                             <div class="row remove-padding">\n\
                                 <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual - {{local.cidade}}</span>\n\
                             </div>\n\
-                        </div>\n\
-                        <div ng-if="local.presente != 1" class="col">\n\
-                            <p ng-if="local.localNome" class="p-titulo-local">{{local.localNome}}</p>\n\
+                        </div>-->\n\
+                        <div class="col">\n\
+                            <p class="p-titulo-local">{{local.localTitulo}}</p>\n\
                             <div class="row remove-padding" style="padding-top:3px !important">\n\
                                 <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia >= 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia >= 1">{{local.distancia.split(\'.\')[0]}} km de distância - {{local.cidade}}</span>\n\
                                 <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia < 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia < 1">{{converteKmM(local.distancia)}} m de distância - {{local.cidade}}</span>\n\

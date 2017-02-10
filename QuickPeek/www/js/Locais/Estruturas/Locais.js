@@ -6,7 +6,7 @@ angular.module('QuickPeek.HTML.Locais', [
 .factory('LocaisHtml', [ function() {
        
     function montar(){
-        return '<div style="z-index: 50;" class="row bar bar-header bar-positive">\n\
+        return '<div style="z-index: 19;" class="row bar bar-header bar-positive">\n\
                     <div>\n\
                         <button ng-click="voltarMapa()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>Área no mapa\n\
@@ -61,7 +61,7 @@ angular.module('QuickPeek.HTML.Locais', [
                                     <div ng-if="local.qtdMidias > 0" ng-click="exibirMidias(local.dados.localId)" class="col remove-padding">\n\
                                         '+sessaoFotos()+'\n\
                                     </div>\n\
-                                    <div ng-if="local.qtdPessoas > 0" ng-click="irPessoas(local.dados.localId)" class="col remove-padding">\n\
+                                    <div ng-if="local.qtdPessoas > 0" class="col remove-padding">\n\
                                         '+sessaoPessoas()+'\n\
                                     </div>\n\
                                     <div ng-if="local.qtdPerguntas > 0" ng-click="irPerguntas(local.dados.localId)" class="col remove-padding">\n\
@@ -107,16 +107,17 @@ angular.module('QuickPeek.HTML.Locais', [
     }
     
     function sessaoPessoas(){
-         return'<div class="box-fotos">\n\
-                    '+tutorial4()+'\
-                    <div>\n\
+         return'<div ng-class="{\'z-index-tuto-4\' : dadosUser.tutorial == 4}" class="box-fotos" style="position:">\n\
+                    <div ng-click="irPessoas(local.dados.localId,$event)">\n\
+                        '+tutorial4()+'\n\
                         <div \n\
                         ng-repeat="pessoa in local.pessoas"\n\
                         ng-class="{\'borda-dourada-fina\' : pessoa.usuarioId == dadosUser.usuarioId}"\n\
                         class="moldura-foto-redonda pos{{$index+1}} posicao-{{local.pessoas.length}}-foto-quadrada"\n\
                         style="background-image:url({{pessoa.endereco}});z-index:{{20+ (local.pessoas.length - $index)}}">\n\
                         </div>\n\
-                        <p ng-class="{\'font-branca\' : dadosUser.tutorial == 4}" class="elevado-locais p-config-itens"><span style="font-weight:bold">{{local.qtdPessoas}}</span> Pessoas</p>\n\
+                        <p ng-if="local.qtdPessoas > 1" ng-class="{\'font-branca\' : dadosUser.tutorial == 4}" class="elevado-locais p-config-itens"><span style="font-weight:bold">{{local.qtdPessoas}}</span> Pessoas</p>\n\
+                        <p ng-if="local.qtdPessoas == 1" ng-class="{\'font-branca\' : dadosUser.tutorial == 4}" class="elevado-locais p-config-itens"><span style="font-weight:bold">{{local.qtdPessoas}}</span> Pessoa</p>\n\
                     </div>\n\
                 </div>';
     }
@@ -165,7 +166,7 @@ angular.module('QuickPeek.HTML.Locais', [
                     </div>\n\
                     <p class="negrito posiciona-p-tutorial4">Converse diretamente</p>\n\
                     <p class="posiciona-p-tutorial4-4">Aqui vocẽ encontra as pessoas que </br>estão agora neste local!</p>\n\
-                    <button ng-click="attTutorial()" class="btn-mapa-tutorial-4 button button-clear button-positive">\n\
+                    <button ng-click="attTutorial($event)" class="btn-mapa-tutorial-4 button button-clear button-positive">\n\
                         PULAR<i class="icon ion-chevron-right"></i>\n\
                     </button>\n\
                     <md-icon class="icone-tutorial-4 ion-android-arrow-down"></md-icon>\n\

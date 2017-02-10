@@ -100,6 +100,7 @@
 .box-fotos{
     position: relative;
     height: 110px;
+    z-index: 10;
     width: 68px;
     margin: auto;
 }
@@ -263,8 +264,8 @@
 
 .posiciona-p-tutorial4{
     position: absolute;
-    top: -129px;
-    right: 21px;
+    top: -160px;
+    left: -40px;
     z-index: 21;
     white-space: nowrap;
 }
@@ -272,19 +273,23 @@
 .posiciona-p-tutorial4-4{
     position: absolute;
     font-size: 14px;
-    top: -97px;
-    right: -16px;
+    top: -127px;
+    left: -40px;
     z-index: 21;
     white-space: nowrap;
+}
+
+.z-index-tuto-4{
+    z-index:24 !important;
 }
 
 .btn-mapa-tutorial-4{
     color: #666666 !important;
     font-weight: bold;
-    right: 153px;
+    left: -53px;
     width: 96px;
     z-index: 21;
-    top: -37px;
+    top: -86px;
 }
 
 .btn-mapa-tutorial-4 i::before{
