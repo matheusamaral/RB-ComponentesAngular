@@ -167,16 +167,21 @@ class EnviarMensagem {
         $visibilidadeUsuarioId = $msg->getCampo('Mensagens::visibilidadeUsuarioId')->get('valor');
         $query = Conteiner::get('ConsultaListarDadosUsuario');
         
+        $agrupamento = $usuarioMensagemId . '-' . $usuarioId . '-' . $visibilidadeMensagensId . '-' . $visibilidadeUsuarioId;
         $dadosUsuarioLogado = $query->consultarDadosVisibilidadeMensagens($usuarioId, $visibilidadeMensagensId);
         $dadosUsuario = $query->consultar($usuarioMensagemId);
         
-        $contents = ['en'=>$dadosUsuarioLogado['usuarioNome'] . ' enviou uma mensagem para você'];
+        $contents = ['en'=>$msg->getCampo('Mensagens::titulo')->get('valor')];
         $fields = [
             'include_player_ids'=>[$dadosUsuario['playerId']], 
             'data'=>['pagina'=>39, 'usuarioMensagemId'=>$usuarioMensagemId, 'visibilidadeMensagensId'=>$visibilidadeUsuarioId, 
                 'visibilidadeUsuarioId'=>$visibilidadeMensagensId],
-            'contents'=>$contents, 
-            'headings'=>['en'=>'Nova mensagem!']];
+            'contents'=>$contents,
+            'large_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'chrome_web_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'firefox_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'collapse_id'=> $agrupamento,
+            'headings'=>['en'=>$dadosUsuarioLogado['usuarioNome']]];
         
         $alerta = Conteiner::get('Alerta');
         $response = $alerta->enviar($fields);

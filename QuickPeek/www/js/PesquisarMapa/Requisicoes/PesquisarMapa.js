@@ -35,8 +35,10 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                scope.locais = objRetorno.dados;
+                scope.locais.ultimosLocais = objRetorno.dados;
                 scope.dados.termoBuscado = false;
+            }else{
+                scope.locais.ultimosLocais = new Array();
             }
             scope.dados.termoBuscado = dados.nome;
         };

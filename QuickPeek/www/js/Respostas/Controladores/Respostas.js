@@ -9,7 +9,7 @@ angular.module('QuickPeek.Respostas', [
 .controller('RespostasCtrl', ['$scope','RespostasEstrutura','RespostasAcoes','$timeout',
     function ($scope,RespostasEstrutura,RespostasAcoes,$timeout){        
         RespostasEstrutura.setScope($scope).popular();
-        RespostasAcoes.setScope($scope).configConexao();
+        RespostasAcoes.setScope($scope).configConexao('quickpeek.rubeus.com.br:9876');
         
         $scope.voltarLocais = RespostasAcoes.voltarLocais;
         $scope.setarCursorInicio = RespostasAcoes.setarCursorInicio;

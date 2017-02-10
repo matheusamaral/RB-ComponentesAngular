@@ -13,8 +13,8 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
                         </button>\n\
                     </div>\n\
                 </div>\n\
-                <div id="container-infinite-scrol">\n\
-                    <div infinite-scroll="maisPessoas()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
+                <div id="paiContainerScrol" style="overflow: auto;height:{{alturaTela}}px">\n\
+                    <div>\n\
                         <div ng-repeat="pessoa in dados.pessoas" \n\
                         class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
                         ng-class="{\'padding-top-bloqueados\' : $index == 0}"\n\

@@ -10,7 +10,8 @@ class ConsultaSessaoBanco {
         $query->select('id')
                 ->add('codigo');
         $query->from('sessaobanco');
-        $query->where()->like('dados_sessao', '"dadosUsuarioLogado":{"id":"' . $usuarioId . '"}');
+        $query->where()
+                ->like('dados_sessao', '"id":"' . $usuarioId . '"');
         return $query->executar('A');
     }
 }

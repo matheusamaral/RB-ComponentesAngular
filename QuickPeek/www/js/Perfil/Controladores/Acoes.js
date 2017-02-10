@@ -31,7 +31,7 @@ angular.module('QuickPeek.Acoes.Perfil', [
     }
     
     function irConfiguracoes(){
-        Pagina.navegar({idPage:9});
+        Pagina.rollBack();
     }
     
     function irSeguidores(id){

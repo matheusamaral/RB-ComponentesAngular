@@ -138,12 +138,12 @@ class SugestaoLocal {
         $localId = $msg->getCampo('CheckIn::localId')->get('valor');
         $dados = Conteiner::get('ConsultaListarDadosUsuario')->consultar($usuarioId);
         
-        $contents = ['en'=>'Confirme o local em que você está!'];
+        $contents = ['en'=>'Confirme o local em que você está'];
         $fields = [
             'include_player_ids'=>[$dados['playerId']],
             'data'=>['pagina'=>22],
             'contents'=>$contents,
-            'headings'=>['en'=>'Check-in!']];
+            'headings'=>['en'=>'Quickpeek']];
         
         $alerta = Conteiner::get('Alerta');
         $response = $alerta->enviar($fields);

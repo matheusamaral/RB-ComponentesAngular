@@ -207,6 +207,9 @@ class Publicar {
                 'include_player_ids'=>[$dadosUsuario['playerId']], 
                 'data'=>['pagina'=>36], 
                 'contents'=>$contents, 
+                'large_icon'=>$dadosUsuarioLogado['usuarioEndereco'], 
+                'chrome_web_icon'=>$dadosUsuarioLogado['usuarioEndereco'], 
+                'firefox_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
                 'headings'=>['en'=>'Primeira publicação!']];
 
             $alerta = Conteiner::get('Alerta');

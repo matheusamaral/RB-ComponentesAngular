@@ -11,16 +11,16 @@ class ConsultaListarNotificacoes {
                 ->add('u.id', 'usuarioId')
                 ->add('case when n.resposta_id is null then u.nome'
                         . ' when r.visibilidade_id = 1 then u.nome'
-                        . ' when r.visibilidade_id = 2 and s.id is not null then u.nome'
                         . ' else a.nome end', 'pre')
                 ->add('tn.nome', 'meio')
                 ->add('l.titulo', 'pos')
                 ->add('case when n.resposta_id is null then u.endereco'
                         . ' when r.visibilidade_id = 1 then u.endereco'
-                        . ' when r.visibilidade_id = 2 and s.id is not null then u.endereco'
                         . " else concat('" . DOMINIO_PROJETO . "',a.endereco) end", 'endereco')
                 ->add('timestampdiff(minute, n.momento, now())', 'minutos')
                 ->add('p.id', 'perguntasId')
+                ->add('case when p.id is not null and r.id is not null then r.visibilidade_id else 1 end', 'visibilidadeId')
+                ->add('n.tipo_id', 'tipoId')
                 ->add('l.id', 'localId');
         $query->from('notificacoes', 'n');
         $query->join('tipo_notificacoes', 'tn')
@@ -39,11 +39,6 @@ class ConsultaListarNotificacoes {
                 ->on('m.id = n.midia_id');
         $query->join('local', 'l', 'left')
                 ->on('l.id = ifnull(hl.local_id, m.local_id)');
-        $query->join('seguir', 's', 'left')
-                ->on('s.usuario_id = n.usuario_id')
-                ->on('s.usuario_seguir_id = n.usuario_acao_id')
-                ->on('s.confirmar_seguir = 1')
-                ->on('s.ativo = 1');
         $query->join('avatares', 'a', 'left')
                 ->on('a.id = u.avatares_id')
                 ->on('a.ativo = 1');     

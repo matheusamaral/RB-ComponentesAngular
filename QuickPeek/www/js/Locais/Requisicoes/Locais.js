@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('QuickPeek.Requisicao.Locais', [
-    'RB.pagina'
+    'RB.pagina',
+    'Cmp.InfinitScroll'
 ])
  
-.factory('LocaisRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout',
-      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout) {
+.factory('LocaisRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout','InfinitScroll','$ionicPopup',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout,InfinitScroll,$ionicPopup) {
         
         var dados;
         var scope;
@@ -21,10 +22,6 @@ angular.module('QuickPeek.Requisicao.Locais', [
         };
         
         function listarAreas(){
-            console.log('atençãaaaaaoo');
-            if (scope.busy) return;
-            scope.busy = true;
-            RBLoadingMobile.show();
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Listar/listarAreaMapa",
                 dados: $.param(dados),
@@ -38,16 +35,14 @@ angular.module('QuickPeek.Requisicao.Locais', [
         };
         
         function successListarAreas(objRetorno){
-            
-            console.log("objRetorno",objRetorno);
+            console.log("objRetornssso",objRetorno);
             if(objRetorno.success === true){
+                for(var i = 0; i < objRetorno.dados.length;i++){
+                    scope.locais.push(objRetorno.dados[i]);
+                }
                 $timeout(function(){
-                    for(var i = 0; i < objRetorno.dados.length;i++){
-                        scope.locais.push(objRetorno.dados[i]);
-                    }
-                    scope.busy = false;
-                    RBLoadingMobile.hide();
-                },0);
+                    InfinitScroll.fechaLoaderBottom();
+                },500);
             }
             else{
                 RBLoadingMobile.hide();
@@ -164,6 +159,77 @@ angular.module('QuickPeek.Requisicao.Locais', [
             }
         };
         
+        function verificarLimitePerguntas(){
+            RBLoadingMobile.show();
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Acoes/verificarLimitePerguntas",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 0
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successVerificarLimitePerguntas(objRetorno){
+            RBLoadingMobile.hide();
+            console.log('objRetorno');
+            console.log(objRetorno);
+            if(objRetorno.success === true) {
+                DGlobal.idLocal = dados.localId;
+                Pagina.navegar({idPage:35});
+            }
+            else{
+                if(objRetorno.dados){
+                    scope.hora = calculaHora(objRetorno.dados);
+                    scope.contaPrivadaPopup = $ionicPopup.alert({
+                        scope:scope,
+                        title: 'Limite atingido',
+                        template: montarPopup(),
+                        buttons:[
+                            {text:'OK',type:['button-positive','button-outline']}
+                        ]
+                    });
+                }else{
+                    if(objRetorno.errors) OpenToast(objRetorno.errors);
+                }
+            }
+        };
+        
+        function calculaHora(tempo){
+            var hora='', minutos='';
+            if(tempo > 60){
+                if(tempo%60 > 0){
+                    hora = Math.floor(tempo/60);
+                    minutos = tempo%60;
+                    if(hora == 1){
+                        return hora+' hora e '+minutos+' min.';
+                    }else{
+                        return hora+' horas e '+minutos+' min.';
+                    }
+                }else{
+                    hora = tempo/60;
+                    if(hora == 1){
+                        return hora+' hora.';
+                    }else{
+                        return hora+' horas.';
+                    }
+                }
+            }else{
+                if(tempo == 1)return tempo +' minuto.';
+                else return tempo +' minutos.';
+            }
+        }
+        
+        function montarPopup(){
+            return'<div class="col">\n\
+                        <p style="color:black">Você só pode fazer 3 perguntas a cada 3 horas.</p>\n\
+                        <p style="color:black;margin-top:10px">Você poderá fazer uma nova pergunta em {{hora}}</p>\n\
+                    </div>';
+        }
+        
         return {
             set: set,
             successListarAreas: successListarAreas,
@@ -173,7 +239,9 @@ angular.module('QuickPeek.Requisicao.Locais', [
             attTutorial:attTutorial,
             successAttTutorial:successAttTutorial,
             successCurtirHashtag:successCurtirHashtag,
-            curtirHashTag:curtirHashTag
+            curtirHashTag:curtirHashTag,
+            verificarLimitePerguntas:verificarLimitePerguntas,
+            successVerificarLimitePerguntas:successVerificarLimitePerguntas
         };
                            
 }]);     

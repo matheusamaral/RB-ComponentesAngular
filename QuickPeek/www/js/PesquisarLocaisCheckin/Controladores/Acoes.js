@@ -37,12 +37,24 @@ angular.module('QuickPeek.Acoes.PesquisarLocaisCheckin', [
         Pagina.navegar({idPage:30});
     }
     
+    function addLocal(){
+        var obj = {
+            latitude:DGlobal.coordenadasAtual.latitude,
+            longitude:DGlobal.coordenadasAtual.longitude,
+            titulo:scope.dados.termoBuscado
+        };
+        
+        DGlobal.dadosNovoLocal = obj;
+        Pagina.navegar({idPage:39});
+    }
+    
     return {
         setScope:setScope,
         pesquisarLocalScroll:pesquisarLocalScroll,
         voltarCheckin:voltarCheckin,
         pesquisarLocal:pesquisarLocal,
-        irLocal:irLocal
+        irLocal:irLocal,
+        addLocal:addLocal
     };
     
  }]);

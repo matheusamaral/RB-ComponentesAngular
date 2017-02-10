@@ -163,6 +163,10 @@ class Respostas {
             'include_player_ids'=>[$dadosUsuario['playerId']], 
             'data'=>['pagina'=>36], 
             'contents'=>$contents, 
+            'large_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'chrome_web_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'firefox_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'collapse_id'=>$usuarioId . '-' . $perguntaId,
             'headings'=>['en'=>'Pergunta respondida!']];
         
         $alerta = Conteiner::get('Alerta');

@@ -44,7 +44,7 @@ class Seguir {
         $msg->setCampo('Notificacoes::tipoId', 5);
         Conteiner::get('Cadastro')->cadastrar($msg);
         
-        $this->enviarAlerta($msg, ' começou a te seguir, clique para ver!');
+        $this->enviarAlerta($msg, ' começou a te seguir');
     }
     
     private function enviarNotificacao($msg){
@@ -57,7 +57,7 @@ class Seguir {
         $msg->setCampo('Notificacoes::tipoId', 1);
         Conteiner::get('Cadastro')->cadastrar($msg);
         
-        $this->enviarAlerta($msg, ' pediu para te seguir, clique para ver!');
+        $this->enviarAlerta($msg, ' pediu para te seguir');
     }
     
     private function enviarAlerta($msg, $frase){
@@ -71,7 +71,10 @@ class Seguir {
         $fields = [
             'include_player_ids'=>[$dadosUsuario['playerId']], 
             'data'=>['pagina'=>36], 
-            'contents'=>$contents, 
+            'contents'=>$contents,
+            'large_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'chrome_web_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
+            'firefox_icon'=>$dadosUsuarioLogado['usuarioEndereco'],
             'headings'=>['en'=>'Seguidor!']];
         
         $alerta = Conteiner::get('Alerta');

@@ -4,11 +4,12 @@ angular.module('QuickPeek.Acoes.Locais', [
     'RB.pagina',
     'QuickPeek.Requisicao.Locais',
     'RB.validacoesPadroes',
-    'QuickPeek.Estrutura.Locais'
+    'QuickPeek.Estrutura.Locais',
+    'Cmp.InfinitScroll'
 ])
 
-.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','RBLoadingMobile',
-    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,RBLoadingMobile){
+.factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','InfinitScroll','$ionicPopup',
+    function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,InfinitScroll,$ionicPopup){
     var scope;  
     
     function setScope(obj){
@@ -16,8 +17,20 @@ angular.module('QuickPeek.Acoes.Locais', [
         return this;
     };
     
+    function iniciarInfinitScroll(){
+        InfinitScroll.iniciar({
+            bottom:true,
+            idSeletorBottom:'paiContainerScrol',
+            acaoBottom:carregarLocais
+        });
+    }
+    
     function inicializar(){
         $('ion-side-menu-content').addClass('background-cinza-claro');
+        scope.alturaTela = $('ion-side-menu-content').height();
+        $timeout(function(){
+            iniciarInfinitScroll();
+        },0);
     }
     
     function exibirMidias(id){
@@ -34,7 +47,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
     }
     
-    function irPessoas(idLocal){
+    function irPessoas(idLocal,evento){
+        VP.pararEvento(evento);
         DGlobal.idLocal = idLocal;
         Pagina.navegar({idPage:26,paramAdd:'?id='+idLocal+'&atualizando=0'});
     }
@@ -45,8 +59,11 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function perguntar(id){
-        DGlobal.idLocal = id;
-        Pagina.navegar({idPage:35});
+        LocaisRequisicoes.set({
+            dados:{localId:id},
+            scope:scope,
+            acaoSuccess:LocaisRequisicoes.successVerificarLimitePerguntas
+        }).verificarLimitePerguntas();
     }
     
     function voltarMapa(){
@@ -54,7 +71,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         Pagina.rollBack();
     }
     
-    function attTutorial(){
+    function attTutorial(evento){
+        if(evento)VP.pararEvento(evento);
         LocaisRequisicoes.set({dados:false,scope:scope,acaoSuccess:LocaisRequisicoes.successAttTutorial}).attTutorial();
     }
     
@@ -79,9 +97,9 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function checkInLocal(local){
-        DGlobal.checkIn = {local:local};
+        DGlobal.checkIn = {local:local.dados};
         if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
-        Pagina.navegar({idPage:30});
+        Pagina.navegar({idPage:30,paramAdd:'?localId='+local.localId});
     }
     
     function curtirHashtag(hash,localId){
@@ -98,12 +116,29 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function irPublicar(local){
-        DGlobal.localPublicar = local;
-        Pagina.navegar({idPage:32});
+        console.log(local);
+        if(local.dados.localId == DGlobal.localAtual){
+            DGlobal.localPublicar = local;
+            Pagina.navegar({idPage:32});
+        }else{
+            scope.contaPrivadaPopup = $ionicPopup.alert({
+                scope:scope,
+                title: 'Ops!',
+                template: montarPopup(),
+                buttons:[
+                    {text:'ALTERAR LOCALIZAÇÃO',type:['button-positive','button-outline'],onTap:irCheckin}
+                ]
+            });
+        }
     }
     
+    function montarPopup(){
+            return'<div class="col">\n\
+                        <p style="color:black">Você só pode publicar quando estiver neste local.</p>\n\
+                    </div>';
+        }
+    
     function irAteLocal(local){
-        console.log(local);
         var coord = new Array();
         coord.push(local.dados.latitude);
         coord.push(local.dados.longitude);
