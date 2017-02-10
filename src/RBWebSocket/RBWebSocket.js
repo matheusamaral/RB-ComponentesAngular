@@ -9,10 +9,10 @@ angular.module('Cmp.Websocket',[
     function($timeout){
         var conn = false;
         
-        function iniciarConexao(){
-            conn = new WebSocket('ws://192.168.0.121:8801');
+        function iniciarConexao(server){
+            conn = new WebSocket('ws://'+server);
 
-            conn.onopen = function(e) {
+            conn.onopen = function(e){
                 console.log("Connection established!");
             };
             
@@ -23,9 +23,6 @@ angular.module('Cmp.Websocket',[
             //método disparado quando alguem da conexão fazer pergunta
             if(conn === false){
                 iniciarConexao();
-                console.log('JSON.parse(localStorage.getItem("dadosSessao")).codsessrt');
-                console.log(JSON.parse(localStorage.getItem("dadosSessao")).codsessrt);
-                console.log(idPagina+'-'+id);
             }
             
             $timeout(function(){
