@@ -39,6 +39,11 @@ class VerificarCodigoSmsEditar {
             $entidade->setId($sessao['id']);
             $entidade->setDadosSessao('{"codSess":"' . $sessao['codigo'] . '"}');
             $entidade->salvar();
+            if(!$entidade->getErro()){
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 }
