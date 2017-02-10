@@ -17,7 +17,7 @@ angular.module('QuickPeek.HTML.PesquisarLocaisCheckin', [
     };  
     
     function sessaoUltimosLocais(){
-         return'<div style="padding-top:65px;" id="container-infinite-scrol">\
+         return adicionarLocal()+'<div style="padding-top:65px;" id="container-infinite-scrol">\
                     <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
                         <div ng-click="irLocal(local)" ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
                             <div class="col">\n\
@@ -26,6 +26,15 @@ angular.module('QuickPeek.HTML.PesquisarLocaisCheckin', [
                         </div>\n\
                     </div>\n\
                 </div>';
+    }
+    
+    function adicionarLocal(){
+        return'<div style="padding-top:65px;" class="rb-padding-padrao" ng-if="dados.termoBuscado && locais.length == 0">\n\
+                <p class="p-preto rb-padding-padrao">O local <span class="negrito">"{{dados.termoBuscado}}"</span> não foi encontrado</p>\n\
+                <button ng-click="addLocal()" style="display: block;margin: auto;margin-top: 15px;" class="button button-positive">\n\
+                    CRIAR ESTE LOCAL\n\
+                </button>\n\
+            </div>';
     }
   
     return {

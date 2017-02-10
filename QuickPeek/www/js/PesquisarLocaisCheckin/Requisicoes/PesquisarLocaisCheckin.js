@@ -36,12 +36,14 @@ angular.module('QuickPeek.Requisicao.PesquisarLocaisCheckin', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             console.log(objRetorno);
-            alert(JSON.stringify(objRetorno));
+            scope.dados.termoBuscado = dados.nome;
             if(objRetorno.success === true){
 //                for(var i = 0; i < objRetorno.dados.length;i++){
 //                    scope.locais.push(objRetorno.dados[i]);
 //                }
                 scope.locais = objRetorno.dados;
+            }else{
+                scope.locais = new Array();
             }
         };
         

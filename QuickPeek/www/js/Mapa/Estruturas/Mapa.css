@@ -114,9 +114,9 @@
 .btn-mapa-tutorial-2{
     color: #666666 !important;
     font-weight: bold;
-    bottom: 91px;
+    bottom: 107px;
     position: absolute;
-    right: 159px;
+    right: 150px;
 }
 
 .btn-mapa-tutorial-2 i::before{
@@ -125,7 +125,7 @@
 }
 
 .z-index-superior{
-    z-index: 21 !important;
+    z-index: 30 !important;
 }
 
 .icone-tutorial-2{
@@ -164,7 +164,7 @@
 
 .icone-tutorial-3{
     position: absolute;
-    bottom: 80px;
+    bottom: 100px;
     color: #FFFFFF;
     right: 59px;
     font-size: 36px;

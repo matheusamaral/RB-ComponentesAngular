@@ -47,7 +47,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
     }
     
-    function irPessoas(idLocal){
+    function irPessoas(idLocal,evento){
+        VP.pararEvento(evento);
         DGlobal.idLocal = idLocal;
         Pagina.navegar({idPage:26,paramAdd:'?id='+idLocal+'&atualizando=0'});
     }
@@ -70,7 +71,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         Pagina.rollBack();
     }
     
-    function attTutorial(){
+    function attTutorial(evento){
+        if(evento)VP.pararEvento(evento);
         LocaisRequisicoes.set({dados:false,scope:scope,acaoSuccess:LocaisRequisicoes.successAttTutorial}).attTutorial();
     }
     
@@ -114,7 +116,8 @@ angular.module('QuickPeek.Acoes.Locais', [
     }
     
     function irPublicar(local){
-        if(local.localId == DGlobal.localAtual){
+        console.log(local);
+        if(local.dados.localId == DGlobal.localAtual){
             DGlobal.localPublicar = local;
             Pagina.navegar({idPage:32});
         }else{

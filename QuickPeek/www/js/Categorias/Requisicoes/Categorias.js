@@ -42,7 +42,7 @@ angular.module('QuickPeek.Requisicao.Categorias', [
             if(objRetorno.success === true) {
                 DGlobal.checkIn = {
                     local:{
-                        localId:objRetorno.dados.id,
+                        localId:objRetorno.dados,
                         localTitulo:dados.titulo
                     }
                 };

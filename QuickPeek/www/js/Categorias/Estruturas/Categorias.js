@@ -8,7 +8,7 @@ angular.module('QuickPeek.HTML.Categorias', [
     function montar(){
         return '<div ng-if="!novoLocal" class="config-padding-top row bar bar-header bar-light">\n\
                     <div class="">\n\
-                        <p class="p-titulo-barra-cinza">Selecione a categorias</p>\n\
+                        <p class="p-titulo-barra-cinza">Selecione as categorias</p>\n\
                     </div>\n\
                     <div class="col">\n\
                     </div>\n\
