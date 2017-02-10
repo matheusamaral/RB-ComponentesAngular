@@ -25,22 +25,30 @@ angular.module('QuickPeek.Acoes.Perguntar', [
         if(DGlobal.idLocal)
             var idLocal = DGlobal.idLocal;
         
-        scope.conn = Websocket.setarPagina(idPagina,false,executarResposta);
+        scope.conn = Websocket.setarPagina(idPagina,false,executarResposta,'quickpeek.rubeus.com.br:9876');
     }
     
     function voltarLocais(){
-        Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
+        Pagina.rollBack();
     }
     
     function executarResposta(resposta){
         console.log('resposta');
         console.log(resposta);
         if(resposta.remetente == 1){
-            voltarLocais(resposta);
+            Pagina.navegar({idPage:27,paramAdd:'?localId='+DGlobal.idLocal});
         }
     }
     
     function perguntar(){
+        console.log('dados perguntados '+JSON.stringify({
+            codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
+            processo:'Acoes',
+            etapa:'perguntas',
+            'Perguntas::localId':DGlobal.idLocal,
+            'Perguntas::titulo':scope.dados.pergunta,
+            'Perguntas::visibilidadeId':scope.dados.privacidade
+        }));
         scope.conn.send(JSON.stringify({
             codsessrt:JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
             processo:'Acoes',

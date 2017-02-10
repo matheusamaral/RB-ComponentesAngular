@@ -9,8 +9,8 @@ angular.module('Cmp.Websocket',[
     function($timeout){
         var conn = false;
         
-        function iniciarConexao(){
-            conn = new WebSocket('ws://192.168.0.121:8801');
+        function iniciarConexao(server){
+            conn = new WebSocket('ws://'+server);
 
             conn.onopen = function(e) {
                 console.log("Connection established!");
