@@ -83,7 +83,6 @@ class Perguntas {
                 $localIds[] = $localId;
                 $tipo[] = 1;
             }
-            
             $alerta->cadastrarAlerta($usuarios, $tipo, $response, $perguntasIds, false, false, $localIds);
         }
         return count($pessoas);
