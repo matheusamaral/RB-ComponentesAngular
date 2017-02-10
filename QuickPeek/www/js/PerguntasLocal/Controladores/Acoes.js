@@ -22,7 +22,7 @@ angular.module('QuickPeek.Acoes.PerguntasLocal', [
         if(DGlobal.idLocal)
             var idLocal = DGlobal.idLocal;
         
-        scope.conn = Websocket.setarPagina(idPagina,idLocal,executarResposta);
+        scope.conn = Websocket.setarPagina(idPagina,idLocal,executarResposta,'quickpeek.rubeus.com.br:9876');
     }
     
     function voltarLocais(){

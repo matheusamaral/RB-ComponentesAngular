@@ -77,8 +77,7 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
     }
     
     function sessaoUltimosLocais(){
-         return adicionarLocal()+'\n\
-                <div ng-if="!pesquisou" class="row box-ultimos remove-padding">\n\
+         return '<div ng-if="!pesquisou" class="row box-ultimos remove-padding">\n\
                     <div class="col remove-padding">\n\
                         <div class="row padding-pequeno-ultimo">\n\
                             <p class="p-ultimos-locais"> Locais recentes</p>\n\
