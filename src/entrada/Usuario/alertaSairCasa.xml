@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<processo codigo="aletarSairCasa" modulo="Usuario">
+    
+    <entrada> </entrada>
+    
+    <atividades>
+        <atividade codigo="alerta-sair-casa" tipo="tarefa">
+            <entidade nome="AlertaSairCasa" metodo="alertaSairCasa"/>
+        </atividade>
+    </atividades>
+    
+    <saida> </saida>
+    
+</processo>
