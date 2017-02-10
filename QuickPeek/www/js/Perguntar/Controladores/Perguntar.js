@@ -9,7 +9,7 @@ angular.module('QuickPeek.Perguntar', [
 .controller('PerguntarCtrl', ['$scope','PerguntarEstrutura','PerguntarAcoes',
     function ($scope,PerguntarEstrutura,PerguntarAcoes){        
         PerguntarEstrutura.setScope($scope).popular();
-        PerguntarAcoes.setScope($scope).configConexao('quickpeek.rubeus.com.br:9876');
+        PerguntarAcoes.setScope($scope).configConexao();
         
         $scope.voltarLocais = PerguntarAcoes.voltarLocais;
         $scope.perguntar = PerguntarAcoes.perguntar;

@@ -59,7 +59,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
         if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
             var idPagina = DGlobal.acaoCliente.idPagina;
         
-        scope.conn = Websocket.setarPagina(idPagina,scope.dados.idPergunta,acaoReal);
+        scope.conn = Websocket.setarPagina(idPagina,scope.dados.idPergunta,acaoReal,'quickpeek.rubeus.com.br:9876');
     }
     
     function responder(){
@@ -149,6 +149,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
     }
     
     function addResp(resposta){
+        console.log('sdsdsdsdss RESPOSTA SERVIDOR');
         if(!resposta.respostaTitulo)
             resposta.respostaTitulo = '';
         scope.dados.respostas.unshift(resposta);
