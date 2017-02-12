@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('QuickPeek.Acoes.LoadingInicial', [ 
+angular.module('QuickPeek.Acoes.LoadingInicial', [
     'RB.pagina',
     'RB.loadingMobile',
     'RB.validacoesPadroes'
@@ -8,47 +8,53 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
 
 .factory('LoadingInicialAcoes', ['Pagina','RBLoadingMobile','$timeout','VP',
     function(Pagina,RBLoadingMobile,$timeout,VP){
-    var scope;  
-    
+    var scope;
+
     function setScope(obj){
         scope = obj;
         RBLoadingMobile.show('Encontrando você no mapa');
         scope.mudarBtn = false;
         return this;
     };
-    
+
     function inicializar(){
         addCss();
     };
-    
+
     function addCss(){
         //Pagina.navegar({idPage:24});
         $('ion-side-menu-content').addClass('background-img');
     }
-    
+
     document.addEventListener('deviceready', onDeviceReady, false);
-    
+
     function onDeviceReady(){
             document.addEventListener("backbutton", overridingBackButton,false);
-            
+
             function overridingBackButton(e){
                 e.preventDefault();
                 console.log(e);
                 alert('sdsd');
             }
-            
+
             cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
+              console.log('testetste', available);
             if(!available){
                checkAuthorization();
             }else{
                 var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-                navigator.geolocation.getCurrentPosition(onSuccess,onError);
+
+                if(DGlobal.dipositivo == 1){
+                  navigator.geolocation.getCurrentPosition(onSuccess,onError);
+                }else{
+                  onSuccess({ coords: { latitude: '-21.131764', longitude: '-42.364326'}});
+                }
             }
         }, function(error){
             console.error("The following error occurred: "+error);
         });
     }
-    
+
     function checkAuthorization(){
         cordova.plugins.diagnostic.isLocationAuthorized(function(authorized){
             if(authorized){
@@ -96,9 +102,10 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
         }, function(error){
             console.error("The following error occurred: "+error);
         });
-    }   
-    
+    }
+
     var onSuccess = function(position){
+        console.log('successs', position);
         RBLoadingMobile.hide();
         scope.mudarBtn = true;
         var coordenadas = {latitude:position.coords.latitude,longitude:position.coords.longitude};
@@ -107,13 +114,14 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     };
 
     function onError(error){
+        console.log('EROROR', error);
         RBLoadingMobile.hide();
     }
-    
+
     return {
         setScope:setScope,
         inicializar:inicializar,
         onDeviceReady:onDeviceReady
     };
-    
+
  }]);
