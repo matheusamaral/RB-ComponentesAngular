@@ -35,6 +35,7 @@
     "ConsultaListarDadosUsuario": "\\Quickpeek\\Usuario\\Infra\\Repositorio\\Usuario\\ConsultaListarDadosUsuario",
     "DadosLocal": "\\Quickpeek\\Local\\Infra\\Repositorio\\Dados\\DadosLocal",
     "Alerta": "\\Quickpeek\\Usuario\\Aplicacao\\Alertas\\Alerta",
+    "AlertaSairCasa": "\\Quickpeek\\Usuario\\Aplicacao\\Alertas\\AlertaSairCasa",
     
     
     "CadastroUsuario": "\\Quickpeek\\Usuario\\Aplicacao\\Cadastro\\Cadastro",
