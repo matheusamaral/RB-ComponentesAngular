@@ -58,6 +58,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
 
         if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
             var idPagina = DGlobal.acaoCliente.idPagina;
+        console.log(refAmbienteWs,'=====');
 
         scope.conn = Websocket.setarPagina(idPagina,scope.dados.idPergunta,acaoReal,refAmbienteWs);
     }
