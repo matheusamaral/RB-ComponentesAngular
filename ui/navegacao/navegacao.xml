@@ -161,7 +161,7 @@
     <pagina id="21" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="termos-politicas">
         <dadosSolicitados>
         </dadosSolicitados>
-        <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas"  historico="1" cache="1"/>
+        <acaoCliente classe="pag-termos" acao="TermosCtrl" title="Termos e politicas" historico="1" cache="1"/>
     </pagina>
 
     <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina//\Rubeus\Navegacao\ClassePagina-->
@@ -176,7 +176,7 @@
                 <metodo name="listarDadosUsuario" objeto='dadosUser'></metodo>
             </classe>
         </dadosSolicitados>
-        <acaoCliente classe="pag-mapa" acao="MapaCtrl" title="Mapa"  historico="1"/>
+        <acaoCliente classe="pag-mapa" acao="MapaCtrl" title="Mapa" historico="1"/>
     </pagina>
 
     <pagina id="23" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="filtro-mapa" >

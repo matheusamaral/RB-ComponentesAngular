@@ -35,7 +35,6 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
             function (e){
                 e.stopPropagation();
                 e.preventDefault();
-                console.log(e);
                 Pagina.rollBack();
                 return false;
             },1000);
