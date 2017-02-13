@@ -18,6 +18,19 @@ angular.module('QuickPeek.HTML.Locais', [
                         <div ng-repeat="local in locais">\n\
                             <div ng-class="{\'padding-top-barra\' : $index == 0}"\n\
                             class="row barra-local">\n\
+                                <div ng-if="local.dados.checkIn == 1 && dadosUser.visibilidadeCheckInId != 3" class="icone-local-barra"\n\
+                                style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
+                                    <div class="container-privacidade-img-barra">\n\
+                                        <md-icon\n\
+                                        ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
+                                        \'ion-android-people\' : dadosUser.visibilidadeCheckInId == 2}">\n\
+                                        </md-icon>\n\
+                                    </div>\n\
+                                </div>\n\
+                                <div ng-if="local.dados.checkIn == 1 && dadosUser.visibilidadeCheckInId == 3" class="icone-local-popover-dourado"\n\
+                                style="background-image:url({{dadosUser.avatarEndereco}})">\n\
+                                    <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
+                                </div>\n\
                                 <div class="col">\n\
                                     <p class="p-titulo-local">{{local.dados.localNome}}</p>\n\
                                     <div ng-if="local.dados.checkIn == 1" class="row remove-padding">\n\
@@ -136,7 +149,7 @@ angular.module('QuickPeek.HTML.Locais', [
                     class="row rb-padding-padrao"\n\
                     ng-class="{\'remove-padding-bottom\' : $index != local.hashtags.length - 1,\n\
                     \'padding-mod-hashs\' : $index == 0}">\n\
-                        <div class="padding-hashs row box-hashTag"\n\
+                        <div style="margin-top: 5px !important;" class="padding-hashs row box-hashTag"\n\
                         ng-click="curtirHashtag(hash,local.dados.localId)"\n\
                         ng-repeat="hash in linha"\n\
                         ng-class="{\'selecionado\' : hash.jaCurtiu == 1}">\n\

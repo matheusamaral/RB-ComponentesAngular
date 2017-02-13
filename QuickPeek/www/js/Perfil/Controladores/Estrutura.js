@@ -25,6 +25,10 @@ angular.module('QuickPeek.Estrutura.Perfil', [
             scope.avatares = DGlobal.dadosAvatares.dados;
         }
         
+        if(DGlobal.dadosUser && DGlobal.dadosUser.success){
+            scope.dadosUserLocal = DGlobal.dadosUser.dados;
+        }
+        
         if(DGlobal.dadosUsuario && DGlobal.dadosUsuario.success){
             scope.dados = DGlobal.dadosUsuario.dados; 
             montaAvatar();

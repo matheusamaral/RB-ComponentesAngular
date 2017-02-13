@@ -28,7 +28,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                                 <p class="remove-padding col p-cinza-perfil">seguindo</p>\n\
                             </div>\n\
                         </div>\n\
-                        <div class="col" ng-if="!outraPessoa" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
+                        <div class="col" ng-if="dadosUserLocal.usuarioId == dados.usuarioId" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
                             <button style="margin-bottom: 10px;" ng-click="editarPerfil()" class="btn-perfil button button-outline button-stable">\n\
                                 <i class="icon ion-person config-icons-perfil"></i> Editar seu perfil\n\
                             </button>\n\
@@ -36,7 +36,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                                 <i class="icon ion-gear-b config-icons-perfil"></i> Configurações\n\
                             </button>\n\
                         </div>\n\
-                        <div class="col" ng-if="outraPessoa" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
+                        <div class="col" ng-if="dadosUserLocal.usuarioId != dados.usuarioId" style="padding-left:0;padding-right:0;padding-top:10px;">\n\
                             <button ng-click="seguir(dados.usuarioId)" ng-if="dados.seguindo == 0" class="btn-perfil-geral btn-seguidores button button-outline button-positive">\n\
                                 <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                             </button>\n\
@@ -58,7 +58,7 @@ angular.module('QuickPeek.HTML.Perfil', [
     };  
     
     function sessaoAvatar(){
-        return'<div ng-if="!outraPessoa" class="box-shadow-padrao-barra row box-avatar-cad" style="margin-top:20px !important; padding-top:20px;">\n\
+        return'<div ng-if="dadosUserLocal.usuarioId == dados.usuarioId" class="box-shadow-padrao-barra row box-avatar-cad" style="margin-top:20px !important; padding-top:20px;">\n\
                     <div class="col col-25 remove-padding">\n\
                         <div style="margin: auto;background-image: url({{dados.avatar.endereco}})" \n\
                         class="btn-perfil-medio box-img-cad">\n\
@@ -77,13 +77,13 @@ angular.module('QuickPeek.HTML.Perfil', [
         return'<div class="row box-sessao-local">\n\
                     <div class="col">\n\
                         <div class="row text-center">\n\
-                            <p ng-if="!outraPessoa" class="p-local-pequeno">ONDE ESTOU AGORA</p>\n\
-                            <p ng-if="outraPessoa" class="p-local-pequeno">ONDE ESTÁ AGORA</p>\n\
+                            <p ng-if="dadosUserLocal.usuarioId == dados.usuarioId" class="p-local-pequeno">ONDE ESTOU AGORA</p>\n\
+                            <p ng-if="dadosUserLocal.usuarioId != dados.usuarioId" class="p-local-pequeno">ONDE ESTÁ AGORA</p>\n\
                         </div>\n\
                         <div class="row text-center">\n\
                             <p class="p-local-grande">{{dadosLocalAtual.localTitulo}}</p>\n\
                         </div>\n\
-                        <div ng-if="!outraPessoa" class="row text-center remove-padding" style="padding-top: 25px !important;">\n\
+                        <div ng-if="dadosUserLocal.usuarioId == dados.usuarioId" class="row text-center remove-padding" style="padding-top: 25px !important;">\n\
                             <div class="col remove-padding">\n\
                                 <button ng-click="checkInLocal(dadosLocalAtual)" class="btn-perfil-clear button button-clear button-positive">\n\
                                     <i style="margin-right: 10px;" class="icon ion-android-globe"></i>Alterar privacidade\n\
@@ -114,7 +114,7 @@ angular.module('QuickPeek.HTML.Perfil', [
     }
     
     function tabs(){
-        return'<div ng-if="!outraPessoa" class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
+        return'<div ng-if="dadosUserLocal.usuarioId == dados.usuarioId" class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
                     <div class="tabs box-shadow-barra">\n\
                         <a class="tab-item" href="#" ng-click="irMapa()">\n\
                             <i style="opacity: 0.5;" class="icon img-quick-logo"></i>\n\
@@ -130,7 +130,7 @@ angular.module('QuickPeek.HTML.Perfil', [
                         </a>\n\
                     </div>\n\
                 </div>\n\
-                <div ng-if="outraPessoa" class="row bar bar-header bar-positive">\n\
+                <div ng-if="dadosUserLocal.usuarioId != dados.usuarioId" class="row bar bar-header bar-positive">\n\
                     <div>\n\
                         <button ng-click="voltar()" class="btn-txt-direita button button-clear">\n\
                             <i class="icon ion-android-arrow-back seta-barra"></i>Perfil\n\

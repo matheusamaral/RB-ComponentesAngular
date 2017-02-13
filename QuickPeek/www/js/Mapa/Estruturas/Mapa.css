@@ -188,3 +188,31 @@
     color: #ffb800;
     line-height: 22px;
 }
+
+.btn-local-centro{
+    position: fixed;
+    top: 83px;
+    right: 14px;
+    background-color: #FFFFFF !important;
+}
+
+.btn-local-centro md-icon{
+    color: #EDECEC;
+    line-height: 0;
+    font-size: 30px !important;
+    margin-bottom: 5px;
+    margin-right: 2px;
+}
+
+.btn-local-centro md-icon::before{
+    margin: auto;
+    color:#4d4d4d !important;
+    background-repeat: no-repeat no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    fill: currentColor;
+    height: 24px;
+    width: 24px;
+    margin-bottom: 4px;
+    margin-right: 2px;
+}

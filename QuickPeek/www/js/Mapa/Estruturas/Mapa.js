@@ -13,6 +13,9 @@ angular.module('QuickPeek.HTML.Mapa', [
                 <md-button style="bottom:{{btnAltura +100}}px" ng-click="irFiltro()" class="btn-flutuante-redondo md-fab">\n\
                     <md-icon class="img-seta-funil"></md-icon>\n\
                 </md-button>\n\
+                <md-button ng-click="irCentro()" class="btn-local-centro md-fab">\n\
+                    <md-icon class="ion-android-locate"></md-icon>\n\
+                </md-button>\n\
                 <md-button style="bottom:{{btnAltura +30}}px" ng-class="{\'z-index-superior\' : dadosUser.tutorial == 2}"\n\
                 ng-click="irPesquisa()" class="btn-flutuante-pesquisar md-fab">\n\
                     <i style="font-size: 26px;color: #4d4d4d;" class="icon ion-android-search"></i>\n\
@@ -131,7 +134,7 @@ angular.module('QuickPeek.HTML.Mapa', [
     function tabs(){
         return'<div class="tabs-striped tabs-top tabs-background-positive tabs-color-light">\n\
                     <div class="tabs box-shadow-preta">\n\
-                        <a class="tab-item active" href="#">\n\
+                        <a class="tab-item active" href="#" ng-click="irCentro()">\n\
                             <i class="icon img-quick-logo"></i>\n\
                         </a>\n\
                         <a class="tab-item" href="#" ng-click="mapaGeral.mapaAtivo(true)">\n\

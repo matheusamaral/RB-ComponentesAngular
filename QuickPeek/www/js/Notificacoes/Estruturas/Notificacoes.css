@@ -161,7 +161,7 @@ line-height: 20px;
 }
 
 .container-notificacoes{
-position: absolute;
+    position: absolute;
     background-color: red;
     height: 20px;
     border-radius: 10px;
@@ -170,5 +170,5 @@ position: absolute;
     color: #FFFFFF;
     padding-right: 6px;
     right: 0px;
-    top: -11px;
+    top: 0;
 }

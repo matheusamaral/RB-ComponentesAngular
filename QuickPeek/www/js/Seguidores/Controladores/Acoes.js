@@ -16,7 +16,7 @@ angular.module('QuickPeek.Acoes.Seguidores', [
     };
     
     function voltarPerfil(){
-        Pagina.navegar({idPage:8,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+        Pagina.rollBack();
     }
     
     function seguir(id,evento){

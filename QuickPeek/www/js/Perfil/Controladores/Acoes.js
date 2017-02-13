@@ -68,14 +68,16 @@ angular.module('QuickPeek.Acoes.Perfil', [
     
     function voltar(){
         if(DGlobal.perfilOutros)delete DGlobal.perfilOutros;
-        if(DGlobal.paginaVoltar){
-            if(DGlobal.idLocal){
-                Pagina.navegar({idPage:DGlobal.paginaVoltar,paramAdd:'?id='+DGlobal.idLocal+'&atualizando=0'});
-            }else{
-                Pagina.navegar({idPage:DGlobal.paginaVoltar});
-                delete DGlobal.paginaVoltar;
-            }
-        }
+//        if(DGlobal.paginaVoltar){
+//            if(DGlobal.idLocal){
+//                Pagina.navegar({idPage:DGlobal.paginaVoltar,paramAdd:'?id='+DGlobal.idLocal+'&atualizando=0'});
+//            }else{
+//                Pagina.navegar({idPage:DGlobal.paginaVoltar});
+//                delete DGlobal.paginaVoltar;
+//            }
+//        }
+        if(DGlobal.paginaVoltar) delete DGlobal.paginaVoltar;;
+        Pagina.rollBack();
     }
     
     function seguir(id){

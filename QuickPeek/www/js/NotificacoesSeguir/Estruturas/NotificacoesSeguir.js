@@ -17,17 +17,17 @@ angular.module('QuickPeek.HTML.NotificacoesSeguir', [
                 class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
                 ng-class="{\'padding-top-bloqueados\' : $index == 0}"\n\
                 ng-if="dados.pessoas.length > 0">\n\
-                    <div class="col remove-padding">\n\
+                    <div class="remove-padding">\n\
                         <div style="background-image:url({{pessoa.endereco}})" class="btn-redondo-medio"></div>\n\
                     </div>\n\
-                    <div class="remove-padding col-center" style="margin-right: 10px;">\n\
+                    <div class="remove-padding col-center" style="width: 100%;">\n\
                         <div class="row remove-padding">\n\
-                            <p style="line-height: 36px;" class="font-preta negrito text-left">{{pessoa.nome}}</p>\n\
-                            <button ng-click="confirmar(pessoa.seguirId,1)" class="btn-seguidores button button-outline button-positive">\n\
+                            <p style="line-height: 36px;margin-left: 10px;" class="font-preta negrito text-left">{{pessoa.nome}}</p>\n\
+                            <button ng-click="confirmar(pessoa.seguirId,1)" class="config-btn btn-seguidores button button-outline button-positive">\n\
                                 Confirmar\n\
                             </button>\n\
                             <button\n\
-                            style="width: 25px;min-width: 25px;"\n\
+                            style="width: 25px;min-width: 25px;margin-left: 10px;"\n\
                             ng-click="confirmar(pessoa.seguirId,0)" \n\
                             class="ion-android-close btn-seguidores button button-clear button-stable">\n\
                                 \n\

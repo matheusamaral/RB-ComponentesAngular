@@ -89,13 +89,26 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                 <div id="paiContainerScrol" style="overflow: auto;height:{{alturaTela}}px">\n\
                     <div>\n\
                         <div ng-click="irLocal(local.localId)" ng-repeat="local in locais.ultimosLocais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
-                            <!--<div ng-if="local.presente == 1" class="col">\n\
+                            <div ng-if="local.checkIn == 1 && dadosUser.visibilidadeCheckInId != 3" class="icone-local-barra"\n\
+                            style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
+                                <div class="container-privacidade-img-barra">\n\
+                                    <md-icon\n\
+                                    ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
+                                    \'ion-android-people\' : dadosUser.visibilidadeCheckInId == 2}">\n\
+                                    </md-icon>\n\
+                                </div>\n\
+                            </div>\n\
+                            <div ng-if="local.checkIn == 1 && dadosUser.visibilidadeCheckInId == 3" class="icone-local-popover-dourado"\n\
+                            style="background-image:url({{dadosUser.avatarEndereco}})">\n\
+                                <div class="container-privacidade-img" style="background-image:url(img/56.svg)"></div>\n\
+                            </div>\n\
+                            <div ng-if="local.checkIn == 1" class="col">\n\
                                 <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
                                 <div class="row remove-padding">\n\
                                     <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual - {{local.cidade}}</span>\n\
                                 </div>\n\
-                            </div>-->\n\
-                            <div class="col">\n\
+                            </div>\n\
+                            <div class="col" ng-if="local.checkIn != 1">\n\
                                 <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
                                 <p ng-if="local.localNome" class="p-titulo-local">{{local.localNome}}</p>\n\
                                 <div class="row remove-padding" style="padding-top:3px !important">\n\

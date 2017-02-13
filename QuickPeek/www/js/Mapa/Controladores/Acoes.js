@@ -147,6 +147,10 @@ angular.module('QuickPeek.Acoes.Mapa', [
         Pagina.navegar({idPage:41});
     }
     
+    function irCentro(){
+        scope.mapaGeral.map.panTo({lat:DGlobal.coordenadasAtual.latitude,lng:DGlobal.coordenadasAtual.longitude});
+    }
+    
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -161,7 +165,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
         irAteLocal:irAteLocal,
         estouEmCasa:estouEmCasa,
         estounoTrabalho:estounoTrabalho,
-        cadLocal:cadLocal
+        cadLocal:cadLocal,
+        irCentro:irCentro
     };
     
  }]);

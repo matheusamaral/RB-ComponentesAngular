@@ -25,6 +25,7 @@ angular.module('QuickPeek.Mapa', [
         $scope.estounoTrabalho = MapaAcoes.estounoTrabalho;
         $scope.estouEmCasa = MapaAcoes.estouEmCasa;
         $scope.cadLocal = MapaAcoes.cadLocal;
+        $scope.irCentro = MapaAcoes.irCentro;
     }
 ])
 
