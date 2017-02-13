@@ -61,7 +61,10 @@ angular.module('QuickPeek.Requisicao.Perfil', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-                scope.dados.seguindo = 2;
+                if(objRetorno.aceite == 1)
+                    scope.dados.seguindo = 1;
+                else
+                    scope.dados.seguindo = 2;
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);

@@ -3,16 +3,18 @@
 angular.module('QuickPeek.Acoes.PesquisarMapa', [ 
     'RB.pagina',
     'QuickPeek.Requisicao.PesquisarMapa',
-    'RB.validacoesPadroes'
+    'RB.validacoesPadroes',
+    'Cmp.InfinitScroll'
 ])
 
-.factory('PesquisarMapaAcoes', ['Pagina','PesquisarMapaRequisicoes','RBLoadingMobile','$timeout','VP',
-    function(Pagina,PesquisarMapaRequisicoes,RBLoadingMobile,$timeout,VP){
+.factory('PesquisarMapaAcoes', ['Pagina','PesquisarMapaRequisicoes','RBLoadingMobile','$timeout','VP','InfinitScroll',
+    function(Pagina,PesquisarMapaRequisicoes,RBLoadingMobile,$timeout,VP,InfinitScroll){
     var scope;  
     
     function setScope(obj){
         scope = obj;
         scope.busca = {buscandoPessoa : false};
+        iniciarInfinitScroll();
         return this;
     };
     
@@ -36,6 +38,16 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         scope.dados.longitude = DGlobal.coordenadasAtual.longitude,
         scope.dados.atualizando = true,
         PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarLocaisScroll}).pesquisarLocais();
+    }
+    
+        
+    function iniciarInfinitScroll(){
+        alert('sdsdsd');
+        InfinitScroll.iniciar({
+            bottom:true,
+            idSeletorBottom:'paiContainerScrol',
+            acaoBottom:pesquisarLocalScroll
+        });
     }
     
     function pesquisarPessoa(){
@@ -137,7 +149,8 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         seguir:seguir,
         cancelarSolicitacao:cancelarSolicitacao,
         deixarSeguir:deixarSeguir,
-        addLocal:addLocal
+        addLocal:addLocal,
+        iniciarInfinitScroll:iniciarInfinitScroll
     };
     
  }]);

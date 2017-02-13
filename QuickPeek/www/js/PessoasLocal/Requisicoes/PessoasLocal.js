@@ -66,7 +66,10 @@ angular.module('QuickPeek.Requisicao.PessoasLocal', [
             if(objRetorno.success === true){
                 for(var i = 0;i < scope.dados.pessoas.length; i++){
                     if(dados.usuarioSeguirId == scope.dados.pessoas[i].usuarioId){
-                        scope.dados.pessoas[i].seguindo = 2;
+                        if(objRetorno.aceite == 1)
+                            scope.dados.pessoas[i].seguindo = 1;
+                        else
+                            scope.dados.pessoas[i].seguindo = 2;
                     }
                 }
             }

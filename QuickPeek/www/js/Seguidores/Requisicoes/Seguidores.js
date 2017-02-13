@@ -38,7 +38,10 @@ angular.module('QuickPeek.Requisicao.Seguidores', [
             if(objRetorno.success === true) {
                 for(var i = 0; i < scope.dados.seguidores.length; i++){
                     if(dados.usuarioSeguirId == scope.dados.seguidores[i].usuarioId){
-                        scope.dados.seguidores[i].seguindo = 2;
+                        if(objRetorno.aceite == 1)
+                            scope.dados.seguidores[i].seguindo = 1;
+                        else
+                            scope.dados.seguidores[i].seguindo = 2;
                     }
                 }
             }

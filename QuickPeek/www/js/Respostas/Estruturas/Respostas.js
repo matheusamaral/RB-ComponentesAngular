@@ -104,7 +104,7 @@ angular.module('QuickPeek.HTML.Respostas', [
         return'<ion-content id="container-respostas" class="container-chat-geral" style="position:relative;height:{{(alturaBody - alturaChat)}}px;padding-top:60px !important">\n\
                     <div class="container-centro" style="width:{{larguraBody}}px">\n\
                         <div class="remove-padding container-dialogo row" style="margin-bottom: 20px;">\n\
-                            <div class="balao-direita">\n\
+                            <div ng-if="dadosUser.usuarioId == dados.pergunta.usuarioId" class="balao-direita">\n\
                                 <div class="container-textos">\n\
                                     <div class="row remove-padding">\n\
                                         <div class="col resp-momento remove-padding">12:30</div>\n\
@@ -117,6 +117,21 @@ angular.module('QuickPeek.HTML.Respostas', [
                                 <div class="container-img-resposta text-right remove-padding">\n\
                                     <div class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{dados.pergunta.enderecoUsuario}})"></div>\n\
+                                </div>\n\
+                            </div>\n\
+                            <div ng-if="dadosUser.usuarioId != dados.pergunta.usuarioId" class="balao-esquerda">\n\
+                                <div class="container-img-resposta text-right remove-padding">\n\
+                                    <div class="chat img-circular-grande margin-img"\n\
+                                    style="background-image:url({{dados.pergunta.enderecoUsuario}})"></div>\n\
+                                </div>\n\
+                                <div class="container-textos-esquerda">\n\
+                                    <div class="row remove-padding">\n\
+                                        <div class="col remetente remove-padding">{{dados.pergunta.nomeUsuario}}</div>\n\
+                                        <div class="col resp-momento remove-padding">12:30</div>\n\
+                                    </div>\n\
+                                    <div class="container-resposta">\n\
+                                        <span style="color: #ffb800;font-size: 21px;margin-right: 8px;" ng-if="dadosUser.usuarioId == dados.pergunta.usuarioId" ng-click="irDados()" class="ion-android-alert"></span>{{dados.pergunta.perguntaTitulo}}\n\
+                                    </div>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\

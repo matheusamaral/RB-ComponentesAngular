@@ -19,14 +19,14 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
                         class="row remove-padding-row divide-sessoes corpo-lista-config padding-padrao-contas"\n\
                         ng-class="{\'padding-top-bloqueados\' : $index == 0}"\n\
                         ng-if="dados.pessoas.length > 0"\n\
-                        ng-click="irPerfil(pessoa.usuarioId)">\n\
+                        ng-click="irPerfil(pessoa)">\n\
                             <div class="col-25 remove-padding">\n\
                                 <div ng-class="{\'borda-dourada\' : dadosUser.usuarioId == pessoa.usuarioId}" style="background-image:url({{pessoa.endereco}})" class="btn-redondo-medio"></div>\n\
                             </div>\n\
                             <div class="col remove-padding col-center">\n\
                                 <p class="font-preta negrito text-left">{{pessoa.usuarioNome}}</p>\n\
                             </div>\n\
-                            <div class="remove-padding col-center">\n\
+                            <div ng-if="pessoa.visibilidadeId != 3" class="remove-padding col-center">\n\
                                 <button ng-click="seguir(pessoa.usuarioId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 0" class="btn-seguidores button button-outline button-positive">\n\
                                     <i class="icon ion-ios-plus-empty"></i>Seguir\n\
                                 </button>\n\
