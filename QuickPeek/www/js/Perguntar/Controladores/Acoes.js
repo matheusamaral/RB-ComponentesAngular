@@ -24,7 +24,7 @@ angular.module('QuickPeek.Acoes.Perguntar', [
 
         if(DGlobal.idLocal)
             var idLocal = DGlobal.idLocal;
-
+        console.log(refAmbienteWs,'=====');
         scope.conn = Websocket.setarPagina(idPagina,false,executarResposta,refAmbienteWs);
     }
 
