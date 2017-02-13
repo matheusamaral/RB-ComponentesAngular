@@ -3,11 +3,12 @@
 angular.module('QuickPeek.Acoes.LoadingInicial', [
     'RB.pagina',
     'RB.loadingMobile',
+    'ionic',
     'RB.validacoesPadroes'
 ])
 
-.factory('LoadingInicialAcoes', ['Pagina','RBLoadingMobile','$timeout','VP',
-    function(Pagina,RBLoadingMobile,$timeout,VP){
+.factory('LoadingInicialAcoes', ['Pagina','RBLoadingMobile','$timeout','VP','$ionicPlatform',
+    function(Pagina,RBLoadingMobile,$timeout,VP,$ionicPlatform){
     var scope;
 
     function setScope(obj){
@@ -29,16 +30,18 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     document.addEventListener('deviceready', onDeviceReady, false);
 
     function onDeviceReady(){
-            document.addEventListener("backbutton", overridingBackButton,false);
-
-            function overridingBackButton(e){
-                e.preventDefault();
-                console.log(e);
-                alert('sdsd');
-            }
+            //document.addEventListener("backbutton", overridingBackButton,false);
+            $ionicPlatform.registerBackButtonAction(
+                function (e){
+                    e.stopPropagation();
+                    e.preventDefault();
+                    console.log(e);
+                    Pagina.rollBack();
+                    return false;
+                },1000);
 
             cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
-              console.log('testetste', available);
+
             if(!available){
                checkAuthorization();
             }else{
@@ -110,7 +113,7 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
         scope.mudarBtn = true;
         var coordenadas = {latitude:position.coords.latitude,longitude:position.coords.longitude};
         DGlobal.coordenadasAtual = coordenadas;
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude},1);
     };
 
     function onError(error){

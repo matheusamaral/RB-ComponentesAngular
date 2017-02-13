@@ -3,10 +3,10 @@
 angular.module('QuickPeek.Requisicao.CadastroDados', [
     'RB.pagina'
 ])
- 
+
 .factory('CadastroDadosRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
-        
+
         var dados;
         var scope;
         var acaoSuccess;
@@ -31,7 +31,7 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             };
             GCS.conectar(obj);
         };
-        
+
         function successCadastrar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
@@ -42,7 +42,7 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
-        
+
         function editar(){
             RBLoadingMobile.show();
             var obj = {
@@ -56,7 +56,7 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             };
             GCS.conectar(obj);
         };
-        
+
         function successEditar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
@@ -67,18 +67,18 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
-        
-        
+
+
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
             OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
         };
-        
-        
+
+
         function OpenToast(message) {
           ionicToast.show(message, 'bottom', false, 3000);
         }
-        
+
         return {
             set: set,
             cadastrar: cadastrar,
@@ -86,5 +86,5 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             editar:editar,
             successEditar:successEditar
         };
-                           
-}]);     
+
+}]);

@@ -4,10 +4,10 @@ angular.module('QuickPeek.Requisicao.Locais', [
     'RB.pagina',
     'Cmp.InfinitScroll'
 ])
- 
+
 .factory('LocaisRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','$timeout','InfinitScroll','$ionicPopup',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,$timeout,InfinitScroll,$ionicPopup) {
-        
+
         var dados;
         var scope;
         var acaoSuccess;
@@ -20,7 +20,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
             if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
             return this;
         };
-        
+
         function listarAreas(){
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Listar/listarAreaMapa",
@@ -33,7 +33,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
             };
             GCS.conectar(obj);
         };
-        
+
         function successListarAreas(objRetorno){
             console.log("objRetornssso",objRetorno);
             if(objRetorno.success === true){
@@ -49,7 +49,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
                 OpenToast('Não foi possível localizar mais locais proximos');
             }
         };
-        
+
         function listarMidias(){
             RBLoadingMobile.show();
             var obj = {
@@ -63,19 +63,19 @@ angular.module('QuickPeek.Requisicao.Locais', [
             };
             GCS.conectar(obj);
         };
-        
+
         function successListarMidias(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 DGlobal.midias = objRetorno.dados;
-                Pagina.navegar({idPage:25});
+                Pagina.navegar({idPage:25},1);
             }
             else{
                 OpenToast('Não foi possível localizar midias');
             }
         };
-        
+
         function curtirHashTag(){
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Acoes/curtirHashtag",
@@ -88,7 +88,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
             };
             GCS.conectar(obj);
         };
-        
+
         function successCurtirHashtag(objRetorno){
             console.log("objRetorno",objRetorno);
             console.log(scope.locais);
@@ -113,25 +113,25 @@ angular.module('QuickPeek.Requisicao.Locais', [
                         }
                     }
                 }
-                
+
                 if(acaoPosterior)acaoPosterior();
             }
             else{
                 OpenToast('Não foi possível curtir esta hashtag');
             }
         };
-        
-        
+
+
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
             OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
         };
-        
-        
+
+
         function OpenToast(message) {
           ionicToast.show(message, 'bottom', false, 3000);
         }
-        
+
         function attTutorial(){
             RBLoadingMobile.show();
             var obj = {
@@ -145,8 +145,8 @@ angular.module('QuickPeek.Requisicao.Locais', [
             };
             GCS.conectar(obj);
         };
-        
-        
+
+
         function successAttTutorial(objRetorno){
             RBLoadingMobile.hide();
             //alert(JSON.stringify(objRetorno));
@@ -158,7 +158,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
-        
+
         function verificarLimitePerguntas(){
             RBLoadingMobile.show();
             var obj = {
@@ -172,7 +172,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
             };
             GCS.conectar(obj);
         };
-        
+
         function successVerificarLimitePerguntas(objRetorno){
             RBLoadingMobile.hide();
             console.log('objRetorno');
@@ -197,7 +197,7 @@ angular.module('QuickPeek.Requisicao.Locais', [
                 }
             }
         };
-        
+
         function calculaHora(tempo){
             var hora='', minutos='';
             if(tempo > 60){
@@ -222,14 +222,14 @@ angular.module('QuickPeek.Requisicao.Locais', [
                 else return tempo +' minutos.';
             }
         }
-        
+
         function montarPopup(){
             return'<div class="col">\n\
                         <p style="color:black">Você só pode fazer 3 perguntas a cada 3 horas.</p>\n\
                         <p style="color:black;margin-top:10px">Você poderá fazer uma nova pergunta em {{hora}}</p>\n\
                     </div>';
         }
-        
+
         return {
             set: set,
             successListarAreas: successListarAreas,
@@ -243,5 +243,5 @@ angular.module('QuickPeek.Requisicao.Locais', [
             verificarLimitePerguntas:verificarLimitePerguntas,
             successVerificarLimitePerguntas:successVerificarLimitePerguntas
         };
-                           
-}]);     
+
+}]);

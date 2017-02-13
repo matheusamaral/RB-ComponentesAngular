@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('QuickPeek.Acoes.ConfigConta', [ 
+angular.module('QuickPeek.Acoes.ConfigConta', [
     'RB.pagina',
     'QuickPeek.HTML.ConfigConta',
     'QuickPeek.Requisicao.ConfigConta'
@@ -8,13 +8,13 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
 
 .factory('ConfigContaAcoes', ['Pagina','$ionicPopup','popupUltimoHtml','contaPrivadaHtml','ConfigContaRequisicoes','$timeout',
     function(Pagina,$ionicPopup,popupUltimoHtml,contaPrivadaHtml,ConfigContaRequisicoes,$timeout){
-    var scope;  
-    
+    var scope;
+
     function setScope(obj){
         scope = obj;
         return this;
     };
-    
+
     function popupVisto(){
         scope.popupVisibilidade = $ionicPopup.alert({
             scope:scope,
@@ -28,7 +28,7 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
             ]
         });
     }
-    
+
     function popupContaPrivada(){
         scope.opTemporarea = scope.dados.contaPrivada;
         if(scope.opTemporarea == 0){
@@ -45,35 +45,35 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
             alterarPrivacidade();
         }
     }
-    
+
     function fecharPopup(){
         scope.dados.contaPrivada = scope.opTemporarea;
         scope.contaPrivadaPopup.close();
     }
-    
+
     function alterarPrivacidade(){
         $timeout(function(){
             var obj = {contaPrivada : scope.dados.contaPrivada};
             ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successEditarCPrivada}).editarCPrivada();
         },0);
     }
-    
+
     function listarPessoasBloqueadas(){
         Pagina.navegar({idPage:11});
     }
-    
+
     function voltarConfiguracoes(){
         Pagina.rollBack();
     }
-    
+
     function mudarNumero(){
         Pagina.navegar({idPage:12});
     }
-    
+
     function irApagarConta(){
         Pagina.navegar({idPage:14});
     }
-    
+
     function attVisibilidade(titulo,id){
         console.log(id);
         scope.dadosAntigos = {
@@ -83,7 +83,7 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
         var obj = {visibilidadeId:id,titulo:titulo};
         ConfigContaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:ConfigContaRequisicoes.successEditarVisibilidade}).editarVisibilidade();
     }
-    
+
     return {
         setScope:setScope,
         popupVisto:popupVisto,
@@ -94,5 +94,5 @@ angular.module('QuickPeek.Acoes.ConfigConta', [
         irApagarConta:irApagarConta,
         attVisibilidade:attVisibilidade
     };
-    
+
  }]);

@@ -1,23 +1,23 @@
 'use strict';
 
-angular.module('QuickPeek.Acoes.FiltroMapa', [ 
+angular.module('QuickPeek.Acoes.FiltroMapa', [
     'RB.pagina',
     'Cmp.Geolocation'
 ])
 
 .factory('FiltroMapaAcoes', ['Pagina','Geolocation',
     function(Pagina,Geolocation){
-    var scope;  
-    
+    var scope;
+
     function setScope(obj){
         scope = obj;
         return this;
     };
-    
+
     function inicializar(){
         $('ion-side-menu-content').addClass('background-cinza-claro');
     };
-    
+
     function selecionarCategoria(indice){
         for(var i = 0;i < scope.objCategorias.length;i++){
             for(var j = 0; j < scope.objCategorias[i].length; j++){
@@ -35,11 +35,11 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
             }
         }
     }
-    
+
     function addCategoria(id){
         scope.dados.categorias.push(id);
     }
-    
+
     function removeCategoria(id,tipo){
         var achou = false, indiceAchado;
         for(var i = 0; i < scope.dados.categorias.length;i++){
@@ -48,30 +48,30 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
                 indiceAchado = i;
             }
         }
-        
+
         if(achou){
             scope.dados.categorias.splice(indiceAchado,1);
             scope.dados.tipos.splice(indiceAchado,1);
         }
-        
+
     }
-    
+
     function addTipo(id){
         scope.dados.tipos.push(id);
     }
-    
+
     function redefinir(){
         for(var i = 0;i < scope.objCategorias.length;i++){
             for(var j = 0; j < scope.objCategorias[i].length; j++){
                 scope.objCategorias[i][j].selecionado = false;
             }
         }
-        
+
         scope.dados.tipos = new Array();
         scope.dados.categorias = new Array();
         if(DGlobal.filtro)delete DGlobal.filtro;
     }
-    
+
     function aplicarFiltro(){
         DGlobal.filtro = scope.dados;
         var param = decodeURIComponent($.param(scope.dados));
@@ -84,21 +84,21 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
             navigator.geolocation.getCurrentPosition(onSuccessPar,onErrorPar);
         }
     };
-    
+
     var onSuccessPar = function(position){
         DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
         Pagina.navegar({idPage:22,paramAdd:'?categorias='+scope.dados.categorias+'&tipos='+scope.dados.tipos+'&atualizando=0&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
-    
+
     var onErrorPar = function(){
         var coordenadas = {latitude:-21.135445,longitude:-42.365089};
         Pagina.navegar({idPage:22,paramAdd:'?categorias='+scope.dados.categorias+'&tipos='+scope.dados.tipos+'&atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     };
-    
+
     function voltarMapa(){
         Pagina.rollBack();
     }
-    
+
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -107,5 +107,5 @@ angular.module('QuickPeek.Acoes.FiltroMapa', [
         aplicarFiltro:aplicarFiltro,
         voltarMapa:voltarMapa
     };
-    
+
  }]);
