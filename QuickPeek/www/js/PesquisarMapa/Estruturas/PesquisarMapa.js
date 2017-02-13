@@ -84,44 +84,46 @@ angular.module('QuickPeek.HTML.PesquisarMapa', [
                         </div>\n\
                     </div>\n\
                 </div>\n\
-                <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
-                    <div ng-click="irLocal(local.localId)" ng-repeat="local in locais.ultimosLocais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
-                        <!--<div ng-if="local.presente == 1" class="col">\n\
-                            <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
-                            <div class="row remove-padding">\n\
-                                <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual - {{local.cidade}}</span>\n\
+                <div id="paiContainerScrol" style="overflow: auto;height:{{alturaTela}}px">\n\
+                    <div>\n\
+                        <div ng-click="irLocal(local.localId)" ng-repeat="local in locais.ultimosLocais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
+                            <!--<div ng-if="local.presente == 1" class="col">\n\
+                                <p ng-if="local.localTitulo" class="p-titulo-local">{{local.localTitulo}}</p>\n\
+                                <div class="row remove-padding">\n\
+                                    <i class="icon ion-ios-location icone-dourado"></i><span class="span-dourado">Seu local atual - {{local.cidade}}</span>\n\
+                                </div>\n\
+                            </div>-->\n\
+                            <div class="col">\n\
+                                <p class="p-titulo-local">{{local.localTitulo}}</p>\n\
+                                <div class="row remove-padding" style="padding-top:3px !important">\n\
+                                    <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia >= 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia >= 1">{{local.distancia.split(\'.\')[0]}} km de distância - {{local.cidade}}</span>\n\
+                                    <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia < 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia < 1">{{converteKmM(local.distancia)}} m de distância - {{local.cidade}}</span>\n\
+                                </div>\n\
                             </div>\n\
-                        </div>-->\n\
-                        <div class="col">\n\
-                            <p class="p-titulo-local">{{local.localTitulo}}</p>\n\
-                            <div class="row remove-padding" style="padding-top:3px !important">\n\
-                                <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia >= 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia >= 1">{{local.distancia.split(\'.\')[0]}} km de distância - {{local.cidade}}</span>\n\
-                                <i style="padding-top: 3px;" class="p-titulo-hastag icon ion-ios-location" ng-if="local.distancia < 1"></i><span style="padding-top: 3px;" class="p-titulo-hastag" ng-if="local.distancia < 1">{{converteKmM(local.distancia)}} m de distância - {{local.cidade}}</span>\n\
+                            <div class="text-right">\n\
+                                <md-menu>\n\
+                                    <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                        <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
+                                    </md-button>\n\
+                                    <md-menu-content width="4">\n\
+                                        <md-menu-item ng-if="local.checkIn == 1">\n\
+                                            <md-button ng-click="ctrl.redial($event)">\n\
+                                                Alterar localização\n\
+                                            </md-button>\n\
+                                        </md-menu-item>\n\
+                                        <md-menu-item ng-if="local.checkIn == 1">\n\
+                                            <md-button ng-click="ctrl.redial($event)">\n\
+                                                Alterar privacidade\n\
+                                            </md-button>\n\
+                                        </md-menu-item>\n\
+                                        <md-menu-item>\n\
+                                            <md-button ng-click="ctrl.redial($event)">\n\
+                                                Navegar até o local\n\
+                                            </md-button>\n\
+                                        </md-menu-item>\n\
+                                    </md-menu-content>\n\
+                                </md-menu>\n\
                             </div>\n\
-                        </div>\n\
-                        <div class="text-right">\n\
-                            <md-menu>\n\
-                                <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
-                                    <md-icon class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
-                                </md-button>\n\
-                                <md-menu-content width="4">\n\
-                                    <md-menu-item ng-if="local.checkIn == 1">\n\
-                                        <md-button ng-click="ctrl.redial($event)">\n\
-                                            Alterar localização\n\
-                                        </md-button>\n\
-                                    </md-menu-item>\n\
-                                    <md-menu-item ng-if="local.checkIn == 1">\n\
-                                        <md-button ng-click="ctrl.redial($event)">\n\
-                                            Alterar privacidade\n\
-                                        </md-button>\n\
-                                    </md-menu-item>\n\
-                                    <md-menu-item>\n\
-                                        <md-button ng-click="ctrl.redial($event)">\n\
-                                            Navegar até o local\n\
-                                        </md-button>\n\
-                                    </md-menu-item>\n\
-                                </md-menu-content>\n\
-                            </md-menu>\n\
                         </div>\n\
                     </div>\n\
                 </div>';

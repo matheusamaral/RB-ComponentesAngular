@@ -40,13 +40,15 @@ angular.module('QuickPeek.Acoes.PessoasLocal', [
     }
     
     function irPerfil(id){
-        if(id == DGlobal.dadosUser.dados.usuarioId){
-            Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-        }else{
-            Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
-            DGlobal.perfilOutros = true;
-        }
+        if(id.visibilidadeId != 3){
+            if(id.usuarioId == DGlobal.dadosUser.dados.usuarioId){
+                Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id.usuarioId+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+            }else{
+                Pagina.navegar({idPage:8,paramAdd:'?usuarioId='+id.usuarioId+'&latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
+                DGlobal.perfilOutros = true;
+            }
             DGlobal.paginaVoltar = 26;
+        }
     }
     
     function seguir(id,evento){
