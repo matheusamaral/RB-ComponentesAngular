@@ -18,10 +18,12 @@ angular.module('QuickPeek.HTML.PesquisarLocaisCheckin', [
     
     function sessaoUltimosLocais(){
          return adicionarLocal()+'<div style="padding-top:65px;" id="container-infinite-scrol">\
-                    <div infinite-scroll="pesquisarLocalScroll()" infinite-scroll-distance="0" infinite-scroll-container="\'#container-infinite-scrol\'">\n\
-                        <div ng-click="irLocal(local)" ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
-                            <div class="col">\n\
-                                <p class="p-titulo-local">{{local.titulo}}</p>\n\
+                    <div id="paiContainerScrol" style="overflow: auto;height:{{alturaTela}}px">\n\
+                        <div>\n\
+                            <div ng-click="irLocal(local)" ng-repeat="local in locais" class="row barra-local padding-top-personalizado rb-padding-padrao">\n\
+                                <div class="col">\n\
+                                    <p class="p-titulo-local">{{local.titulo}}</p>\n\
+                                </div>\n\
                             </div>\n\
                         </div>\n\
                     </div>\n\

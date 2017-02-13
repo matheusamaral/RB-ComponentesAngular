@@ -15,10 +15,6 @@ angular.module('QuickPeek.Acoes.PesquisarLocaisCheckin', [
         return this;
     };
     
-    function pesquisarLocalScroll(){
-        
-    }
-    
     function voltarCheckin(){
         Pagina.rollBack();
     }

@@ -39,15 +39,32 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         scope.dados.atualizando = true,
         PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarLocaisScroll}).pesquisarLocais();
     }
-    
         
     function iniciarInfinitScroll(){
-        alert('sdsdsd');
+        scope.alturaTela = $('ion-side-menu-content').height();
+        $timeout(function(){
+            InfinitScroll.iniciar({
+                bottom:true,
+                idSeletorBottom:'paiContainerScrol',
+                acaoBottom:pesquisarLocalScroll
+            });
+        },0);
+    }
+    
+    function iniciarInfinitScrollPessoa(){
         InfinitScroll.iniciar({
             bottom:true,
-            idSeletorBottom:'paiContainerScrol',
-            acaoBottom:pesquisarLocalScroll
+            idSeletorBottom:'paiContainerScrolPessoa',
+            acaoBottom:pesquisarPessoaScroll
         });
+    }
+    
+    function gerenciaScroll(index){
+        console.log(index);
+        if(index == 0)
+            iniciarInfinitScroll();
+        else
+            iniciarInfinitScrollPessoa();
     }
     
     function pesquisarPessoa(){
@@ -60,7 +77,6 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
     }
     
     function pesquisarPessoaScroll(){
-        RBLoadingMobile.show();
         scope.dados.atualizando = true,
         PesquisarMapaRequisicoes.set({dados:scope.dados,scope:scope,acaoSuccess:PesquisarMapaRequisicoes.successPesquisarPessoasScroll}).pesquisarPessoas();
     }
@@ -150,7 +166,8 @@ angular.module('QuickPeek.Acoes.PesquisarMapa', [
         cancelarSolicitacao:cancelarSolicitacao,
         deixarSeguir:deixarSeguir,
         addLocal:addLocal,
-        iniciarInfinitScroll:iniciarInfinitScroll
+        iniciarInfinitScroll:iniciarInfinitScroll,
+        gerenciaScroll:gerenciaScroll
     };
     
  }]);

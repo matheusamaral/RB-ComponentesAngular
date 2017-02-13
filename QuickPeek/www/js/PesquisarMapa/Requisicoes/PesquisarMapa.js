@@ -5,8 +5,8 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
     'Cmp.InfinitScroll'
 ])
  
-.factory('PesquisarMapaRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina','InfinitScroll',
-      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina,InfinitScroll) {
+.factory('PesquisarMapaRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','$timeout','InfinitScroll',
+      function (RBLoadingMobile,GCS, Config,ionicToast,$timeout,InfinitScroll){
         
         var dados;
         var scope;
@@ -78,16 +78,12 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
-//                for(var i = 0; i < objRetorno.dados.length;i++){
-//                    scope.locais.push(objRetorno.dados[i]);
-//                }
                 scope.pessoas = objRetorno.dados;
             }
             scope.busca.buscandoPessoa = false;
         };
         
         function successPesquisarPessoasScroll(objRetorno){
-            RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true){
                 for(var i = 0; i < objRetorno.dados.length;i++){
@@ -95,6 +91,9 @@ angular.module('QuickPeek.Requisicao.PesquisarMapa', [
                 }
             }
             scope.busca.buscandoPessoa = false;
+            $timeout(function(){
+                InfinitScroll.fechaLoaderBottom();
+            },500);
         };
         
         function seguir(){
