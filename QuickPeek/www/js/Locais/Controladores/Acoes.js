@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('QuickPeek.Acoes.Locais', [ 
+angular.module('QuickPeek.Acoes.Locais', [
     'RB.pagina',
     'QuickPeek.Requisicao.Locais',
     'RB.validacoesPadroes',
@@ -10,13 +10,13 @@ angular.module('QuickPeek.Acoes.Locais', [
 
 .factory('LocaisAcoes', ['Pagina','$timeout','LocaisRequisicoes','VP','LocaisEstrutura','InfinitScroll','$ionicPopup',
     function(Pagina,$timeout,LocaisRequisicoes,VP,LocaisEstrutura,InfinitScroll,$ionicPopup){
-    var scope;  
-    
+    var scope;
+
     function setScope(obj){
         scope = obj;
         return this;
     };
-    
+
     function iniciarInfinitScroll(){
         InfinitScroll.iniciar({
             bottom:true,
@@ -24,7 +24,7 @@ angular.module('QuickPeek.Acoes.Locais', [
             acaoBottom:carregarLocais
         });
     }
-    
+
     function inicializar(){
         $('ion-side-menu-content').addClass('background-cinza-claro');
         scope.alturaTela = $('ion-side-menu-content').height();
@@ -32,11 +32,11 @@ angular.module('QuickPeek.Acoes.Locais', [
             iniciarInfinitScroll();
         },0);
     }
-    
+
     function exibirMidias(id){
         Pagina.navegar({idPage:25,paramAdd:'?id='+id});
     }
-    
+
     function carregarLocais(){
         var obj = {
             latitude:DGlobal.coordenadasAtual.latitude,
@@ -46,18 +46,18 @@ angular.module('QuickPeek.Acoes.Locais', [
         };
         LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successListarAreas}).listarAreas();
     }
-    
+
     function irPessoas(idLocal,evento){
         VP.pararEvento(evento);
         DGlobal.idLocal = idLocal;
         Pagina.navegar({idPage:26,paramAdd:'?id='+idLocal+'&atualizando=0'});
     }
-    
+
     function irPerguntas(id){
         DGlobal.idLocal = id;
         Pagina.navegar({idPage:27,paramAdd:'?localId='+id});
     }
-    
+
     function perguntar(id){
         LocaisRequisicoes.set({
             dados:{localId:id},
@@ -65,17 +65,17 @@ angular.module('QuickPeek.Acoes.Locais', [
             acaoSuccess:LocaisRequisicoes.successVerificarLimitePerguntas
         }).verificarLimitePerguntas();
     }
-    
+
     function voltarMapa(){
         if(DGlobal.voltarLocais)delete DGlobal.voltarLocais;
         Pagina.rollBack();
     }
-    
+
     function attTutorial(evento){
         if(evento)VP.pararEvento(evento);
         LocaisRequisicoes.set({dados:false,scope:scope,acaoSuccess:LocaisRequisicoes.successAttTutorial}).attTutorial();
     }
-    
+
     function irCheckin(){
         var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
         DGlobal.voltarLocais = true;
@@ -85,23 +85,23 @@ angular.module('QuickPeek.Acoes.Locais', [
             navigator.geolocation.getCurrentPosition(onCheckin,onChekinError);
         }
     }
-    
+
     var onCheckin = function(position){
         DGlobal.coordenadasAtual = {latitude:position.coords.latitude,longitude:position.coords.longitude};
         Pagina.navegar({idPage:29,paramAdd:'?latitude='+DGlobal.coordenadasAtual.latitude+'&longitude='+DGlobal.coordenadasAtual.longitude});
     };
-    
+
     function onChekinError(error){
         var coordenadas = {latitude:-21.135445,longitude:-42.365089};
         Pagina.navegar({idPage:29,paramAdd:'?latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
     }
-    
+
     function checkInLocal(local){
         DGlobal.checkIn = {local:local.dados};
         if(local.localTitulo)DGlobal.checkIn.local.localNome = local.localTitulo;
         Pagina.navegar({idPage:30,paramAdd:'?localId='+local.localId});
     }
-    
+
     function curtirHashtag(hash,localId){
         var obj = {
             hashtagId:hash.hashtagId,
@@ -110,11 +110,11 @@ angular.module('QuickPeek.Acoes.Locais', [
         };
         LocaisRequisicoes.set({acaoPosterior:LocaisEstrutura.montaHashtags,dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successCurtirHashtag}).curtirHashTag();
     }
-    
+
     function converteKmM(km){
         return String((1000 * (parseFloat(km)))).split('.')[0];
     }
-    
+
     function irPublicar(local){
         console.log(local);
         if(local.dados.localId == DGlobal.localAtual){
@@ -131,20 +131,20 @@ angular.module('QuickPeek.Acoes.Locais', [
             });
         }
     }
-    
+
     function montarPopup(){
             return'<div class="col">\n\
                         <p style="color:black">Você só pode publicar quando estiver neste local.</p>\n\
                     </div>';
         }
-    
+
     function irAteLocal(local){
         var coord = new Array();
         coord.push(local.dados.latitude);
         coord.push(local.dados.longitude);
         launchnavigator.navigate(coord);
     }
-    
+
     return {
         setScope:setScope,
         inicializar:inicializar,
@@ -162,5 +162,5 @@ angular.module('QuickPeek.Acoes.Locais', [
         perguntar:perguntar,
         irAteLocal:irAteLocal
     };
-    
+
  }]);

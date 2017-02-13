@@ -3,10 +3,10 @@
 angular.module('QuickPeek.Requisicao.Avatares', [
     'RB.pagina'
 ])
- 
+
 .factory('AvataresRequisicoes', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
       function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
-        
+
         var dados;
         var scope;
         var acaoSuccess;
@@ -31,8 +31,8 @@ angular.module('QuickPeek.Requisicao.Avatares', [
             };
             GCS.conectar(obj);
         };
-        
-        
+
+
         function successEditarAvatar(objRetorno){
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
@@ -46,22 +46,22 @@ angular.module('QuickPeek.Requisicao.Avatares', [
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
-        
-        
+
+
         function errorSalvar(dados, scope){
             RBLoadingMobile.hide();
             OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
         };
-        
-        
+
+
         function OpenToast(message) {
           ionicToast.show(message, 'bottom', false, 3000);
         }
-        
+
         return {
             set: set,
             editarAvatar: editarAvatar,
             successEditarAvatar: successEditarAvatar
         };
-                           
-}]);     
+
+}]);

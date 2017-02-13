@@ -13,11 +13,11 @@ class Chat implements MessageComponentInterface {
     protected $clients;
     protected $dadosBanco = [];
     public $maiorQtd = 0;
-    
+
     public function __construct(){
         $this->clients = new \SplObjectStorage;
     }
-    
+
     public function onOpen(ConnectionInterface $conn){
         if(count($this->clients) > $this->maiorQtd){
             $this->maiorQtd = count($this->clients);
@@ -25,29 +25,29 @@ class Chat implements MessageComponentInterface {
         $this->clients->attach($conn);
         echo "New connection! ({$conn->resourceId})" . " - connections:   " . $this->maiorQtd . "\n";
     }
-    
+
     public function setarDadosBanco($resourceId, $usuarioId, $pagina){
-        
+
         foreach($this->dadosBanco as $k=>$v){
             if($v['usuario'] == $usuarioId){
                 $position = $k;
             }
         }
-        
+
         if(!isset($position)){
             $this->dadosBanco[] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
         }else{
             $this->dadosBanco[$position] = ['conexao' => $resourceId, 'usuario' => $usuarioId, 'pagina' => $pagina];
         }
-        
+
         Conteiner::registrar('DadosBanco', $this->dadosBanco);
         Conteiner::get('StatusChat')->setarStatus($usuarioId, 1);
     }
-    
+
     public function getConexao($usuarioId, $pagina){
-        
+
         $dadosBanco = Conteiner::get('DadosBanco');
-        
+
         foreach($dadosBanco as $v){
             if($v['usuario'] == $usuarioId){
                 $fromConexao = $v['conexao'];
@@ -63,45 +63,45 @@ class Chat implements MessageComponentInterface {
                 }
             }
         }
-        
+
         if(isset($toConexao)){
             return ['fromConexao'=>$fromConexao, 'toConexao'=>$toConexao, 'usuarios'=>$usuarios, 'paginas'=>$paginas, 'remetente'=>$remetente];
         }else{
             return false;
         }
     }
-    
+
     public function onMessage(ConnectionInterface $from, $mensagem){
         Sessao::limparSessao();
         $obj = json_decode($mensagem);
         //var_dump($obj->codsessrt,'=======');
         Sessao::iniciar($obj->codsessrt);
-        
+
 //        var_dump( Sessao::getSessao());
-        
+
         $msg = Conteiner::get('Mensagem', false);
         foreach($obj as $k=>$v){
             $msg->setCampo($k, $v);
         }
         $msg->setCampo('ResourceId', $from->resourceId);
         $processo = RepositorioProcesso::get($obj->processo, $obj->etapa);
-        
+
         $resultado = $processo->executar($msg, true);
         //var_dump($resultado);
         $this->enviarMensagem($resultado, $from->resourceId);
     }
-    
+
     public function enviarMensagem($mensagem, $conexao){
-        
+
         foreach($this->clients as $client){
             if($client->resourceId == $conexao){
                 $client->send(json_encode($mensagem));
             }
         }
     }
-    
+
     public function onClose(ConnectionInterface $conn){
-        
+
         foreach($this->dadosBanco as $k=>$v){
             if($v['conexao'] == $conn->resourceId){
                 Conteiner::get('StatusChat')->setarStatus($v['usuario'], 0);
@@ -110,16 +110,16 @@ class Chat implements MessageComponentInterface {
                 Conteiner::registrar('DadosBanco', $this->dadosBanco);
             }
         }
-        
+
         $this->clients->detach($conn);
         echo "Connection {$conn->resourceId} has disconnected\n";
     }
-    
+
     public function onError(ConnectionInterface $conn, \Exception $e){
         echo "An error has occurred: {$e->getMessage()}\n";
         $conn->close();
     }
-    
+
     private function registrar(ConnectionInterface $conn, $id){
         for($i=0;$i<count($this->dadosBanco);$i++){
             if($this->dadosBanco[$i]['id'] == $id){

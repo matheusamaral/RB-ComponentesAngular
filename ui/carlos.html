@@ -12,12 +12,16 @@ and open the template in the editor.
     </head>
     <body>
         <script>
-            
-            conn = new WebSocket('ws://172.17.0.2:9876');
+
+            conn = new WebSocket('ws://quickpeek.rubeus.com.br:9876');
             var cont = 0;
 
             conn.onopen = function(e) {
             console.log("Connection established!");
+            setTimeout(
+                iniciar,
+                10
+                );
             };
 
             conn.onmessage = function(e) {
@@ -26,28 +30,25 @@ and open the template in the editor.
 //            msgRecebidas.push(obj.nome+' : '+obj.msg);
 //            console.log(obj.nome+' : '+obj.msg);
             };
-            
+
         </script>
-            <button onclick="enviar()">Enviar pergunta</button> 
+            <button onclick="enviar()">Enviar pergunta</button>
         <script>
             enviar = function(){
             console.log("enviar");
-            
-            conn.send(JSON.stringify({codsessrt:'Xdobxmy1waiKwFOK3zAq71x0BGK2RwMeJYd26e9dtFm7N6RlfqICDShrLsEijOAchRfvnNhXWw10asupHJOIqGQpW1xykO5kehrv',
-                processo:'Acoes', etapa:'perguntas', 'Mensagens::titulo':'oi tudo bom', 'Perguntas::localId':'2', 
-            'Perguntas::titulo':1, 'Perguntas::visibilidadeId':2}));
+
+            conn.send(JSON.stringify({codsessrt:'T9AZKCXVCRVREEF5GPBF62WLDEV2GGTY4M8ZWQR78BJEX8VC7B76ZDGZ7UUK9BPN646GZB2Y49KYHPZ9D2M5W8RZAT8BRPG4L862',
+                processo:'Acoes', etapa:'perguntas',  'Perguntas::localId':'2',
+                'Perguntas::titulo':'oi tudo bom', 'Perguntas::visibilidadeId':2}));
             };
-            
+
         iniciar = function(){
         console.log("iniciar");
-        
-        conn.send(JSON.stringify({codsessrt:'Xdobxmy1waiKwFOK3zAq71x0BGK2RwMeJYd26e9dtFm7N6RlfqICDShrLsEijOAchRfvnNhXWw10asupHJOIqGQpW1xykO5kehrv'
+
+        conn.send(JSON.stringify({codsessrt:'T9AZKCXVCRVREEF5GPBF62WLDEV2GGTY4M8ZWQR78BJEX8VC7B76ZDGZ7UUK9BPN646GZB2Y49KYHPZ9D2M5W8RZAT8BRPG4L862'
             ,processo:'Usuario', etapa:'setarDadosBanco', pagina:'40-13703'}));
         };
-        setTimeout(
-            iniciar,
-            300
-            );
+
         </script>
         <div>Mestre em front</div>
     </body>

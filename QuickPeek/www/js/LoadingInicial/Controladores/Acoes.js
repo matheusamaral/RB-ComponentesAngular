@@ -1,54 +1,63 @@
 'use strict';
 
-angular.module('QuickPeek.Acoes.LoadingInicial', [ 
+angular.module('QuickPeek.Acoes.LoadingInicial', [
     'RB.pagina',
     'RB.loadingMobile',
+    'ionic',
     'RB.validacoesPadroes'
 ])
 
-.factory('LoadingInicialAcoes', ['Pagina','RBLoadingMobile','$timeout','VP',
-    function(Pagina,RBLoadingMobile,$timeout,VP){
-    var scope;  
-    
+.factory('LoadingInicialAcoes', ['Pagina','RBLoadingMobile','$timeout','VP','$ionicPlatform',
+    function(Pagina,RBLoadingMobile,$timeout,VP,$ionicPlatform){
+    var scope;
+
     function setScope(obj){
         scope = obj;
         RBLoadingMobile.show('Encontrando você no mapa');
         scope.mudarBtn = false;
         return this;
     };
-    
+
     function inicializar(){
         addCss();
     };
-    
+
     function addCss(){
         //Pagina.navegar({idPage:24});
         $('ion-side-menu-content').addClass('background-img');
     }
-    
+
     document.addEventListener('deviceready', onDeviceReady, false);
-    
+
     function onDeviceReady(){
-            document.addEventListener("backbutton", overridingBackButton,false);
-            
-            function overridingBackButton(e){
+            //document.addEventListener("backbutton", overridingBackButton,false);
+            $ionicPlatform.registerBackButtonAction(
+            function (e){
+                e.stopPropagation();
                 e.preventDefault();
                 console.log(e);
-                alert('sdsd');
-            }
-            
+                Pagina.rollBack();
+                return false;
+            },1000);
+
             cordova.plugins.diagnostic.isGpsLocationAvailable(function(available){
+
             if(!available){
                checkAuthorization();
             }else{
                 var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
-                navigator.geolocation.getCurrentPosition(onSuccess,onError);
+
+                if(DGlobal.dipositivo == 1){
+                  navigator.geolocation.getCurrentPosition(onSuccess,onError);
+                }else{
+                  onSuccess({ coords: { latitude: '-21.131764', longitude: '-42.364326'}});
+                }
             }
         }, function(error){
             console.error("The following error occurred: "+error);
         });
     }
-    
+
     function checkAuthorization(){
         cordova.plugins.diagnostic.isLocationAuthorized(function(authorized){
             if(authorized){
@@ -96,24 +105,26 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
         }, function(error){
             console.error("The following error occurred: "+error);
         });
-    }   
-    
+    }
+
     var onSuccess = function(position){
+        console.log('successs', position);
         RBLoadingMobile.hide();
         scope.mudarBtn = true;
         var coordenadas = {latitude:position.coords.latitude,longitude:position.coords.longitude};
         DGlobal.coordenadasAtual = coordenadas;
-        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude});
+        Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude},1);
     };
 
     function onError(error){
+        console.log('EROROR', error);
         RBLoadingMobile.hide();
     }
-    
+
     return {
         setScope:setScope,
         inicializar:inicializar,
         onDeviceReady:onDeviceReady
     };
-    
+
  }]);

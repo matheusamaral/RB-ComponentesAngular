@@ -59,7 +59,7 @@ angular.module('QuickPeek', [
 .provider('runtimeStates', function runtimeStates($stateProvider) {
   // runtime dependencies for the service can be injected here, at the provider.$get() function.
     this.$get = function() { // for example
-        return { 
+        return {
             addState: function(DG){
                 $stateProvider.state(DG.acaoCliente.acao, {
                     DGlobal:DG,
@@ -73,22 +73,22 @@ angular.module('QuickPeek', [
 })
 
 .run(function($ionicPlatform,$rootScope,$state){
-    
+
     $rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
         from.params = fromParams;
-        
+
         if(!$rootScope.regraNavegacao)
             $rootScope.regraNavegacao = new Array();
-        
+
         if(!DGlobal.rollback)
             $rootScope.regraNavegacao.push(from);
         else
             delete DGlobal.rollback;
-        
+
     });
-    
+
     $ionicPlatform.ready(function() {
-    
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
 
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -97,16 +97,16 @@ angular.module('QuickPeek', [
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    
+
     var permissions = cordova.plugins.permissions;
     permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
     permissions.hasPermission(permissions.CAMERA, checkPermissionCAMERA, null);
-    permissions.hasPermission(permissions.STORAGE, checkPermissionSTORAGE, null);
+    permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, checkPermissionSTORAGE, null);
     
     permissions.hasPermission(permissions.ACCESS_COARSE_LOCATION, checkPermissionCallbackPrincipalLocation, null);
     permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkPermissionCallbackLocation, null);
     permissions.hasPermission(permissions.ACCESS_LOCATION_EXTRA_COMMANDS, checkPermissionCallbackExtraLocation, null);
-    
+
     function checkPermissionCAMERA(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {
@@ -129,7 +129,7 @@ angular.module('QuickPeek', [
         };
 
         permissions.requestPermission(
-            permissions.STORAGE,
+            permissions.READ_EXTERNAL_STORAGE,
             function(status) {
             if(!status.hasPermission) errorCallback();
             },
@@ -151,7 +151,7 @@ angular.module('QuickPeek', [
             errorCallback);
         }
     }
-    
+
     function checkPermissionCallbackLocation(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {
@@ -166,7 +166,7 @@ angular.module('QuickPeek', [
             errorCallback);
         }
     }
-    
+
     function checkPermissionCallbackExtraLocation(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {
@@ -181,7 +181,7 @@ angular.module('QuickPeek', [
             errorCallback);
         }
     }
-    
+
     function checkPermissionCallbackPrincipalLocation(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {
@@ -196,10 +196,10 @@ angular.module('QuickPeek', [
             errorCallback);
         }
     }
-    
-    $ionicPlatform.onHardwareBackButton(function() {
-        alert('EUEUEUEU');
-    });
+
+    /*$ionicPlatform.onHardwareBackButton(function() {
+        //alert('EUEUEUEU');
+    });*/
   });
 })
 
@@ -234,7 +234,7 @@ angular.module('QuickPeek', [
         'A700': '#805c00'
     };
     $mdThemingProvider
-        .definePalette('customPrimary', 
+        .definePalette('customPrimary',
                         customPrimary);
 
     var customAccent = {
@@ -254,7 +254,7 @@ angular.module('QuickPeek', [
         'A700': '#23ffd4'
     };
     $mdThemingProvider
-        .definePalette('customAccent', 
+        .definePalette('customAccent',
                         customAccent);
 
     var customWarn = {
@@ -274,7 +274,7 @@ angular.module('QuickPeek', [
         'A700': '#803200'
     };
     $mdThemingProvider
-        .definePalette('customWarn', 
+        .definePalette('customWarn',
                         customWarn);
 
     var customBackground = {
@@ -294,7 +294,7 @@ angular.module('QuickPeek', [
         'A700': '#000000'
     };
     $mdThemingProvider
-        .definePalette('customBackground', 
+        .definePalette('customBackground',
                         customBackground);
 
    $mdThemingProvider.theme('default')
