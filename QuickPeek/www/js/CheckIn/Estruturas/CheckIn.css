@@ -12,6 +12,12 @@
     border: 1px solid #FFFFFF;
 }
 
+.barra-rodape-checkin{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
 .onda.um{
     width: 150px;
     height: 150px;

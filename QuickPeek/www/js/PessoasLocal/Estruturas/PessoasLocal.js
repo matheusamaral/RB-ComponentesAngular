@@ -34,7 +34,7 @@ angular.module('QuickPeek.HTML.PessoasLocal', [
                                     Solicitado\n\
                                 </button>\n\
                                 <button ng-disabled="dadosUser.usuarioId == pessoa.usuarioId" ng-click="seguir(pessoa.usuarioId)" ng-if="dadosUser.usuarioId == pessoa.usuarioId" class="btn-voce btn-seguidores button button-outline button-positive">\n\
-                                    Vocẽ\n\
+                                    Você\n\
                                 </button>\n\
                                 <button ng-click="deixarSeguir(pessoa.usuarioId,$event)" ng-if="dadosUser.usuarioId != pessoa.usuarioId && pessoa.seguindo == 1" class="btn-seguidores button button button-balanced">\n\
                                     <i class="icon ion-checkmark"></i>Seguindo\n\

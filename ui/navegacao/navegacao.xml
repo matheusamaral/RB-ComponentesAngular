@@ -165,7 +165,7 @@
     </pagina>
 
     <!--\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina//\Rubeus\Navegacao\ClassePagina-->
-    <pagina id="22" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="mapa">
+    <pagina id="22" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="mapa">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="locaisPertos" objeto='teste'></metodo>
@@ -238,7 +238,7 @@
         <acaoCliente classe="pag-pesquisar-mapa" acao="PesquisarMapaCtrl" title="Pesquisar"  historico="1"/>
     </pagina>
 
-    <pagina id="29" classePagina="\Quickpeek\Usuario\Aplicacao\ClassePagina\ClassePagina" endereco="CheckIn">
+    <pagina id="29" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="CheckIn">
         <dadosSolicitados>
             <classe name="Local">
                 <metodo name="mapaLocaisPertos" objeto='locais'></metodo>
