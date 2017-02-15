@@ -23,11 +23,11 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
     };
 
     function addCss(){
-        Pagina.navegar({idPage:29});
+        //Pagina.navegar({idPage:24});
         $('ion-side-menu-content').addClass('background-img');
     }
 
-    //document.addEventListener('deviceready', onDeviceReady, false);
+    document.addEventListener('deviceready', onDeviceReady, false);
 
     function onDeviceReady(){
             //document.addEventListener("backbutton", overridingBackButton,false);
@@ -47,7 +47,7 @@ angular.module('QuickPeek.Acoes.LoadingInicial', [
                 var options = { maximumAge: 3000, timeout: 3000, enableHighAccuracy: true };
 
                 if(DGlobal.dipositivo == 1){
-                  navigator.geolocation.getCurrentPosition(onSuccess,onError);
+                    navigator.geolocation.getCurrentPosition(onSuccess,onError);
                 }else{
                   onSuccess({ coords: { latitude: '-21.131764', longitude: '-42.364326'}});
                 }

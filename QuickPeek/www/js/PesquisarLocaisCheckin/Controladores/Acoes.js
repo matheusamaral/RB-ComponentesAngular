@@ -46,7 +46,6 @@ angular.module('QuickPeek.Acoes.PesquisarLocaisCheckin', [
     
     return {
         setScope:setScope,
-        pesquisarLocalScroll:pesquisarLocalScroll,
         voltarCheckin:voltarCheckin,
         pesquisarLocal:pesquisarLocal,
         irLocal:irLocal,

@@ -7,8 +7,8 @@ angular.module('QuickPeek.Acoes.Mapa', [
     'RB.validacoesPadroes'
 ])
 
-.factory('MapaAcoes', ['Pagina','MapaRequisicoes','Geolocation','$timeout','VP',
-    function(Pagina,MapaRequisicoes,Geolocation,$timeout,VP){
+.factory('MapaAcoes', ['Pagina','MapaRequisicoes','$timeout','VP',
+    function(Pagina,MapaRequisicoes,$timeout,VP){
     var scope;  
     
     function setScope(obj){
@@ -165,8 +165,7 @@ angular.module('QuickPeek.Acoes.Mapa', [
         irAteLocal:irAteLocal,
         estouEmCasa:estouEmCasa,
         estounoTrabalho:estounoTrabalho,
-        cadLocal:cadLocal,
-        irCentro:irCentro
+        cadLocal:cadLocal
     };
     
  }]);

@@ -229,6 +229,32 @@ angular.module('QuickPeek.Requisicao.Locais', [
                         <p style="color:black;margin-top:10px">Você poderá fazer uma nova pergunta em {{hora}}</p>\n\
                     </div>';
         }
+        
+        function verirficarTempo(){
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/tempoViagem",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 1
+            };
+            GCS.conectar(obj);
+        };
+        
+        function successVerirficarTempo(objRetorno){
+            console.log(objRetorno);
+            //alert(JSON.stringify(objRetorno));
+            if(objRetorno.success === true){
+                scope.requisicaoFeita = true;
+                scope.dadosDistancia = objRetorno.dados;
+                if(acaoPosterior)acaoPosterior();
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
 
         return {
             set: set,
@@ -241,7 +267,9 @@ angular.module('QuickPeek.Requisicao.Locais', [
             successCurtirHashtag:successCurtirHashtag,
             curtirHashTag:curtirHashTag,
             verificarLimitePerguntas:verificarLimitePerguntas,
-            successVerificarLimitePerguntas:successVerificarLimitePerguntas
+            successVerificarLimitePerguntas:successVerificarLimitePerguntas,
+            verirficarTempo:verirficarTempo,
+            successVerirficarTempo:successVerirficarTempo
         };
 
 }]);

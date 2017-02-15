@@ -25,6 +25,7 @@ angular.module('QuickPeek.Locais', [
         $scope.irPublicar = LocaisAcoes.irPublicar;
         $scope.perguntar = LocaisAcoes.perguntar;
         $scope.irAteLocal = LocaisAcoes.irAteLocal;
+        $scope.tempoDeChegada = LocaisAcoes.tempoDeChegada;
     }
 ])
 

@@ -38,7 +38,7 @@
 }
 
 .box-img-cad{
-    background-size:contain;
+    background-size:cover;
     background-repeat: no-repeat;
     z-index:1 !important;
     background-position: center; 

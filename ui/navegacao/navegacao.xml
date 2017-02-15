@@ -247,7 +247,7 @@
                 <metodo name="listarDadosUsuario" objeto='dadosUsuario'></metodo>
             </classe>
         </dadosSolicitados>
-        <acaoCliente classe="pag-check-in" acao="CheckInCtrl" title="Efetue Check in"/>
+        <acaoCliente classe="pag-check-in" historico="1" acao="CheckInCtrl" title="Efetue Check in"/>
     </pagina>
 
     <pagina id="30" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="Privacidade">

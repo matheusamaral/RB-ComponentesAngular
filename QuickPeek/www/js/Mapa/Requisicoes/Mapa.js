@@ -202,7 +202,70 @@ angular.module('QuickPeek.Requisicao.Mapa', [
             estouEmCasa:estouEmCasa,
             successEstouEmCasa:successEstouEmCasa,
             successEstouNoTrabalho:successEstouNoTrabalho,
-            estouNoTrabalho:estouNoTrabalho
+            estouNoTrabalho:estouNoTrabalho,
+        };
+                           
+}])
+ 
+.factory('MapaRequisicoesGeo', ['RBLoadingMobile','GCS', 'Config','ionicToast','Pagina',
+      function (RBLoadingMobile,GCS, Config,ionicToast,Pagina) {
+        
+        var dados;
+        var scope;
+        var acaoSuccess;
+        var acaoPosterior = false;
+        var gm = google.maps;
+        
+        function set(obj){
+            dados = obj.dados;
+            scope = obj.scope;
+            acaoSuccess = obj.acaoSuccess;
+            if(obj.acaoPosterior)acaoPosterior = obj.acaoPosterior;
+            return this;
+        };
+        
+        function verirficarTempo(){
+            var obj = {
+                url: Config.getRefAmbienteReq()+"/Local/tempoViagem",
+                dados: $.param(dados),
+                tipo: 'POST',
+                acao: acaoSuccess,
+                error: errorSalvar,
+                scope: scope,
+                exibeMSGCarregando: 1
+            };
+            GCS.conectar(obj);
+        };
+        
+        
+        function successVerirficarTempo(objRetorno){
+            console.log(objRetorno);
+            //alert(JSON.stringify(objRetorno));
+            if(objRetorno.success === true){
+                scope.requisicaoFeita = true;
+                scope.dadosDistancia = objRetorno.dados;
+                if(acaoPosterior)acaoPosterior();
+            }
+            else{
+                if(objRetorno.errors) OpenToast(objRetorno.errors);
+            }
+        };
+        
+        function errorSalvar(dados, scope){
+            RBLoadingMobile.hide();
+            OpenToast("Não foi possível efetuar a ação, por favor, tente novamente!");
+        };
+        
+        
+        function OpenToast(message) {
+          ionicToast.show(message, 'bottom', false, 3000);
+        }
+        
+        return{
+            set: set,
+            verirficarTempo:verirficarTempo,
+            successVerirficarTempo:successVerirficarTempo
         };
                            
 }]);     
+

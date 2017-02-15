@@ -16,16 +16,6 @@
     margin-bottom: 5px !important;
 }
 
-.img-circular-grande-perguntar{
-    width: 65px;
-    height: 65px;
-    border-radius: 69px;
-    margin-left: 10px;
-    border: 3px solid #ffb800;
-    background-size: contain;
-    margin-right: 10px;
-}
-
 textarea.sem-borda{
     color: #909090;
     width: 100%;

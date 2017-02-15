@@ -144,6 +144,52 @@ angular.module('QuickPeek.Acoes.Locais', [
         coord.push(local.dados.longitude);
         launchnavigator.navigate(coord);
     }
+    
+    function tempoDeChegada(local){
+        console.log(local);
+        
+        popupTempoChegada();
+        
+        var obj = {
+            latitude:-21,
+            longitude:-42,
+            localId:local.dados.localId
+        };
+        
+        LocaisRequisicoes.set({dados:obj,scope:scope,acaoSuccess:LocaisRequisicoes.successVerirficarTempo}).verirficarTempo();
+    }
+    
+    function popupTempoChegada(){
+        var template = '<div ng-if="!requisicaoFeita" class="row remove-padding">\n\
+                            <div class="loader-cinza loader-inner ball-clip-rotate">\n\
+                                <div></div>\n\
+                            </div>\n\
+                            <p class="p-local-pequeno-mapa">Carregando tempo de chegada...</p>\n\
+                        </div>\n\
+                        <div ng-if="requisicaoFeita" class="col remove-padding">\n\
+                            <div ng-if="dadosDistancia.driving" style="margin-bottom: 10px;" class="row remove-padding">\n\
+                                <md-icon style="margin-right: 8px;" class="desenhos-icon ion-android-car"></md-icon>\n\
+                                <p style="margin-top: 3px !important;margin-right: 6px;" class="p-local-pequeno-mapa">{{dadosDistancia.driving.duracao.texto}}</p>\n\
+                            </div>\n\
+                            <div ng-if="dadosDistancia.walking" style="margin-bottom: 10px;" class="row remove-padding">\n\
+                                <md-icon style="margin-right: 8px;" class="desenhos-icon ion-android-walk"></md-icon>\n\
+                                <p style="margin-top: 3px !important;margin-right: 6px;" class="p-local-pequeno-mapa">{{dadosDistancia.walking.duracao.texto}}</p>\n\
+                            </div>\n\
+                            <div ng-if="dadosDistancia.bicycling" class="row remove-padding">\n\
+                                <md-icon style="margin-right: 8px;" class="desenhos-icon ion-android-bicycle"></md-icon>\n\
+                                <p style="margin-top: 3px !important;margin-right: 6px;" class="p-local-pequeno-mapa">{{dadosDistancia.bicycling.duracao.texto}}</p>\n\
+                            </div>\n\
+                        </div>';
+        
+        scope.calcTempoPopup = $ionicPopup.alert({
+            scope:scope,
+            title: 'Tempo de chegada',
+            template: template,
+            buttons:[
+                {text:'Ok',type:['button-positive','button-outline']}
+            ]
+        });
+    }
 
     return {
         setScope:setScope,
@@ -160,7 +206,8 @@ angular.module('QuickPeek.Acoes.Locais', [
         converteKmM:converteKmM,
         irPublicar:irPublicar,
         perguntar:perguntar,
-        irAteLocal:irAteLocal
+        irAteLocal:irAteLocal,
+        tempoDeChegada:tempoDeChegada
     };
 
  }]);

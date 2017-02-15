@@ -36,12 +36,22 @@ angular.module('QuickPeek.Requisicao.CadastroDados', [
             RBLoadingMobile.hide();
             console.log("objRetorno",objRetorno);
             if(objRetorno.success === true) {
-                Pagina.navegar({idPage : 8});
+                navigator.geolocation.getCurrentPosition(onSuccess,onError);
             }
             else{
                 if(objRetorno.errors) OpenToast(objRetorno.errors);
             }
         };
+        
+        var onSuccess = function(position){
+            var coordenadas = {latitude:position.coords.latitude,longitude:position.coords.longitude};
+            DGlobal.coordenadasAtual = coordenadas;
+            Pagina.navegar({idPage:22,paramAdd:'?atualizando=0&latitude='+coordenadas.latitude+'&longitude='+coordenadas.longitude},1);
+        };
+
+        function onError(error){
+            RBLoadingMobile.hide();
+        }
 
         function editar(){
             RBLoadingMobile.show();

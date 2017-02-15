@@ -59,9 +59,14 @@ angular.module('QuickPeek.HTML.Locais', [
                                                     Alterar privacidade\n\
                                                 </md-button>\n\
                                             </md-menu-item>\n\
-                                            <md-menu-item>\n\
+                                            <md-menu-item ng-if="local.dados.checkIn != 1">\n\
                                                 <md-button ng-click="irAteLocal(local);">\n\
                                                     Navegar até o local\n\
+                                                </md-button>\n\
+                                            </md-menu-item>\n\
+                                            <md-menu-item ng-if="local.dados.checkIn != 1">\n\
+                                                <md-button ng-click="tempoDeChegada(local);">\n\
+                                                    Tempo de chegada\n\
                                                 </md-button>\n\
                                             </md-menu-item>\n\
                                         </md-menu-content>\n\
@@ -178,7 +183,7 @@ angular.module('QuickPeek.HTML.Locais', [
                     <div class="tutorial-4-locais tutorial-mapa-4">\n\
                     </div>\n\
                     <p class="negrito posiciona-p-tutorial4">Converse diretamente</p>\n\
-                    <p class="posiciona-p-tutorial4-4">Aqui vocẽ encontra as pessoas que </br>estão agora neste local!</p>\n\
+                    <p class="posiciona-p-tutorial4-4">Aqui você encontra as pessoas que </br>estão agora neste local!</p>\n\
                     <button ng-click="attTutorial($event)" class="btn-mapa-tutorial-4 button button-clear button-positive">\n\
                         PULAR<i class="icon ion-chevron-right"></i>\n\
                     </button>\n\
