@@ -36,6 +36,7 @@ angular.module('QuickPeek.Respostas', [
         $scope.buscarGif = RespostasAcoes.buscarGif;
         $scope.voltarTeclado = RespostasAcoes.voltarTeclado;
         $scope.showEmoticons = RespostasAcoes.showEmoticons;
+        $scope.maximizarGaleria = RespostasAcoes.maximizarGaleria;
     }
 ])
 

@@ -61,7 +61,7 @@ angular.module('QuickPeek.HTML.Respostas', [
     }
     
     function subMenu(){
-         return'<div ng-if="previewAberto" style="position:relative;background-color:transparent;text-align: center;padding: 15px;">\n\
+         return'<div ng-if="previewAberto" style="z-index: -1;position:relative;background-color:transparent;text-align: center;padding: 15px;">\n\
                     <button style="z-index: -3;" ng-if="!cameraPrev.tirouFoto" ng-click="cameraPrev.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
                     </button>\n\
                     <!--<button ng-if="cameraPrev.tirouFoto" ng-click="cameraPrev.tirarDeNovo()" class="btn-rodape ion-android-send button button-clear">\n\
@@ -231,7 +231,8 @@ angular.module('QuickPeek.HTML.Respostas', [
     
     function galeria(){
          return'<div ng-if="mostrarGaleria" ng-class="{\'z-index-alto\' : galeriaFull}"\n\
-                style="z-index:-1;height:{{alturaTela}}px" class="tela-galeria">\n\
+                style="z-index:-1;height:{{alturaTela}}px" class="tela-galeria"\n\
+                on-swipe-up="maximizarGaleria()">\n\
                     <div ng-if="galeriaFull" style="padding-top: 8px !important;box-shadow: 0px -2px 8px black !important;" class="row bar bar-header bar-positive">\n\
                         <div class="col remove-padding" style="text-align: left">\n\
                             <button style="margin-top: 8px;" ng-click="minimizaGaleria()" class="btnbarra-galeria btn-txt-direita button button-clear">\n\
@@ -239,7 +240,7 @@ angular.module('QuickPeek.HTML.Respostas', [
                             </button>\n\
                         </div>\n\
                     </div>\n\
-                    <div class="container-glr" style="height:{{alturaGaleria}}px">\n\
+                    <div class="container-glr" style="overflow:auto !important;height:{{alturaGaleria}}px">\n\
                         <div ng-class="{\'padding-top-midias\' : $index == 0 && galeriaFull}"\n\
                         ng-repeat="linha in objimg" class="row" style="padding-bottom:0 !important">\n\
                             <div ng-repeat="img in linha" class="col box-img-glr"\n\
@@ -257,13 +258,18 @@ angular.module('QuickPeek.HTML.Respostas', [
          return'<div class="pai-gifs" ng-if="exibirGifs">\n\
                     <div style="width:{{larguraBody}}px;overflow:auto">\n\
                         <div class="linha-gifs row">\n\
-                            <div ng-click="enviarGif(gif)" ng-repeat="gif in gifs" class="container-gif" style="background-image:url({{gif}})"></div>\n\
+                            <div ng-if="$index < 3" ng-click="enviarGif(gif)" \n\
+                            ng-repeat="gif in gifs" \n\
+                            class="container-gif" style="background-image:url({{gif}})">\n\
+                            </div>\n\
                        </div>\n\
                     </div>\n\
                     <div>\n\
                         <div class="container-input-gif">\n\
                             <div class="box-input-gif row remove-padding">\n\
-                                <button style="margin-top: 6px;color: #949292;" ng-click="selecionarTecladoGif()" class="btn-txt-direita button button-clear">\n\
+                                <button style="margin-top: 6px;color: #949292;" \n\
+                                ng-click="selecionarTecladoGif()" \n\
+                                class="btn-txt-direita button button-clear">\n\
                                     <i class="icon ion-android-arrow-back seta-barra"></i>\n\
                                 </button>\n\
                                 <input style="border:none"\n\

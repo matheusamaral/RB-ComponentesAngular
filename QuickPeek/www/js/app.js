@@ -100,6 +100,7 @@ angular.module('QuickPeek', [
 
     var permissions = cordova.plugins.permissions;
     permissions.hasPermission(permissions.READ_SMS, checkPermissionCallback, null);
+    permissions.hasPermission(permissions.READ_SMS, checkPermissionLOCATION_HARDWARE, null);
     permissions.hasPermission(permissions.CAMERA, checkPermissionCAMERA, null);
     permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, checkPermissionSTORAGE, null);
     
@@ -107,6 +108,21 @@ angular.module('QuickPeek', [
     permissions.hasPermission(permissions.ACCESS_FINE_LOCATION, checkPermissionCallbackLocation, null);
     permissions.hasPermission(permissions.ACCESS_LOCATION_EXTRA_COMMANDS, checkPermissionCallbackExtraLocation, null);
 
+    function checkPermissionLOCATION_HARDWARE(status) {
+      if(!status.hasPermission) {
+        var errorCallback = function() {
+          console.warn('Camera permission is not turned on');
+        };
+
+        permissions.requestPermission(
+            permissions.LOCATION_HARDWARE,
+            function(status) {
+            if(!status.hasPermission) errorCallback();
+            },
+            errorCallback);
+        }
+    }
+    
     function checkPermissionCAMERA(status) {
       if(!status.hasPermission) {
         var errorCallback = function() {

@@ -168,7 +168,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
     function resetaEstrutura(){
         scope.cameraPrev.tirouFoto = false;
         scope.exibirBarra = false;
-        scope.camera.stopCamera();
+        //scope.camera.stopCamera();
         scope.previewAberto = false;
         scope.cameraFull = false;
         scope.exibirGifs = false;
@@ -293,9 +293,10 @@ angular.module('QuickPeek.Acoes.Respostas', [
             $('ion-side-menu-content').addClass('remove-overflow-galeria');
             $timeout(function(){
                 $('.tela-galeria').addClass('mostrar');
-                $('.container-glr').scroll(function (e) {
-                    maximizarGaleria();
-                });
+                
+//                $('.container-glr').scroll(function (e) {
+//                    maximizarGaleria();
+//                });
             },1000);
         },0);
     }
@@ -303,16 +304,18 @@ angular.module('QuickPeek.Acoes.Respostas', [
     function maximizarGaleria(){
         if(!scope.galeriaFull){
             scope.alturaGaleria = $('body').height();
-            scope.galeriaFull = true;
-            scope.$apply();
+            $timeout(function(){
+                scope.galeriaFull = true;
+            },0);
         }
     }
 
     function minimizaGaleria(){
         if(scope.galeriaFull){
             scope.alturaGaleria = $('body').width();
-            scope.galeriaFull = false;
-            scope.$apply();
+            $timeout(function(){
+                scope.galeriaFull = false;
+            },0);
         }
     }
 
@@ -361,7 +364,6 @@ angular.module('QuickPeek.Acoes.Respostas', [
         scope.timeoutGif = $timeout(function(){
             RespostasRequisicoes.set({scope:scope,dados:obj,acaoSuccess:RespostasRequisicoes.successBuscarGif}).buscarGif();
         },1000);
-
     }
 
     function voltarTeclado(){
@@ -400,7 +402,8 @@ angular.module('QuickPeek.Acoes.Respostas', [
         enviarGif:enviarGif,
         buscarGif:buscarGif,
         voltarTeclado:voltarTeclado,
-        showEmoticons:showEmoticons
+        showEmoticons:showEmoticons,
+        maximizarGaleria:maximizarGaleria
     };
 
  }])
@@ -411,7 +414,7 @@ angular.module('QuickPeek.Acoes.Respostas', [
     var tapEnabled = false;
     var dragEnabled = false;
     var toBack = true;
-
+    
     function setScope(obj){
         scope = obj;
         scope.cameraPrev = {};
@@ -430,9 +433,9 @@ angular.module('QuickPeek.Acoes.Respostas', [
         };
 
         scope.cameraPrev.instanciaCamera = function(){
-            scope.camera.setOnPictureTakenHandler(function(result){
-                scope.tirouFoto(result[1]);
-            });
+//            scope.camera.setOnPictureTakenHandler(function(result){
+//                scope.tirouFoto(result[1]);
+//            });
         };
 
         scope.tirouFoto = function(url){

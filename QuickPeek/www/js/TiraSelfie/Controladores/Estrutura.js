@@ -13,7 +13,12 @@ angular.module('QuickPeek.Estrutura.TiraSelfie', [
     
     function setScope(obj){
         scope = obj;
+        requestpermissioncamera();
         return this;
+    }
+    
+    function requestpermissioncamera(){
+        cordova.plugins.diagnostic.requestCameraAuthorization(function(){console.log('sd')}, function(){});
     }
     
     function popular(){

@@ -236,8 +236,8 @@
             </classe>
         </dadosSolicitados>
         <acaoCliente classe="pag-pesquisar-mapa" acao="PesquisarMapaCtrl" title="Pesquisar"  historico="1"/>
-    </pagina>
-
+    </pagina>       
+        
     <pagina id="29" classePagina="\Rubeus\Navegacao\ClassePagina" endereco="CheckIn">
         <dadosSolicitados>
             <classe name="Local">
