@@ -6,8 +6,8 @@ angular.module('Cmp.CameraPreview', [
 
 .factory('CameraPreview', ['VP','$timeout','RBLoadingMobile',
     function (VP,$timeout,RBLoadingMobile) {
-        var scope;  
-
+        var camera = 'front';
+        var scope,cam = CameraPreview;  
         function setScope(obj){
             scope = obj;
             return this;
@@ -24,10 +24,13 @@ angular.module('Cmp.CameraPreview', [
         function inicializaFuncoes(nomeObj){
             
             scope[nomeObj].instanciaCamera = function(){
-                cordova.plugins.camerapreview.setOnPictureTakenHandler(function(result) {
-                    scope[nomeObj].img = result[1];
-                    scope[nomeObj].galeria = false;
-                    document.getElementById(nomeObj).src = scope[nomeObj].img; //originalPicturePath;
+                cam.setOnPictureTakenHandler(function(result) {
+                    console.log(result);
+                    cam.hide();
+                    scope[nomeObj].img = result;
+                    $timeout(function(){
+                        document.getElementById(nomeObj).src = scope[nomeObj].img; //originalPicturePath;
+                    },0);
                 });
             };
             
@@ -36,53 +39,80 @@ angular.module('Cmp.CameraPreview', [
                 var tapEnabled = false;
                 var dragEnabled = false;
                 var toBack = true;
-                cordova.plugins.camerapreview.startCamera({
+                cam.startCamera({
                     x: 0,
                     y: $('#cameraPerfilBarra').height() + 40,
                     width: $('body').width(),
-                    height: scope[nomeObj].containerImgAltura
-                }, "front", tapEnabled, dragEnabled, toBack);
-                
-                scope[nomeObj].img = false;
-                scope[nomeObj].fotoTirada = false;
-                    //scope[nomeObj].trocarCamera();
-                        //scope[nomeObj].trocarCamera();
-                        RBLoadingMobile.hide();
+                    height: scope[nomeObj].containerImgAltura,
+                    camera:camera, 
+                    tapPhoto:tapEnabled, 
+                    previewDrag: dragEnabled, 
+                    toBack:toBack},preparaCamera);
             };
             
-            document.addEventListener('deviceready', scope[nomeObj].instanciaCamera, false);
+            function preparaCamera(){
+                scope[nomeObj].img = false;
+                scope[nomeObj].fotoTirada = false;
+                $timeout(function(){
+                    scope[nomeObj].instanciaCamera();
+                },0);
+            }
+            
+//            document.addEventListener('deviceready', scope[nomeObj].instanciaCamera, false);
             document.addEventListener('deviceready', scope[nomeObj].iniciarCamera, false);
             
             scope[nomeObj].pararCamera =  function(){
-                if(scope[nomeObj].img)
-                    cordova.plugins.camerapreview.stopCamera();
-                scope[nomeObj].fotoTirada = false;
+                cam.stopCamera(succesParar);
             };
             
-            scope[nomeObj].trocarCamera = function() {
-                cordova.plugins.camerapreview.switchCamera();
+            function succesParar(){
+                scope[nomeObj].fotoTirada = false;
+            }
+            
+            scope[nomeObj].trocarCamera = function(){
+                cam.stopCamera();
+                virarCamera();
             };
+            
+            function virarCamera(){
+                if(camera == 'front')camera = 'rear';
+                else camera = 'front';
+                var tapEnabled = false;
+                var dragEnabled = false;
+                var toBack = true;
+                cam.startCamera({
+                    x: 0,
+                    y: $('#cameraPerfilBarra').height() + 40,
+                    width: $('body').width(),
+                    height: scope[nomeObj].containerImgAltura,
+                    camera:camera, 
+                    tapPhoto:tapEnabled, 
+                    previewDrag: dragEnabled, 
+                    toBack:toBack},preparaCamera);
+            }
             
             scope[nomeObj].tirarFoto = function(){
-                cordova.plugins.camerapreview.hide();
-                cordova.plugins.camerapreview.takePicture();
                 scope[nomeObj].galeria = false;
                 scope[nomeObj].fotoTirada = true;
+                cam.takePicture();
             };
             
             scope[nomeObj].mostrar = function() {
-                cordova.plugins.camerapreview.show();
+                cam.show();
             };
             
             scope[nomeObj].esconder = function() {
                 if(scope[nomeObj].img)
-                    cordova.plugins.camerapreview.hide();
-                scope[nomeObj].fotoTirada = false; 
+                    cam.hide(sucessEsconder);
             };
+            
+            function sucessEsconder(){
+                scope[nomeObj].fotoTirada = false; 
+            }
             
             scope[nomeObj].mudarEfeito = function() {
                 var effect = document.getElementById('colorEffectCombo').value;
-                cordova.plugins.camerapreview.setColorEffect(effect);
+                cam.setColorEffect(effect);
             };
         }
 
