@@ -1,1 +1,0 @@
-var refAmbienteG = 'URL_PROJETO';var refAmbienteReqG = 'DOMINIO_REQ';var refDominioG = 'URL_PROJETO';
