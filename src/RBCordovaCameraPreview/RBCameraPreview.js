@@ -6,8 +6,12 @@ angular.module('Cmp.CameraPreview', [
 
 .factory('CameraPreview', ['VP','$timeout','RBLoadingMobile',
     function (VP,$timeout,RBLoadingMobile) {
-        var scope;  
-
+        var camera = 'front';
+        var scope;
+        if(CameraPreview){
+            var cam = CameraPreview;
+        }
+        
         function setScope(obj){
             scope = obj;
             return this;
@@ -16,73 +20,81 @@ angular.module('Cmp.CameraPreview', [
         function inicializar(nomeObj){
             scope[nomeObj] = {};
             $timeout(function(){
-                scope[nomeObj].containerImgAltura = $('body').width();
                 inicializaFuncoes(nomeObj);
             },0);
         }
         
-        function inicializaFuncoes(nomeObj){
-            
+        function inicializaFuncoes(nomeObj){            
             scope[nomeObj].instanciaCamera = function(){
-                cordova.plugins.camerapreview.setOnPictureTakenHandler(function(result) {
-                    scope[nomeObj].img = result[1];
-                    scope[nomeObj].galeria = false;
-                    document.getElementById(nomeObj).src = scope[nomeObj].img; //originalPicturePath;
+                cam.setOnPictureTakenHandler(function(result) {
+                    console.log(result);
+                    cam.stopCamera();
+                    scope[nomeObj].img = result[0];
+                    $timeout(function(){
+                        document.getElementById(nomeObj).src = result[0]; //scope[nomeObj].img; //originalPicturePath;
+                    },0);
                 });
             };
             
-            scope[nomeObj].iniciarCamera = function(){
-                //RBLoadingMobile.show('Preparando câmera...');
+            function preparaCamera(){
+                scope[nomeObj].img = false;
+                scope[nomeObj].fotoTirada = false;
+                $timeout(function(){
+                    scope[nomeObj].instanciaCamera();
+                },0);
+            }
+            
+            scope[nomeObj].iniciarCamera = function(posicao,tamanho,camera){
+                console.log('CAMERA COMPONETE!!!!');
                 var tapEnabled = false;
                 var dragEnabled = false;
                 var toBack = true;
-                cordova.plugins.camerapreview.startCamera({
-                    x: 0,
-                    y: $('#cameraPerfilBarra').height() + 40,
-                    width: $('body').width(),
-                    height: scope[nomeObj].containerImgAltura
-                }, "front", tapEnabled, dragEnabled, toBack);
-                
-                scope[nomeObj].img = false;
-                scope[nomeObj].fotoTirada = false;
-                    //scope[nomeObj].trocarCamera();
-                        //scope[nomeObj].trocarCamera();
-                        RBLoadingMobile.hide();
+                cam.startCamera({
+                    x: posicao.x,
+                    y: posicao.y,
+                    width: tamanho.width,
+                    height: tamanho.height,
+                    camera:camera, 
+                    tapPhoto:tapEnabled, 
+                    previewDrag: dragEnabled, 
+                    toBack:toBack
+                },preparaCamera);
             };
-            
-            document.addEventListener('deviceready', scope[nomeObj].instanciaCamera, false);
-            document.addEventListener('deviceready', scope[nomeObj].iniciarCamera, false);
             
             scope[nomeObj].pararCamera =  function(){
-                if(scope[nomeObj].img)
-                    cordova.plugins.camerapreview.stopCamera();
+                cam.stopCamera(succesParar);
+            };
+            
+            function succesParar(){
                 scope[nomeObj].fotoTirada = false;
+            }
+                        
+            scope[nomeObj].virarCamera = function(){
+                cam.switchCamera();
             };
             
-            scope[nomeObj].trocarCamera = function() {
-                cordova.plugins.camerapreview.switchCamera();
-            };
-            
-            scope[nomeObj].tirarFoto = function(){
-                cordova.plugins.camerapreview.hide();
-                cordova.plugins.camerapreview.takePicture();
+            scope[nomeObj].tirarFoto = function(obj){
                 scope[nomeObj].galeria = false;
                 scope[nomeObj].fotoTirada = true;
+                cam.takePicture(); // mudei na mão para testar
             };
             
             scope[nomeObj].mostrar = function() {
-                cordova.plugins.camerapreview.show();
+                cam.show();
             };
             
             scope[nomeObj].esconder = function() {
                 if(scope[nomeObj].img)
-                    cordova.plugins.camerapreview.hide();
-                scope[nomeObj].fotoTirada = false; 
+                    cam.hide(sucessEsconder);
             };
+            
+            function sucessEsconder(){
+                scope[nomeObj].fotoTirada = false; 
+            }
             
             scope[nomeObj].mudarEfeito = function() {
                 var effect = document.getElementById('colorEffectCombo').value;
-                cordova.plugins.camerapreview.setColorEffect(effect);
+                cam.setColorEffect(effect);
             };
         }
 
