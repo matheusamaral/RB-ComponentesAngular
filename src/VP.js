@@ -761,7 +761,12 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         return this;
     }
     
+    function mudarString(string,de,para){
+        return string.replace(de,para);
+    }
+    
     return {
+        mudarString:mudarString,
         setScope:setScope,
         ehValido:ehValido,
         validarObj:validarObj,

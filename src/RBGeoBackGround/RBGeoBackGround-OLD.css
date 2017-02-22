@@ -2,6 +2,7 @@
     position: absolute;
     background-color: #FFFFFF;
     z-index: 250;
+    width: 100px;
     border-radius: 10px;
     box-shadow: 1px 2px 7px #000000;
     padding: 10px;
@@ -10,17 +11,6 @@
     transition: all 0.25s;
     transform: scale(1);
     opacity: 0;
-}
-
-.p-local-pequeno-mapa{
-    color: #a5a5a5 !important;
-    font-size: 12px;
-    padding-top: 6px;
-}
-
-.loader-cinza div{
-    border-color: #a5a5a5 !important;
-    border-bottom-color: transparent !important;
 }
 
 .container-popover-mapa.addOpacidade{
@@ -42,24 +32,17 @@
     -ms-transform: rotate(7deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
-    z-index: -1;
-}
-
-.desenhos-icon{
-    margin: 0;
-    font-size: 22px;
-    text-align: center;
-    color: #a5a5a5;
-    margin-top: 6px !important
 }
 
 .corpo-popover-mapa .p-local{
     color: #a5a5a5;
     font-weight: bold;
     font-size: 15px;
-    margin-top: 4px;
+    margin-top: 12px;
     margin-right: 10px;
-    margin-left: 2px;
+    margin-left: auto;
+    padding-left: 10px;
+    margin-bottom: 10px;
 }
 
 .icone-local-popover{
@@ -69,9 +52,6 @@
     min-width: 42px;
     border: 2px solid #dcdcdc;
     border-radius: 35px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 9px;
     background-size: cover;
 }
 
