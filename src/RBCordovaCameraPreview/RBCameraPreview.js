@@ -7,7 +7,11 @@ angular.module('Cmp.CameraPreview', [
 .factory('CameraPreview', ['VP','$timeout','RBLoadingMobile',
     function (VP,$timeout,RBLoadingMobile) {
         var camera = 'front';
-        var scope,cam = CameraPreview;  
+        var scope;
+        if(CameraPreview){
+            var cam = CameraPreview;
+        }
+        
         function setScope(obj){
             scope = obj;
             return this;
@@ -46,10 +50,6 @@ angular.module('Cmp.CameraPreview', [
                 var dragEnabled = false;
                 var toBack = true;
                 cam.startCamera({
-            };
-            
-            scope[nomeObj].pararCamera =  function(){
-                cam.stopCamera(succesParar);
                     x: posicao.x,
                     y: posicao.y,
                     width: tamanho.width,
@@ -61,8 +61,22 @@ angular.module('Cmp.CameraPreview', [
                 },preparaCamera);
             };
             
+            scope[nomeObj].pararCamera =  function(){
+                cam.stopCamera(succesParar);
+            };
+            
+            function succesParar(){
+                scope[nomeObj].fotoTirada = false;
+            }
+                        
+            scope[nomeObj].virarCamera = function(){
+                cam.switchCamera();
+            };
+            
+            scope[nomeObj].tirarFoto = function(obj){
                 scope[nomeObj].galeria = false;
                 scope[nomeObj].fotoTirada = true;
+                cam.takePicture(); // mudei na mão para testar
             };
             
             scope[nomeObj].mostrar = function() {
