@@ -16,38 +16,20 @@ angular.module('Cmp.CameraPreview', [
         function inicializar(nomeObj){
             scope[nomeObj] = {};
             $timeout(function(){
-                scope[nomeObj].containerImgAltura = $('body').width();
                 inicializaFuncoes(nomeObj);
             },0);
         }
         
-        function inicializaFuncoes(nomeObj){
-            
+        function inicializaFuncoes(nomeObj){            
             scope[nomeObj].instanciaCamera = function(){
                 cam.setOnPictureTakenHandler(function(result) {
                     console.log(result);
-                    cam.hide();
-                    scope[nomeObj].img = result;
+                    cam.stopCamera();
+                    scope[nomeObj].img = result[0];
                     $timeout(function(){
-                        document.getElementById(nomeObj).src = scope[nomeObj].img; //originalPicturePath;
+                        document.getElementById(nomeObj).src = result[0]; //scope[nomeObj].img; //originalPicturePath;
                     },0);
                 });
-            };
-            
-            scope[nomeObj].iniciarCamera = function(){
-                //RBLoadingMobile.show('Preparando câmera...');
-                var tapEnabled = false;
-                var dragEnabled = false;
-                var toBack = true;
-                cam.startCamera({
-                    x: 0,
-                    y: $('#cameraPerfilBarra').height() + 40,
-                    width: $('body').width(),
-                    height: scope[nomeObj].containerImgAltura,
-                    camera:camera, 
-                    tapPhoto:tapEnabled, 
-                    previewDrag: dragEnabled, 
-                    toBack:toBack},preparaCamera);
             };
             
             function preparaCamera(){
@@ -58,43 +40,29 @@ angular.module('Cmp.CameraPreview', [
                 },0);
             }
             
-//            document.addEventListener('deviceready', scope[nomeObj].instanciaCamera, false);
-            document.addEventListener('deviceready', scope[nomeObj].iniciarCamera, false);
-            
-            scope[nomeObj].pararCamera =  function(){
-                cam.stopCamera(succesParar);
-            };
-            
-            function succesParar(){
-                scope[nomeObj].fotoTirada = false;
-            }
-            
-            scope[nomeObj].trocarCamera = function(){
-                cam.stopCamera();
-                virarCamera();
-            };
-            
-            function virarCamera(){
-                if(camera == 'front')camera = 'rear';
-                else camera = 'front';
+            scope[nomeObj].iniciarCamera = function(posicao,tamanho,camera){
+                console.log('CAMERA COMPONETE!!!!');
                 var tapEnabled = false;
                 var dragEnabled = false;
                 var toBack = true;
                 cam.startCamera({
-                    x: 0,
-                    y: $('#cameraPerfilBarra').height() + 40,
-                    width: $('body').width(),
-                    height: scope[nomeObj].containerImgAltura,
+            };
+            
+            scope[nomeObj].pararCamera =  function(){
+                cam.stopCamera(succesParar);
+                    x: posicao.x,
+                    y: posicao.y,
+                    width: tamanho.width,
+                    height: tamanho.height,
                     camera:camera, 
                     tapPhoto:tapEnabled, 
                     previewDrag: dragEnabled, 
-                    toBack:toBack},preparaCamera);
-            }
+                    toBack:toBack
+                },preparaCamera);
+            };
             
-            scope[nomeObj].tirarFoto = function(){
                 scope[nomeObj].galeria = false;
                 scope[nomeObj].fotoTirada = true;
-                cam.takePicture();
             };
             
             scope[nomeObj].mostrar = function() {
