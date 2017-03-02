@@ -1,0 +1,61 @@
+.espaco-empurra-chat{
+    height: 0;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition: all 0.2s;
+    transform: scale(1);
+    opacity: 1;
+    background-color: #eeeeee !important;
+}
+
+.espaco-empurra-chat.transparente{
+    opacity: 0;
+}
+
+.container-chat.fechado{
+    bottom:-80px;
+}
+
+.pai-gifs.fechado{
+    bottom: -180px;
+}
+
+.pai-gifs{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition: all 0.2s;
+    transform: scale(1);
+}
+
+.container-barra-sub-menu{
+    bottom:-80px;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition: all 0.2s;
+    transform: scale(1);
+}
+
+.container-barra-sub-menu.aberto{
+    bottom: 10px;
+}
+
+.btns-cam{
+    opacity: 0;
+    transition-property: all;
+    transition-duration: 0.2s;
+    transition: all 0.2s;
+    transform: scale(1);
+    z-index: 2;
+    bottom: 150px;
+    position: relative;
+    background-color: transparent;
+    text-align: center;
+    padding: 15px;
+}
+
+.btns-cam.aberto{
+    opacity: 1;
+}
