@@ -21,14 +21,14 @@ angular.module('RB.ChatEstrutura',[
                             </button>\n\
                             <div ng-if="!rbChat.dadosConversa" class="img-circular-grande  margin-img"\n\
                             style="background-image:url({{alteraNome(rbChat.pergunta.enderecoUsuario)}})"></div>\n\
-                            <div ng-if="!rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;">\n\
+                            <div ng-if="!rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
                                 <p ng-if="dadosUser.usuarioId != rbChat.pergunta.usuarioId" class="negrito ptitular-pergunta">{{rbChat.pergunta.nomeUsuario}}</p>\n\
                                 <p ng-if="dadosUser.usuarioId == rbChat.pergunta.usuarioId" class="negrito ptitular-pergunta">Você</p>\n\
                                 <p class="ptitulo-pergunta">{{rbChat.pergunta.perguntaTitulo}}</p>\n\
                             </div>\n\
                             <div ng-if="rbChat.dadosConversa" class="img-circular-grande  margin-img"\n\
                             style="background-image:url({{alteraNome(rbChat.dadosConversa.endereco)}})"></div>\n\
-                            <div ng-if="rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;">\n\
+                            <div ng-if="rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
                                 <p class="negrito ptitular-pergunta">{{rbChat.dadosConversa.nome}}</p>\n\
                                 <p class="ptitulo-pergunta">Online</p>\n\
                             </div>\n\
@@ -38,9 +38,19 @@ angular.module('RB.ChatEstrutura',[
                                         <md-icon style="color:#FFFFFF !important" class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                                     </md-button>\n\
                                     <md-menu-content width="4">\n\
-                                        <md-menu-item>\n\
+                                        <md-menu-item ng-if="!rbChat.dadosConversa">\n\
                                             <md-button ng-click="rbChat.attPrivacidade()">\n\
                                                 Alterar privacidade\n\
+                                            </md-button>\n\
+                                        </md-menu-item>\n\
+                                        <md-menu-item ng-if="rbChat.dadosConversa && rbChat.dadosConversa.bloqueado != 1">\n\
+                                            <md-button ng-click="rbChat.bloquearUser()">\n\
+                                                Bloquear usuário\n\
+                                            </md-button>\n\
+                                        </md-menu-item>\n\
+                                        <md-menu-item ng-if="rbChat.dadosConversa && rbChat.dadosConversa.bloqueado == 1">\n\
+                                            <md-button ng-click="rbChat.desbloquearUser()">\n\
+                                                Desbloquear usuário\n\
                                             </md-button>\n\
                                         </md-menu-item>\n\
                                     </md-menu-content>\n\
@@ -89,7 +99,9 @@ angular.module('RB.ChatEstrutura',[
     }
     
     function subMenu(){
-         return'<div ng-if="rbChat.cameraAberta && !rbChat.tirouFoto" class="btns-cam" ng-class="{aberto : rbChat.cameraAberta}" \n\
+         return'<div ng-if="rbChat.cameraAberta && !rbChat.tirouFoto"\n\
+                ng-class="{\'btns-can-full\' : rbChat.camFull,aberto : rbChat.cameraAberta}"\n\
+                class="btns-cam"\n\
                 style="position:relative;background-color:transparent;text-align: center;padding: 15px;">\n\
                     <button style="z-index: -3;" ng-if="!cameraPrev.tirouFoto" ng-click="rbChat.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
                     </button>\n\
@@ -133,8 +145,8 @@ angular.module('RB.ChatEstrutura',[
     function conversa(){
         return'<ion-content id="container-respostas" class="container-chat-geral" \n\
                 style="position:relative;height:{{(alturaBody)}}px;\n\
-                padding-top:60px !important">\n\
-                    <div ng-init="rbChat.rolarChatSemAnimacao()" class="container-centro" style="width:{{larguraBody}}px">\n\
+                padding-top:80px !important">\n\
+                    <div ng-init="rbChat.scrollBottom()" class="container-centro" style="width:{{larguraBody}}px">\n\
                         <div ng-if="rbChat.pergunta" class="remove-padding container-dialogo row" style="padding-bottom: 20px !important;">\n\
                             <div ng-if="dadosUser.usuarioId == rbChat.pergunta.usuarioId" class="balao-direita">\n\
                                 <div class="container-textos">\n\
@@ -177,13 +189,15 @@ angular.module('RB.ChatEstrutura',[
                                 </div>\n\
                                 <div class="container-textos-esquerda">\n\
                                     <div class="row remove-padding">\n\
-                                        <div class="col remetente-esquerda remove-padding">{{resposta.nomeUsuario}}</div>\n\
+                                        <div ng-if="resposta.nomeUsuario" class="col remetente-esquerda remove-padding">{{resposta.nomeUsuario}}</div>\n\
+                                        <div ng-if="resposta.nome" class="col remetente-esquerda remove-padding">{{resposta.nome}}</div>\n\
                                         <div class="col resp-momento-esquerda remove-padding">\n\
                                             {{resposta.momento.split(\' \')[1].split(\':\')[0]}}:\n\
                                             {{resposta.momento.split(\' \')[1].split(\':\')[1]}}\n\
                                         </div>\n\
                                     </div>\n\
-                                    <div class="container-resposta">\n\
+                                    <div class="container-resposta"\n\
+                                    ng-class="{\'container-resposta-midia\' : resposta.enderecoMensagem || resposta.enderecoMidia}">\n\
                                         <span ng-if="resposta.respostaTitulo">{{resposta.respostaTitulo}}</span>\n\
                                         <span ng-if="resposta.mensagem">{{resposta.mensagem}}</span>\n\
                                         <div ng-if="resposta.enderecoMidia" ng-click="rbChat.exibirMidiaChat(resposta.enderecoMidia,true)" class="container-midia-resposta" \n\
@@ -203,7 +217,8 @@ angular.module('RB.ChatEstrutura',[
                                         </div>\n\
                                         <div class="col remetente remove-padding">Você</div>\n\
                                     </div>\n\
-                                    <div class="container-resposta">\n\
+                                    <div class="container-resposta"\n\
+                                    ng-class="{\'container-resposta-midia\' : resposta.enderecoMensagem || resposta.enderecoMidia}">\n\
                                         <span ng-if="resposta.respostaTitulo">{{resposta.respostaTitulo}}</span>\n\
                                         <span ng-if="resposta.mensagem">{{resposta.mensagem}}</span>\n\
                                         <div ng-if="resposta.enderecoMidia" ng-click="rbChat.exibirMidiaChat(resposta.enderecoMidia,true)" class="container-midia-resposta" \n\
@@ -230,7 +245,7 @@ angular.module('RB.ChatEstrutura',[
                             class="btn-zoom button-clear button button-positive">\n\
                                 <i class="icon ion-android-close"></i>\n\
                             </button>\n\
-                            <div ng-class="{transparente : rbChat.cameraAberta}" \n\
+                            <div ng-class="{transparente : rbChat.abaSelecionada == 1}" \n\
                             style="height:{{rbChat.empurraChat}}px" class="espaco-empurra-chat">\n\
                             </div>\n\
                         </div>\n\
@@ -271,7 +286,8 @@ angular.module('RB.ChatEstrutura',[
                             <textarea\n\
                             class="text-area-chat"\n\
                             ng-model="rbChat.resposta"\n\
-                            rows="1" id="txtChat"\n\
+                            rows="1"\n\
+                            id="txtChat"\n\
                             ng-keyup="rbChat.digitando();"\n\
                             placeholder="Digite alguma coisa">\n\
                             </textarea>\n\
@@ -307,7 +323,7 @@ angular.module('RB.ChatEstrutura',[
                                     <i class="icon ion-android-arrow-back seta-barra"></i>\n\
                                 </button>\n\
                                 <input style="border:none"\n\
-                                ng-keyup="buscarGif()"\n\
+                                ng-keyup="rbChat.buscarGif()"\n\
                                 class="text-area-chat"\n\
                                 ng-model="rbChat.gifSearch"\n\
                                 placeholder="Pesquisar gif...">\n\

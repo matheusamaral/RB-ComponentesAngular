@@ -762,7 +762,8 @@ angular.module('RB.validacoesPadroes', ['toaster'])
     }
     
     function mudarString(string,de,para){
-        return string.replace(de,para);
+        if(string)
+            return string.replace(de,para);
     }
     
     return {

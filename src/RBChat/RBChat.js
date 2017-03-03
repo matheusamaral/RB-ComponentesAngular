@@ -22,7 +22,13 @@ angular.module('RB.Chat',[
                 scope.alturaChat = $('#container-input').height();
                 scope.alturaBody = $('body').height();
                 scope.larguraBody = $('body').width();
-                if(!nAnimar)$('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height(),duration:0});
+                //if(!nAnimar)$('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height(),duration:0});
+                if(!nAnimar){
+                console.log('$(#container-respostas > div > div).height()');
+                console.log($('#container-respostas > div > div').height());
+                console.log($('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height())));
+                    
+                }
                 //if(!nAnimar)$('#container-respostas').scrollTo($('#container-respostas > div > div').height(), {duration:0});
             },1000);
         }
@@ -59,7 +65,9 @@ angular.module('RB.Chat',[
             respostas,
             pergunta,
             metodoPrivacidade,
-            dadosConversa
+            dadosConversa,
+            metodoBloquear,
+            metodoDesbloquear
         ){
 
             nomeObj = nomeObjeto;
@@ -82,6 +90,12 @@ angular.module('RB.Chat',[
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
             };
             
+            scope.rbChat.scrollBottom = function(indice){
+                $timeout(function(){
+                    $('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height()));
+                },1000);
+            };
+            
             scope.rbChat.fecharTeclado = function(aba){
                 scope.rbChat.abaSelecionada = aba;
                 $timeout(function(){
@@ -93,7 +107,13 @@ angular.module('RB.Chat',[
             
             scope.rbChat.attPrivacidade = metodoPrivacidade;
             
+            scope.rbChat.buscarGif = RBChatGifs.buscarGif;
+            
+            if(metodoBloquear)scope.rbChat.bloquearUser = metodoBloquear;
+            if(metodoDesbloquear)scope.rbChat.desbloquearUser = metodoDesbloquear;
+            
             scope.rbChat.voltar = function(){
+                scope.rbChat.fecharCamera();
                 Pagina.rollBack();
             };
             
@@ -207,7 +227,7 @@ angular.module('RB.Chat',[
 
                 scope.timeoutGif = $timeout(function(){
                     RBChatRequisicoes.set({scope:scope,dados:obj,acaoSuccess:RBChatRequisicoes.successBuscarGif}).buscarGif();
-                },1000);
+                },500);
             };
             
             scope.rbChat.digitando = function(){
@@ -216,6 +236,7 @@ angular.module('RB.Chat',[
             
             scope.rbChat.fecharExibirMidia = function(){
                 scope.rbChat.tirouFoto = false;
+                if(scope.rbChat.camFull)scope.rbChat.camFull = false;
                 if(scope.rbChat.abaSelecionada == 2){
                     scope.rbChat.menuAberto = false;
                     $timeout(function(){
@@ -571,8 +592,8 @@ angular.module('RB.Chat',[
     }
 ])
 
-.factory('RBChatGifs', ['VP','$timeout','Websocket',
-    function (VP,$timeout,Websocket) {
+.factory('RBChatGifs', ['VP','$timeout','RBChatRequisicoes',
+    function (VP,$timeout,RBChatRequisicoes) {
         var scope;
         
         function setScope(obj){
@@ -585,10 +606,24 @@ angular.module('RB.Chat',[
                 scope.rbChat.gifs = DGlobal.gifs.dados;
             }
         }
+        
+        function buscarGif(){
+            var obj = {
+                pesquisa:scope.rbChat.gifSearch
+            };
+
+            $timeout.cancel(scope.timeoutGif);
+
+            scope.timeoutGif = $timeout(function(){
+                
+                RBChatRequisicoes.set({scope:scope,dados:obj,acaoSuccess:RBChatRequisicoes.successBuscarGif}).buscarGif();
+            },1000);
+    }
 
         return {
             setScope:setScope,
-            popular:popular
+            popular:popular,
+            buscarGif:buscarGif
         };
     }
 ]);

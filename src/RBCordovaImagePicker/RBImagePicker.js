@@ -13,7 +13,7 @@ angular.module('Cmp.ImagePicker', [
             return this;
         };
         
-        function iniciar(nome){
+        function iniciar(nome,metodo){
             var options = {
                 maximumImagesCount: 1,
                 width: $('body').width(),
@@ -23,11 +23,13 @@ angular.module('Cmp.ImagePicker', [
             
             $cordovaImagePicker.getPictures(options)
             .then(function (results) {
-                scope[nome].img = results[0];
-                scope[nome].galeria = true;
+                if(scope[nome])scope[nome].img = results[0];
+                if(scope[nome])scope[nome].galeria = true;
                 //document.getElementById(nome).src = scope[nome].img;
-                scope[nome].esconder();
+                if(scope[nome].esconder)scope[nome].esconder();
+                metodo(results[0]);
             }, function(error) {
+                metodo(false);
                 scope[nome].img = false;
             });   
         }

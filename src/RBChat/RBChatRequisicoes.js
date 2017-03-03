@@ -44,6 +44,7 @@ angular.module('RB.ChatRequisicoes', [
         };
         
         function buscarGif(){
+            RBLoadingMobile.show('Pesquisando gif...');
             var obj = {
                 url: Config.getRefAmbienteReq()+"/Acoes/gifSearch",
                 dados: $.param(dados),
@@ -58,6 +59,7 @@ angular.module('RB.ChatRequisicoes', [
         
         function successBuscarGif(objRetorno){
             console.log("objRetorno",objRetorno);
+            RBLoadingMobile.hide();
             if(objRetorno.success === true){
                 if(objRetorno.dados.length)
                     for(var i = 0; i < objRetorno.dados.length;i++){
