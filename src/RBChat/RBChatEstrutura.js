@@ -146,7 +146,7 @@ angular.module('RB.ChatEstrutura',[
         return'<ion-content id="container-respostas" class="container-chat-geral" \n\
                 style="position:relative;height:{{(alturaBody)}}px;\n\
                 padding-top:80px !important">\n\
-                    <div ng-init="rbChat.scrollBottom()" class="container-centro" style="width:{{larguraBody}}px">\n\
+                    <div ng-init="rbChat.scrollBottom()" class="efeitoChat container-centro" style="width:{{larguraBody}}px">\n\
                         <div ng-if="rbChat.pergunta" class="remove-padding container-dialogo row" style="padding-bottom: 20px !important;">\n\
                             <div ng-if="dadosUser.usuarioId == rbChat.pergunta.usuarioId" class="balao-direita">\n\
                                 <div class="container-textos">\n\
@@ -277,25 +277,23 @@ angular.module('RB.ChatEstrutura',[
                             <div class="bola-digitando"></div>\n\
                         </div>\n\
                     </div>\n\
-                    <div ng-if="!previewAberto && !exibirBarra" class="row remove-padding container-componentes">\n\
+                    <div class="row remove-padding container-componentes">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
                             <button ng-click="rbChat.fecharTeclado(1)" class="btn-chat-pub ion-plus-round button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                         <div class="container-text-area">\n\
-                            <p class="lead emoji-picker-container">\n\
-                                <textarea\n\
-                                class="form-control textarea-control"\n\
-                                ng-model="rbChat.resposta"\n\
-                                data-emojiable="true"\n\
-                                rows="1"\n\
-                                ng-keyup="rbChat.digitando();"\n\
-                                placeholder="Digite alguma coisa">\n\
-                                </textarea>\n\
-                            </p>\n\
+                            <textarea\n\
+                            class="form-control textarea-control"\n\
+                            ng-model="rbChat.resposta"\n\
+                            data-emojiable="true"\n\
+                            rows="1"\n\
+                            ng-keyup="rbChat.digitando();"\n\
+                            placeholder="Digite alguma coisa">\n\
+                            </textarea>\n\
                         </div>\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="rbChat.responder()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
+                            <button ng-disabled="!rbChat.resposta" ng-click="rbChat.responder()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
