@@ -765,7 +765,7 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         return string.replace(de,para);
     }
     
-        function converteMinutoTempoString(val){
+    function converteMinutoTempoString(val){
         var tempoString='';
         var valor={minutos:val};
         if(valor.minutos<1)
