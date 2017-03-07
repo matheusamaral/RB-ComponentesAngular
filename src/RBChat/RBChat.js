@@ -23,14 +23,23 @@ angular.module('RB.Chat',[
                 scope.alturaBody = $('body').height();
                 scope.larguraBody = $('body').width();
                 //if(!nAnimar)$('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height(),duration:0});
-                if(!nAnimar){
-                console.log('$(#container-respostas > div > div).height()');
-                console.log($('#container-respostas > div > div').height());
-                console.log($('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height())));
-                    
-                }
-                //if(!nAnimar)$('#container-respostas').scrollTo($('#container-respostas > div > div').height(), {duration:0});
-            },1000);
+                inicializarEmoticons();
+            },0);
+        }
+        
+        function inicializarEmoticons(){
+            $(function() {
+              // Initializes and creates emoji set from sprite sheet
+              window.emojiPicker = new EmojiPicker({
+                emojiable_selector: '[data-emojiable=true]',
+                assetsPath: 'lib/emoji-picker-gh-pages/lib/img',
+                popupButtonClasses: 'fa fa-smile-o'
+              });
+              // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+              // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+              // It can be called as many times as necessary; previously converted input fields will not be converted again
+              window.emojiPicker.discover();
+            });
         }
         
         function iniciarInfinitScroll(metodoInfinitScroll){
@@ -113,7 +122,7 @@ angular.module('RB.Chat',[
             if(metodoDesbloquear)scope.rbChat.desbloquearUser = metodoDesbloquear;
             
             scope.rbChat.voltar = function(){
-                scope.rbChat.fecharCamera();
+                if(scope.rbChat.fecharCamera)scope.rbChat.fecharCamera();
                 Pagina.rollBack();
             };
             
@@ -143,6 +152,7 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.abrirMenu = function(){
+                scope.rbChat.liberaBtns = false;
                 scope.rbChat.menuAberto = true;
                 $('.container-chat-geral').addClass('remove-overflow-preview');
                 $timeout(function(){
@@ -161,7 +171,7 @@ angular.module('RB.Chat',[
             
             scope.rbChat.abrirGifs = function(indice){
                 if(scope.rbChat.abaSelecionada == 1){
-                    scope.rbChat.fecharCamera();
+                    if(scope.rbChat.fecharCamera)scope.rbChat.fecharCamera();
                 }
                 
                 $timeout(function(){
@@ -479,6 +489,7 @@ angular.module('RB.Chat',[
                 $('html,body,ion-side-menus,ion-side-menu-content,ion-content').addClass('fundo-transparente-camera');
                 $timeout(function(){
                     scope.rbChat.cameraAberta = true;
+                    scope.rbChat.liberaBtns = true;
                     //scope.$apply();
                 },500);
             }
@@ -535,7 +546,7 @@ angular.module('RB.Chat',[
         };
         
         ionic.Platform.ready(function(){
-            permissions = cordova.plugins.permissions;
+            //if(cordova)permissions = cordova.plugins.permissions;
         });
         
         function iniciar(){

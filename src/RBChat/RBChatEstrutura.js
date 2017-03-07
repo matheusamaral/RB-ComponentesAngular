@@ -114,7 +114,7 @@ angular.module('RB.ChatEstrutura',[
                 <div ng-class="{aberto : rbChat.menuAberto && !rbChat.camFull}" class="row container-barra-sub-menu">\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="rbChat.voltarTeclado(0)" class="btn-chat-pub button button-clear button-positive">\n\
+                            <button ng-disabled="!rbChat.liberaBtns" ng-click="rbChat.voltarTeclado(0)" class="btn-chat-pub button button-clear button-positive">\n\
                                 <md-icon class="img-teclado"></md-icon>\n\
                             </button>\n\
                         </div>\n\
@@ -127,14 +127,14 @@ angular.module('RB.ChatEstrutura',[
                     </div>\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-class="{selecionado: rbChat.abaSelecionada == 2}" ng-click="rbChat.abrirGlr(2)" \n\
+                            <button ng-disabled="!rbChat.liberaBtns" ng-class="{selecionado: rbChat.abaSelecionada == 2}" ng-click="rbChat.abrirGlr(2)" \n\
                             class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
                             </button>\n\
                         </div>\n\
                     </div>\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="rbChat.abrirGifs(3);" class="btn-chat-pub button button-clear button-positive">\n\
+                            <button ng-disabled="!rbChat.liberaBtns" ng-click="rbChat.abrirGifs(3);" class="btn-chat-pub button button-clear button-positive">\n\
                                 <md-icon class="img-gif"></md-icon>\n\
                             </button>\n\
                         </div>\n\
@@ -283,18 +283,16 @@ angular.module('RB.ChatEstrutura',[
                             </button>\n\
                         </div>\n\
                         <div class="container-text-area">\n\
-                            <textarea\n\
-                            class="text-area-chat"\n\
-                            ng-model="rbChat.resposta"\n\
-                            rows="1"\n\
-                            id="txtChat"\n\
-                            ng-keyup="rbChat.digitando();"\n\
-                            placeholder="Digite alguma coisa">\n\
-                            </textarea>\n\
-                        </div>\n\
-                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-click="addInfinit()" class="btn-chat-pub ion-android-happy button button-clear button-positive">\n\
-                            </button>\n\
+                            <p class="lead emoji-picker-container">\n\
+                                <textarea\n\
+                                class="form-control textarea-control"\n\
+                                ng-model="rbChat.resposta"\n\
+                                data-emojiable="true"\n\
+                                rows="1"\n\
+                                ng-keyup="rbChat.digitando();"\n\
+                                placeholder="Digite alguma coisa">\n\
+                                </textarea>\n\
+                            </p>\n\
                         </div>\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
                             <button ng-click="rbChat.responder()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\

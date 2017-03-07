@@ -28,6 +28,7 @@
     transition-duration: 0.2s;
     transition: all 0.2s;
     transform: scale(1);
+    background-color: #EEEEEE;
 }
 
 .container-barra-sub-menu{
@@ -62,4 +63,17 @@
 
 .btns-can-full{
     bottom: 90px !important;
+}
+
+.emoji-menu {
+    left: -163px !important;
+    top: -289px !important;
+}
+
+i.emoji-picker-icon{
+    right: 6px;
+    width: 26px;
+    height: 26px;
+    width: 25px;
+    height: 25px;
 }
