@@ -283,14 +283,18 @@ angular.module('RB.ChatEstrutura',[
                             </button>\n\
                         </div>\n\
                         <div class="container-text-area">\n\
-                            <textarea\n\
-                            class="form-control textarea-control"\n\
-                            ng-model="rbChat.resposta"\n\
-                            data-emojiable="true"\n\
-                            rows="1"\n\
-                            ng-keyup="rbChat.digitando();"\n\
-                            placeholder="Digite alguma coisa">\n\
-                            </textarea>\n\
+                            <p class="lead emoji-picker-container">\n\
+                                <textarea id="txtAreaChat"\n\
+                                class="form-control textarea-control"\n\
+                                ng-model="rbChat.resposta"\n\
+                                data-emojiable="true"\n\
+                                rows="3"\n\
+                                disabled:"true"\n\
+                                readonly="true"\n\
+                                ng-keyup="rbChat.digitando();"\n\
+                                placeholder="Digite alguma coisa">\n\
+                                </textarea>\n\
+                            </p>\n\
                         </div>\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
                             <button ng-disabled="!rbChat.resposta" ng-click="rbChat.responder()" class="btn-chat-pub ion-android-send button button-clear button-positive">\n\
