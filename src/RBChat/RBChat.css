@@ -8,6 +8,19 @@
     background-color: #eeeeee !important;
 }
 
+.texto-giphy{
+    color: #A7A7A7;
+    font-size: 8px;
+    padding-top: 8px;  
+    text-align: end;
+}
+
+.texto-giphy .negrito{
+    font-size: 15px;
+    color: rgb(150, 150, 150);
+    margin-top: 9px !important;
+}
+
 .borda-gif{
     background-color: #FFFFFF !important
         ;

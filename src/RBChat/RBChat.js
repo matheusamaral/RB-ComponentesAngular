@@ -188,12 +188,37 @@ angular.module('RB.Chat',[
             
             scope.rbChat.exibirMidiaChat = function (midia,sumir){
                 scope.rbChat.tirouFoto = true;
+                sobrescreverMetodoTeclado();
                 if(midia.split('.')[midia.split('.').length - 1] == 'gif')
                     midia = midia.replace('100.gif','giphy.gif');
                 scope.rbChat.tirouFoto = midia;
                 //scope.$apply();
                 scope.rbChat.sumirBtn = sumir;
             };
+            
+            scope.rbChat.fecharExibirMidia = function(renovar){
+                restauraComportamentoPadraoBackButton();
+                scope.rbChat.tirouFoto = false;
+                if(scope.rbChat.camFull)scope.rbChat.camFull = false;
+                if(scope.rbChat.abaSelecionada == 2){
+                    scope.rbChat.menuAberto = false;
+                    $timeout(function(){
+                        scope.rbChat.abaSelecionada = 0;
+                    },0);
+                }
+                if(renovar)scope.$apply();
+            };
+            
+            function sobrescreverMetodoTeclado(){
+                $ionicPlatform.registerBackButtonAction(
+                    function (e){
+                        e.stopPropagation();
+                        e.preventDefault();
+                        scope.rbChat.fecharExibirMidia(true);
+                        return false;
+                    },101
+                );
+            }
             
             scope.rbChat.abrirMenu = function(){
                 mudarComportamentoBackButton();
@@ -287,17 +312,6 @@ angular.module('RB.Chat',[
             
             scope.rbChat.digitando = function(){
                 metodoDigitando();
-            };
-            
-            scope.rbChat.fecharExibirMidia = function(){
-                scope.rbChat.tirouFoto = false;
-                if(scope.rbChat.camFull)scope.rbChat.camFull = false;
-                if(scope.rbChat.abaSelecionada == 2){
-                    scope.rbChat.menuAberto = false;
-                    $timeout(function(){
-                        scope.rbChat.abaSelecionada = 0;
-                    },0);
-                }
             };
             
             iniciaAltura();
@@ -665,18 +679,14 @@ angular.module('RB.Chat',[
             }
             
             scope.rbChat.ehGif = function(link1,link2){
-                console.log(link1);
-                console.log(link2);
                 if(link1){
                     if(link1.split('.')[link1.split('.').length - 1] == 'gif'){
-                        console.log(link1);
                         return true;
                     }
                 }
                 
                 if(link2){
                     if(link2.split('.')[link2.split('.').length - 1] == 'gif'){
-                        console.log(link2);
                         return true;
                     }
                 }
