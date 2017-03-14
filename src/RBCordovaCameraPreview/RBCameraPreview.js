@@ -7,11 +7,7 @@ angular.module('Cmp.CameraPreview', [
 .factory('CameraPreview', ['VP','$timeout','RBLoadingMobile',
     function (VP,$timeout,RBLoadingMobile) {
         var camera = 'front';
-        var scope;
-        if(CameraPreview){
-            var cam = CameraPreview;
-        }
-        
+        var scope,cam = CameraPreview;  
         function setScope(obj){
             scope = obj;
             return this;
@@ -20,20 +16,51 @@ angular.module('Cmp.CameraPreview', [
         function inicializar(nomeObj){
             scope[nomeObj] = {};
             $timeout(function(){
+                scope[nomeObj].containerImgAltura = $('body').width();
                 inicializaFuncoes(nomeObj);
             },0);
         }
         
-        function inicializaFuncoes(nomeObj){            
+        function inicializaFuncoes(nomeObj){
+            
+//            scope[nomeObj].instanciaCamera = function(){
+//                cam.setOnPictureTakenHandler(function(result) {
+//                    console.log(result);
+//                    cam.hide();
+//                    scope[nomeObj].img = result;
+//                    $timeout(function(){
+//                        document.getElementById(nomeObj).src = scope[nomeObj].img; //originalPicturePath;
+//                    },0);
+//                });
+//            };
+
             scope[nomeObj].instanciaCamera = function(){
                 cam.setOnPictureTakenHandler(function(result) {
+                    console.log('result');
                     console.log(result);
                     cam.stopCamera();
                     scope[nomeObj].img = result[0];
+                    //não pode ser fixo a extensão, tem que ser a extensão correta;
                     $timeout(function(){
                         document.getElementById(nomeObj).src = result[0]; //scope[nomeObj].img; //originalPicturePath;
                     },0);
                 });
+            };
+            
+            scope[nomeObj].iniciarCamera = function(){
+                //RBLoadingMobile.show('Preparando câmera...');
+                var tapEnabled = false;
+                var dragEnabled = false;
+                var toBack = true;
+                cam.startCamera({
+                    x: 0,
+                    y: $('#cameraPerfilBarra').height() + 40,
+                    width: $('body').width(),
+                    height: scope[nomeObj].containerImgAltura,
+                    camera:camera, 
+                    tapPhoto:tapEnabled, 
+                    previewDrag: dragEnabled, 
+                    toBack:toBack},preparaCamera);
             };
             
             function preparaCamera(){
@@ -44,22 +71,8 @@ angular.module('Cmp.CameraPreview', [
                 },0);
             }
             
-            scope[nomeObj].iniciarCamera = function(posicao,tamanho,camera){
-                console.log('CAMERA COMPONETE!!!!');
-                var tapEnabled = false;
-                var dragEnabled = false;
-                var toBack = true;
-                cam.startCamera({
-                    x: posicao.x,
-                    y: posicao.y,
-                    width: tamanho.width,
-                    height: tamanho.height,
-                    camera:camera, 
-                    tapPhoto:tapEnabled, 
-                    previewDrag: dragEnabled, 
-                    toBack:toBack
-                },preparaCamera);
-            };
+//            document.addEventListener('deviceready', scope[nomeObj].instanciaCamera, false);
+            document.addEventListener('deviceready', scope[nomeObj].iniciarCamera, false);
             
             scope[nomeObj].pararCamera =  function(){
                 cam.stopCamera(succesParar);
@@ -68,15 +81,33 @@ angular.module('Cmp.CameraPreview', [
             function succesParar(){
                 scope[nomeObj].fotoTirada = false;
             }
-                        
-            scope[nomeObj].virarCamera = function(){
-                cam.switchCamera();
+            
+            scope[nomeObj].trocarCamera = function(){
+                cam.stopCamera();
+                virarCamera();
             };
             
-            scope[nomeObj].tirarFoto = function(obj){
+            function virarCamera(){
+                if(camera == 'front')camera = 'rear';
+                else camera = 'front';
+                var tapEnabled = false;
+                var dragEnabled = false;
+                var toBack = true;
+                cam.startCamera({
+                    x: 0,
+                    y: $('#cameraPerfilBarra').height() + 40,
+                    width: $('body').width(),
+                    height: scope[nomeObj].containerImgAltura,
+                    camera:camera, 
+                    tapPhoto:tapEnabled, 
+                    previewDrag: dragEnabled, 
+                    toBack:toBack},preparaCamera);
+            }
+            
+            scope[nomeObj].tirarFoto = function(){
                 scope[nomeObj].galeria = false;
                 scope[nomeObj].fotoTirada = true;
-                cam.takePicture(); // mudei na mão para testar
+                cam.takePicture();
             };
             
             scope[nomeObj].mostrar = function() {

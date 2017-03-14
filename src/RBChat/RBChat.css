@@ -8,6 +8,11 @@
     background-color: #eeeeee !important;
 }
 
+.borda-gif{
+    background-color: #FFFFFF !important
+        ;
+}
+
 .espaco-empurra-chat.transparente{
     opacity: 0;
 }
@@ -18,11 +23,13 @@
 
 .pai-gifs.fechado{
     bottom: -180px;
+    display: none;
 }
 
 .pai-gifs{
     position: fixed;
     bottom: 0;
+    display: inherit;
     left: 0;
     transition-property: all;
     transition-duration: 0.2s;

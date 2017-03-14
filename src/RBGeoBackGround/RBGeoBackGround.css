@@ -15,7 +15,8 @@
 .p-local-pequeno-mapa{
     color: #a5a5a5 !important;
     font-size: 12px;
-    padding-top: 6px;
+    padding-top: 3px;
+    white-space: nowrap;
 }
 
 .loader-cinza div{

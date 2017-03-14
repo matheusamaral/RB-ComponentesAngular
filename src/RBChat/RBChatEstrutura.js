@@ -16,20 +16,20 @@ angular.module('RB.ChatEstrutura',[
             return '<div style="position:fixed !important" class="row bar bar-header bar-positive remove-padding" \n\
                     ng-if="!rbChat.camFull && !rbChat.tirouFoto">\n\
                         <div class="row remove-padding">\n\
-                            <button ng-click="rbChat.voltar()" class="margin-img btn-respostas-voltar btn-txt-direita button button-clear">\n\
+                            <button style="margin-top: 13px;" ng-click="rbChat.voltar()" class="margin-img btn-respostas-voltar btn-txt-direita button button-clear">\n\
                                 <i class="icon ion-android-arrow-back seta-barra"></i>\n\
                             </button>\n\
                             <div ng-if="!rbChat.dadosConversa" class="img-circular-grande  margin-img"\n\
                             style="background-image:url({{alteraNome(rbChat.pergunta.enderecoUsuario)}})"></div>\n\
                             <div ng-if="!rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
-                                <p ng-if="dadosUser.usuarioId != rbChat.pergunta.usuarioId" class="negrito ptitular-pergunta">{{rbChat.pergunta.nomeUsuario}}</p>\n\
-                                <p ng-if="dadosUser.usuarioId == rbChat.pergunta.usuarioId" class="negrito ptitular-pergunta">Você</p>\n\
+                                <p style="margin-top: 14px;" ng-if="dadosUser.usuarioId != rbChat.pergunta.usuarioId" class="negrito ptitular-pergunta">{{rbChat.pergunta.nomeUsuario}}</p>\n\
+                                <p style="margin-top: 14px;" ng-if="dadosUser.usuarioId == rbChat.pergunta.usuarioId" class="negrito ptitular-pergunta">Você</p>\n\
                                 <p class="ptitulo-pergunta">{{rbChat.pergunta.perguntaTitulo}}</p>\n\
                             </div>\n\
                             <div ng-if="rbChat.dadosConversa" class="img-circular-grande  margin-img"\n\
                             style="background-image:url({{alteraNome(rbChat.dadosConversa.endereco)}})"></div>\n\
                             <div ng-if="rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
-                                <p class="negrito ptitular-pergunta">{{rbChat.dadosConversa.nome}}</p>\n\
+                                <p style="margin-top: 14px;" class="negrito ptitular-pergunta">{{rbChat.dadosConversa.nome}}</p>\n\
                                 <p class="ptitulo-pergunta">Online</p>\n\
                             </div>\n\
                             <div class="text-right">\n\
@@ -181,7 +181,7 @@ angular.module('RB.ChatEstrutura',[
                         </div>\n\
                         <div ng-repeat="resposta in rbChat.respostas | orderBy: $index : true" class="remove-padding container-dialogo row" style="padding-bottom: 20px !important;">\n\
                             <div ng-if="dadosUser.usuarioId != resposta.usuarioId" class="balao-esquerda">\n\
-                                <div class="container-img-resposta text-right remove-padding">\n\
+                                <div ng-class="{\'borda-gif\' :rbChat.ehGif(resposta.enderecoUsuario,resposta.endereco)}" class="container-img-resposta text-right remove-padding">\n\
                                     <div ng-if="resposta.enderecoUsuario" class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.enderecoUsuario)}})"></div>\n\
                                     <div ng-if="resposta.endereco" class="chat img-circular-grande margin-img"\n\
@@ -197,13 +197,14 @@ angular.module('RB.ChatEstrutura',[
                                         </div>\n\
                                     </div>\n\
                                     <div class="container-resposta"\n\
-                                    ng-class="{\'container-resposta-midia\' : resposta.enderecoMensagem || resposta.enderecoMidia}">\n\
+                                    ng-class="{\'container-resposta-midia\' : resposta.enderecoMensagem || resposta.enderecoMidia,\n\
+                                    \'borda-gif\' :rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}">\n\
                                         <span ng-if="resposta.respostaTitulo">{{resposta.respostaTitulo}}</span>\n\
                                         <span ng-if="resposta.mensagem">{{resposta.mensagem}}</span>\n\
                                         <div ng-if="resposta.enderecoMidia" ng-click="rbChat.exibirMidiaChat(resposta.enderecoMidia,true)" class="container-midia-resposta" \n\
-                                        style="background-image:url({{alteraNome(resposta.enderecoMidia)}})"></div>\n\
+                                        style="background-image:url({{resposta.enderecoMidia}})"></div>\n\
                                         <div ng-if="resposta.enderecoMensagem" ng-click="rbChat.exibirMidiaChat(resposta.enderecoMensagem,true)" class="container-midia-resposta" \n\
-                                        style="background-image:url({{alteraNome(resposta.enderecoMensagem)}})">\n\
+                                        style="background-image:url({{resposta.enderecoMensagem}})">\n\
                                         </div>\n\
                                     </div>\n\
                                 </div>\n\
@@ -218,13 +219,14 @@ angular.module('RB.ChatEstrutura',[
                                         <div class="col remetente remove-padding">Você</div>\n\
                                     </div>\n\
                                     <div class="container-resposta"\n\
-                                    ng-class="{\'container-resposta-midia\' : resposta.enderecoMensagem || resposta.enderecoMidia}">\n\
+                                    ng-class="{\'container-resposta-midia\' : resposta.enderecoMensagem || resposta.enderecoMidia,\n\
+                                        \'borda-gif\' :rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}">\n\
                                         <span ng-if="resposta.respostaTitulo">{{resposta.respostaTitulo}}</span>\n\
                                         <span ng-if="resposta.mensagem">{{resposta.mensagem}}</span>\n\
                                         <div ng-if="resposta.enderecoMidia" ng-click="rbChat.exibirMidiaChat(resposta.enderecoMidia,true)" class="container-midia-resposta" \n\
-                                        style="background-image:url({{alteraNome(resposta.enderecoMidia)}})"></div>\n\
+                                        style="background-image:url({{resposta.enderecoMidia}})"></div>\n\
                                         <div ng-if="resposta.enderecoMensagem" ng-click="rbChat.exibirMidiaChat(resposta.enderecoMensagem,true)" class="container-midia-resposta" \n\
-                                        style="background-image:url({{alteraNome(resposta.enderecoMensagem)}})">\n\
+                                        style="background-image:url({{resposta.enderecoMensagem}})">\n\
                                         </div>\n\
                                     </div>\n\
                                 </div>\n\
@@ -288,9 +290,7 @@ angular.module('RB.ChatEstrutura',[
                                 class="form-control textarea-control"\n\
                                 ng-model="rbChat.resposta"\n\
                                 data-emojiable="true"\n\
-                                rows="3"\n\
-                                disabled:"true"\n\
-                                readonly="true"\n\
+                                rows="1"\n\
                                 ng-keyup="rbChat.digitando();"\n\
                                 placeholder="Digite alguma coisa">\n\
                                 </textarea>\n\
