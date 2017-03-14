@@ -762,10 +762,59 @@ angular.module('RB.validacoesPadroes', ['toaster'])
     }
     
     function mudarString(string,de,para){
-        return string.replace(de,para);
+        if(string)
+            return string.replace(de,para);
+    }
+    
+    function converteMinutoTempoString(val){
+        var tempoString='';
+        var valor={minutos:val};
+        if(valor.minutos<1)
+            tempoString ='menos de 1 minuto';
+        
+        else{
+            tempoString=valor.minutos+' minuto';
+            if(valor.minutos>1)
+                tempoString=tempoString+'s';
+        }
+        
+        if(valor.minutos){
+            valor.horas=parseInt(converteMinutosHoras(valor.minutos));
+            if(valor.horas==1)
+                tempoString=valor.horas+' hora';
+            if(valor.horas>1)
+                tempoString=valor.horas+' horas';
+        }
+
+        if(valor.horas){
+            valor.dias=parseInt((valor.horas/24));
+            if(valor.dias==1)
+                tempoString=valor.dias+' dia';
+            if(valor.dias>1)
+                tempoString=valor.dias+' dias';
+        }
+
+        if(valor.dias){
+            valor.meses=parseInt((valor.dias/30));
+            if(valor.meses==1)
+                tempoString=valor.meses+' mês';
+            if(valor.meses>1)
+                tempoString=valor.meses+' meses';
+        }
+
+        if(valor.meses){
+            valor.anos=parseInt((valor.meses/12));
+            if(valor.anos==1)
+                tempoString=valor.anos+' ano';
+            if(valor.anos>1)
+                tempoString=valor.anos+' anos';
+        }
+        
+        return tempoString;
     }
     
     return {
+        converteMinutoTempoString:converteMinutoTempoString,
         mudarString:mudarString,
         setScope:setScope,
         ehValido:ehValido,

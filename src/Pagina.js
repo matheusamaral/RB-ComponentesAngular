@@ -4,20 +4,32 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
 
 .factory('Pagina', ['RBLoading','VP', 'GCS', 'Config', '$rootScope','$state','RBLoadingMobile','ionicToast','$timeout',
     function(RBLoading,VP, GCS, Config, $rootScope,$state,RBLoadingMobile,ionicToast,$timeout){
-
+   
     var timeNavegar = 0;
     var appAtual = '';
-    var ultDados;
-
+    var funcaoPreNavegacao = [];
+    
     function getTimeNavegar(){
         return timeNavegar;
     }
-
+    
     function setApp(app){
         appAtual = app;
         return instancia;
     }
-
+    
+    function addPreNavegar(acao){
+        funcaoPreNavegacao.push(acao);
+    };
+    
+    function limpaAcaoPreNavegarIndice(indice){
+        funcaoPreNavegacao=funcaoPreNavegacao.slice(indice,1);
+    }
+    
+    function limpaAcaoPreNavegar(){
+        funcaoPreNavegacao='';
+    }
+    
     function hrefDataAjax(href){
         if(typeof href === 'object' )
             return 'href="'+navegar({ idPage: href.id, href: 1})+'" \n\
@@ -25,17 +37,17 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
         else
             return 'href="'+href+'"';
     };
-
-    function navegar(dados,voltar){
-          RBLoadingMobile.show('Carregando...');
-
-          if(DGlobal.hitoricoApp == 1){
-                if(voltar!=1 && DGlobal.sequenciaVoltar){
-                    DGlobal.sequenciaVoltar = false;
-                    DGlobal.iniciarHistorico = true;
-                }
-                ultDados = VP.removeReferencia(dados);
+    
+    function navegar(dados){
+        var dg = VP.removeReferencia(DGlobal);
+        if(dg.prevDGlobal)delete dg.prevDGlobal;
+        DGlobal.prevDGlobal = VP.removeReferencia(dg);
+        RBLoadingMobile.show('Carregando...');
+        if(funcaoPreNavegacao.length){
+            for(var i=0; i<funcaoPreNavegacao.length; i++){
+                funcaoPreNavegacao[i](i);
             }
+        }
             var dadosPadrao = {
                 idPage:'',
                 opc: 2,// não vem os dados opcionais
@@ -43,18 +55,18 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
                 href: 0,
                 dados: {}
             };
-
+            
             dadosPadrao = VP.validarObj(dados,dadosPadrao);
             RBLoading.changeStatus(true);
-
-            //if(parseInt(dados.href) !== 1 && parseInt(dados.href) !== 2){
+            
+            if(parseInt(dados.href) !== 1 && parseInt(dados.href) !== 2){
                 timeNavegar = 1;
-
+                
                 var dadosRequisicao = {
                     url:Config.getRefAmbienteReq()+'/Navegacao/Tela/'+dadosPadrao.idPage+'/'+dadosPadrao.opc+'/'+appAtual+dadosPadrao.paramAdd,
                     tipo:'GET',
                     dados:dadosPadrao.dados,
-                    acao: acaoNavegar,
+                    acao: acaoNavegar, 
                     error: acaoErroNavegar,
                     guardarLocal:0,
                     exibeMSG:0,
@@ -62,94 +74,50 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
                 };
                 GCS.conectar(dadosRequisicao);
                 return false;
-            //}
+            }
     };
-
+    
     function rollBack(){
-        var posicao = historicoNavegacao.length -(DGlobal.reduzirNavegacao) ;
-
-        DGlobal.reduzirNavegacao =2;
-        console.log(VP.removeReferencia(historicoNavegacao), posicao,'PASSOU ROLLBACK INICIO');
-        while(posicao != -1){
-            if(DGlobal.acaoCliente.idPagina == historicoNavegacao[posicao].dados.idPage){
-                posicao--;
-            }else{
-                break;
-            }
-        }
-
-        if(posicao == -1){
-            ionic.Platform.exitApp();
-        }else{
-            if(historicoNavegacao[posicao].cache==1){
-                DGlobal = VP.removeReferencia(historicoNavegacao[posicao].DGlobal);
-                $timeout(function(){ $state.go(DGlobal.acaoCliente.acao);},0);
-            }else{
-                navegar(VP.removeReferencia(historicoNavegacao[posicao].dados),1);
-            }
-        }
-
-        historicoNavegacao.splice(posicao+1,1);
-
-        DGlobal.sequenciaVoltar = true;
-        console.log(VP.removeReferencia(historicoNavegacao), 'PASSOU ROLLBACK');
+        var length = $rootScope.regraNavegacao.length - 1;
+        
+        $timeout(function(){
+            DGlobal = VP.removeReferencia($rootScope.regraNavegacao[length].DGlobal);
+            DGlobal.rollback = true;
+            $state.go($rootScope.regraNavegacao[length].name);
+            $rootScope.regraNavegacao.splice(length,1);
+        },0);
     }
-
+    
     function acaoErroNavegar(){
         RBLoadingMobile.hide();
         timeNavegar = 0;
         OpenToast("Servidor não responde, por favor, tente novamente!");
     };
-
+    
     function acaoNavegar(dados){
         RBLoadingMobile.hide();
         timeNavegar = 0;
         if(dados.success){
+
             GCS.executarAcaoServidor(dados);
         }
-        if(DGlobal.hitoricoApp == 1){
-            acaoPosNavegarHistorico();
-        }
     };
-
-    function acaoPosNavegarHistorico(){
-        DGlobal.reduzirNavegacao =2;
-        $timeout(function(){
-            if(!DGlobal.sequenciaVoltar && DGlobal.acaoCliente.historico == 1){
-                if(DGlobal.iniciarHistorico){
-                    var posicao = historicoNavegacao.length -1;
-                    var novoHistorico = VP.removeReferencia(historicoNavegacao[posicao]);
-                    historicoNavegacao = [novoHistorico];
-                    DGlobal.iniciarHistorico = false;
-                }
-
-                historicoNavegacao.push({cache:DGlobal.acaoCliente.cache,dados:ultDados});
-                var posicao = historicoNavegacao.length -1;
-
-                if(DGlobal.acaoCliente.cache==1){
-                    historicoNavegacao[posicao].DGlobal=VP.removeReferencia(DGlobal);
-                }
-            }else if(!DGlobal.sequenciaVoltar){
-                DGlobal.reduzirNavegacao = 1;
-            }
-            console.log(VP.removeReferencia(historicoNavegacao), 'PASSOU ACAO NAVEGAR');
-        },0);
-    }
-
+    
     function navegarHref(url){
         timeNavegar = 1;
         Config.fecharModais();
         Config.divCarregandoPadrao();
         Config.habilitarCarregamentoFeed();
 
-        GCS.conectar(url, 'get', null, acaoNavegar, null,0,0,0);
+        GCS.conectar(url,
+                'get', null, acaoNavegar, null,0,0,0);
         return false;
     };
-
+    
     function OpenToast(message) {
       ionicToast.show(message, 'top', false, 3000);
     }
-
+    
     var instancia = {
         hrefDataAjax:hrefDataAjax,
         navegar: navegar,
@@ -158,9 +126,12 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
         navegarHref:navegarHref,
         getTimeNavegar: getTimeNavegar,
         acaoErroNavegar: acaoErroNavegar,
+        addPreNavegar:addPreNavegar,
+        limpaAcaoPreNavegarIndice:limpaAcaoPreNavegarIndice,
+        limpaAcaoPreNavegar:limpaAcaoPreNavegar,
         rollBack:rollBack
     };
-
+    
     return instancia;
-
+    
  }]);

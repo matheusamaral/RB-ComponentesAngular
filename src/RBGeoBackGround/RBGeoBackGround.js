@@ -25,8 +25,9 @@ angular.module('Cmp.Geolocation', [
         }
         
         function verifficaPosicao(){
-            if(DGlobal.localBarra && DGlobal.localBarra.success && DGlobal.localBarra.dados.checkIn == 1){
-                scope[nomeObj].coordenadas = {lat:parseFloat(DGlobal.localBarra.dados.latitude),lng:parseFloat(DGlobal.localBarra.dados.longitude)};
+            if(DGlobal.localBarra && DGlobal.localBarra.success){
+                if(DGlobal.localBarra.dados.latitude && DGlobal.localBarra.dados.longitude)
+                    scope[nomeObj].coordenadas = {lat:parseFloat(DGlobal.localBarra.dados.latitude),lng:parseFloat(DGlobal.localBarra.dados.longitude)};
                 //scope[nomeObj].coordenadas = {lat:-21.1318843,lng:-42.3643629};
                 //DGlobal.coordenadasAtual = {latitude:-21.1318843,longitude:-42.3643629};
                 initMap();
@@ -517,6 +518,8 @@ angular.module('Cmp.Geolocation', [
             scope.pararEvento = function($event){
                 VP.pararEvento($event);
             };
+            
+            scope.pontopopover = ($('body').width() / 2) - 10;
         }
         
 //        function verificarPopoverAberto(){
@@ -636,7 +639,7 @@ angular.module('Cmp.Geolocation', [
                             style="background-image:url({{localPopover.icon.url}})"></div>\n\
                             <div class="col remove-padding">\n\
                                 <p class="p-local">{{localPopover.title}}</p>\n\
-                                <div style="right: calc({{(popover.width/2)}}px - 10px);" class="ponto-balao"></div>\n\
+                                <div style="right:{{pontopopover}}px;" class="ponto-balao"></div>\n\
                                 <div ng-if="!requisicaoFeita" class="row remove-padding">\n\
                                     <div class="loader-cinza loader-inner ball-clip-rotate">\n\
                                         <div></div>\n\
@@ -676,13 +679,13 @@ angular.module('Cmp.Geolocation', [
                                 class="config-btn-mapa button button-outline button-positive">\n\
                                     Não\n\
                                 </button>\n\
-                                <button ng-click="checkInLocal(dadosbarra)"\n\
+                                <button ng-click="checkInLocal(dadosbarra,$event)"\n\
                                 style="height: 36px;line-height: 11px;width: 107px;min-height: 36px" \n\
                                 class="config-btn-mapa button button-positive">\n\
                                     Sim\n\
                                 </button>\n\
                             </div>\n\
-                            <div style="right: calc({{(popover.width/2)}}px - 10px);" class="ponto-balao"></div>\n\
+                            <div style="right:{{pontopopover}}px;" class="ponto-balao"></div>\n\
                         </div>\n\
                         <div ng-if="dadosbarra && dadosbarra.checkIn == 1" class="corpo-popover-mapa col remove-padding text-rigth">\n\
                             <div class="row">\n\
@@ -730,7 +733,7 @@ angular.module('Cmp.Geolocation', [
                                     </md-menu>\n\
                                 </div>\n\
                             </div>\n\
-                            <div style="right: calc({{(popover.width/2)}}px - 10px);" class="ponto-balao"></div>\n\
+                            <div style="right:{{pontopopover}}px;" class="ponto-balao"></div>\n\
                         </div>\n\
                     </div>\n\
                     <div style="width:{{telaLarg}}px;\n\
