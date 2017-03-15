@@ -346,7 +346,7 @@ angular.module('RB.ChatEstrutura',[
                                 ng-keyup="rbChat.buscarGif()"\n\
                                 class="text-area-chat"\n\
                                 ng-model="rbChat.gifSearch"\n\
-                                placeholder="Pesquisar gif...">\n\
+                                placeholder="Pesquisar GIPHY...">\n\
                             </div>\n\
                         </div>\n\
                     </div>\n\

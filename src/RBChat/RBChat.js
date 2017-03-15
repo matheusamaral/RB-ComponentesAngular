@@ -583,7 +583,6 @@ angular.module('RB.Chat',[
         function configConexao(metodoWebSocket,idAuxiliar){
             if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
                 var idPagina = DGlobal.acaoCliente.idPagina;
-
             scope.rbChatWebSocket = Websocket.setarPagina(idPagina,idAuxiliar,metodoWebSocket,refAmbienteWs);
         }
 
