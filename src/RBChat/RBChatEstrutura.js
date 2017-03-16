@@ -30,7 +30,8 @@ angular.module('RB.ChatEstrutura',[
                             style="background-image:url({{alteraNome(rbChat.dadosConversa.endereco)}})"></div>\n\
                             <div ng-if="rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
                                 <p style="margin-top: 14px;" class="negrito ptitular-pergunta">{{rbChat.dadosConversa.nome}}</p>\n\
-                                <p class="ptitulo-pergunta">Online</p>\n\
+                                <p ng-if="rbChat.userOnline" class="ptitulo-pergunta">Online</p>\n\
+                                <p ng-if="!rbChat.userOnline" class="ptitulo-pergunta">Offline</p>\n\
                             </div>\n\
                             <div class="text-right">\n\
                                 <md-menu>\n\

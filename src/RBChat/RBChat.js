@@ -314,6 +314,15 @@ angular.module('RB.Chat',[
                 metodoDigitando();
             };
             
+            if(DGlobal.statusOnline && DGlobal.statusOnline.success){
+                if(DGlobal.statusOnline.online || DGlobal.statusOnline.online == 0){
+                    if(DGlobal.statusOnline.online == 1)
+                        scope.rbChat.userOnline = true;
+                    else
+                        scope.rbChat.userOnline = false;
+                }
+            }
+            
             iniciaAltura();
             iniciarInfinitScroll(metodoInfinitScroll);
             addCss();

@@ -63,10 +63,10 @@ angular.module('Cmp.Geolocation', [
                         };
 
                         var local;
-                        if(DGlobal.localBarra.dados == 1)
+                        if(DGlobal.localBarra.dados.tipo == 1)
                             local = 'Casa';
 
-                        if(DGlobal.localBarra.dados == 2)
+                        if(DGlobal.localBarra.dados.tipo == 2)
                             local = 'Trabalho';
 
                         scope[nomeObj]['markerEu'] = new gm.Marker({
@@ -89,7 +89,7 @@ angular.module('Cmp.Geolocation', [
         }
         
         function marcarNoMapa(array){
-            $timeout(function(){
+            var meEncontrou = false;
                 if(array){
                     for(var i = 0; i < array.length; i++){
                         var img = 'img/79.svg';
@@ -148,10 +148,32 @@ angular.module('Cmp.Geolocation', [
                                 event.preventDefault();
                                 event.stopPropagation();
                             });
+                            meEncontrou = true;
                         }
                     }
+                    if(!meEncontrou){
+                        var iconEu = {
+                            url:'img/97.svg', // url
+                            scaledSize: new google.maps.Size(70, 70) // scaled size
+                        };
+                        var localNome;
+                        if(DGlobal.localBarra.dados.tipo == 1)
+                            localNome = 'Minha Casa';
+                        else
+                            localNome = 'Meu trabalho';
+                        
+                        scope[nomeObj]['markerEu'] = new gm.Marker({
+                            position: new gm.LatLng(scope[nomeObj].coordenadas.lat,scope[nomeObj].coordenadas.lng),
+                            title:localNome,
+                            icon: iconEu,
+                            zIndex: 50,
+                            idMarcador:850,
+                            animation: gm.Animation.DROP,
+                            map:scope[nomeObj].map
+                        });
+                    }
+                        
                 }
-            },0);
         }
         
         var onSuccess = function(position){
@@ -518,8 +540,6 @@ angular.module('Cmp.Geolocation', [
             scope.pararEvento = function($event){
                 VP.pararEvento($event);
             };
-            
-            scope.pontopopover = ($('body').width() / 2) - 10;
         }
         
 //        function verificarPopoverAberto(){
@@ -622,7 +642,8 @@ angular.module('Cmp.Geolocation', [
         function recalculaTamanhos(){
             $timeout(function(){
                 scope.popover.width = $('#popoverCorpo').width();
-                scope.popover.y = ($('html').height()/2);
+                scope.pontopopover = (scope.popover.width/2) - 10;
+                scope.popover.y = ($('html').height()/2) - 5;
                 scope.popover.x = ($('html').width()/2);
             },0);
         }
