@@ -22,7 +22,7 @@ angular.module('Cmp.CameraPreview', [
         }
         
         function inicializaFuncoes(nomeObj){
-            
+            scope[nomeObj].larguraBody = $('body').width();
 //            scope[nomeObj].instanciaCamera = function(){
 //                cam.setOnPictureTakenHandler(function(result) {
 //                    console.log(result);
@@ -35,16 +35,6 @@ angular.module('Cmp.CameraPreview', [
 //            };
 
             scope[nomeObj].instanciaCamera = function(){
-                cam.setOnPictureTakenHandler(function(result) {
-                    console.log('result');
-                    console.log(result);
-                    cam.stopCamera();
-                    scope[nomeObj].img = result[0];
-                    //não pode ser fixo a extensão, tem que ser a extensão correta;
-                    $timeout(function(){
-                        document.getElementById(nomeObj).src = result[0]; //scope[nomeObj].img; //originalPicturePath;
-                    },0);
-                });
             };
             
             scope[nomeObj].iniciarCamera = function(){
@@ -107,7 +97,18 @@ angular.module('Cmp.CameraPreview', [
             scope[nomeObj].tirarFoto = function(){
                 scope[nomeObj].galeria = false;
                 scope[nomeObj].fotoTirada = true;
-                cam.takePicture();
+                cam.takePicture(
+                    {width:600, height:600, quality: 100},
+                    function(result){
+                        cam.stopCamera();
+                        scope[nomeObj].img = 'data:image/jpeg;base64,' + result[0];
+                        scope.$apply();
+                        //não pode ser fixo a extensão, tem que ser a extensão correta;
+                        $timeout(function(){
+                            document.getElementById(nomeObj).src = scope[nomeObj].img; //scope[nomeObj].img; //originalPicturePath;
+                        },0);   
+                    }
+                );
             };
             
             scope[nomeObj].mostrar = function() {

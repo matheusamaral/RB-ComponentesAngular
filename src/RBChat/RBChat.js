@@ -421,8 +421,12 @@ angular.module('RB.Chat',[
             
             scope.rbChat.iniciarCamera = function(){
                 dimensoes = {
-                    x:0,y:0,
-                    w:largura, h:altura,wr:largura, hr:$('body').height()
+                    x:10,
+                    y:($('body').height() - largura) / 2,
+                    w:largura , 
+                    h:largura,
+                    wr:largura, 
+                    hr:$('body').height()
                 };
                 
                 scope.camera.startCamera({
@@ -438,15 +442,25 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.tirarFoto = function(){
-                scope.camera.takePicture();
+                scope.camera.takePicture(
+                    {width:600, height:600, quality: 100},
+                    function(result){
+                        if(!scope.rbChat.camFull){
+                            scope.rbChat.acabouDeTirarFotoQuadrada = true;
+                        }else{ 
+                            scope.rbChat.acabouDeTirarFotoQuadrada = false;
+                        }
+                        scope.rbChat.tirouFoto = 'data:image/jpeg;base64,' + result[0];
+                        scope.rbChat.sumirBtn = false;
+                        scope.$apply();
+                    }
+                );
             };
             
             scope.rbChat.instanciaCamera = function(){
-                scope.camera.setOnPictureTakenHandler(function(result){
-                    scope.rbChat.tirouFoto = result[0];
-                    scope.rbChat.sumirBtn = false;
-                    scope.$apply();
-                });
+                //scope.camera.setOnPictureTakenHandler(function(result){
+                    
+                //});
             };
             
             scope.rbChat.girarcamera = function (){
@@ -459,11 +473,6 @@ angular.module('RB.Chat',[
                 scope.imgPrevAltura = altura;
                 scope.imgPrevLargura = largura;
                 scope.imgPrevY = 0 ;
-                
-                dimensoes = {
-                    x:0,y:0,
-                    w:largura, h:altura,wr:largura, hr:$('body').height() 
-                };
 
                 scope.camera.startCamera({
                     x: 0,

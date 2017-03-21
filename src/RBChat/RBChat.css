@@ -22,8 +22,8 @@
 }
 
 .borda-gif{
-    background-color: #FFFFFF !important
-        ;
+    background-color: #FFFFFF !important;
+    padding-top: 16px !important;
 }
 
 .espaco-empurra-chat.transparente{
@@ -121,4 +121,12 @@ i.emoji-picker-icon{
     height: initial;
     color: #c7c7c7;
     border: none;
+}
+
+.div-img-acabou-de-tirar{
+    background-repeat: no-repeat;
+    height: 100%;
+    position: relative;
+    background-position: center;
+    width: 100%;
 }
