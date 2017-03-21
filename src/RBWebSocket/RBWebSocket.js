@@ -44,7 +44,7 @@ angular.module('Cmp.Websocket',[
         
         function setarPagina(idPagina,id,success,server){
             //método disparado quando alguem da conexão fazer pergunta
-            if(conn === false){
+            if(conn === false && conn.readyState !== 1){
                 iniciarConexao(server,idPagina,id,success);
             }else{
                 
