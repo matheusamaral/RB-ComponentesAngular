@@ -93,7 +93,8 @@ angular.module('RB.Chat',[
             metodoPrivacidade,
             dadosConversa,
             metodoBloquear,
-            metodoDesbloquear
+            metodoDesbloquear,
+            metodoVoltar
         ){
 
             nomeObj = nomeObjeto;
@@ -167,7 +168,7 @@ angular.module('RB.Chat',[
             
             scope.rbChat.voltar = function(){
                 if(scope.rbChat.fecharCamera)scope.rbChat.fecharCamera();
-                Pagina.rollBack();
+                Pagina.rollBack(metodoVoltar);
             };
             
             scope.rbChat.enviarGif = function(gif){

@@ -50,6 +50,8 @@ angular.module('Cmp.InfinitScroll',[
         
         function scrollTop(){
             $("#"+options.idSeletor).scroll(function(){
+                console.log('dsdsss');
+                console.log($("#"+options.idSeletor).scrollTop());
                 if($("#"+options.idSeletor).scrollTop() == 0){
                     if(!ativo){
                         ativo = true;

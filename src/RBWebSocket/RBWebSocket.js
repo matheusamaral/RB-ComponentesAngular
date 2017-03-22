@@ -33,7 +33,7 @@ angular.module('Cmp.Websocket',[
                 conn.onmessage = function(e){
                     console.log('RESPOSTA SERVIDOR');
                     console.log(e);
-                    success(angular.fromJson(e.data));
+                    if(success)success(angular.fromJson(e.data));
                 };
                 
                 conn.send(JSON.stringify(obj));
@@ -47,11 +47,10 @@ angular.module('Cmp.Websocket',[
             if(conn === false && conn.readyState !== 1){
                 iniciarConexao(server,idPagina,id,success);
             }else{
-                
                 conn.onmessage = function(e){
                     console.log('RESPOSTA SERVIDOR');
                     console.log(e);
-                    success(angular.fromJson(e.data));
+                    if(success)success(angular.fromJson(e.data));
                 };
 
                 var obj = {

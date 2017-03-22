@@ -65,7 +65,7 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
             //}
     };
 
-    function rollBack(){
+    function rollBack(metodoExit){
         var posicao = historicoNavegacao.length -(DGlobal.reduzirNavegacao) ;
 
         DGlobal.reduzirNavegacao =2;
@@ -79,7 +79,8 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
         }
 
         if(posicao == -1){
-            ionic.Platform.exitApp();
+            if(metodoExit)metodoExit();
+            else ionic.Platform.exitApp();
         }else{
             if(historicoNavegacao[posicao].cache==1){
                 DGlobal = VP.removeReferencia(historicoNavegacao[posicao].DGlobal);
