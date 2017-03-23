@@ -126,9 +126,12 @@ angular.module('RB.Chat',[
             
             scope.rbChat.fecharTeclado = function(aba){
                 scope.rbChat.abaSelecionada = aba;
+                //$timeout(function(){
+                scope.rbChat.empurraChat = $('body').width();
                 $timeout(function(){
+                    scope.rbChat.rolarChat();
                     scope.rbChat.abrirMenu();
-                },200);
+                },0);
             };
             
             function mudarComportamentoBackButton(){
@@ -203,8 +206,9 @@ angular.module('RB.Chat',[
                 if(scope.rbChat.camFull)scope.rbChat.camFull = false;
                 if(scope.rbChat.abaSelecionada == 2){
                     scope.rbChat.menuAberto = false;
+                    scope.rbChat.abaSelecionada = 0;
                     $timeout(function(){
-                        scope.rbChat.abaSelecionada = 0;
+                        scope.rbChat.empurraChat = $('#container-input').height();
                     },0);
                 }
                 if(renovar)scope.$apply();
@@ -226,11 +230,11 @@ angular.module('RB.Chat',[
                 scope.rbChat.liberaBtns = false;
                 scope.rbChat.menuAberto = true;
                 $('.container-chat-geral').addClass('remove-overflow-preview');
-                $timeout(function(){
+                //$timeout(function(){
                     if(scope.rbChat.abaSelecionada == 1){
                         scope.rbChat.abrirCamBtn();
                     }
-                },200);
+                //},200);
             };
             
             scope.rbChat.abrirCamBtn = function(indice){
@@ -245,10 +249,10 @@ angular.module('RB.Chat',[
                     if(scope.rbChat.fecharCamera)scope.rbChat.fecharCamera();
                 }
                 
-                $timeout(function(){
+                //$timeout(function(){
                     //scope.rbChat.abaSelecionada = indice;
                     recalculaAlturaChat(indice);
-                },200);
+                //},200);
                 //recalculaAlturaChat(scope.rbChat.abaSelecionada,scope.rbChat.abrirCamera);
             };
             
@@ -258,9 +262,9 @@ angular.module('RB.Chat',[
                     scope.rbChat.fecharCamera();
                 }
                 
-                $timeout(function(){
+                //$timeout(function(){
                     recalculaAlturaChat(0,selecionarInput);
-                },200);
+                //},200);
             };
             
             scope.rbChat.abrirGlr = function(abaAtual){
@@ -273,9 +277,9 @@ angular.module('RB.Chat',[
             };
             
             function selecionarInput(){
-                $timeout(function(){
+                //$timeout(function(){
                     $('#txtChat').focus();
-                },200);
+                //},200);
             }
             
             scope.rbChat.abrirCamera = function(){
@@ -283,7 +287,7 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.rolarChat = function (){
-                $('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height()}, 'slow');
+                $('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height()));
                 $('ion-side-menu-content').addClass('remove-overflow-preview');
             };
             
@@ -331,35 +335,39 @@ angular.module('RB.Chat',[
         
         function recalculaAlturaChat(indice,metodo){
             if(indice == 0){
-                scope.rbChat.empurraChat = $('#container-input').height();
+                scope.rbChat.abaSelecionada = indice;
+                if(scope.rbChat.menuAberto)scope.rbChat.menuAberto = false;
                 $timeout(function(){
-                    scope.rbChat.rolarChat();
+                    scope.rbChat.empurraChat = $('#container-input').height();
                     $timeout(function(){
-                        if(scope.rbChat.menuAberto)scope.rbChat.menuAberto = false;
-                        $timeout(function(){
-                            scope.rbChat.abaSelecionada = indice;
-                            if(metodo){
-                                $timeout(function(){
-                                    metodo();
-                                },200);
-                            }
-                        },200);
+                        scope.rbChat.rolarChat();
+                        //$timeout(function(){
+
+                            //$timeout(function(){
+
+                                if(metodo){
+                                    $timeout(function(){
+                                        metodo();
+                                    },200);
+                                }
+                            //},200);
+                        //},200);
                     },200);
-                },200);
+                },0);
             }
             
             if(indice == 1){
-                $timeout(function(){
+                //$timeout(function(){
                     scope.rbChat.empurraChat = $('body').width();
                     $timeout(function(){
                         scope.rbChat.rolarChat();
-                        $timeout(function(){
+                        //$timeout(function(){
                             if(metodo){
                                 metodo();
                             }
-                        },200);
-                    },200);
-                },200);
+                        //},200);
+                    },0);
+                //},200);
             }
             
             if(indice == 2){
@@ -373,17 +381,21 @@ angular.module('RB.Chat',[
                             metodo(scope);
                         },200);
                     }
-                },200);
+                },0);
             }
             
             if(indice == 3){
-                scope.rbChat.empurraChat = $('.pai-gifs').height();
+                scope.rbChat.abaSelecionada = indice;
                 $timeout(function(){
-                    scope.rbChat.menuAberto = false;
+                    scope.rbChat.empurraChat = $('.pai-gifs').height();
                     $timeout(function(){
-                        scope.rbChat.abaSelecionada = indice;
-                    },200);
-                },200);
+                        scope.rbChat.menuAberto = false;
+                        scope.rbChat.rolarChat();
+                        //$timeout(function(){
+
+                        //},200);
+                    },0);
+                },0);
             }
             
         }
@@ -542,21 +554,26 @@ angular.module('RB.Chat',[
             }
             
             function arrumaCamFull(){
+                //scope.$apply();
+                //$('ion-side-menu-content').removeClass('remove-overflow-preview');
                 scope.rbChat.empurraChat = $('body').height();
                 $timeout(function(){
                     scope.rbChat.rolarChat();
-                    $timeout(function(){
-                        scope.rbChat.camFull = true;
-                    },200);
-                },200);
+                    scope.rbChat.camFull = true;
+                    //$timeout(function(){
+                        //scope.rbChat.camFull = true;
+                    //},200);
+                    
+                },0);
             }
             
             scope.rbChat.fecharCamera = function(){
                 scope.rbChat.cameraAberta = false;
-                $timeout(function(){
+                scope.rbChat.camFull = false;
+                //$timeout(function(){
                     scope.camera.stopCamera();
                     removeFundoTransp();
-                },200);
+                //},200);
             };
             
             function removeFundoTransp(){

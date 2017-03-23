@@ -683,6 +683,7 @@ angular.module('Cmp.Geolocation', [
             return '<div ng-if="tipopopover != 1" ng-init="calculaAltura()" style="top:{{popover.y - (popoverAltura + (popoverAltura/2))}}px;\n\
                     left:{{popover.x - (popover.width/2)}}px;"\n\
                     class="container-popover-mapa"\n\
+                    ng-click="irLocal(localPopover.idMarcador,$event)"\n\
                     id="popoverCorpo" ng-click="pararEvento($event)">\n\
                         <div id="barra-local-atual"\n\
                         ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\

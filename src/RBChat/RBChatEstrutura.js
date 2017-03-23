@@ -107,9 +107,9 @@ angular.module('RB.ChatEstrutura',[
     }
     
     function subMenu(){
-         return'<div ng-if="rbChat.cameraAberta && !rbChat.tirouFoto"\n\
-                ng-class="{\'btns-can-full\' : rbChat.camFull,aberto : rbChat.cameraAberta}"\n\
-                class="btns-cam"\n\
+         return'<div ng-if="rbChat.abaSelecionada == 1 && !rbChat.tirouFoto"\n\
+                ng-class="{\'btns-can-full\' : rbChat.camFull}"\n\
+                class="btns-cam aberto"\n\
                 style="position:relative;background-color:transparent;text-align: center;padding: 15px;">\n\
                     <button style="z-index: -3;" ng-if="!cameraPrev.tirouFoto" ng-click="rbChat.tirarFoto()" class="btn-rodape btn-redondo button button-clear">\n\
                     </button>\n\
@@ -119,7 +119,8 @@ angular.module('RB.ChatEstrutura',[
                         <i class="icon img-inverte-camera-preview"></i>\n\
                     </button>\n\
                 </div>\n\
-                <div ng-class="{aberto : rbChat.menuAberto && !rbChat.camFull}" class="row container-barra-sub-menu">\n\
+                <div ng-if="rbChat.menuAberto && !rbChat.camFull"\n\
+                class="row container-barra-sub-menu">\n\
                     <div class="col">\n\
                         <div class="organiza-margin-chat col-bottom remove-padding">\n\
                             <button ng-disabled="!rbChat.liberaBtns" ng-click="rbChat.voltarTeclado(0)" class="btn-chat-pub button button-clear button-positive">\n\
@@ -265,15 +266,15 @@ angular.module('RB.ChatEstrutura',[
                             </div>\n\
                         </div>\n\
                         <div style="position:relative">\n\
-                            <button ng-if="rbChat.cameraAberta && !rbChat.camFull" ng-click="rbChat.cameraFull()" \n\
+                            <button ng-if="rbChat.abaSelecionada == 1 && !rbChat.camFull" ng-click="rbChat.cameraFull()" \n\
                             class="btn-zoom button-clear button button-positive">\n\
                                 <i class="icon ion-android-expand"></i>\n\
                             </button>\n\
-                            <button ng-if="rbChat.camFull" ng-click="rbChat.resetarCamera()" \n\
+                            <button ng-if="rbChat.abaSelecionada == 1 && rbChat.camFull" ng-click="rbChat.resetarCamera()" \n\
                             class="btn-zoom button-clear button button-positive">\n\
                                 <i class="icon ion-android-close"></i>\n\
                             </button>\n\
-                            <div ng-class="{transparente : rbChat.abaSelecionada == 1}" \n\
+                            <div ng-class="{transparente : rbChat.cameraAberta}" \n\
                             style="height:{{rbChat.empurraChat}}px" class="espaco-empurra-chat">\n\
                             </div>\n\
                         </div>\n\
@@ -281,20 +282,12 @@ angular.module('RB.ChatEstrutura',[
                 </ion-content>\n\
                 '+input()+'\
                 '+subMenu()+'\
-                '+containerGif()+'\n\
-                <!--<div style="background-size: contain;height:{{cameraPrev.containerImgAltura}}px;position:relative" ng-if="previewAberto" class="espaco-camera">\n\
-                    <button ng-if="rbChat.abaSelecionada == 1" ng-click="cameraPrev.iniciarCameraFull($event)" \n\
-                    class="btn-zoom button-clear button button-positive">\n\
-                        <i class="icon ion-android-expand"></i>\n\
-                    </button>\n\
-                    <button ng-if="cameraFull" ng-click="cameraPrev.resetarCamera()" class="btn-zoom button-clear button button-positive">\n\
-                        <i class="icon ion-android-close"></i>\n\
-                    </button>\n\
-                </div>-->';
+                '+containerGif();
     }
     
     function input(){
-        return'<div class="container-chat" ng-class="{\'fechado\' : rbChat.abaSelecionada != 0}" id="container-input">\n\
+        return'<div class="container-chat" \n\
+                ng-if="rbChat.abaSelecionada == 0" id="container-input">\n\
                     <div class="row container-digitando" \n\
                     ng-if="digitandoObj != false && dadosUser.usuarioId != digitandoObj.idDigitando">\n\
                         <div class="img-circular-digitando"\n\
@@ -331,7 +324,7 @@ angular.module('RB.ChatEstrutura',[
     }
     
     function containerGif(){
-         return'<div class="pai-gifs" ng-class="{fechado : rbChat.abaSelecionada != 3}">\n\
+         return'<div class="pai-gifs" ng-if="rbChat.abaSelecionada == 3">\n\
                     <div style="width:{{larguraBody}}px;overflow:auto">\n\
                         <div class="linha-gifs row">\n\
                             <div ng-click="rbChat.enviarGif(gif)" \n\

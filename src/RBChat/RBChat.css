@@ -1,11 +1,11 @@
 .espaco-empurra-chat{
     height: 0;
-    transition-property: all;
-    transition-duration: 0.2s;
-    transition: all 0.2s;
-    transform: scale(1);
     opacity: 1;
-    background-color: #eeeeee !important;
+    background-color: black !important;
+}
+
+.espaco-empurra-chat.transparente{
+    opacity: 0;
 }
 
 .texto-giphy{
@@ -26,49 +26,23 @@
     padding-top: 16px !important;
 }
 
-.espaco-empurra-chat.transparente{
-    opacity: 0;
-}
-
-.container-chat.fechado{
-    bottom:-80px;
-}
-
-.pai-gifs.fechado{
-    bottom: -180px;
-    display: none;
-}
-
 .pai-gifs{
     position: fixed;
-    bottom: 0;
-    display: inherit;
+    bottom: 2px;
     left: 0;
-    transition-property: all;
-    transition-duration: 0.2s;
-    transition: all 0.2s;
-    transform: scale(1);
     background-color: #EEEEEE;
 }
 
 .container-barra-sub-menu{
-    bottom:-80px;
-    transition-property: all;
-    transition-duration: 0.2s;
-    transition: all 0.2s;
-    transform: scale(1);
-}
-
-.container-barra-sub-menu.aberto{
-    bottom: 10px;
+    bottom:10px;
 }
 
 .btns-cam{
     opacity: 0;
-    transition-property: all;
+/*    transition-property: all;
     transition-duration: 0.2s;
     transition: all 0.2s;
-    transform: scale(1);
+    transform: scatransle(1);*/
     z-index: 2;
     bottom: 150px;
     position: relative;
@@ -104,11 +78,6 @@ i.emoji-picker-icon{
 }
 
 .efeitoChat{
-    transition-property: all;
-    transition-duration: 0.5s;
-    transition: all 0.5s;
-    transform: scale(1);
-    opacity: 0;
 }
 
 .efeitoChat.visivel{
