@@ -146,24 +146,29 @@ angular.module('RB.ChatCamera',[
                 scope.rbChat.empurraChat = $('body').width();
                 $timeout(function(){
                     scope.rbChat.rolarChat();
-                    $timeout(function(){
-                        scope.rbChat.camFull = false;
-                    },200);
-                },200);
+                    
+                },0);
+                
+                $timeout(function(){
+                    scope.rbChat.camFull = false;
+                },0);
             }
             
             function arrumaCamFull(){
                 //scope.$apply();
                 //$('ion-side-menu-content').removeClass('remove-overflow-preview');
-                alert($('body').height());
-                scope.rbChat.empurraChat = $('body').height();
+                
+                
+                $timeout(function(){
+                    scope.rbChat.empurraChat = $('body').height();
+                    scope.rbChat.camFull = true;
+                },0);
+                
                 $timeout(function(){
                     scope.rbChat.rolarChat();
-                    scope.rbChat.camFull = true;
                     //$timeout(function(){
                         //scope.rbChat.camFull = true;
                     //},200);
-                    
                 },0);
             }
             

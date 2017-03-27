@@ -59,6 +59,8 @@ angular.module('RB.ChatEstrutura',[
                             </div>\n\
                         </div>\n\
                     </div>\n\
+                    <div ng-if="!rbChat.camFull" style="height:{{alturaBody - rbChat.empurraChat}}px" \n\
+                    class="corpo-esconde-fundo"></div>\n\
                     '+conversa()+exibirMidia();
     };
     
@@ -188,7 +190,9 @@ angular.module('RB.ChatEstrutura',[
                                 </div>\n\
                             </div>\n\
                         </div>\n\
-                        <div ng-repeat="resposta in rbChat.respostas | orderBy: $index : true" class="remove-padding container-dialogo row" style="padding-bottom: 20px !important;">\n\
+                        <div ng-repeat="resposta in rbChat.respostas | orderBy: $index : true" \n\
+                        class="remove-padding container-dialogo row" \n\
+                        style="padding-bottom: 20px !important;">\n\
                             <div ng-if="dadosUser.usuarioId != resposta.usuarioId" class="balao-esquerda">\n\
                                 <div ng-class="{\'borda-gif\' :rbChat.ehGif(resposta.enderecoUsuario,resposta.endereco)}" class="container-img-resposta text-right remove-padding">\n\
                                     <div ng-if="resposta.enderecoUsuario" class="chat img-circular-grande margin-img"\n\
@@ -257,11 +261,14 @@ angular.module('RB.ChatEstrutura',[
                                         </p>\n\
                                     </div>\n\
                                 </div>\n\
-                                <div class="container-img-resposta text-right remove-padding">\n\
+                                <div style="position:relative" class="container-img-resposta text-right remove-padding">\n\
                                     <div ng-if="resposta.enderecoUsuario" class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.enderecoUsuario)}})"></div>\n\
                                     <div ng-if="resposta.endereco" class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.endereco)}})"></div>\n\
+                                    <span \n\
+                                    ng-class="{\'ion-android-done\' : !resposta.enviada,\n\
+                                    \'ion-android-done-all\' : resposta.enviada}"></span>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\

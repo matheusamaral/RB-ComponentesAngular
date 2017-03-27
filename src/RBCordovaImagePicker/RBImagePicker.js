@@ -27,9 +27,9 @@ angular.module('Cmp.ImagePicker', [
                 if(scope[nome])scope[nome].galeria = true;
                 //document.getElementById(nome).src = scope[nome].img;
                 if(scope[nome].esconder)scope[nome].esconder();
-                metodo(results[0]);
+                if(metodo)metodo(results[0]);
             }, function(error) {
-                metodo(false);
+                if(metodo)metodo(false);
                 scope[nome].img = false;
             });   
         }

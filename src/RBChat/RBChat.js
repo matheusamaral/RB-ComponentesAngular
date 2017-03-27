@@ -95,10 +95,25 @@ angular.module('RB.Chat',[
             dadosConversa,
             metodoBloquear,
             metodoDesbloquear,
-            metodoVoltar
+            metodoVoltar,
+            metodoConfigurar
         ){
 
             nomeObj = nomeObjeto;
+            
+            window.addEventListener('native.keyboardshow', keyboardShowHandler);
+
+            function keyboardShowHandler(e){
+                alert(scope.rbChat.abaSelecionada);
+                if(scope.rbChat.abaSelecionada == 0)
+                    scope.rbChat.empurraChat = e.keyboardHeight + $('#container-input').height();
+                else
+                    scope.rbChat.empurraChat = e.keyboardHeight + $('.pai-gifs').height();
+                
+                $timeout(function(){
+                    scope.rbChat.rolarChat();
+                },0);
+            }
             
             scope.rbChat = {
                 nomeObj : nomeObj,
@@ -115,6 +130,7 @@ angular.module('RB.Chat',[
             
             scope.rbChat.responder = function(){
                 metodoResponder();
+                metodoConfigurar();
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
             };
             
@@ -280,6 +296,7 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.rolarChat = function (){
+                alert('ROLOU');
                 $('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height()));
                 $('ion-side-menu-content').addClass('remove-overflow-preview');
             };
@@ -457,7 +474,11 @@ angular.module('RB.Chat',[
         
         function abrirGaleria(escopo){
             scope = escopo;
-            permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, checkPermissionSTORAGE, null);
+            if(ionic.Platform.isAndroid())
+                permissions.hasPermission(permissions.READ_EXTERNAL_STORAGE, checkPermissionSTORAGE, null);
+            else{
+                ImagePicker.setScope(scope).iniciar('rbChat',organizaImg);
+            }
         }
         
         function checkPermissionSTORAGE(status) {

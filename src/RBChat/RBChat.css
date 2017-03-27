@@ -99,3 +99,25 @@ i.emoji-picker-icon{
     background-position: center;
     width: 100%;
 }
+
+.balao-direita .ion-android-done{
+    position: absolute;
+    left: -3px;
+    top: 56px;
+    color: #a5a5a5;
+}
+
+.balao-direita .ion-android-done-all{
+    position: absolute;
+    left: -3px;
+    top: 56px;
+    color: #a5a5a5;
+}
+
+.corpo-esconde-fundo{
+    position: absolute;
+    background-color: #EEEEEE;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
