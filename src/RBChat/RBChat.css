@@ -1,11 +1,33 @@
 .espaco-empurra-chat{
     height: 0;
     opacity: 1;
+}
+
+.fundo-preto{
     background-color: black !important;
+}
+
+.loader.img-temporaria{
+    position: absolute;
+    right: 76px;
+    top: 70px;
+    z-index: 54;
+}
+
+.loader.img-temporaria .ball-clip-rotate>div{
+    border: 2px solid #ffb800;
+    border-bottom-color: transparent;
 }
 
 .espaco-empurra-chat.transparente{
     opacity: 0;
+}
+
+.espaco-empurra-chat.animar{
+    transition-property: all;
+    transition-duration: 2s;
+    transition: all 2s;
+    transform: scale(1);
 }
 
 .texto-giphy{
@@ -78,6 +100,12 @@ i.emoji-picker-icon{
 }
 
 .efeitoChat{
+    opacity: 0;
+    transition-property: all;
+    transition-duration: 1s;
+    transition: all 1s;
+    transform: scale(1);
+    
 }
 
 .efeitoChat.visivel{
@@ -107,6 +135,13 @@ i.emoji-picker-icon{
     color: #a5a5a5;
 }
 
+.balao-direita .ion-android-time{
+    position: absolute;
+    left: -3px;
+    top: 56px;
+    color: #a5a5a5;
+}
+
 .balao-direita .ion-android-done-all{
     position: absolute;
     left: -3px;
@@ -120,4 +155,8 @@ i.emoji-picker-icon{
     width: 100%;
     top: 0;
     left: 0;
+}
+
+.color-verde{
+    color: green !important;
 }

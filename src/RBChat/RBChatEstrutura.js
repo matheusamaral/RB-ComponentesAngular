@@ -157,7 +157,7 @@ angular.module('RB.ChatEstrutura',[
         return'<ion-content id="container-respostas" class="container-chat-geral" \n\
                 style="position:relative;height:{{(alturaBody)}}px;\n\
                 padding-top:80px !important">\n\
-                    <div ng-init="rbChat.scrollBottom()" class="efeitoChat container-centro" style="width:{{larguraBody}}px">\n\
+                    <div class="efeitoChat container-centro" style="width:{{larguraBody}}px">\n\
                         <div ng-if="rbChat.pergunta" class="remove-padding container-dialogo row" style="padding-bottom: 20px !important;">\n\
                             <div ng-if="dadosUser.usuarioId == rbChat.pergunta.usuarioId" class="balao-direita">\n\
                                 <div class="container-textos">\n\
@@ -245,12 +245,25 @@ angular.module('RB.ChatEstrutura',[
                                         \'borda-gif\' :rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}">\n\
                                         <span ng-if="resposta.respostaTitulo">{{resposta.respostaTitulo}}</span>\n\
                                         <span ng-if="resposta.mensagem">{{resposta.mensagem}}</span>\n\
-                                        <img ng-if="resposta.enderecoMidia" \n\
+                                        <img ng-if="resposta.enderecoMidia && !resposta.imgTemporaria" \n\
                                         ng-click="rbChat.exibirMidiaChat(resposta.enderecoMidia,true)" \n\
                                         ng-class="{\'container-midia-resposta\' : !rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem),\n\
                                         \'container-midia-resposta-gif\' : rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}"\n\
                                         src="{{resposta.enderecoMidia}}"/>\n\
-                                        <img ng-if="resposta.enderecoMensagem" \n\
+                                        <div ng-if="resposta.imgTemporaria" class="loader img-temporaria">\n\
+                                            <div class="loader-inner ball-clip-rotate">\n\
+                                                <div></div>\n\
+                                            </div>\n\
+                                        </div>\n\
+                                        <div ng-if="resposta.enderecoMidia && resposta.imgTemporaria"\n\
+                                        class="controlaImgTemporaria"\n\
+                                        style="background-image:url({{resposta.enderecoMidia}})">\n\
+                                        </div>\n\
+                                        <div ng-if="resposta.enderecoMensagem && resposta.imgTemporaria"\n\
+                                        class="controlaImgTemporaria"\n\
+                                        style="background-image:url({{resposta.enderecoMensagem}})">\n\
+                                        </div>\n\
+                                        <img ng-if="resposta.enderecoMensagem && !resposta.imgTemporaria" \n\
                                         ng-click="rbChat.exibirMidiaChat(resposta.enderecoMensagem,true)" \n\
                                         ng-class="{\'container-midia-resposta\' : !rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem),\n\
                                         \'container-midia-resposta-gif\' : rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}"\n\
@@ -267,8 +280,11 @@ angular.module('RB.ChatEstrutura',[
                                     <div ng-if="resposta.endereco" class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.endereco)}})"></div>\n\
                                     <span \n\
-                                    ng-class="{\'ion-android-done\' : !resposta.enviada,\n\
-                                    \'ion-android-done-all\' : resposta.enviada}"></span>\n\
+                                    ng-class="{\'ion-android-done\' : resposta.statusMensagem == 1,\n\
+                                    \'ion-android-time\' : resposta.statusMensagem == 0,\n\
+                                    \'ion-android-done-all\' : resposta.statusMensagem == 2 || resposta.statusMensagem == 3,\n\
+                                    \'color-verde\' : resposta.statusMensagem == 3}">\n\
+                                    </span>\n\
                                 </div>\n\
                             </div>\n\
                         </div>\n\
@@ -281,7 +297,9 @@ angular.module('RB.ChatEstrutura',[
                             class="btn-zoom button-clear button button-positive">\n\
                                 <i class="icon ion-android-close"></i>\n\
                             </button>\n\
-                            <div ng-class="{transparente : rbChat.cameraAberta}" \n\
+                            <div ng-class="{transparente : rbChat.cameraAberta,\n\
+                            \'fundo-preto\' : rbChat.abaSelecionada == 1,\n\
+                            animar : rbChat.abrindoCamera == true}" \n\
                             style="height:{{rbChat.empurraChat}}px" class="espaco-empurra-chat">\n\
                             </div>\n\
                         </div>\n\

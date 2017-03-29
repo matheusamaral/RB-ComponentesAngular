@@ -4,11 +4,13 @@ angular.module('RB.Chat',[
     'RB.validacoesPadroes',
     'RB.ChatRequisicoes',
     'RB.pagina',
-    'RB.ChatCamera'
+    'RB.ChatCamera',
+    'RB.ChatWebSocket',
+    'RB.ChatGifs'
 ])
 
-.factory('RBChat', ['Pagina','InfinitScroll','$timeout','RBChatGifs','RBChatCamera','RBChatWebSocket','RBChatRequisicoes','RBChatGaleria','$ionicPlatform',
-    function (Pagina,InfinitScroll,$timeout,RBChatGifs,RBChatCamera,RBChatWebSocket,RBChatRequisicoes,RBChatGaleria,$ionicPlatform){
+.factory('RBChat', ['VP','Pagina','InfinitScroll','$timeout','RBChatGifs','RBChatCamera','RBChatWebSocket','RBChatRequisicoes','RBChatGaleria','$ionicPlatform',
+    function (VP,Pagina,InfinitScroll,$timeout,RBChatGifs,RBChatCamera,RBChatWebSocket,RBChatRequisicoes,RBChatGaleria,$ionicPlatform){
         var scope;
         var nomeObj;
         
@@ -24,40 +26,7 @@ angular.module('RB.Chat',[
                 scope.alturaBody = $('body').height();
                 scope.larguraBody = $('body').width();
                 //if(!nAnimar)$('#container-respostas').animate({scrollTop:$('#container-respostas > div > div').height(),duration:0});
-                inicializarEmoticons();
             },0);
-        }
-        
-        function inicializarEmoticons(){
-            $(function() {
-                //Initializes and creates emoji set from sprite sheet
-//                window.emojiPicker = new EmojiPicker({
-//                    emojiable_selector: '[data-emojiable=true]',
-//                    assetsPath: 'lib/emoji-picker-gh-pages/lib/img',
-//                    popupButtonClasses: 'fa fa-smile-o'
-//                });
-//                //Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
-//                //You may want to delay this step if you have dynamically created input fields that appear later in the loading process
-//                //It can be called as many times as necessary; previously converted input fields will not be converted again
-//                window.emojiPicker.discover();
-//              
-//                $timeout(function(){
-//                    $('i.emoji-picker-icon').click(function(){
-//                        scope.rbChat.liberaTeclado = false;
-//                        $('.emoji-wysiwyg-editor').blur();
-//                        $timeout(function(){
-//                            $('.emoji-wysiwyg-editor').on('click', function(e){
-//                                scope.rbChat.liberaTeclado = true;
-//                            });
-//                            
-//                            $('.emoji-wysiwyg-editor').on('focus', function(e){
-//                                if(scope.rbChat.liberaTeclado == false)
-//                                    $('.emoji-wysiwyg-editor').blur();
-//                            });
-//                        },0);
-//                    });
-//                },0);
-            });
         }
         
         function iniciarInfinitScroll(metodoInfinitScroll){
@@ -104,12 +73,26 @@ angular.module('RB.Chat',[
             window.addEventListener('native.keyboardshow', keyboardShowHandler);
 
             function keyboardShowHandler(e){
-                alert(scope.rbChat.abaSelecionada);
-                if(scope.rbChat.abaSelecionada == 0)
-                    scope.rbChat.empurraChat = e.keyboardHeight + $('#container-input').height();
-                else
-                    scope.rbChat.empurraChat = e.keyboardHeight + $('.pai-gifs').height();
-                
+                $timeout(function(){
+                    if(scope.rbChat.abaSelecionada == 0)
+                        scope.rbChat.empurraChat = e.keyboardHeight + $('#container-input').height();
+                    else
+                        scope.rbChat.empurraChat = e.keyboardHeight + $('.pai-gifs').height();
+                },0);
+                $timeout(function(){
+                    scope.rbChat.rolarChat();
+                },0);
+            }
+            
+            window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+            function keyboardHideHandler(e){
+                $timeout(function(){
+                    if(scope.rbChat.abaSelecionada == 0)
+                        scope.rbChat.empurraChat = $('#container-input').height();
+                    else
+                        scope.rbChat.empurraChat = $('.pai-gifs').height();
+                },0);
                 $timeout(function(){
                     scope.rbChat.rolarChat();
                 },0);
@@ -124,11 +107,21 @@ angular.module('RB.Chat',[
                 dadosConversa:dadosConversa
             };
             
-            if(!scope.rbChat.respostas)scope.rbChat.respostas = new Array();
+            if(!scope.rbChat.respostas){
+                scope.rbChat.respostas = new Array();
+            }else{
+                if(pergunta){
+                    for(var i = 0 ; i < scope.rbChat.respostas.length;i++){
+                        scope.rbChat.respostas[i].statusMensagem = 2
+                    }
+                }
+            }
             
             inicializaFactorys(metodoWebSocket,idAuxiliarWebSocket);
             
-            scope.rbChat.responder = function(){
+            scope.rbChat.responder = function(e){
+                VP.pararEvento(e);
+                cordova.plugins.Keyboard.show();
                 metodoResponder();
                 metodoConfigurar();
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
@@ -136,9 +129,9 @@ angular.module('RB.Chat',[
             
             scope.rbChat.scrollBottom = function(indice){
                 $timeout(function(){
-                    $('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height()));
+                    $('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height() + 1000));
                     $('.efeitoChat').addClass('visivel');
-                },1000);
+                },0);
             };
             
             scope.rbChat.fecharTeclado = function(aba){
@@ -176,6 +169,8 @@ angular.module('RB.Chat',[
             }
             
             scope.rbChat.enviarMidia = function(url){
+                console.log('URL');
+                metodoConfigurar(true);
                 metodoMidia(url);
                 $('.container-chat-geral').removeClass('remove-overflow-preview');;
             };
@@ -193,7 +188,9 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.enviarGif = function(gif){
+                metodoConfigurar(false, true);
                 metodoGif(gif);
+                
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
                 $timeout(function(){
                     scope.rbChat.fecharGif();
@@ -205,7 +202,7 @@ angular.module('RB.Chat',[
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
                 $timeout(function(){
                     recalculaAlturaChat(0);
-                },200);
+                },0);
             };
             
             scope.rbChat.exibirMidiaChat = function (midia,sumir){
@@ -245,6 +242,7 @@ angular.module('RB.Chat',[
             
             scope.rbChat.abrirMenu = function(){
                 mudarComportamentoBackButton();
+                scope.rbChat.abrindoCamera = true;
                 $timeout(function(){
                     scope.rbChat.liberaBtns = false;
                     scope.rbChat.menuAberto = true;
@@ -296,7 +294,6 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.rolarChat = function (){
-                alert('ROLOU');
                 $('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height()));
                 $('ion-side-menu-content').addClass('remove-overflow-preview');
             };
@@ -352,6 +349,9 @@ angular.module('RB.Chat',[
             iniciaAltura();
             iniciarInfinitScroll(metodoInfinitScroll);
             addCss();
+            $timeout(function(){
+                scope.rbChat.scrollBottom();
+            },0);
         }
         
         function recalculaAlturaChat(indice,metodo){
@@ -362,18 +362,12 @@ angular.module('RB.Chat',[
                     scope.rbChat.empurraChat = scope.rbChat.alturaChatAnterior;
                     $timeout(function(){
                         scope.rbChat.rolarChat();
-                        //$timeout(function(){
-
-                            //$timeout(function(){
-
-                                if(metodo){
-                                    $timeout(function(){
-                                        metodo();
-                                    },200);
-                                }
-                            //},200);
-                        //},200);
-                    },200);
+                        if(metodo){
+                            $timeout(function(){
+                                metodo();
+                            },200);
+                        }
+                    },0);
                 },0);
             }
             
@@ -424,33 +418,6 @@ angular.module('RB.Chat',[
         return {
             setScope:setScope,
             inicializar:inicializar
-        };
-    }
-])
-
-.factory('RBChatWebSocket', ['VP','$timeout','Websocket',
-    function (VP,$timeout,Websocket) {
-        var scope;
-        
-        function setScope(obj){
-            scope = obj;
-            scope.rbChatWebSocket = {};
-            return this;
-        };
-        
-        function iniciar(metodoWebSocket,idAuxiliar){
-            configConexao(metodoWebSocket,idAuxiliar);
-        }
-        
-        function configConexao(metodoWebSocket,idAuxiliar){
-            if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
-                var idPagina = DGlobal.acaoCliente.idPagina;
-            scope.rbChatWebSocket = Websocket.setarPagina(idPagina,idAuxiliar,metodoWebSocket,refAmbienteWs);
-        }
-
-        return {
-            setScope:setScope,
-            iniciar:iniciar
         };
     }
 ])
@@ -526,58 +493,6 @@ angular.module('RB.Chat',[
             setScope:setScope,
             iniciar:iniciar,
             abrirGaleria:abrirGaleria
-        };
-    }
-])
-
-.factory('RBChatGifs', ['VP','$timeout','RBChatRequisicoes',
-    function (VP,$timeout,RBChatRequisicoes) {
-        var scope;
-        
-        function setScope(obj){
-            scope = obj;
-            return this;
-        };
-        
-        function popular(){
-            if(DGlobal.gifs && DGlobal.gifs.success){
-                scope.rbChat.gifs = DGlobal.gifs.dados;
-            }
-            
-            scope.rbChat.ehGif = function(link1,link2){
-                if(link1){
-                    if(link1.split('.')[link1.split('.').length - 1] == 'gif'){
-                        return true;
-                    }
-                }
-                
-                if(link2){
-                    if(link2.split('.')[link2.split('.').length - 1] == 'gif'){
-                        return true;
-                    }
-                }
-                
-                return false;
-            }
-        }
-        
-        function buscarGif(){
-            var obj = {
-                pesquisa:scope.rbChat.gifSearch
-            };
-
-            $timeout.cancel(scope.timeoutGif);
-
-            scope.timeoutGif = $timeout(function(){
-                
-                RBChatRequisicoes.set({scope:scope,dados:obj,acaoSuccess:RBChatRequisicoes.successBuscarGif}).buscarGif();
-            },1000);
-        }
-
-        return {
-            setScope:setScope,
-            popular:popular,
-            buscarGif:buscarGif
         };
     }
 ]);

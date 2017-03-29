@@ -39,7 +39,7 @@ angular.module('Cmp.Websocket',[
                 conn.send(JSON.stringify(obj));
             };
             
-            return this;
+            return conn;
         }
         
         function setarPagina(idPagina,id,success,server){
@@ -52,7 +52,6 @@ angular.module('Cmp.Websocket',[
                     console.log(e);
                     if(success)success(angular.fromJson(e.data));
                 };
-
                 var obj = {
                     codsessrt: JSON.parse(localStorage.getItem("dadosSessao")).codsessrt,
                     processo: 'Usuario',

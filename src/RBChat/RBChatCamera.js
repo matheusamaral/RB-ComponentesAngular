@@ -40,7 +40,7 @@ angular.module('RB.ChatCamera',[
                     wr:largura, 
                     hr:$('body').height()
                 };
-                
+                scope.rbChat.abrindoCamera = true;
                 scope.camera.startCamera({
                     x: 0,
                     y: y,
@@ -120,7 +120,6 @@ angular.module('RB.ChatCamera',[
                     previewDrag: dragEnabled, 
                     toBack:toBack
                 },arrumaCamFull);
-                
             };
             
             scope.rbChat.resetarCamera = function(){
@@ -190,6 +189,7 @@ angular.module('RB.ChatCamera',[
                 $timeout(function(){
                     scope.rbChat.cameraAberta = true;
                     scope.rbChat.liberaBtns = true;
+                    scope.rbChat.abrindoCamera = false;
                     //scope.$apply();
                 },500);
             }
