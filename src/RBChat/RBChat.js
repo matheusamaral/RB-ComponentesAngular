@@ -73,6 +73,7 @@ angular.module('RB.Chat',[
             window.addEventListener('native.keyboardshow', keyboardShowHandler);
 
             function keyboardShowHandler(e){
+                scope.rbChat.alturaTeclado = e.keyboardHeight;
                 $timeout(function(){
                     if(scope.rbChat.abaSelecionada == 0)
                         scope.rbChat.empurraChat = e.keyboardHeight + $('#container-input').height();
@@ -118,10 +119,18 @@ angular.module('RB.Chat',[
             }
             
             inicializaFactorys(metodoWebSocket,idAuxiliarWebSocket);
+            var enviou = 0;
             
             scope.rbChat.responder = function(e){
-                VP.pararEvento(e);
-                cordova.plugins.Keyboard.show();
+                enviou = 1;
+                $('#txtAreaChat').blur(
+                    function(){
+                        if(enviou == 1){
+                            $('#txtAreaChat').focus();
+                            enviou = 0;
+                        }
+                    }
+                );
                 metodoResponder();
                 metodoConfigurar();
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
@@ -169,7 +178,6 @@ angular.module('RB.Chat',[
             }
             
             scope.rbChat.enviarMidia = function(url){
-                console.log('URL');
                 metodoConfigurar(true);
                 metodoMidia(url);
                 $('.container-chat-geral').removeClass('remove-overflow-preview');;
@@ -188,7 +196,7 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.enviarGif = function(gif){
-                metodoConfigurar(false, true);
+                metodoConfigurar(false, gif);
                 metodoGif(gif);
                 
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
@@ -211,7 +219,6 @@ angular.module('RB.Chat',[
                 if(midia.split('.')[midia.split('.').length - 1] == 'gif')
                     midia = midia.replace('100.gif','giphy.gif');
                 scope.rbChat.tirouFoto = midia;
-                //scope.$apply();
                 scope.rbChat.sumirBtn = sumir;
             };
             
@@ -298,15 +305,33 @@ angular.module('RB.Chat',[
                 $('ion-side-menu-content').addClass('remove-overflow-preview');
             };
             
+            var caracteres = 0;
+            var linhas = 0;
+            var caracLinha;
             scope.rbChat.calcularTxtAreaAltura = function(){
-                $("#txtChat").bind("input", function(e) {
+                caracteres++;
+                $("#txtAreaChat").bind("input", function(e) {
                     while( $(this).outerHeight() < this.scrollHeight +
                                                    parseFloat($(this).css("borderTopWidth")) +
                                                    parseFloat($(this).css("borderBottomWidth"))
                            && $(this).height() < 100 // Altura máxima
                     ) {
+                        linhas++;
+                        if(linhas == 1)
+                            caracLinha = caracteres;
                         $(this).height($(this).height()+1);
+                        scope.rbChat.empurraChat = $("#container-input").height() + scope.rbChat.alturaTeclado;
+                        $timeout(function(){
+                            scope.rbChat.rolarChat();
+                        },0);
                     };
+                    if((Math.floor(caracteres/linhas)) < caracLinha){
+                        $(this).height($(this).height()-1);
+                        scope.rbChat.empurraChat = $("#container-input").height() + scope.rbChat.alturaTeclado;
+                        $timeout(function(){
+                            scope.rbChat.rolarChat();
+                        },0);
+                    }
                 });
             };
             
@@ -323,6 +348,8 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.digitando = function(){
+                //caracteres++;
+                //scope.rbChat.calcularTxtAreaAltura();
                 metodoDigitando();
             };
             

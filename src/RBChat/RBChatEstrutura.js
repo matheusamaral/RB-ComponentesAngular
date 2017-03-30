@@ -255,13 +255,19 @@ angular.module('RB.ChatEstrutura',[
                                                 <div></div>\n\
                                             </div>\n\
                                         </div>\n\
-                                        <div ng-if="resposta.enderecoMidia && resposta.imgTemporaria"\n\
+                                        <img ng-if="resposta.enderecoMidia && resposta.imgTemporaria && !resposta.ehImg"\n\
                                         class="controlaImgTemporaria"\n\
-                                        style="background-image:url({{resposta.enderecoMidia}})">\n\
+                                        src="{{resposta.enderecoMidia}}"/>\n\
+                                        <div ng-if="resposta.enderecoMidia && resposta.imgTemporaria && resposta.ehImg"\n\
+                                        style="background-image:url({{resposta.enderecoMidia}})"\n\
+                                        class="controlaImgTemporaria ehImg">\n\
                                         </div>\n\
-                                        <div ng-if="resposta.enderecoMensagem && resposta.imgTemporaria"\n\
+                                        <img ng-if="resposta.enderecoMensagem && resposta.imgTemporaria && !resposta.ehImg"\n\
                                         class="controlaImgTemporaria"\n\
-                                        style="background-image:url({{resposta.enderecoMensagem}})">\n\
+                                        src="{{resposta.enderecoMensagem}}"/>\n\
+                                        <div ng-if="resposta.enderecoMensagem && resposta.imgTemporaria && resposta.ehImg"\n\
+                                        style="background-image:url({{resposta.enderecoMensagem}})"\n\
+                                        class="controlaImgTemporaria ehImg">\n\
                                         </div>\n\
                                         <img ng-if="resposta.enderecoMensagem && !resposta.imgTemporaria" \n\
                                         ng-click="rbChat.exibirMidiaChat(resposta.enderecoMensagem,true)" \n\
@@ -333,7 +339,7 @@ angular.module('RB.ChatEstrutura',[
                                 <textarea id="txtAreaChat"\n\
                                 class="form-control textarea-control"\n\
                                 ng-model="rbChat.resposta"\n\
-                                data-emojiable="true"\n\
+                                ng-init="rbChat.calcularTxtAreaAltura()"\n\
                                 rows="1"\n\
                                 ng-keyup="rbChat.digitando();"\n\
                                 placeholder="Digite alguma coisa">\n\

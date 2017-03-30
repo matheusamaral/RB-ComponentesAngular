@@ -36,6 +36,10 @@ angular.module('Cmp.Websocket',[
                     if(success)success(angular.fromJson(e.data));
                 };
                 
+                conn.error = function () {
+                    alert('AEEE');
+                };
+                
                 conn.send(JSON.stringify(obj));
             };
             
@@ -60,6 +64,10 @@ angular.module('Cmp.Websocket',[
                 };
 
                 conn.send(JSON.stringify(obj));
+                
+                conn.error = function () {
+                    alert('AEEE');
+                };
             }
             
             return conn;
