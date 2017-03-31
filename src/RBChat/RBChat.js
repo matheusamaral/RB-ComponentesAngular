@@ -91,7 +91,7 @@ angular.module('RB.Chat',[
                 $timeout(function(){
                     if(scope.rbChat.abaSelecionada == 0)
                         scope.rbChat.empurraChat = $('#container-input').height();
-                    else
+                    if(scope.rbChat.abaSelecionada == 3)
                         scope.rbChat.empurraChat = $('.pai-gifs').height();
                 },0);
                 $timeout(function(){
@@ -134,6 +134,9 @@ angular.module('RB.Chat',[
                 metodoResponder();
                 metodoConfigurar();
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
+                $timeout(function(){
+                   $("#txtAreaChat").height(24); 
+                },0);
             };
             
             scope.rbChat.scrollBottom = function(indice){
@@ -178,6 +181,7 @@ angular.module('RB.Chat',[
             }
             
             scope.rbChat.enviarMidia = function(url){
+                scope.rbChat.blockBtn = true;
                 metodoConfigurar(true);
                 metodoMidia(url);
                 $('.container-chat-geral').removeClass('remove-overflow-preview');;
@@ -372,10 +376,11 @@ angular.module('RB.Chat',[
                     recalculaAlturaChat(0,selecionarInput);
                 //},200);
             };
-            
-            iniciaAltura();
-            iniciarInfinitScroll(metodoInfinitScroll);
-            addCss();
+            $timeout(function(){
+                iniciaAltura();
+                iniciarInfinitScroll(metodoInfinitScroll);
+                addCss();
+            },0);
             $timeout(function(){
                 scope.rbChat.scrollBottom();
             },0);
@@ -399,17 +404,18 @@ angular.module('RB.Chat',[
             }
             
             if(indice == 1){
-                //$timeout(function(){
+                $timeout(function(){
                     scope.rbChat.empurraChat = $('body').width();
-                    $timeout(function(){
-                        scope.rbChat.rolarChat();
-                        //$timeout(function(){
-                            if(metodo){
-                                metodo();
-                            }
-                        //},200);
-                    },0);
-                //},200);
+                },0);
+                $timeout(function(){
+                    scope.rbChat.rolarChat();
+                    //alert(scope.rbChat.empurraChat);
+                    //$timeout(function(){
+                        if(metodo){
+                            metodo();
+                        }
+                    //},200);
+                },0);
             }
             
             if(indice == 2){

@@ -20,7 +20,7 @@ angular.module('RB.ChatCamera',[
         function setScope(obj){
             scope = obj;
             scope.camera = CameraPreview;
-            y = $('body').height() - scope.rbChat.empurraChat;
+            y = $('body').height() - $('body').width();
             return this;
         };
         

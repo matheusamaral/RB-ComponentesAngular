@@ -103,7 +103,10 @@ angular.module('RB.ChatEstrutura',[
                         background-image:url({{rbChat.tirouFoto}})">\n\
                         </div>\n\
                     </div>\n\
-                    <button ng-if="!rbChat.sumirBtn" ng-click="rbChat.enviarMidia(rbChat.tirouFoto)" class="ion-android-send btn-rodape btn-redondo-dourado button button-positive">\n\
+                    <button ng-if="!rbChat.sumirBtn"\n\
+                    ng-click="rbChat.enviarMidia(rbChat.tirouFoto)"\n\
+                    ng-disabled="rbChat.blockBtn"\n\
+                    class="ion-android-send btn-rodape btn-redondo-dourado button button-positive">\n\
                     </button>\n\
                 </div>';
     }
