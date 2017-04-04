@@ -9,8 +9,8 @@ angular.module('RB.Chat',[
     'RB.ChatGifs'
 ])
 
-.factory('RBChat', ['VP','Pagina','InfinitScroll','$timeout','RBChatGifs','RBChatCamera','RBChatWebSocket','RBChatRequisicoes','RBChatGaleria','$ionicPlatform',
-    function (VP,Pagina,InfinitScroll,$timeout,RBChatGifs,RBChatCamera,RBChatWebSocket,RBChatRequisicoes,RBChatGaleria,$ionicPlatform){
+.factory('RBChat', ['Pagina','InfinitScroll','$timeout','RBChatGifs','RBChatCamera','RBChatWebSocket','RBChatRequisicoes','RBChatGaleria','$ionicPlatform',
+    function (Pagina,InfinitScroll,$timeout,RBChatGifs,RBChatCamera,RBChatWebSocket,RBChatRequisicoes,RBChatGaleria,$ionicPlatform){
         var scope;
         var nomeObj;
         
@@ -139,6 +139,13 @@ angular.module('RB.Chat',[
                 },0);
             };
             
+            scope.rbChat.abrirMdMenu = function($event){
+//                cordova.plugins.Keyboard.close();
+//                $timeout(function(){
+//                    $mdOpenMenu($event);
+//                },0);
+            };
+            
             scope.rbChat.scrollBottom = function(indice){
                 $timeout(function(){
                     $('#container-respostas').scrollTop(parseInt($('#container-respostas > div > div').height() + 1000));
@@ -184,7 +191,7 @@ angular.module('RB.Chat',[
                 scope.rbChat.blockBtn = true;
                 metodoConfigurar(true);
                 metodoMidia(url);
-                $('.container-chat-geral').removeClass('remove-overflow-preview');;
+                $('.container-chat-geral').removeClass('remove-overflow-preview');
             };
             
             scope.rbChat.attPrivacidade = metodoPrivacidade;
@@ -265,7 +272,6 @@ angular.module('RB.Chat',[
                     //},200);
                 },0);
             };
-            
             scope.rbChat.abrirCamBtn = function(indice){
                 if(indice)scope.rbChat.abaSelecionada = indice;
                 //$timeout(function(){

@@ -20,6 +20,7 @@ angular.module('RB.ChatEstrutura',[
                                 <i class="icon ion-android-arrow-back seta-barra"></i>\n\
                             </button>\n\
                             <div ng-if="!rbChat.dadosConversa" class="img-circular-grande  margin-img"\n\
+                            ng-class="{\'img-pessoa-padrao\' : !rbChat.pergunta.enderecoUsuario}"\n\
                             style="background-image:url({{alteraNome(rbChat.pergunta.enderecoUsuario)}})"></div>\n\
                             <div ng-if="!rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
                                 <p style="margin-top: 14px;" ng-if="dadosUser.usuarioId != rbChat.pergunta.usuarioId" class="negrito ptitular-pergunta">{{rbChat.pergunta.nomeUsuario}}</p>\n\
@@ -27,6 +28,7 @@ angular.module('RB.ChatEstrutura',[
                                 <p class="ptitulo-pergunta">{{rbChat.pergunta.perguntaTitulo}}</p>\n\
                             </div>\n\
                             <div ng-if="rbChat.dadosConversa" class="img-circular-grande  margin-img"\n\
+                            ng-class="{\'img-pessoa-padrao\' : !rbChat.dadosConversa.enderecoUsuario}"\n\
                             style="background-image:url({{alteraNome(rbChat.dadosConversa.endereco)}})"></div>\n\
                             <div ng-if="rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
                                 <p style="margin-top: 14px;" class="negrito ptitular-pergunta">{{rbChat.dadosConversa.nome}}</p>\n\
@@ -35,7 +37,7 @@ angular.module('RB.ChatEstrutura',[
                             </div>\n\
                             <div class="text-right">\n\
                                 <md-menu>\n\
-                                    <md-button style="margin-top: 9px;" class="md-icon-button" ng-click="$mdOpenMenu($event)">\n\
+                                    <md-button style="margin-top: 9px;" class="md-icon-button" ng-click="$mdOpenMenu($event);">\n\
                                         <md-icon style="color:#FFFFFF !important" class="icone-tamanho-personalizado ion-android-more-vertical"></md-icon>\n\
                                     </md-button>\n\
                                     <md-menu-content width="4">\n\
@@ -174,12 +176,14 @@ angular.module('RB.ChatEstrutura',[
                                 </div>\n\
                                 <div class="container-img-resposta text-right remove-padding">\n\
                                     <div class="chat img-circular-grande margin-img"\n\
+                                    ng-class="{\'img-pessoa-padrao\' : !rbChat.pergunta.enderecoUsuario}"\n\
                                     style="background-image:url({{alteraNome(rbChat.pergunta.enderecoUsuario)}})"></div>\n\
                                 </div>\n\
                             </div>\n\
                             <div ng-if="dadosUser.usuarioId != rbChat.pergunta.usuarioId" class="balao-esquerda">\n\
                                 <div class="container-img-resposta text-right remove-padding">\n\
                                     <div class="chat img-circular-grande margin-img"\n\
+                                    ng-class="{\'img-pessoa-padrao\' : !rbChat.pergunta.enderecoUsuario}"\n\
                                     style="background-image:url({{alteraNome(rbChat.pergunta.enderecoUsuario)}})"></div>\n\
                                 </div>\n\
                                 <div class="container-textos-esquerda">\n\
@@ -198,10 +202,16 @@ angular.module('RB.ChatEstrutura',[
                         style="padding-bottom: 20px !important;">\n\
                             <div ng-if="dadosUser.usuarioId != resposta.usuarioId" class="balao-esquerda">\n\
                                 <div ng-class="{\'borda-gif\' :rbChat.ehGif(resposta.enderecoUsuario,resposta.endereco)}" class="container-img-resposta text-right remove-padding">\n\
-                                    <div ng-if="resposta.enderecoUsuario" class="chat img-circular-grande margin-img"\n\
+                                    <div ng-if="resposta.enderecoUsuario" \n\
+                                    ng-class="{\'img-pessoa-padrao\' : !resposta.enderecoUsuario}"\n\
+                                    class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.enderecoUsuario)}})"></div>\n\
-                                    <div ng-if="resposta.endereco" class="chat img-circular-grande margin-img"\n\
+                                    <div ng-if="resposta.endereco"\n\
+                                    ng-class="{\'img-pessoa-padrao\' : !resposta.endereco}"\n\
+                                    class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.endereco)}})"></div>\n\
+                                    <div ng-if="!resposta.endereco && !resposta.enderecoUsuario"\n\
+                                    class="img-pessoa-padrao chat img-circular-grande margin-img"></div>\n\
                                 </div>\n\
                                 <div class="container-textos-esquerda">\n\
                                     <div class="row remove-padding">\n\
@@ -284,10 +294,16 @@ angular.module('RB.ChatEstrutura',[
                                     </div>\n\
                                 </div>\n\
                                 <div style="position:relative" class="container-img-resposta text-right remove-padding">\n\
-                                    <div ng-if="resposta.enderecoUsuario" class="chat img-circular-grande margin-img"\n\
+                                    <div ng-if="resposta.enderecoUsuario" \n\
+                                    ng-class="{\'img-pessoa-padrao\' : !resposta.enderecoUsuario}"\n\
+                                    class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.enderecoUsuario)}})"></div>\n\
-                                    <div ng-if="resposta.endereco" class="chat img-circular-grande margin-img"\n\
+                                    <div ng-if="resposta.endereco" \n\
+                                    ng-class="{\'img-pessoa-padrao\' : !resposta.endereco}"\n\
+                                    class="chat img-circular-grande margin-img"\n\
                                     style="background-image:url({{alteraNome(resposta.endereco)}})"></div>\n\
+                                    <div ng-if="!resposta.endereco && !resposta.enderecoUsuario"\n\
+                                    class="img-pessoa-padrao chat img-circular-grande margin-img"></div>\n\
                                     <span \n\
                                     ng-class="{\'ion-android-done\' : resposta.statusMensagem == 1,\n\
                                     \'ion-android-time\' : resposta.statusMensagem == 0,\n\
@@ -325,6 +341,7 @@ angular.module('RB.ChatEstrutura',[
                     <div class="row container-digitando" \n\
                     ng-if="digitandoObj != false && dadosUser.usuarioId != digitandoObj.idDigitando">\n\
                         <div class="img-circular-digitando"\n\
+                        ng-class="{\'img-pessoa-padrao\' : !digitandoObj.endereco}"\n\
                         style="background-image:url({{alteraNome(digitandoObj.endereco)}})"></div>\n\
                         <div class="container-digitando-bolas loader-inner ball-pulse-sync">\n\
                             <div class="bola-digitando"></div>\n\

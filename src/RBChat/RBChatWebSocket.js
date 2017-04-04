@@ -12,14 +12,15 @@ angular.module('RB.ChatWebSocket',[])
             return this;
         };
         
-        function iniciar(metodoWebSocket,idAuxiliar){
-            configConexao(metodoWebSocket,idAuxiliar);
+        function iniciar(metodoWebSocket,idAuxiliar,metodoAtt){
+            configConexao(metodoWebSocket,idAuxiliar,metodoAtt);
         }
         
-        function configConexao(metodoWebSocket,idAuxiliar){
+        function configConexao(metodoWebSocket,idAuxiliar,metodoAtt){
             if(DGlobal.acaoCliente && DGlobal.acaoCliente.idPagina)
                 var idPagina = DGlobal.acaoCliente.idPagina;
             scope.rbChatWebSocket = Websocket.setarPagina(idPagina,idAuxiliar,metodoWebSocket,refAmbienteWs);
+            //scope.rbChatWebSocket = Websocket;
         }
 
         return {
