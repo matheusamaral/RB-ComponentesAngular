@@ -28,7 +28,7 @@ angular.module('RB.ChatEstrutura',[
                                 <p class="ptitulo-pergunta">{{rbChat.pergunta.perguntaTitulo}}</p>\n\
                             </div>\n\
                             <div ng-if="rbChat.dadosConversa" class="img-circular-grande  margin-img"\n\
-                            ng-class="{\'img-pessoa-padrao\' : !rbChat.dadosConversa.enderecoUsuario}"\n\
+                            ng-class="{\'img-pessoa-padrao\' : !rbChat.dadosConversa.endereco}"\n\
                             style="background-image:url({{alteraNome(rbChat.dadosConversa.endereco)}})"></div>\n\
                             <div ng-if="rbChat.dadosConversa" class="col remove-padding" style="margin-left: 10px;width: 100px;">\n\
                                 <p style="margin-top: 14px;" class="negrito ptitular-pergunta">{{rbChat.dadosConversa.nome}}</p>\n\
@@ -107,7 +107,6 @@ angular.module('RB.ChatEstrutura',[
                     </div>\n\
                     <button ng-if="!rbChat.sumirBtn"\n\
                     ng-click="rbChat.enviarMidia(rbChat.tirouFoto)"\n\
-                    ng-disabled="rbChat.blockBtn"\n\
                     class="ion-android-send btn-rodape btn-redondo-dourado button button-positive">\n\
                     </button>\n\
                 </div>';
@@ -126,33 +125,34 @@ angular.module('RB.ChatEstrutura',[
                         <i class="icon img-inverte-camera-preview"></i>\n\
                     </button>\n\
                 </div>\n\
-                <div ng-if="rbChat.menuAberto && !rbChat.camFull"\n\
-                class="row container-barra-sub-menu">\n\
-                    <div class="col">\n\
-                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-disabled="!rbChat.liberaBtns" ng-click="rbChat.voltarTeclado(0)" class="btn-chat-pub button button-clear button-positive">\n\
-                                <md-icon class="img-teclado"></md-icon>\n\
-                            </button>\n\
+                <div class="pai-barra-menu" ng-if="rbChat.menuAberto && !rbChat.camFull">\n\
+                    <div class="row container-barra-sub-menu">\n\
+                        <div class="col">\n\
+                            <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                                <button ng-disabled="!rbChat.liberaBtns" ng-click="rbChat.voltarTeclado(0)" class="btn-chat-pub button button-clear button-positive">\n\
+                                    <md-icon class="img-teclado"></md-icon>\n\
+                                </button>\n\
+                            </div>\n\
                         </div>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-class="{selecionado:rbChat.abaSelecionada == 1}" ng-click="rbChat.abrirCamBtn(1)" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
-                            </button>\n\
+                        <div class="col">\n\
+                            <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                                <button ng-class="{selecionado:rbChat.abaSelecionada == 1}" ng-click="rbChat.abrirCamBtn(1)" class="btn-chat-pub ion-android-camera button button-clear button-positive">\n\
+                                </button>\n\
+                            </div>\n\
                         </div>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-disabled="!rbChat.liberaBtns" ng-class="{selecionado: rbChat.abaSelecionada == 2}" ng-click="rbChat.abrirGlr(2)" \n\
-                            class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
-                            </button>\n\
+                        <div class="col">\n\
+                            <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                                <button ng-disabled="!rbChat.liberaBtns" ng-class="{selecionado: rbChat.abaSelecionada == 2}" ng-click="rbChat.abrirGlr(2)" \n\
+                                class="btn-chat-pub ion-android-image button button-clear button-positive">\n\
+                                </button>\n\
+                            </div>\n\
                         </div>\n\
-                    </div>\n\
-                    <div class="col">\n\
-                        <div class="organiza-margin-chat col-bottom remove-padding">\n\
-                            <button ng-disabled="!rbChat.liberaBtns" ng-click="rbChat.abrirGifs(3);" class="btn-chat-pub button button-clear button-positive">\n\
-                                <md-icon class="img-gif"></md-icon>\n\
-                            </button>\n\
+                        <div class="col">\n\
+                            <div class="organiza-margin-chat col-bottom remove-padding">\n\
+                                <button ng-disabled="!rbChat.liberaBtns" ng-click="rbChat.abrirGifs(3);" class="btn-chat-pub button button-clear button-positive">\n\
+                                    <md-icon class="img-gif"></md-icon>\n\
+                                </button>\n\
+                            </div>\n\
                         </div>\n\
                     </div>\n\
                 </div>';

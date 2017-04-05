@@ -25,7 +25,9 @@ angular.module('Cmp.Geolocation', [
         }
         
         function verifficaPosicao(){
-            if(DGlobal.localBarra && DGlobal.localBarra.success){
+//            DGlobal.localBarra.dados = false;
+//            scope[nomeObj].array = false;
+            if(DGlobal.localBarra && DGlobal.localBarra.success && DGlobal.localBarra.dados){
                 if(DGlobal.localBarra.dados.latitude && DGlobal.localBarra.dados.longitude)
                     scope[nomeObj].coordenadas = {lat:parseFloat(DGlobal.localBarra.dados.latitude),lng:parseFloat(DGlobal.localBarra.dados.longitude)};
                 //scope[nomeObj].coordenadas = {lat:-21.1318843,lng:-42.3643629};
@@ -51,7 +53,7 @@ angular.module('Cmp.Geolocation', [
 
                 scope[nomeObj].map.addListener('dragend', function() {   
                     var obj = {atualizando:0,latitude:scope[nomeObj].map.getCenter().lat(),longitude:scope[nomeObj].map.getCenter().lng()};
-                    MapaRequisicoes.set({acaoPosterior:listarLocaisOnDragg,dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successCadastrarLocaisProximo}).cadastrarLocaisProximo();
+                    MapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successCadastrarLocaisProximo}).cadastrarLocaisProximo();
                 });
 
                 $timeout(function(){
@@ -715,6 +717,7 @@ angular.module('Cmp.Geolocation', [
                             </div>\n\
                             <div id="barra-local-atual" style="display:flex" class="row">\n\
                                 <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-popover-dourado"\n\
+                                ng-class="{\'img-pessoa-padrao\' : !dadosUser.usuarioEndereco}"\n\
                                 style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
                                     <div class="container-privacidade-img">\n\
                                         <md-icon\n\

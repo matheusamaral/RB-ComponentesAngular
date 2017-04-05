@@ -154,10 +154,15 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.fecharTeclado = function(aba){
-                scope.rbChat.alturaChatAnterior = $('#container-input').height();
-                scope.rbChat.abaSelecionada = aba;
-                //$timeout(function(){
-                scope.rbChat.empurraChat = $('body').width();
+                if(cordova.plugins.Keyboard.isVisible){
+                    cordova.plugins.Keyboard.close();
+                }
+                $timeout(function(){
+                    scope.rbChat.alturaChatAnterior = $('#container-input').height();
+                    scope.rbChat.abaSelecionada = aba;
+                    //$timeout(function(){
+                    scope.rbChat.empurraChat = $('body').width();
+                },0);
                 $timeout(function(){
                     scope.rbChat.rolarChat();
                     scope.rbChat.abrirMenu();
@@ -170,7 +175,8 @@ angular.module('RB.Chat',[
                         e.stopPropagation();
                         e.preventDefault();
                         if(scope.rbChat.abaSelecionada == 1)scope.rbChat.voltarTeclado(0);
-                        else scope.rbChat.fecharGif();
+                        if(scope.rbChat.abaSelecionada == 3) scope.rbChat.fecharGif();
+                        if(scope.rbChat.tirouFoto)scope.rbChat.tirouFoto = false;
                         restauraComportamentoPadraoBackButton();
                         return false;
                     },101

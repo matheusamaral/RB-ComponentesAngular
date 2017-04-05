@@ -71,7 +71,7 @@ angular.module('Cmp.GerenciaSMS', [
                     msgConcatenada = msgConcatenada + msgRecebida[i];
                 }
                 
-                if(msgConcatenada == 'OseucódigodoQuickpeeké'){
+                if(msgConcatenada == 'OseucódigodoQuickpeeké' || msgConcatenada == 'OseucodigodoQuickpeeké'){
                     $timeout.cancel(scope[nomeObj].timeout);
                     RBLoadingMobile.hide();
                     RBLoadingMobile.show('SMS identificado...');
