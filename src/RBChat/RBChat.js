@@ -131,8 +131,8 @@ angular.module('RB.Chat',[
                         }
                     }
                 );
-                metodoResponder();
                 metodoConfigurar();
+                metodoResponder();
                 $('.container-chat-geral').removeClass('remove-overflow-preview');
                 $timeout(function(){
                    $("#txtAreaChat").height(24); 

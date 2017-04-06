@@ -813,7 +813,33 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         return tempoString;
     }
     
+    function verifica_imagem(url){
+        var myImage = new Image();
+        myImage.src = url;
+        var largura = parseInt(myImage.width);
+        var altura = parseInt(myImage.height);
+        return{
+            w:largura,
+            h: altura
+        };
+    }
+    
+    function dimensionaCorteQuadrado(img){
+        var alturaReal = verifica_imagem(img).h;
+        var larguraReal = verifica_imagem(img).w;
+        var dimensoes = {
+            h: larguraReal,
+            hr: alturaReal,
+            wr: larguraReal,
+            w: larguraReal,
+            y: (alturaReal - larguraReal)/2,
+            x: 0
+        };
+        return dimensoes;
+    }
+    
     return {
+        dimensionaCorteQuadrado:dimensionaCorteQuadrado,
         converteMinutoTempoString:converteMinutoTempoString,
         mudarString:mudarString,
         setScope:setScope,
