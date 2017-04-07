@@ -194,10 +194,45 @@ angular.module('RB.Chat',[
             }
             
             scope.rbChat.enviarMidia = function(url){
-                scope.rbChat.blockBtn = true;
-                metodoConfigurar(true);
-                metodoMidia(url);
-                $('.container-chat-geral').removeClass('remove-overflow-preview');
+                if(scope.rbChat.dadosConversa.bloqueado == 1){
+                    scope.rbChat.metodoDesbloquear = function(){
+                        metodoConfigurar(url,false);
+                        $timeout(function(){
+                            metodoMidia(url);
+                        },0);
+                        $('.container-chat-geral').removeClass('remove-overflow-preview');
+                    }
+                    metodoDesbloquear(scope.rbChat.metodoDesbloquear);
+                }else{
+                    metodoConfigurar(url,false);
+                    $timeout(function(){
+                        metodoMidia(url);
+                    },0);
+                    $('.container-chat-geral').removeClass('remove-overflow-preview');
+                }
+            };
+            
+            scope.rbChat.enviarGif = function(gif){
+                if(scope.rbChat.dadosConversa.bloqueado == 1){
+                    scope.rbChat.metodoDesbloquear = function(){
+                        metodoConfigurar(false, gif.medium);
+                        metodoGif(gif);
+
+                        $('.container-chat-geral').removeClass('remove-overflow-preview');
+                        $timeout(function(){
+                            scope.rbChat.fecharGif();
+                        },0);
+                    }
+                    metodoDesbloquear(scope.rbChat.metodoDesbloquear);
+                }else{
+                    metodoConfigurar(false, gif.medium);
+                    metodoGif(gif);
+
+                    $('.container-chat-geral').removeClass('remove-overflow-preview');
+                    $timeout(function(){
+                        scope.rbChat.fecharGif();
+                    },0);
+                }
             };
             
             scope.rbChat.attPrivacidade = metodoPrivacidade;
@@ -211,16 +246,6 @@ angular.module('RB.Chat',[
                 if(scope.rbChat.fecharCamera)scope.rbChat.fecharCamera();
                 Pagina.rollBack(metodoVoltar);
             };
-            
-            scope.rbChat.enviarGif = function(gif){
-                metodoConfigurar(false, gif);
-                metodoGif(gif);
-                
-                $('.container-chat-geral').removeClass('remove-overflow-preview');
-                $timeout(function(){
-                    scope.rbChat.fecharGif();
-                },0);
-            };
                 
             scope.rbChat.fecharGif = function(){
                 scope.rbChat.abaSelecionada = 0;
@@ -231,6 +256,7 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.exibirMidiaChat = function (midia,sumir){
+                mudarComportamentoBackButton();
                 scope.rbChat.tirouFoto = true;
                 sobrescreverMetodoTeclado();
                 if(midia.split('.')[midia.split('.').length - 1] == 'gif')

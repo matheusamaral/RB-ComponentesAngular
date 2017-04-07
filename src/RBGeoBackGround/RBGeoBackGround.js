@@ -501,6 +501,10 @@ angular.module('Cmp.Geolocation', [
                 scope.dadosbarra = DGlobal.localBarra.dados;
             }
             
+            scope.mudarNome = function (de){
+                return VP.mudarString(de,'origem','amn');
+            }
+            
             scope.irLocal = function(id,evento){
                 VP.pararEvento(evento);
                 sumirPopover(true);
@@ -718,7 +722,7 @@ angular.module('Cmp.Geolocation', [
                             <div id="barra-local-atual" style="display:flex" class="row">\n\
                                 <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-popover-dourado"\n\
                                 ng-class="{\'img-pessoa-padrao\' : !dadosUser.usuarioEndereco}"\n\
-                                style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
+                                style="background-image:url({{mudarNome(dadosUser.usuarioEndereco)}})">\n\
                                     <div class="container-privacidade-img">\n\
                                         <md-icon\n\
                                         ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
