@@ -231,12 +231,12 @@ angular.module('RB.ChatEstrutura',[
                                         ng-click="rbChat.exibirMidiaChat(resposta.enderecoMidia,true)" \n\
                                         ng-class="{\'container-midia-resposta\' : !rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem),\n\
                                         \'container-midia-resposta-gif\' : rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}"\n\
-                                        src="{{resposta.enderecoMidia}}"/>\n\
+                                        src="{{alteraNome(resposta.enderecoMidia)}}"/>\n\
                                         <img ng-if="resposta.enderecoMensagem" \n\
                                         ng-click="rbChat.exibirMidiaChat(resposta.enderecoMensagem,true)" \n\
                                         ng-class="{\'container-midia-resposta\' : !rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem),\n\
                                         \'container-midia-resposta-gif\' : rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}"\n\
-                                        src="{{resposta.enderecoMensagem}}"/>\n\
+                                        src="{{alteraNome(resposta.enderecoMensagem)}}"/>\n\
                                         <p ng-if="rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)"\n\
                                         class="texto-giphy">\n\
                                             POWERED BY <span class="negrito">GIPHY</span>\n\
@@ -262,7 +262,7 @@ angular.module('RB.ChatEstrutura',[
                                         ng-click="rbChat.exibirMidiaChat(resposta.enderecoMidia,true)" \n\
                                         ng-class="{\'container-midia-resposta\' : !rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem),\n\
                                         \'container-midia-resposta-gif\' : rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}"\n\
-                                        src="{{resposta.enderecoMidia}}"/>\n\
+                                        src="{{alteraNome(resposta.enderecoMidia)}}"/>\n\
                                         <div ng-if="resposta.imgTemporaria" class="loader img-temporaria">\n\
                                             <div class="loader-inner ball-clip-rotate">\n\
                                                 <div></div>\n\
@@ -270,23 +270,23 @@ angular.module('RB.ChatEstrutura',[
                                         </div>\n\
                                         <img ng-if="resposta.enderecoMidia && resposta.imgTemporaria && !resposta.ehImg"\n\
                                         class="controlaImgTemporaria"\n\
-                                        src="{{resposta.enderecoMidia}}"/>\n\
+                                        src="{{alteraNome(resposta.enderecoMidia)}}"/>\n\
                                         <div ng-if="resposta.enderecoMidia && resposta.imgTemporaria && resposta.ehImg"\n\
-                                        style="background-image:url({{resposta.enderecoMidia}})"\n\
+                                        style="background-image:url({{alteraNome(resposta.enderecoMidia)}})"\n\
                                         class="controlaImgTemporaria ehImg">\n\
                                         </div>\n\
                                         <img ng-if="resposta.enderecoMensagem && resposta.imgTemporaria && !resposta.ehImg"\n\
                                         class="controlaImgTemporaria"\n\
-                                        src="{{resposta.enderecoMensagem}}"/>\n\
+                                        src="{{alteraNome(resposta.enderecoMensagem)}}"/>\n\
                                         <div ng-if="resposta.enderecoMensagem && resposta.imgTemporaria && resposta.ehImg"\n\
-                                        style="background-image:url({{resposta.enderecoMensagem}})"\n\
+                                        style="background-image:url({{alteraNome(resposta.enderecoMensagem)}})"\n\
                                         class="controlaImgTemporaria ehImg">\n\
                                         </div>\n\
                                         <img ng-if="resposta.enderecoMensagem && !resposta.imgTemporaria" \n\
                                         ng-click="rbChat.exibirMidiaChat(resposta.enderecoMensagem,true)" \n\
                                         ng-class="{\'container-midia-resposta\' : !rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem),\n\
                                         \'container-midia-resposta-gif\' : rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)}"\n\
-                                        src="{{resposta.enderecoMensagem}}"/>\n\
+                                        src="{{alteraNome(resposta.enderecoMensagem)}}"/>\n\
                                         <p ng-if="rbChat.ehGif(resposta.enderecoMidia,resposta.enderecoMensagem)"\n\
                                         class="texto-giphy">\n\
                                             POWERED BY <span class="negrito">GIPHY</span>\n\

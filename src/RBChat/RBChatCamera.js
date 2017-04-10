@@ -122,11 +122,13 @@ angular.module('RB.ChatCamera',[
                 },arrumaCamFull);
             };
             
-            scope.rbChat.resetarCamera = function(){
+            var renovar;
+            scope.rbChat.resetarCamera = function(renovarDom){
                 scope.camera.stopCamera();
                 var tapEnabled = false;
                 var dragEnabled = false;
                 var toBack = true;
+                if(renovarDom)renovar = true;
                 altura = $('body').width();
                 y = $('body').height() - $('body').width();
                 scope.camera.startCamera({
@@ -145,11 +147,11 @@ angular.module('RB.ChatCamera',[
                 scope.rbChat.empurraChat = $('body').width();
                 $timeout(function(){
                     scope.rbChat.rolarChat();
-                    
                 },0);
                 
                 $timeout(function(){
                     scope.rbChat.camFull = false;
+                    if(renovar)scope.$apply();
                 },0);
             }
             

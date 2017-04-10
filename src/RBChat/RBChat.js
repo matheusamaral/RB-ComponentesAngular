@@ -174,8 +174,21 @@ angular.module('RB.Chat',[
                     function (e){
                         e.stopPropagation();
                         e.preventDefault();
-                        if(scope.rbChat.abaSelecionada == 1)scope.rbChat.voltarTeclado(0);
-                        if(scope.rbChat.abaSelecionada == 3) scope.rbChat.fecharGif();
+                        if(scope.rbChat.abaSelecionada == 1 && scope.rbChat.tirouFoto && !scope.rbChat.camFull){
+                            scope.rbChat.fecharExibirMidia(true);
+                        }
+                        
+                        if(scope.rbChat.abaSelecionada == 1 && scope.rbChat.camFull){
+                            scope.rbChat.resetarCamera(true);
+                        }
+                        
+                        if(scope.rbChat.abaSelecionada == 1 && !scope.rbChat.tirouFoto && !scope.rbChat.camFull){
+                            scope.rbChat.voltarTeclado(0)
+                        }
+                        
+                        if(scope.rbChat.abaSelecionada == 3)
+                            scope.rbChat.fecharGif();
+                        
                         if(scope.rbChat.tirouFoto)scope.rbChat.tirouFoto = false;
                         restauraComportamentoPadraoBackButton();
                         return false;
@@ -188,7 +201,14 @@ angular.module('RB.Chat',[
                 function (e){
                     e.stopPropagation();
                     e.preventDefault();
-                    Pagina.rollBack();
+                    if(scope.rbChat.cameraAberta)scope.rbChat.fecharCamera();
+                    if(scope.rbChat.abaSelecionada == 1 && !scope.rbChat.camFull && !scope.rbChat.tirouFoto){
+                        scope.rbChat.voltarTeclado(0);
+                        $timeout(function(){
+                            restauraComportamentoPadraoBackButton();
+                        },0);
+                    }else
+                        Pagina.rollBack();
                     return false;
                 },101);
             }
@@ -266,9 +286,10 @@ angular.module('RB.Chat',[
             };
             
             scope.rbChat.fecharExibirMidia = function(renovar){
-                restauraComportamentoPadraoBackButton();
+                //restauraComportamentoPadraoBackButton();
                 scope.rbChat.tirouFoto = false;
                 if(scope.rbChat.camFull)scope.rbChat.camFull = false;
+                if(scope.rbChat.abaSelecionada != 1)scope.rbChat.fecharCamera();
                 if(scope.rbChat.abaSelecionada == 2){
                     scope.rbChat.menuAberto = false;
                     scope.rbChat.abaSelecionada = 0;
@@ -392,7 +413,8 @@ angular.module('RB.Chat',[
             scope.rbChat.digitando = function(){
                 //caracteres++;
                 //scope.rbChat.calcularTxtAreaAltura();
-                metodoDigitando();
+                if(scope.rbChat.dadosConversa.bloqueado != 1)
+                    metodoDigitando();
             };
             
             if(DGlobal.statusOnline && DGlobal.statusOnline.success){
