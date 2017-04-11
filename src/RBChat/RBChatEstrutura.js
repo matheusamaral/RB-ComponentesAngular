@@ -42,7 +42,7 @@ angular.module('RB.ChatEstrutura',[
                                     </md-button>\n\
                                     <md-menu-content width="4">\n\
                                         <md-menu-item ng-if="!rbChat.dadosConversa">\n\
-                                            <md-button ng-click="rbChat.attPrivacidade()">\n\
+                                            <md-button ng-click="rbChat.attPrivacidade(rbChat.pergunta.perguntaId)">\n\
                                                 Alterar privacidade\n\
                                             </md-button>\n\
                                         </md-menu-item>\n\

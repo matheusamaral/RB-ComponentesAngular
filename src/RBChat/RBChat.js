@@ -176,21 +176,32 @@ angular.module('RB.Chat',[
                         e.preventDefault();
                         if(scope.rbChat.abaSelecionada == 1 && scope.rbChat.tirouFoto && !scope.rbChat.camFull){
                             scope.rbChat.fecharExibirMidia(true);
+                        }else{
+                            if(scope.rbChat.abaSelecionada == 1 && scope.rbChat.camFull){
+                                scope.rbChat.resetarCamera(true);
+                            }else{
+                                if(scope.rbChat.abaSelecionada == 1 && !scope.rbChat.tirouFoto && !scope.rbChat.camFull){
+                                    scope.rbChat.voltarTeclado(0)
+                                }else{
+                                    if(scope.rbChat.abaSelecionada == 3)
+                                        scope.rbChat.fecharGif();
+                                    else{
+                                        if(scope.rbChat.tirouFoto)scope.rbChat.tirouFoto = false;
+                                        Pagina.rollBack();
+                                        restauraComportamentoPadraoBackButton();
+                                    }
+                                }
+                            }
                         }
                         
-                        if(scope.rbChat.abaSelecionada == 1 && scope.rbChat.camFull){
-                            scope.rbChat.resetarCamera(true);
-                        }
                         
-                        if(scope.rbChat.abaSelecionada == 1 && !scope.rbChat.tirouFoto && !scope.rbChat.camFull){
-                            scope.rbChat.voltarTeclado(0)
-                        }
                         
-                        if(scope.rbChat.abaSelecionada == 3)
-                            scope.rbChat.fecharGif();
                         
-                        if(scope.rbChat.tirouFoto)scope.rbChat.tirouFoto = false;
-                        restauraComportamentoPadraoBackButton();
+                        
+                        
+                        
+                        
+                        //
                         return false;
                     },101
                 );
@@ -201,14 +212,7 @@ angular.module('RB.Chat',[
                 function (e){
                     e.stopPropagation();
                     e.preventDefault();
-                    if(scope.rbChat.cameraAberta)scope.rbChat.fecharCamera();
-                    if(scope.rbChat.abaSelecionada == 1 && !scope.rbChat.camFull && !scope.rbChat.tirouFoto){
-                        scope.rbChat.voltarTeclado(0);
-                        $timeout(function(){
-                            restauraComportamentoPadraoBackButton();
-                        },0);
-                    }else
-                        Pagina.rollBack();
+                    Pagina.rollBack();
                     return false;
                 },101);
             }
