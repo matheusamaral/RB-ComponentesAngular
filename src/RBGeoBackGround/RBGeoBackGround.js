@@ -44,14 +44,14 @@ angular.module('Cmp.Geolocation', [
                 {
                     center: scope[nomeObj].coordenadas,
                     scrollwheel: true,
-                    zoom: 20,
+                    zoom: 17,
                     clickableIcons:false,
                     draggable:true,
                     disableDefaultUI: true,
                     styles:scope[nomeObj].styleMap
                 });
 
-                scope[nomeObj].map.addListener('dragend', function() {   
+                scope[nomeObj].map.addListener('dragend', function() {  
                     var obj = {atualizando:0,latitude:scope[nomeObj].map.getCenter().lat(),longitude:scope[nomeObj].map.getCenter().lng()};
                     MapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successCadastrarLocaisProximo}).cadastrarLocaisProximo();
                 });
