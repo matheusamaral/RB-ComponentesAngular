@@ -27,6 +27,7 @@ angular.module('RB.pagina', ['RB.validacoesPadroes', 'RB.gcs', 'RB.config', 'toa
     };
 
     function navegar(dados,voltar){
+        $rootScope.dadosVoltar = dados;
           RBLoadingMobile.show('Carregando...');
 
           if(DGlobal.hitoricoApp == 1){
