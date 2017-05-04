@@ -67,11 +67,11 @@
 }
 
 .container-rb-loader.aberto{
-    top: 60px;
+    top: 0px;
 }
 
 .container-rb-loader-bottom.aberto{
-    bottom: 30px;
+    bottom: 10px;
 }
 
 .corpo-rb-loader{

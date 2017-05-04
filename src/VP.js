@@ -750,6 +750,7 @@ angular.module('RB.validacoesPadroes', ['toaster'])
     function pararEvento($event){
         $event.stopPropagation();
         $event.preventDefault();
+        return false;
     }
     
     function converteMinutosHoras(min){
@@ -762,7 +763,8 @@ angular.module('RB.validacoesPadroes', ['toaster'])
     }
     
     function mudarString(string,de,para){
-        return string.replace(de,para);
+        if(string)
+            return string.replace(de,para);
     }
     
     function converteMinutoTempoString(val){
@@ -812,7 +814,40 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         return tempoString;
     }
     
+    function verifica_imagem(url){
+        var myImage = new Image();
+        myImage.src = url;
+        var largura = parseInt(myImage.width);
+        var altura = parseInt(myImage.height);
+        return{
+            w:largura,
+            h: altura
+        };
+    }
+    
+    function dimensionaCorteQuadrado(img){
+        var alturaReal = verifica_imagem(img).h;
+        var larguraReal = verifica_imagem(img).w;
+        var dimensoes = {
+            h: larguraReal,
+            hr: alturaReal,
+            wr: larguraReal,
+            w: larguraReal,
+            y: (alturaReal - larguraReal)/2,
+            x: 0
+        };
+        return dimensoes;
+    }
+    
+    function posicionaBarraIos(){
+        if(ionic.Platform.isIOS())
+            $('body').scrollTop(0);
+    }
+    
     return {
+        posicionaBarraIos:posicionaBarraIos,
+        dimensionaCorteQuadrado:dimensionaCorteQuadrado,
+        converteMinutoTempoString:converteMinutoTempoString,
         mudarString:mudarString,
         setScope:setScope,
         ehValido:ehValido,
@@ -853,8 +888,7 @@ angular.module('RB.validacoesPadroes', ['toaster'])
         gerarNumeroAleatorio:gerarNumeroAleatorio,
         formataDataBanco:formataDataBanco,
         pararEvento:pararEvento,
-        converteMinutosHoras:converteMinutosHoras,
-        converteMinutoTempoString:converteMinutoTempoString
+        converteMinutosHoras:converteMinutosHoras
     };
     
  }]);
