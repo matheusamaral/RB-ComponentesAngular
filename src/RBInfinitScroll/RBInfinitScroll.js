@@ -5,8 +5,8 @@ angular.module('Cmp.InfinitScroll',[
     'RB.pagina'
 ])
 
-.factory('InfinitScroll', ['$timeout',
-    function($timeout){
+.factory('InfinitScroll', ['$timeout','$ionicScrollDelegate',
+    function($timeout,$ionicScrollDelegate){
         var scope,ativo = false;
         
         var options = {
@@ -36,13 +36,30 @@ angular.module('Cmp.InfinitScroll',[
             return this;
         }
         
+//        var distancia=$ionicScrollDelegate.getScrollPosition().top;
+//            if(distancia<10){
+//                carregarRespostas();
+//            }
+        
         function scrollBottom(){
             $("#"+options.idSeletorBottom).scroll(function(){
-                if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight){
-                    if(!ativo){
-                        ativo = true;
-                        montarLoaderBottom();
-                        options.acaoBottom();
+                if(ionic.Platform.isIOS()){
+                    var distancia = $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top + $(window).height();
+                    if(distancia >  $("#"+options.idSeletorBottom+' div.scroll').height() && $(this).scrollTop() > 10){
+                        if(!ativo){
+                            ativo = true;
+                            montarLoaderBottom();
+                            options.acaoBottom();
+                        }
+                    }
+                }else{
+                    var distancia = $("#"+options.idSeletor).scroll();
+                    if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight && $(this).scrollTop() > 10){
+                        if(!ativo){
+                            ativo = true;
+                            montarLoaderBottom();
+                            options.acaoBottom();
+                        }
                     }
                 }
             });
@@ -50,7 +67,8 @@ angular.module('Cmp.InfinitScroll',[
         
         function scrollTop(){
             $("#"+options.idSeletor).scroll(function(){
-                if($("#"+options.idSeletor).scrollTop() == 0){
+                if($ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top <= 30 && 
+                   $ionicScrollDelegate.$getByHandle('mainScroll').getScrollPosition().top < 0){
                     if(!ativo){
                         ativo = true;
                         montarLoader();

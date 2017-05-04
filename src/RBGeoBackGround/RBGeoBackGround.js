@@ -8,8 +8,14 @@ angular.module('Cmp.Geolocation', [
 
 .factory('Geolocation', ['VP','$timeout','Pagina','GeolocationPopovers','MapaRequisicoes',
     function (VP,$timeout,Pagina,GeolocationPopovers,MapaRequisicoes){
-        var scope,nomeObj,array = false;  
-        var gm = google.maps;
+        var scope,nomeObj,array = false,googleIsDefined;  
+        if(google){
+            var gm = google.maps;
+            googleIsDefined = true;
+        }else{
+            var gm = false;
+            googleIsDefined = false;
+        }
         
         function setScope(obj){
             scope = obj;
@@ -17,16 +23,27 @@ angular.module('Cmp.Geolocation', [
         };
         
         function inicializar(nome,array){
-           nomeObj = nome;
-           scope[nomeObj] = {};
-           scope[nomeObj].array = array;
-           personalizaMapa(scope[nomeObj].array);
-           verifficaPosicao();
+            if(googleIsDefined){
+                scope.googleUndefined = false;
+                nomeObj = nome;
+                scope[nomeObj] = {};
+                scope[nomeObj].array = array;
+                personalizaMapa(scope[nomeObj].array);
+                verifficaPosicao();
+            }else
+                iniciaComErro();
+        }
+        
+        function iniciaComErro(){
+            scope.googleUndefined = true;
         }
         
         function verifficaPosicao(){
-            if(DGlobal.localBarra && DGlobal.localBarra.success && DGlobal.localBarra.dados.checkIn == 1){
-                scope[nomeObj].coordenadas = {lat:parseFloat(DGlobal.localBarra.dados.latitude),lng:parseFloat(DGlobal.localBarra.dados.longitude)};
+//            DGlobal.localBarra.dados = false;
+//            scope[nomeObj].array = false;
+            if(DGlobal.localBarra && DGlobal.localBarra.success && DGlobal.localBarra.dados){
+                if(DGlobal.localBarra.dados.latitude && DGlobal.localBarra.dados.longitude)
+                    scope[nomeObj].coordenadas = {lat:parseFloat(DGlobal.localBarra.dados.latitude),lng:parseFloat(DGlobal.localBarra.dados.longitude)};
                 //scope[nomeObj].coordenadas = {lat:-21.1318843,lng:-42.3643629};
                 //DGlobal.coordenadasAtual = {latitude:-21.1318843,longitude:-42.3643629};
                 initMap();
@@ -41,16 +58,16 @@ angular.module('Cmp.Geolocation', [
                 {
                     center: scope[nomeObj].coordenadas,
                     scrollwheel: true,
-                    zoom: 20,
+                    zoom: 17,
                     clickableIcons:false,
                     draggable:true,
                     disableDefaultUI: true,
                     styles:scope[nomeObj].styleMap
                 });
 
-                scope[nomeObj].map.addListener('dragend', function() {   
+                scope[nomeObj].map.addListener('dragend', function() {  
                     var obj = {atualizando:0,latitude:scope[nomeObj].map.getCenter().lat(),longitude:scope[nomeObj].map.getCenter().lng()};
-                    MapaRequisicoes.set({acaoPosterior:listarLocaisOnDragg,dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successCadastrarLocaisProximo}).cadastrarLocaisProximo();
+                    MapaRequisicoes.set({dados:obj,scope:scope,acaoSuccess:MapaRequisicoes.successCadastrarLocaisProximo}).cadastrarLocaisProximo();
                 });
 
                 $timeout(function(){
@@ -62,10 +79,10 @@ angular.module('Cmp.Geolocation', [
                         };
 
                         var local;
-                        if(DGlobal.localBarra.dados == 1)
+                        if(DGlobal.localBarra.dados.tipo == 1)
                             local = 'Casa';
 
-                        if(DGlobal.localBarra.dados == 2)
+                        if(DGlobal.localBarra.dados.tipo == 2)
                             local = 'Trabalho';
 
                         scope[nomeObj]['markerEu'] = new gm.Marker({
@@ -88,7 +105,7 @@ angular.module('Cmp.Geolocation', [
         }
         
         function marcarNoMapa(array){
-            $timeout(function(){
+            var meEncontrou = false;
                 if(array){
                     for(var i = 0; i < array.length; i++){
                         var img = 'img/79.svg';
@@ -147,10 +164,32 @@ angular.module('Cmp.Geolocation', [
                                 event.preventDefault();
                                 event.stopPropagation();
                             });
+                            meEncontrou = true;
                         }
                     }
+                    if(!meEncontrou){
+                        var iconEu = {
+                            url:'img/97.svg', // url
+                            scaledSize: new google.maps.Size(70, 70) // scaled size
+                        };
+                        var localNome;
+                        if(DGlobal.localBarra.dados.tipo == 1)
+                            localNome = 'Minha Casa';
+                        else
+                            localNome = 'Meu trabalho';
+                        
+                        scope[nomeObj]['markerEu'] = new gm.Marker({
+                            position: new gm.LatLng(scope[nomeObj].coordenadas.lat,scope[nomeObj].coordenadas.lng),
+                            title:localNome,
+                            icon: iconEu,
+                            zIndex: 50,
+                            idMarcador:850,
+                            animation: gm.Animation.DROP,
+                            map:scope[nomeObj].map
+                        });
+                    }
+                        
                 }
-            },0);
         }
         
         var onSuccess = function(position){
@@ -476,6 +515,10 @@ angular.module('Cmp.Geolocation', [
                 scope.dadosbarra = DGlobal.localBarra.dados;
             }
             
+            scope.mudarNome = function (de){
+                return VP.mudarString(de,'origem','amn');
+            }
+            
             scope.irLocal = function(id,evento){
                 VP.pararEvento(evento);
                 sumirPopover(true);
@@ -619,7 +662,8 @@ angular.module('Cmp.Geolocation', [
         function recalculaTamanhos(){
             $timeout(function(){
                 scope.popover.width = $('#popoverCorpo').width();
-                scope.popover.y = ($('html').height()/2);
+                scope.pontopopover = (scope.popover.width/2) - 10;
+                scope.popover.y = ($('html').height()/2) - 5;
                 scope.popover.x = ($('html').width()/2);
             },0);
         }
@@ -636,7 +680,7 @@ angular.module('Cmp.Geolocation', [
                             style="background-image:url({{localPopover.icon.url}})"></div>\n\
                             <div class="col remove-padding">\n\
                                 <p class="p-local">{{localPopover.title}}</p>\n\
-                                <div style="right: calc({{(popover.width/2)}}px - 10px);" class="ponto-balao"></div>\n\
+                                <div style="right:{{pontopopover}}px;" class="ponto-balao"></div>\n\
                                 <div ng-if="!requisicaoFeita" class="row remove-padding">\n\
                                     <div class="loader-cinza loader-inner ball-clip-rotate">\n\
                                         <div></div>\n\
@@ -659,6 +703,7 @@ angular.module('Cmp.Geolocation', [
             return '<div ng-if="tipopopover != 1" ng-init="calculaAltura()" style="top:{{popover.y - (popoverAltura + (popoverAltura/2))}}px;\n\
                     left:{{popover.x - (popover.width/2)}}px;"\n\
                     class="container-popover-mapa"\n\
+                    ng-click="irLocal(localPopover.idMarcador,$event)"\n\
                     id="popoverCorpo" ng-click="pararEvento($event)">\n\
                         <div id="barra-local-atual"\n\
                         ng-class="{\'z-index-superior\' : dadosUser.tutorial == 3}"\n\
@@ -676,13 +721,13 @@ angular.module('Cmp.Geolocation', [
                                 class="config-btn-mapa button button-outline button-positive">\n\
                                     Não\n\
                                 </button>\n\
-                                <button ng-click="checkInLocal(dadosbarra)"\n\
+                                <button ng-click="checkInLocal(dadosbarra,$event)"\n\
                                 style="height: 36px;line-height: 11px;width: 107px;min-height: 36px" \n\
                                 class="config-btn-mapa button button-positive">\n\
                                     Sim\n\
                                 </button>\n\
                             </div>\n\
-                            <div style="right: calc({{(popover.width/2)}}px - 10px);" class="ponto-balao"></div>\n\
+                            <div style="right:{{pontopopover}}px;" class="ponto-balao"></div>\n\
                         </div>\n\
                         <div ng-if="dadosbarra && dadosbarra.checkIn == 1" class="corpo-popover-mapa col remove-padding text-rigth">\n\
                             <div class="row">\n\
@@ -690,7 +735,8 @@ angular.module('Cmp.Geolocation', [
                             </div>\n\
                             <div id="barra-local-atual" style="display:flex" class="row">\n\
                                 <div ng-if="dadosUser.visibilidadeCheckInId != 3" class="icone-local-popover-dourado"\n\
-                                style="background-image:url({{dadosUser.usuarioEndereco}})">\n\
+                                ng-class="{\'img-pessoa-padrao\' : !dadosUser.usuarioEndereco}"\n\
+                                style="background-image:url({{mudarNome(dadosUser.usuarioEndereco)}})">\n\
                                     <div class="container-privacidade-img">\n\
                                         <md-icon\n\
                                         ng-class="{\'ion-android-globe\' : dadosUser.visibilidadeCheckInId == 1,\n\
@@ -730,7 +776,7 @@ angular.module('Cmp.Geolocation', [
                                     </md-menu>\n\
                                 </div>\n\
                             </div>\n\
-                            <div style="right: calc({{(popover.width/2)}}px - 10px);" class="ponto-balao"></div>\n\
+                            <div style="right:{{pontopopover}}px;" class="ponto-balao"></div>\n\
                         </div>\n\
                     </div>\n\
                     <div style="width:{{telaLarg}}px;\n\
