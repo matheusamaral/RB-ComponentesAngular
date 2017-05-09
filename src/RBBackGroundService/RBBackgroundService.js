@@ -21,46 +21,23 @@ angular.module('RB.BackgroundService', [
         };
         
         function erroAtualizarPosicalServidorIOS(error){
-            console.log('- BackgroundFetch failed', error);
-        }
-        
-        function startService(data) {
-            if (data.ServiceRunning) {
-               enableTimer(data);
-            } else {
-               myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-            }
-        }
-
-        function enableTimer(data) {
-            if (data.TimerEnabled) {
-               allDone();
-            } else {
-                //var tempo = 30000;//30 segundos (para debug)
-                var tempo = 60000*5;//5 minutos
-                myService.enableTimer(tempo, function(r){allDone(r)}, function(e){handleError(e)});
-            }
-        }
-
-        function allDone() {
-            //alert("Service now running");                
-            //getLocation();                
+            console.log('- BackgroundFetch failedEEEEE', error);
         }
         
         function monitorarPosicaoIOSInicial(){
-            Fetcher = window.BackgroundFetch;
-            Fetcher.configure(atualizarPosicaoServidorIOS, erroAtualizarPosicalServidorIOS, {
-                stopOnTerminate: false  // <-- true is default
-            });
+            if(!$rootScope.veioSemDados){
+                if(!ionic.Platform.isAndroid()){
+                    Fetcher = window.BackgroundFetch;
+                    Fetcher.configure(atualizarPosicaoServidorIOS, erroAtualizarPosicalServidorIOS, {
+                        stopOnTerminate: false  // <-- true is default
+                    });
+                }else{
+                    atualizarPosicaoServidorIOS();
+                }
+            }
         }
         
-        function metodoAtualizarPosicao(localizacao){
-//            $.get({
-//                url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + DGlobal.coordenadasAtual.latitude + '&longitude='+ DGlobal.coordenadasAtual.longitude +'&uuid='+DGlobal.idDevice,
-//                callback: function(response) {
-//                    comparaLocalizacoes(response);
-//                }
-//            });   
+        function metodoAtualizarPosicao(localizacao){  
             var obj = {
                 url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + localizacao.latitude + '&longitude='+ localizacao.longitude +'&uuid='+DGlobal.idDevice,
                 dados: null,
@@ -85,17 +62,15 @@ angular.module('RB.BackgroundService', [
         
         function iniciaIntervalo(){
             pararIntervalo();
-            $rootScope.intervaloChamada = setInterval(function(){
-                GerenciadorGPS.atualizarPosicaoAtual(metodoAtualizarPosicao);
-            }, 60000*5);
+            if(!$rootScope.veioSemDados){
+                $rootScope.intervaloChamada = setInterval(function(){
+                    console.log('INICIOU O INTERVALO');
+                    GerenciadorGPS.atualizarPosicaoAtual(metodoAtualizarPosicao);
+                }, 60000);
+            }
         }
         
         function verificaCheckin(location){
-//            $.get({
-//                url: Config.getRefAmbienteReq()+'/Local/backgroundSugerirLocal?background=1&latitude=' + DGlobal.latitudePlugin + '&longitude='+ DGlobal.longitudePlugin+'&alertar=1&&uuid='+DGlobal.idDevice,
-//                callback: function(response) {
-//                }
-//            });  
             var obj = {
                 url: Config.getRefAmbienteReq()+'/Local/backgroundSugerirLocal?background=1&latitude=' + location.latitude + '&longitude='+ location.longitude+'&alertar=1&&uuid='+DGlobal.idDevice,
                 dados: null,
@@ -117,6 +92,7 @@ angular.module('RB.BackgroundService', [
             var diffRaioAnterior = JSON.parse(localStorage.getItem("diffRaioAnteriorLocal"));// Recupera os dados armazenados
             
             if(localizacaoAntiga){
+                console.log('LOCOOOOOOOOOO');
                 var diffRaio = calculaDiffRaio(localizacaoAntiga,localizacaoAtual);
                 if(diffRaioAnterior > raio && localizacao.accuracy < raio && diffRaio < raio){
                     verificaCheckin(localizacao);
@@ -157,31 +133,17 @@ angular.module('RB.BackgroundService', [
         };
         
         function atualizarPosicaoServidorIOS(){
-        console.log('[js] BackgroundFetch initiated');   
+            console.log('[js] BackgroundFetch initiated');   
 
-       // Get a reference to the plugin.
-        var bgGeo = window.BackgroundGeolocation;
+           // Get a reference to the plugin.
+            var bgGeo = window.BackgroundGeolocation;
 
-        //This callback will be executed every time a geolocation is recorded in the background.
-        var callbackFn = function(location, taskId) {
+            //This callback will be executed every time a geolocation is recorded in the background.
+            var callbackFn = function(location, taskId) {
             var coords = location.coords;
             console.log('- Location: ', JSON.stringify(location));
             console.log('Colocar para o alerta!!!!');
-            comparaLocalizacoes(coords);
-//            $.get({
-//                url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + coords.latitude + '&longitude='+ coords.longitude+'&uuid='+DGlobal.idDevice,
-//                callback: function(response) {
-//                    // process your response and whatnot.
-//                    console.log('Resposta da requisição');
-//                    console.log(response);
-//                    // Must signal completion of your callbackFn.
-//                    bgGeo.finish(taskId);
-//                    Fetcher.finish();
-//                    Fetcher.configure(atualizarPosicaoServidorIOS, erroAtualizarPosicalServidorIOS, {
-//                        stopOnTerminate: false  // <-- true is default
-//                    });
-//                }
-//            });  
+            comparaLocalizacoes(coords); 
             var obj = {
                 url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + coords.latitude + '&longitude='+ coords.longitude+'&uuid='+DGlobal.idDevice,
                 dados: null,
@@ -212,16 +174,7 @@ angular.module('RB.BackgroundService', [
             bgGeo.on('location', callbackFn, failureFn);
 
             BackgroundGeolocation.on('activitychange', function(activityName) {
-                console.log('------------XX---> Activity changed: ', activityName);
-//                $.get({
-//                    url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + DGlobal.latitudePlugin + '&longitude='+ DGlobal.longitudePlugin+'&uuid='+DGlobal.idDevice,
-//                    callback: function(response) {
-//                        // process your response and whatnot.
-//                        console.log('Resposta da requisição');
-//                        console.log(response);
-//                        comparaLocalizacoes(response,true);
-//                    }
-//                });       
+                console.log('------------XX---> Activity changed: ', activityName);     
             });
 
             BackgroundGeolocation.on('heartbeat', function(params) {
@@ -229,34 +182,20 @@ angular.module('RB.BackgroundService', [
                 console.log('- heartbeat: ', lastKnownLocation);
                 // Or you could request a new location
                 BackgroundGeolocation.getCurrentPosition(function(location, taskId) {
-                    console.log('- current position: ', location);
+                console.log('- current position: ', location);     
 
-//                    $.get({
-//                      url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + location.coords.latitude + '&longitude='+ location.coords.longitude +'&uuid='+DGlobal.idDevice,
-//                      callback: function(response) {
-//                          // process your response and whatnot.
-//                          console.log('Resposta da requisição');
-//                          console.log(response);
-//                          comparaLocalizacoes(location.coords);
-//                          BackgroundGeolocation.finish(taskId);
-//                          Fetcher.configure(atualizarPosicaoServidorIOS, erroAtualizarPosicalServidorIOS, {
-//                            stopOnTerminate: false  // <-- true is default
-//                        });
-//                      }
-//                    });       
-
-                    var obj = {
-                        url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + location.coords.latitude + '&longitude='+ location.coords.longitude +'&uuid='+DGlobal.idDevice,
-                        dados: null,
-                        tipo: 'GET',
-                        acao: function(){
-                            successOnHeartBeat(location, taskId);
-                        },
-                        error: errorAtt,
-                        scope: scope,
-                        exibeMSGCarregando: 0
-                    };
-                    GCS.conectar(obj);
+                var obj = {
+                    url: Config.getRefAmbienteReq()+'/Acoes/verificarPosicao?background=1&latitude=' + location.coords.latitude + '&longitude='+ location.coords.longitude +'&uuid='+DGlobal.idDevice,
+                    dados: null,
+                    tipo: 'GET',
+                    acao: function(){
+                        successOnHeartBeat(location, taskId);
+                    },
+                    error: errorAtt,
+                    scope: scope,
+                    exibeMSGCarregando: 0
+                };
+                GCS.conectar(obj);
 
                 });
             });
@@ -294,12 +233,12 @@ angular.module('RB.BackgroundService', [
                 distanceFilter: 0,
                 stationaryRadius: 25,
                 // Activity Recognition config
-                activityRecognitionInterval: 30000*5,
+                activityRecognitionInterval: 30000,
                 stopTimeout: 5,
                 // Application config
                 //debug: true,  // <-- Debug sounds & notifications.
                 stopOnTerminate: false,
-                heartbeatInterval: 60*5,
+                heartbeatInterval: 60,
                 preventSuspend: true,
                 startOnBoot: true,
                 autoSync: true,
