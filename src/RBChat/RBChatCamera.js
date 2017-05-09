@@ -41,11 +41,11 @@ angular.module('RB.ChatCamera',[
                     hr:$('body').height()
                 };
                 scope.rbChat.abrindoCamera = true;
-                //if(scope.cameraEscondida){
-                //   scope.camera.show();
-                //   addFundoTransp();
-                //    scope.cameraEscondida = false;
-                //}else{
+                if(scope.cameraEscondida){
+                   scope.camera.show();
+                   addFundoTransp();
+                    scope.cameraEscondida = false;
+                }else{
                     scope.camera.startCamera({
                         x: 0,
                         y: y,
@@ -56,7 +56,7 @@ angular.module('RB.ChatCamera',[
                         previewDrag: dragEnabled, 
                         toBack:toBack
                     },addFundoTransp);
-                //}
+                }
             };
             
             scope.rbChat.tirarFoto = function(){
@@ -194,6 +194,7 @@ angular.module('RB.ChatCamera',[
             }
             
             function addFundoTransp(){
+                alert('AKSJDKAJS');
                 $('html,body,ion-side-menus,ion-side-menu-content,ion-content').addClass('fundo-transparente-camera');
                 $timeout(function(){
                     scope.rbChat.cameraAberta = true;
